@@ -118,23 +118,28 @@ hr { border: solid #ececec; border-width: 1px 0 0; clear: both; margin: 1em 0 2e
 	ol ol li, ol ul li { margin-bottom: .2em; }
 	li { margin-bottom: 1em; }
 	
-	.toctree-wrapper ul { list-style: decimal inside; margin-left: 0;position: relative;float: left;z-index: 1; }
-	.toctree-wrapper ul li { padding: 10px;margin: 0 20px 10px 0;width: 26%;float: left;
-	list-style:none;background-color:#f7f7f7;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:30px;-moz-border-radius:30px;border-radius:30px;-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.925;filter:alpha(opacity=90);
-	-webkit-transition:all .2s linear;
-	-moz-transition:all .2s linear;
-	-ms-transition:all .2s linear;
-	-o-transition:all .2s linear;
-	transition:all .2s linear;
-	}
-	.toctree-wrapper ul li:hover {-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background-color:#08c;color: #fff !important;}
-	.toctree-wrapper ul li a {display: block;}
-	.toctree-wrapper ul ul { list-style: lower-alpha inside;
-	display: none; }
-	.toctree-wrapper ul li:hover ul {display: block;position: absolute;left:100px;
-	list-style:none;background-color:#fff;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);box-shadow:0 5px 10px rgba(0,0,0,0.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.925;filter:alpha(opacity=90);z-index: 5000;zoom: 1;left:}
+	#lassoguide h1, #lassoguide p, #appendices {padding-left: 240px;}
 	
-	.toctree-wrapper ul ul li {-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;color: #fff;border: 0;padding: 4px;margin: 0;}
+	#lassoguide .toctree-wrapper {position: absolute;left: 0;top: 60px;}
+	
+	#lassoguide .toctree-wrapper ul { list-style: decimal inside; margin-left: 0;width: 220px;position: relative;}
+	#lassoguide .toctree-wrapper ul li { padding: 10px; padding-left: 20px; margin: 0 20px 10px 0;background-color:#f7f7f7;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:30px;-moz-border-radius:30px;border-radius:30px;-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.925;filter:alpha(opacity=90);
+	}
+	#lassoguide .toctree-wrapper ul ul li {float: none;width: 100%;display: block;}
+	#lassoguide .toctree-wrapper ul li:hover {-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background-color:#08c;color: #fff !important;}
+	#lassoguide .toctree-wrapper ul li a {display: block;}
+	#lassoguide .toctree-wrapper ul ul li:hover a, #lassoguide .toctree-wrapper ul ul li a:hover {color: #fff !important;}
+	
+	#lassoguide .toctree-wrapper ul ul { list-style: lower-alpha inside;position: absolute;	display: none; }
+	
+	#lassoguide .toctree-wrapper ul li:hover ul {display: block;position: absolute;background-color:#fff;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);box-shadow:0 5px 10px rgba(0,0,0,0.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.925;filter:alpha(opacity=90);
+		margin-top: -50px;margin-left: 178px;
+		width: auto;
+		z-index: 5000;
+	}
+	
+	#lassoguide .toctree-wrapper ul ul li,#lassoguide .toctree-wrapper ul ul li:hover {-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+	#lassoguide .toctree-wrapper ul ul li {color: #fff;border: 0;padding: 4px;margin: 0;width: 160px;}
 	
 	#appendices {clear: both;margin-top: 1em;}
 	
