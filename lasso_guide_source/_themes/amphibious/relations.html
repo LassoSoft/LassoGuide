@@ -1,0 +1,8 @@
+{%- if prev %}
+  <li><a class="tooltip" href="{{ prev.link|e }}"
+         title="{{ prev.title }}"><b class="east hmr"></b>Previous</a></li>
+{%- endif %}
+{%- if next %}
+  <li><a class="tooltip" href="{{ next.link|e }}"
+         title="{{ next.title }}">Next<b class="west hml"></b></a></li>
+{%- endif %}

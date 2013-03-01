@@ -1,0 +1,144 @@
+{% extends "basic/layout.html" %}
+{% set script_files = script_files + ['_static/a.mphibio.us.js'] %}
+{% set css_files = ['_static/a.mphibio.us.css'] + css_files %}
+
+{# Sidebar: Rework into fixed-top-nav section. #}
+{% macro navBar() %}
+  <div id="navbar" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container fluid">
+        <a class="brand" href="{{ pathto(master_doc) }}"><b>Lasso</b>Guide</a>
+        <span class="navbar-text pull-left"><b>{{ release|e }}</b></span>
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            {% block sidebartoc %}
+              {% include "globaltoc.html" %}
+              {% include "localtoc.html" %}
+            {% endblock %}
+            <li class="divider-vertical"></li>
+            {% block sidebarrel %}
+              {% include "relations.html" %}
+            {% endblock %}
+            <li class="divider-vertical"></li>
+          </ul>
+          
+          {% block sidebarsourcelink %}
+          	{% include "sourcelink.html" %}
+          {% endblock %}
+          
+          {% block sidebarsearch %}
+            {% include "searchbox.html" %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{%- block extrahead %}
+<meta name="viewport" content="width=device-width">
+<!--// Added test comment to trigger changes //-->
+<script type="text/javascript">
+(function () {
+  /**
+   * Patch TOC list.
+   *
+   * Will mutate the underlying span to have a correct ul for nav.
+   *
+   * @param $span: Span containing nested UL's to mutate.
+   * @param minLevel: Starting level for nested lists. (1: global, 2: local).
+   */
+  var patchToc = function ($ul, minLevel) {
+    var findA;
+
+    // Find all a "internal" tags, traversing recursively.
+    findA = function ($elem, level) {
+      var level = level || 0,
+        $items = $elem.find("> li > a.internal, > ul, > li > ul");
+
+      // Iterate everything in order.
+      $items.each(function (index, item) {
+        var $item = $(item),
+          tag = item.tagName.toLowerCase(),
+          pad = 15 + ((level - minLevel) * 10);
+
+        if (tag === 'a' && level >= minLevel) {
+          // Add to existing padding.
+          $item.css('padding-left', pad + "px");
+          console.log(level, $item, 'padding-left', pad + "px");
+        } else if (tag === 'ul') {
+          // Recurse.
+          findA($item, level + 1);
+        }
+      });
+    };
+
+    console.log("HERE");
+    findA($ul);
+  };
+
+  $(document).ready(function () {
+  	// Remove padding from search page if($('#search-documentation').text().length > 0) {$('#navbar').css('top','-55px');$('#maincontent').css('margin-top','-40px');}
+    // Add styling, structure to TOC's.
+    $(".dropdown-menu").each(function () {
+      $(this).find("ul").each(function (index, item){
+        var $item = $(item);
+        $item.addClass('unstyled');
+      });
+      $(this).find("li").each(function () {
+        $(this).parent().append(this);
+      });
+    });
+
+    // Patch in level.
+    patchToc($("ul.globaltoc"), 3);
+    patchToc($("ul.localtoc"), 3);
+
+    // Enable dropdown.
+    $('.dropdown-toggle').dropdown();
+
+    // Enable Local Scroll.
+    $.localScroll();
+  });
+}());
+</script>
+{% endblock %}
+
+{% block header %}{{ navBar() }}{% endblock %}
+
+{# Silence the sidebar's, relbar's #}
+{% block sidebar1 %}{% endblock %}
+{% block sidebar2 %}{% endblock %}
+{% block relbar1 %}{% endblock %}
+{% block relbar2 %}{% endblock %}
+
+{%- block content %}
+<span id="amp_fb" class="a"></span>
+<div id="maincontent" class="container fluid">
+   {% block body %} {% endblock %}
+</div>
+{%- endblock %}
+
+{%- block footer %}
+<footer class="footer">
+  <div class="container fluid">
+    <p class="small r"><a class="button" href="#maincontent">Back to top <b class="north"></b></a></p>
+    <p class="small">
+    {%- if show_copyright %}
+      {%- if hasdoc('copyright') %}
+        {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright }}.{% endtrans %}<br/>
+      {%- else %}
+        {% trans copyright=copyright|e %}&copy; Copyright {{ copyright }}.{% endtrans %}<br/>
+      {%- endif %}
+    {%- endif %}
+    {%- if last_updated %}
+      {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}<br/>
+    {%- endif %}
+    {%- if show_sphinx %}
+      {% trans sphinx_version=sphinx_version|e %}Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.{% endtrans %}<br/>
+    {%- endif %}
+    </p>
+  </div>
+</footer>
+{%- endblock %}
+
