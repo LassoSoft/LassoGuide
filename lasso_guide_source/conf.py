@@ -183,7 +183,10 @@ latex_elements = {
 #'pointsize': '10pt',
 
 # Additional stuff for the LaTeX preamble.
-#'preamble': '',
+'preamble': r"""
+% Use a more modern-looking monospace font
+\usepackage{inconsolata}
+""",
 
 'fontpkg': '\\usepackage{charter}',
 }

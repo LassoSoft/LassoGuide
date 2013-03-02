@@ -303,7 +303,7 @@ Doc Comments
 A doc comment permits a bit of documentation to be associated with
 either a type, trait or method. This comment is not processed by Lasso
 in any way, but is saved as-is. A doc comment begins with the characters
-``/\*\*!`` and runs until a closing ``\*/`` sequence. Any characters can appear
+``/**!`` and runs until a closing ``*/`` sequence. Any characters can appear
 within a doc comment, and a doc comment can consist of multiple lines.
 
 Doc comments can only appear in the following locations:
