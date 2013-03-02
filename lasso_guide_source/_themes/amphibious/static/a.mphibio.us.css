@@ -118,28 +118,41 @@ hr { border: solid #ececec; border-width: 1px 0 0; clear: both; margin: 1em 0 2e
 	ol ol li, ol ul li { margin-bottom: .2em; }
 	li { margin-bottom: 1em; }
 	
+	footer p.small.r .button {position: fixed;bottom: 10px;right: 20px;}
+	
 	#lassoguide h1, #lassoguide p, #appendices {padding-left: 240px;}
 	
 	#lassoguide .toctree-wrapper {position: absolute;left: 0;top: 60px;}
 	
 	#lassoguide .toctree-wrapper ul { list-style: decimal inside; margin-left: 0;width: 220px;position: relative;}
 	#lassoguide .toctree-wrapper ul li { padding: 10px; padding-left: 20px; margin: 0 20px 10px 0;background-color:#f7f7f7;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:30px;-moz-border-radius:30px;border-radius:30px;-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.925;filter:alpha(opacity=90);
+	-webkit-transition: all 0.3s ease-out; 
+	 -moz-transition: all 0.3s ease-out; 
+	   -o-transition: all 0.3s ease-out; 
+	      transition: all 0.3s ease-out; 
 	}
-	#lassoguide .toctree-wrapper ul ul li {float: none;width: 100%;display: block;}
+	#lassoguide .toctree-wrapper ul ul li {float: none;width: 100%;display: block;background: transparent;}
 	#lassoguide .toctree-wrapper ul li:hover {-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background-color:#08c;color: #fff !important;}
-	#lassoguide .toctree-wrapper ul li a {display: block;}
+		#lassoguide .toctree-wrapper ul li:hover a {color: #fff;}
+		#lassoguide .toctree-wrapper ul li:hover li a {color: #08c;}
+	#lassoguide .toctree-wrapper ul li a {display: block;/* color: #fff; */}
 	#lassoguide .toctree-wrapper ul ul li:hover a, #lassoguide .toctree-wrapper ul ul li a:hover {color: #fff !important;}
 	
-	#lassoguide .toctree-wrapper ul ul { list-style: lower-alpha inside;position: absolute;	display: none; }
+	#lassoguide .toctree-wrapper ul ul { list-style: lower-alpha inside;position: absolute;	opacity: 0;margin-top: -50px;margin-left: -500px;
+	-webkit-transition: all 0.3s ease-out; 
+	 -moz-transition: all 0.3s ease-out; 
+	   -o-transition: all 0.3s ease-out; 
+	      transition: all 0.3s ease-out;  }
 	
 	#lassoguide .toctree-wrapper ul li:hover ul {display: block;position: absolute;background-color:#fff;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);box-shadow:0 5px 10px rgba(0,0,0,0.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.925;filter:alpha(opacity=90);
 		margin-top: -50px;margin-left: 178px;
 		width: auto;
 		z-index: 5000;
+		opacity: 1;
 	}
 	
-	#lassoguide .toctree-wrapper ul ul li,#lassoguide .toctree-wrapper ul ul li:hover {-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
-	#lassoguide .toctree-wrapper ul ul li {color: #fff;border: 0;padding: 4px;margin: 0;width: 160px;}
+	#lassoguide .toctree-wrapper ul ul li:hover {-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+	#lassoguide .toctree-wrapper ul ul li {color: #fff;border: 0;padding: 4px;margin: 0;width: 160px;float: left;}
 	
 	#appendices {clear: both;margin-top: 1em;}
 	
