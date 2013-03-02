@@ -142,11 +142,11 @@ hr { border: solid #ececec; border-width: 1px 0 0; clear: both; margin: 1em 0 2e
 	-webkit-transition: all 0.3s ease-out; 
 	 -moz-transition: all 0.3s ease-out; 
 	   -o-transition: all 0.3s ease-out; 
-	      transition: all 0.3s ease-out;  }
-	
+	      transition: all 0.3s ease-out;
+}
+	#lassoguide .toctree-wrapper ul ul,#lassoguide .toctree-wrapper ul ul li {width: 300px;}
 	#lassoguide .toctree-wrapper ul li:hover ul {display: block;position: absolute;background-color:#fff;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);box-shadow:0 5px 10px rgba(0,0,0,0.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.925;filter:alpha(opacity=90);
 		margin-top: -50px;margin-left: 178px;
-		width: auto;
 		z-index: 5000;
 		opacity: 1;
 	}
@@ -156,6 +156,8 @@ hr { border: solid #ececec; border-width: 1px 0 0; clear: both; margin: 1em 0 2e
 	
 	#appendices {clear: both;margin-top: 1em;}
 	
+	#lassoguide .toctree-wrapper ul ul {width: 208px !important;}
+	#lassoguide .toctree-wrapper ul ul li {width: 200px !important;}
 	dl dt {
 	font-size: 16px;
 	font-weight: bold;
@@ -1164,7 +1166,7 @@ input.col.one {width: 30px;text-indent: 8px;}
 }
 #buttonlinks {float:right;}
 input[type="text"]#s, input[type="text"]#s:focus {
-float: left[]
+float: left;
 width: 50%;
 }
 button.reset_button, button.search_button {
