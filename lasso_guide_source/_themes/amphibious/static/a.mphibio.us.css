@@ -124,7 +124,7 @@ hr { border: solid #ececec; border-width: 1px 0 0; clear: both; margin: 1em 0 2e
 	
 	#lassoguide .toctree-wrapper {position: absolute;left: 0;top: 60px;}
 	
-	#lassoguide .toctree-wrapper ul { list-style: decimal inside; margin-left: 0;width: 220px;position: relative;}
+	#lassoguide .toctree-wrapper ul { list-style: decimal inside inside; margin-left: 0;width: 220px;position: relative;}
 	#lassoguide .toctree-wrapper ul li { padding: 10px; padding-left: 20px; margin: 0 20px 10px 0;background-color:#f7f7f7;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:30px;-moz-border-radius:30px;border-radius:30px;-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.925;filter:alpha(opacity=90);
 	-webkit-transition: all 0.3s ease-out; 
 	 -moz-transition: all 0.3s ease-out; 
@@ -138,19 +138,24 @@ hr { border: solid #ececec; border-width: 1px 0 0; clear: both; margin: 1em 0 2e
 	#lassoguide .toctree-wrapper ul li a {display: block;/* color: #fff; */}
 	#lassoguide .toctree-wrapper ul ul li:hover a, #lassoguide .toctree-wrapper ul ul li a:hover {color: #fff !important;}
 	
-	#lassoguide .toctree-wrapper ul ul { list-style: lower-alpha inside;position: absolute;	opacity: 0;margin-top: -50px;margin-left: -500px;
-	-webkit-transition: all 0.3s ease-out; 
-	 -moz-transition: all 0.3s ease-out; 
-	   -o-transition: all 0.3s ease-out; 
-	      transition: all 0.3s ease-out;
+	#lassoguide .toctree-wrapper ul ul { 
+	/*
+list-style: lower-alpha inside;position: absolute;	opacity: 0;margin-top: -50px;margin-left: 178px;
+	-webkit-transition: opacity 0.2s ease-out; 
+	 -moz-transition: opacity 0.2s ease-out; 
+	   -o-transition: opacity 0.2s ease-out; 
+	      transition: opacity 0.2s ease-out;
+*/ display:none;
 }
 	#lassoguide .toctree-wrapper ul ul,#lassoguide .toctree-wrapper ul ul li {width: 300px;}
-	#lassoguide .toctree-wrapper ul li:hover ul {display: block;position: absolute;background-color:#fff;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);box-shadow:0 5px 10px rgba(0,0,0,0.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.925;filter:alpha(opacity=90);
+	/*
+#lassoguide .toctree-wrapper ul li:hover ul {display: block;position: absolute;background-color:#fff;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);box-shadow:0 5px 10px rgba(0,0,0,0.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.925;filter:alpha(opacity=90);
 		margin-top: -50px;margin-left: 178px;
 		z-index: 5000;
 		opacity: 1;
 	}
 	#lassoguide .toctree-wrapper ul li:nth-child(4):hover ul, #lassoguide .toctree-wrapper ul li:nth-child(5):hover ul {display: none;}
+*/
 	
 	#lassoguide .toctree-wrapper ul ul li:hover {-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
 	#lassoguide .toctree-wrapper ul ul li {color: #fff;border: 0;padding: 4px;margin: 0;width: 160px;float: left;}
@@ -1098,28 +1103,10 @@ a.page:before {background-position:-135px 0;}
 	#buttonlinks {top:45px;right:0;margin-left: 0;}
 
 }
-/*
-@media only screen and (min-width: 768px) and (max-width: 959px) {
-body {padding-top: 102px !important;}
-.container-fluid {padding: 0 .625em;}
-.navbar, .navbar-inner {height: 83px;}
-button.reset_button {margin-right: 0;}
-.navbar .nav {position: absolute; top: 44px;}
-	}
 
-@media only screen and (max-width: 767px) {
-body {padding-top: 102px !important;}
-.container-fluid {padding: 0 .625em;}
-.navbar-inner {height: 83px;}
-.navbar, .navbar-inner {height: 83px;}
-.navbar-search {position: absolute;right: 14px;}
-button.reset_button {margin-right: 0;}
-.navbar .nav {position: absolute; top: 44px;}
-}
-*/
 
 @media only screen and (max-width: 479px), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {
-body {padding-top: 55px !important;}
+/* body {padding-top: 55px !important;} */
 
 .container .col	{ display: inline; float: left;	margin-left: 1%; margin-right: 1%; }
 .container .col.first								{ margin-left: 0 !important;}
@@ -1151,38 +1138,10 @@ input.col.one {width: 30px;text-indent: 8px;}
 .navbar .nav li.divider-vertical {display: none;}
 .navbar .nav > li {margin-bottom: 0;}
 .navbar .nav > li > a.source_button {position: absolute;top:-34px;right:14px;}
-.navbar-search.right {position: fixed;top:0;right: 0;left:0;margin-top: 0;}
-.navbar-search.right .row {padding: 14px 14px 0;margin-bottom: 0;
-	
-	text-shadow: rgba(255,255,255,.8) 0 1px 1px;
-	background-color: #fbfbfb;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#c9c9c9));
-	background-image: -webkit-linear-gradient(top, #fbfbfb, #c9c9c9);
-	background-image:    -moz-linear-gradient(top, #fbfbfb, #c9c9c9);
-	background-image:      -o-linear-gradient(top, #fbfbfb, #c9c9c9);
-	background-image:         linear-gradient(to bottom, #fbfbfb, #c9c9c9);
-	-o-box-shadow: rgba(0,0,0,.3) 0 0 2px, rgba(0,0,0,.4) 0 0 1px, inset rgba(255,255,255,.4) 0 0 2px;
-	-moz-box-shadow: rgba(0,0,0,.3) 0 0 2px, rgba(0,0,0,.4) 0 0 1px, inset rgba(255,255,255,.4) 0 0 2px;
-	-webkit-box-shadow: rgba(0,0,0,.3) 0 0 2px, rgba(0,0,0,.4) 0 0 1px, inset rgba(255,255,255,.4) 0 0 2px;
-	-khtml-box-shadow: rgba(0,0,0,.3) 0 0 2px, rgba(0,0,0,.4) 0 0 1px, inset rgba(255,255,255,.4) 0 0 2px;
-	box-shadow: rgba(0,0,0,.3) 0 0 2px, rgba(0,0,0,.4) 0 0 1px, inset rgba(255,255,255,.4) 0 0 2px;
-}
 #buttonlinks {float:right;}
 input[type="text"]#s, input[type="text"]#s:focus {
 float: left;
 width: 50%;
-}
-button.reset_button, button.search_button {
-	position: relative;
-	float: left;
-	background-color:#005583;
-	background-image:url(img/sprite.png);
-	background-repeat:no-repeat;
-	background-position:-105px 2px;
-	width:24px;
-	height:24px;
-	margin-left: 6px;
-	margin-bottom: 0;
 }
 
 input[type="text"]#s, input[type="text"]#s:focus {width: 84%;margin-bottom: 0;background-color: #fff !important;}
@@ -1200,5 +1159,8 @@ input[type="text"]#s:focus {
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1) and (min-device-width: 320px) and (max-device-width: 480px), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 320px) and (max-device-width: 480px){
 
+	#lassoguide h1, #lassoguide p, #appendices {padding-left: 0;}
+	
+	#lassoguide .toctree-wrapper {position: relative;}
 
 }
