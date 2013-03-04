@@ -133,30 +133,13 @@ hr { border: solid #ececec; border-width: 1px 0 0; clear: both; margin: 1em 0 2e
 	}
 	#lassoguide .toctree-wrapper ul ul li {float: none;width: 100%;display: block;background: transparent;}
 	#lassoguide .toctree-wrapper ul li:hover {-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background-color:#08c;color: #fff !important;}
-		#lassoguide .toctree-wrapper ul li:hover a {color: #fff;}
-		#lassoguide .toctree-wrapper ul li:hover li a {color: #08c;}
+	#lassoguide .toctree-wrapper ul li:hover a {color: #fff;}
+	#lassoguide .toctree-wrapper ul li:hover li a {color: #08c;}
 	#lassoguide .toctree-wrapper ul li a {display: block;/* color: #fff; */}
 	#lassoguide .toctree-wrapper ul ul li:hover a, #lassoguide .toctree-wrapper ul ul li a:hover {color: #fff !important;}
 	
-	#lassoguide .toctree-wrapper ul ul { 
-	/*
-list-style: lower-alpha inside;position: absolute;	opacity: 0;margin-top: -50px;margin-left: 178px;
-	-webkit-transition: opacity 0.2s ease-out; 
-	 -moz-transition: opacity 0.2s ease-out; 
-	   -o-transition: opacity 0.2s ease-out; 
-	      transition: opacity 0.2s ease-out;
-*/ display:none;
-}
+	#lassoguide .toctree-wrapper ul ul { display:none; }
 	#lassoguide .toctree-wrapper ul ul,#lassoguide .toctree-wrapper ul ul li {width: 300px;}
-	/*
-#lassoguide .toctree-wrapper ul li:hover ul {display: block;position: absolute;background-color:#fff;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);box-shadow:0 5px 10px rgba(0,0,0,0.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.925;filter:alpha(opacity=90);
-		margin-top: -50px;margin-left: 178px;
-		z-index: 5000;
-		opacity: 1;
-	}
-	#lassoguide .toctree-wrapper ul li:nth-child(4):hover ul, #lassoguide .toctree-wrapper ul li:nth-child(5):hover ul {display: none;}
-*/
-	
 	#lassoguide .toctree-wrapper ul ul li:hover {-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
 	#lassoguide .toctree-wrapper ul ul li {color: #fff;border: 0;padding: 4px;margin: 0;width: 160px;float: left;}
 	
@@ -166,7 +149,7 @@ list-style: lower-alpha inside;position: absolute;	opacity: 0;margin-top: -50px;
 	#lassoguide .toctree-wrapper ul li:nth-child(2) ul {width: 624px !important;}
 	#lassoguide .toctree-wrapper ul ul li {width: 200px !important;}
 	
-	dl dt {
+dl dt {
 	font-size: 16px;
 	font-weight: bold;
 	line-height: 1.2;
@@ -186,31 +169,21 @@ dl dd {
 		box-shadow: rgba(0,0,0,.4) 0 2px 2px,rgba(0,0,0,.1) 0 2px 6px,rgba(0,0,0,.1) 0 2px 12px;
 	}
 	table.docutils caption {
-		text-align: left; padding:.625em; padding-bottom: .825em;
-		border: 1px solid rgba(0,0,0,.4);color: #000;text-shadow:rgba(255,255,255,.8) 0 1px 0;/*
-
-		-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.25),inset 0 2px 4px rgba(0,0,0,.4);
-		-moz-box-shadow:0 1px 2px rgba(0,0,0,0.25),inset 0 2px 4px rgba(0,0,0,.4);
-		box-shadow:inset 0 1px 2px rgba(0,0,0,.4), 0 0 2px rgba(255,255,255,.6);
-*/
-		margin-bottom: -4px;/*
-
-		-khtml-border-top-left-radius: 12px;
-		-webkit-border-top-left-radius: 12px;
-		border-top-left-radius: 12px; 
-		-khtml-border-top-right-radius: 12px;
-		-webkit-border-top-right-radius: 12px;
-		border-top-right-radius: 12px; 
-*/
-				
-		}
+		text-align: left; 
+		padding:.625em; 
+		padding-bottom: .825em;
+		border: 1px solid rgba(0,0,0,.4);
+		color: #000;
+		background: #f7f7f7;
+		text-shadow:rgba(255,255,255,.8) 0 1px 0;
+		margin-bottom: -4px;
+	}
 	table.docutils td, table.docutils th {
-		padding: .3em .425em;margin:0;border-top: 0px !important;border-top: 0px !important;/*
-
-		-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.25),inset 0 0 2px rgba(255,255,255,.4), 0 2px 4px rgba(0,0,0,.4);
-		-moz-box-shadow:0 1px 3px rgba(0,0,0,0.25),inset 0 -1px 0 rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,.4);
-		box-shadow:0 1px 3px rgba(0,0,0,0.25),inset 0 0 2px rgba(255,255,255,.4), 0 2px 4px rgba(0,0,0,.4);
-*/}
+		padding: .3em .425em;
+		margin:0;
+		border-top: 0px !important;
+		border-top: 0px !important;
+	}
 		
 	table.docutils td {vertical-align: text-top}
 	table.docutils th {
@@ -233,11 +206,11 @@ dl dd {
 /* Images
 ================================================== */
 
-img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
-svg:not(:root) { overflow: hidden; }
-figure { margin: 0; }
-
-img.scale-with-grid, img.swg {max-width: 100%;height: auto; }
+	img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+	svg:not(:root) { overflow: hidden; }
+	figure { margin: 0; }
+	
+	img.scale-with-grid, img.swg {max-width: 100%;height: auto; }
 
 	ol ol li, ol ul li { margin-bottom: .5em; }
 	li { margin-bottom: 1em; }
@@ -255,11 +228,11 @@ img.scale-with-grid, img.swg {max-width: 100%;height: auto; }
 /* Images
 ================================================== */
 
-img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
-svg:not(:root) { overflow: hidden; }
-figure { margin: 0; }
-
-img.scale-with-grid, img.swg {max-width: 100%;height: auto; }
+	img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+	svg:not(:root) { overflow: hidden; }
+	figure { margin: 0; }
+	
+	img.scale-with-grid, img.swg {max-width: 100%;height: auto; }
 
 /* Messaging
 ================================================== */
@@ -274,8 +247,7 @@ img.scale-with-grid, img.swg {max-width: 100%;height: auto; }
 -- in comments
 ================================================== */
 	
-.button, button, input[type="submit"], input[type="reset"], input[type="button"], input[type="file"],  .button_grp .active, .genindex-jumpbox a
-/*, .ui-state-default, .ui-datepicker-next, .ui-datepicker-prev  */{
+.button, button, input[type="submit"], input[type="reset"], input[type="button"], input[type="file"],  .button_grp .active {
 	background-color: #fdfdfd;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cfcfcf));
 	background-image: -webkit-linear-gradient(top, #fdfdfd, #cfcfcf);
@@ -294,11 +266,11 @@ img.scale-with-grid, img.swg {max-width: 100%;height: auto; }
 	font-weight: normal;
 	text-decoration: none;
 	text-shadow: 0 1px rgba(255, 255, 255, .75);
-	-o-box-shadow: rgba(0,0,0,.3) 0 1px 3px, inset rgba(255,255,255,.2) 0 0 2px;
-	-moz-box-shadow: rgba(0,0,0,.3) 0 1px 3px, inset rgba(255,255,255,.2) 0 0 2px;
-	-khtml-box-shadow: rgba(0,0,0,.3) 0 1px 3px, inset rgba(255,255,255,.2) 0 0 2px;
-	-webkit-box-shadow: rgba(0,0,0,.3) 0 1px 3px, inset rgba(255,255,255,.2) 0 0 2px;
-	box-shadow: rgba(0,0,0,.3) 0 1px 3px, inset rgba(255,255,255,.2) 0 0 2px;
+	-o-box-shadow: inset rgba(255,255,255,.2) 0 0 2px;
+	-moz-box-shadow: inset rgba(255,255,255,.2) 0 0 2px;
+	-khtml-box-shadow: inset rgba(255,255,255,.2) 0 0 2px;
+	-webkit-box-shadow:inset rgba(255,255,255,.2) 0 0 2px;
+	box-shadow: inset rgba(255,255,255,.2) 0 0 2px;
 	cursor: pointer;
 	margin-top: 0;
 	margin-right: 1.625em;
@@ -313,12 +285,7 @@ img.scale-with-grid, img.swg {max-width: 100%;height: auto; }
 	   -o-transition: all 0.3s ease-out; 
 	      transition: all 0.3s ease-out; 
 	}
-/*	
-.ui-state-default, .ui-datepicker-next, .ui-datepicker-prev {margin-right:0;margin-bottom:0;text-align: center;}
-.ui-datepicker-next, .ui-datepicker-prev {float: left;display: inline;}
-.ui-datepicker-next {float: right;}
-.ui-datepicker-title {display: block;text-align: center;}
-*/
+	
 .genindex-jumpbox {display: block;height: 26px;
 	border: 1px solid #aaa;
 	border-top: 1px solid #ededed;
@@ -329,10 +296,31 @@ img.scale-with-grid, img.swg {max-width: 100%;height: auto; }
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
 	background-color: #fefefe;}
-h2 {margin-bottom: 5px;}
+.genindex-jumpbox a {
+	font-weight: normal;
+	background-color: #fdfdfd;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cfcfcf));
+	background-image: -webkit-linear-gradient(top, #fdfdfd, #cfcfcf);
+	background-image:    -moz-linear-gradient(top, #fdfdfd, #cfcfcf);
+	background-image:      -o-linear-gradient(top, #fdfdfd, #cfcfcf);
+	background-image:         linear-gradient(to bottom, #fdfdfd, #cfcfcf);
+	border: 1px solid #aaa;
+	border-top: 1px solid #ededed;
+	border-left: 1px solid #ededed;
+	padding: 6px 6px 3px 6px;
+	margin-right: 0;
+	margin-left: 0;
+	-o-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	margin-top: 4px;
+	margin-left: 3px;}
+h2 {margin-bottom: 5px;
+}
 table.genindextable {margin-bottom: 1em;}
 .genindextable dt {padding: .325em 0;border-bottom: 1px solid #cfcfcf;display: block;width: 90%;}
-.genindex-jumpbox a {float: left;padding: 6px 6px 0;font-weight: normal;margin: 0 6px 9px 0;}
 .button,a.button,.button a:visited.button:visited,.button a,.button a:visited, .pager a:visited{color: #444;text-decoration: none;}
 
 .button:hover, button:hover, input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover,  input[type="file"]:hover, .genindex-jumpbox a:hover
@@ -823,7 +811,7 @@ Begin LassoGuide CSS
 
 .navbar .navbar-text{margin-bottom:0;line-height:40px}
 .navbar-form .input-append input,.navbar-form .input-prepend input{margin-top:0}
-.navbar-search{position:relative;float:right;margin-top:6px;margin-bottom:0;margin-right: 40px;}
+.navbar-search{position:absolute;right:0;top:6px;margin-bottom:0;margin-right: 40px;}
 .navbar-search .search-query{padding:4px 9px;font-family:"Helvetica Neue Light",Helvetica,Arial,sans-serif;font-size:13px;font-weight:normal;line-height:1;color:#fff;background-color:#626262;border:1px solid #151515;-webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,0.1),0 1px 0 rgba(255,255,255,0.15);-moz-box-shadow:inset 0 1px 2px rgba(0,0,0,0.1),0 1px 0 rgba(255,255,255,0.15);box-shadow:inset 0 1px 2px rgba(0,0,0,0.1),0 1px 0 rgba(255,255,255,0.15);-webkit-transition:none;-moz-transition:none;-ms-transition:none;-o-transition:none;transition:none}
 .navbar-search .search-query:-moz-placeholder{color:#0077bb}
 .navbar-search .search-query::-webkit-input-placeholder{color:#0077bb}
@@ -857,7 +845,8 @@ Begin LassoGuide CSS
 .navbar .right .dropdown-menu:before,.navbar .dropdown-menu.pull-right:before{right:12px;left:auto}
 .navbar .right .dropdown-menu:after,.navbar .dropdown-menu.pull-right:after{right:13px;left:auto}
 
-#buttonlinks {position: absolute;top: 3px;margin-left: 575px;height: 30px;width: 260px;}
+#buttonlinks {/* position: absolute;top: 3px;margin-left: 575px;width: 260px; */
+height: 30px;padding-top: 3px;}
  
 .source_button, .source_button:visited {
 	margin-bottom: 0;
@@ -1100,13 +1089,20 @@ a.page:before {background-position:-135px 0;}
 /* Note: Design for a width of 480px */
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-	#buttonlinks {top:45px;right:0;margin-left: 0;}
+	.navbar .nav{position:absolute;left:0;right:0;top:26px;margin:0 10px 0 0}
+	.navbar .brand {margin-left: 0;}
+	
+	#lassoguide h1, #lassoguide p, #appendices {padding-left: 0;}
+	
+	#lassoguide .toctree-wrapper {position: relative;top:0;}
+	
+
 
 }
 
-
 @media only screen and (max-width: 479px), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {
-/* body {padding-top: 55px !important;} */
+
+.container {width: 100%;}
 
 .container .col	{ display: inline; float: left;	margin-left: 1%; margin-right: 1%; }
 .container .col.first								{ margin-left: 0 !important;}
@@ -1131,36 +1127,55 @@ a.page:before {background-position:-135px 0;}
 
 input.col.one {width: 30px;text-indent: 8px;}
 
-#maincontent {padding-top: 20px;}
-.navbar {position: relative;}
-.navbar, .navbar-inner {height: inherit;}
-.navbar .nav {margin: 0;margin-top: -3px;width: 100%; background: rgba(0,0,0,.6);}
-.navbar .nav li.divider-vertical {display: none;}
-.navbar .nav > li {margin-bottom: 0;}
-.navbar .nav > li > a.source_button {position: absolute;top:-34px;right:14px;}
-#buttonlinks {float:right;}
-input[type="text"]#s, input[type="text"]#s:focus {
-float: left;
-width: 50%;
-}
-
-input[type="text"]#s, input[type="text"]#s:focus {width: 84%;margin-bottom: 0;background-color: #fff !important;}
-input[type="text"]#s:focus {
-	-o-box-shadow: 0 0 3px rgba(0,0,250,.6);
-	-moz-box-shadow: 0 0 3px rgba(0,0,250,.6);
-	-webkit-box-shadow: 0 0 3px rgba(0,0,250,.6);
-	-khtml-box-shadow: 0 0 3px rgba(0,0,250,.6);
-	box-shadow: 0 0 3px rgba(0,0,250,.6);}
+	.navbar .brand {margin-left: 0;}
 	}
-	
 	
 
 /* iPhone */
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1) and (min-device-width: 320px) and (max-device-width: 480px), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-device-width: 320px) and (max-device-width: 480px){
 
+#maincontent {padding:0 2%;padding-top: 10px;}
+.navbar, .navbar-inner {height: inherit;}
+.navbar .nav {margin: 0;margin-top: -3px;width: 100%; background: rgba(0,0,0,.6);}
+.navbar .nav li.divider-vertical {display: none;}
+.navbar .nav > li {margin-bottom: 0;}
+.navbar .nav > li > a.source_button {position: absolute;top:-34px;right:14px;}
+
+#maincontent 
+	{padding-top:40px;}
+	
+	.navbar-search.right {display: none;}
+
+	.genindex-jumpbox {position: absolute;z-index: 5000;
+	top:5px;left:0;right:0;padding: 0;margin: 0;
+	border: 0;
+	border-top: 0;
+	border-left: 0;
+	-o-border-radius: 0;
+	-moz-border-radius: 0;
+	-khtml-border-radius: 0;
+	-webkit-border-radius:0;
+	border-radius: 0;}
+.genindex-jumpbox a {
+	padding: 3px 4px 0 4px;
+	margin-right: 0;
+	margin-left: 0;
+	margin-right: 0;
+	margin-left: 0;
+	-o-border-radius: 0;
+	-moz-border-radius: 0;
+	-khtml-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;}
+
+	#buttonlinks {display: none;}
+
+	.navbar .nav{position:absolute;left:0;right:0;top:40px;margin:0}
+	.navbar .brand {margin-left: 0;}
+	
 	#lassoguide h1, #lassoguide p, #appendices {padding-left: 0;}
 	
-	#lassoguide .toctree-wrapper {position: relative;}
+	#lassoguide .toctree-wrapper {position: relative;top:0;}
 
 }
