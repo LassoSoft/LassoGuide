@@ -6,6 +6,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = lasso_guide_build
+TODAY := $(shell touch lasso_guide_source/index.rst)
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4

@@ -21,11 +21,11 @@
             {% endblock %}
             <li class="divider-vertical"></li>
           </ul>
-          
+
           {% block sidebarsourcelink %}
           	{% include "sourcelink.html" %}
           {% endblock %}
-          
+
           {% block sidebarsearch %}
             {% include "searchbox.html" %}
           {% endblock %}
@@ -35,8 +35,11 @@
   </div>
 {% endmacro %}
 
-{%- block extrahead %}
+{%- block linktags %}
+<link rel="canonical" href="{{ 'http://lassoguide.com/' + pagename + file_suffix }}" />
+{% endblock %}
 
+{%- block extrahead %}
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -128,19 +131,19 @@
 <footer class="footer">
   <div class="container fluid">
     <p class="small r"><a class="button" href="#maincontent">Back to top <b class="north"></b></a></p>
-    <p class="small">
+    <p class="small">Documentation for the <a href="http://www.lassosoft.com/">Lasso Programming Language</a>
     {%- if show_copyright %}
       {%- if hasdoc('copyright') %}
-        {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright }}.{% endtrans %} |
+        {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">{{ copyright }}</a> {% endtrans %}
       {%- else %}
-        {% trans copyright=copyright|e %}&copy; Copyright {{ copyright }}.{% endtrans %}
+        {% trans copyright=copyright|e %}&copy; {{ copyright }}{% endtrans %}
       {%- endif %}
     {%- endif %}
     {%- if last_updated %}
-      {% trans last_updated=last_updated|e %} | Last updated on {{ last_updated }}.{% endtrans %}
+      | {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}{% endtrans %}
     {%- endif %}
     {%- if show_sphinx %}
-      {% trans sphinx_version=sphinx_version|e %} | Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}.{% endtrans %} |
+      | {% trans sphinx_version=sphinx_version|e %}Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> {{ sphinx_version }}{% endtrans %}
     {%- endif %}
     </p>
   </div>
