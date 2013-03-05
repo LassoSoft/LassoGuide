@@ -6,7 +6,7 @@ Shell Commands with os_process
 
 .. note::
    The ``os_process`` type has been deprecated and this documentation has been
-   superseded by the new :ref:`sys_process type <sys-process>`.
+   superseded by the new :ref:`sys_process type <sys_process>`.
 
 Lasso provides the ability to execute local processes or shell commands through
 the ``os_process`` type. This type allows local processes to be launched with an
@@ -41,7 +41,7 @@ Lasso From the Command Line**.
    closed after the ``os_process`` type is destroyed, but can optionally be left
    running. The ``os_process`` type shares many of the same member methods and
    conventions as the file type. This type has been deprecated in favor of
-   :ref:`sys_process<sys-process>`
+   :ref:`sys_process<sys_process>`
 
 .. method:: os_process->open(
          command::string,
