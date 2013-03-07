@@ -37,12 +37,33 @@
 
 {%- block linktags %}
 <link rel="canonical" href="{{ 'http://lassoguide.com/' + pagename + file_suffix }}" />
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="shortcut icon" href="apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="_static/img/touch/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="_static/img/touch/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="_static/img/touch/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="_static/img/touch/apple-touch-icon-57x57-precomposed.png">
+<link rel="shortcut icon" href="_static/img/touch/apple-touch-icon.png">
+
+<link rel="apple-touch-icon" href="_static/img/touch/apple-touch-icon-precomposed.png">
+<!-- iPhone SPLASHSCREEN-->
+<link href="_static/img/startup/startup.png" media="(device-width: 320px)" rel="apple-touch-startup-image">
+<!-- iPhone (Retina) SPLASHSCREEN-->
+<link href="_static/img/startup/startup-retina.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+<!-- iPad (portrait) SPLASHSCREEN-->
+<link href="_static/img/startup/startup-tablet-portrait.png" media="(device-width: 768px) and (orientation: portrait)" rel="apple-touch-startup-image">
+<!-- iPad (landscape) SPLASHSCREEN-->
+<link href="_static/img/startup/startup-tablet-landscape.png" media="(device-width: 768px) and (orientation: landscape)" rel="apple-touch-startup-image">
+<!-- iPad (Retina, portrait) SPLASHSCREEN-->
+<link href="_static/img/startup/startup-tablet-portrait-retina.png" media="(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+<!-- iPad (Retina, landscape) SPLASHSCREEN-->
+<link href="_static/img/startup/startup-tablet-landscape-retina.png" media="(device-width: 2056px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 {% endblock %}
 
 
 {%- block extrahead %}
+<!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="_static/img/touch/apple-touch-icon-144x144-precomposed.png">
+<meta name="msapplication-TileColor" content="#000000">
+
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1, , maximum-scale=1.0, user-scalable=no">
@@ -138,7 +159,7 @@
 {%- block footer %}
 <footer class="footer">
   <div class="container fluid">
-    <p class="small r"><a class="button" href="#maincontent">Back to top <b class="north"></b></a></p>
+    <p class="small tooltip r" title="Back to top"><a href="#maincontent"><span class="icon to_top"></span></a></p>
     <p class="small">Documentation for the <a href="http://www.lassosoft.com/">Lasso Programming Language</a>
     {%- if show_copyright %}
       {%- if hasdoc('copyright') %}
