@@ -133,9 +133,6 @@
 
     // Enable dropdown.
     $('.dropdown-toggle').dropdown();
-
-    // Enable Local Scroll.
-    $.localScroll();
   });
 }());
 </script>
@@ -159,7 +156,7 @@
 {%- block footer %}
 <footer class="footer">
   <div class="container fluid">
-    <p class="small tooltip r" title="Back to top"><a href="#maincontent"><span class="icon to_top"></span></a></p>
+    <p class="small r" title="Back to top"><a href="#maincontent"><span class="icon to_top"></span></a></p>
     <p class="small">Documentation for the <a href="http://www.lassosoft.com/">Lasso Programming Language</a>
     {%- if show_copyright %}
       {%- if hasdoc('copyright') %}

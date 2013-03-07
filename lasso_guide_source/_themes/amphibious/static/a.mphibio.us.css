@@ -792,7 +792,7 @@ Class Name						Shorthand			Styles
  	left:50%;
  	position:absolute;	
  	z-index:301;
- 	-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);box-shadow:0 5px 10px rgba(0,0,0,0.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.825;filter:alpha(opacity=80);
+ 	-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);box-shadow:0 5px 10px rgba(0,0,0,0.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;opacity:.825;filter:alpha(opacity=80);-webkit-transform: translate3d(0,0,0);
 }
 
 /*****
