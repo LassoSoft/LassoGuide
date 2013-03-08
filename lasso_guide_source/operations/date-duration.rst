@@ -514,15 +514,13 @@ of the time.
   
 .. method:: date->month(
       -long::boolean= ?,
-      -short::boolean= ?,
-      -days::boolean= ?
+      -short::boolean= ?
    )
 
    Returns the number of the month (1=January, 12=December) for a specified date
    (defaults to current date). Optional ``-long`` parameter returns the full
    month name (e.g. "January") or an optional ``-short`` parameter returns an
-   abbreviated month name (e.g. "Jan"). An optional ``-days`` parameter returns
-   the number of days in the current month (e.g. 31).
+   abbreviated month name (e.g. "Jan").
   
 .. method:: date->day()
 
