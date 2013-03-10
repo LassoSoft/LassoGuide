@@ -332,6 +332,26 @@ number with ``0`` so all values returned by the tag are the same length.
    If the "%z" or "%Z" symbols are used when parsing a date, the resulting date
    object will represent the equivalent GMT date/time.
 
+Starting in Lasso 9, Lasso also recognizes the ICU formatting strings for both
+creating and displaying dates. These format strings simply use letters to
+specify the format without any flags (such as the "%" symbol). For example, to
+output a two-digit year, the ICU format string is "yy" and to output it as a
+four digit year, it's "yyyy". Because of this, characters that are not symbols
+need to be escaped if they are in the format string. To escape characters in an
+ICU format string, wrap them in single-quotes.
+
+For a detailed list of letters for an ICU format string, see the following
+website: `<http://userguide.icu-project.org/formatparse/datetime#TOC-Date-Time-Format-Syntax>`_
+
+.. note::
+   Format string in Lasso 9 can contain both percent-based formatting as well as
+   ICU formatting in the same string. Because of this, be sure you properly
+   escape any characters you don't want treated as format delimiters in your
+   format string. For example, if the current date was "2013-03-09 20:15:30",
+   the following code: ``date->format("day: %A")`` would produce
+   "9PM2013: Saturday" as the "day" portion of the format string would be
+   treated as part of ICU formatting.
+
 
 Convert Lasso Date Objects to Various Formats
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -356,6 +376,9 @@ Lasso date strings to alternate formats::
    
    date_format(date('1/4/2002 02:30:00'), '%r')
    // => 02:30:00 AM
+
+   date_format(date, -format="y-MM-dd")
+   // => 2013-02-24
 
 
 Import and Export Dates From MySQL
@@ -417,6 +440,17 @@ conversions on date objects.
    Sets a date output format for a particular date object. Requires a format    
    string as a parameter.
 
+.. method:: date->getformat()
+
+   Returns the current format string set for the current date object.
+
+.. method:: date->clear()
+
+   Resets the specified fields to their default values. The following fields can
+   be specified as keyword parameters: ``-second``, ``-minute``, ``-hour``,
+   ``-day``, ``-week``, ``-month``, ``-year``. If no parameters are specified,
+   then the entire date is reset to default values.
+
 .. method:: date->set(…)
 
    Sets one or more elements of the date to a new value. If a field overflows
@@ -424,8 +458,24 @@ conversions on date objects.
    "3/31/2008" and you set the month to "2" then the day will be
    adjusted to "29" automatically resulting in "2/29/2008".
 
-   Elements must be specified as keyword=value parameters. This method accepts
-   the following parameters with integer values:
+   Elements must be specified as keyword=value parameters.See table
+   :ref:`List of Field Elements for Get and Set
+   <table-date-field-elements-for-get-set>` for the full list of parameters that
+   this method can set.
+
+.. method:: date->get(…)
+
+   Returns the current value for the specified field of the current date object.
+   Only one field value can be fetched at a time. Note that many of the more
+   common fields can also be retrieved through individual member tags.
+
+   See table :ref:`List of Field Elements for Get and Set
+   <table-date-field-elements-for-get-set>` for the full list of parameters that
+   this method can retrieve.
+
+.. _table-date-field-elements-for-get-set:
+
+.. table:: Table: List of Field Elements for Get and Set
 
    ================== ==========================================================
    Parameter          Description
@@ -501,6 +551,32 @@ methods::
    // => 010102
 
 
+Using Locales to Format Dates
+-----------------------------
+
+Lasso 9 introduces a new locales feature that allows for automatically
+formatting things such as dates and currency based on known standards for
+various locations. You can use locale objects to output dates in these standard
+formats. (See the chapter on :ref:`locales<locale>` for more information.)
+
+Using Locales to Display Dates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following example creates two ``locale`` objects (one for the US and one for
+Canada) and uses them to output the date in the format for each locale::
+
+   local(my_date) = date('01/01/2005 08:40:33 AM')
+   local(en_us)   = locale('en', 'US')
+   local(en_ca)   = locale('en', 'CA')
+
+   #en_us->format(#my_date, 1)
+   #en_ca->format(#my_date, 1)
+
+   // =>
+   // January 1, 2005
+   // 1 January, 2005
+
+
 Date Accessors
 --------------
 
@@ -537,13 +613,31 @@ of the time.
    object.
   
 .. method:: date->week()
+.. method:: date->weekOfYear()
 
    Returns the integer week number for the year of the specified date (out of
    52).
+
+.. method:: date->weekOfMonth()
+
+   Returns the week of month field for the date.
+
+.. method:: date->dayOfMonth()
+
+   Returns the day of month field for the date.
+
+.. method:: date->dayOfWeekInMonth()
+
+   Returns the day of week in month field for the date.
   
 .. method:: date->hour()
+.. method:: date->hourOfDay()
 
-   Returns the hour for the date object.
+   Returns the hour for the date object (0-23).
+
+.. method:: date->hourOfAMPM()
+
+   Returns the relative hour for the date object (1-12).
 
 .. method:: date->minute()
 
@@ -560,6 +654,29 @@ of the time.
 .. method:: date->time()
    
    Returns the time of the date object.
+
+.. method:: date->ampm()
+   
+   Returns "0" if the time is before noon and "1" if it's noon or later.
+
+.. method:: date->am()
+
+   Returns "true" if the time is in the morning (before noon), otherwise returns
+   false.
+
+.. method:: date->pm()
+
+   Returns "true" if the time is in the evening (after noon), otherwise returns
+   false.
+
+.. method:: date->timezone()
+
+   Returns the timezone setup for the date. Defaults to the current timezone of
+   the server.
+
+.. method:: date->zoneOffset()
+
+   Returns the time zone offset field for the date.
   
 .. method:: date->gmt()
 
@@ -570,6 +687,16 @@ of the time.
 
    Returns "true" if the date object is in daylight savings time and "false" if
    it is not.
+
+.. method:: date->dstOffset()
+
+   Returns the daylight saving time (DST) offset field for the date. Returns "0"
+   if the date for the timezone is not experiencing daylight savings.
+
+.. method:: date->asInteger()
+
+   Returns epoch time - the number of seconds from 1/1/1970 to the time of the
+   current date object.
 
 
 Use Date Accessors
@@ -897,8 +1024,17 @@ methods are summarized below.
 
    Adds a specified amount of time to a data object. Can pass a duraction object
    or specify the amount of time by passing keyword/value parameters to define
-   what should be added to the object: ``-millisecond``, ``-second``,
-   ``-minute``, ``-hour``, ``-day``, or ``-week``.
+   what should be added to the object: ``-second``, ``-minute``, ``-hour``,
+   ``-day``, ``-week``, ``-month``, or ``-year``.
+
+.. method:: date->roll(…)
+
+   Like ``date->add``, this method adds the specified amount of time to the
+   current date object. However, unlike ``date->add``, only the specified field
+   is adjusted. For example, rolling 60 minutes doesn't change the date at all
+   since the minute field will roll back to its original value and the hour
+   field will not be modified. Valid fields to roll are ``-second``,
+   ``-minute``, ``-hour``, ``-day``, ``-week``, ``-month``, or ``-year``.
   
 .. method:: date->subtract(…)
 
@@ -915,9 +1051,35 @@ methods are summarized below.
    following optional parameter is specified: ``-millisecond``, ``-second``,
    ``-minute``, ``-hour``, ``-day``, ``-week``, ``-month``, or ``-year``.
 
+.. method:: date->minutesBetween(other::date)
+   
+   Requires one parameter - another date object - and returns the number of
+   minutes between the current date object and the specified date object.
+
+.. method:: date->hoursBetween(other::date)
+   
+   Requires one parameter - another date object - and returns the number of
+   hours between the current date object and the specified date object.
+
+.. method:: date->secondsBetween(other::date)
+   
+   Requires one parameter - another date object - and returns the number of
+   seconds between the current date object and the specified date object.
+
+.. method:: date->daysBetween(other::date)
+   
+   Requires one parameter - another date object - and returns the number of days
+   between the current date object and the specified date object.
+
+.. method:: date->businessDaysBetween(other::date)
+   
+   Requires one parameter - another date object - and returns the number of
+   business days between the current date object and the specified date object.
+
 .. note::
-   The ``date->add`` and ``date->subtract`` methods do not return any values,
-   but are used to change the values of the object calling them.
+   The ``date->add``, ``date->roll``, and ``date->subtract`` methods do not
+   return any values, but are used to change the values of the object calling
+   them.
 
 
 Add a Duration to a Date
