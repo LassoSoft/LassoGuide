@@ -1157,8 +1157,6 @@ Examples of the link methods are included in the :ref:`Link Examples
    Returns a link to the next group of records based on the current Lasso
    action. Changes ``-skipRecords``.
 
-.. method:: (…)
-
 .. method:: link_nextGroupURL(…)
 
    Returns a link to the next group of records based on the current Lasso
@@ -1274,8 +1272,8 @@ in the :ref:`Link Examples <link-examples>` section that follows.
    Returns a link to the current record using the ``-keyField`` and
    ``-keyValue``. Changes ``-keyValue``. Requires an associated block.
 
-.. method:: Referer()
-.. method:: Referrer()
+.. method:: referer()
+.. method:: referrer()
 
    Returns a link to the previous page which the visitor was at before the
    current page. Requires an associated block.
