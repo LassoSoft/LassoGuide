@@ -316,7 +316,8 @@ the response page and incorporated into the ``inline`` method.
 
 .. note::
    The ``web_request->param`` method is similar to the ``action_param`` or
-   ``form_param`` method used in prior versions of Lasso.
+   ``form_param`` method used in prior versions of Lasso for getting GET or POST
+   data.
 
 
 Using an Array of Form Values Within an Inline with Web_Request->Params
@@ -374,7 +375,7 @@ incorporated into the ``inline`` method at the location of the
 
 .. note::
    ``web_request->params`` is a replacement for the ``action_params`` method in
-   prior versions of Lasso.
+   prior versions of Lasso for getting GET or POST parameters.
 
 
 Setting HTML Form Values
@@ -681,6 +682,7 @@ parameters associated in a database action::
       <br>[sort_fieldItem] [sort_orderItem]
    [/sort_arguments]
 
+.. _inline-results-methods:
 
 Working with Inline Action Results
 ----------------------------------
