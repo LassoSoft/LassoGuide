@@ -1236,7 +1236,7 @@ Lasso provides the ability to issue SQL statements directly toSQL-compliant data
 sources, including the MySQL data source. SQL statements are specified within
 the ``inline`` method using the ``-sql`` parameter. Many third-party databases
 that support SQL statements also support the use of the ``-sql`` parameter. SQL
-inlines can be used as the primary method of database interaction in Lasso 8, or
+inlines can be used as the primary method of database interaction in Lasso, or
 they can be used along side standard inline actions (e.g. ``-search``, ``-add``,
 ``-update``, ``-delete``) where a specific SQL function is desired that cannot
 be replicated using standard database commands.
