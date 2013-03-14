@@ -1,7 +1,5 @@
 .. _date-duration:
 
-.. direct from book
-
 ***************
 Date & Duration
 ***************

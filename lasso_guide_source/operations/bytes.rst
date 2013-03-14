@@ -1,288 +1,337 @@
 .. _bytes:
 
-.. direct from book
-
 *****
 Bytes
 *****
 
-Binary data in Lasso is stored and manipulated using the bytes data type
-or the ``[Byte]`` tags. This chapter details the symbols and tags that
-can be used to manipulate binary data.
+Binary data in Lasso is stored and manipulated using the ``bytes`` data type.
+This chapter details the symbols and methods that can be used to manipulate
+binary data.
 
--  `Bytes Type`_ describes the data type which Lasso uses for binary
-   data.
-
-.. Note:: The bytes type is often used in conjunction with the string
-    type to convert binary data between different character encodings
-    (UTF-8, ISO-8859-1). See the previous chapter for more information
-    about the string type.
+.. note::
+   The bytes type is often used in conjunction with the string type to convert
+   binary data between different character encodings (UTF-8, ISO-8859-1). See
+   the :ref:`Strings<strings>` chapter for more information about the string
+   type.
 
 Bytes Type
 ==========
 
-All string data in Lasso is processed as double-byte Unicode characters.
-The ``[Byte]`` type is used to represent strings of single-byte binary
-data. The ``[Byte]`` type is often referred to as a byte-stream or
-binary data.
-
-Lasso tags return data in the ``[Byte]`` type in the following
-situations.
-
--  The ``[Field]`` tag returns a byte stream from MySQL ``BLOB`` fields.
--  When the ``-Binary`` encoding type is used on any tag.
--  The ``[Byte]`` tag can be used to allocate a new byte stream.
--  Other tags that return binary data. See the Lasso Reference for a
-   complete list.
-
-``[Bytes]``
-    Allocates a byte stream. Can be used to cast a    
-    string data type as a bytes type, or to           
-    instantiate a new bytes instance. Accepts two     
-    optional parameters. The first is the initial size
-    in bytes for the stream. The second is the        
-    increment to use to grow the stream when data is  
-    stored that goes beyond the current allocation.   
-
-
-Byte streams are similar to strings and support many of the same member
-tags. In addition, byte streams support a number of member tags that
-make it easier to deal with binary data. These tags are listed in the
-:ref:`Byte Stream Member Tags <bytes-table-2>` table.
-
-``[Bytes->Size]``
-    Returns the number of bytes contained in the bytes
-    stream object.                                    
-
-``[Bytes->Get]``
-    Returns a single byte from the stream. Requires a 
-    parameter which specifies which byte to fetch.    
-
-``[Bytes->SetSize]``
-    Sets the byte stream to the specified number of   
-    bytes.                                            
-
-``[Bytes->GetRange]``
-    Gets a range of bytes from the byte               
-    stream. Requires a single parameter which is the  
-    byte position to start from. An optional second   
-    parameter specifies how many bytes to return.     
-
-``[Bytes->SetRange]``
-    Sets a range of characters within a byte          
-    stream. Requires two parameters: An integer offset
-    into the base stream, and the binary data to be   
-    inserted. An optional third and fourth parameter  
-    specify the offset and length of the binary data  
-    to be inserted.                                   
-
-``[Bytes->Find]``
-    Returns the position of the beginning of the      
-    parameter sequence within the bytes instance, or  
-    ``0`` if the sequence is not contained within the 
-    instance. Four optional integer parameters        
-    (offset, length, parameter offset, parameter      
-    length) indicate position and length limits that  
-    can be applied to the instance and the parameter  
-    sequence.                                         
-
-``[Bytes->Replace]``
-    Replaces all instances of a value within a bytes  
-    stream with a new value. Requires two             
-    parameters. The first parameter is the value to   
-    find, and the second parameter is the value to    
-    replace the first parameter with.                 
-
-``[Bytes->Contains]``
-    Returns ``true`` if the instance contains the     
-    parameter sequence.                               
-
-``[Bytes->BeginsWith]``
-    Returns ``true`` if the instance begins with the  
-    parameter sequence.                               
-
-``[Bytes->EndsWith]``
-    Returns ``true`` if the instance ends with the    
-    parameter sequence.                               
-
-``[Bytes->Split]``
-    Splits the instance into an array of bytes        
-    instances using the parameter sequence as the     
-    delimiter. If the delimiter is not provided, the  
-    instance is split, byte for byte, into an array of
-    byte instances.                                   
-
-``[Bytes->Remove]``
-    Removes bytes form a byte stream. Requires an     
-    offset into the byte stream. Optionally accepts a 
-    number of bytes to remove.                        
+All string data in Lasso is processed as double-byte Unicode characters. The
+``bytes`` type can be used to represent strings of single-byte binary data. The
+``bytes`` type is often referred to as a byte-stream or binary data.
+
+Lasso methods return data in the ``bytes`` type in the following situations:
+
+-  The ``field`` method returns a byte stream from MySQL "BLOB" fields.
+-  The ``bytes`` creator method can be used to allocate a new byte stream.
+-  The ``web_request->param`` methods return a bytes stream
+-  Other methods that return or require binary data as outlined in their
+   documentation in the Lasso Reference guide.
+
+
+.. class:: bytes
+.. method:: bytes()
+.. method:: bytes(initial::integer)
+.. method:: bytes(copy::bytes)
+.. method:: bytes(import::string)
+.. method:: bytes(import::string, encoding::string)
+.. method:: bytes(doc::pdf_doc)
+
+   Allocates a byte stream. Can be used to cast a ``string`` or ``pdf_doc`` data
+   type as a ``bytes`` type, or to instantiate a new ``bytes`` object. Accepts
+   one optional parameter that can specify the initial size in bytes for the
+   stream or the ``string``, ``pdf_doc``, or ``bytes`` object to cast as a new
+   bytes object. If casting a ``string`` object, it can accept a second optional
+   parameter to specify the encoding of the string.
+
 
-``[Bytes->RemoveLeading]``
-    Removes all occurrences of the parameter sequence 
-    from the beginning of the instance. Requires one  
-    parameter which is the data to be removed.        
+Byte streams are similar to strings and support many of the same member methods.
+In addition, byte streams support a number of member methods that make it easier
+to deal with binary data. These methods are outlined below.
 
-``[Bytes->RemoveTrailing]``
-    Removes all occurrences of the parameter sequence 
-    from the end of the instance. Requires one        
-    parameter which is the data to be removed.        
+.. method:: bytes->size()
+.. method:: bytes->length()
 
-``[Bytes->Append]``
-    Appends the specified data to the end of the bytes
-    instance. Requires one parameter which is the data
-    to append.                                        
+   Returns the number of bytes contained in the bytes stream object.
 
-``[Bytes->Trim]``
-    Removes all whitespace ASCII characters from the  
-    beginning and the end of the instance.            
+.. method:: bytes->get(position::integer)
 
-``[Bytes->Position]``
-    Returns the current position at which imports will
-    occur in the byte stream.                         
+   Returns a single byte from the stream. Requires a parameter which specifies
+   which byte to fetch.
 
-``[Bytes->SetPosition]``
-    Sets the current position within the byte         
-    stream. Requires a single integer parameter.      
+.. method:: bytes->setSize(p0::integer)
 
-``[Bytes->ExportString]``
-    Returns a string represeting the byte             
-    stream. Accepts a single parameter which is the   
-    character encoding (e.g. ISO-8859-1, UTF-8) for   
-    the export. A parameter of ``Binary`` will perform
-    a byte for byte export of the stream.             
+   Sets the byte stream to the specified number of bytes.
 
-``[Bytes->Export8bits]``
-    Returns the first byte as an integer.             
+.. method:: bytes->getRange(p0::integer, p1::integer)
 
-``[Bytes->Export16bits]``
-    Returns the first 2 bytes as an integer.          
+   Gets a range of bytes from the byte stream. Requires two parameters. The
+   first specifies the byte position to start from, and the second specifies how
+   many bytes to return.
 
-``[Bytes->Export32bits]``
-    Returns the first 4 bytes as an integer.          
+.. method:: bytes->setRange(
+      what::bytes,
+      where::integer= ?,
+      whatStart::integer= ?,
+      whatLen::integer= ?
+   )
 
-``[Bytes->Export64bits]``
-    Returns the first 8 bytes as an integer.          
+   Sets a range of characters within a byte stream. Requires one parameters: the
+   binary data to be inserted. Optional second, third, and fourth parameters
+   specify the integer offset into the bytes stream to insert the new data, the
+   offset and length of the new data to be inserted, respectively.
 
-``[Bytes->ImportString]``
-    Imports a string parameter. A second parameter    
-    specifies the encoding (e.g. ISO-8859-1, UTF-8) to
-    use for the import. A second parameter of         
-    ``Binary`` will perform a byte for byte import of 
-    the string.                                       
+.. method:: bytes->find(
+      find::bytes,
+      position::integer= ?,
+      length::integer= ?,
+      patPosition::integer= ?,
+      patLength::integer= ?
+   )
+.. method:: bytes->find(
+      find::string,
+      position::integer= ?,
+      length::integer= ?,
+      patPosition::integer= ?,
+      patLength::integer= ?
+   )
 
-``[Bytes->Import8Bits]``
-    Imports the first byte of an integer parameter.   
+   Requires either a ``bytes`` or ``string`` sequence as the first parameter.
+   Returns the position of the beginning of the sequence being searched for
+   within the ``bytes`` object, or "0" if the sequence is not contained within
+   the object. Four optional integer parameters (position, length, parameter
+   position, parameter length) indicate position and length limits that can be
+   applied to the instance and the parameter sequence.
 
-``[Bytes->Import16Bits]``
-    Imports the first 2 bytes of an integer parameter.
+.. method:: bytes->replace(find::bytes, replace::bytes)
 
-``[Bytes->Import32Bits]``
-    Imports the first 4 bytes of an integer parameter.
+   Replaces all instances of a value within a bytes stream with a new value.
+   Requires two parameters. The first parameter is the value to find, and the
+   second parameter is the value to replace the first parameter with.
 
-``[Bytes->Import64Bits]``
-    Imports the first 8 bytes of an integer parameter.
+.. method:: bytes->contains(find)
+   
+   Returns "true" if the instance contains the specified sequence.
 
-``[Bytes->SwapBytes]``
-    Swaps each two bytes with each other.             
+.. method:: bytes->beginsWith(find::string)
+.. method:: bytes->beginsWith(find::bytes)
+   
+   Returns "true" if the instance begins with the specified sequence.
 
+.. method:: bytes->endsWith(find::string)
+.. method:: bytes->endsWith(find::bytes)
 
-**To cast string data as a bytes object:**
+   Returns "true" if the instance ends with the specified sequence.
 
-Use the ``[Byte]`` tag. The following example converts a string to a
-bytes variable.
+.. method:: bytes->split(find::string)
+.. method:: bytes->split(find::bytes)
 
-::
+   Returns an array of bytes instances using the specified sequence as the
+   delimiter to split the byte stream. If the delimiter provided is an empty
+   ``bytes`` or ``string`` object, the byte stream is split on each byte, so the
+   returned array will have each byte as one of its elements.
 
-    [Var:'Object'=(Bytes: 'This is some text')]
+.. method:: bytes->remove()
+.. method:: bytes->remove(p0::integer, p1::integer)
 
-**To instantiate a new bytes object:**
+   Removes bytes form a byte stream. When passed without a parameter, it removes
+   all bytes, setting the object to an empty ``bytes`` object. In its second
+   form, it requires an offset into the byte stream and the number of bytes to
+   remove starting from there.
 
-Use the ``[Byte]`` tag. The example below creates an empty bytes object
-with a size of 1024 bytes and a growth increment of 16 bytes.
+bytes->removeLeading(find::bytes)
 
-::
+   Removes all occurrences of the specified sequence from the beginning of the
+   byte stream. Requires one parameter which is the data to be removed.
 
-    [Var:'Object'=(Bytes: 1024, 16)]
+bytes->removeTrailing(find::bytes)
 
-**To return the size of a byte stream:**
+    Removes all occurrences of the parameter sequence
+    from the end of the instance. Requires one
+    parameter which is the data to be removed.
 
-Use the ``[Bytes->Size]`` tag. The example below uses a ``[Field]`` tag
-that has been converted to a bytes type using the ``-Binary`` parameter.
+.. method:: bytes->append(p0::bytes)
+.. method:: bytes->append(rhs::string)
 
-::
+   Appends the specified data to the end of the bytes stream. Requires one
+   parameter which is the data to append.
 
-    [Var:'Bytes'=(Field:'Name', -Binary)]
-    [$Bytes->Size]
+.. method:: bytes->trim()
 
-**To return a single byte from a byte stream:**
+   Removes all whitespace ASCII characters from the beginning and the end of the
+   instance.
 
-Use the ``[Bytes->Get]`` tag. An integer parameter specifies the order
-number of the byte to return. Note that this tag returns a byte, not a
-fragment of the orignial data (such as a string character).
+.. method:: bytes->sub(pos::integer)
+.. method:: bytes->sub(p0::integer, p1::integer)
 
-::
+   Returns a specified slice of the byte stream. Requires an integer parameter
+   that specifies the index into the byte stream to start taking the slice from.
+   An optional second integer parameter can specify the number of bytes to slice
+   out of the byte stream. If the second parameter is not specified, then all of
+   the rest of the byte stream is taken.
 
-    [Var:'Bytes'=(Field:'Name', -Binary)]
-    [$Bytes->(Get: 1)]
+.. method:: bytes->marker()
+.. method:: bytes->position()
 
-**To find a value within a byte stream:**
+    Returns the current position at which imports will occur in the byte stream.
 
-Use the ``[Bytes->Find]`` tag. The example below returns the starting
-byte number of the value ``LassoSoft``, which is contained within the byte
-stream.
+.. method:: bytes->setPosition(i::integer)
+   
+   Sets the current position within the byte stream. Requires a single integer
+   parameter.
 
-::
+.. method:: bytes->exportString(encoding::string)
 
-    [Var:'Bytes'=(Field:'Name', -Binary)]
-    [$Bytes->(Find: 'LassoSoft')]
+   Returns a string represeting the byte stream. Accepts a single parameter
+   which is the character encoding (e.g. "ISO-8859-1", "UTF-8") for the export.
 
-**To determine if a value is contained within a byte stream:**
+.. method:: bytes->export8bits()
 
-Use the ``[Bytes->Contains]`` tag. The example below returns ``True`` if
-the value ``LassoSoft`` is contained within the byte stream.
+   Returns the first byte as an integer.
 
-::
+.. method:: bytes->export16bits()
 
-    [Var:'Bytes'=(Field:'Name', -Binary)]
-    [$Bytes->(Contains: 'LassoSoft')]
+   Returns the first 2 bytes as an integer.
 
-**To add a string to a byte stream:**
+.. method:: bytes->export32bits()
 
-Use the ``[Bytes->Append]`` tag. The following example adds the string
-``I am`` to the end of a bytes stream.
+   Returns the first 4 bytes as an integer.
 
-::
+.. method:: bytes->export64bits()
 
-    [Var:'Bytes'=(Field:'Name', -Binary)]
-    [$Bytes->(Append: 'I am')]
+   Returns the first 8 bytes as an integer.
 
-**To find and replace values in a byte stream:**
+.. method:: bytes->importString(s::string, enc::string= ?)
 
-Use the ``[Bytes->Replace]`` tag. The following example finds the string
-``Blue`` and replaces with the string ``Green`` within the bytes stream.
+   Imports a string parameter. A second parameter can specify the encoding (e.g.
+   "ISO-8859-1", "UTF-8") to use for the import.
 
-::
+.. method:: bytes->import8bits(p0::integer)
 
-    [Var:'Bytes'=(Bytes: 'Blue Red Yellow')]
-    [$Bytes->(Replace: 'Blue', 'Green')]
+   Imports the first byte of an integer parameter.
 
-**To export a string from a bytes stream:**
+.. method:: bytes->import16bits(p0::integer)
 
-Use the ``[Bytes->ExportString]`` tag. The following example exports a
-string using UTF-8 encoding.
+   Imports the first 2 bytes of an integer parameter.
 
-::
+.. method:: bytes->import32bits(p0::integer)
+   
+   Imports the first 4 bytes of an integer parameter.
 
-    [Var:'Bytes'=(Bytes: 'This is a string')]
-    [$Bytes->(ExportString: 'UTF-8')]
+.. method:: bytes->import64bits(p0::integer)
 
-**To import a string into a bytes stream:**
+   Imports the first 8 bytes of an integer parameter.
 
-Use the ``[Bytes->ImportString]`` tag. The following example imports a
-string using ISO-8859-1 encoding.
+.. method:: bytes->swapBytes()
 
-::
+   Swaps each two bytes with each other (e.g. a byte stream of 'father' becomes
+   'afhtre').
 
-    [Var:'Bytes'=(Bytes: 'This is a string')]
-    [$Bytes->(ImportString: 'This is some more string', 'ISO-8859-1')]
 
+Cast String Data as a Bytes Object
+----------------------------------
+
+Use the ``bytes`` creator method. The following example converts a string to a
+``bytes`` object::
+
+   local(obj) = bytes('This is some text')
+
+
+Instantiate a New Bytes Object
+------------------------------
+
+Use the ``bytes`` creator method. The example below creates an empty ``bytes``
+object with a size of 1024 bytes::
+
+   local(obj) = bytes(1024)
+
+Return the Size of a Byte Stream
+--------------------------------
+
+Use the ``bytes->size`` method. The example below returns the size of a
+``bytes`` object::
+
+   local(obj) = bytes('ect…')
+   #obj->size
+
+   // => 6
+
+
+Return a Single Byte From a Byte Stream
+---------------------------------------
+
+Use the ``bytes->get`` method. An integer parameter specifies the index of the
+byte to return. Note that this method returns an integer, not a fragment of the
+orignial data (such as a string character)::
+
+   local(obj) = bytes('hello world')
+   #obj->get(2)
+
+   // => 101
+
+
+Find a Value Within a Byte Stream
+---------------------------------
+
+Use the ``bytes->find`` method. The example below returns the starting byte
+number of the value "rhino", which is contained within the byte stream::
+
+   bytes('running rhinos risk rampage')->find('rhino')
+
+   // => 9
+
+
+Determine If a Value is Contained Within a Byte Stream
+------------------------------------------------------
+
+Use the ``bytes->contains`` method. The example below returns "true" if the
+value "Rhino" is contained within the byte stream. Note that in this example it
+returns false due to the bytes of "rhino" being a different sequence then the
+bytes of "Rhino"::
+
+   bytes('running rhinos risk rampage')->find('Rhino')
+
+   // => false
+
+
+Add a String to a Byte Stream
+-----------------------------
+
+Use the ``bytes->append`` method. The following example adds the string "I am"
+to the end of a bytes stream::
+
+   local(obj) = bytes
+   #obj->append("I am")
+
+
+Find and Replace Values in a Byte Stream
+----------------------------------------
+
+Use the ``bytes->replace`` method. The following example finds the string "Blue"
+and replaces with the string "Green" within the bytes stream::
+
+   local(colors) = bytes('Blue Red Yellow')
+   #colors->replace('Blue', 'Green')
+
+
+Export a String From a Bytes Stream
+-----------------------------------
+
+Use the ``bytes->exportString`` method. The following example exports a string
+using UTF-8 encoding::
+   
+   local(obj) = bytes('This is a string')
+   #obj->exportString('UTF-8')
+
+   // => This is a string
+
+
+Import a String Into a Bytes Stream
+-----------------------------------
+
+Use the ``bytes->importString`` method. The following example imports a string
+using "ISO-8859-1" encoding::
+
+   local(obj) = bytes('This is a string')
+   #obj->importString('This is some more string', 'ISO-8859-1')
