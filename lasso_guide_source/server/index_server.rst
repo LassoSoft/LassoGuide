@@ -1,3 +1,5 @@
+.. _lasso-server-guide-index:
+
 .. http://www.lassosoft.com/Server-Guide
 
 ####################
@@ -9,8 +11,8 @@
 .. toctree::
    :maxdepth: 2
 
-    overview
-    osx-installation
-    centos-installation
-    ubuntu-installation
-    windows-installation
+   overview
+   osx-installation
+   centos-installation
+   ubuntu-installation
+   windows-installation
