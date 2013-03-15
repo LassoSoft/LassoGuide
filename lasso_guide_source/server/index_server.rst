@@ -9,4 +9,8 @@
 .. toctree::
    :maxdepth: 2
 
-.. add more chapters here...
+    overview
+    osx-installation
+    centos-installation
+    ubuntu-installation
+    windows-installation
