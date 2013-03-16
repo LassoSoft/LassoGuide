@@ -16,3 +16,5 @@
    centos-installation
    ubuntu-installation
    windows-installation
+   instance-manager
+   instance-administration
