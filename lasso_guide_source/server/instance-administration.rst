@@ -188,6 +188,9 @@ database to be set. The alias name is what is matched when the ``-database``
 parameter is used in an ``inline`` method. Below that form is a list of tables
 in the database that the entered credentials have access to.
 
+See the :ref:`Setting Up Data Sources<datasource-setup>` chapter for detailed
+information on connecting to various data sources.
+
 
 .. _instance-administration-license:
 

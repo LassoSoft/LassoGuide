@@ -18,3 +18,4 @@
    windows-installation
    instance-manager
    instance-administration
+   datasource-setup
