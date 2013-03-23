@@ -1,909 +1,825 @@
 .. _math:
 
-.. direct from book
-
 ****
 Math
 ****
 
-Numbers in Lasso are stored and manipulated using the decimal and
-integer data types. This chapter details the symbols and tags that can
-be used to manipulate decimal and integer values and to perform
-mathematical operations.
+Numbers in Lasso are stored and manipulated using the decimal and integer data
+types. This chapter details the operators and methods that can be used to
+manipulate decimal and integer values and to perform mathematical operations.
+Each of these methods is described in detail in the sections that follow;
+however, the Lasso Reference is the primary documentation source for Lasso
+operators and methods.
 
--  `Overview`_ provides an introduction to the decimal and integer data
-   types and how to cast values to and from other data types.
--  `Math Symbols`_ describes the symbols that can be used to create
-   mathematical expressions.
--  `Decimal Member Tags`_ describes the member tags that can be used
-   with the decimal data type.
--  `Integer Member Tags`_ describes the member tags that can be used
-   with the integer data type.
--  `Math Tags`_ describes the substitution and process tags that can be
-   used with numeric values.
 
-Overview
-========
+Integer Type
+============
 
-Mathematical operations and number formatting can be performed in Lasso
-using a variety of different methods on integer and decimal values.
-There are three types of operations that can be performed:
+The integer type represents whole number values. Basically, 0 and any positive
+or negative number which does not contain a decimal point is an integer value in
+Lasso. Examples include "-123" or "456". Integer objects may also contain
+hexadecimal values such as "0x1A" or "0xff".
 
--  `Symbols`_ can be used to perform mathematical calculations within
-   Lasso tags or to perform assignment operations within LassoScripts.
--  `Member Tags`_ can be used to format decimal or integer values or to
-   perform bit manipulations.
--  `Substitution Tags`_ can be used to perform advanced calculations.
+.. class:: integer
+           integer(obj::any)
 
-Each of these methods is described in detail in the sections that
-follow. This guide contains a description of every symbol and tag and
-many examples of their use. The Lasso Reference is the primary
-documentation source for Lasso symbols and tags. It contains a full
-description of each symbol and tag including details about each
-parameter.
+   The creator method for integer casts any object as an integer. If the type
+   for the object being cast does not easily represent an integer, then the
+   integer zero will be returned.
 
-Integer Data Type
------------------
 
-The integer data type represents whole number values. Basically, any
-positive or negative number which does not contain a decimal point is an
-integer value in Lasso. Examples include ``-123`` or ``456``. Integer
-values may also contain hexadecimal values such as ``0x1A`` or ``0xff``.
+Explicit Integer Casting
+------------------------
 
-Spaces must be specified between the ``+`` and ``-`` symbols and the
-parameters, otherwise the second parameter of the symbol might be
-mistaken for an integer literal.
+Strings that contain numeric data can be cast to the integer data type using
+the ``integer`` creator method. The string must start with a numeric value. In
+the following examples the number "123" is the result of each explicit casting.
+Only the first integer found in the string "123 and then 456" is recognized::
 
-.. _math-operations-table-1:
+   integer('123')
+   // => 123
 
-.. table:: Table 1: Integer Data Type
+   integer('123 and then 456')
+   // => 123
 
-    +-------------+--------------------------------------------------+
-    |Tag          |Description                                       |
-    +=============+==================================================+
-    |``[Integer]``|Casts a value to type integer.                    |
-    +-------------+--------------------------------------------------+
+Decimals that are cast as an integer type are rounded to the nearest integer::
 
-**Examples of explicit integer casting:**
+   integer(123.0)
+   // => 123
 
--  Strings which contain numeric data can be cast to the integer data
-   type using the ``[Integer]`` tag. The string must start with a
-   numeric value. In the following examples the number ``123`` is the
-   result of each explicit casting. Only the first integer found in the
-   string ``123`` and then ``456`` is recognized.
+   integer(123.999)
+   // => 124
 
-   ::
 
-       [Integer: '123'] -> 123
-       [Integer: '123 and then 456'] -> 123
-
--  Decimals which are cast to the integer data type are rounded to the
-   nearest integer.
-
-   ::
-
-       [Integer: 123.0] -> 123
-       [Integer: 123.999] -> 124
-
-Decimal Data Type
------------------
+Decimal Type
+============
 
 The decimal data type represents real or floating point numbers.
-Basically, any positive or negative number which contains a decimal
-point is a decimal value in Lasso. Examples include ``-123.0`` and
-``456.789``. Decimal values can also be written in exponential notation
-as in ``1.23e2`` which is equivalent to ``1.23`` times ``102`` or
-``123.0``.
+Basically, 0.0 or any positive or negative number that contains a decimal
+point is a decimal object in Lasso. Examples include "-123.0" and
+"456.789". Decimal values can also be written in exponential notation
+such as "1.23e2" which is equivalent to "1.23" times "10^2" or
+"123.0".
 
-Spaces must be specified between the ``+`` and ``-`` symbols and the
-parameters, otherwise the second parameter of the symbol might be
-mistaken for a decimal literal.
+.. class:: decimal
+           decimal(p0::integer)
+           decimal(p0::decimal)
+           decimal(p0::string)
+           decimal(b::bytes)
+           decimal(n::null)
+           decimal(n::void)
 
-.. _math-operations-table-2:
+   The creator methods for the decimal type casts ``integer``, ``string``,
+   ``bytes``, ``null``, and ``void`` objects as a decimal object.
 
-.. table:: Table 2: Decimal Data Type
+   The precision of decimal numbers when converted to strings is always
+   displayed as six decimal places even though the actual precision of the
+   number may vary based on the size of the number and its internal
+   representation. The output precision of decimal numbers can be controlled
+   using the ``decimal->format`` method described later in this chapter.
 
-    +-------------+--------------------------------------------------+
-    |Tag          |Description                                       |
-    +=============+==================================================+
-    |``[Decimal]``|Casts a value to type decimal.                    |
-    +-------------+--------------------------------------------------+
 
-The precision of decimal numbers is always displayed as six decimal
-places even though the actual precision of the number may vary based on
-the size of the number and its internal representation. The output
-precision of decimal numbers can be controlled using the
-``[Decimal->Format]`` tag described later in this chapter.
+Implicit Decimal Casting
+------------------------
 
-**Examples of implicit decimal casting:**
+Integer values are cast to decimal values automatically if they are used as a
+parameter to a mathematical operator in conjunction with a decimal value. The
+following example shows how the integer "123" is automatically cast to a decimal
+value because the other parameter of the "+" operator is the decimal value
+"456.0"::
 
--  Integer values are cast to decimal values automatically if they are
-   used as a parameter to a mathematical symbol. If either of the
-   parameters to the symbol is a decimal value then the other parameter
-   is cast to a decimal value automatically. The following example shows
-   how the integer ``123`` is automatically cast to a decimal value
-   because the other parameter of the ``+`` symbol is the decimal value
-   ``456.0``.
+   456.0 + 123
 
-   ::
+   // => 579.0
+        
+The following example shows how a variable with a value of "123" is
+automatically cast to a decimal value::
 
-       [456.0 + 123] -> 579.0
+   local(number)=123
+   456.0 + #number
+
+   // => 579.0
+
+
+Explicit Decimal Casting
+------------------------
+
+Strings which contain numeric data can be cast to the decimal data type using
+the ``decimal`` creator method. The string must start with a numeric value. In
+the following examples the number "123.0" is the result of each explicit
+casting. Only the first decimal value found in the string "123 and then 456" is
+recognized::
+
+   decimal('123')
+   // => 123.0
+
+   decimal('123.0')
+   // => 123.0
+
+   decimal('123 and then 456')
+   // => 123.0
+
+Integers which are cast to the decimal type simply have a decimal point
+appended. The value of the number does not change::
+
+   decimal(123)
+   // => 123.0
         
 
-   The following example shows how a variable with a value of ``123`` is
-   automatically cast to a decimal value.
+Mathematical Operators
+======================
 
-   ::
+The easiest way to manipulate integer and decimal objects is to use mathematical
+operators. The table :ref:`Table: Mathematical Operators <math-operators>`
+details all the operators that can be used with integer and decimal values.
 
-       [Variable: 'Number'=123]
-       [456.0 + (Variable: 'Number')] -> 579.0
+.. _math-operators:
 
-**Examples of explicit decimal casting:**
+.. table:: Table: Mathematical Operators
 
--  Strings which contain numeric data can be cast to the decimal data
-   type using the ``[Decimal]`` tag. The string must start with a
-   numeric value. In the following examples the number ``123.0`` is the
-   result of each explicit casting. Only the first decimal value found
-   in the string ``123`` and then ``456`` is recognized.
+   +--------+------------------------------------------------------------------+
+   |Operator|Description                                                       |
+   +========+==================================================================+
+   |   \+   |Adds two numbers.                                                 |
+   +--------+------------------------------------------------------------------+
+   |   \-   |Subtracts the right parameter from the left parameter.            |
+   +--------+------------------------------------------------------------------+
+   |   \*   |Multiplies two numbers.                                           |
+   +--------+------------------------------------------------------------------+
+   |   /    |Divides the left parameter by the right parameter.                |
+   +--------+------------------------------------------------------------------+
+   |   %    |Modulus. Calculates the left parameter modulo the right number.   |
+   +--------+------------------------------------------------------------------+
 
-   ::
-
-       [Decimal: '123'] -> 123.0
-       [Decimal: '123.0'] -> 123.0
-       [Decimal: '123 and then 456'] -> 123.0
-
--  Integers which are cast to the decimal data type simply have a
-   decimal point appended. The value of the number does not change.
-
-   ::
-
-       [Decimal: 123] -> 123.0
-        
-
-Mathematical Symbols
-====================
-
-The easiest way to manipulate integer and decimal values is to use the
-mathematical symbols. :ref:`Table 3: Mathematical Symbols
-<math-operations-table-3>` details all the symbols that can be used with
-integer and decimal values.
-
-.. _math-operations-table-3:
-
-.. table:: Table 3: Mathematical Symbols
-
-    +------+--------------------------------------------------+
-    |Symbol|Description                                       |
-    +======+==================================================+
-    |``+`` |Adds two numbers. This symbol should always be    |
-    |      |separated from its parameters by a space.         |
-    +------+--------------------------------------------------+
-    |``-`` |Subtracts the right parameter from the left       |
-    |      |parameter. This symbol should always be separated |
-    |      |from its parameters by a space.                   |
-    +------+--------------------------------------------------+
-    |``*`` |Multiplies two numbers.                           |
-    +------+--------------------------------------------------+
-    |``/`` |Divides the left parameter by the right parameter.|
-    +------+--------------------------------------------------+
-    |``%`` |Modulus. Calculates the left parameter modulo the |
-    |      |right number. Both parameters must be integers.   |
-    +------+--------------------------------------------------+
-
-Each of the mathematical symbols takes two parameters. If either of the
-parameters is a decimal value then the result will be a decimal value.
-Many of the symbols can also be used to perform string operations. If
-either of the parameters is a string value then the string operation
-defined by the symbol will be performed rather than the mathematical
+Each of the mathematical operators takes two parameters - one to its left and
+the other to its right. If either of the parameters is a decimal then the result
+will be a decimal value. Many of the operators can also be used to perform
+string operations. If either of the parameters is a string value then the string
+operation defined by the operator will be performed rather than the mathematical
 operation.
 
-.. Note:: Full documentation and examples for each of the mathematical
-    symbols can be found in the Lasso Reference.
-
-**Examples of using the mathematical symbols:**
-
--  Two numbers can be added using the ``+`` symbol. The output will be a
-   decimal value if either of the parameters are a decimal value. Note
-   that the symbol ``+`` is separated from its parameters by spaces and
-   negative values used as the second parameter should be surrounded by
-   parentheses.
-
-   ::
-
-       [100 + 50] -> 150
-       [100 + (-12.5)] -> 87.5
-
--  The difference between numbers can be calculated using the ``-``
-   symbol. The output will be a decimal value if either of the
-   parameters are a decimal value.
-
-   ::
-
-       [100 - 50] -> 50
-       [100 - (-12.5)] -> 112.5
-
--  Two numbers can be multiplied using the ``*`` symbol. The output will
-   be a decimal value if either of the parameters are a decimal value.
-
-   ::
-
-       [100 * 50] -> 5000
-       [100 * (-12.5)] -> -1250.0
-
-.. _math-operations-table-4:
-
-.. table:: Table 4: Mathematical Assignment Symbols
-
-    +------+--------------------------------------------------+
-    |Symbol|Description                                       |
-    +======+==================================================+
-    |``=`` |Assigns the right parameter to the variable       |
-    |      |designated by the left parameter.                 |
-    +------+--------------------------------------------------+
-    |``+=``|Adds the right parameter to the value of the left |
-    |      |parameter and assigns the result to the variable  |
-    |      |designated by the left parameter.                 |
-    +------+--------------------------------------------------+
-    |``-=``|Subtracts the right parameter from the value of   |
-    |      |the left parameter and assigns the result to the  |
-    |      |variable designated by the left parameter.        |
-    +------+--------------------------------------------------+
-    |``*=``|Multiplies the value of the left parameter by the |
-    |      |value of the right parameter and assigns the      |
-    |      |result to the variable designated by the left     |
-    |      |parameter.                                        |
-    +------+--------------------------------------------------+
-    |``/=``|Divides the value of the left parameter by the    |
-    |      |value of the right parameter and assigns the      |
-    |      |result to the variable designated by the left     |
-    |      |parameter.                                        |
-    +------+--------------------------------------------------+
-    |``%=``|Modulus. Assigns the value of the left parameter  |
-    |      |modulo the right parameter to the left            |
-    |      |parameter. Both parameters must be integers.      |
-    +------+--------------------------------------------------+
-
-Each of the symbols takes two parameters. The first parameter must be a
-variable that holds an integer or decimal value. The second parameter
-can be any integer or decimal value. The result of the operation is
-calculated and then stored back in the variable specified as the first
-operator.
-
-.. Note:: Full documentation and examples for each of the mathematical
-    symbols can be found in the Lasso Reference.
-
-**Examples of using the mathematical assignment symbols:**
-
--  A variable can be assigned a new value using the ``=`` symbol. The
-   following example shows how to define an integer variable and then
-   set it to a new value. The new value is output.
-
-   ::
-
-       <?LassoScript
-           Variable: 'IntegerVariable'= 100;
-           $IntegerVariable = 123456;
-           $IntegerVariable;
-       ?>
-       
-       -> 123456
-
--  A variable can be used as a collector by adding new values using
-   the ``+=`` symbol. The following example shows how to define an
-   integer variable and then add several values to it. The final value
-   is output.
-
-   ::
-
-       <?LassoScript
-           Variable: 'IntegerVariab'e= 0;
-           $IntegerVariable += 123;
-           $IntegerVariable += (-456);
-           $IntegerVariable;
-       ?>
-       
-       -> -333
-
-.. _math-operations-table-5:
-
-.. table:: Table 5: Mathematical Comparison Symbols
-
-    +------+--------------------------------------------------+
-    |Symbol|Description                                       |
-    +======+==================================================+
-    |``==``|Returns ``True`` if the parameters are equal.     |
-    +------+--------------------------------------------------+
-    |``!=``|Returns ``True`` if the parameters are not equal. |
-    +------+--------------------------------------------------+
-    |``<`` |Returns ``True`` if the left parameter is less    |
-    |      |than the right parameter.                         |
-    +------+--------------------------------------------------+
-    |``<=``|Returns ``True`` if the left parameter is less    |
-    |      |than or equal to the right parameter.             |
-    +------+--------------------------------------------------+
-    |``>`` |Returns ``True`` if the left parameter is greater |
-    |      |than the right parameter.                         |
-    +------+--------------------------------------------------+
-    |``>=``|Returns ``True`` if the left parameter is greater |
-    |      |than or equal to the right parameter.             |
-    +------+--------------------------------------------------+
-
-Each of the mathematical symbols takes two parameters. If either of the
-parameters is a decimal value then the result will be a decimal value.
-Many of the symbols can also be used to perform string operations. If
-either of the parameters is a string value then the string operation
-defined by the symbol will be performed rather than the mathematical
-operation.
-
-.. Note:: Full documentation and examples for each of the mathematical
-    symbols can be found in the Lasso Reference.
-
-**Examples of using the mathematical comparison symbols:**
-
--  Two numbers can be compared for equality using the ``==`` symbol and
-   ``!=`` symbol. The result is a boolean ``True`` or ``False``.
-   Integers are automatically cast to decimal values when compared.
-
-   ::
-
-       [100 == 123] -> False
-       [100.0 != (-123.0)] -> True
-       [100 ==100.0] -> True
-       [100.0 != (-123)] -> False
-
--  Numbers can be ordered using the ``<``, ``<=``, ``>``, and ``<=``
-   symbols. The result is a boolean ``True`` or ``False``.
-
-   ::
-
-       [-37 > 0] -> False
-       [100 < 1000.0] -> True
-
-Decimal Member Tags
-===================
-
-The decimal data type includes one member tag that can be used to format
-decimal values.
-
-.. _math-operations-table-6:
-
-.. table:: Table 6: Decimal Member Tag
-
-    +------------------------+--------------------------------------------------+
-    |Tag                     |Description                                       |
-    +========================+==================================================+
-    |``[Decimal->SetFormat]``|Specifies the format in which the decimal value   |
-    |                        |will be output when cast to string or displayed to|
-    |                        |a visitor.                                        |
-    +------------------------+--------------------------------------------------+
-
-.. Note:: Full documentation and examples for this tag can be found in
-    the Lasso Reference.
-
-Decimal Format
---------------
-
-The ``[Decimal->SetFormat]`` tag can be used to change the output format
-of a variable. When the variable is next cast to data type string or
-output to the Lasso page it will be formatted according to the
-preferences set in the last call to ``[Decimal->SetFormat]`` for the
-variable. If the ``[Decimal->SetFormat]`` tag is called with no
-parameters it resets the formatting to the default. The tag takes the
-following parameters.
-
-.. _math-operations-table-7:
-
-.. table:: Table 7: [Decimal->SetFormat] Parameters
-
-    +----------------+--------------------------------------------------+
-    |Keyword         |Description                                       |
-    +================+==================================================+
-    |``-Precision``  |The number of decimal points of precision that    |
-    |                |should be output. Defaults to ``6``.              |
-    +----------------+--------------------------------------------------+
-    |``-DecimalChar``|The character which should be used for the decimal|
-    |                |point. Defaults to a period.                      |
-    +----------------+--------------------------------------------------+
-    |``-GroupChar``  |The character which should be used for thousands  |
-    |                |grouping. Defaults to empty.                      |
-    +----------------+--------------------------------------------------+
-    |``-Scientific`` |Set to ``True`` to force output in exponential    |
-    |                |notation. Defaults to ``False`` so decimals are   |
-    |                |only output in exponential notation if required.  |
-    +----------------+--------------------------------------------------+
-    |``-Padding``    |Specifies the desired length for the output. If   |
-    |                |the formatted number is less than this length then|
-    |                |the number is padded.                             |
-    +----------------+--------------------------------------------------+
-    |``-PadChar``    |Specifies the character that will be inserted if  |
-    |                |padding is required. Defaults to a space.         |
-    +----------------+--------------------------------------------------+
-    |``-PadRight``   |Set to ``True`` to pad the right side of the      |
-    |                |output. By default, padding is appended to the    |
-    |                |left side of the output.                          |
-    +----------------+--------------------------------------------------+
-
-**To format a decimal number as US currency:**
-
-Create a variable that will hold the dollar amount, ``DollarVariable``.
-Use ``[Decimal->SetFormat]`` to set the ``-Precision`` to ``2`` and the
-``-GroupChar`` to comma.
-
-::
-
-    [Variable: 'DollarVariable' = 0.0]
-    [$DollarVariable->(SetFormat: -Precision=2, -GroupChar=',')]
-    <br>$[$DollarVariable]
-
-    [Variable: 'DollarVariable' = $DollarVariable + 1000]
-    [$DollarVariable->(SetFormat: -Precision=2, -GroupChar=',')]
-    <br>$[$DollarVariable]
-
-    [Variable: 'DollarVariable' = $DollarVariable / 8]
-    [$DollarVariable->(SetFormat: -Precision=2, -GroupChar=',')]
-    <br>$[$DollarVariable]
-
-    -> <br>$0.00
-    <br>$1,000.00
-    <br>$12.50
-
-Integer Member Tags
-===================
-
-The integer data type includes many member tags that can be used to
-format or perform bit operations on integer values. The available member
-tags are listed in :ref:`Table 8: Integer Member Tags <math-operations-table-8>`.
-
-.. _math-operations-table-8:
-
-.. table:: Table 8: Integer Member Tags
-
-    +----------------------------+--------------------------------------------------+
-    |Tag                         |Description                                       |
-    +============================+==================================================+
-    |``[Integer->SetFormat]``    |Specifies the format in which the integer value   |
-    |                            |will be output when cast to string or displayed to|
-    |                            |a visitor.                                        |
-    +----------------------------+--------------------------------------------------+
-    |``[Integer->BitAnd]``       |Performs a bitwise And operation between each bit |
-    |                            |in the base integer and the integer parameter.    |
-    +----------------------------+--------------------------------------------------+
-    |``[Integer->BitOr]``        |Performs a bitwise ``Or`` operation between each  |
-    |                            |bit in the base integer and the integer parameter.|
-    +----------------------------+--------------------------------------------------+
-    |``[Integer->BitXOr]``       |Performs a bitwise ``Exclusive-Or`` operation     |
-    |                            |between each bit in the base integer and the      |
-    |                            |integer parameter.                                |
-    +----------------------------+--------------------------------------------------+
-    |``[Integer->BitNot]``       |Flips every bit in the base integer.              |
-    +----------------------------+--------------------------------------------------+
-    |``[Integer->BitShiftLeft]`` |Shifts the bits in the base integer left by the   |
-    |                            |number specified in the integer parameter.        |
-    +----------------------------+--------------------------------------------------+
-    |``[Integer->BitShiftRight]``|Shifts the bits in the base integer right by the  |
-    |                            |number specified in the integer parameter.        |
-    +----------------------------+--------------------------------------------------+
-    |``[Integer->BitClear]``     |Clears the bit specified in the integer parameter.|
-    +----------------------------+--------------------------------------------------+
-    |``[Integer->BitFlip]``      |Flips the bit specified in the integer parameter. |
-    +----------------------------+--------------------------------------------------+
-    |``[Integer->BitSet]``       |Sets the bit specified in the integer parameter.  |
-    +----------------------------+--------------------------------------------------+
-    |``[Integer->BitTest]``      |Returns ``true`` if the bit specified in the      |
-    |                            |integer parameter is true.                        |
-    +----------------------------+--------------------------------------------------+
-
-.. Note:: Full documentation and examples for each of the integer member
-    tags can be found in the Lasso Reference.
-
-Integer Format
---------------
-
-The ``[Integer->SetFormat]`` tag can be used to change the output format
-of a variable. When the variable is next cast to data type string or
-output to the Lasso page it will be formatted according to the
-preferences set in the last call to ``[Integer->SetFormat]`` for the
-variable. If the ``[Integer->SetFormat]`` tag is called with no
-parameters it resets the formatting to the default. The tag takes the
-following parameters.
-
-.. _math-operations-table-9:
-
-.. table:: Table 9: [Integer->SetFormat] Parameters
-
-    +----------------+--------------------------------------------------+
-    |Keyword         |Description                                       |
-    +================+==================================================+
-    |``-Hexadecimal``|If set to ``True``, the integer will output in    |
-    |                |hexadecimal notation.                             |
-    +----------------+--------------------------------------------------+
-    |``-Padding``    |Specifies the desired length for the output. If   |
-    |                |the formatted number is less than this length then|
-    |                |the number is padded.                             |
-    +----------------+--------------------------------------------------+
-    |``-PadChar``    |Specifies the character that will be inserted if  |
-    |                |padding is required. Defaults to a space.         |
-    +----------------+--------------------------------------------------+
-    |``-PadRight``   |Set to ``True`` to pad the right side of the      |
-    |                |output. By default, padding is appended to the    |
-    |                |left side of the output.                          |
-    +----------------+--------------------------------------------------+
-
-**To format an integer as a hexadecimal value:**
-
-Create a variable that will hold the value, ``HexVariable``. Use
-``[Integer->SetFormat]`` to set ``-Hexadecimal`` to ``True``.
-
-::
-
-    [Variable: 'HexVariable' = 255]
-    [$HexVariable->(SetFormat: -Hexadecimal=True)]
-    <br>[$HexVariable]
-
-    [Variable: 'HexVariable' = $HexVariable / 5]
-    [$HexVariable->(SetFormat: -Hexadecimal=True)]
-    <br>[$HexVariable]
-
-    -> <br>0xff
-    <br>0x33
-
-Bit Operations
---------------
-
-Bit operations can be performed within Lasso’s 64-bit integer values.
-These operations can be used to examine and manipulate binary data. They
-can also be used for general purpose binary set operations.
+
+Using the Mathematical Operators
+--------------------------------
+
+Two numbers can be added using the ``+`` operator. The output will be a decimal
+value if either of the parameters are a decimal value::
+
+   100 + 50
+   // => 150
+
+   100 + -12.5
+   // => 87.500000
+
+The difference between numbers can be calculated using the ``-`` operator. The
+output will be a decimal value if either of the parameters are a decimal value.
+Note that in the second instance, when subtracting a negative number, the two
+``-`` must be separated by a space so as not to be confused with the ``--``
+operator::
+
+   100 - 50
+   // => 50
+
+   100 - -12.5
+   // => 12.500000
+
+Two numbers can be multiplied using the ``*`` operator. The output will be a
+decimal value if either of the parameters are a decimal value::
+
+   100 * 50
+   // => 5000
+
+   100 * -12.5
+   // => -1250.000000
+
+
+.. _math-assignment-operators:
+
+.. table:: Table: Mathematical Assignment Operators
+
+   +------+--------------------------------------------------------------------+
+   |Symbol|Description                                                         |
+   +======+====================================================================+
+   |  =   |Assigns the right parameter to the variable designated by the left  |
+   |      |parameter.                                                          |
+   +------+--------------------------------------------------------------------+
+   |  +=  |Adds the right parameter to the value of the left parameter and     |
+   |      |assigns the result to the variable designated by the left parameter.|
+   +------+--------------------------------------------------------------------+
+   |  -=  |Subtracts the right parameter from the value of the left parameter  |
+   |      |and assigns the result to the variable designated by the left       |
+   |      |parameter.                                                          |
+   +------+--------------------------------------------------------------------+
+   | \*=  |Multiplies the value of the left parameter by the value of the right|
+   |      |parameter and assigns the result to the variable designated by the  |
+   |      |left parameter.                                                     |
+   +------+--------------------------------------------------------------------+
+   |  /=  |Divides the value of the left parameter by the value of the right   |
+   |      |parameter and assigns the result to the variable designated by the  |
+   |      |left parameter.                                                     |
+   +------+--------------------------------------------------------------------+
+   |  %=  |Modulus. Assigns the value of the left parameter modulo the right   |
+   |      |parameter to the left parameter.                                    |
+   +------+--------------------------------------------------------------------+
+
+Each of the opertors takes two parameters - one toits left and the other to its
+right. The first parameter must be a variable that holds an integer, decimal, or
+string. The second parameter can be an integer, decimal, or string. The result
+of the operation is calculated and then stored back in the variable specified as
+the left-hand parameter.
+
+
+Using the Mathematical Assignment Operators
+-------------------------------------------
+
+A variable can be assigned a new value using the assignment operator: ``=``. The
+following example shows how to define an integer variable and then set it to a
+new value. The new value is then output::
+
+   local(my_variable) = 100
+   #my_variable = 123456
+   #my_variable
+
+   // => 123456
+
+A variable can be used as a collector by adding new values using the ``+=``
+operator. The following example shows how to define an integer variable and then
+add several values to it. The final value is output::
+
+   local(my_variable) = 100
+   #my_variable += 123
+   #my_variable += -456
+   #my_variable
+
+   // => -233
+
+.. _math-comparison-operators:
+
+.. table:: Table: Mathematical Comparison Operators
+
+   +------+--------------------------------------------------------------------+
+   |Symbol|Description                                                         |
+   +======+====================================================================+
+   |  ==  |Returns "true" if the parameters are equal.                         |
+   +------+--------------------------------------------------------------------+
+   |  !=  |Returns "true" if the parameters are not equal.                     |
+   +------+--------------------------------------------------------------------+
+   |  <   |Returns "true" if the left parameter is less than the right         |
+   |      |parameter.                                                          |
+   +------+--------------------------------------------------------------------+
+   |  <=  |Returns "true" if the left parameter is less than or equal to the   |
+   |      |right parameter.                                                    |
+   +------+--------------------------------------------------------------------+
+   |  >   |Returns "true" if the left parameter is greater than the right      |
+   |      |parameter.                                                          |
+   +------+--------------------------------------------------------------------+
+   |  >=  |Returns "true" if the left parameter is greater than or equal to the|
+   |      |right parameter.                                                    |
+   +------+--------------------------------------------------------------------+
+
+Each of the mathematical camparison operaters takes two parameters - one on its
+left and one on its right.
+
+
+Using the Mathematical Comparison Operators
+-------------------------------------------
+
+Two numbers can be compared for equality using the ``==`` operator and ``!=``
+operator. The result is a boolean "true" or "false". Integers are automatically
+cast to decimal values when compared with decimals::
+
+   100 == 123
+   // => false
+
+   100.0 != -123.0
+   // => true
+
+   100 ==100.0
+   // => true
+
+   100.0 != -123
+   // => true
+
+Numbers can be compared using the ``<``, ``<=``, ``>``, and ``<=`` operators.
+The result is a boolean "true" or "false"::
+
+   -37 > 0
+   // => false
+
+   100 < 1000.0
+   // => true
+
+
+Formatting Decimal Objects
+==========================
+
+Decimal objects can be formated for display using the ``decimal->asString``
+method detailed below.
+
+.. note::
+   In Lasso 9, integers and decimals have no state, so they cannot carry around
+   their formatting information. The ``decimal->asString`` method in Lasso 9 is
+   used to replace the functionality of Lasso 8's ``decimal->setFormat`` method.
+
+.. method:: decimal->asString(p0::string, p1::string, p2::string)
+.. method:: decimal->asString(
+      -decimalChar::string= ?,
+      -groupChar::string= ?,
+      -precision::integer= ?,
+      -scientific::boolean= ?,
+      -padding::integer= ?,
+      -padChar::string= ?,
+      -padRight::boolean= ?
+   )
+
+   Returns a string representation of the decimal value formated as specified by
+   the parameters passed to the method. If no parameters are passed to the
+   method, the string will return the decimal value outputed with 6 places of
+   precision. The parameters are outlined in the table below.
+
+   +----------------+----------------------------------------------------------+
+   |Keyword         |Description                                               |
+   +================+==========================================================+
+   |``-decimalChar``|The character which should be used for the decimal point. |
+   |                |Defaults to a period.                                     |
+   +----------------+----------------------------------------------------------+
+   |``-groupChar``  |The character which should be used for thousands grouping.|
+   |                |Defaults to empty.                                        |
+   +----------------+----------------------------------------------------------+
+   |``-precision``  |The number of decimal points of precision that should be  |
+   |                |output. Defaults to 6.                                    |
+   +----------------+----------------------------------------------------------+
+   |``-scientific`` |Set to "true" to force output in exponential notation.    |
+   |                |Defaults to "false" so decimals are only output in        |
+   |                |exponential notation if required.                         |
+   +----------------+----------------------------------------------------------+
+   |``-padding``    |Specifies the desired length for the output. If the       |
+   |                |formatted number is less than this length then the number |
+   |                |is padded.                                                |
+   +----------------+----------------------------------------------------------+
+   |``-padChar``    |Specifies the character that will be inserted if padding  |
+   |                |is required. Defaults to a space.                         |
+   +----------------+----------------------------------------------------------+
+   |``-padRight``   |Set to "true" to pad the right side of the output. By     |
+   |                |default, padding is appended to the left side of the      |
+   |                |output.                                                   |
+   +----------------+----------------------------------------------------------+
+
+
+Format a Decimal Number as US Currency
+--------------------------------------
+
+The folloing example outputs a decimal value as if it were US currency by
+setting the precision to "2". For readability, it also sets a comma as the
+grouping character::
+
+   local(dollar_amt) = 1234.56
+   #dollar_amt->asString(-precision=2, -groupChar=',')
+
+   // => 1,234.56
+
+
+Formatting Integer Objects
+==========================
+
+Integer objects can be formated for display using the ``integer->asString``
+method detailed below.
+
+.. note::
+   In Lasso 9, integers and decimals have no state, so they cannot carry around
+   their formatting information. The ``integer->asString`` method in Lasso 9 is
+   used to replace the functionality of Lasso 8's ``integer->setFormat`` method.
+
+
+.. method:: integer->asString(p0::string, p1::string, p2::string)
+.. method:: integer->asString(
+      -hexadecimal::boolean= ?,
+      -padding::integer= ?,
+      -padChar::string= ?,
+      -padRight::boolean= ?,
+      -groupChar::string= ?
+   )
+
+   Returns a string representation of the integer value formated as specified by
+   the parameters passed to the method. If no parameters are passed to the
+   method, the string will return the integer value outputed in base 10. The
+   parameters are outlined in the table below.
+
+   +----------------+----------------------------------------------------------+
+   |Keyword         |Description                                               |
+   +================+==========================================================+
+   |``-hexadecimal``|If set to "True", the integer will output in hexadecimal  |
+   |                |notation.                                                 |
+   +----------------+----------------------------------------------------------+
+   |``-padding``    |Specifies the desired length for the output. If the       |
+   |                |formatted number is less than this length then the number |
+   |                |is padded.                                                |
+   +----------------+----------------------------------------------------------+
+   |``-padChar``    |Specifies the character that will be inserted if padding  |
+   |                |is required. Defaults to a space.                         |
+   +----------------+----------------------------------------------------------+
+   |``-padRight``   |Set to "True" to pad the right side of the output. By     |
+   |                |default, padding is appended to the left side of the      |
+   |                |output.                                                   |
+   +----------------+----------------------------------------------------------+
+   |``-groupChar``  |The character which should be used for thousands grouping.|
+   |                |Defaults to empty.                                        |
+   +----------------+----------------------------------------------------------+
+
+
+Format an Integer as a Hexadecimal Value
+----------------------------------------
+
+The following example will create a variable with an integer value and then
+output that value in base 16::
+
+   local(my_int) = 255
+   #my_int->asString(-hexadecimal)
+
+   // => 0xff
+
+
+Integer Bit Operations
+======================
+
+Bit operations can be performed with Lasso’s integer objects. These operations
+can be used to examine and manipulate binary data. They can also be used for
+general purpose binary set operations.
 
 Integer literals in Lasso can be specified using hexadecimal notation.
 This can greatly aid in constructing literals for use with the bit
-operation. For example, ``0xff`` is the integer literal ``255``. The
-``[Integer->SetFormat]`` tag with a parameter of ``-Hexadecimal=True``
-can be used to output hexadecimal values.
-
-The bit operations are divided into three categories.
-
--  The ``[Integer->BitAnd]``, ``[Integer->BitOr]``, and
-   ``[Integer->BitXOr]`` tags are used to combine two integer values
-   using the specified boolean operation. In the following example the
-   boolean ``Or`` of ``0x02`` and ``0x04`` is calculated and returned in
-   hexadecimal notation.
-
-   ::
-
-       [Var: 'BitSet'=0x02]
-       [$BitSet->(SetFormat: -Hexadecimal=True]
-       [$BitSet->(BitOr: 0x04]
-       [$BitSet]
-
-       -> 0x06
-
--  The ``[Integer->BitShiftLeft]``, ``[Integer->BitShiftRight]``, and
-   ``[Integer->BitNot]`` tags are used to modify the base integer value
-   in place. In the following example, ``0x02`` is shifted left by three
-   places and output in hexadecimal notation.
-
-   ::
-
-       [Var: 'BitSet'=0x02]
-       [$BitSet->(SetFormat: -Hexadecimal=True]
-       [$BitSet->(BitShift: 3]
-       [$BitSet]
-
-       -> 0x10
-
--  The ``[Integer->BitSet]``, ``[Integer->BitClear]``,
-   ``[Integer->BitFlip]``, and ``[Integer->BitTest]`` tags are used to
-   manipulate or test individual bits from an integer value. In the
-   following example, the second bit an integer is set and then tested.
-
-   ::
-
-       [Var: 'BitSet'=0]
-       [$BitSet->(BitSet: 2)]
-       [$BitSet->(BitTest 2)]
-
-       -> True
-
-Math Tags
-=========
-
-Lasso contains many substitution tags that can be used to perform
-mathematical functions. The functionality of many of these tags overlaps
-the functionality of the mathematical symbols. It is recommended that
-you use the equivalent symbol when one is available.
-
-Additional tags detailed in the section on :ref:`Trigonometry and Advanced
-Math <trigonometry-and-advanced-math>`.
-
-.. _math-operations-table-10:
-
-.. table:: Table 10: Math Tags
-
-    +----------------------+--------------------------------------------------+
-    |Tag                   |Description                                       |
-    +======================+==================================================+
-    |``[Math_Abs]``        |Absolute value. Requires one parameter.           |
-    +----------------------+--------------------------------------------------+
-    |``[Math_Add]``        |Addition. Returns sum of multiple parameters.     |
-    +----------------------+--------------------------------------------------+
-    |``[Math_Ceil]``       |Ceiling. Returns the next higher integer. Requires|
-    |                      |one parameter.                                    |
-    +----------------------+--------------------------------------------------+
-    |``[Math_ConvertEuro]``|Converts between the Euro and other European Union|
-    |                      |currencies.                                       |
-    +----------------------+--------------------------------------------------+
-    |``[Math_Div]``        |Division. Divides each of multiple parameters in  |
-    |                      |order from left to right.                         |
-    +----------------------+--------------------------------------------------+
-    |``[Math_Floor]``      |Floor. Returns the next lower integer. Requires   |
-    |                      |one parameter.                                    |
-    +----------------------+--------------------------------------------------+
-    |``[Math_Max]``        |Maximum of all parameters.                        |
-    +----------------------+--------------------------------------------------+
-    |``[Math_Min]``        |Minimum of all parameters.                        |
-    +----------------------+--------------------------------------------------+
-    |``[Math_Mod]``        |Modulo. Requires two parameters. Returns the value|
-    |                      |of the first parameter modulo the second          |
-    |                      |parameter.                                        |
-    +----------------------+--------------------------------------------------+
-    |``[Math_Mult]``       |Multiplication. Returns the value of multiple     |
-    |                      |parameters multiplied together.                   |
-    +----------------------+--------------------------------------------------+
-    |``[Math_Random]``     |Returns a random number.                          |
-    +----------------------+--------------------------------------------------+
-    |``[Math_RInt]``       |Rounds to nearest integer. Requires one parameter |
-    +----------------------+--------------------------------------------------+
-    |``[Math_Roman]``      |Converts a number into roman numerals. Requires   |
-    |                      |one positive integer parameter.                   |
-    +----------------------+--------------------------------------------------+
-    |``[Math_Round]``      |Rounds a number with specified precision. Requires|
-    |                      |two parameters. The first value is rounded to the |
-    |                      |same precision as the second value.               |
-    +----------------------+--------------------------------------------------+
-    |``[Math_Sub]``        |Subtraction. Subtracts each of multiple parameters|
-    |                      |in order from left to right.                      |
-    +----------------------+--------------------------------------------------+
+operation. For example, "0xff" is the integer literal "255".
 
-.. Note:: Full documentation and examples for each of the math tags can
-    be found in the Lasso Reference.
 
-If all the parameters to a mathematical substitution tag are integers
-then the result will be an integer. If any of the parameter to a
-mathematical substitution tag is a decimal then the result will be a
-decimal value and will be returned with six decimal points of precision.
+.. method:: integer->bitAnd(p0::integer)
 
-In the following example the same calculation is performed with integer
-and decimal parameters to show how the results vary. The integer example
-returns ``0`` since ``0.125`` rounds down to zero when cast to an
-integer.
+   Performs a bitwise "And" operation between each bit in the base integer and
+   the integer parameter and returns the result.
 
-::
+.. method:: integer->bitOr(p0::integer)
 
-    [Math_Div: 1, 8] -> 0
-    [Math_Div: 1.0, 8] -> 0.125000
+   Performs a bitwise "Or" operation between each bit in the base integer and
+   the integer parameter returning the result.
 
-**Examples of using math substitution tags:**
+.. method:: integer->bitXOr(p0::integer)
 
-The following are all examples of using math substitution tags to
-calculate the results of various mathematical operations.
+   Performs a bitwise "Exclusive-Or" operation between each bit in the base
+   integer and the integer parameter returning the result.
 
-::
+.. method:: integer->bitNot()
 
-    [Math_Add: 1, 2, 3, 4, 5] -> 15
-    [Math_Add: 1.0, 100.0] -> 101.0
-    [Math_Sub: 10, 5] -> 5
-    [Math_Div: 10, 9] -> 11
-    [Math_Div: 10, 8.0] -> 12.5
-    [Math_Max: 100, 200] -> 200
+   Returns the result of flipping every bit in the base integer.
 
-Rounding Numbers
-----------------
+.. method:: integer->bitShfitLeft(p0::integer)
 
-Lasso provides a number of different methods for rounding numbers:
+   Returns the result of shifting the bits in the base integer left by the
+   number specified in the integer parameter.
 
--  Numbers can be rounded to integer using the ``[Math_RInt]`` tag to
-   round to the nearest integer, the ``[Math_Floor]`` tag to round to
-   the next lowest integer, or the ``[Math_Ceil]`` tag to found to the
-   next highest integer.
+.. method:: integer->bitShiftRight(p0::integer)
 
-   ::
+   Returns the result of shifting the bits in the base integer right by the
+   number specified in the integer parameter.
 
-       [Math_RInt: 37.6] -> 38
-       [Math_Floor: 37.6] -> 37
-       [Math_Ceil: 37.6] -> 38
+.. method:: integer->bitClear(p0::integer)
 
--  Numbers can be rounded to arbitrary precision using the
-   ``[Math_Round]`` tag with a decimal parameter. The second parameter
-   should be of the form ``0.01``, ``0.0001``, ``0.000001,`` etc.
+   Returns the result of clearing the bit specified in the integer parameter.
 
-   ::
+.. method:: integer->bitFlip(p0::integer)
 
-       [Math_Round: 3.1415926, 0.0001] -> 3.1416
-       [Math_Round: 3.1415926, 0.001] -> 3.142
-       [Math_Round: 3.1415926, 0.01] -> 3.14
-       [Math_Round: 3.1415926, 0.1] -> 3.1
+   Returns the result of Flipping the bit specified in the integer parameter.
 
--  Numbers can be rounded to an even multiple of another number using
-   the ``[Math_Round]`` tag with an integer parameter. The integer
-   parameter should be an even power of ``10``.
+.. method:: integer->bitSet(p0::integer)
+   
+   Returns the result of setting the bit specified in the integer parameter.
 
-   ::
+.. method:: integer->bitTest(p0::integer)
 
-       [Math_Round: 1463, 1000] -> 1000
-       [Math_Round: 1463, 100] -> 1500
-       [Math_Round: 1463, 10] -> 1460
+   Returns "true" if the bit specified in the integer parameter is true,
+   otherwise "false".
 
--  If a rounded result needs to be shown to the user, but the actual
-   value stored in a variable does not need to be rounded then either
-   the ``[Integer->SetFormat]`` or ``[Decimal->SetFormat]`` tags can be
-   used to alter how the number is displayed. See the documentation of
-   these tags earlier in the chapter for more information.
+.. note::
+   In previous versions of Lasso, these bit methods modified the integer in
+   place. In Lasso 9, integers are by-value objects and are immutable, so it is
+   not possible to change their value in place.
 
-Random Numbers
---------------
 
-The ``[Math_Random]`` tag can be used to return a random number in a
-given range. The result can optionally be returned in hexadecimal
-notation (for use in HTML color variables).
 
-.. Note:: When returning integer values ``[Math_Random]`` will return a
-    maximum 32-bit value. The range of returned integers is
-    approximately between ``+/- 2,000,000,000``.
+Performing a Bitwise Or
+-----------------------
 
-.. _math-operations-table-11:
+In the following example the boolean "Or" of "0x02" and "0x04" is calculated and
+returned in hexadecimal notation::
 
-.. table:: Table 11: [Math_Random] Parameters
+   local(bit_set) = 0x02
+   #bit_set->bitOr(0x04)->asString(-hexadecimal)
 
-    +--------+--------------------------------------------------+
-    |Keyword |Description                                       |
-    +========+==================================================+
-    |``-Min``|Minimum value to be returned.                     |
-    +--------+--------------------------------------------------+
-    |``-Max``|Maximum value to be returned. For integer results |
-    |        |should be one greater than maximum desired value. |
-    +--------+--------------------------------------------------+
-    |``-Hex``|If specified, returns the result in hexadecimal   |
-    |        |notation.                                         |
-    +--------+--------------------------------------------------+
+   // => 0x6
 
-**To return a random integer value:**
 
-In the following example a random number between ``1`` and ``99`` is
-returned. The random number will be different each time the page is
-loaded.
+Shifting Bits to the Left
+-------------------------
 
-::
+In the following example, "0x02" is shifted left by three places and output in
+hexadecimal notation::
 
-    [Math_Random: -Min=1, -Max=100]
+   local(bit_set) = 0x02
+   #bit_set = #bit_set->bitShiftLeft(3)
+   #bit_set->asString(-hexadecimal)
 
-    -> 55 
+   // => 0x10
 
-**To return a random decimal value:**
 
-In the following example a random decimal number between ``0.0`` and
-``1.0`` is returned. The random number will be different each time the
-page is loaded.
+Setting and Testing a Specified Bit
+-----------------------------------
 
-::
+In the following example, the second bit an integer is set and then tested::
 
-    [Math_Random: -Min=0.0, -Max=1.0]
+   local(bit_set) = 0
+   #bit_set = #bit_set->bitSet(2)
+   #bit_set->bitTest(2)
 
-    -> 0.55342
+   // => true
 
-**To return a random color value:**
 
-In the following example a random hexadecimal color code is returned.
-The random number will be different each time the page is loaded. The
-range is from ``16`` to ``256`` to return two-digit hexadecimal values
-between ``10`` and ``FF``.
+Basic Math Methods
+==================
 
-::
+Lasso contains many methods that can be used to perform mathematical functions.
+The functionality of some of these methods overlaps the functionality of the
+mathematical operators. It is recommended that you use the equivalent operator
+when one is available.
 
-    <font color="#[Math_Random: -Min=16, -Max=256, -Hex][Math_Random: -Min=16, -Max=256, -Hex][Math_Random: -Min=16,
-    -Max=256, -Hex]">Color</font>
+.. method:: math_abs(value)
 
-    -> <font color="#1010FF">Color</font>
+   Returns the absolute value of the value passed to it.
 
-.. _trigonometry-and-advanced-math:
+.. method:: math_add(value, ...)
 
-Trigonometry and Advanced Math
-------------------------------
+   Returns the sum of all the parameters passed to it.
 
-Lasso provides a number of tags for performing trigonometric functions,
+.. method:: math_ceil(value)
+
+   Returns the next highest integer.
+
+.. method:: math_convertEuro(value, euroto::string)
+
+   Converts between the Euro and other European Union currencies.
+
+.. method:: math_div(value, ...)
+
+   Divides each of the parameters in order from left to right.
+
+.. method:: math_floor(value)
+
+   Returns the next lower integer.
+
+.. method:: math_max(value, ...)
+
+   Returns the maximum of all parameters.
+
+.. method:: math_min(value, ...)
+
+   Returns the minimum of all parameters.
+
+.. method:: math_mod(value, factor)
+
+   Returns the value of the the first parameter module the second parameter.
+
+.. method:: math_mult(value, ...)
+
+   Returns the value of multiplying each of the parameters together.
+
+.. method:: math_random()::decimal
+.. method:: math_random(upper::integer, lower=0)::integer
+.. method:: math_random(upper::decimal, lower=0.0)::decimal
+.. method:: math_random(-upper, -lower)::integer
+
+   If called with no parameters, it returns a random number between 0.0 and 1.0.
+   This method can also take two parameters: the first is the upper bound for
+   the random number, and the second is the lower bound. If the first parameter
+   is an integer, an integer will be returned, and if it is a decimal, then a
+   decimal will be returned.
+
+   This method can also be called with ``-upper`` and ``-lower`` keyword
+   parameters and will then return an integer value regardless of the types of
+   the objects passed as parameters.
+
+   When returning integer values ``math_random`` will return a maximum 32-bit
+   value. The range of returned integers is approximately between "+/-
+   2,000,000,000".
+
+
+.. method:: math_rint(value)
+
+   Returns the value rounded to the nearest integer.
+
+.. method:: math_roman(value)
+
+   Returns a string representing the number passed in as a Roman numeral.
+
+.. method:: math_round(value, factor)
+
+   Rounds the first parameter to the precision specified by the second
+   parameter.
+
+
+Examples of Using Basic Math Methods
+------------------------------------
+
+The following are all examples of using basic math methods to calculate the
+results of various mathematical operations::
+
+   math_add(1, 2, 3, 4, 5)
+   // => 15
+
+   math_add(1.0, 100.0)
+   // => 101.000000
+
+   math_sub(10, 5)
+   // => 5
+
+   math_div(10, 9)
+   // => 1
+
+   math_div(10, 8.0)
+   // => 1.250000
+
+   math_max(100, 200)
+   // => 200
+
+
+Rounding to Nearest Integer
+---------------------------
+
+Numbers can be rounded to an integer using the ``math_rint`` method to round to
+the nearest integer, the ``math_floor`` method to round to the next lowest
+integer, or the ``math_ceil`` method to found to the next highest integer::
+
+   math_rint(37.6)
+   // => 38
+
+   math_floor(37.6)
+   // => 37
+
+   math_ceil(37.6)
+   // => 38
+
+
+Rounding to Specified Precision
+-------------------------------
+
+Numbers can be rounded to arbitrary precision using the
+``math_round`` method with a decimal parameter. The second parameter
+should be of the form "0.01", "0.0001", "0.000001," etc::
+
+   math_round(3.1415926, 0.0001)
+   // => 3.141600
+
+   math_round(3.1415926, 0.001)
+   // => 3.142000
+
+   math_round(3.1415926, 0.01)
+   // => 3.140000
+
+   math_round(3.1415926, 0.1)
+   // => 3.100000
+
+
+Numbers can be rounded to an even multiple of another number using the
+``math_round`` method with an integer parameter. The integer parameter should be
+a power of "10"::
+
+   math_round(1463, 1000)
+   // => 1000.000000
+
+   math_round(1463, 100)
+   // => 1500.000000
+
+   math_round(1463, 10)
+   // => 1460.000000
+
+.. note::
+
+   If a rounded result needs to be shown to the user, but the actual value
+   stored in a variable does not need to be rounded then either the
+   ``integer->asString`` or ``decimal->asString`` method can be used to alter
+   how the number is displayed. See the documentation of these methods earlier
+   in the chapter for more information.
+
+
+Return a Random Integer Value
+-----------------------------
+
+In the following example a random number between "1" and "100" is returned. The
+random number will be different each time the page is loaded::
+
+   math_random(100, 1)
+
+   // => 55
+
+
+Return a Random Decimal Value
+-----------------------------
+
+In the following example a random decimal number between "0.0" and "1.0" is
+returned. The random number will be different each time the page is loaded::
+
+   math_random(1.0, 0.0)
+
+   // -> 0.532773
+
+
+Return a Random Color Value
+---------------------------
+
+In the following example a random hexadecimal color code is returned. The random
+number will be different each time the page is loaded. The range is from "0" to
+"255" to return two-digit hexadecimal values between "00" and "FF"::
+
+   [local(color) = "#" +
+      math_random(255,0)->asString(-hexadecimal, -padding=2, -padChar="0") +
+      math_random(255,0)->asString(-hexadecimal, -padding=2, -padChar="0") +
+      math_random(255,0)->asString(-hexadecimal, -padding=2, -padChar="0")
+   ]
+   <span style="color: [#color];">Color</span>
+
+   // => <span style="color: #e64b32;">Color</span>
+
+
+Trigonometry and Advanced Math Methods
+======================================
+
+Lasso provides a number of methods for performing trigonometric functions,
 square roots, logarighthms, and calculating exponents.
 
-.. _math-operations-table-12:
+.. method:: math_acos(value)
 
-.. table:: Table 12: Trigonmetric and Advanced Math Tags
+   Arc Cosine. Returns the value of taking the arc cosine of the passed
+   parameter. The return value is in radians between "0" and "π".
 
-    +----------------+--------------------------------------------------+
-    |Tag             |Description                                       |
-    +================+==================================================+
-    |``[Math_ACos]`` |Arc Cosine. Requires one parameter. The return    |
-    |                |value is in radians between ``0`` and ``π``.      |
-    +----------------+--------------------------------------------------+
-    |``[Math_ASin]`` |Arc Sine. Requires one parameter. The return value|
-    |                |is in radians between ``-π/2`` and ``π/2``.       |
-    +----------------+--------------------------------------------------+
-    |``[Math_ATan]`` |Arc Tangent. Requires one parameter. The return   |
-    |                |value is in radians between ``-π/2`` and ``π/2``. |
-    +----------------+--------------------------------------------------+
-    |``[Math_ATan2]``|Arc Tangent of a Quotient. Requires two           |
-    |                |parameters. The return value is in radians between|
-    |                |``-π`` and ``π``.                                 |
-    +----------------+--------------------------------------------------+
-    |``[Math_Cos]``  |Cosine. Requires one parameter.                   |
-    +----------------+--------------------------------------------------+
-    |``[Math_Exp]``  |Natural Exponent. Requires one parameter. Returns |
-    |                |``e`` raised to the specified power.              |
-    +----------------+--------------------------------------------------+
-    |``[Math_Ln]``   |Natural Logarithm. Requires one parameter. Also   |
-    |                |``[Math_Log]``.                                   |
-    +----------------+--------------------------------------------------+
-    |``[Math_Log10]``|Base 10 Logarithm. Requires one parameter.        |
-    +----------------+--------------------------------------------------+
-    |``[Math_Pow]``  |Exponent. Requires two parameters: a base and an  |
-    |                |exponent. Returns the base raised to the exponent.|
-    +----------------+--------------------------------------------------+
-    |``[Math_Sin]``  |Sine. Requires one parameter.                     |
-    +----------------+--------------------------------------------------+
-    |``[Math_Sqrt]`` |Square Root. Requires one positive parameter.     |
-    +----------------+--------------------------------------------------+
-    |``[Math_Tan]``  |Tangent. Requires one parameter.                  |
-    +----------------+--------------------------------------------------+
+.. method:: math_asin(value)
 
-**Examples of using advanced math substitution tags:**
+   Arc Sine. Returns the value of taking the arc sine of the passed parameter.
+   The return value is in radians between "-π/2" and "π/2".
 
-The following are all examples of using math substitution tags to
-calculate the results of various mathematical operations.
+.. method:: math_atan(value)
 
-::
+   Arc Tangent. Returns the value of taking the arc tangent of the passed
+   parameter. The return value is in radians between "-π/2" and "π/2".
 
-    [Math_Pow: 3, 3] -> 27
-    [Math_Sqrt: 100.0] -> 10.0
+.. method:: math_atan2(value, factor)
 
-Locale Formatting
-=================
+   Arc Tangent of a Quotient. Returns the value of taking the angle in radians
+   between the x-axis and coordinants passed to it. The return value is in
+   radians between "-π" and "π".
 
-Lasso can format currency, percentages, and scientific values according
-to the rules of any country or locale. The tags in :ref:`Table 13:
-Locale Formatting Tags <math-operations-table-13>` are used for this
-purpose. Each tag accepts an optional language code and country code
-which specifies the locale to use for the formatting.
+.. method:: math_cos(value)
 
-The default language is ``en`` for English and country ``US`` for the
-United States. A list of valid language and country codes can be found
-linked from the ICU reference Web site:
+   Cosine. Returns the value of taking the cosine of the passed parameter.
 
-`http://www.icu-project.org/userguide/locale.html <http://www.icu-project.org/userguide/locale.html>`_
+.. method:: math_sin(value)
 
-.. _math-operations-table-13:
+   Sine. Returns the value of taking the sine of the passed parameter.
 
-.. table:: Table 13: Locale Formatting Tags
+.. method:: math_tan(value)
 
-    +-------------------+--------------------------------------------------+
-    |Tag                |Description                                       |
-    +===================+==================================================+
-    |``[Currency]``     |Formats a number as currency. Requires one        |
-    |                   |parameter, the currency amount to format. The     |
-    |                   |second parameter specifies the language and the   |
-    |                   |third paramter specifies the country for the      |
-    |                   |desired locale.                                   |
-    +-------------------+--------------------------------------------------+
-    |``[Percent]``      |Formats a number as a percentage. Requires one    |
-    |                   |parameter, the currency amount to format. The     |
-    |                   |second parameter specifies the language and the   |
-    |                   |third paramter specifies the country for the      |
-    |                   |desired locale.                                   |
-    +-------------------+--------------------------------------------------+
-    |``[Scientific]``   |Formats a number using scientific                 |
-    |                   |notation. Requires one parameter, the currency    |
-    |                   |amount to format. The second parameter specifies  |
-    |                   |the language and the third paramter specifies the |
-    |                   |country for the desired locale.                   |
-    +-------------------+--------------------------------------------------+
-    |``[Locale_Format]``|Formats a number. Requires one parameter, the     |
-    |                   |decimal amount to format. The second parameter    |
-    |                   |specifies the language and the third paramter     |
-    |                   |specifies the country for the desired locale.     |
-    +-------------------+--------------------------------------------------+
+   Tangent. Returns the value of taking the tangent of the passed parameter.
+
+.. method:: math_exp(value)
+
+   Natural Exponent. Returns the value of taking "e" raised to the specified
+   power.
+
+.. method:: math_ln(value)
+.. method:: math_log(value)
+
+   Natural Logarithm. Returns the value of taking the natural log of the passed
+   parameter.
+
+.. method:: math_log10(value)
+
+   Base 10 Logarithm. Returns the value of taking the base-10 log of the passed
+   parameter.
+
+.. method:: math_pow(value, factor)
+
+   Exponent. Returns the value of taking the first parameter and raising it to
+   the value of the second parameter.
+
+.. method:: math_sqrt(value)
+
+   Square Root. Returns the positive square root of the passed parameter. The
+   parameter passed to this method must be positive.
+
+
+Examples of Using Advanced Math Methods
+---------------------------------------
+
+The following are all examples of using math substitution tags to calculate the
+results of various mathematical operations::
+
+   math_pow(3, 3)
+   // => 27
+
+   math_sqrt(100.0)
+   // => 10.000000
