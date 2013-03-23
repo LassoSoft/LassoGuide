@@ -8,6 +8,8 @@ Lasso provides access to the local file system through the file and dir objects.
 File objects are used to create, delete, read and write file data. Dir objects
 are use to create and delete directories and to iterate directory contents.
 
+.. _files-path:
+
 Paths
 =====
 
