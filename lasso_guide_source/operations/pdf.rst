@@ -75,7 +75,8 @@ elements. Pages from the file can be placed within a new PDF document. A range
 of pages from the PDF document can be saved as a new PDF document and encryption
 options can be added to the new PDF document.
 
-.. class:: pdf_read(-file::string, -password::string= ?)
+.. class:: pdf_read
+.. method:: pdf_read(-file::string, -password::string= ?)
 
    Reads an existing PDF document into an object. Requires one parameter
    ``-file`` which specifies the name of the PDF document to be read. Optional
@@ -204,7 +205,8 @@ PDF documents are initialized and created using the ``pdf_doc`` type. This is
 the basic type used to create PDF documents with Lasso, and is used in concert
 with all tags described in this chapter.
 
-.. class:: pdf_doc(…)
+.. class:: pdf_doc
+.. method:: pdf_doc(…)
 
    Initializes a PDF document. Uses optional parameters which set the basic
    specifications of the file to be created. Data is added to the object using
@@ -680,7 +682,15 @@ Using Fonts
 Before adding text, it is important to first define the font and style for the
 text to determine how it will appear. This is done using the ``pdf_font`` type.
 
-.. class::pdf_font
+.. class:: pdf_font
+.. method:: pdf_font(
+      -face= ?,
+      -file= ?,
+      -size= ?,
+      -color= ?,
+      -encoding::string= ?,
+      -embed= ?
+   )
 
    Stores all the specifications for a font style. This includes font family,
    size, style, and color. Parameters are used with the ``pdf_font`` creator
@@ -861,7 +871,8 @@ PDF text content is constructed using the ``pdf_text`` type, which is
 then added to a ``pdf_doc`` object using the ``pdf_doc->add`` method.
 The ``pdf_text`` constructor method and parameters are described below.
 
-.. class:: pdf_text(text::string, …)
+.. class:: pdf_text
+.. method:: pdf_text(text::string, …)
 
    Creates a text object to be added to a ``pdf_doc`` object. The constructor 
    method requires the text string to be added to the PDF document as the first
@@ -1036,7 +1047,8 @@ A list of items can be constructed using the ``pdf_list`` type, which can be
 added to a ``pdf_doc`` objcet. The ``pdf_list`` constructor method and
 parameters are described below.
 
-.. class:: pdf_list(…)
+.. class:: pdf_list
+.. method:: pdf_list(…)
 
    Creates a list object to be added to a ``pdf_doc`` object. Text list items
    are added to this object using the ``pdf_list->add`` method. Optional
@@ -1635,7 +1647,8 @@ Defining Tables
 Tables for organizing data can be defined for use in a PDF document using the
 ``pdf_table`` type. Objects of this type are added to a ``pdf_doc`` object.
 
-.. class:: pdf_table(cols::integer, rows::integer, … )
+.. class:: pdf_table
+.. method:: pdf_table(cols::integer, rows::integer, … )
 
    Creates a table to be placed in a PDF. Uses parameters which set the basic
    specifications of the table to be created. The first parameter is required
@@ -1903,7 +1916,8 @@ Inserting Images
 Image files can be placed within PDF pages via the ``pdf_doc->addImage`` method,
 which is documented below.
 
-.. class:: pdf_image(…)
+.. class:: pdf_image
+.. method:: pdf_image(…)
 
    Casts an image file as a Lasso object so it can be placed in a PDF file.
    Requires either a ``-file``, ``-url``, or ``-raw`` parameter, as described
@@ -2149,6 +2163,7 @@ Barcodes can be defined for use in a PDF file using the ``pdf_barcode`` type.
 Objects of this type can then be added to  ``pdf_doc`` objects.
 
 .. class:: pdf_barcode
+.. method:: pdf_barcode(…)
 
    Creates a barcode image to be placed in a PDF. Uses parameters which set the
    basic specifications of the barcode to be created.

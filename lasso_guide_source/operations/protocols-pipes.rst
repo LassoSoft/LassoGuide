@@ -29,7 +29,9 @@ can be used to open or accept TCP connections.
 Opening TCP Connections
 -----------------------
 
-.. class:: net_tcp:
+.. class:: net_tcp
+.. method:: net_tcp()
+.. method:: net_tcp(fd::filedesc)
 
 .. method:: connect(to::string, port::integer, timeoutSeconds::integer = 4)
 
@@ -170,6 +172,8 @@ Loading SSL Certificates
 ------------------------
 
 .. class:: net_tcpssl
+.. method:: net_tcpssl()
+.. method:: net_tcpssl(fd::filedesc)
 
 .. method:: loadCerts(cert::string, privateKey::string)
 
@@ -243,6 +247,8 @@ data sent as well as the address of the sender and the port from which it was
 sent.
 
 .. class:: net_udp
+.. method:: net_udp()
+.. method:: net_udp(fd::filedesc)
 
 .. method:: readPacket(maxBytes::integer, timeoutSeconds::integer = -1)
 
@@ -319,6 +325,8 @@ Opening Named Pipe Connections
 ------------------------------
 
 .. class:: net_named_pipe
+.. method:: net_named_pipe()
+.. method:: net_named_pipe(fd::filedesc)
 
 .. method:: connect(to::string, timeoutSeconds::integer = 4)
 

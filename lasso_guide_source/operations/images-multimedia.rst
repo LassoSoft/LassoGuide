@@ -130,9 +130,10 @@ variable has been set to an image data type, various member methods can be used
 to manipulate the image. Once the image file is manipulated, it can either be
 served directly to the client browser, or it can be saved to disk on the server.
 
-.. class:: image()
-           image(filePath::string, -info = ?)
-           image(bytes::bytes, -info = ?)
+.. class:: image
+.. method:: image()
+.. method:: image(filePath::string, -info = ?)
+.. method:: image(bytes::bytes, -info = ?)
 
    Creates an image Lasso object. Requires either the path to an image file or a
    bytes object with an image's binary data to initialize the object. Once an

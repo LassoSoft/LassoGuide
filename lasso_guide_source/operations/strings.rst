@@ -103,11 +103,12 @@ Values can be cast to the string data type automatically in many
 situations or they can be cast explicitly using the [String] method.
 
 .. type:: string
+.. method:: string(obj::any)
 
-Casts a value to type string. Requires one value which is the data to be
-cast to a string. An optional second parameter can be used when casting
-byte streams to a string and specified what character set should be used
-to translate the byte stream (defaults to UTF-8).
+   Casts a value to type string. Requires one value which is the data to be
+   cast to a string. An optional second parameter can be used when casting
+   byte streams to a string and specified what character set should be used
+   to translate the byte stream (defaults to UTF-8).
 
 Examples of automatic string casting:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -92,7 +92,8 @@ Serialization_element Objects
 simple object must be created with a key and a value. The key and value are made
 available through methods named accordingly.
 
-.. type:: serialization_element(key, value)
+.. type:: serialization_element
+.. method:: serialization_element(key, value)
 
    Create a new ``serialization_element`` object with a key and value.
 

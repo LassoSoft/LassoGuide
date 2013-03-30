@@ -21,7 +21,8 @@ Lasso. Examples include "-123" or "456". Integer objects may also contain
 hexadecimal values such as "0x1A" or "0xff".
 
 .. class:: integer
-           integer(obj::any)
+.. method:: integer()
+.. method:: integer(obj::any)
 
    The creator method for integer casts any object as an integer. If the type
    for the object being cast does not easily represent an integer, then the
@@ -62,12 +63,13 @@ such as "1.23e2" which is equivalent to "1.23" times "10^2" or
 "123.0".
 
 .. class:: decimal
-           decimal(p0::integer)
-           decimal(p0::decimal)
-           decimal(p0::string)
-           decimal(b::bytes)
-           decimal(n::null)
-           decimal(n::void)
+.. method:: decimal()
+.. method:: decimal(p0::integer)
+.. method:: decimal(p0::decimal)
+.. method:: decimal(p0::string)
+.. method:: decimal(b::bytes)
+.. method:: decimal(n::null)
+.. method:: decimal(n::void)
 
    The creator methods for the decimal type casts ``integer``, ``string``,
    ``bytes``, ``null``, and ``void`` objects as a decimal object.

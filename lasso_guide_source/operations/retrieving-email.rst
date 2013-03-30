@@ -34,6 +34,20 @@ messages for deletion.
 The following describes the ``email_pop`` type and some of its member methods:
 
 .. class:: email_pop
+.. method:: email_pop(
+      -server= ?,
+      -port= ?,
+      -username= ?,
+      -password= ?,
+      -apop= ?,
+      -timeout= ?,
+      -log= ?,
+      -debug= ?,
+      -get= ?,
+      -host= ?,
+      -ssl= ?,
+      ...
+   )
 
    Creates a new POP object. Requires a ``-host`` parameter. Optional ``-port``
    and ``-timeout`` parameters. ``-APOP`` parameter selects authentication
@@ -356,7 +370,8 @@ used to inspect the headers and parts of the email message. Outputting an
 most common headers and the default body part. ``email_parse`` can be used with
 the ``iterate`` methods to inspect each part of the message in turn.
 
-.. class:: email_parse(mime::string)
+.. class:: email_parse
+.. method:: email_parse(mime::string)
 
    Parses the raw MIME text of an email. Requires a single string parameter.
    Outputs the raw data of the email if displayed on the page or cast to string.

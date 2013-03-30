@@ -224,7 +224,7 @@ formulate the response data.
 The request is completed when the initial code has run to the end, when the
 ``abort()`` method is called, or when an unhandled failure occurs. Outgoing data
 is buffered for as long as possible but can be forced out at any point using the
-``sendChunk()`` method. Calling abort()`` (either the web_response version or
+``sendChunk()`` method. Calling ``abort()`` (either the web_response version or
 the unbound method; both have the same behavior) will complete the request by
 halting all processing and sending the existing response data as-is.
 

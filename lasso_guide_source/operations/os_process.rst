@@ -35,6 +35,7 @@ Lasso From the Command Line**.
 
 
 .. class:: os_process
+.. method:: os_process(...)
 
    The ``os_process`` type allows a developer to create a new process on the
    machine and both read from and write data to it. The process is usually

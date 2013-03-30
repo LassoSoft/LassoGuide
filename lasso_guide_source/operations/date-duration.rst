@@ -150,15 +150,17 @@ the field or variable should be in one of the format described above or the
    date(web_request->param('birth_date'))
 
 
-.. class:: date()
-           date(-year= ?, -month= ?, -day= ?, 
-                -hour= ?, -minute= ?, -second= ?, 
-                -dateGMT= ?, -locale::locale= ?
-           )
-           date(date::string, -format::string= ?, -locale::locale= ?)
-           date(date::integer, -locale::locale= ?)
-           date(date::decimal, -locale::locale= ?)
-           date(date::date, -locale::locale= ?)
+.. class:: date
+.. method:: date()
+.. method:: date(
+      -year= ?, -month= ?, -day= ?, 
+      -hour= ?, -minute= ?, -second= ?, 
+      -dateGMT= ?, -locale::locale= ?
+   )
+.. method:: date(date::string, -format::string= ?, -locale::locale= ?)
+.. method:: date(date::integer, -locale::locale= ?)
+.. method:: date(date::decimal, -locale::locale= ?)
+.. method:: date(date::date, -locale::locale= ?)
 
    All the various creator methods that can be used to create a date object.
    When called without parameters, it returns a date object with the current
@@ -761,11 +763,12 @@ end date/times are either specified when creating the duration or the current
 date/time is used as the start date/time while the end date/time is calculated
 based on the specified length for the duration.
 
-.. class:: duration(time::string)
-           duration(time::integer)
-           duration(start::date, end::date)
-           duration(start::string, end::string)
-           duration(-year= ?, -week= ?, -day= ?, -hour= ?, -minute= ?, -second= ?)
+.. class:: duration
+.. method:: duration(time::string)
+.. method:: duration(time::integer)
+.. method:: duration(start::date, end::date)
+.. method:: duration(start::string, end::string)
+.. method:: duration(-year= ?, -week= ?, -day= ?, -hour= ?, -minute= ?, -second= ?)
 
    Creeates a duration object. Accepts a duration string for
    "hours:minutes:seconds". Or an integer number of seconds. Or a start and end

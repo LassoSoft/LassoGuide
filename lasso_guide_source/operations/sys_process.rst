@@ -18,6 +18,8 @@ can run many of the same commands and shell scripts. Windows presents a very
 different environment including DOS commands and batch files.
 
 .. class:: sys_process
+.. method:: sys_process()
+.. method:: sys_process(cmd::string, args= ?, env= ?, user::string= ?)
 
    The ``sys_process`` type allows a developer to create a new process on the
    machine and both read from and write data to it. The process is usually

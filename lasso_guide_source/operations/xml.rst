@@ -140,7 +140,7 @@ documents as well as create XML document types.
 
 This functionality is presented in the following four methods.
 
-.. class::xml_DOMImplementation
+.. class:: xml_DOMImplementation
 
 .. method:: createDocument(namespaceUri::string, rootNodeName::string)
 .. method:: createDocument(namespaceUri::string, rootNodeName::string, dtd::xml_documentType)
