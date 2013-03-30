@@ -691,8 +691,8 @@ closely as possible to the standard arithmetic meanings of the
 operators. For example, the addition operator + is also used for string
 concatenation.
 
-Overloading +, -, *, /, %
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Overloading +, -, \*, /, %
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 An arithmetic operator is overloaded by defining a member method whose
 name is the same as the operator symbol. The method must accept one
@@ -778,42 +778,50 @@ about an object. These methods are summarized in the table below.
 Introspection Methods
 ---------------------
 
-``type()``
-    Returns the type name for any instance. The value is the name which
-    was used when the type was defined.
+.. method:: null->type()
 
-``isA(name::tag)``
-    Checks whether an instance is of the given type. The method will
-    return true if the name of the type is specified or the name of any
-    parent type other than ``null``. The method will also return true
-    for any trait name which the type has applied to it. The method call
-    ``->isa(::null)`` will only return true for the ``null`` type
-    instance itself.
+   Returns the type name for any instance. The value is the name which was used
+   when the type was defined.
 
-``isNotA(name::tag)``
-    The opposite of ->isA.
+.. method:: null->isA(name::tag)
 
-``listMethods()``
-    Returns a staticarray containing the signatures for all of the 
-    methods which are available for the type.
+   Checks whether an instance is of the given type. The method will return true
+   if the name of the type is specified or the name of any parent type other
+   than ``null``. The method will also return true for any trait name which the
+   type has applied to it. The method call ``null->isa(::null)`` will only
+   return true for the ``null`` type instance itself.
 
-``hasMethod(name::tag)``
-    Returns true if the type implements a method with the given name.
+.. method:: null->isNotA(name::tag)
 
-``parent()``
-    Returns the name of the parent of the target object. If the method
-    returns ``null`` then the final parent has been reached.
+   The opposite of ``null->isA``.
 
-``trait()``
-    Returns the trait for the target object. Returns ``null`` if the
-    object does not have a trait.
+.. method:: null->listMethods()
 
-``setTrait(trait::trait)``
-    Sets the trait of the target object to the parameter. The existing
-    trait is replaced.
+   Returns a staticarray containing the signatures for all of the methods which
+   are available for the type.
 
-``addTrait(trait::trait)``
-    Combines the target object's trait with the parameter.
+.. method:: null->hasMethod(name::tag)
+
+   Returns true if the type implements a method with the given name.
+
+.. method:: null->parent()
+
+   Returns the name of the parent of the target object. If the method returns
+   "null" then the final parent has been reached.
+
+.. method:: null->trait()
+
+   Returns the trait for the target object. Returns ``null`` if the object does
+   not have a trait.
+
+.. method:: null->setTrait(trait::trait)
+
+   Sets the trait of the target object to the parameter. The existing trait is
+   replaced.
+
+.. method:: null->addTrait(trait::trait)
+
+   Combines the target object's trait with the parameter.
 
 Modifying Types
 ===============
