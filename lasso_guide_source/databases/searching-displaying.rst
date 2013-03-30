@@ -362,7 +362,7 @@ regular expression operators.
 
 
 Specify a Field Operator in an Inline Method
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Specify the field operator before the name/value pair parameter which it will
 affect. The following ``inline`` method searches for records where the
@@ -418,7 +418,7 @@ operator.
 
 
 Perform a Search Using an "AND" Operator
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``-operatorLogical`` command tag with an "AND" value. The following
 ``inline`` method returns records for which the "first_name" field begins with
@@ -440,7 +440,7 @@ it applies to the entire action::
 
 
 Perform a Search Using an OR Operator
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``-operatorLogical`` parameter with an "OR" value. The following
 ``inline`` method returns records for which the "first_name" field begins with
@@ -462,7 +462,7 @@ action::
 
 
 Perform a Search Using a "NOT" Operator
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``-operatorBegin`` and ``-operatorEnd`` parameters with a "NOT" value.
 The following ``inline`` method returns records for which the "first_name" field
@@ -1419,7 +1419,7 @@ follow a link or by setting ``-keyValue`` to an appropriate value to show one
 record in a database.
 
 Create Next and Previous Links
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``link_nextGroup`` and ``link_prevGroup`` methods can be used with the
 ``inline`` specified above to page through a set of found records.
@@ -1482,7 +1482,7 @@ Records" and the "Previous 4 Records" links are displayed::
 
 
 Create First and Last Links
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Links to the first and last groups of records in the found set can be added
 using the ``link_firstGroup`` and ``link_nextGroup`` methods. The following
@@ -1528,7 +1528,7 @@ selected by the visitor::
 
 
 Create Links to Page Through the Found Set
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Many Web sites include page links which allow the visitor to jump directly to
 any set of records within the found set. The example ``-findAll`` returns "16"
@@ -1593,7 +1593,7 @@ resorted by the values in that specific column.
 
 
 Create Links That Sort the Found Set
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following code performs a ``-search`` in an ``inline`` and formats the
 results as a table. The column heading at the top of each table column is a link
@@ -1655,7 +1655,7 @@ the visitor to continue navigating by records on the detail page.
 
 
 Create a Link to a Particular Record
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are two Lasso pages involved in most detail links. The listing
 Lasso page "default.lasso" includes the ``inline`` method
@@ -1711,7 +1711,7 @@ and display the individual record.
 
 
 Create a Link to the Current Record in the Found Set
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are two Lasso pages involved in most detail links. The listing Lasso page
 "default.lasso" includes the ``inline`` method that defines the search for the

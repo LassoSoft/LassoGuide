@@ -219,7 +219,7 @@ the field or variable should be in one of the format described above or the
 
 
 Display Date Values
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 The current date/time can be displayed with ``date``. The example below assumes
 a current date and time of "5/22/2002 14:02:05"::
@@ -236,8 +236,9 @@ and time of 5/7/2013 15:45:04::
    date(-year=2002, -month=5, -day=22)
    // => 2002-05-22 15:45:04
 
+
 Convert Date Values To and From GMT
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Any date object can be converted to and from Greenwich Mean Time using the
 ``date_gmtToLocal`` and ``date_localToGMT`` methods. These methods will only
@@ -251,7 +252,7 @@ following example uses Pacific Time (PDT) as the current time zone::
 
 
 Show the Current Time Zone for the Server Running Lasso 9
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``date_getLocalTimeZone`` method displays the current time zone of the
 machine running Lasso. The following example uses Eastern Standard Time (EST) as
@@ -354,7 +355,7 @@ website: `<http://userguide.icu-project.org/formatparse/datetime#TOC-Date-Time-F
 
 
 Convert Lasso Date Objects to Various Formats
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following examples show how to convert either Lasso date objects or valid
 Lasso date strings to alternate formats::
@@ -382,7 +383,7 @@ Lasso date strings to alternate formats::
 
 
 Import and Export Dates From MySQL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A common conversion in Lasso is converting MySQL dates to and from U.S. dates.
 Dates are stored in MySQL in the following format "yyyy-mm-dd". The following
@@ -403,7 +404,7 @@ date format using the ``date_format`` method::
 
 
 Set a Custom Date Format For a Thread
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``date_setFormat`` method. This allows all date objects in a thread to
 be outputted in a custom format without the use of the ``date_format`` or
@@ -506,7 +507,7 @@ conversions on date objects.
 
 
 Convert Date Objects to Various Formats
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following examples show how to output date objects in alternate formats
 using the ``date->format`` method::
@@ -535,7 +536,7 @@ using the ``date->format`` method::
 
 
 Set an Output Format for a Specific Date Object
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``date->setFormat`` method. This causes all instances of a particular
 date object to be output in a specified format\::
@@ -560,7 +561,7 @@ various locations. You can use locale objects to output dates in these standard
 formats. (See the chapter on :ref:`locales<locale>` for more information.)
 
 Using Locales to Display Dates
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example creates two ``locale`` objects (one for the US and one for
 Canada) and uses them to output the date in the format for each locale::
@@ -700,7 +701,7 @@ of the time.
 
 
 Use Date Accessors
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 The individual parts of a date object can be displayed using the ``date`` type
 member methods::
@@ -928,7 +929,7 @@ These methods are summarized below.
 
 
 Add Time to a Date
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 Using the ``date_add`` method, a specified number of hours, minutes, seconds,
 days, or weeks can be added to a date object or valid value that can be cast as
@@ -958,7 +959,7 @@ current date of "5/22/2002 14:02:05"::
 
 
 Subtract Time From a Date
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using the ``date_subtract`` method, a specified number of hours, minutes,
 seconds, days, or weeks can be subtracted a date object or valid value that can
@@ -982,7 +983,7 @@ different values from the date ``5/22/2001 14:02:05``::
 
 
 Determine the Time Difference Between Two Dates
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``date_difference`` method. The following examples show how to
 calculate the time difference between two date object or valid values that can
@@ -1084,7 +1085,7 @@ methods are summarized below.
 
 
 Add a Duration to a Date
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``date->add`` method. The following examples show how to add a duration
 to a date and return a date::
@@ -1110,7 +1111,7 @@ to a date and return a date::
 
 
 Subtract a Duration From a Date
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``date->subtract`` method. The following examples show how to subtract a
 duration from a date object and return a date::
@@ -1136,7 +1137,7 @@ duration from a date object and return a date::
 
 
 Determine the Duration Between Two Dates
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``date->difference`` method. The following examples show how to
 calculate the time difference between two dates and return a duration::
@@ -1172,7 +1173,7 @@ date or duration as appropriate.
 
 
 Add or Subtract Dates and Durations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following examples show addition and subtraction operations using dates and
 durations::
@@ -1185,7 +1186,7 @@ durations::
 
 
 Determine the Duration Between Two Dates
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following calculates the duration between two dates using the minus symbol::
 
@@ -1194,7 +1195,7 @@ The following calculates the duration between two dates using the minus symbol::
 
 
 Add One Day to the Current Date
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example adds one day to the current date::
 
@@ -1202,7 +1203,7 @@ The following example adds one day to the current date::
 
 
 Return the Duration Between the Current Date and a Day in the Future
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example returns the duration between the current date and
 12/31/2250::

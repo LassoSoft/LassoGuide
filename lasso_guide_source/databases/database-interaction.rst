@@ -177,7 +177,7 @@ the :ref:`Adding and Updating Records<adding-updating>` chapter.
 
 
 Specifying a FindAll Action Within an Inline
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example shows an ``inline`` method that has a
 ``-findAll`` database action specified. The
@@ -211,7 +211,7 @@ listing of the names of all the people stored in the "contacts" database::
 
 
 Specifying a Search Action Within an Inline
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example shows an ``inline`` method that has a
 ``-search`` database action . The
@@ -265,7 +265,7 @@ the tie-based ``web_request->params`` method.
 
 
 Using HTML Form Values Within an Inline with Web_Request->Param
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 An inline-based database action can make use of visitor specified parameters by
 reading values from an HTML form which the visitor customizes and then submits
@@ -321,7 +321,7 @@ the response page and incorporated into the ``inline`` method.
 
 
 Using an Array of Form Values Within an Inline with Web_Request->Params
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Rather than specifying each ``web_request->param`` individually, an entire set
 of HTML form parameters can be entered into an ``inline`` method using the
@@ -379,7 +379,7 @@ incorporated into the ``inline`` method at the location of the
 
 
 Setting HTML Form Values
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 If the Lasso page containing an HTML form is the action to an HTML form or the
 URL has query parameters, then the values of the HTML form inputs can be set to
@@ -424,7 +424,7 @@ Variables can pass through into nested ``inline`` methods.
 
 
 Nested Inline Example
-~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 This example will use nested ``inline`` methods to change the last name of all
 people whose last name is currently "Doe" in a database to "Person". The outer
@@ -479,7 +479,7 @@ values within the array parameter.
 
 
 Using an Array to Pass Values Into an Inline
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following Lasso code performs a ``-findAll`` database action with the
 parameters first specified in an array and stored in the variable "params", then
@@ -612,7 +612,7 @@ block to return information about the action specified by the ``inline`` method.
 
 
 Output the Parameters of the Current Database Action
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The value of the ``action_params`` method in the following example is formatted
 to show the elements of the returned array clearly::
@@ -636,7 +636,7 @@ to show the elements of the returned array clearly::
 
 
 Output the Pair Parameters of the Current Database Action
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Loop through the ``action_params`` method and display only name/value pairs for
 which the name does not start with a hyphen, i.e. any pair parameters and not
@@ -663,7 +663,7 @@ of the "contacts" database for a person named "John Doe"::
 
 
 Display Action Parameters to a Site Visitor
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``search_arguments`` method can be used in conjunction with the
 ``search_fieldItem``, ``search_valueItem`` and ``search_operatorItem`` methods
@@ -807,7 +807,7 @@ through a found set.
 
 
 Records Array
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 The ``records_array`` method can be used to get access to all of the data from
 an inline operation. The method returns a staticarray with one element for each
@@ -866,7 +866,7 @@ There may be some cases when these methods yield better performance than using
 
 
 Records Map
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 The ``records_map`` method functions similarly to the ``records_array`` method,
 but returns all of the data from an inline operation as a map of maps. The keys
@@ -882,7 +882,7 @@ keys for the inner map are the field names for each record in the found set::
 
 
 Result Sets
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 An inline which uses a ``-sql`` action can return multiple result sets. Each SQL
 statement within the ``-sql`` action is separated by a semi-colon and generates
@@ -948,7 +948,7 @@ the following example will be the same as those shown above::
 
 
 Showing Database Schema
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 The schema of a database can be inspected using the ``database_…`` methods or
 the inline ``-show`` action parameter which allows information about a database
@@ -1015,7 +1015,7 @@ database action that returns results including ``-search``, ``-add``,
 
 
 List All the Databases Available in Lasso Admin
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example shows how to list the names of all databases set in Lasso
 Admin using the ``database_names`` and ``database_nameItem`` methods::
@@ -1031,7 +1031,7 @@ Admin using the ``database_names`` and ``database_nameItem`` methods::
 
 
 List All the Tables Within a Database
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example shows how to list the names of all the tables within a
 database using the ``database_tableNames`` and ``database_tableNameItem]``
@@ -1049,7 +1049,7 @@ methods. The tables within the "Site" database are listed::
 
 
 Return Information About the Fields in a Table
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example demonstrates how to return information about the fields in
 a table using the ``inline`` method to perform a ``-show`` action. A ``loop``
@@ -1074,7 +1074,7 @@ each field is returned. The fields within the "contacts" table are shown::
 
 
 Determine the True Database Name for a SQL Statement
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``database_realName`` method. When using the ``-sql`` parameter to issue
 SQL statements to a host, only true database names may be used (bypassing the
@@ -1528,7 +1528,7 @@ of a conditional statement::
 
 
 Fetch the Last Inserted ID in MySQL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use nested ``-sql`` inlines, where the outer inline performs an insert query,
 and the inner inline retrieves the ID of the last inserted record using the

@@ -733,7 +733,7 @@ The following examples show how to set variables as ``pdf_font`` objects
 that define the font styles that are used in a PDF document.
 
 Set a Basic Font Style
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 Set a variable as a ``pdf_font`` object. The following example sets a font style
 to be a standard "Helvetica" font with a size of "14" points. The font color is
@@ -818,7 +818,7 @@ defined using the ``-file`` parameter, and are summarized below.
 
 
 Change a Font Face
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_font->setFace`` method. The following example sets a defined
 ``pdf_font`` object to a standard ``Courier`` font::
@@ -827,7 +827,7 @@ Use the ``pdf_font->setFace`` method. The following example sets a defined
 
 
 Change a Font Color
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_font->setColor`` method. The following example sets a defined
 ``pdf_font`` object to the color red::
@@ -836,7 +836,7 @@ Use the ``pdf_font->setColor`` method. The following example sets a defined
 
 
 Underline a Font
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 Use the ``pdf_font->setUnderline`` method. The following example sets a
 predefined ``pdf_font`` object to use an underlined style::
@@ -845,7 +845,7 @@ predefined ``pdf_font`` object to use an underlined style::
 
 
 Return a Font Face
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_font->getFace`` method. The following example returns the current
 font face of a defined ``pdf_font`` object::
@@ -855,7 +855,7 @@ font face of a defined ``pdf_font`` object::
 
 
 Return a Font Encoding
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_font->getEncoding`` method. The following example returns the
 encoding of the current font face of a defined ``pdf_font`` object::
@@ -946,7 +946,7 @@ The following examples show how to add text to a defined PDF variable named
 "my_file" that has been initialized previously using the ``pdf_doc`` method.
 
 Add a Chunk of Text
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_text`` type with the ``-type='Chunk'`` parameter. The following
 example adds the text "LassoSoft" to the ``pdf_doc`` object with a predefined
@@ -957,7 +957,7 @@ font. The text is positioned in the top left corner of the page by default::
 
 
 Add a Paragraph of Text
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_text`` type with the ``-type='Paragraph'`` parameter. The
 following example adds three sentences of text to the ``pdf_doc`` object with a
@@ -977,7 +977,7 @@ predefined font::
 
 
 Add a Linked Phrase
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_text`` type with the ``-anchor`` parameter. The following example
 adds the text "Click here to go somewhere" to the ``pdf_doc`` object with a
@@ -1026,7 +1026,7 @@ the page.
 
 
 Add Floating Text
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->drawText`` method. The following example adds the text "Some
 floating text" to the ``pdf_doc`` object with a predefined font at the
@@ -1099,7 +1099,7 @@ parameters are described below.
 
 
 Add a Numbered List
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_list`` type with the ``-format='Number'`` parameter to define the
 list, and the ``pdf_list->add`` method to add items to the list. The example
@@ -1113,7 +1113,7 @@ below creates a numbered list with three items::
 
 
 Add a Bulleted List
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_list`` type with the ``-format='Number'`` parameter to define the
 list, and the ``pdf_list->add`` method to add items to the list. The example
@@ -1155,7 +1155,7 @@ table below.
 
 
 Use Special Characters in a Text String
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example shows how to use special characters within a ``pdf_doc``
 text type::
@@ -1393,7 +1393,7 @@ methods which are described below.
 
 
 Add a Text Field
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->addTextField`` method. The example below adds a field named
 "Field_Name" that has "Some Text" entered by default. The field size is "144.0"
@@ -1408,7 +1408,7 @@ points (two inches) wide and "36.0" points high::
 
 
 Add a Text Area
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->addTextArea`` method. The example below adds a text area
 named "Field_Name" that has the text "Insert default text here" entered by
@@ -1423,7 +1423,7 @@ default. The field size is "144.0" points wide and "288.0" points high::
 
 
 Add a Checkbox
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->addCheckbox`` method. The example below adds a field named
 "Field_Name" with a checked value of "Checked_Value" that is checked by default.
@@ -1439,7 +1439,7 @@ The checkbox is "4.0" points wide and "4.0" points high, and is positioned
 
 
 Add a Group of Radio Buttons
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->addRadioGroup`` and ``pdf_doc->addRadioButton`` methods. The
 example below adds a radio button group named "Group_Name" and adds two radio
@@ -1464,7 +1464,7 @@ wide and "6.0" points high each::
 
 
 Add an Editable Pull-Down Menu
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->addComboBox`` method. The example below adds a pull-down menu
 named "Menu_Name" with the values "One", "Two", "Three", and "Four" as menu
@@ -1482,7 +1482,7 @@ allows the users to edit the values if desired. The pull-down menu size is
 
 
 Add a Pull-Down Menu with Different Displayed Values
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->addComboBox`` method whose values are each pairs. The example
 below adds a pull-down menu named "Menu_Name" with the values "1", "2", "3", and
@@ -1501,7 +1501,7 @@ and "Four" for each value. No value is selected by default::
 
 
 Add a Select List
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->addSelectList`` methods. The example below adds a select list
 named "List_Name" with the values "One", "Two", "Three", and "Four" as list
@@ -1517,7 +1517,7 @@ positioned "72.0" points from the bottom and left sides of the page::
 
 
 Add a Hidden Field
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->addHiddenField`` method. The example below adds a hidden
 field named "Field_Name" with a value of "Hidden_Value" to a ``pdf_doc`` object
@@ -1528,7 +1528,7 @@ displayed on the page::
 
 
 Add a Submit Button
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->addSubmitButton`` method. The example below adds a submit
 button named "Button_Name" with a value of "Submitted_Value". A caption
@@ -1547,7 +1547,7 @@ form::
 
 
 Add a Reset Button
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->addResetButton`` method. The example below adds a reset
 button named "Button_Name" with a value of "Reset_Value". The caption parameter
@@ -1570,7 +1570,7 @@ same way as HTML forms to submit request parameters to a Lasso response page,
 where database actions can occur via an ``inline`` method.
 
 Submit Information to a Database Using a PDF Form
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. In the "form.lasso" page, name the PDF form fields to correspond to the names
    of fields in the desired database. The names of these fields will be used in
@@ -1702,7 +1702,7 @@ Tables for organizing data can be defined for use in a PDF document using the
 
 
 Create a Basic Table
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_table`` type. The example below creates a table with two columns
 and five rows, with table cell spacing of one point and cell padding of two
@@ -1719,7 +1719,7 @@ points. The width of the table is set at 75 percent of the current page width::
 
 
 Create a Table with a Border
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_table`` type with the ``-border…`` parameters. The example below
 creates a basic table, and then adds a black border with a width of 3 points to
@@ -1736,7 +1736,7 @@ the table::
 
 
 Rotate a Table
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 Use the ``pdf_table`` type with the ``-rotate`` parameter. The example below
 creates a basic table, and then rotates it by 90 degrees clockwise::
@@ -1751,7 +1751,7 @@ creates a basic table, and then rotates it by 90 degrees clockwise::
 
 
 Create a Table with Pre-Specified Column Widths
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_table`` type with the ``-colWidth`` parameter. The example below
 creates a basic table with percentage widths for three columns::
@@ -1826,7 +1826,7 @@ which are summarized below.
 
 
 Add a Cell to a Table
-~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_table->add`` method. The example below adds a cell to the first
 row and column in a table. Note that the first row and column are numbered "0"::
@@ -1841,7 +1841,7 @@ row and column in a table. Note that the first row and column are numbered "0"::
 
 
 Add a Multi-Column Cell to a Table
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_table->add`` method with the number of columns to span for the
 ``-column`` parameter. The example below adds a cell to the first row that spans
@@ -1859,7 +1859,7 @@ will not be wrapped into multiple lines::
 
 
 Add a Header Cell to a Table
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_table->add`` method with the ``-header`` parameter. The example
 below adds the header "My Column Title" to the first column of the table::
@@ -1873,7 +1873,7 @@ below adds the header "My Column Title" to the first column of the table::
 
 
 Add a Cell with a Border to a Table
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_table->add`` method with the ``-borderWidth`` and ``-borderColor``
 parameter. The example below adds a cell with a red border to the first column
@@ -1896,7 +1896,7 @@ then be added to a ``pdf_doc`` object using the ``pdf_doc->add`` method.
 
 
 Add a Table to a ``pdf_doc`` Object
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->add`` method. The following example adds a predefined
 ``pdf_table`` object named "my_table" to a ``pdf_doc`` object named "my_file"::
@@ -1954,7 +1954,7 @@ which is documented below.
 
 
 Add an Image File to a ``pdf_doc`` Object
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_image`` type. The following example adds a file named "Image.jpg"
 in a "/Documents/Images/" folder to a ``pdf_doc`` object named "my_file"::
@@ -1964,7 +1964,7 @@ in a "/Documents/Images/" folder to a ``pdf_doc`` object named "my_file"::
 
 
 Scale an Image File
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_image`` type with the ``-height`` or ``-width`` parameter. The
 following example proportionally reduces the size of the added image by 50%::
@@ -1974,7 +1974,7 @@ following example proportionally reduces the size of the added image by 50%::
 
 
 Rotate an Image File
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_image`` type with the ``-rotate`` parameter. The following example
 rotates the added image by 90 degrees clockwise::
@@ -2061,7 +2061,7 @@ below.
 
 
 Set the Color and Style for a Drawing Action
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->setColor`` method. The example below sets a color of red for
 all subsequent drawing action until another ``pdf_doc->setColor`` method is
@@ -2078,7 +2078,7 @@ parameter for this color choice to be applied::
 
 
 Set the Line Width of a Drawing Action
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->setLineWidth`` method. The example below sets a line width of
 5 points for all subsequent drawing action until another
@@ -2088,7 +2088,7 @@ Use the ``pdf_doc->setLineWidth`` method. The example below sets a line width of
 
 
 Draw a Line
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 Use the ``pdf_doc->line`` method. The example below draws a horizontal line from
 points "(8, 8)" to points "(32, 32)"::
@@ -2097,7 +2097,7 @@ points "(8, 8)" to points "(32, 32)"::
 
 
 Draw a Curve
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 Use the ``pdf_doc->curveTo`` method. The example below draws a curve starting
 from points "(8, 8)", peaking at points "(32, 32)", and ending at points
@@ -2107,7 +2107,7 @@ from points "(8, 8)", peaking at points "(32, 32)", and ending at points
 
 
 Draw a Filled Rectangle
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_doc->rect`` method. The example below draws a rectangle whose
 lower left corner is at coordinates "(10, 60)", has left and right sides that
@@ -2119,7 +2119,7 @@ applied::
 
 
 Draw a Circle
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 Use the ``pdf_doc->circle`` method. The example below draws a circle whose
 center is at coordinates "(50, 50)" and has a radius of 20 points::
@@ -2128,7 +2128,7 @@ center is at coordinates "(50, 50)" and has a radius of 20 points::
 
 
 Draw an Arc
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 Use the ``pdf_doc->arc`` method. The example below draws an arc whose center is
 at coordinates (50, 50), has a radius of 20 points, and runs from 0 degrees to
@@ -2224,7 +2224,7 @@ Objects of this type can then be added to  ``pdf_doc`` objects.
 
 
 Create a Barcode
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 Use the ``pdf_barcode`` type. The example below creates a basic Code 39 barcode
 with the data "1234567890", and uses the optional Code 39 start and stop
@@ -2240,7 +2240,7 @@ characters "(*)". The barcode is then added to a ``pdf_doc`` object using
 
 
 Create a Barcode with a Specified Bar Width
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_barcode`` type with the ``-barWidth`` parameter. The following
 example sets a ``pdf_barcode`` object with a bar width of "0.2" points::
@@ -2254,7 +2254,7 @@ example sets a ``pdf_barcode`` object with a bar width of "0.2" points::
 
 
 Create a Barcode with a Specified Bar Multiplier
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_barcode`` type with the ``-barMultiplier`` parameter. The
 following example sets a ``pdf_barcode`` object with a bar multiplier constant
@@ -2270,7 +2270,7 @@ of "4.0". The barcode is then added to a ``pdf_doc`` object using
 
 
 Create a Barcode with a Specified Text Size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_barcode`` type with the ``-textSize`` parameter. The following
 example sets a ``pdf_barcode`` object with a text size of 6 points. The barcode
@@ -2285,7 +2285,7 @@ is then added to a ``pdf_doc`` object using ``pdf_doc->add``::
 
 
 Create a Barcode with a Specified Font
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_barcode`` type with the ``-font`` parameter. Thevfollowing example
 sets a ``pdf_barcode`` object font specified in a ``pdf_font`` object named
@@ -2616,7 +2616,7 @@ prompt to download the file or launch the file in PDF reader (if configured to
 do so).
 
 Link a PDF file
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 The example below shows how a PDF can be created and written to file, and then
 linked to in the Lasso page.
@@ -2658,7 +2658,7 @@ to save the file.
 
 
 Serve a PDF File to a Client Browser
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``pdf_serve`` method to serve the created PDF file. The file parameter
 specifies the file name that should be output::
@@ -2670,7 +2670,7 @@ specifies the file name that should be output::
 
 
 Serve a PDF File Without Writing to File
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 PDF files may be served to the client browser without ever writing them to file
 on the local server. This is done using the ``pdf_doc`` type without the

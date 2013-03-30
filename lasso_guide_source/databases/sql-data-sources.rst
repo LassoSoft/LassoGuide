@@ -373,7 +373,7 @@ the table below. Basic use of the ``-operator`` parameter is described in the
 
 
 Perform a Full-Text Search on a Field
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If a MySQL field is indexed as full-text, then using ``-op='ft'`` before the
 field in a search inline performs a MySQL full-text search on that field. The
@@ -399,7 +399,7 @@ are returned first::
 
 
 Use Regular Expressions as Part of a Search
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Regular expressions can be used as part of a search value for a field by
 using ``-op='rx'`` before the field in a search inline. The following
@@ -486,7 +486,7 @@ summarized in the following table.
 
 
 Return Records Once a Limit is Reached
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``-useLimit`` parameter in the search inline. Normally, Lasso will find
 all records that match the inline search criteria and then pair down the results
@@ -516,7 +516,7 @@ example searches the "contacts" database with a limit of five records::
 
 
 Sort Results Randomly
-~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``-sortRandom`` parameter in a search inline. The following example
 finds all records and sorts first by last name then randomly::
@@ -542,7 +542,7 @@ finds all records and sorts first by last name then randomly::
 
 
 Return Only Unique Records in a Search
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``-distinct`` parameter in a search inline. The following example only
 returns records that contain distinct values for the "last_name" field::
@@ -632,7 +632,7 @@ field types.
 
 
 Add or Update Multiple Values to a Field
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example adds a record with two comma delimited values in the
 "Jobs" field::
@@ -685,7 +685,7 @@ information about "NULL" values, see the data source documentation.
 
 
 Add or Update a Null Value to a Field
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``null`` object as the field value. The following example adds a
 record with a "NULL" value in the "last_name::

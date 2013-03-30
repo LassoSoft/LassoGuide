@@ -176,7 +176,7 @@ that follows for examples of downloading messages and parsing them for storage
 in a database.
 
 Download and delete all emails from a POP server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Open a connection to the POP server using ``email_pop`` with the appropriate
 host, username, and password. The following example shows how to use
@@ -201,7 +201,7 @@ database.
 
 
 Leave mail on server and only download new messages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order to download only new messages it is necessary to store a list of all
 the unique IDs of messages that have already been downloaded from the server.
@@ -233,7 +233,7 @@ inserted into ``myUniqueIDs``.
 
 
 Inspect message headers
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``email_pop->headers`` command can be used to fetch the headers of each
 waiting email message. This allows the headers to be inspected prior to deciding
@@ -460,7 +460,7 @@ the ``email_parse`` type. See the preceding :ref:`POP Type <email-pop-type>`
 section for examples of downloading messages from a POP email server.
 
 Display a downloaded message
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Simply use the ``email_parse`` tag on the downloaded message and display it on
 the page. The ``email_parse`` object will output a formatted version of the
@@ -491,7 +491,7 @@ as well as the output of ``email_parse`` in ``<pre>…</pre>`` tags.
 
 
 Inspect the headers of a downloaded message
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are three ways to inspect the headers of a downloaded message.
 
@@ -578,7 +578,7 @@ There are three ways to inspect the headers of a downloaded message.
 
 
 Find the different parts of a downloaded message
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``email_parse->body`` method can be used to find the plain text and HTML
 parts of a message. The following example shows both the plain text and HTML
@@ -604,7 +604,7 @@ attachments. The headers and body of each part is shown::
 
 
 Extract the attachments of a downloaded message
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Attachments of a multipart message appear as parts with a
 ``Content-Disposition`` of attachment. The name of the attachment can be found
@@ -642,7 +642,7 @@ exist and Lasso Server should have permission to write to it.
 
 
 Store a downloaded message in a database
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Messages can be stored in a database in several different ways depending on how
 the messages are going to be used later.

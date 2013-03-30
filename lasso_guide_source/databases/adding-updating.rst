@@ -571,7 +571,7 @@ required on each record before it is updated within the data source.
 
 
 Using -Key to Update Records
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The inline uses a ``-key`` array which performs a search for all records in the
 database with a "last_name" equal to "Person". The update is performed
@@ -588,7 +588,7 @@ automatically on this found set::
 
 
 Using Nested Inlines to Update Records
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The outer ``inline`` method performs a search for all records in the database
 with "last_name" equal to "Person". This forms the found set of records that
@@ -779,7 +779,7 @@ required to decide if each record should be deleted.
 
 
 Using -Key to Update Records
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This ``inline`` uses a ``-key`` array which performs a search for all records in
 the database with a "last_name" equal to "Peoples". The records in this found
@@ -794,7 +794,7 @@ set are automatically deleted::
 
 
 Using Nested Inlines to Update Records
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The outer ``inline`` method performs a search for all records in the database
 with "last_name" equal to "Peoples". This forms the found set of records which

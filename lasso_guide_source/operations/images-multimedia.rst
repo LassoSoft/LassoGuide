@@ -422,7 +422,7 @@ These methods are defined below.
    
 
 Enlarge an Image
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 Use the ``image->scale`` method on an image object. The following example
 enlarges ``image.jpg`` to 225 X 225 pixels. The optional ``-sample``
@@ -434,7 +434,7 @@ parameter specifies that pixel sampling should be used::
 
 
 Shrink an Image
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 Use the ``image->scale`` method on an image object. The following example
 shrinks ``image.jpg`` to 25 x 25 pixels. The optional ``-thumbnail`` parameter
@@ -446,7 +446,7 @@ optimizes the image for the Web::
 
 
 Rotate an Image
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 Use the ``image->rotate`` method on an image object. The following example
 rotates the image 60 degrees counterclockwise on top of a white background::
@@ -457,7 +457,7 @@ rotates the image 60 degrees counterclockwise on top of a white background::
 
 
 Crop an Image
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 Use the ``image->crop`` method on an image object. The example below crops 10
 pixels off of each side of a 70 x 70 image::
@@ -468,7 +468,7 @@ pixels off of each side of a 70 x 70 image::
 
 
 Mirror an Image
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 Use the ``image->flipv`` method on an image object. The following example
 mirrors the image vertically::
@@ -533,7 +533,7 @@ merging. These methods are described below.
 
 
 Adjust the Brightness of an Image
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->modulate`` method on an image object and adjust the first
 integer parameter, representing brightness. The following example increases the
@@ -544,8 +544,8 @@ brightness of an image by a factor of two::
    #myImage->save('/images/image.jpg')
 
 
-Adjust the Color Saturation of an image
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Adjust the Color Saturation of an Image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->modulate`` method on an image object and adjust the second
 integer parameter, representing color saturation. The following example
@@ -557,7 +557,7 @@ decreases the color saturation of an image by 25%::
 
 
 Adjust the Hue of an Image
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->modulate`` method on an image object and adjust the third
 integer parameter, representing hue. The following example tints the image green
@@ -569,7 +569,7 @@ by increasing the hue value. Decreasing the hue value tints the image red::
 
 
 Adjust the Contrast of an Image
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->contrast`` method on an image object. The first example
 increases the contrast. The second example uses a ``false`` parameter, which
@@ -585,7 +585,7 @@ reduces the contrast instead::
 
 
 Apply a Motion Blur to an Image
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->blur`` method on an image object. The following example applies
 a motion blur at 20 degrees::
@@ -596,7 +596,7 @@ a motion blur at 20 degrees::
 
 
 Apply a Gaussian Blur to an Image
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->blur`` method with the ``-Gaussian`` parameter on an image
 object. The following example applies a Gaussian blur with a radius of 15 pixels
@@ -608,7 +608,7 @@ and a standard deviation of 10 pixels::
 
 
 Sharpen an Image
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 Use the ``image->sharpen`` method on an image object. The following example
 applies a Gaussian sharp effect with a radius of 20 pixels and a standard
@@ -620,7 +620,7 @@ deviation of 10 pixels::
 
 
 Sharpen an Image with an Unsharp Mask Effect
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->sharpen`` method with the ``-amount`` and ``-threshold``
 parameters on an image object. The following example applies an unsharp mask
@@ -632,7 +632,7 @@ effect with a radius of 20 pixels and a standard deviation of 10 pixels::
 
 
 Enhance a Low-Quality Image
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->enhance`` method on an image object::
 
@@ -675,7 +675,7 @@ method as described below.
 
 
 Add Text to an Image
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->annotate`` method on an image object. The example below adds
 the text ``(c) 2013 LassoSoft`` to the specified image::
@@ -798,7 +798,7 @@ are described in the table below.
 
 
 Overlay an Image On Top of Another Image
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->composite`` method to add an image object to a second image
 object. The following example adds ``image2.jpg`` offset by five pixels in the
@@ -811,7 +811,7 @@ upper left corner of ``image1.jpg``::
 
 
 Add a Watermark to an Image
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->composite`` method with the ``-opacity`` parameter to add an
 image object to a second image object. The following example adds a mostly
@@ -824,7 +824,7 @@ transparent version of ``image2.jpg`` to ``image1.jpg``::
 
 
 Shade Image with a Second Image
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->composite`` method with the ``Bumpmap`` operator to shade an
 image object over a second image object::
@@ -836,7 +836,7 @@ image object over a second image object::
 
 
 Return the Pixel Difference Between Two Images
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``image->composite`` method with the ``Difference`` operator to return
 the pixel difference between two defined image variables::
@@ -896,7 +896,7 @@ multimedia files.
 
 
 Generate the Path to an Image or Multimedia File
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example shows a variable ``company_name`` that contains
 ``blueworld``. This variable is used to construct a path to an image file stored
@@ -968,7 +968,7 @@ configuration of the Web server or Web browser. The MIME type for a GIF is
 
 
 Serve an Image File
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 Use the :method:`web_response->sendFile` method to set the MIME type of the
 image to be served, and use the ``image->data`` method to get the binary data
@@ -999,7 +999,7 @@ and has the code all on one line to avoid any data corruption::
 
 
 Serve a Multimedia File
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the :method:`web_response->sendFile` method to set the MIME type of the file
 to be served and pass it a ``file`` object to include data from the multimedia
@@ -1023,7 +1023,7 @@ designating the appropriate MIME type in the ``-type`` option passed to the
 
 
 Limit Access to a File
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 Since the Lasso page can process any Lasso code before serving the image it is
 easy to create a file that generates an error if an unauthorized person tries to
