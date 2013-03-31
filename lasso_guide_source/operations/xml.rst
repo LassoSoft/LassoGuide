@@ -142,10 +142,10 @@ This functionality is presented in the following four methods.
 
 .. class:: xml_DOMImplementation
 
-.. method:: createDocument(namespaceUri::string, rootNodeName::string)
-.. method:: createDocument(namespaceUri::string, rootNodeName::string, dtd::xml_documentType)
-.. method:: parseDocument(text::bytes)
-.. method:: createDocumentType(qname::string, publicId::string, systemId::string)
+.. method:: xml_DOMImplementation->createDocument(namespaceUri::string, rootNodeName::string)
+.. method:: xml_DOMImplementation->createDocument(namespaceUri::string, rootNodeName::string, dtd::xml_documentType)
+.. method:: xml_DOMImplementation->parseDocument(text::bytes)
+.. method:: xml_DOMImplementation->createDocumentType(qname::string, publicId::string, systemId::string)
 
 In contrast to the xml(…) method, when creating or parsing an XML document the
 xml_DOMImplementation returns the document node. This will be an object of type
@@ -193,34 +193,34 @@ The following methods are use for creating new nodes:
 
 .. class:: xml_document
 
-.. method:: createElement(tagName::string)::xml_element
-.. method:: createElementNS(
+.. method:: xml_document->createElement(tagName::string)::xml_element
+.. method:: xml_document->createElementNS(
                namespaceURI::string,
                qualifiedName::string)::xml_element
 
    The first version of creates a new element node without a namespace. The
    second version permits a namespace to be specified.
 
-.. method:: createAttribute(name::string)::xml_attr
-.. method:: createAttributeNS(
+.. method:: xml_document->createAttribute(name::string)::xml_attr
+.. method:: xml_document->createAttributeNS(
                namespaceURI::string,
                qualifiedName::string)::xml_attr
 
    The first version of creates a new attribute without a namespace. The second
    version permits a namespace to be specified.
 
-.. method:: createDocumentFragment()::xml_documentFragment
-.. method:: createTextNode(data::string)::xml_text
-.. method:: createComment(data::string)::xml_comment
-.. method:: createCDATASection(data::string)::xml_cdataSection
-.. method:: createProcessingInstruction(
+.. method:: xml_document->createDocumentFragment()::xml_documentFragment
+.. method:: xml_document->createTextNode(data::string)::xml_text
+.. method:: xml_document->createComment(data::string)::xml_comment
+.. method:: xml_document->createCDATASection(data::string)::xml_cdataSection
+.. method:: xml_document->createProcessingInstruction(
                target::string,
                data::string)::xml_processingInstruction
-.. method:: createEntityReference(name::string)::xml_entityReference
+.. method:: xml_document->createEntityReference(name::string)::xml_entityReference
 
 .. class:: xml_node
 
-.. method:: importNode(importedNode::xml_node, deep::boolean)::xml_node
+.. method:: xml_node->importNode(importedNode::xml_node, deep::boolean)::xml_node
 
    Imports a node from another document into the document of the target object
    and returns the new node. The new node is not yet placed within the current
@@ -238,31 +238,31 @@ show the methods most commonly utilized when working with an XML document.
 
 .. class:: xml_node
 
-.. method:: nodeType()::string
+.. method:: xml_node->nodeType()::string
 
    Returns the name of the type of node. For example, an xml_element node would
    return "ELEMENT_NODE". This is in contrast to the DOM Level 2 specification
    which returns an integer value.
 
-.. method:: nodeName()::string
+.. method:: xml_node->nodeName()::string
 
    Returns the name of the node. This value will depend on the type of the node
    in question. For xml_element nodes, this will be the same value as the tag
    name. For xml_attr nodes, this will be the same as the attribute name.
 
-.. method:: prefix()
+.. method:: xml_node->prefix()
 
    Returns the namespace prefix of the node or null if it is unspecified.
 
-.. method:: localName()
+.. method:: xml_node->localName()
 
    Returns the local part of the qualified name of the node.
 
-.. method:: namespaceURI()
+.. method:: xml_node->namespaceURI()
 
    Returns the namespace URI of the node or null or null if it is unspecified.
 
-.. method:: nodeValue()
+.. method:: xml_node->nodeValue()
 
    Returns the value of the node as a string. This result will vary depending on
    the node type. For example an attribute node will return the attribute value.
@@ -270,48 +270,48 @@ show the methods most commonly utilized when working with an XML document.
    as element nodes, will return null. This value is read/write for nodes that
    have values.
 
-.. method:: parentNode()
+.. method:: xml_node->parentNode()
 
    Returns the parent of the node or null if there is no parent. Some, such as
    attribute nodes and the document node, do not have parents.
 
-.. method:: ownerDocument()
+.. method:: xml_node->ownerDocument()
 
    Returns the xml_document which is the owner of the target node. In the case
    of the document node, this will be null.
 
 .. class:: xml_element
 
-.. method:: tagName()::string
+.. method:: xml_element->tagName()::string
 
    Returns the name of the element.
 
-.. method:: getAttribute(name::string)::string
+.. method:: xml_element->getAttribute(name::string)::string
 
    Returns the value of the specified attribute. Returns an empty string if the
    attribute does not exist or has no value.
 
-.. method:: getAttributeNS(namespaceURI::string, localName::string)
+.. method:: xml_element->getAttributeNS(namespaceURI::string, localName::string)
 
    Returns the value of the attribute matching the given namespace and local
    name. Returns an empty string if the attribute does not exist or has no
    value.
 
-.. method:: getAttributeNode(name::string)
+.. method:: xml_element->getAttributeNode(name::string)
 
    Returns the specified attribute node. Returns null if the attribute does not
    exist.
 
-.. method:: getAttributeNodeNS(namespaceURI::string, localName::string)
+.. method:: xml_element->getAttributeNodeNS(namespaceURI::string, localName::string)
 
    Returns the attribute node matching the given namespace and local name.
    Returns null if the attribute does not exist.
 
-.. method:: hasAttribute(name::string)::boolean
+.. method:: xml_element->hasAttribute(name::string)::boolean
 
    Returns true if the specified attribute exists.
 
-.. method:: hasAttributeNS(
+.. method:: xml_element->hasAttributeNS(
             namespaceURI::string, localName::string)::boolean
 
    Returns true if the attribute matching the given namespace and local name
@@ -319,45 +319,45 @@ show the methods most commonly utilized when working with an XML document.
 
 .. class:: xml_attr
 
-.. method:: name()::string
+.. method:: xml_attr->name()::string
 
    Returns the name of the attribute.
 
-.. method:: ownerElement()
+.. method:: xml_attr->ownerElement()
 
    Returns the element node which owns the attribute or null if the attribute is
    not in use.
 
-.. method:: value()::string
+.. method:: xml_attr->value()::string
 
    Returns the value of the attribute. This value is read/write.
 
 .. class:: xml_nodeList
 
-.. method:: length()::integer
+.. method:: xml_nodeList->length()::integer
 
    Returns the number of nodes in the list.
 
-.. method:: item(index::integer)
+.. method:: xml_nodeList->item(index::integer)
 
    Returns the node indicated by the index. Indexes start at zero and go up to
    length-1. Returns null if the index is invalid.
 
 .. class:: xml_nodeMap
 
-.. method:: length()::integer
+.. method:: xml_nodeMap->length()::integer
 
    Returns the number of nodes in the map.
 
-.. method:: getNamedItem(name::string)
+.. method:: xml_nodeMap->getNamedItem(name::string)
 
    Returns the node matching the indicated name.
 
-.. method:: getNamedItemNS(namespaceURI::string, localName::string)
+.. method:: xml_nodeMap->getNamedItemNS(namespaceURI::string, localName::string)
 
    Returns the node matching the indicated namespace URI and local name.
 
-.. method:: item(index::integer)
+.. method:: xml_nodeMap->item(index::integer)
 
    Returns the node indicated by the index. Indexes start at zero and go up to
    length-1. Returns null if the index is invalid.
@@ -371,68 +371,68 @@ removing items from node maps.
 
 .. class:: xml_node
 
-.. method:: nodeValue=(value::string)
+.. method:: xml_node->nodeValue=(value::string)
 
    Sets the value of the node to the indicated string. Only the following node
    types can have their values set:  xml_attr, xml_cdataSection, xml_comment,
    xml_processingInstruction, xml_text
 
-.. method:: insertBefore(new::xml_node, ref::xml_node)::xml_node
+.. method:: xml_node->insertBefore(new::xml_node, ref::xml_node)::xml_node
 
    Inserts the new node into the document immediately before the ref node.
    Returns the newly inserted node.
 
-.. method:: replaceChild(new::xml_node, ref::xml_node)::xml_node
+.. method:: xml_node->replaceChild(new::xml_node, ref::xml_node)::xml_node
 
    Replaces the ref node in the document with the new node. Returns the new
    node.
 
-.. method:: appendChild(new::xml_node)::xml_node
+.. method:: xml_node->appendChild(new::xml_node)::xml_node
 
    Inserts the new node into the document at the end of the target node's child
    list. Returns the new node.
 
-.. method:: removeChild(c::xml_node)::xml_node
+.. method:: xml_node->removeChild(c::xml_node)::xml_node
 
    Removes the indicated child node from the document. Returns the removed node.
 
-.. method:: normalize()
+.. method:: xml_node->normalize()
 
    This method modifies the document such that no two text nodes are adjacent.
    All adjacent text nodes are merged into one text node.
 
 .. class:: xml_element
 
-.. method:: setAttribute(name::string, value::string)
+.. method:: xml_element->setAttribute(name::string, value::string)
 
    Adds an attribute with the given name and value. If the attribute already
    exists then the value is set accordingly.
 
-.. method:: setAttributeNS(uri::string, qname::string, value::string)
+.. method:: xml_element->setAttributeNS(uri::string, qname::string, value::string)
 
    Adds an attribute with the given namespace, name and value. If the attribute
    already exists its value is set accordingly.
 
-.. method:: setAttributeNode(node::xml_attr)
+.. method:: xml_element->setAttributeNode(node::xml_attr)
 
    Adds the new attribute node. If an attribute with the same name already
    exists it is replaced. To add a namespace aware attribute, use
    setAttributeNodeNS instead.
 
-.. method:: setAttributeNodeNS(node::xml_attr)
+.. method:: xml_element->setAttributeNodeNS(node::xml_attr)
 
    Adds the new attribute node. If an attribute with the same namespace/name
    combination already exists it is replaced.
 
-.. method:: removeAttribute(name::string)
+.. method:: xml_element->removeAttribute(name::string)
 
    Removes the attribute with the indicated name.
 
-.. method:: removeAttributeNS(uri::string, qname::string)
+.. method:: xml_element->removeAttributeNS(uri::string, qname::string)
 
    Removes the attribute with the given namespace/name combination.
 
-.. method:: removeAttributeNode(node::xml_attr)::xml_attr
+.. method:: xml_element->removeAttributeNode(node::xml_attr)::xml_attr
 
    Removes the indicated attribute node. Returns the removed node.
 
@@ -440,21 +440,21 @@ removing items from node maps.
 
    Note that some node maps are read-only and can not be modified.
 
-.. method:: setNamedItem(node::xml_node)::xml_node
+.. method:: xml_nodeMap->setNamedItem(node::xml_node)::xml_node
 
    Adds the node to the node map based on the nodeName value of the node.
    Replaces any duplicate node within the map. Returns the added node.
 
-.. method:: setNamedItemNS(node::xml_node)::xml_node
+.. method:: xml_nodeMap->setNamedItemNS(node::xml_node)::xml_node
 
    Adds the node to the node map based on the namespace/name combination.
    Replaces any duplicate node within the map. Returns the added node.
 
-.. method:: removeNamedItem(name::string)
+.. method:: xml_nodeMap->removeNamedItem(name::string)
 
    Removes the node with the given name from the map. Returns the removed node.
 
-.. method:: removeNamedItemNS(uri::string, qname::string)
+.. method:: xml_nodeMap->removeNamedItemNS(uri::string, qname::string)
 
    Removes the node with the given namespace/name combination from the map.
    Returns the removed node.
@@ -472,11 +472,11 @@ specific attributes can be easily found within the document.
 
 .. class:: xml_node
 
-.. method:: extract(xpath::string)
+.. method:: xml_node->extract(xpath::string)
 
    Executes the XPath in the node and returns all matches as a staticarray.
 
-.. method:: extract(xpath::string, namespaces::staticarray)
+.. method:: xml_node->extract(xpath::string, namespaces::staticarray)
 
    Executes the XPath in the node and returns all matches as a staticarray. This
    method should be used for XML documents which utilize namespaces. The second
@@ -485,12 +485,12 @@ specific attributes can be easily found within the document.
    prefixes used in the XPath expression do not have to match those used within
    the document itself.
 
-.. method:: extractOne(xpath::string)
+.. method:: xml_node->extractOne(xpath::string)
 
    Executes the XPath in the node and returns the first matching node or null if
    there are no matches.
 
-.. method:: extractOne(xpath::string, namespaces::staticarray)
+.. method:: xml_node->extractOne(xpath::string, namespaces::staticarray)
 
    Executes the XPath in the node and returns the first matching node or null if
    there are no matches. This method should be used for XML documents which
@@ -560,7 +560,7 @@ performed and a new XML document is returned.
 
 .. class:: xml_node
 
-.. method:: transform(sheet::string,
+.. method:: xml_node->transform(sheet::string,
             variables::staticarray)::xml_document
 
    Performs an XSLT transformation on the document and returns the resulting
