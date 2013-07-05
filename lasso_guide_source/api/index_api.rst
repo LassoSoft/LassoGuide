@@ -11,8 +11,8 @@
 .. toctree::
    :maxdepth: 2
 
-.. lcapi
-   lcapi-tags
+   lcapi-overview
+   lcapi-methods
    lcapi-types
    lcapi-sources
 
