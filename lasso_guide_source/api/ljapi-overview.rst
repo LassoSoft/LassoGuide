@@ -85,15 +85,16 @@ Java Virtual Machine (JVM).
 #. The next line of code looks up the method ID for the method we want to
    execute and returns it as a ``jmethodid`` type which gets stored into the
    "mID" variable. ``GetStaticMethodId`` takes in the class (``jobject``) object
-   we found in the first line, the name of the method in the second line and the
-   signature for that method as the third argument. For more information, see
+   we found in the first line, the name of the method as the second parameter
+   and the signature for that method as the third parameter. For more
+   information, see
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20950>`_
    ::
 
       local(mID)   = java_jvm_getenv->GetStaticMethodId(#class, 'scalb', '(FI)F')
 
 #. The method signature "(FI)F" specifies that it takes a ``float`` and an
-   ``integer`` parameter and returns a ``float``. The easiest way to find the
+   ``int`` parameter and returns a ``float``. The easiest way to find the
    signature for a method is to use the ``javap`` command on the command-line.
    In the example below, we run ``javap -s -p java.lang.Math`` to get all the
    method signatures found in the "java.lang.Math" class, and we use grep to
@@ -125,8 +126,8 @@ Instatiate a Java Object and Execute a Memeber Method
 
 Member methods are methods that are associated with a class and are run on an
 instantiated object of that class. This example will walk you through creating a
-"ZipFile" object and running the "size" method on that object to find out how
-many items are in the zip file.
+``ZipFile`` object and running the ``size`` method on that object to find out
+how many items are in the zip file.
 
 To run this example yourself, you'll need a zip file. Also, replace the path and
 file name in the example with the path and name of your zip file.
@@ -165,7 +166,7 @@ that wraps the Lasso instance's ``java_jnienv`` object.
 
 #. Next, the code finds the method ID for the constructor method by passing the
    class object we found in the first step, "<init>" for the method name, and
-   the method signature as the third option::
+   the method signature as the third argument::
 
       local(mID)   = java_jvm_getenv->GetMethodID(#class, '<init>', '(Ljava/lang/String;)V')
 

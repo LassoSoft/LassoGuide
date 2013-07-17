@@ -22,4 +22,4 @@
    :maxdepth: 2
 
    ljapi-overview
-   
+   ljapi-methods
