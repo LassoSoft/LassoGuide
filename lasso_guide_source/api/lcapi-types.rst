@@ -44,7 +44,8 @@ implemented just like any other LCAPI method. In the example below,
       const char * kStringData = "This is a string member.";
       lasso_type_t stringMember = NULL;
       lasso_typeAllocString( token, &stringMember, kStringData, strlen(kStringData) );
-      lasso_typeAddMember( token, theNewInstance, "member1", stringMember );
+      lasso_typeAddDataMember( token, theNewInstance, "member1", stringMember );
+
       lasso_type_t tagMember = NULL;
       lasso_typeAllocTag( token, &tagMember, myTagMemberFunction );
       lasso_typeAddMember( token, theNewInstance, "member2", tagMember );
@@ -68,47 +69,44 @@ methods: ``example_file->open``, ``example_file->close``,
 ``example_file->read``, ``example_file->write``.
 
 The example project is the "LCAPIFile" project in the LCAPI examples found
-`here <http://lassoguide.com/_static/lcapi_examples.zip>`_. Due to the length of
-the code in that file, the entire code is not reproduced here. Instead this
-section provides a conceptual overview of the ``example_file`` type and
-describes the basic LCAPI functions used to implement it.
+`here </_static/lcapi_examples.zip>`_. Due to the length of the code in that
+file, the entire code is not reproduced here. Instead this section provides a
+conceptual overview of the ``example_file`` type and describes the basic LCAPI
+functions used to implement it.
 
 #. The first step in creating a custom type is to register the type's
    initializer. Type initializers are registered in the same way that regular
    method functions are registered. The only difference being that
-   ``flag_typeInitializer`` should be passed for the fourth (flags) parameter.
+   ``REG_FLAGS_TYPE_DEFAULT`` should be passed for the fourth (flags) parameter.
 
-   This concept is illustrated in lines 95-129 of the CAPIFile.cpp file::
+   This concept is illustrated in lines 247-282 of the CAPIFile.cpp file::
 
       void registerLassoModule()
       {
          ...
-         lasso_registerTagModule("example", "file", file_init,
+         lasso_registerTagModule("", kFileTypeName, file_init,
             REG_FLAGS_TYPE_DEFAULT, "Initializer for the file type.");
       }
 
-#. The registered type initializer will be called each time a new file type is
-   created. In the above case, the LCAPI function ``file_init`` was registered
-   as being the initializer. The prototype for ``file_init`` should look like
-   any other LCAPI function, as shown on line 272 of the CAPIFile.cpp file::
+#. The registered type initializer will be called when the module is loaded. In
+   the above case, the LCAPI function ``file_init`` was registered as being the
+   initializer. The prototype for ``file_init`` should look like any other LCAPI
+   function, as shown on line 285 of the CAPIFile.cpp file::
 
       osError file_init(lasso_request_t token, tag_action_t action)
 
-#. The ``file_init`` function will now be called whenever the ``example_file``
-   type is used in a script. Within the type initializer, the type's member
-   methods are added. Each member method is implemented by its own LCAPI
-   function. However, before members can be added, the new blank type must be
-   created using ``lasso_typeAllocCustom``.
+#. The ``file_init`` function will now be called whenever the library is loaded.
+   Within the type initializer, the type's member methods are added. Each member
+   method is implemented by its own LCAPI function. However, before members can
+   be added, the new blank type must be created using ``lasso_typeAllocCustom``.
 
    ``lasso_typeAllocCustom`` can only be used within a properly registered type
    initializer. The value it produces should always be the return value of the
-   method as set by the ``lasso_returnTagValue`` function. See lines 273-277 of
+   method as set by the ``lasso_returnTagValue`` function. See lines 289-290 of
    the CAPIFile.cpp file::
 
-      {
-         lasso_type_t file;
-         ...
-         lasso_typeAllocCustom(token, &file, KFileTypeName);
+      lasso_type_t file;
+      lasso_typeAllocCustom(token, &file, kFileTypeName);
 
 #. Once the blank type has been created, members can be added to it. LCAPI data
    types often need to store pointers to allocated structures or memory. LCAPI
@@ -117,12 +115,21 @@ describes the basic LCAPI functions used to implement it.
    store a pointer with a specific name. The pointer is stored as a regular
    integer data member. The names of all pointer members should begin with an
    underscore. Naming a pointer as such will indicate to Lasso that it should
-   not be copied when a copy is made of the data type instance. This LCAPI
-   example_file type will store its private data in a structure called
-   ``file_desc_t`` as shown on lines 280-281 of the CAPIFile.cpp file::
+   not be copied when a copy is made of the data type instance. In the
+   initializer function, you need to add the integer data member as seen on
+   lines 293-295::
+
+      lasso_type_t i;
+      lasso_typeAllocInteger(token, &i, 0);
+      lasso_typeAddDataMember(token, file, kPrivateMember, i);
+
+   This LCAPI ``example_file`` type stores its private data in a structure
+   called ``file_desc_t``. The actual call to ``lasso_setPtrMember`` is in the
+   method's "onCreate" method as shown on lines 344-345 of the CAPIFile.cpp
+   file::
 
       file_desc_t * desc = new file_desc_t;
-      lasso_setPtrMember(token, file, kPrivateMember, desc);
+      lasso_setPtrMember(token, self, kPrivateMember, desc, &cleanUp);
 
 #. Member methods for open, close, read, and write could be written like this::
 
@@ -140,38 +147,30 @@ describes the basic LCAPI functions used to implement it.
       lasso_typeAddMember(token, file, "write", mem);
 
    But to avoid the repative nature of this, the LCAPIFile.cpp file defines a
-   macro named ``ADD_TAG`` to do the work as seen on lines 286-295::
-
+   macro named ``ADD_TAG`` to do the work as seen on lines 300-309::
 
       #define ADD_TAG(NAME, FUNC) {
          lasso_type_t mem;\
          lasso_typeAllocTag(token, &mem, FUNC);\
          lasso_typeAddMember(token, file, NAME, mem);\
       }
-      ...
+      
+      // add the type's member tags
       ADD_TAG(kMemOpen, file_open);
       ADD_TAG(kMemClose, file_close);
       ADD_TAG(kMemRead, file_read);
       ADD_TAG(kMemWrite, file_write);
 
-#. The final member method to add is the "onDestroy" method. This method will be
-   called automatically by Lasso when the object goes away. Adding this method
-   will ensure that the file on disk is closed properly if the member method
-   function ``file_close`` is not called. This is added on line 309 of
-   CAPIFile.cpp::
-
-      ADD_TAG(kMemOnDestroy, file_onDestroy);
-
 #. At this point, the return value should be set. Keep in mind that the new
    example_file type is completely blank except for the members that were added
    above. No inherited members are available at this point. Inherited members
-   are only added after the LCAPI type initializer returns. Line 312 of the
+   are only added after the LCAPI type initializer returns. Line 324 of the
    CAPIFile.cpp file sets the return value::
 
       lasso_returnTagValue(token, file);
 
 #. There were no errors in the type initialization process, so return a "no
-   error" code to Lasso, completing the type's initialization. See line 313 of
+   error" code to Lasso, completing the type's initialization. See line 325 of
    the CAPIFile.cpp file::
 
       return osErrNoErr;
@@ -185,18 +184,18 @@ describes the basic LCAPI functions used to implement it.
 #. The new file type has now been initialized and made available to the caller
    in the script. The first member method of the file type is
    ``example_file->open``, which is implemented as the LCAPI function
-   ``file_open`` which begins on line 365 of the CAPIFile.cpp file::
+   ``file_open`` which begins on line 385 of the CAPIFile.cpp file::
 
       osError file_open(lasso_request_t token, tag_action_t action)
       {
 
 #. The first step in implementing a member method is to acquire the "self"
    instance. The "self" is the instance upon which the member call was made.
-   This is illustrated on lines 367-370 of the CAPIFile.cpp file::
+   This is illustrated on lines 387-390 of the CAPIFile.cpp file::
 
       lasso_type_t self = NULL;
       lasso_getTagSelf(token, &self);
-      if ( !self )
+      if(!self)
          return osErrInvalidParameter;
 
 #. Once the "self" is successfully acquired and is not null, the rest of the
@@ -204,54 +203,39 @@ describes the basic LCAPI functions used to implement it.
    the path to the file that will be opened. Since the path is a string value,
    it can be acquired using ``lasso_getTagParam``. If the path parameter was not
    passed to the open member method, an error should be returned and indicated
-   to the user. All of this can be seen on lines 380-396 of the CAPIFile.cpp
+   to the user. All of this can be seen on lines 400-418 of the CAPIFile.cpp
    file::
 
-      // see what parameters we are being initialized with int count;
+      // see what parameters we are being initialized with
       int count;
       lasso_getTagParamCount(token, &count);
 
-      if ( count < 2 )
+      if( count < 2 )
       {
          lasso_setResultMessage(token, "file->open requires at least a file path and open mode.");
          return osErrInvalidParameter;
       }
 
-      if ( count > 0 ) // we are given *at the least* a path
+      if( count > 0 ) // we are given *at the least* a path
       {
          // first param is going to be a string, so use the LCAPI 5 call to get it
          auto_lasso_value_t pathParam;
          pathParam.name = "";
          lasso_getTagParam(token, 0, &pathParam);
 
-#. If the current user has permission, the Lasso internal path should be
-   converted to the platform specific path. This is a three-step process that
-   begins with fully qualifying the path. This will ensure that relative paths
-   are converted to root paths. The second step is to resolve the path. This
-   converts root path to a complete path which will include the hard drive name,
-   or // if used on a \*nix platform. The final step is to convert the path into
-   a platform-specific format that will be understood by the platform-specific
-   ``example_file->open`` calls. All of this takes place on lines 197-203 of the
-   CAPIFile.cpp file::
-
-      {
-         osPathname qualifiedPath;
-         osPathname resolvedPath;
-         lasso_fullyQualifyPath( token, inPath, qualifiedPath );
-         lasso_resolvePath( token, qualifiedPath, resolvedPath );
-         lasso_getPlatformSpecificPath( resolvedPath, outPath );
+         desc->fPath = pathParam.name;
       }
 
 #. Once the path is properly converted, the actual file can be opened using the
    file system calls supplied by the operating system. This concept is
-   illustrated on line 242 of the CAPIFile.cpp file::
+   illustrated on line 225 of the CAPIFile.cpp file::
 
       FILE * f = fopen(xformPath, openMode);
 
 #. The ``FILE`` pointer can now be retrieved using the
    ``lasso_typeGetCustomPtr`` LCAPI function. No error has occurred while
    opening the file, so complete the function call and return "no error". See
-   line 426 of the CAPIFile.cpp file::
+   line 449 of the CAPIFile.cpp file::
 
       return osErrNoErr;
 

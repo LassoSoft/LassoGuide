@@ -6,13 +6,13 @@ LCAPI Overview
 
 The Lasso C/C++ Application Programming Interface (LCAPI) lets you write C or
 C++ code to add new Lasso methods, data types, or data source connectors to
-Lasso. Writing tags in LCAPI offers spped and system performance advantages over
-LJAPI and custom Lasso tags. However, tags must be compiled separately for
+Lasso. Writing tags in LCAPI offers speed and system performance advantages over
+LJAPI and custom Lasso tags. However, modules must be compiled separately for
 Windows, OS X, and Linux.
 
-This chapter provides a walk-through for building an example method, data type,
-and data source connector in LCAPI. You can download the source code for these
-examples here.
+This chapter provides a walk-through for building and debugging an example
+LCAPI method. You can download the source code for this and other examples
+`here </_static/lcapi_examples.zip>`_.
 
 
 .. _lcapi-overview-requirements:
@@ -155,6 +155,9 @@ Debug in OS X / Linux
    Type "help" in GNU Debugger for more information about using the GNU
    Debugger, or search for gdb tutorials on the Web for more in-depth
    information.
+
+.. note::
+   For newer versions of OS X, use ``lldb`` instead of ``gdb``.
 
 
 Frequently Asked Questions

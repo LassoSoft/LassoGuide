@@ -66,7 +66,7 @@ Data Source Connector Example
 This section provides a walk-through of an example data source to show how some
 of the LCAPI features are used. This code can be found in the SampleConnector
 example project which can be downloaded with the other LCAPI examples
-`here <http://lassoguide.com/_static/lcapi_examples.zip>`_.
+`here </_static/lcapi_examples.zip>`_.
 
 This example data source simply displays some simple text as each action is
 called from a Lasso inline. It is not an effective or useful data source; it’s

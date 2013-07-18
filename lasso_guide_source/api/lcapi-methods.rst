@@ -60,9 +60,8 @@ Custom Method Tutorial
 ======================
 
 This section provides a walk-through of building an example method to show how
-LCAPI features are used. This code is similar to the sample "MathFuncsCAPI"
-project, so in order to build this code, copy the "MathFuncsCAPI" project folder
-and edit the project files inside it.
+LCAPI features are used. This code can be found in the "SampleMethod" folder in
+the LCAPI examples which can be `downloaded here </_static/lcapi_examples.zip>`_.
 
 The method will simply display its parameters, and it will look like the example
 below when called in Lasso code::
