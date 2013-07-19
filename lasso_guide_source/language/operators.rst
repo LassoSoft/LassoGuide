@@ -561,8 +561,8 @@ apply in limited situations or special contexts and so are beyond the
 scope of this chapter, but the following gives pointers to the
 appropriate sections, where more information can be found.
 
-**Association Operator** ``=>`` See `Methods`_, `Types`_
+**Association Operator** ``=>`` See :ref:`Methods<methods>`, :ref:`Types<types>`
 
-**Keywords** ``return``, ``yield``, etc. See `Methods`_
+**Keywords** ``return``, ``yield``, etc. See :ref:`Methods<methods>`
 
-**Captures/Codeblocks** ``{ }`` ``{^ ^}`` See `Captures`_, `Methods`_
+**Captures/Codeblocks** ``{ }`` ``{^ ^}`` See :ref:`Captures<captures>`, :ref:`Methods<methods>`

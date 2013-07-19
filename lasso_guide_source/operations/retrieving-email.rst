@@ -24,6 +24,8 @@ downloaded messages.
 
 **Note:** Lasso does not support downloading email from IMAP servers.
 
+.. _email-pop-type:
+
 POP Type
 ========
 

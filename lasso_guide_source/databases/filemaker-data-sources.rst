@@ -533,6 +533,7 @@ FileMaker fields to be displayed. These methods are summarized below, and
 examples are included in the sections that follow.
 
 .. method:: field(...)
+   :noindex:
 
    Can be used to reference FileMaker fields including related fields and
    repeating fields. Fields from the current table are named simply (e.g.
@@ -743,21 +744,25 @@ formatted field in the current layout.
 
 
 .. method:: value_list(colName::string)
+   :noindex:
 
    This method executes an associated block for each value in the named value
    list. Requires a single parameter, the name of a field from the current
    layout which has a value list assigned to it.
 
 .. method:: value_listItem()
+   :noindex:
 
    Returns the value for the current item in a value list.
 
 .. method:: selected()
+   :noindex:
 
    Displays the word "selected" if the current value list item is selected in
    the field associated with the value list.
 
 .. method:: checked()
+   :noindex:
 
    Displays the word "checked" if the current value list item is selected in the
    field associated with the value list.

@@ -98,7 +98,7 @@ value, beginning with 1. For example, in a method given two parameters,
 the first would be available using #1 and the second would be available
 using #2.
 
-See the chapter on :ref:`methods` for information on methods and method
+See the chapter on :ref:`methods<methods>` for information on methods and method
 parameters.
 
 Thread Variables

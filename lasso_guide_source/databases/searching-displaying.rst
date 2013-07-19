@@ -115,9 +115,7 @@ structure to check the current error message and see if it is equal to
    [/if] 
 
 Full documentation about error methods and error codes can be found in the
-:ref:`Error Handling<error-handling>` chapter. A list of all Lasso error codes
-and messages can be found in
-:ref:`Appendix B: Error Codes<appendix-b:-error-codes>`.
+:ref:`Error Handling<error-handling>` chapter.
 
 
 Searching Records

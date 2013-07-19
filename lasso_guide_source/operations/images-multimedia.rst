@@ -942,12 +942,12 @@ Serving Files via HTTP
 
 Lasso can also be used to serve image and multimedia files rather than merely
 referencing them by path. Files are served through Lasso using the
-:method:`web_response->sendFile` method or a combination of the
-:method:`web_response->replaceHeader` method and
-:method:`web_response->includeBytes` method. Lasso 9 also includes an
+:meth:`web_response->sendFile` method or a combination of the
+:meth:`web_response->replaceHeader` method and
+:meth:`web_response->includeBytes` method. Lasso 9 also includes an
 ``image->data`` method that automatically converts an image object to a bytes
 object, allowing an edited ``image`` object to be outputted by
-:method:`web_response->sendFile` without it first being written to disk.
+:meth:`web_response->sendFile` without it first being written to disk.
 
 In order to serve an image or multimedia file through Lasso the MIME type of the
 file must be determined. Often, this can be discovered by looking at the
@@ -970,17 +970,17 @@ configuration of the Web server or Web browser. The MIME type for a GIF is
 Serve an Image File
 ^^^^^^^^^^^^^^^^^^^
 
-Use the :method:`web_response->sendFile` method to set the MIME type of the
+Use the :meth:`web_response->sendFile` method to set the MIME type of the
 image to be served, and use the ``image->data`` method to get the binary data
-from an ``image`` object. The :method:`web_response->sendFile` method aborts the
+from an ``image`` object. The :meth:`web_response->sendFile` method aborts the
 current file, so it will be the last line of code to be processed. The following
 example shows a GIF named ``picture.gif`` being served from an "images" folder::
 
    local(image) = image('/images/picture.gif')
    web_response->sendFile(#image->data, -type='image/gif')
 
-Use the :method:`web_response->replaceHeader` method to set the MIME type of the
-image to be served and use the :method:`web_response->includeBytes` method to
+Use the :meth:`web_response->replaceHeader` method to set the MIME type of the
+image to be served and use the :meth:`web_response->includeBytes` method to
 include data from the image file. If using this method, you need to ensure that
 no stray character data is inadvertently added into the outgoing data buffer as
 it will corrupt the output. This includes whitespace characters. The following
@@ -1001,7 +1001,7 @@ and has the code all on one line to avoid any data corruption::
 Serve a Multimedia File
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the :method:`web_response->sendFile` method to set the MIME type of the file
+Use the :meth:`web_response->sendFile` method to set the MIME type of the file
 to be served and pass it a ``file`` object to include data from the multimedia
 file. The following example shows a sound file named ``ArtOfNoise.mp3`` being
 served from a ``sounds`` folder::
@@ -1019,7 +1019,7 @@ the Web serving folder then the sound file could be accessed with the following
 
 This same technique can be used to serve multimedia files of any type by
 designating the appropriate MIME type in the ``-type`` option passed to the
-:method:`web_response->sendFile` method.
+:meth:`web_response->sendFile` method.
 
 
 Limit Access to a File

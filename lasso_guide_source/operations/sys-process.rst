@@ -1,4 +1,4 @@
-.. _sys_process:
+.. _sys-process:
 
 *******************************
 Shell Commands with sys_process

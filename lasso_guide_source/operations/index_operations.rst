@@ -52,7 +52,7 @@
 
    files
    images-multimedia
-   os_process
-   sys_process
+   os-process
+   sys-process
    pdf
    logging

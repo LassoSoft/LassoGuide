@@ -754,21 +754,21 @@ XHR response data can be in various forms, including JSON, which we will use for
 
 Consider the following JavaScript (using jQuery)::
 
-.. code-block:: javascript
+   .. code-block:: javascript
 
-   var dataObj       = new Object;
-   dataObj.id        = $('#userid').val();
-   $.ajax({
-        url:        '/lasso9/myLassoapp/userdata.xhr',
-        data:       dataObj,
-        async:      true,
-        type:       'post',
-        cache:      false,
-        dataType:   'json',
-        success:    function(xhr) {
-            alert('User name: '+xhr.firstname+' '+xhr.lastname);
-        }
-    }); 
+      var dataObj       = new Object;
+      dataObj.id        = $('#userid').val();
+      $.ajax({
+            url:        '/lasso9/myLassoapp/userdata.xhr',
+            data:       dataObj,
+            async:      true,
+            type:       'post',
+            cache:      false,
+            dataType:   'json',
+            success:    function(xhr) {
+               alert('User name: '+xhr.firstname+' '+xhr.lastname);
+           }
+       });
 
 The XHR request is for userdata.xhr, which Lasso Server will interpret as a request for userdata[xhr].lasso 
 and serve as an XHR file with the correct MIME type::
