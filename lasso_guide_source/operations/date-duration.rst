@@ -558,7 +558,7 @@ Using Locales to Format Dates
 Lasso 9 introduces a new locales feature that allows for automatically
 formatting things such as dates and currency based on known standards for
 various locations. You can use locale objects to output dates in these standard
-formats. (See the chapter on :ref:`locales<locale>` for more information.)
+formats.
 
 Using Locales to Display Dates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
