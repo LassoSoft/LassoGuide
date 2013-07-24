@@ -190,6 +190,9 @@ which accepts zero parameters. When unary ``+`` or ``-`` is applied to integer
 or decimal literals, no method call is generated. Instead, the positive
 or negative number is created from the beginning.
 
+
+.. _logic-operators:
+
 Boolean & Logical
 =================
 

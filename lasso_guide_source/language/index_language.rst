@@ -47,6 +47,7 @@ complex processes as you master the language.
    variables
    operators
    conditional-logic
+   captures
    query-expressions
 
 .. rubric:: Objects & Inheritance

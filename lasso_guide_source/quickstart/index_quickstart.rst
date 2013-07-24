@@ -8,9 +8,13 @@
    :maxdepth: 2
 
    whatis
+   using-logic
+   using-variables
+   compound-data-types
+   define-your-methods
 
-.. add more chapters here...
-   security
-   speed
-   simplicity
-   migration
+// Web Requests
+//    Links that specify time so we can see what it would say when
+
+// Type
+//   Maybe a time info type?

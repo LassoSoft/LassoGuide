@@ -56,6 +56,8 @@ Using Pair Objects
 
    These methods permit the elements of a pair to be set.
 
+.. _array:
+
 Array
 -----
 
@@ -428,6 +430,8 @@ Unordered containers store their elements in a manner where there is no position
 based ordering. Lasso supports two unordered container types: map and set. Maps
 provide access to the elements via separate keys. Sets store only the elements
 themselves.
+
+.. _map:
 
 Map
 ---
