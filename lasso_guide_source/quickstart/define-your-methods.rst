@@ -191,3 +191,5 @@ Now any changes to the logic can again be made in only one place.
 
 For detailed information on method definitions and multiple dispatch, be sure to
 read :ref:`the chapter on Methods <methods>` in the Language Guide.
+
+:ref:`Next Tutorial: Defining Your Own Types <define-your-types>`

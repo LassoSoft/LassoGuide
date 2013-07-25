@@ -12,6 +12,8 @@
    using-variables
    compound-data-types
    define-your-methods
+   define-your-types
+   using-errors
 
 // Web Requests
 //    Links that specify time so we can see what it would say when
