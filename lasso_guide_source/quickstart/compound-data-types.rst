@@ -143,4 +143,3 @@ greeting for the current time of day. For extra credit, change this solution to
 use an array of maps instead.
 
 :ref:`Next Tutorial: Defining Your Own Methods <define-your-methods>`
-variables allow for storing a value but what if you need to store a set of logic code

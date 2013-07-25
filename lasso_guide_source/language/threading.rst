@@ -229,14 +229,19 @@ have an initial value set, as shown in the following.
 Thread and active_tick
 ----------------------
 
-Thread objects can define a method named **active_tick**. If defined,
-this method will be called periodically by the system. This lets a
-thread object carry out periodic activity regardless of any methods
-called by clients. The ``active_tick`` method should accept zero
-parameters, and should return an integer value. The integer value tells
-the system in how many *seconds* the ``active_tick`` method should be
-called again. The next example defines a thread object that prints a
-message to the console every 2 seconds.
+Thread objects can define a method named **active_tick**. If defined, this
+method will be called periodically by the system. This lets a thread object
+carry out periodic activity regardless of any methods called by clients. The
+``active_tick`` method should accept zero parameters, and should return an
+integer value. The integer value tells the system in how many *seconds* **at the
+latest** the ``active_tick`` method should be called again. The active_tick
+method may be called sooner than the indicated time as it provides the timeout
+value for reading messages for that thread. Threads requiring precise timing for
+events should not rely on the active_tick calls only being called after the
+timeout value.
+
+The next example defines a thread object that prints a message to the console
+every 2 seconds.
 
 ::
 
