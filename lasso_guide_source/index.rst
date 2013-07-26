@@ -36,6 +36,7 @@ These docs were last updated on |today|.
    databases/index_databases
    server/index_server
    api/index_api
+   getstart/index_getstart
 
 ############
  Appendices
