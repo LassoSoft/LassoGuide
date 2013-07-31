@@ -25,7 +25,7 @@ machine you are working with.
    beginners/using-errors
    beginners/using-web-request
 
-.. rubric:: Overview Guide
+.. rubric:: Overview Guide for Programmers
 
 .. toctree::
    :maxdepth: 2
@@ -34,8 +34,3 @@ machine you are working with.
    overview/features
    overview/embedded
    overview/conclusion
-
-.. Notes
-   basic introspection
-
-   what parts of the guide to read first

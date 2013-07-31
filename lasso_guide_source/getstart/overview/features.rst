@@ -203,4 +203,4 @@ wait to be executed until the value for the variable is expected. For a better
 description, read :ref:`the chapter on Query Expressions <query-expressions>` in
 the Lasso Language Guide.
 
-:ref:`Next Tutorial: Embedding Lasso in HTML <overview-embedding-lasso>`
+:ref:`Next Tutorial: Embedding Lasso and Creating LassoApps <overview-embedding-lassoapps>`
