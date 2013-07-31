@@ -30,10 +30,12 @@ machine you are working with.
 .. toctree::
    :maxdepth: 2
 
-.. Notes
-   any statement that is just an object by itself will have that object's ->asString
-   method implicitly called on itself and that value will therefore be outputted
+   overview/basics
+   overview/features
+   overview/embedded
+   overview/conclusion
 
+.. Notes
    basic introspection
 
    what parts of the guide to read first

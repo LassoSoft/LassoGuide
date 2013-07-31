@@ -98,6 +98,7 @@ information regarding the Lasso Server process.
 -  **Memory:**
 -  **Free:**
 
+.. _instance-administration-quick-code:
 
 Lasso Quick Code
 ----------------
