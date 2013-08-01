@@ -6,7 +6,7 @@ Lasso Basics
 
 Welcome to Lasso! This guide is meant to assit you in diving into the language.
 It assumes you have prior programming experience and that you have properly
-installed Lasso and configured it to work with your web server. (See
+installed Lasso and configured Lasso to work with your web server. (See
 :ref:`the installation guide for your OS. <lasso-server-guide-index>`)
 
 The examples in this particular chapter can all be run inside 
@@ -35,7 +35,7 @@ called, and that value will therefore be outputted. (For a counter-example,
 assignment statements don't produce an object and so will *not* cause any value
 to be outputted.)
 
-In our example, we've use a string literal to create a string object. Since that
+In our example, we use a string literal to create a string object. Since that
 statement produces an object, Lasso then calls the ``string->asString`` method
 on that object which has been implemented to return the value of the string.
 

@@ -5,7 +5,7 @@ Lasso Programming Features
 **************************
 
 The Lasso programming language has a number of great features that make coding
-in it enjoyable. This tutorial will scatch the surface on some of the best
+in it enjoyable. This tutorial will scatch the surface of some of the best
 features while also give you an introduction into defining methods, types, and
 traits. (For detailed information, read the appropriate section in
 :ref:`the Lasso Langauge Guide. <lasso-language-guide-index>`)
@@ -23,7 +23,7 @@ variable that can only store integer values::
    #myInt = '44'
    // => Throws an error since we are trying to assign a string.
 
-This sytax works for constraining thread variables too.
+This sytax also works for constraining thread variables.
 
 
 Methods
@@ -35,7 +35,7 @@ hour::
 
    define time_of_day(hour::integer) => {
       // Check to make sure the hour value is valid
-      fail_if(#hour < 0 or #hour > 23.
+      fail_if(#hour < 0 or #hour > 23,
          error_code_invalidParameter, 
          error_msg_invalidParameter + ': hour must be between 0 and 23'
       )
@@ -55,15 +55,15 @@ operator ("=>") and an open brace. All the code between that open brace and its
 matching closing brace is the capture associated with the method and excuted
 when the method is called.
 
-We start by making sure that the hour that is passed to us is a valid hour. If
+The method starts by making sure that the hour passed to it is a valid hour. If
 it is, then the code that determines the time of day will run and return the
 proper value.
 
 Notice the type constraint in the method definition's signature that constrains
 hour to be an integer object. This enables a really handy feature in Lasso
 called "multiple dispatch". Let's say we want a similar function that takes in a
-``date`` object. No need for a different name, instead we can define the method
-like this::
+``date`` object. No need for a different method name, instead we can define that
+method like this::
 
    define time_of_day(datetime::date=date) => time_of_day(#datetime->hour)
 
@@ -79,7 +79,10 @@ of the associate operator. It's equivalent to this code::
    }
 
 Besides multiple dispatch, methods can also have optional parameters and named
-parameters. See :ref:`the chapter on Methods <methods>` for more information.
+parameters. In the ``time_of_day`` example method that takes a date object, the
+"datetime" parameter is actually optional - the current date and time will be
+used if no value is passed. See :ref:`the chapter on Methods <methods>` for more
+information on defining and using methods.
 
 
 Types
@@ -106,15 +109,17 @@ definition to demonstrate how::
 
 The type definition starts off with the ``define`` keyword followed by the type
 name, then the associate operator, next the ``type`` keyword and then the braces
-for the capture containing the definition code.This starts with two data
-sections that define three data members for the type. Two member methods are
-then defined using the access level keyword ``public`` instead of the ``define``
-keyword. The "onCreate" methods are a special for types — they define type
-creator methods that are used to create intances of your type. The following
-code would use that ``person->onCreate`` method to create an object of type
-``person``::
+for the capture containing the definition code. The definition starts with two
+data sections that define three data members for the type. Two member methods
+are then defined using the access level keyword ``public`` instead of the
+``define`` keyword. The "onCreate" methods are a special for types — they define
+type creator methods that are used to create intances of your type. The
+following code would use that ``person->onCreate`` method to create an object of
+type ``person`` and then output their first and last name::
 
-   person('Sean', 'Stephens')  // "middle" is defined as an optional parameter
+   local(cool_dude) = person('Sean', 'Stephens')  // "middle" is defined as an optional parameter
+   #cool_dude->nameFirstLast
+   // => Sean Stephens
 
 Types in Lasso also have single inheritance and can implement and import traits.
 For more information, read :ref:`the Types chapter <types>` of the Language
@@ -142,14 +147,18 @@ modifies the ``trait_positionallyKeyed`` definition::
          last()   => (.size > 0? .get(.size) | null)
    }
 
-The definition starts with the ``define`` keyworkd followed by the name of the
+The definition starts with the ``define`` keyword followed by the name of the
 trait followed by the associate operator and then the ``trait`` keyword and an
 open brace. There are then three sections that start with their own keyword:
 
 import
    This section can contain a comma-separated list of traits that the current
    trait implements. In this case, because our trait implements a "first" and
-   "last" method, it can import ``trait_doubleEnded``.
+   "last" method, it can import ``trait_doubleEnded`` which allows for type that
+   implement this trait to also get the methods that ``trait_doubleEnded``
+   prvoides. (Alternatively, if trait A imports trait B but doesn't implement
+   trait B's required traits, then any type that imports trait A must also meet
+   the requirements for Trait B.)
 
 require
    This section can contain a comma-separated list of method signatures that
@@ -185,12 +194,12 @@ some complex manipulation of data sets. Here is a quick example::
 
    // => 174
 
-Every query expression starts with "with *newLocalName in *trait_queriable*".
-After this with clause, a query expression can have 0 or more operator clauses
-that each start with their own keyword. (We have three: where, skip, take. And
-order does matter.) Every query expression ends with one action clause that
-specifies what should be done for each iteration. (In this case, we're using the
-"sum" action.)
+Every query expression starts "with *newLocalName* in *trait_queriable*". After
+this initial with clause, a query expression can have 0 or more operator clauses
+that each start with their own keyword. (The example above uses three: where,
+skip, take. And order does matter.) Every query expression ends with one action
+clause that specifies what should be done for each iteration. (In this case,
+we're using the "sum" action to add each value in the iteration together.)
 
 The example above iterates over each element in the staticarray and first tests
 to see if it is an even number. It then skips the first even number it finds and

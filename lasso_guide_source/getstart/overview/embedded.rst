@@ -17,7 +17,7 @@ Embedding Lasso
 Lasso is designed to make it easy to intermix HTML and Lasso code in a single
 file. Just create a normal HTML file with the ".lasso" suffix and you can
 intersperse Lasso code between the following dilimiters: "[ ... ]", "<?lasso ...
-?>", and "<?LassoScript ... ?>".
+?>", and "<?= ... ?>".
 
 ::
 
@@ -31,8 +31,16 @@ intersperse Lasso code between the following dilimiters: "[ ... ]", "<?lasso ...
    </head>
    <body>
       <p>
-         This page was loaded on [#now->format(`E, MMMM d, YYYY`)] at [#now->format(`h:mm:ss a`)].
+         This page was loaded on [#now->format(`E, MMMM d, YYYY`)] at <?= #now->format(`h:mm:ss a`) ?>.
       </p>
+      It is currently 
+      [if(date->hour >= 5 and date->hour < 12) => {^]
+         morning!
+      [else(date->hour >= 12 && date->hour < 17)]
+         afternoon!
+      [else]
+         evening!
+      [^}]
    </body>
 
 Now all you need to do is use your web browser to request the URL from the
@@ -40,6 +48,7 @@ server and it will use Lasso to send you back an HTML page with something like
 the following content::
    
    This page was loaded on Wed, July 31, 2013 at 10:36:42 AM
+   It is currently morning!
 
 
 Creating LassoApps
@@ -47,13 +56,14 @@ Creating LassoApps
 
 A LassoApp is a bundle of source files, HTML, images and other media types into
 a single deployable unit. While developing, this deployable unit is a folder
-with the contents, but you can also choose to compile the code and have a binary
-file you distribute.
+with the contents, but you can also choose to compile the bundle and have a
+binary file you distribute.
 
 To create a LassoApp, create a directory in the LassoApps directory of your
-instance's home folder. By default, URLs to code in the LassoApp will start with
+instance's home folder. By default, URLs for the LassoApp will start with
 "/lasso9/AppName/". The discussion that follows is going to assume an app named
-"AddressBook".
+"AddressBook" with URLs that will then look like
+"http://example.com/lasso9/AddressBook".
 
 
 The _install Files
@@ -91,11 +101,12 @@ the following example URLs will all match the same code::
 
 Lasso matches those URLs to a file named "people.lasso" in the root of the
 AddressBook directory. It processes that file and then it checks for amy
-secondary files to process. These secondary files are pased on the content
+secondary files to process. These secondary files are based on the content
 extension, so in the case of the above URLs, it will execute a file named
 "people[html].lasso". The primary file can return a value that can be used by the
 secondary file. This allows you to easily separate business logic from view
-code.
+code. (Note, if you use the URL ending in "people.lasso", then Lasso won't look
+for a secondary file to run based on content, only that code will be run.)
 
 For example, your "people.lasso" file might contain the code to create an array
 of people objects and then return that array at the end::
@@ -140,17 +151,19 @@ features. For example, let's say I wanted to return a JSON representation of the
 array of people when they accessed the URL
 "http://example.com/lasso9/AddressBook/people.json". I already have the logic
 that finds the people and creates the array, all I need to do is add a file
-named "people[json].lasso" to create and display the array of maps::
+named "people[xhr].lasso" to create and display the array of maps::
 
-   local(people) = #1
-   json_serialize(
-      with person in people
-      select map(
-         "firstName"=#person->firstName,
-         "middletName"=#person->middleName,
-         "lastName"=#person->lastName
+   <?lasso
+      local(people) = #1
+      json_serialize(
+         with person in #people
+         select map(
+            "firstName"=#person->firstName,
+            "middletName"=#person->middleName,
+            "lastName"=#person->lastName
+         )
       )
-   )
+   ?>
 
 For more information on creating and compiling LassoApps, be sure to read
 :ref:`the LassoApps chapter <lassoapps>` in the Operations Guide.
