@@ -5,10 +5,11 @@ Embedding Lasso and Creating LassoApps
 **************************************
 
 There are lots of ways to create websites using Lasso. There are
-`a number of frameworks available`_ (including ones not listed on that page).
-You could even easily create your own framework. In this chapter, we will look
-at how easy it is to just have files that embed Lasso in HTML code, and we will
-look at a simple architecture that Lasso provides called LassoApps.
+`a number of frameworks available <http://www.lassosoft.com/Lasso-frameworks>`_
+(including ones not listed on that page). You could even easily create your own
+framework. In this chapter, we will look at how easy it is to just have files
+that embed Lasso in HTML code, and we will look at a simple architecture that
+Lasso provides called LassoApps.
 
 
 Embedding Lasso
