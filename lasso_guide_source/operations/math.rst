@@ -52,6 +52,168 @@ Decimals that are cast as an integer type are rounded to the nearest integer::
    // => 124
 
 
+Formatting Integer Objects
+==========================
+
+Integer objects can be formated for display using the ``integer->asString``
+method detailed below.
+
+.. note::
+   In Lasso 9, integers and decimals have no state, so they cannot carry around
+   their formatting information. The ``integer->asString`` method in Lasso 9 is
+   used to replace the functionality of Lasso 8's ``integer->setFormat`` method.
+
+
+.. method:: integer->asString(p0::string, p1::string, p2::string)
+.. method:: integer->asString(
+      -hexadecimal::boolean= ?,
+      -padding::integer= ?,
+      -padChar::string= ?,
+      -padRight::boolean= ?,
+      -groupChar::string= ?
+   )
+
+   Returns a string representation of the integer value formated as specified by
+   the parameters passed to the method. If no parameters are passed to the
+   method, the string will return the integer value outputed in base 10. The
+   parameters are outlined in the table below.
+
+   +----------------+----------------------------------------------------------+
+   |Keyword         |Description                                               |
+   +================+==========================================================+
+   |``-hexadecimal``|If set to "True", the integer will output in hexadecimal  |
+   |                |notation.                                                 |
+   +----------------+----------------------------------------------------------+
+   |``-padding``    |Specifies the desired length for the output. If the       |
+   |                |formatted number is less than this length then the number |
+   |                |is padded.                                                |
+   +----------------+----------------------------------------------------------+
+   |``-padChar``    |Specifies the character that will be inserted if padding  |
+   |                |is required. Defaults to a space.                         |
+   +----------------+----------------------------------------------------------+
+   |``-padRight``   |Set to "True" to pad the right side of the output. By     |
+   |                |default, padding is appended to the left side of the      |
+   |                |output.                                                   |
+   +----------------+----------------------------------------------------------+
+   |``-groupChar``  |The character which should be used for thousands grouping.|
+   |                |Defaults to empty.                                        |
+   +----------------+----------------------------------------------------------+
+
+
+Format an Integer as a Hexadecimal Value
+----------------------------------------
+
+The following example will create a variable with an integer value and then
+output that value in base 16::
+
+   local(my_int) = 255
+   #my_int->asString(-hexadecimal)
+
+   // => 0xff
+
+
+Integer Bit Operations
+======================
+
+Bit operations can be performed with Lasso’s integer objects. These operations
+can be used to examine and manipulate binary data. They can also be used for
+general purpose binary set operations.
+
+Integer literals in Lasso can be specified using hexadecimal notation.
+This can greatly aid in constructing literals for use with the bit
+operation. For example, "0xff" is the integer literal "255".
+
+
+.. method:: integer->bitAnd(p0::integer)
+
+   Performs a bitwise "And" operation between each bit in the base integer and
+   the integer parameter and returns the result.
+
+.. method:: integer->bitOr(p0::integer)
+
+   Performs a bitwise "Or" operation between each bit in the base integer and
+   the integer parameter returning the result.
+
+.. method:: integer->bitXOr(p0::integer)
+
+   Performs a bitwise "Exclusive-Or" operation between each bit in the base
+   integer and the integer parameter returning the result.
+
+.. method:: integer->bitNot()
+
+   Returns the result of flipping every bit in the base integer.
+
+.. method:: integer->bitShfitLeft(p0::integer)
+
+   Returns the result of shifting the bits in the base integer left by the
+   number specified in the integer parameter.
+
+.. method:: integer->bitShiftRight(p0::integer)
+
+   Returns the result of shifting the bits in the base integer right by the
+   number specified in the integer parameter.
+
+.. method:: integer->bitClear(p0::integer)
+
+   Returns the result of clearing the bit specified in the integer parameter.
+
+.. method:: integer->bitFlip(p0::integer)
+
+   Returns the result of Flipping the bit specified in the integer parameter.
+
+.. method:: integer->bitSet(p0::integer)
+   
+   Returns the result of setting the bit specified in the integer parameter.
+
+.. method:: integer->bitTest(p0::integer)
+
+   Returns "true" if the bit specified in the integer parameter is true,
+   otherwise "false".
+
+.. note::
+   In previous versions of Lasso, these bit methods modified the integer in
+   place. In Lasso 9, integers are by-value objects and are immutable, so it is
+   not possible to change their value in place.
+
+
+
+Performing a Bitwise Or
+-----------------------
+
+In the following example the boolean "Or" of "0x02" and "0x04" is calculated and
+returned in hexadecimal notation::
+
+   local(bit_set) = 0x02
+   #bit_set->bitOr(0x04)->asString(-hexadecimal)
+
+   // => 0x6
+
+
+Shifting Bits to the Left
+-------------------------
+
+In the following example, "0x02" is shifted left by three places and output in
+hexadecimal notation::
+
+   local(bit_set) = 0x02
+   #bit_set = #bit_set->bitShiftLeft(3)
+   #bit_set->asString(-hexadecimal)
+
+   // => 0x10
+
+
+Setting and Testing a Specified Bit
+-----------------------------------
+
+In the following example, the second bit an integer is set and then tested::
+
+   local(bit_set) = 0
+   #bit_set = #bit_set->bitSet(2)
+   #bit_set->bitTest(2)
+
+   // => true
+
+
 Decimal Type
 ============
 
@@ -127,6 +289,75 @@ appended. The value of the number does not change::
    decimal(123)
    // => 123.0
         
+
+Formatting Decimal Objects
+==========================
+
+Decimal objects can be formated for display using the ``decimal->asString``
+method detailed below.
+
+.. note::
+   In Lasso 9, integers and decimals have no state, so they cannot carry around
+   their formatting information. The ``decimal->asString`` method in Lasso 9 is
+   used to replace the functionality of Lasso 8's ``decimal->setFormat`` method.
+
+.. method:: decimal->asString(p0::string, p1::string, p2::string)
+.. method:: decimal->asString(
+      -decimalChar::string= ?,
+      -groupChar::string= ?,
+      -precision::integer= ?,
+      -scientific::boolean= ?,
+      -padding::integer= ?,
+      -padChar::string= ?,
+      -padRight::boolean= ?
+   )
+
+   Returns a string representation of the decimal value formated as specified by
+   the parameters passed to the method. If no parameters are passed to the
+   method, the string will return the decimal value outputed with 6 places of
+   precision. The parameters are outlined in the table below.
+
+   +----------------+----------------------------------------------------------+
+   |Keyword         |Description                                               |
+   +================+==========================================================+
+   |``-decimalChar``|The character which should be used for the decimal point. |
+   |                |Defaults to a period.                                     |
+   +----------------+----------------------------------------------------------+
+   |``-groupChar``  |The character which should be used for thousands grouping.|
+   |                |Defaults to empty.                                        |
+   +----------------+----------------------------------------------------------+
+   |``-precision``  |The number of decimal points of precision that should be  |
+   |                |output. Defaults to 6.                                    |
+   +----------------+----------------------------------------------------------+
+   |``-scientific`` |Set to "true" to force output in exponential notation.    |
+   |                |Defaults to "false" so decimals are only output in        |
+   |                |exponential notation if required.                         |
+   +----------------+----------------------------------------------------------+
+   |``-padding``    |Specifies the desired length for the output. If the       |
+   |                |formatted number is less than this length then the number |
+   |                |is padded.                                                |
+   +----------------+----------------------------------------------------------+
+   |``-padChar``    |Specifies the character that will be inserted if padding  |
+   |                |is required. Defaults to a space.                         |
+   +----------------+----------------------------------------------------------+
+   |``-padRight``   |Set to "true" to pad the right side of the output. By     |
+   |                |default, padding is appended to the left side of the      |
+   |                |output.                                                   |
+   +----------------+----------------------------------------------------------+
+
+
+Format a Decimal Number as US Currency
+--------------------------------------
+
+The folloing example outputs a decimal value as if it were US currency by
+setting the precision to "2". For readability, it also sets a comma as the
+grouping character::
+
+   local(dollar_amt) = 1234.56
+   #dollar_amt->asString(-precision=2, -groupChar=',')
+
+   // => 1,234.56
+
 
 Mathematical Operators
 ======================
@@ -309,237 +540,6 @@ The result is a boolean "true" or "false"::
    // => false
 
    100 < 1000.0
-   // => true
-
-
-Formatting Decimal Objects
-==========================
-
-Decimal objects can be formated for display using the ``decimal->asString``
-method detailed below.
-
-.. note::
-   In Lasso 9, integers and decimals have no state, so they cannot carry around
-   their formatting information. The ``decimal->asString`` method in Lasso 9 is
-   used to replace the functionality of Lasso 8's ``decimal->setFormat`` method.
-
-.. method:: decimal->asString(p0::string, p1::string, p2::string)
-.. method:: decimal->asString(
-      -decimalChar::string= ?,
-      -groupChar::string= ?,
-      -precision::integer= ?,
-      -scientific::boolean= ?,
-      -padding::integer= ?,
-      -padChar::string= ?,
-      -padRight::boolean= ?
-   )
-
-   Returns a string representation of the decimal value formated as specified by
-   the parameters passed to the method. If no parameters are passed to the
-   method, the string will return the decimal value outputed with 6 places of
-   precision. The parameters are outlined in the table below.
-
-   +----------------+----------------------------------------------------------+
-   |Keyword         |Description                                               |
-   +================+==========================================================+
-   |``-decimalChar``|The character which should be used for the decimal point. |
-   |                |Defaults to a period.                                     |
-   +----------------+----------------------------------------------------------+
-   |``-groupChar``  |The character which should be used for thousands grouping.|
-   |                |Defaults to empty.                                        |
-   +----------------+----------------------------------------------------------+
-   |``-precision``  |The number of decimal points of precision that should be  |
-   |                |output. Defaults to 6.                                    |
-   +----------------+----------------------------------------------------------+
-   |``-scientific`` |Set to "true" to force output in exponential notation.    |
-   |                |Defaults to "false" so decimals are only output in        |
-   |                |exponential notation if required.                         |
-   +----------------+----------------------------------------------------------+
-   |``-padding``    |Specifies the desired length for the output. If the       |
-   |                |formatted number is less than this length then the number |
-   |                |is padded.                                                |
-   +----------------+----------------------------------------------------------+
-   |``-padChar``    |Specifies the character that will be inserted if padding  |
-   |                |is required. Defaults to a space.                         |
-   +----------------+----------------------------------------------------------+
-   |``-padRight``   |Set to "true" to pad the right side of the output. By     |
-   |                |default, padding is appended to the left side of the      |
-   |                |output.                                                   |
-   +----------------+----------------------------------------------------------+
-
-
-Format a Decimal Number as US Currency
---------------------------------------
-
-The folloing example outputs a decimal value as if it were US currency by
-setting the precision to "2". For readability, it also sets a comma as the
-grouping character::
-
-   local(dollar_amt) = 1234.56
-   #dollar_amt->asString(-precision=2, -groupChar=',')
-
-   // => 1,234.56
-
-
-Formatting Integer Objects
-==========================
-
-Integer objects can be formated for display using the ``integer->asString``
-method detailed below.
-
-.. note::
-   In Lasso 9, integers and decimals have no state, so they cannot carry around
-   their formatting information. The ``integer->asString`` method in Lasso 9 is
-   used to replace the functionality of Lasso 8's ``integer->setFormat`` method.
-
-
-.. method:: integer->asString(p0::string, p1::string, p2::string)
-.. method:: integer->asString(
-      -hexadecimal::boolean= ?,
-      -padding::integer= ?,
-      -padChar::string= ?,
-      -padRight::boolean= ?,
-      -groupChar::string= ?
-   )
-
-   Returns a string representation of the integer value formated as specified by
-   the parameters passed to the method. If no parameters are passed to the
-   method, the string will return the integer value outputed in base 10. The
-   parameters are outlined in the table below.
-
-   +----------------+----------------------------------------------------------+
-   |Keyword         |Description                                               |
-   +================+==========================================================+
-   |``-hexadecimal``|If set to "True", the integer will output in hexadecimal  |
-   |                |notation.                                                 |
-   +----------------+----------------------------------------------------------+
-   |``-padding``    |Specifies the desired length for the output. If the       |
-   |                |formatted number is less than this length then the number |
-   |                |is padded.                                                |
-   +----------------+----------------------------------------------------------+
-   |``-padChar``    |Specifies the character that will be inserted if padding  |
-   |                |is required. Defaults to a space.                         |
-   +----------------+----------------------------------------------------------+
-   |``-padRight``   |Set to "True" to pad the right side of the output. By     |
-   |                |default, padding is appended to the left side of the      |
-   |                |output.                                                   |
-   +----------------+----------------------------------------------------------+
-   |``-groupChar``  |The character which should be used for thousands grouping.|
-   |                |Defaults to empty.                                        |
-   +----------------+----------------------------------------------------------+
-
-
-Format an Integer as a Hexadecimal Value
-----------------------------------------
-
-The following example will create a variable with an integer value and then
-output that value in base 16::
-
-   local(my_int) = 255
-   #my_int->asString(-hexadecimal)
-
-   // => 0xff
-
-
-Integer Bit Operations
-======================
-
-Bit operations can be performed with Lasso’s integer objects. These operations
-can be used to examine and manipulate binary data. They can also be used for
-general purpose binary set operations.
-
-Integer literals in Lasso can be specified using hexadecimal notation.
-This can greatly aid in constructing literals for use with the bit
-operation. For example, "0xff" is the integer literal "255".
-
-
-.. method:: integer->bitAnd(p0::integer)
-
-   Performs a bitwise "And" operation between each bit in the base integer and
-   the integer parameter and returns the result.
-
-.. method:: integer->bitOr(p0::integer)
-
-   Performs a bitwise "Or" operation between each bit in the base integer and
-   the integer parameter returning the result.
-
-.. method:: integer->bitXOr(p0::integer)
-
-   Performs a bitwise "Exclusive-Or" operation between each bit in the base
-   integer and the integer parameter returning the result.
-
-.. method:: integer->bitNot()
-
-   Returns the result of flipping every bit in the base integer.
-
-.. method:: integer->bitShfitLeft(p0::integer)
-
-   Returns the result of shifting the bits in the base integer left by the
-   number specified in the integer parameter.
-
-.. method:: integer->bitShiftRight(p0::integer)
-
-   Returns the result of shifting the bits in the base integer right by the
-   number specified in the integer parameter.
-
-.. method:: integer->bitClear(p0::integer)
-
-   Returns the result of clearing the bit specified in the integer parameter.
-
-.. method:: integer->bitFlip(p0::integer)
-
-   Returns the result of Flipping the bit specified in the integer parameter.
-
-.. method:: integer->bitSet(p0::integer)
-   
-   Returns the result of setting the bit specified in the integer parameter.
-
-.. method:: integer->bitTest(p0::integer)
-
-   Returns "true" if the bit specified in the integer parameter is true,
-   otherwise "false".
-
-.. note::
-   In previous versions of Lasso, these bit methods modified the integer in
-   place. In Lasso 9, integers are by-value objects and are immutable, so it is
-   not possible to change their value in place.
-
-
-
-Performing a Bitwise Or
------------------------
-
-In the following example the boolean "Or" of "0x02" and "0x04" is calculated and
-returned in hexadecimal notation::
-
-   local(bit_set) = 0x02
-   #bit_set->bitOr(0x04)->asString(-hexadecimal)
-
-   // => 0x6
-
-
-Shifting Bits to the Left
--------------------------
-
-In the following example, "0x02" is shifted left by three places and output in
-hexadecimal notation::
-
-   local(bit_set) = 0x02
-   #bit_set = #bit_set->bitShiftLeft(3)
-   #bit_set->asString(-hexadecimal)
-
-   // => 0x10
-
-
-Setting and Testing a Specified Bit
------------------------------------
-
-In the following example, the second bit an integer is set and then tested::
-
-   local(bit_set) = 0
-   #bit_set = #bit_set->bitSet(2)
-   #bit_set->bitTest(2)
-
    // => true
 
 

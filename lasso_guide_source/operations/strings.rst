@@ -856,7 +856,7 @@ unescaped. Because of this it outputs the string before calling
 
    // =>
    // Chinese Character: \u4E26
-   // Chinese Character: 並
+   // Chinese Character: |4E26|
 
 
 Encode HTML Entities

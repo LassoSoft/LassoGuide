@@ -14,8 +14,8 @@ binary data.
    the :ref:`Strings<strings>` chapter for more information about the string
    type.
 
-Bytes Type
-==========
+Creating Bytes Objects
+======================
 
 All string data in Lasso is processed as double-byte Unicode characters. The
 ``bytes`` type can be used to represent strings of single-byte binary data. The
@@ -45,6 +45,9 @@ Lasso methods return data in the ``bytes`` type in the following situations:
    bytes object. If casting a ``string`` object, it can accept a second optional
    parameter to specify the encoding of the string.
 
+
+Inspecting and Manipulating Bytes Objects
+=========================================
 
 Byte streams are similar to strings and support many of the same member methods.
 In addition, byte streams support a number of member methods that make it easier
@@ -228,6 +231,9 @@ bytes->removeTrailing(find::bytes)
    Swaps each two bytes with each other (e.g. a byte stream of 'father' becomes
    'afhtre').
 
+
+Examples
+========
 
 Cast String Data as a Bytes Object
 ----------------------------------

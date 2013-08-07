@@ -1,8 +1,8 @@
 .. _server-overview:
 
-*********************
-Lasso Server Overview
-*********************
+***********************
+Lasso Platform Overview
+***********************
 
 Welcome to Lasso Server, a powerful and comprehensive tool for building and
 hosting data-driven web applications. This chapter introduces important concepts

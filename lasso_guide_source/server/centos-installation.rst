@@ -1,8 +1,8 @@
 .. _centos-installation:
 
-******************************************
-Lasso 9 Server for CentOS 5/6 Installation
-******************************************
+***********************
+CentOS 5/6 Installation
+***********************
 
 RPM Installation
 ================

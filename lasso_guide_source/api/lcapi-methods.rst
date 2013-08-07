@@ -1,8 +1,8 @@
 .. _lcapi-methods:
 
-*************
-LCAPI Methods
-*************
+**********************
+Creating Lasso Methods
+**********************
 
 When Lasso first starts up, it looks for module files (Windows DLLs, OS X
 DYLIBs, or Linux SOs) in its LassoModules folder. As it encounters each module,

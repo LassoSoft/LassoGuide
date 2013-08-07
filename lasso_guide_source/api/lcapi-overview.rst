@@ -1,8 +1,8 @@
 .. _lcapi-overview:
 
-**************
-LCAPI Overview
-**************
+********
+Overview
+********
 
 The Lasso C/C++ Application Programming Interface (LCAPI) lets you write C or
 C++ code to add new Lasso methods, data types, or data source connectors to

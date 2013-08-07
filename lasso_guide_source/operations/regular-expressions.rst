@@ -9,8 +9,8 @@ operations on strings and byte streams. This chapter details how the regular
 expression data type works and other Lasso methods which use regular
 expressions.
 
-Introduction
-============
+Introduction to Regular Expressions
+===================================
 
 A regular expression is a pattern that describes a sequence of characters which
 you would like to find in a target (or input) string. Regular expressions
@@ -451,10 +451,10 @@ these symbols and other advanced concepts.
    Dollar sign matches the end of a line.
    
 
-Regular Expression Type
-=======================
+The RegExp Type
+===============
 
-The regular expression type allows a regular expression to be defined once and
+The ``regexp`` type allows a regular expression to be defined once and
 then re-used many times. It facilitates simple search operations, splitting
 strings, and interactive find/replace operations.
 
@@ -853,8 +853,8 @@ After the operation has completed the output string is displayed::
    // The quick red fox soared over the lazy ocelot.
 
 
-String Tags
-===========
+String Methods Taking Regular Expressions
+=========================================
 
 The ``string_findRegExp`` and ``string_replaceRegExp`` methods can be used to
 perform regular expression find and replace routines on text strings.

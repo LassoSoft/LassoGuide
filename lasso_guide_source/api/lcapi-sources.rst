@@ -1,8 +1,8 @@
 .. _lcapi-sources:
 
-******************
-LCAPI Data Sources
-******************
+***************************
+Creating Lasso Data Sources
+***************************
 
 When Lasso Server starts up, it looks for module files (Windows DLLs, OS X
 DYLIBs, or Linux SOs) in the LassoModules folder. As Lasso encounters each

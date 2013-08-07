@@ -1,8 +1,8 @@
 .. _osx-installation:
 
-************************************
-Lasso 9 Server for OS X Installation
-************************************
+*****************
+OS X Installation
+*****************
 
 These instructions detail how to install Lasso 9 Server using the standard
 installer package. An Intel-based Mac running OS X 10.5 or later is required.

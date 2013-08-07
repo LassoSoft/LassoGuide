@@ -42,21 +42,21 @@ complex processes as you master the language.
 .. toctree::
    :maxdepth: 2
 
-   calling-lasso
-   literals
-   variables
-   operators
-   conditional-logic
-   captures
-   query-expressions
+   /language/calling-lasso
+   /language/literals
+   /language/variables
+   /language/operators
+   /language/conditional-logic
+   /language/captures
+   /language/query-expressions
 
 .. rubric:: Objects & Inheritance
 
 .. toctree::
    :maxdepth: 2
 
-   methods
-   types
-   traits
-   error-handling
-   threading
+   /language/methods
+   /language/types
+   /language/traits
+   /language/error-handling
+   /language/threading

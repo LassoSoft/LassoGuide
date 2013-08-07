@@ -1,8 +1,8 @@
 .. _instance-administration:
 
-*******************************
-Lasso 9 Instance Administration
-*******************************
+***************************************
+Instance Administration & Configuration
+***************************************
 
 Lasso 9 Server provides a convenient, Web-based interface for configuring Lasso
 instance settings, managing and maintaining databases, and much more. This

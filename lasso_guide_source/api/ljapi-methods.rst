@@ -1,8 +1,8 @@
 .. ljapi-methods:
 
-***********************
-LJAPI Types and Methods
-***********************
+*********************************
+Lasso Types and Methods for LJAPI
+*********************************
 
 
 Methods

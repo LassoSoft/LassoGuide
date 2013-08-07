@@ -1,8 +1,8 @@
 .. _windows-installation:
 
-***************************************
-Lasso 9 Server for Windows Installation
-***************************************
+********************
+Windows Installation
+********************
 
 Supported Platforms
 ===================

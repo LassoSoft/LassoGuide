@@ -1,11 +1,8 @@
 .. _ubuntu-installation:
 
-**************************************
-Lasso 9 Server for Ubuntu Installation
-**************************************
-
-Ubuntu 12.04 LTS Installation
-=============================
+*******************
+Ubuntu Installation
+*******************
 
 Ubuntu 12.04 has removed two dependancies from its apt repositories. Prior to
 installing Lasso 9 on 12.04 and later you must install libzip1 and libicu44.

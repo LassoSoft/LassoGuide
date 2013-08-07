@@ -1,8 +1,10 @@
 .. _requests-responses:
 
-************************
-Web Requests & Responses
-************************
+.. only:: html
+
+   ************************
+   Web Requests & Responses
+   ************************
 
 Lasso Server receives requests from whatever HTTP servers it is connected with.
 That request consists of the headers and body data as sent by the requesting

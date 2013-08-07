@@ -49,7 +49,7 @@ copyright = u'%s, LassoSoft Inc.' % time.strftime('%Y')
 # built documents.
 #
 # The short X.Y version.
-version = '9'
+version = '9.2'
 # The full version, including alpha/beta/rc tags.
 release = '9.2 B1.2'
 
@@ -183,9 +183,13 @@ latex_elements = {
 #'pointsize': '10pt',
 
 # Additional stuff for the LaTeX preamble.
-'preamble': r"""
+'preamble': u"""
 % Use a more modern-looking monospace font
-\usepackage{inconsolata}
+\\usepackage{inconsolata}
+% Chinese Character Support
+\\usepackage{amsfonts}
+\\usepackage{newunicodechar}
+\\newunicodechar{並}{\\checkmark}
 """,
 
 'fontpkg': '\\usepackage{charter}',
@@ -194,7 +198,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'LassoGuide.tex', u'Lasso Guide',
+  ('lasso_guide_book/index', 'LassoGuide.tex', u'Lasso Guide',
    u'LassoSoft Inc.', 'manual'),
 ]
 
@@ -210,7 +214,7 @@ latex_use_parts = True
 #latex_show_pagerefs = False
 
 # If true, show URL addresses after external links.
-#latex_show_urls = False
+latex_show_urls = 'footnote'
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []

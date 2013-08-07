@@ -1,8 +1,8 @@
 .. _lcapi-types:
 
-****************
-LCAPI Data Types
-****************
+********************
+Creating Lasso Types
+********************
 
 Creating a new data type in LCAPI is similar to creating a custom method. When
 Lasso Server starts up, it scans the LassoModules folder for module files

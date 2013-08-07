@@ -64,8 +64,8 @@ can be set with ``io_file_chdir(s::path)`` method. Manipulating the working
 directory in this way changes it globally for all threads in the current
 process.
 
-Creating File Objects
-=====================
+Working with File Objects
+=========================
 
 File objects can be instantiated with or without an initial path. Creating a
 file object does not open the file. If created without a path, a path must be
@@ -294,8 +294,8 @@ are garbage collected.
 .. method:: file_stdout()::file
 .. method:: file_stderr()::file
 
-Creating Dir objects
-====================
+Working with Dir Objects
+========================
 
 Dir objects are instantiated with a path and an optional -resolveLinks keyword
 parameter. This parameter defaults to false. If set to true, then the dir object

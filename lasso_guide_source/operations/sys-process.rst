@@ -17,6 +17,10 @@ The UNIX underpinnings of OS X and Linux mean that those two operating systems
 can run many of the same commands and shell scripts. Windows presents a very
 different environment including DOS commands and batch files.
 
+
+The Sys_Process API
+===================
+
 .. class:: sys_process
 .. method:: sys_process()
 .. method:: sys_process(cmd::string, args= ?, env= ?, user::string= ?)

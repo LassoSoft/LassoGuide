@@ -236,8 +236,8 @@ implementation details such as certain looping constructs or control structures.
 forms.)
 
 
-Capture API Documentation
-=========================
+Capture API
+===========
 
 .. class:: capture
 

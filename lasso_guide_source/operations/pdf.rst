@@ -17,8 +17,8 @@ manuals. For more information on PDF technology, see the following URL:
    `<http://www.lowagie.com/iText>`_.
 
 
-Introduction to Creating PDF Files
-==================================
+Introduction to PDF Files
+=========================
 
 PDF files are created in Lasso by using the ``pdf_doc`` type, and calling
 various member methods and other ``pdf_…`` methods to add data to the object.

@@ -1,8 +1,8 @@
 .. _instance-manager:
 
-*******************************
-Lasso 9 Server Instance Manager
-*******************************
+****************
+Instance Manager
+****************
 
 Lasso Instance Manager is a companion tool wrapped into Lasso 9 Server which
 permits the management of one or more Lasso 9 instances. This tool can install &
