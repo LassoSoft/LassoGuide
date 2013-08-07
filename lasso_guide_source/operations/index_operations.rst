@@ -14,13 +14,15 @@
    :maxdepth: 2
 
    strings
-   containers
+   bytes
    math
    date-duration
    regular-expressions
-   bytes
-   encryption
+   images-multimedia
    xml
+   pdf
+   containers
+   encryption
    serialization
 
 .. rubric:: Web Application Development
@@ -34,6 +36,16 @@
    sessions
    lassoapps
 
+.. rubric:: System Operations
+
+.. toctree::
+   :maxdepth: 2
+
+   files
+   os-process
+   sys-process
+   logging
+
 .. rubric:: Networking & Communications
 
 .. toctree::
@@ -44,15 +56,3 @@
    dns
    ldap
    protocols-pipes
-
-.. rubric:: System Operations
-
-.. toctree::
-   :maxdepth: 2
-
-   files
-   images-multimedia
-   os-process
-   sys-process
-   pdf
-   logging
