@@ -15,6 +15,7 @@
    lcapi-methods
    lcapi-types
    lcapi-sources
+   lcapi-reference
 
 .. rubric:: Lasso Java API
 

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.3.1">
+  <compounddef id="structlasso__type__t__" kind="struct" prot="public">
+    <compoundname>lasso_type_t_</compoundname>
+    <includes refid="_lasso_c_a_p_i_8h" local="no">LassoCAPI.h</includes>
+    <briefdescription>
+<para>Represents a type within Lasso. </para>    </briefdescription>
+    <detaileddescription>
+<para>This opaque value represents an instance of a type within Lasso </para>    </detaileddescription>
+    <location file="/Users/kjessup/development/lasso_svn/lasso9_llvm/trunk/capi/sdk/LassoCAPI.h" line="554" bodyfile="/Users/kjessup/development/lasso_svn/lasso9_llvm/trunk/capi/sdk/LassoCAPI.h" bodystart="554" bodyend="554"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

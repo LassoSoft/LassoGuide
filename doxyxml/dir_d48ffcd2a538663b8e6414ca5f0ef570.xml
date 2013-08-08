@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.3.1">
+  <compounddef id="dir_d48ffcd2a538663b8e6414ca5f0ef570" kind="dir">
+    <compoundname>/Users/kjessup/development/lasso_svn/lasso9_llvm</compoundname>
+    <innerdir refid="dir_9e4179212a27d27be3e52bb2d6b48418">/Users/kjessup/development/lasso_svn/lasso9_llvm/trunk</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/kjessup/development/lasso_svn/lasso9_llvm/"/>
+  </compounddef>
+</doxygen>

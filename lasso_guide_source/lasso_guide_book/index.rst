@@ -134,6 +134,7 @@ Lasso C API
    ../api/lcapi-methods
    ../api/lcapi-types
    ../api/lcapi-sources
+   ../api/lcapi-reference
 
 
 ++++++++++++++

@@ -26,7 +26,7 @@ import sys, os, time
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinxcontrib.lassodomain']
+extensions = ['sphinx.ext.autodoc', 'sphinxcontrib.lassodomain', 'breathe']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -92,6 +92,10 @@ highlight_language='html+lasso'
 
 #primary_domain = 'ls'
 unused_docs = ['_demo', '_test']
+
+# -- Breathe Options
+breathe_projects = { "LCAPI": os.path.abspath("../doxyxml/") }
+breathe_default_project = "LCAPI"
 
 # -- Options for HTML output ---------------------------------------------------
 
