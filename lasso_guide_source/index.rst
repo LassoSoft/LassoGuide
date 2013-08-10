@@ -132,4 +132,5 @@ Here are some additional resources you may find handy:
    .. license
 
    * :ref:`genindex`
+   * :ref:`glossary`
    * :ref:`search`

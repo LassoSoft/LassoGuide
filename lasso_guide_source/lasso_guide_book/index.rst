@@ -36,6 +36,9 @@ Configuration and Administration
    ../server/datasource-setup
 
 
+.. include:: /server/command-line-tools.rst
+
+
 ++++++++++++++++
 A Taste of Lasso
 ++++++++++++++++
@@ -145,3 +148,8 @@ Lasso Java API
 
    ../api/ljapi-overview
    ../api/ljapi-methods
+
+
+.. toctree::
+
+   /glossary

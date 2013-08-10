@@ -19,3 +19,4 @@
    instance-manager
    instance-administration
    datasource-setup
+   command-line-tools
