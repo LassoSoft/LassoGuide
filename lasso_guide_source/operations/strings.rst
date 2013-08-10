@@ -62,9 +62,9 @@ escape sequence "\\u…" can be used with 4, or 8 hexadecimal digits to embed a
 Unicode character in a string. For example "\\u002F" reprsents a "/" character,
 "\\u0020" represents a space, and "\\u0042" represents a capital letter "B". The
 same type of escape sequence can be used to embed any Unicode character, e.g.
-"\\u4E26" represents the Traditional Chinese character |4E26|.
+"\\u2713" represents the Unicode Checkmark character |2713|.
 
-.. |4E26| unicode:: U+4E26
+.. |2713| unicode:: U+2713
 
 Lasso also supports common escape sequences including "\\r" for a return
 character, "\\n" for a new-line character, "\\r\\n" for a Windows return/new-
@@ -850,13 +850,13 @@ this, it must escape the backslash since string literals are automatically
 unescaped. Because of this it outputs the string before calling
 ``string->unescape``::
 
-   local(my_string) = "Chinese Character: \\u4E26"
+   local(my_string) = "Checkmark Character: \\u2713"
    #my_string + "\n"
    #my_string->unescape
 
    // =>
-   // Chinese Character: \u4E26
-   // Chinese Character: |4E26|
+   // Checkmark Character: \u2713
+   // Checkmark Character: ✓
 
 
 Encode HTML Entities

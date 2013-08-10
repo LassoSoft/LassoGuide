@@ -190,14 +190,30 @@ latex_elements = {
 'preamble': u"""
 % Use a more modern-looking monospace font
 \\usepackage{inconsolata}
-% Chinese Character Support
-\\usepackage{amsfonts}
+% Unicode checkmark support (hack)
 \\usepackage{newunicodechar}
-\\newunicodechar{並}{\\checkmark}
+\\usepackage{amsfonts}
+\\newunicodechar{✓}{\\checkmark}
 """,
 
 'fontpkg': '\\usepackage{charter}',
 }
+# Gave up and used unicode checkmark instead
+# This was my best guess for the Chinese character (u4E26):
+#\\usepackage{CJK}
+#\\usepackage{newunicodechar}
+#\\newunicodechar{並}{\\begin{CJK}{UTF8}{bsmi}並\\end{CJK}}
+#
+# Based on the following:
+# http://tex.stackexchange.com/questions/17611/how-does-one-type-chinese-in-latex
+#
+#http://www.tug.org/pipermail/texhax/2004-January/001476.html
+#It may also be a good idea to create a new command :
+#   \newcommand{\cjktext}[1]{\begin{CJK}{UTF8}{cyberbit}#1\end{CJK}}
+#Now, when you want to type chinese, you just use the command:
+#   \cjktext{enter your chinese text here}
+
+
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
