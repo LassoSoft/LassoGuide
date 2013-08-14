@@ -33,4 +33,10 @@ Glossary
 
    LASSO9_RETAIN_COMMENTS
       See :ref:`Special Environment Variables <special-environment-variables>`
-      for a description.   
+      for a description.
+
+   LassoApp
+   LassoApps
+      A distributable bundle of Lasso code and media files meant to be run as
+      its own web application. See :ref:`the chapter on LassoApps<lassoapps>`
+      for more information.

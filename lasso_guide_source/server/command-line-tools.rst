@@ -533,17 +533,160 @@ Here's what happens when you run this script::
 Compiling Lasso Code
 ====================
 
+All Lasso code is compiled before it is executed. Whether the code is a
+:term:`Lasso page` being served by Lasso server or a script being run by the
+lasso9 command-line tool, behind the scenes Lasso compiles the code and then
+executes the compiled code. (Lasso does cache the copiled code for reuse, but
+that is beyond the scope of this section.)
+
+There are certain cases where it is advantageous to compile the lasso code ahead
+of time. The Lasso platform comes with the lassoc command-line tool which aids
+in compiling LassoApps, Lasso libraries, and Lasso executables. Compilation can
+result in faster startup times, lower memory usage, and obfuscation of the
+source code.
+
+
+
+
+
+
+Libraries help keep memory usage down because only objects that are actually used are loaded
+They also improve startup time
+Lasso can startup by only loading the very basic builtin functions and objects
+and then let the rest of the system load in over time
+
+A special type of library can be produced: a .bc bitcode file. Bitcode is a LLVM
+specific format that Lasso knows how to load. bitcode files can be shared across
+platforms on the same processor For example the same .bc file could be used on
+OS X x86 and CentOS x86 .bc files don't load as fast, have about 80% larger file
+size and consume more memory than library files compiled into a shared library
+but don't require GCC
+
+
 Prerequisites
 -------------
+
+The following must be installed to compile Lasso code:
+
+*  Lasso 9
+
+*  Your operating systems's developer command-line tools. (Consult the
+   documentation for your OS on how to install a compiler, linker, etc.)
+
+*  For OS X, you will also need Xcode 3 installed for the 10.5 SDK libraries in
+   order to create binaries that are compatible with all supported versions of
+   OS X.
+
+The examples below are shown running from a command-line prompt. For Windows,
+make sure you are running these commands from the Visual Studio command prompt.
+
 
 Compiling Executables
 ---------------------
 
+You can compile shell scripts into executable files. This decreases the overhead
+of running the script through the lasso9 interpreter, and allows you to
+distribute your own command-line tools without distributing the source code. The
+examples below take a shell script named "myscript.lasso" and compile it into
+the executable "myscript".
+
+**OS X**
+::
+
+   $> lassoc -O -app -n -obj -o myscript.a.o myscript.lasso
+   $> gcc -o myscript myscript.a.o -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -macosx_version_min=10.5 -F/Library/Frameworks -framework Lasso9
+
+**Linux**
+::
+
+   $> lassoc -O -app -n -obj -o myscript.a.o myscript.lasso
+   $> gcc -o myscript myscript.a.o -llasso9_runtime
+
+**Windows**
+::
+
+   $> lassoc -O -app -n -obj -o myscript.obj myscript.lasso
+   $> link myscript.obj /LIBPATH:"C:\Program Files\LassoSoft\Lasso Instance Manager\home\LassoExecutables" lasso9_runtime.lib -defaultlib:libcmt
+
+
 Compiling Libraries
 -------------------
+
+You can create your own library of methods and types and then compile it into
+one a library file for distribution. Libraries compiled this way go into the
+LassoLibraries folder of an instance's :term:`LASSO9_HOME` or
+:term:`LASSO9_MASTER_HOME` folder. The advantages of doing this instead of
+sticking the source code in the LassoStartup folder are that Lasso starts faster
+and consumes less memory. This is because Lasso only loads the methods and types
+in libraries when they are first used instead of at startup. This makes starting
+an instance of Lasso Server faster as the code will be loaded when first needed,
+and it helps keep memory down as only those methods and types that are actually
+used by the instance get loaded.
+
+The examples below take a file named "mylibs.inc" and compiles it into a
+dynamically loaded Lasso library.
+
+**OS X**
+::
+
+   $> lassoc -O -dll -n -obj -o mylibs.d.o mylibs.inc
+   $> gcc -dynamiclib -o mylibs.dylib mylibs.d.o -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -macosx_version_min=10.5 -F/Library/Frameworks -framework Lasso9
+
+**Linux**
+::
+
+   $> lassoc -O -dll -n -obj -o mylibs.d.o mylibs.inc
+   $> gcc -shared -o mylibs.so mylibs.d.o -llasso9_runtime
+
+**Windows**
+::
+
+   $> lassoc -O -dll -n -obj -o mylibs.obj mylibs.inc
+   $> link /DLL mylibs.obj /OUT:mylibs.dll /LIBPATH:"C:\Program Files\LassoSoft\Lasso Instance Manager\home\LassoExecutables" lasso9_runtime.lib -defaultlib:libcmt
+
 
 Compiling LassoApps
 -------------------
 
-Using make Files
-----------------
+:term:`LassoApps` allow you to create an easily deployable and distributable web
+application. They are installed into the LassoApps folder of an instance's
+:term:`LASSO9_HOME` or :term:`LASSO9_MASTER_HOME` folder. (See the :ref:`the
+chapter on LassoApps<lassoapps>` for more information.) Compiling them allows
+for Lasso to startup faster and allows for distributing closed-sourced
+solutions.
+
+The examples below take a folder named "myapp" and compiles it into a
+:term:`LassoApp` named "myapp.lassoapp".
+
+**OS X**
+::
+
+   $> lassoc -O -dll -n -obj -lassoapp -o myapp.ap.o myapp/
+   $> gcc -dynamiclib -o myapp.lassoapp myapp.ap.o -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -macosx_version_min=10.5 -F/Library/Frameworks -framework Lasso9
+
+**Linux**
+::
+
+   $> lassoc -O -dll -n -obj -lassoapp -o myapp.ap.o myapp/
+   $> gcc -shared -o myapp.lassoapp myapp.ap.o -llasso9_runtime
+
+**Windows**
+::
+
+   $> lassoc -O -dll -n -obj -lassoapp -o myapp.lassoapp.obj myapp
+   $> link /DLL myapp.lassoapp.obj /OUT:myapp.lassoapp /LIBPATH:"C:\Program Files\LassoSoft\Lasso Instance Manager\home\LassoExecutables" lasso9_runtime.lib -defaultlib:libcmt
+
+
+
+
+Using Build Utilities
+---------------------
+
+Instead of manually executing those commands each time you want to compile your
+code, it is recommended you use a build utility like "make" for OS X and Linux
+or "nmake" for Windows. Both of these utilities are very powerful and you should
+explore their documentation. The Lasso source tree has an exmaple of both a
+`make file <http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/makefile>`_
+and an
+`nmake file <http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/makefile.nmake>`_
+which you can download and modify to fit your solutions.
