@@ -185,19 +185,23 @@ latex_elements = {
 
 # The font size ('10pt', '11pt' or '12pt').
 #'pointsize': '10pt',
-
+'inputenc': '',
+'utf8extra': '',
+'fontpkg': '',
 # Additional stuff for the LaTeX preamble.
 'preamble': u"""
-% Use a more modern-looking monospace font
-\\usepackage{inconsolata}
-% Unicode checkmark support (hack)
-\\usepackage{newunicodechar}
-\\usepackage{amsfonts}
-\\newunicodechar{✓}{\\checkmark}
-""",
+\\usepackage{fontspec}
+\\setmainfont{Helvetica Neue}
+\\setromanfont{Times}
+\\setsansfont{Helvetica Neue}
+\\setmonofont{Inconsolata}
 
-'fontpkg': '\\usepackage{charter}',
+% For the Chinese character
+\\usepackage{xeCJK}
+\\setCJKmainfont{BiauKai}
+""",
 }
+# For PdfLaTeX I gave up, but switching to XeLaTeX got it working
 # Gave up and used unicode checkmark instead
 # This was my best guess for the Chinese character (u4E26):
 #\\usepackage{CJK}
