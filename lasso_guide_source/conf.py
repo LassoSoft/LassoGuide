@@ -191,9 +191,9 @@ latex_elements = {
 # Additional stuff for the LaTeX preamble.
 'preamble': u"""
 \\usepackage{fontspec}
-\\setmainfont{Helvetica Neue}
-\\setromanfont{Times}
-\\setsansfont{Helvetica Neue}
+\\setmainfont[Ligatures=TeX]{Helvetica Neue}
+\\setromanfont[Ligatures=TeX]{Times}
+\\setsansfont[Ligatures=TeX]{Helvetica Neue}
 \\setmonofont{Inconsolata}
 
 % For the Chinese character

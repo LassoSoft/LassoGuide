@@ -10,8 +10,8 @@ Introduction and Installation
 
 .. toctree::
 
-   ../index
-   ../server/overview
+   /index
+   /server/overview
    
 ++++++++++++
 Installation
@@ -19,10 +19,10 @@ Installation
 
 .. toctree::
 
-   ../server/osx-installation
-   ../server/ubuntu-installation
-   ../server/centos-installation
-   ../server/windows-installation
+   /server/osx-installation
+   /server/ubuntu-installation
+   /server/centos-installation
+   /server/windows-installation
 
 
 ++++++++++++++++++++++++++++++++
@@ -31,12 +31,9 @@ Configuration and Administration
 
 .. toctree::
 
-   ../server/instance-manager
-   ../server/instance-administration
-   ../server/datasource-setup
-
-
-.. include:: /server/command-line-tools.rst
+   /server/instance-manager
+   /server/instance-administration
+   /server/datasource-setup
 
 
 ++++++++++++++++
@@ -45,10 +42,10 @@ A Taste of Lasso
 
 .. toctree::
 
-   ../getstart/overview/basics
-   ../getstart/overview/features
-   ../getstart/overview/embedded
-   ../getstart/overview/conclusion
+   /getstart/overview/basics
+   /getstart/overview/features
+   /getstart/overview/embedded
+   /getstart/overview/conclusion
 
 
 .. include:: /language/index_language.rst
@@ -60,17 +57,17 @@ Data Handling
 
 .. toctree::
 
-   ../operations/strings
-   ../operations/bytes
-   ../operations/math
-   ../operations/date-duration
-   ../operations/regular-expressions
-   ../operations/images-multimedia
-   ../operations/xml
-   ../operations/pdf
-   ../operations/containers
-   ../operations/encryption
-   ../operations/serialization
+   /operations/strings
+   /operations/bytes
+   /operations/math
+   /operations/date-duration
+   /operations/regular-expressions
+   /operations/images-multimedia
+   /operations/xml
+   /operations/pdf
+   /operations/containers
+   /operations/encryption
+   /operations/serialization
 
 
 ###########################
@@ -80,8 +77,8 @@ Web Application Development
 .. toctree::
 
    requests-responses
-   ../operations/sessions
-   ../operations/lassoapps
+   /operations/sessions
+   /operations/lassoapps
 
 
 #################
@@ -90,9 +87,10 @@ System Operations
 
 .. toctree::
 
-   ../operations/files
-   ../operations/sys-process
-   ../operations/logging
+   /operations/files
+   /operations/logging
+   /operations/sys-process
+   /server/command-line-tools
 
 
 ###########################
@@ -101,11 +99,11 @@ Networking & Communications
 
 .. toctree::
 
-   ../operations/sending-email
-   ../operations/retrieving-email
-   ../operations/dns
-   ../operations/ldap
-   ../operations/protocols-pipes
+   /operations/sending-email
+   /operations/retrieving-email
+   /operations/dns
+   /operations/ldap
+   /operations/protocols-pipes
 
 
 #######################
@@ -133,11 +131,11 @@ Lasso C API
 
 .. toctree::
 
-   ../api/lcapi-overview
-   ../api/lcapi-methods
-   ../api/lcapi-types
-   ../api/lcapi-sources
-   ../api/lcapi-reference
+   /api/lcapi-overview
+   /api/lcapi-methods
+   /api/lcapi-types
+   /api/lcapi-sources
+   /api/lcapi-reference
 
 
 ++++++++++++++
@@ -146,10 +144,8 @@ Lasso Java API
 
 .. toctree::
 
-   ../api/ljapi-overview
-   ../api/ljapi-methods
+   /api/ljapi-overview
+   /api/ljapi-methods
 
 
-.. toctree::
-
-   /glossary
+.. include:: /glossary.rst
