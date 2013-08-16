@@ -1,4 +1,4 @@
-.. _lcapi-overview:
+.. _lcapi-c-reference:
 
 ***************
 C/C++ Reference

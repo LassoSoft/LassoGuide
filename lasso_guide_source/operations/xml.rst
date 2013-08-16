@@ -25,6 +25,8 @@ this chapter.
 The following table lists all the possible objects which may be encountered
 within or inserted into an XML document.
 
+.. tabularcolumns:: |l|l|L|
+
 ========================= ===================== ================================
 Lasso Object Name         DOM Level 2 Name      Purpose
 ========================= ===================== ================================

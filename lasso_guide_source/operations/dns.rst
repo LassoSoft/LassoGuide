@@ -126,6 +126,8 @@ DNS Lookup
    optional parameters are described in the table below. This method will return
    either a string, array, or ``dns_response`` object.
 
+   .. tabularcolumns:: |l|L|
+
    ================= ===========================================================
    Parameter         Description
    ================= ===========================================================

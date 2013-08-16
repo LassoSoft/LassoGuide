@@ -309,6 +309,8 @@ Records can be updated within any Lasso compatible database using the
 additional parameters to be defined in order to perform the ``-update`` action.
 The required parameters are detailed in the following table.
 
+.. tabularcolumns:: |l|L|
+
 .. table:: Table: -Update Action Requirements
 
    +---------------+-----------------------------------------------------------+
@@ -641,6 +643,8 @@ within an ``inline`` method, an HTML form, or a URL. The ``-delete``
 parameter requires that a number of additional parameters be defined
 in order to perform the ``-delete`` action. The required parameters
 are detailed in the following table.
+
+.. tabularcolumns:: |l|L|
 
 .. table:: Table: -Delete Action Requirements
 

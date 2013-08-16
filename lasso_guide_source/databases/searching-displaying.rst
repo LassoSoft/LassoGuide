@@ -16,6 +16,8 @@ database action.
 
 .. _inline-search-parameters:
 
+.. tabularcolumns:: |l|L|
+
 .. table:: Search Parameters
 
    +------------+--------------------------------------------------+
@@ -135,6 +137,8 @@ Additional optional parameters are described in
 that follow.
 
 .. _inline-search-action_required:
+
+.. tabularcolumns:: |l|L|
 
 .. table:: -Search Action Requirements
 
@@ -264,6 +268,8 @@ create complex database queries. These parameters are summarized in
 :ref:`Table: Operator Parameters<inline-operator-parameters>`.
 
 .. _inline-operator-parameters:
+
+.. tabularcolumns:: |l|L|
 
 .. table:: Table: Operator Parameters
 
@@ -701,6 +707,8 @@ except that no name/value pair parameters or operator parameters are required.
 Parameters that sort and limit the found set work the same as they do for
 ``-search`` actions.
 
+.. tabularcolumns:: |l|L|
+
 .. table:: Table: -FindAll Action Requirements
 
    +-------------+-------------------------------------------------------------+
@@ -779,6 +787,8 @@ A random record can be returned from a database using the ``-random``
 parameter. The ``-random`` parameter functions exactly like the
 ``-search`` parameter except that no name/value pair parameters or operator
 parameters are required.
+
+.. tabularcolumns:: |l|L|
 
 .. table:: Table: -Random Action Requirements
 
@@ -1075,6 +1085,8 @@ The link methods interpret their parameters as follows:
    any parameters.
 
 .. _table-link-method-parameters:
+
+.. tabularcolumns:: |l|L|
 
 .. table:: Table: Link Method Parameters
 

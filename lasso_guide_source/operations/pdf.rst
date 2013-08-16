@@ -214,6 +214,8 @@ with all tags described in this chapter.
    outlines the optional parameters that can be passed to a ``pdf_doc`` creator
    method.
 
+   .. tabularcolumns:: |l|L|
+
    +----------------------+--------------------------------------------------+
    |Parameter             |Description                                       |
    +======================+==================================================+
@@ -385,6 +387,8 @@ Each data type is described separately in subsequent sections of this chapter.
    the flow of the page, otherwise it is drawn at the specified location.
    Requires one parameter, which is the object to be added. Optional parameters
    are described below.
+
+   .. tabularcolumns:: |l|L|
 
    +-----------+---------------------------------------------------------------+
    |Parameter  |Description                                                    |
@@ -697,6 +701,8 @@ text to determine how it will appear. This is done using the ``pdf_font`` type.
    method that define the font family, size, color, and specifications. The
    following parameters may be used with the ``pdf_font`` creator method:
 
+   .. tabularcolumns:: |l|L|
+
    +--------------+------------------------------------------------------------+
    |Parameter     |Description                                                 |
    +==============+============================================================+
@@ -878,6 +884,8 @@ The ``pdf_text`` constructor method and parameters are described below.
    method requires the text string to be added to the PDF document as the first
    parameter. Optional parameters are listed below.
 
+   .. tabularcolumns:: |l|L|
+
    +--------------------+------------------------------------------------------+
    |Parameter           |Description                                           |
    +====================+======================================================+
@@ -1053,6 +1061,8 @@ parameters are described below.
    Creates a list object to be added to a ``pdf_doc`` object. Text list items
    are added to this object using the ``pdf_list->add`` method. Optional
    parameters for this object are described in the tablebelow.
+
+   .. tabularcolumns:: |l|L|
 
    +--------------------+------------------------------------------------------+
    |Parameter           |Description                                           |
@@ -1656,6 +1666,8 @@ Tables for organizing data can be defined for use in a PDF document using the
    also required and specifies the number of rows in the table. Below is a table
    of optional parameters for the ``pdf_table`` constructor method
 
+   .. tabularcolumns:: |l|L|
+
    +--------------------+------------------------------------------------------+
    |Optional Parameters |Description                                           |
    +====================+======================================================+
@@ -1785,6 +1797,8 @@ which are summarized below.
    with rows increasing from top to bottom and columns increading from left to
    right. The table below lists the optional parameters that can also be
    specified.
+
+   .. tabularcolumns:: |l|L|
 
    +------------------------+--------------------------------------------------+
    |Optional Parameters     |Description                                       |
@@ -1923,6 +1937,8 @@ which is documented below.
    Requires either a ``-file``, ``-url``, or ``-raw`` parameter, as described
    in the table below. Only images in JPEG, GIF, PNG, and WMF formats may be
    used.
+
+   .. tabularcolumns:: |l|L|
 
    +-----------------+---------------------------------------------------------+
    |Parameters       |Description                                              |
@@ -2168,6 +2184,8 @@ Objects of this type can then be added to  ``pdf_doc`` objects.
    Creates a barcode image to be placed in a PDF. Uses parameters which set the
    basic specifications of the barcode to be created.
 
+   .. tabularcolumns:: |l|L|
+   
    +------------------------+--------------------------------------------------+
    |Parameters              |Description                                       |
    +========================+==================================================+

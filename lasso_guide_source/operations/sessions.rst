@@ -128,6 +128,8 @@ Below is a description of each of the session methods:
 Session_Start Parameters
 ------------------------
 
+.. tabularcolumns:: |l|l|l|L|
+
 ============== ======= ======= =================================================
 Parameter      Type    Default Description
 ============== ======= ======= =================================================

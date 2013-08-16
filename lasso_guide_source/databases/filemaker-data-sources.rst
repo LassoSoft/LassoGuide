@@ -195,32 +195,37 @@ its search value are specified. Note that this list of operators is somewhat
 different from those supported by other data source connectors including other
 FileMaker data source connectors.
 
-==== ===========================================================================
-Tag  Description
-==== ===========================================================================
--bw  Begins with matches records where any word in the field begins with the
-     specified substring. This is the default if no other operator is specified.
+.. tabularcolumns:: |l|L|
 
--cn  Contains matches records where any word in the field contains the substring.
+======== =======================================================================
+Operator  Description
+======== =======================================================================
+-bw      Begins with matches records where any word in the field begins with the
+         specified substring. This is the default if no other operator is
+         specified.
 
--eq  Equals matches records where any word in the field exactly matches the
-     string.
+-cn      Contains matches records where any word in the field contains the
+         substring.
 
--ew  Ends with matches records where any word in the field ends with the
-     specified substring.
+-eq      Equals matches records where any word in the field exactly matches the
+         string.
 
--gt  Greater than matches records where the field value is greater than the
-     parameter.
+-ew      Ends with matches records where any word in the field ends with the
+         specified substring.
 
--gte Greater than or equals.
+-gt      Greater than matches records where the field value is greater than the
+         parameter.
 
--lt  Less than matches records where the field value is less than the parameter.
+-gte     Greater than or equals.
 
--lte Less than or equals.
+-lt      Less than matches records where the field value is less than the
+         parameter.
 
--rx  Use a FileMaker search expression. See the table below for a list of
-     symbols.
-==== ===========================================================================
+-lte     Less than or equals.
+
+-rx      Use a FileMaker search expression. See the table below for a list of
+         symbols.
+======== =======================================================================
 
 Note that there is no ``-neq`` operator or other negated operators. It is necessary
 to use a ``-not`` query to omit records from the found set instead. For example, to

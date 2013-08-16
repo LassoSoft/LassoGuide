@@ -78,6 +78,8 @@ method detailed below.
    method, the string will return the integer value outputed in base 10. The
    parameters are outlined in the table below.
 
+   .. tabularcolumns:: |l|L|
+
    +----------------+----------------------------------------------------------+
    |Keyword         |Description                                               |
    +================+==========================================================+
@@ -317,6 +319,8 @@ method detailed below.
    method, the string will return the decimal value outputed with 6 places of
    precision. The parameters are outlined in the table below.
 
+   .. tabularcolumns:: |l|L|
+   
    +----------------+----------------------------------------------------------+
    |Keyword         |Description                                               |
    +================+==========================================================+

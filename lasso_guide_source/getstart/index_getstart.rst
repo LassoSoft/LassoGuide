@@ -8,8 +8,8 @@ These guides serve as an introduction to Lasso programming. The Beginner's Guide
 is geared for people who have little or no programming experience while the
 Overview Guide is meant for people who do have experince in another programming
 language. Both guides assume some basic knowledge of HTML, and that Lasso has
-been :ref:`installed and setup <lasso-server-guide-index>` correctly on the
-machine you are working with.
+been :ref:`installed and setup <lasso-installation>` correctly on the machine
+you are working with.
 
 .. rubric:: Beginner's Guide to Lasso
 

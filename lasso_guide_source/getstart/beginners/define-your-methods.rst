@@ -80,8 +80,7 @@ wouldn't be able to find it. For these reasons, it's best to put method
 definitions like this in a file whose name ends with either ".lasso" or ".inc"
 and stick that file in the "LassoStartup" folder of your instance's home
 directory. Those files get run when Lasso starts up which means the method will
-then be loaded and ready for use on any page. (See the
-`Lasso Server Guide <lasso-server-guide-index>` for more information.)
+then be loaded and ready for use on any page.
 
 Our page can then use the method in the following fashion::
 

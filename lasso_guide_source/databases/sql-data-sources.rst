@@ -456,7 +456,9 @@ Additional search keyword parameters are available when searching the data
 sources in this chapter using the ``inline`` method. These parameters are
 summarized in the following table.
 
-.. table:: Table: Search Parameters
+.. tabularcolumns:: |l|L|
+
+.. table:: Search Parameters
 
    +----------------+--------------------------------------------------+
    |Parameter       |Description                                       |

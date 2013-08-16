@@ -190,6 +190,7 @@ latex_elements = {
 'fontpkg': '',
 # Additional stuff for the LaTeX preamble.
 'preamble': u"""
+% Font setup (Be sure you have them installed on your machine)
 \\usepackage{fontspec}
 \\setmainfont[Ligatures=TeX]{Helvetica Neue}
 \\setromanfont[Ligatures=TeX]{Times}
@@ -199,6 +200,14 @@ latex_elements = {
 % For the Chinese character
 \\usepackage{xeCJK}
 \\setCJKmainfont{BiauKai}
+
+% To make sure figures are placed where we want them
+\\usepackage{float}
+
+\\let\\origfigure=\\figure
+\\renewenvironment{figure}[6]{
+ \\origfigure[H]}
+{\\endlist}
 """,
 }
 # For PdfLaTeX I gave up, but switching to XeLaTeX got it working

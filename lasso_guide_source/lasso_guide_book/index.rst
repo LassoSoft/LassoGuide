@@ -12,6 +12,8 @@ Introduction and Installation
 
    /index
    /server/overview
+
+.. _lasso-installation:
    
 ++++++++++++
 Installation
@@ -148,4 +150,11 @@ Lasso Java API
    /api/ljapi-methods
 
 
-.. include:: /glossary.rst
+.. not just yet
+   ########
+   Glossary
+   ########
+
+   .. toctree::
+
+      /glossary

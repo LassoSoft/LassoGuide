@@ -418,15 +418,17 @@ first signature can not be called except with a target instance of type
 ``type_name``. The second signature can be called at any point, without a
 target type instance.
 
-Syntax for signatures
+Syntax for Signatures
 ---------------------
 
-What follows are the syntax diagrams for signatures and their related
-elements.
+What follows are the syntax diagrams for signatures and their related elements.
 
 .. figure:: /_static/syntax-diagram-signature.png
    :alt: syntax diagram for signatures
    :align: center
+
+   Signature Syntax Diagrams
+
 
 Defining Methods
 ================

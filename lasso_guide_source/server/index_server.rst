@@ -6,7 +6,7 @@
  Lasso Server Guide
 ####################
 
-.. insert summary
+.. _lasso-installation:
 
 .. toctree::
    :maxdepth: 2

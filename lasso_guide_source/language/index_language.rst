@@ -6,21 +6,23 @@
  Lasso Language Guide
 ######################
 
-Every coding language has its own set of rules and characteristics; aspects that
-make it unique.  Where Lasso stands out  flexibility and clarity, allowing the
-programmer to conduct a logical sequence of commands without getting hung up on
-extraneous code. It is designed to get out of the way and let you focus on your
-work.
+.. only:: html
 
-Lasso 9 is also extremely powerful.  It allows you to perform complex operations
-and build solid dynamic solutions for your web pages.  By reading this section
-you will gain a clearer understanding of Lasso syntax, and the proper embedding
-methods for creating optimized web pages using Lasso.
+   Every coding language has its own set of rules and characteristics; aspects that
+   make it unique.  Where Lasso stands out  flexibility and clarity, allowing the
+   programmer to conduct a logical sequence of commands without getting hung up on
+   extraneous code. It is designed to get out of the way and let you focus on your
+   work.
 
-Because Lasso 9 provides a great deal of flexibility when applying syntax styles,
-it helps to know what works best and why.  This Syntax guide will give a firm
-handle on how to apply basic commands, and help you progress into building more
-complex processes as you master the language.
+   Lasso 9 is also extremely powerful.  It allows you to perform complex operations
+   and build solid dynamic solutions for your web pages.  By reading this section
+   you will gain a clearer understanding of Lasso syntax, and the proper embedding
+   methods for creating optimized web pages using Lasso.
+
+   Because Lasso 9 provides a great deal of flexibility when applying syntax styles,
+   it helps to know what works best and why.  This Syntax guide will give a firm
+   handle on how to apply basic commands, and help you progress into building more
+   complex processes as you master the language.
 
 .. - `Basic Syntax` addresses the core of the Lasso 9 programming language, and
      summarizes enhancements and improvements over previous versions.
@@ -37,7 +39,9 @@ complex processes as you master the language.
    datasources in order to build integrated, dynamically-driven web tools using
    Lasso 9.
 
-.. rubric:: Basic Syntax
+.. only:: html
+
+   .. rubric:: Basic Syntax
 
 .. toctree::
    :maxdepth: 2
@@ -50,7 +54,9 @@ complex processes as you master the language.
    /language/captures
    /language/query-expressions
 
-.. rubric:: Objects & Inheritance
+.. only:: html
+
+   .. rubric:: Objects & Inheritance
 
 .. toctree::
    :maxdepth: 2

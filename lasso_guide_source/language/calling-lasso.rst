@@ -85,8 +85,8 @@ browser.
 
 If the embedded message is not visible in the web browser or an error occurs
 then you should make sure that Lasso Server has been installed properly on your
-machine. Consult the :ref:`Lasso Server Guide<lasso-server-guide-index>` for
-complete instructions.
+machine. Consult the :ref:`installation guide for your operating system
+<lasso-installation>` for complete instructions.
 
 
 .. _calling-lasso-cli:
@@ -121,8 +121,8 @@ the file can be executed like so::
 
 If the terminal reports the command was not found, or you receive some other
 error, then you should make sure that Lasso has been installed properly on your
-machine. Consult the :ref:`Lasso Server Guide<lasso-server-guide-index>` for
-complete instructions.
+machine. Consult the :ref:`installation guide for your operating system
+<lasso-installation>` for complete instructions.
 
 When running Lasso code on the command line, delimiters are not required, though
 they can be used. By default, text is assumed to consist of Lasso code only,

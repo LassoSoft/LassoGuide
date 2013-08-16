@@ -7,7 +7,7 @@ Lasso Basics
 Welcome to Lasso! This guide is meant to assit you in diving into the language.
 It assumes you have prior programming experience and that you have properly
 installed Lasso and configured Lasso to work with your web server. (See
-:ref:`the installation guide for your OS. <lasso-server-guide-index>`)
+:ref:`the installation guide for your OS. <lasso-installation>`)
 
 The examples in this particular chapter can all be run inside 
 :ref:`Lasso Quick Code <instance-administration-quick-code>` area in the

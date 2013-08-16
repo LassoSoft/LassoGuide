@@ -29,6 +29,8 @@ nested ``inline`` methods.
    ``-inlineName`` is specified, later on the page within ``resultSet``,
    ``records``, or ``rows`` methods.
 
+   .. tabularcolumns:: |l|L|
+
    +-------------------+-------------------------------------------------------+
    |Parameter          |Description                                            |
    +===================+=======================================================+
@@ -120,6 +122,8 @@ The database actions in Lasso are defined according to what action parameter is
 used to trigger the action. The following table lists the parameters which
 perform database actions that are available in Lasso.
 
+.. tabularcolumns:: |l|L|
+
 .. table:: Inline Database Action Parameters
 
    +---------------+-----------------------------------------------------------+
@@ -155,11 +159,11 @@ perform database actions that are available in Lasso.
    +---------------+-----------------------------------------------------------+
    
 .. note:: 
-   **Table: Database Action Parameters** lists all of the database actions that
-   Lasso supports. Individual data source connectors may only support a subset
-   of these parameters. The Lasso Connector for FileMaker Pro does not support
-   the ``-sql`` action. See the documentation for third party data source
-   connectors for information about what parameters they support.
+   Table *Inline Database Action Parameters* lists all of the database actions
+   that Lasso supports. Individual data source connectors may only support a
+   subset of these parameters. The Lasso Connector for FileMaker Pro does not
+   support the ``-sql`` action. See the documentation for third party data
+   source connectors for information about what parameters they support.
 
 Each database action parameter requires additional parameters in order to
 execute the action properly. These parameters are specified using additional
@@ -1167,6 +1171,8 @@ the ``-host`` from the surrounding inline should be used. This is necessary when
 specifying a ``-database`` within nested inlines to prevent Lasso from looking
 up the database as it would using the database method.
 
+.. tabularcolumns:: |l|L|
+
 .. table:: Host Array Parameters
 
     +-------------------+------------------------------------------------------+
@@ -1265,6 +1271,8 @@ parameter to return the results from one of the result sets.
 
 .. note:: 
    The ``-sql`` inline parameter is not supported for FileMaker data sources.
+
+.. tabularcolumns:: |l|L|
 
 .. table:: SQL Inline Parameters
 
