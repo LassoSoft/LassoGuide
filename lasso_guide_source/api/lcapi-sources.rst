@@ -54,7 +54,9 @@ Password
    The password Lasso needs to authenticate to the data source.
 
 These values are passed to the data source via the ``lasso_getDataHost``
-function, which is described later in this chapter::
+function, which is described later in this chapter:
+
+.. code-block:: c++
 
    LCAPICALL osError lasso_getDataHost( lasso_request_t token,
       auto_lasso_value_t * host, auto_lasso_value_t * usernamepassword );
@@ -66,7 +68,7 @@ Data Source Connector Example
 This section provides a walk-through of an example data source to show how some
 of the LCAPI features are used. This code can be found in the SampleConnector
 example project which can be downloaded with the other LCAPI examples
-`here </_static/lcapi_examples.zip>`_.
+`here <http://lassoguide.com/_static/lcapi_examples.zip>`_.
 
 This example data source simply displays some simple text as each action is
 called from a Lasso inline. It is not an effective or useful data source; it’s
@@ -81,7 +83,9 @@ source code repository.
 LCAPI Data Source Connector Code
 --------------------------------
 
-Below is the code for the Sample Data Source Connector::
+Below is the code for the Sample Data Source Connector:
+
+.. code-block:: c++
 
    void registerLassoModule()
    {
@@ -202,7 +206,9 @@ Data Source Connector Walk Through
 This section provides a step-by-step walk through of the code for the custom
 data source connector.
 
-#. Register the new data source in the ``registerLassoModule()`` function::
+#. Register the new data source in the ``registerLassoModule()`` function:
+   
+   .. code-block:: c++
 
       void registerLassoModule()
       {
@@ -211,7 +217,9 @@ data source connector.
       }
 
 #. Implement the ``sampleds_func`` function which gets called when any database
-   operations for this data source are encountered::
+   operations for this data source are encountered:
+
+   .. code-block:: c++
 
       osError sampleds_func( lasso_request_t token, datasource_action_t action, const auto_lasso_value_t * param )
 
@@ -224,7 +232,9 @@ data source connector.
 #. Set a default error return value to indicate no error. Returning a non-zero
    value will cause Lasso to report a fatal error and stop processing code We
    are also declaring a few temporary variables to be used later to retrieve
-   values such as database names and table names::
+   values such as database names and table names:
+
+   .. code-block:: c++
 
       osError err = osErrNoErr;
       auto_lasso_value_t v1, v2, notused;
@@ -233,7 +243,9 @@ data source connector.
 
 #. This function is called with various different actions passed to it as Lasso
    translates your data requests and updates to it. The ``switch`` statement is
-   used with various enumerated values to determine the requested action::
+   used with various enumerated values to determine the requested action:
+
+   .. code-block:: c++
 
       switch( action )
       {
@@ -249,7 +261,9 @@ data source connector.
    a data source.
 
    Because this data source is so simple, it needs no special initialization,
-   shutdown code, or close connection code::
+   shutdown code, or close connection code:
+
+   .. code-block:: c++
 
       case datasourceInit:
          break;
@@ -265,7 +279,9 @@ data source connector.
    "knows about" and call ``lasso_addDataSourceResult()`` once for each found
    database, passing the name of the database. If the data source has five
    databases, then you would call ``lasso_addDataSourceResult()`` five times. In
-   our example, we have two databases::
+   our example, we have two databases:
+
+   .. code-block:: c++
 
       case datasourceNames:
          // Database Names
@@ -277,7 +293,9 @@ data source connector.
    your data source knows about, and for this it calls the function with the
    ``datasourceTableNames`` action passing the database name in the
    ``param->data`` value. In our example, we are adding three tables to the
-   "Accounting" database and two to "Customers"::
+   "Accounting" database and two to "Customers":
+
+   .. code-block:: c++
 
       case datasourceTableNames:
          if( strcmp(param->data, "Accounting") == 0 ) {
@@ -296,7 +314,9 @@ data source connector.
    arguments, sort arguments, etc.) can be retrieved, and a search can be
    performed by calling various LCAPI functions such as
    ``lasso_getDataSourceName()`` and ``lasso_getTableName()`` to get the name of
-   the database and table, respectively::
+   the database and table, respectively:
+
+   .. code-block:: c++
 
       case datasourceSearch:
       case datasourceFindAll:
@@ -312,7 +332,9 @@ data source connector.
    ``inline( -Database='Accounting', -Table='Payroll', 'Employee'='fred', 'Wages'='15000')``
    will fill the ``columnItem`` variable with the values "Employee, fred" the
    first time through the loop, and "Wages, 15000" the second time through the
-   loop::
+   loop:
+
+   .. code-block:: c++
 
       if( strcmp(v1.data, "Accounting") == 0 ) {
          int count, i;
@@ -332,7 +354,9 @@ data source connector.
    type for a column. Call it once for each column and then call
    ``lasso_addResultRow`` with the values and their sizes to add a row to the
    result. Finally, the number of found rows must be specified using
-   ``lasso_setNumRowsFound``::
+   ``lasso_setNumRowsFound``:
+
+   .. code-block:: c++
 
       if( strcmp(v2.data, "Payroll") == 0 ) {
          const char ** values = new const char*[3];

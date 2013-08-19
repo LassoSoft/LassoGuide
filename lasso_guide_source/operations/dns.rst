@@ -14,7 +14,7 @@ actual server to submit the request or route the message to.
 DNS servers can handle many different types of requests. Some of the most common
 are listed here:
 
-*
+\*
    Returns all available information about the domain name. The results of this
    type are returned in human readable form.
 

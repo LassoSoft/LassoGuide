@@ -12,7 +12,7 @@ Windows, OS X, and Linux.
 
 This chapter provides a walk-through for building and debugging an example
 LCAPI method. You can download the source code for this and other examples
-`here </_static/lcapi_examples.zip>`_.
+`here <http://lassoguide.com/_static/lcapi_examples.zip>`_.
 
 
 .. _lcapi-overview-requirements:
@@ -128,22 +128,30 @@ Debug in OS X / Linux
       there is no need to recompile.
 
    #. Find out the process ID number of lassoserver so you can attach to it
-      later with GNU Debugger::
+      later with GNU Debugger:
+
+      .. code-block:: bash
 
          ps -ax | grep lassoserver
 
-   #. Start the GNU Debugger as a root user::
+   #. Start the GNU Debugger as a root user:
+
+      .. code-block:: bash
 
          sudo gdb
 
    #. From within GNU Debugger's command line, attach to the lassoserver
       process ID by entering the following (replacing <PROCESS ID> with the
-      actual process ID)::
+      actual process ID):
+
+      .. code-block:: none
 
          attach <PROCESS ID>
 
    #. Instruct GNU Debugger to break whenever the function tagMathAbsFunc is
-      called by entering the following::
+      called by entering the following:
+
+      .. code-block:: none
 
          break tagMathAbsFunc
 

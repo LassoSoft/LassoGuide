@@ -156,10 +156,10 @@ Using Array Objects
    This method joins all the elements as strings with the delimiter parameter in
    between each.
 
-Example of joining an array of numbers::
+   Example of joining an array of numbers::
 
-   array(1, 2, 3, 4, 5)->join(', ')
-   // => 1, 2, 3, 4, 5
+      array(1, 2, 3, 4, 5)->join(', ')
+      // => 1, 2, 3, 4, 5
 
 .. method:: array->asStaticArray()::staticarray
 
@@ -170,12 +170,12 @@ Example of joining an array of numbers::
    Arrays can be combined with other compound types by using the + operator. A new
    array containing all the elements is returned.
 
-Example of combining an array and a staticarray and a pair into a new array::
+   Example of combining an array and a staticarray and a pair into a new array::
 
-   array(1, 2, 3, 4, 5)
-   + (:'6','7','8')
-   + pair('nine', 'ten')
-   // => array(1, 2, 3, 4, 5, 6, 7, 8, nine, ten)
+      array(1, 2, 3, 4, 5)
+      + (:'6','7','8')
+      + pair('nine', 'ten')
+      // => array(1, 2, 3, 4, 5, 6, 7, 8, nine, ten)
 
 Staticarray
 -----------

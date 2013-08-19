@@ -53,7 +53,9 @@ date formats are automatically recognized as valid date strings by Lasso: These
 automatically recognized date formats are U.S. or MySQL dates with a four digit
 year followed by an optional 24-hour time with seconds. The  "/" ,  "-" , and
 ":"  characters are the only punctuation marks recognized in valid date strings
-by Lasso when used in the formats shown below::
+by Lasso when used in the formats shown below:
+
+.. code-block:: none
 
    1/25/2002
    1/25/2002 12:34
@@ -65,12 +67,14 @@ by Lasso when used in the formats shown below::
 
 Lasso also recognizes a number of special purpose date formats which are shown
 below. These are useful when working with HTTP headers or email message
-headers::
+headers:
 
-    20020125123456
-    20020125T12:34:56
-    Tue, Dec 17 2002 12:34:56 -0800
-    Tue Dec 17 12:34:56 PST 2002
+.. code-block:: none
+
+   20020125123456
+   20020125T12:34:56
+   Tue, Dec 17 2002 12:34:56 -0800
+   Tue Dec 17 12:34:56 PST 2002
 
 The date formats which contain time zone information (e.g. "-0800" or "PST")
 will be recognized as GMT dates. The time zone will be used to automatically
@@ -87,22 +91,30 @@ are valid without using the ``-format`` parameter:
 
 -  If the time is not specified then it is set to be the current hour when the
    object is created. For example, "22:00:00" if the object was created at
-   10:48:59 PM::
+   10:48:59 PM:
+
+   .. code-block:: none
 
       mm/dd/yyyy -> mm/dd/yyyy 22:00:00
    
 -  If the seconds are not specified then the time is assumed to be even on the
-   minute::
+   minute:
+
+   .. code-block:: none
 
       mm/dd/yyyy hh:mm -> mm/dd/yyyy hh:mm:00
 
 -  An optional GMT designator can be used to specify Greenwich Mean Time rather
-   than local time::
+   than local time:
+
+   .. code-block:: none
 
       mm/dd/yyyy hh:mm:ss GMT
 
 -  Two digit years are assumed to be in the 1\ :sup:`st` century. For best
-   results, always use four digit years::
+   results, always use four digit years:
+
+   .. code-block:: none
 
       mm/dd/00 -> mm/dd/0001
       mm/dd/39 -> mm/dd/0039
@@ -110,7 +122,9 @@ are valid without using the ``-format`` parameter:
       mm/dd/99 -> mm/dd/0099
 
 -  Days and months can be specified with or without leading "0"s. The following
-   are all valid Lasso date strings::
+   are all valid Lasso date strings:
+
+   .. code-block:: none
 
       1/1/2002
       01/1/2002
@@ -274,7 +288,7 @@ disregarded::
 
    <?lasso
       local(start) = date_msec
-      // … The code to time …
+      // ... The code to time ...
       'The code took ' + (date_msec - #start) + ' milliseconds to process.'
    ?>
 
@@ -452,7 +466,7 @@ conversions on date objects.
    ``-day``, ``-week``, ``-month``, ``-year``. If no parameters are specified,
    then the entire date is reset to default values.
 
-.. method:: date->set(…)
+.. method:: date->set(...)
 
    Sets one or more elements of the date to a new value. If a field overflows
    then other fields may be modified as well.  For example, if you have the date
@@ -464,7 +478,7 @@ conversions on date objects.
    <table-date-field-elements-for-get-set>` for the full list of parameters that
    this method can set.
 
-.. method:: date->get(…)
+.. method:: date->get(...)
 
    Returns the current value for the specified field of the current date object.
    Only one field value can be fetched at a time. Note that many of the more
@@ -686,7 +700,7 @@ of the time.
   
 .. method:: date->dst()
 
-   Returns "true" if the date object is in daylight savings time and "false" if
+   Returns "true" if the date object is in daylight saving time and "false" if
    it is not.
 
 .. method:: date->dstOffset()
@@ -873,6 +887,7 @@ increments to and from dates, and calculations with durations.
 
 .. note::
    **Daylight Saving Time**
+
    Lasso does not account for changes to and from daylight saving time when
    performing date math and duration calculations. One should take this into
    consideration when performing a date or duration calculation across dates
@@ -919,7 +934,7 @@ These methods are summarized below.
    Keyword/value parameters define what should be subtracted from the first
    parameter.
   
-.. method:: date_difference(value, when, …)
+.. method:: date_difference(value, when, ...)
 
    Returns the time difference between two specified dates. A duration is
    the default return value. Optional parameters may be used to output a
@@ -1022,14 +1037,14 @@ objects. These methods are used for adding durations to dates, subtracting a
 duration from a date, and determining a duration between two dates. These
 methods are summarized below.
 
-.. method:: date->add(…)
+.. method:: date->add(...)
 
    Adds a specified amount of time to a data object. Can pass a duraction object
    or specify the amount of time by passing keyword/value parameters to define
    what should be added to the object: ``-second``, ``-minute``, ``-hour``,
    ``-day``, ``-week``, ``-month``, or ``-year``.
 
-.. method:: date->roll(…)
+.. method:: date->roll(...)
 
    Like ``date->add``, this method adds the specified amount of time to the
    current date object. However, unlike ``date->add``, only the specified field
@@ -1038,14 +1053,14 @@ methods are summarized below.
    field will not be modified. Valid fields to roll are ``-second``,
    ``-minute``, ``-hour``, ``-day``, ``-week``, ``-month``, or ``-year``.
   
-.. method:: date->subtract(…)
+.. method:: date->subtract(...)
 
    Subtracts a specified amount of time from a date object. Can pass a duration
    object or specify the amount of time by passing keyword/value parameters to
    define what should be subtracted from the object: ``-millisecond``,
    ``-second``, ``-minute``, ``-hour``, ``-day``, or ``-week``.
   
-.. method:: date->difference(when, …)
+.. method:: date->difference(when, ...)
 
    Calculates the duration between two date objects. The first paramater must be
    a valid value that can be cast as a date. By default, this method returns a

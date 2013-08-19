@@ -199,7 +199,7 @@ latex_elements = {
 
 % For the Chinese character
 \\usepackage{xeCJK}
-\\setCJKmainfont{BiauKai}
+\\setCJKmainfont{Apple LiGothic}
 
 % To make sure figures are placed where we want them
 \\usepackage{float}

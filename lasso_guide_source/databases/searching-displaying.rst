@@ -950,7 +950,7 @@ results formatted later::
       ) => {}
    ?>
 
-   // … Page Contents …
+   // ... Page Contents ...
 
    [records(-inlineName='FindAll Results')]
       <br />[loop_count]: [field('first_name')] [field('last_name')]
@@ -995,22 +995,22 @@ links easy within Lasso solutions. The general purpose link methods are defined
 below. The common parameters for all link methods are specified in :ref:`Table:
 Link Method Parameters <table-link-method-parameters>`.
 
-.. method:: link(…)
+.. method:: link(...)
 
    General purpose link method that provides an anchor tag with the specified
    parameters. The ``-response`` parameter is used as the URL for the link.
 
-.. method:: link_params(…)
+.. method:: link_params(...)
 
    General purpose link method that processes a set of parameters using the
    common rules for all link methods.
 
-.. method:: link_nextGroup(…)
+.. method:: link_nextGroup(...)
    
    Sets a standard set of options that will be used for all link methods that
    follow in the current Lasso page.
 
-.. method:: link_url(…)
+.. method:: link_url(...)
 
    General purpose link method that provides a URL based on the specified
    parameters. The ``-response`` parameter is used as the URL for the link.
@@ -1153,51 +1153,51 @@ action. Each of these methods accepts the same parameters as specified in
 Examples of the link methods are included in the :ref:`Link Examples
 <link-examples>`  section that follows.
 
-.. method:: link_currentActionURL(…)
+.. method:: link_currentActionURL(...)
 
    Returns a link to the current Lasso action.
 
-.. method:: link_firstGroupURL(…)
+.. method:: link_firstGroupURL(...)
 
    Returns a link to the first group of records based on the current Lasso
    action. Sets ``-skipRecords`` to "0".
 
-.. method:: link_prevGroupURL(…)
+.. method:: link_prevGroupURL(...)
 
    Returns a link to the next group of records based on the current Lasso
    action. Changes ``-skipRecords``.
 
-.. method:: link_nextGroupURL(…)
+.. method:: link_nextGroupURL(...)
 
    Returns a link to the next group of records based on the current Lasso
    action. Changes ``-skipRecords``.
 
-.. method:: link_lastGroupURL(…)
+.. method:: link_lastGroupURL(...)
 
    Returns a link to the last group of records based on the current Lasso
    action. Changes ``-skipRecords``.
 
-.. method:: link_currentRecordURL(…)
+.. method:: link_currentRecordURL(...)
 
    Returns a link to the current record. Sets ``-maxRecords`` to "1" and changes
    ``-skipRecords``.
 
-.. method:: link_firstRecordURL(…)
+.. method:: link_firstRecordURL(...)
 
    Returns a link to the first record based on the current Lasso action. Sets
    ``-maxRecords`` to "1" and ``-skipRecords`` to "0".
 
-.. method:: Link_PrevRecordURL(…)
+.. method:: Link_PrevRecordURL(...)
 
    Returns a link to the next record based on the current Lasso action. Sets
    ``-maxRecords`` to "1" and changes ``-skipRecords``.
 
-.. method:: link_lastRecordURL(…)
+.. method:: link_lastRecordURL(...)
 
    Returns a link to the last record based on the current Lasso action. Sets
    ``-maxRecords`` to "1" and changes ``-skipRecords``.
 
-.. method:: link_detailURL(…)
+.. method:: link_detailURL(...)
 
    Returns a link to the current record using the primary key and key value.
    Changes ``-keyValue``.
@@ -1224,60 +1224,60 @@ accepts the same parameters as specified in :ref:`Table: Link Method Parameters
 <table-link-method-parameters>` above. Examples of the link methods are included
 in the :ref:`Link Examples <link-examples>` section that follows.
 
-.. method:: link_currentAction(…)
+.. method:: link_currentAction(...)
 
    Returns a link to the current Lasso action. Requires an associated block.
 
-.. method:: link_firstGroup(…)
+.. method:: link_firstGroup(...)
 
    Returns a link to the first group of records based on the current Lasso
    action. Sets ``-skipRecords`` to "0". Requires an associated block.
 
-.. method:: link_prevGroup(…)
+.. method:: link_prevGroup(...)
 
    Returns a link to the previous group of records based on the current Lasso
    action. Changes ``-skipRecords``. Requires an associated block.
 
-.. method:: link_nextGroup(…)
+.. method:: link_nextGroup(...)
 
    Returns a link to the next group of records based on the current Lasso
    action. Changes ``-skipRecords``. Requires an associated block.
 
-.. method:: link_lastGroup(…)
+.. method:: link_lastGroup(...)
 
    Returns a link to the last group of records based on the current Lasso
    action. Changes ``-skipRecords``. Requires an associated block.
 
-.. method:: link_currentRecord(…)
+.. method:: link_currentRecord(...)
 
    Returns a link to the current record. Sets ``-maxRecords`` to "1" and changes
    ``-skipRecords``. Requires an associated block.
 
-.. method:: link_firstRecord(…)
+.. method:: link_firstRecord(...)
 
    Returns a link to the first record based on the current Lasso action. Sets
    ``-maxRecords`` to "1" and ``-skipRecords`` to "0". Requires an associated
    block.
 
-.. method:: link_prevRecord(…)
+.. method:: link_prevRecord(...)
 
    Returns a link to the previous record based on the current Lasso action. Sets
    ``-maxRecords`` to "1" and changes ``-skipRecords``. Requires an associated
    block.
 
-.. method:: link_nextRecord(…)
+.. method:: link_nextRecord(...)
 
    Returns a link to the next record based on the current Lasso action. Sets
    ``-maxRecords`` to "1" and changes ``-skipRecords``. Requires an associated
    block.
 
-.. method:: link_lastRecord(…)
+.. method:: link_lastRecord(...)
 
    Returns a link to the last record based on the current Lasso action. Sets
    ``-maxRecords`` to "1" and changes ``-skipRecords``. Requires an associated
    block.
 
-.. method:: link_detail(…)
+.. method:: link_detail(...)
 
    Returns a link to the current record using the ``-keyField`` and
    ``-keyValue``. Changes ``-keyValue``. Requires an associated block.
@@ -1303,56 +1303,56 @@ specified in :ref:`Table: Link Method Parameters <table-link-method-parameters>`
 above. Examples of the link methods are included in the :ref:`Link Examples
 <link-examples>` section that follows.
 
-.. method:: link_currentActionParams(…)
+.. method:: link_currentActionParams(...)
 
    Returns a link to the current Lasso action.
 
-.. method:: link_firstGroupParams(…)
+.. method:: link_firstGroupParams(...)
 
    Returns a link to the first group of records based on the current Lasso
    action. Sets ``-skipRecords`` to "0".
 
-.. method:: link_prevGroupParams(…)
+.. method:: link_prevGroupParams(...)
 
    Returns a link to the previous group of records based on the current Lasso
    action. Changes ``-skipRecords``.
 
-.. method:: link_nextGroupParams(…)
+.. method:: link_nextGroupParams(...)
 
    Returns a link to the next group of records based on the current Lasso
    action. Changes ``-skipRecords``.
 
-.. method:: link_lastGroupParams(…)
+.. method:: link_lastGroupParams(...)
 
    Returns a link to the last group of records based on the current Lasso
    action. Changes ``-skipRecords``.
 
-.. method:: link_currentRecordParams(…)
+.. method:: link_currentRecordParams(...)
 
    Returns a link to the current record. Sets ``-maxRecords`` to "1" and changes
    ``-skipRecords``.
 
-.. method:: link_firstRecordParams(…)
+.. method:: link_firstRecordParams(...)
 
    Returns a link to the first record based on the current Lasso action. Sets
    ``-maxRecords`` to "1" and ``-skipRecords`` to "0".
 
-.. method:: link_prevRecordParams(…)
+.. method:: link_prevRecordParams(...)
 
    Returns a link to the previous record based on the current Lasso action. Sets
    ``-maxRecords`` to "1" and changes ``-skipRecords``.
 
-.. method:: link_nextRecordParams(…)
+.. method:: link_nextRecordParams(...)
 
    Returns a link to the next record based on the current Lasso action. Sets
    ``-maxRecords`` to "1" and changes ``-skipRecords``.
 
-.. method:: link_lastRecordParams(…)
+.. method:: link_lastRecordParams(...)
 
    Returns a link to the last record based on the current Lasso action. Sets
    ``-maxRecords`` to "1" and changes ``-skipRecords``.
 
-.. method:: link_detailParams(…)
+.. method:: link_detailParams(...)
 
    Returns a link to the current record using the primary key and key value.
    Changes ``-keyValue``.
@@ -1380,7 +1380,7 @@ performed as written::
       -keyField='id',
       -maxRecords=10
    )
-      // … your code …
+      // ... your code ...
    /inline
 
 The same ``inline`` can be modified so that it can accept parameters from an
@@ -1396,7 +1396,7 @@ method to the opening of the ``inline`` method::
       -keyField='id',
       -maxRecords=4
    )
-      // … your code …
+      // ... your code ...
    /inline
 
 Any keyword parameters or name/value pairs in the HTML form or URL that triggers
@@ -1660,23 +1660,22 @@ detail page. This option is most suitable if the selected database record will
 need to be updated or deleted.
 
 Alternately, a link to a particular record can be created using
-``link_currentAction `` and setting ``-maxRecords`` to "1". This method allows
+``link_currentAction`` and setting ``-maxRecords`` to "1". This method allows
 the visitor to continue navigating by records on the detail page.
 
 
 Create a Link to a Particular Record
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-There are two Lasso pages involved in most detail links. The listing
-Lasso page "default.lasso" includes the ``inline`` method
-that defines the search for the found set. The detail Lasso page
-"response.lasso" includes the ``inline`` method that finds
-and display the individual record.
+There are two Lasso pages involved in most detail links. The listing Lasso page
+"default.lasso" includes the ``inline`` method that defines the search for the
+found set. The detail Lasso page "response.lasso" includes the ``inline`` method
+that finds and display the individual record.
 
 #. The ``inline`` method in "default.lasso" simply performs a ``-findAll``
    action. Each record in the result set is displayed with a link to
    "response.lasso" created using the ``link_detail`` method::
-    
+
       [inline(
          -findAll,
          -database='contacts',
@@ -1691,18 +1690,19 @@ and display the individual record.
             [/link_detail]
          [/records]
       [/inline]
-      // =>
-      // <br /><a …>Jane Doe</a>
-      // <br /><a …>John Person</a>
-      // <br /><a …>Jane Person</a>
-      // <br /><a …>John Doe</a>
 
-#.  The ``inline`` method on "response.lasso" uses ``web_request->params``
-    to pull the values from the URL generated by the link methods. The
-    results contain more information about the particular records than
-    is shown in the listing. In this case, the "phone_number" field is
-    included as well as the "first_name" and "last_name"::
-    
+      // =>
+      // <br /><a [/* ... href info ... */]>Jane Doe</a>
+      // <br /><a [/* ... href info ... */]>John Person</a>
+      // <br /><a [/* ... href info ... */]>Jane Person</a>
+      // <br /><a [/* ... href info ... */]>John Doe</a>
+
+#. The ``inline`` method on "response.lasso" uses ``web_request->params`` to
+   pull the values from the URL generated by the link methods. The results
+   contain more information about the particular records than is shown in the
+   listing. In this case, the "phone_number" field is included as well as the
+   "first_name" and "last_name"::
+   
       [inline(
          web_request->params,
          -search,
@@ -1712,8 +1712,8 @@ and display the individual record.
       )]
          <br />[field('first_name')] [field('last_name')]
          <br />[field('phone_number')]
-         [// … other code …]
-      [/Inline]
+         [/* ... other code ... */]
+      [/inline]
 
       // =>
       // <br />Jane Doe

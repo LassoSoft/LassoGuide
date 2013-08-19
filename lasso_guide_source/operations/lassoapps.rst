@@ -129,10 +129,9 @@ Constructing a LassoApp
 =======================
 
 All LassoApps reside as either a file or a directory located within the
-**LassoApps** folder. 
-
-.. seealso:: The LassoApps folder is located within the current
-   Lasso home. See the *Setup Guide* for details on Lasso home directories.
+**LassoApps** folder. (The LassoApps folder is located within the current Lasso
+home. See :ref:`the section on Lasso instance home directories
+<instance-manager-home-directory>` for more details.)
 
 LassoApps begin as a directory named according to the application. This
 directory contains all of the files for the application. Before
@@ -752,23 +751,23 @@ Commonly the request will be in the form of a REST request (http://www.myserver.
 While discussions directly regarding AJAX, jQuery, XHR, REST, XML and JSON are outside the scope of this chapter, 
 XHR response data can be in various forms, including JSON, which we will use for this example.
 
-Consider the following JavaScript (using jQuery)::
+Consider the following JavaScript (using jQuery):
 
-   .. code-block:: javascript
+.. code-block:: javascript
 
-      var dataObj       = new Object;
-      dataObj.id        = $('#userid').val();
-      $.ajax({
-            url:        '/lasso9/myLassoapp/userdata.xhr',
-            data:       dataObj,
-            async:      true,
-            type:       'post',
-            cache:      false,
-            dataType:   'json',
-            success:    function(xhr) {
-               alert('User name: '+xhr.firstname+' '+xhr.lastname);
-           }
-       });
+   var dataObj       = new Object;
+   dataObj.id        = $('#userid').val();
+   $.ajax({
+         url:        '/lasso9/myLassoapp/userdata.xhr',
+         data:       dataObj,
+         async:      true,
+         type:       'post',
+         cache:      false,
+         dataType:   'json',
+         success:    function(xhr) {
+            alert('User name: '+xhr.firstname+' '+xhr.lastname);
+         }
+   });
 
 The XHR request is for userdata.xhr, which Lasso Server will interpret as a request for userdata[xhr].lasso 
 and serve as an XHR file with the correct MIME type::

@@ -192,7 +192,7 @@ message from the server::
 
    iterate(#myPOP, local(myID)) => {
        local(myMSG) = #myPOP->Retrieve
-       // … Process Message …
+       // ... Process Message ...
        #myPOP->Delete
    }
    #myPOP->Close
@@ -229,7 +229,7 @@ inserted into ``myUniqueIDs``.
    let myMSG = #myPop->retrieve
    do {
       #myUniqueIDs->insert(#myID)
-      // … Process Message …
+      // ... Process Message ...
    }
    #myPOP->close
 
@@ -255,7 +255,7 @@ fetched with ``email_pop->headers`` and two variables, ``needDownload`` and
       local(needDownload) = false
       local(needDelete)   = false
       local(myHeaders)    = #myPOP->headers
-      // … Process headers and set needDownload or needDelete to true …
+      // ... Process headers and set needDownload or needDelete to true ...
       #needDownload
          ? #myPOP->retrieve
       #needDelete
@@ -382,7 +382,7 @@ the ``iterate`` methods to inspect each part of the message in turn.
 
    Returns an array of pairs containing all the headers of the message.
 
-.. method:: email_parse->header(name::string, …)
+.. method:: email_parse->header(name::string, ...)
 
    Returns a single specified header. Requires one parameter, the name of the
    header to be returned. See also the shortcuts for specific headers listed
@@ -399,7 +399,7 @@ the ``iterate`` methods to inspect each part of the message in turn.
    Returns the mode from the ``Content-Type`` for the message. Usually either
    text or multipart.
 
-.. method:: email_parse->body(…)
+.. method:: email_parse->body(...)
 
    Returns the body of the message. Optional parameter specifies the prefered
    type of body to return (e.g. ``text/plain`` or ``text/html``). If the body is
@@ -523,11 +523,11 @@ There are three ways to inspect the headers of a downloaded message.
 
       local(myParse) = email_parse(#myMSG)
       if(#myParse->to >> 'mailinglist@example.com') => {
-      // … Store the message in the mailingt list database …
+      // ... Store the message in the mailingt list database ...
       else(#myParse->to >> 'help@example.com')
-      // … Forward the message to technical support …
+      // ... Forward the message to technical support ...
       else
-      // … Unknown recipient …
+      // ... Unknown recipient ...
       }
 
 2. The value for any header, including application specific headers, headers
@@ -553,9 +553,9 @@ There are three ways to inspect the headers of a downloaded message.
    what server-side spam checker and version is being used)::
 
        if(#spam_status >> 'Yes') => {
-       // … It is spam …
+       // ... It is spam ...
        else
-       // … It is not spam …
+       // ... It is not spam ...
        }
 
 3. The value for all the headers in the message can be displayed using the

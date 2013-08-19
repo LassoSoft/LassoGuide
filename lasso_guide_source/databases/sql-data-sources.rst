@@ -317,9 +317,9 @@ those that are hosted by MySQL will be returned. The result shows two databases,
       [/if]
    [/database_names]
     
-   / =>
-   / <br />example
-   / <br />site
+   // =>
+   // <br />example
+   // <br />site
 
 
 Searching Records with MySQL
@@ -777,7 +777,7 @@ named ``inline``. The same name "values" is referenced by ``-inlineName`` in
 both the ``inline`` method and ``resultSet`` method::
 
    [inline(-inlineName='values', -show, -database='contacts', -table='people') => {}]
-   // … some code …
+   // ... some code ...
    [resultSet(1, -inlineName='values')]
       [value_list('title')]
          <br />[value_listItem]

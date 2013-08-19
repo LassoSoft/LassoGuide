@@ -50,7 +50,26 @@ A Taste of Lasso
    /getstart/overview/conclusion
 
 
-.. include:: /language/index_language.rst
+.. _lasso-language-guide:
+
+##############
+Language Guide
+##############
+
+.. toctree::
+
+   /language/calling-lasso
+   /language/literals
+   /language/variables
+   /language/operators
+   /language/conditional-logic
+   /language/captures
+   /language/query-expressions
+   /language/methods
+   /language/types
+   /language/traits
+   /language/error-handling
+   /language/threading
 
 
 #############

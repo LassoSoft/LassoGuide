@@ -33,7 +33,7 @@ file system root.
 It is possible to escape the web document root and target the real file system
 root by using a full path with either a drive letter designation in the case of
 Windows, or by prefixing the path with two additional forward slashes. For
-example, ``///foo/bar`` and ``C:\foo\bar`` would both reference the same file on
+example, ``//foo/bar`` and ``C:\foo\bar`` would both reference the same file on
 Windows, provided C: is the system drive.
 
 When not serving a web request, such as when running LassoStartup items or when
@@ -143,7 +143,7 @@ Example::
    local(f = file('n.txt'))
    #f->openWrite
    #f->doWithClose => {
-     // …work with file…
+     // ... work with file ...
    }
 
 .. method:: file->close()
@@ -206,7 +206,7 @@ Example::
 
    #f->forEachLine => {
      local(theLine = #1)
-     // …
+     // ...
    }
 
 Writing File Data

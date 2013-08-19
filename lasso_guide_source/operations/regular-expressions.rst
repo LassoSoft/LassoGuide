@@ -110,86 +110,86 @@ Basic Matching Strings
 Below is a listing of basic matchers and a brief definition. Pay careful
 attention to whether or not ticked string literals are being used.
 
-\`a-z A-Z 0-9\`
+```a-z A-Z 0-9```
    Alphanumeric characters (and any other characters not defined as symbols)
    match the specified character. Case sensitive.
 
-\`.\`
+```.```
     Period matches any single character.
    
-\`[ ]\`
+```[ ]```
    Character class. Matches any character contained within the square
    brackets.
    
-\`[^ ]\`
+```[^ ]```
    Character exception class. Matches any character which is not contained
    within the square brackets.
    
-\`[a-z]\`
+```[a-z]```
    Lowercase character range. Matches any character between the two specified.
    
-\`[A-Z]\`
+```[A-Z]```
    Uppercase character range.
    
-\`[a-zA-Z]\`
+```[a-zA-Z]```
    Combination character range.
    
-\`[0-9]\`
+```[0-9]```
    Numeric character range.
    
-\`[a-zA-Z0-9\_]\`
+```[a-zA-Z0-9\_]```
    Complex character range matches any letter, number, or underscore.
    
-"\\t"
+``"\t"``
    Matches a tab character.
    
-"\\r"
+``"\r"``
    Matches a return character.
    
-"\\n"
+``"\n"``
    Matches a new-line character.
    
-\`"\`
+```"```
    Matches a double quote.
    
-\`'\`
+```'```
    Matches a single quote.
    
-\`\\u####\`
+```\u####```
    Matches a single Unicode character. The number signs should be replaced with
    the 4-digit hex value for the Unicode character.
    
-\`\\p{ }\`
+```\p{ }```
    Matches a single Unicode character with the stated property. The available
    properties are listed next.
    
-\`\\P{ }\`
+```\P{ }```
    Matches a single Unicode character which does not have the stated property.
    The available properties are listed next.
    
-\`\\w\`
+```\w```
    Matches an alphanumeric "word" character (underscore included). Does not
    match Unicode characters.
    
-\`\\W\`
+```\W```
    Matches a non-alphanumeric character (whitespace or punctuation).    
    
-\`\\s\`
+```\s```
    Matches a blank, whitespace character (space, tab, carriage return, etc.).
    
-\`\\S\`
+```\S```
    Matches a non-blank, non-whitespace character.
    
-\`\\d\`
+```\d```
    Matches a digit character (0-9).
    
-\`\\D\`
+```\D```
    Matches a non-digit character.
    
-\`\\ \`
+```\```
    Escapes the next character. This allows any symbol to be specified as a
-   matching character including the reserved characters "[ ] ( ) { } . * + ? ^ $
-   | / \\".
+   matching character including the reserved characters ``"[ ] ( ) { } . * + ? ^ $
+   | / \\"``.
 
 
 Unicode Properties
@@ -199,35 +199,35 @@ The following is a description of the properties which can be used with the
 "\\p" and "\\P" wild cards. The main symbol, e.g. "\\p{L}" will match all of the
 characters that are matched by each of the variations.
 
-L
+``L``
    Matches a single letter. Variations include: "Lu" - Uppercase Letter, "Ll" -
    Lowercase Letter, "Lt" - Titlecase Letter, "Lm" - Modifier Letter, and "Lo" -
    Other Letter.
    
-N
+``N``
    Matches a single number. Variations include: "Nd" - Decimal Digit Number,
    "Nl" - Letter Number, and "No" - Other Number.
    
-P
+``P``
    Matches a single punctuation character. Variations include: "Pc" - Connector
    Punctuation, "Pd" - Dash Punctuation, "Ps" - Open Punctuation "Pe" - Close
    Punctuation, "Pi" - Initial Punctuation, "Pf" - Final Punctuation, and "Po" -
    Other Punctuation.
    
-S
+``S``
    Matches a single symbol. Variations include: "Sm" - Math Symbol, "Sc" -
    Currency Symbol, "Sk" - Modifier Symbol, and "So" - Other Symbol.
    
-Z
+``Z``
    Matches a single separator (usually a white space character). Variations
    include: "Zs" - Space Separator, "Zl" - Line Separator, and "Zp" - Paragraph
    Separator.
    
-M
+``M``
    Matches a single mark. Variations include: "Mn - Non-Spacing Mark, "Mc" -
    Spacing Combining Mark, and "Me" - Enclosing Mark.
    
-C
+``C``
    Matches a single "other" character. Variations include: "Cc" - Control, "Cf"
    - Format, "Cs" - Surrogate, "Co" - Private Use, and "Cn" - Not Assigned.
    
@@ -283,32 +283,32 @@ greedy option the expression "<.*?>" will match the shortest string possible. It
 will now match just the first part of the string "<b>" and a second application
 of the expression will match the last part of the string "</b>".
 
-+
+``+``
    Matches 1 or more repetitions of the preceding symbol.
    
-*
+``*``
    Matches 0 or more repetitions of the preceding symbol.
    
-?
+``?``
    Makes the preceding symbol optional.
    
-{n}
+``{n}``
    Braces. Matches "n" repetitions of the preceding symbol.
    
-{n,}
+``{n,}``
    Matches at least "n" repetitions of the preceding symbol.
    
-{n,m}
+``{n,m}``
    Matches at least "n", but no more than "m" repetitions of the preceding
    symbol.
    
-+?
+``+?``
    Non-greedy variant of the plus sign, matches the shortest string possible.
    
-\*?
+``\*?``
    Non-greedy variant of the asterisk, matches the shortest string possible.
    
-{ }? 
+``{ }?``
       Non-greedy variant of braces, matches the shortest string possible.
    
 
@@ -349,15 +349,15 @@ The "|" symbol can be used to specify alternation. It is most useful when used
 with sub-expressions. The expression \`(?:blue)|(?:red)\` will match either the
 word "blue" or the word "red".
 
-( )
+``( )``
    Grouping for output. Defines a named group for output. Nine groups can be
    defined.
    
-(?: )
+``(?: )``
    Grouping without output. Can be used to create a logical grouping that should
    not be assigned to an output.
 
-|
+``|``
    Alternation. Matches either the character before or the character after the
    symbol.
 
@@ -383,7 +383,7 @@ number. The replacement expression \`$1-$2-$3\` would rewrite the phone
 number to be in a more standard format. For example, the string "(360) 555-1212"
 would result in "360-555-1212" after a find/replace operation.
 
-$0 … $9
+``$0 … $9``
    Names a group in the replace string. \`$0\` represents the entire matched
    string. Up to nine groups can be specified using the numerals 1 through 9.
    
@@ -400,54 +400,54 @@ purposes. Some of these symbols are listed in the following table, but a
 reference on regular expressions should be consulted for full documentation of
 these symbols and other advanced concepts.
 
-(#)
+``(#)``
    Regular expression comment. The contents are not interpreted as part of the
    regular expression.
    
-(?i)
+``(?i)``
    Sets the remainder of the regular expression to be case insensitive. Similar
    to specifying ``-ignoreCase``.
    
-(?-i)
+``(?-i)``
    Sets the remainder of the regular expression to be case sensitive (the
    default).
    
-(?i:)
+``(?i:)``
    The contents of this group will be matched case insensitive and the group
    will not be added to the output.
    
-(?-i:)
+``(?-i:)``
    The contents of this group will be matched case sensitive and the group will
    not be added to the output.
    
-(?=)
+``(?=)``
    Positive look ahead assertion. The contents are matched following the current
    position, but not added to the output pattern.
    
-(?!)
+``(?!)``
    Negative look ahead assertion. The same as above, but the content must not
    match following the current position.
    
-(?<=)
+``(?<=)``
    Positive look behind assertion. The contents are matched preceding the
    current position, but not added to the output pattern.
    
-(?<!)
+``(?<!)``
    Negative look behind assertion. The same as above, but the contents must not
    match preceding the current position.
    
-\`\\b\`
+```\b```
    Matches the boundary between a word and a space. Does not properly interpret
    Unicode characters. The transition between any regular ASCII character
    (matched by \`\\w\`) and a Unicode character is seen as a word boundary.
    
-\`\\B\`
+```\B```
    Matches a boundary not between a word and a space.
    
-\`^\`
+```^```
    Circumflex matches the beginning of a line.
    
-\`$\`
+```$```
    Dollar sign matches the end of a line.
    
 
@@ -712,7 +712,7 @@ The order of operations of an interactive find/replace operation is as follows:
    "false" and the loop is exited::
 
       while(#my_regex->find) => {
-         // … your code here …
+         // ... your code here ...
       }
 
 #. Within the ``while`` loop the ``regExp->matchString`` method is used to

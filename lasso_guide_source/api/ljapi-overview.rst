@@ -100,15 +100,16 @@ Java Virtual Machine (JVM).
    method signatures found in the "java.lang.Math" class, and we use grep to
    filter and find the "scalb" method. You'll notice in the result that there
    are actually two methods with the same name, but with different signatures,
-   and we're using the second one::
+   and we're using the second one:
+
+   .. code-block:: none
 
       $> javap -s -p java.lang.Math | grep -A 1 scalb
-      // =>
-      // public static double scalb(double, int);
-      //   Signature: (DI)D
-      // --
-      // public static float scalb(float, int);
-      //   Signature: (FI)F
+      public static double scalb(double, int);
+        Signature: (DI)D
+      --
+      public static float scalb(float, int);
+        Signature: (FI)F
 
 #. Finally, we execute the method using ``CallStaticFloatMethod`` which takes in
    the class object from the first step and the method ID from the second step,
@@ -177,18 +178,19 @@ that wraps the Lasso instance's ``java_jnienv`` object.
    signatures found in the "java.util.zip.ZipFile" class, and we use grep to
    filter and find the constructor methods. You'll notice in the result that
    there are actually three constructor methods with different signatures, and
-   we're using the first one::
+   we're using the first one:
+
+   .. code-block:: none
 
       $> javap -s -p java.util.zip.ZipFile | grep -A 1 "public java.util.zip.ZipFile"
-      // =>
-      // public java.util.zip.ZipFile(java.lang.String)   throws java.io.IOException;
-      //   Signature: (Ljava/lang/String;)V
-      // --
-      // public java.util.zip.ZipFile(java.io.File, int)   throws java.io.IOException;
-      //   Signature: (Ljava/io/File;I)V
-      // --
-      // public java.util.zip.ZipFile(java.io.File)   throws java.util.zip.ZipException, java.io.IOException;
-      //   Signature: (Ljava/io/File;)V
+      public java.util.zip.ZipFile(java.lang.String)   throws java.io.IOException;
+        Signature: (Ljava/lang/String;)V
+      --
+      public java.util.zip.ZipFile(java.io.File, int)   throws java.io.IOException;
+        Signature: (Ljava/io/File;I)V
+      --
+      public java.util.zip.ZipFile(java.io.File)   throws java.util.zip.ZipException, java.io.IOException;
+        Signature: (Ljava/io/File;)V
 
 #. After finding the contructor method for our class, the code instantiates an
    object by passing that information into ``NewObject``. The line of code below

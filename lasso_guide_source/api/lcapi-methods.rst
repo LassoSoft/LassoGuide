@@ -10,7 +10,9 @@ it executes that module's ``registerLassoModule()`` function once and only once.
 LCAPI developers must write code to register each of the new custom method (or
 type or data source) function entry points in this ``registerLassoModule()``
 function. The following example function is required in every LCAPI module. It
-gets called once when Lasso starts up::
+gets called once when Lasso starts up:
+
+.. code-block:: c++
 
    void registerLassoModule() {
       lasso_registerTagModule( "CAPITester", "testtag", myTagFunc,
@@ -36,7 +38,9 @@ value from your custom method function.
 Basic Custom Method Function Example
 ====================================
 
-Use the following C++ code::
+Use the following C++ code:
+
+.. code-block:: c++
 
    osError myTagFunc(lasso_request_t token, tag_action_t action)
    {
@@ -50,7 +54,9 @@ Below is the Lasso code needed to get the custom method to execute::
    [CAPITester_testtag]
    <!-- This should display "Hello, World" when this page executes -->
 
-This will produce::
+This will produce:
+
+.. code-block:: none
 
    Here is the custom tag:
    Hello, World
@@ -61,7 +67,8 @@ Custom Method Tutorial
 
 This section provides a walk-through of building an example method to show how
 LCAPI features are used. This code can be found in the "SampleMethod" folder in
-the LCAPI examples which can be `downloaded here </_static/lcapi_examples.zip>`_.
+the LCAPI examples which can be
+`downloaded here <http://lassoguide.com/_static/lcapi_examples.zip>`_.
 
 The method will simply display its parameters, and it will look like the example
 below when called in Lasso code::
@@ -81,7 +88,9 @@ order. The following variations should work exactly the same::
 LCAPI Module Code
 -----------------
 
-Below is the C++ code for the custom method::
+Below is the C++ code for the custom method:
+
+.. code-block:: c++
 
    void registerLassoModule()
    {
@@ -135,7 +144,9 @@ This section provides a step-by-step walk through of the code for the custom
 method module.
 
 #. First, the new method is registered in the required ``registerLassoModule()``
-   export function::
+   export function:
+
+   .. code-block:: c++
 
       void registerLassoModule()
       {
@@ -146,7 +157,8 @@ method module.
 #. Implement ``myTagFunc``, which gets called when ``sample_method`` is
    encountered. All method functions have this prototype. When the method
    function is called, it's passed an opaque "token" data structure.
-   ::
+   
+   .. code-block:: c++
 
       osError myTagFunc( lasso_request_t token, tag_action_t action )
       {
@@ -155,13 +167,16 @@ method module.
    the ``myTagFunc`` function.
 
 #. Allocate a string which will be this method's return value.
-   ::
+   
+   .. code-block:: c++
 
       std::basic_string<char> retValue;
 
 #. The ``lasso_type_t`` variable named "opt2" and the ``auto_lasso_value_t``
    variable named "v" will be temporary variables for holding parameter values.
-   Start off by initializing them::
+   Start off by initializing them:
+
+   .. code-block:: c++
 
       lasso_type_t opt2 = NULL;
       auto_lasso_value_t v;
@@ -170,7 +185,8 @@ method module.
 #. Call ``lasso_FindTagParam()`` in order to get the value of the "-option1"
    parameter. If it is found (no error while finding the named parameter),
    append some information about it to our return value string.
-   ::
+   
+   .. code-block:: c++
 
       if( lasso_findTagParam(token, "-option1", &v) == osErrNoErr ) {
          retValue.append("The value of -option1 is ");
@@ -182,7 +198,8 @@ method module.
    ``lasso_findTagParam2``, which will preserve the original data type of the
    value as opposed to converting it into a string like ``lasso_findTagParam``
    will.
-   ::
+   
+   .. code-block:: c++
 
       if( lasso_findTagParam2(token, "-option2", &opt2) == osErrNoErr ) {
 
@@ -190,7 +207,8 @@ method module.
    in and then declare a temporary string to hold the converted number for
    display. Get the value of "op2" as a decimal then print it to the
    "tempValueFmtd" variable.
-   ::
+   
+   .. code-block:: c++
 
       double tempValue;
       char tempValueFmtd[128];
@@ -199,7 +217,8 @@ method module.
       sprintf(tempValueFmtd, "%.15lg", tempValue);
 
 #. Append the parameter's information to the return string.
-   ::
+   
+   .. code-block:: c++
 
       retValue.append(" The value of -option2 is ");
       retValue.append(tempValueFmtd);
@@ -210,7 +229,8 @@ method module.
    the number of parameters found. Use ``lasso_getTagParamCount()`` to find out
    how many parameters were passed into our method. The variable ``count`` now
    contains the number "3", if we were indeed passed three parameters.
-   ::
+   
+   .. code-block:: c++
 
       int count = 0;
       lasso_getTagParamCount(token, &count);
@@ -225,14 +245,16 @@ method module.
    passes in more than one unnamed parameter, this loop will find all of them,
    and will ignore any named parameters. (A parameter is unnamed if both the
    name and data of the struct point to the same value.)
-   ::
+   
+   .. code-block:: c++
 
       lasso_getTagParam(token, i, &v);
       if ( v.name == v.data ) {
 
 #. Again, append a descriptive line of text about the unnamed parameter and it's
    value.
-   ::
+   
+   .. code-block:: c++
 
       if ( v.name == v.data ) {
          retValue.append(" The value of unnamed param is ");
@@ -244,6 +266,7 @@ method module.
    method failed fatally and Lasso's standard page error routines will display
    an error message. In our example, ``lasso_returnTagValueString`` will return
    an error if it has a problem setting the return value.
-   ::
+   
+   .. code-block:: c++
    
       return lasso_returnTagValueString(token, retValue.c_str(), (int)retValue.length());

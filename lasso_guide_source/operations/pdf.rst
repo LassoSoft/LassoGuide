@@ -206,7 +206,7 @@ the basic type used to create PDF documents with Lasso, and is used in concert
 with all tags described in this chapter.
 
 .. class:: pdf_doc
-.. method:: pdf_doc(…)
+.. method:: pdf_doc(...)
 
    Initializes a PDF document. Uses optional parameters which set the basic
    specifications of the file to be created. Data is added to the object using
@@ -379,7 +379,7 @@ document. Many of these types are first defined as objects using methods such as
 then added to a ``pdf_doc`` object using the ``pdf_doc->add`` member method.
 Each data type is described separately in subsequent sections of this chapter.
 
-.. method:: pdf_doc->add(elm, …)
+.. method:: pdf_doc->add(elm, ...)
 
    Adds a PDF content object to a document. This can be used to add
    ``pdf_text``, ``pdf_list``, ``pdf_image``, ``pdf_table``, or ``pdf_barcode``
@@ -500,7 +500,7 @@ Once an existing PDF document has been cast as a Lasso object using
 ``pdf_read``, it may be added to a ``pdf_doc`` object using the
 ``pdf-doc->insertPage`` method.
 
-.. method:: pdf_doc->insertPage(pdf::pdf_read, number::integer, …)
+.. method:: pdf_doc->insertPage(pdf::pdf_read, number::integer, ...)
 
    Inserts a page from a ``pdf_read`` object into a ``pdf_doc`` object. Requires
    the name of a ``pdf_read`` variable, followed by a comma and the number of
@@ -878,7 +878,7 @@ then added to a ``pdf_doc`` object using the ``pdf_doc->add`` method.
 The ``pdf_text`` constructor method and parameters are described below.
 
 .. class:: pdf_text
-.. method:: pdf_text(text::string, …)
+.. method:: pdf_text(text::string, ...)
 
    Creates a text object to be added to a ``pdf_doc`` object. The constructor 
    method requires the text string to be added to the PDF document as the first
@@ -1056,7 +1056,7 @@ added to a ``pdf_doc`` objcet. The ``pdf_list`` constructor method and
 parameters are described below.
 
 .. class:: pdf_list
-.. method:: pdf_list(…)
+.. method:: pdf_list(...)
 
    Creates a list object to be added to a ``pdf_doc`` object. Text list items
    are added to this object using the ``pdf_list->add`` method. Optional
@@ -1658,7 +1658,7 @@ Tables for organizing data can be defined for use in a PDF document using the
 ``pdf_table`` type. Objects of this type are added to a ``pdf_doc`` object.
 
 .. class:: pdf_table
-.. method:: pdf_table(cols::integer, rows::integer, … )
+.. method:: pdf_table(cols::integer, rows::integer, ...)
 
    Creates a table to be placed in a PDF. Uses parameters which set the basic
    specifications of the table to be created. The first parameter is required
@@ -1783,11 +1783,11 @@ Adding Content to Table Cells
 Content is added to table cells using additional ``pdf_table`` member methods
 which are summarized below.
 
-.. method:: pdf_table->add(str::string, col::integer, row::integer, …)
-.. method:: pdf_table->add(text::pdf_text, col::integer, row::integer, …)
-.. method:: pdf_table->add(table::pdf_table, col::integer, row::integer, …)
-.. method:: pdf_table->add(image::pdf_image, col::integer, row::integer, …)
-.. method:: pdf_table->add(barcode::pdf_barcode, col::integer, row::integer, …)
+.. method:: pdf_table->add(str::string, col::integer, row::integer, ...)
+.. method:: pdf_table->add(text::pdf_text, col::integer, row::integer, ...)
+.. method:: pdf_table->add(table::pdf_table, col::integer, row::integer, ...)
+.. method:: pdf_table->add(image::pdf_image, col::integer, row::integer, ...)
+.. method:: pdf_table->add(barcode::pdf_barcode, col::integer, row::integer, ...)
    
    Inserts text content, a new nested table, an image, or a barcode into a cell.
    Requires a text string, ``pdf_text`` object, ``pdf_table`` object, 
@@ -1931,7 +1931,7 @@ Image files can be placed within PDF pages via the ``pdf_doc->addImage`` method,
 which is documented below.
 
 .. class:: pdf_image
-.. method:: pdf_image(…)
+.. method:: pdf_image(...)
 
    Casts an image file as a Lasso object so it can be placed in a PDF file.
    Requires either a ``-file``, ``-url``, or ``-raw`` parameter, as described
@@ -2018,7 +2018,7 @@ graphics similar to a true graphics editor. These member methods are summarized
 below.
 
 .. method:: pdf_doc->setColor(type::string, color::pdf_color)
-.. method:: pdf_doc->setColor(type::string, color::string, …)
+.. method:: pdf_doc->setColor(type::string, color::string, ...)
 
    Sets the color and style for subsequent drawing operations on the page.
    Requires the first parameter to specify whether the drawing action is of type
@@ -2179,7 +2179,7 @@ Barcodes can be defined for use in a PDF file using the ``pdf_barcode`` type.
 Objects of this type can then be added to  ``pdf_doc`` objects.
 
 .. class:: pdf_barcode
-.. method:: pdf_barcode(…)
+.. method:: pdf_barcode(...)
 
    Creates a barcode image to be placed in a PDF. Uses parameters which set the
    basic specifications of the barcode to be created.

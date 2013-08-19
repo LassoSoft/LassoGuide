@@ -384,7 +384,7 @@ Changing Image Size and Orientation
 Lasso provides methods that allow you to scale, rotate, crop, and invert images.
 These methods are defined below.
 
-.. method:: image->scale(…)
+.. method:: image->scale(...)
 
    Scales an image to a specified size. Requires either a ``-width`` or
    ``-height`` parameter, which specify the new size of the image using either
@@ -402,7 +402,7 @@ These methods are defined below.
    value of ``0-360``). An optional ``-bgColor`` parameter specifies the hex
    color to fill the blank areas of the resulting image.
 
-.. method:: image->crop(…)
+.. method:: image->crop(...)
 
    Crops the original image by cutting off extra pixels beyond the boundaries
    specified by the parameters. Requires ``-height`` and ``-width`` parameters

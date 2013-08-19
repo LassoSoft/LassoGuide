@@ -258,6 +258,8 @@ LASSO9\_MASTER\_HOME variables. It is recommended that these not be modified or
 removed unless a highly customized instance is required.
 
 
+.. _instance-manager-home-directory:
+
 Instance Home Directory Contents
 ================================
 

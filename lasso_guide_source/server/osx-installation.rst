@@ -8,11 +8,6 @@ These instructions detail how to install Lasso 9 Server using the standard
 installer package. An Intel-based Mac running OS X 10.5 or later is required.
 
 .. note::
-   If you want to run Lasso 9 Server along side Lasso Professional 8 be sure to
-   read the chapter on `configuring Lasso 8 and 9 to coexist on same server
-   </Configure-Lasso-8-and-9-Side-by-Side>`_ before installing Lasso 9 Server.
-
-.. note::
    If you upgrade to OS X Server after installing Lasso 9 Server, you will need
    to manually move the Lasso conf file from "/etc/apache2/other" to
    "/etc/apache2/sites" for Lasso to continue running.
