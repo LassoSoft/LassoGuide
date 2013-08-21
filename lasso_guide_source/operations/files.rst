@@ -402,7 +402,3 @@ Other Dir Operations
 .. method:: dir->parentDir()::dir
 
    This method returns the directory's parent directory as a dir object.
-
-.. method:: dir->parentDir()::dir
-
-   This method returns the directory's parent directory as a dir object.
