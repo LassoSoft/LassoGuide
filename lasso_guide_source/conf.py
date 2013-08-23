@@ -184,11 +184,11 @@ latex_elements = {
     'papersize': 'letterpaper',
 
     # The font size ('10pt', '11pt' or '12pt').
-    'pointsize': '11pt',
+    'pointsize': '10pt',
     'inputenc': '',
     'utf8extra': '',
     'fontpkg': '',
-    'fncychap':'\\usepackage[Sonny]{fncychap}',
+    'fncychap':'\\usepackage{fncychap}',
     'fontenc':'',
 
     # Additional stuff for the LaTeX preamble.
@@ -199,7 +199,7 @@ latex_elements = {
 \\setmainfont[BoldFont={Myriad Pro}]{Myriad Pro Light}
 \\setromanfont[BoldFont={Myriad Pro}]{Myriad Pro Light}
 \\setsansfont[BoldFont={Myriad Pro},Color=273777]{Myriad Pro Light}
-\\setmonofont[Scale=MatchLowercase]{Lucida Console}
+\\setmonofont[Scale=0.8]{Lucida Console}
 
 % For the Chinese character
 \\usepackage{xeCJK}

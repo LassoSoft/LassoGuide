@@ -37,7 +37,7 @@
 \definecolor{BaseColor}{cmyk}{0.0,0.0,0.0,0.6}
 \definecolor{TitleColor}{cmyk}{0.83,0.41,0,0}
 \definecolor{InnerLinkColor}{cmyk}{1,0.9,0.1,0}
-\definecolor{OuterLinkColor}{rgb}{0.216,0.439,0.388}
+\definecolor{OuterLinkColor}{rgb}{0.11,0.43,0.73}
 % Redefine these colors to something not white if you want to have colored
 % background and border for code examples.
 \definecolor{VerbatimColor}{rgb}{1,1,1}
@@ -194,7 +194,10 @@
 % \sectionauthor{name}{email}
 \newcommand{\sectionauthor}[2]{}
 
-%\titleformat{\part}[block]{\fontsize{36pt}{44pt}\color{TitleColor}}{\py@TitleColor\thepart}{2em}{\py@TitleColor}{\py@NormalColor}
+\titleformat{\part}[block]
+  {\py@HeaderFamily\centering\bfseries}
+  {\fontsize{24pt}{36pt}\selectfont \partname~\thepart\newline}
+  {0em}{\fontsize{36pt}{44pt}\selectfont }{\py@NormalColor}
 
 % Augment the sectioning commands used to get our own font family in place,
 % and reset some internal data items:
@@ -337,7 +340,7 @@
 \@ifundefined{ChTitleVar}{}{
   \ChNameVar{\raggedleft\normalsize\py@HeaderFamily}
   \ChNumVar{\raggedleft \bfseries\Large\py@HeaderFamily}
-  \ChTitleVar{\raggedleft \textrm{\Huge\py@HeaderFamily}}
+  \ChTitleVar{\raggedright \textsf{\Huge\py@HeaderFamily}}
   % This creates chapter heads without the leading \vspace*{}:
   \def\@makechapterhead#1{%
     {\parindent \z@ \raggedright \normalfont
@@ -345,7 +348,7 @@
         \DOCH
       \fi
       \interlinepenalty\@M
-      \DOTI{#1}
+      \fontsize{36}{40}\selectfont \DOTI{#1}
     }
   }
 }
