@@ -13,7 +13,7 @@
 Lasso is a powerful programming language used to drive millions of web pages
 from servers around the world. It has an easy-to-master syntax and allows fast,
 flexible development and scripting. Lasso can be used in many ways, and as a
-language provides a virtually infinite set of shortcuts for completing
+language provides a virtually infinite set of shortcuts for achieving
 development goals.
 
 .. only:: html
@@ -26,8 +26,10 @@ development goals.
 
 .. only:: latex
 
-   This document was created on |today| for |version|. The most up-to-date
-   version of this documentation containing all fixes can be found at
+   This book is meant to serve as both an introduction and comprehensive guide
+   to Lasso. It covers version |version| and was created on |today|. The
+   material in this book will evolve and improve along with Lasso. The most up-
+   to-date version of this documentation containing all fixes can be found at
    `<http://lassoguide.com>`_
 
 .. only:: html
@@ -48,12 +50,12 @@ How to Use this Guide
 
 This guide has many parts and is inteneded to cover all aspects of the Lasso
 programming language. Due to its comprehensive nature, you probably don't want
-to read it all the way through. The following is one suggestion for how to get
-the most out of this set of documentation:
+to read it all the way through. The following is a suggestion for how to get the
+most out of this set of documentation:
 
 -  Read most everything in the introduction, but read just the installation
-   instructions for the one OS you are using. Also, for the most part you can
-   skip over the chapter on "Configuration and Administration" if you are just
+   instructions for the OS you are using. Also, for the most part you can skip
+   over the chapter on "Configuration and Administration" if you are just
    getting started and come back to it when you need it.
 
 -  After reading through "A Taste of Lasso", you are probably ready to start
@@ -64,7 +66,7 @@ the most out of this set of documentation:
 -  Read through the chapter titles in all the other sections to familiarize
    yourself with the contents of this documentation. When you find yourself
    needing to know more about some aspect or feature of Lasso then read through
-   the chpater on it.
+   the chapter on it.
 
 
 Conventions Used in this Guide
@@ -75,13 +77,13 @@ or type or small snippet of code inline with other text, that code will appear
 ``looking like this``. References to variable names or to values will be in
 double quotes "like this".
 
-Longer code blocks will be offset from text a bit and will have syntax
-highlighting applied to them. The result produced by running the code will be
-displayed using line comments. If the result fits on one line, then a line
-comment in the form of ``// => Value Produced`` will be used. If multiple lines
-are needed then the first line will just have ``// =>`` while all subsequent
-lines will start with a line comment followed by a space and then the value for
-that line. For example::
+Longer code blocks will be offset from the surrounding text a bit and will have
+syntax highlighting applied to them. The result produced by running the code
+will be displayed using line comments. If the result fits on one line, then a
+line comment in the form of ``// => Value Produced`` will be used. If multiple
+lines are needed then the first line will just have ``// =>`` while all
+subsequent lines will start with a line comment followed by a space and then the
+value for that line. For example::
 
    // One line value produced
    2 + 3
@@ -97,7 +99,7 @@ For examples involving running commands from the command-line, a prompt of "$> "
 will be used. Any output to standard out that is generated from the command will
 be shown below the command as you would see it in your terminal. For examples of
 issuing Lasso commands from the interactive interpreter, a prompt of ">: " will
-be used and any values produced from running those commands will be shown using
+be used, and any values produced from running those commands will be shown using
 the line comment convention as outlined above for code blocks.
 
 
