@@ -191,37 +191,40 @@ latex_elements = {
     'fncychap':'\\usepackage{fncychap}',
     'fontenc':'',
 
+    # Need to add blank page at the end for publisher
+    'printindex': r'\printindex \pagestyle{empty} \clearpage\null\vfill\pagestyle{empty}\par',
+
     # Additional stuff for the LaTeX preamble.
-    'preamble': u"""
+    'preamble': r"""
 % Font setup (Be sure you have them installed on your machine)
-\\usepackage[quiet]{fontspec}
-\\defaultfontfeatures[Myriad Pro Light]{Ligatures=TeX}
-\\setmainfont[BoldFont={Myriad Pro}]{Myriad Pro Light}
-\\setromanfont[BoldFont={Myriad Pro}]{Myriad Pro Light}
-\\setsansfont[BoldFont={Myriad Pro},Color=273777]{Myriad Pro Light}
-\\setmonofont[Scale=0.8]{Lucida Console}
+\usepackage[quiet]{fontspec}
+\defaultfontfeatures[Myriad Pro Light]{Ligatures=TeX}
+\setmainfont[BoldFont={Myriad Pro}]{Myriad Pro Light}
+\setromanfont[BoldFont={Myriad Pro}]{Myriad Pro Light}
+\setsansfont[BoldFont={Myriad Pro},Color=273777]{Myriad Pro Light}
+\setmonofont[Scale=0.8]{Lucida Console}
 
 % For the Chinese character
-\\usepackage{xeCJK}
-\\setCJKmainfont{Apple LiGothic}
+\usepackage{xeCJK}
+\setCJKmainfont{Apple LiGothic}
 
 % To make sure figures are placed where we want them
-\\usepackage{float}
+\usepackage{float}
 
-\\let\\origfigure=\\figure
-\\renewenvironment{figure}[6]{
- \\origfigure[H]}
-{\\endlist}
+\let\origfigure=\figure
+\renewenvironment{figure}[6]{
+ \origfigure[H]}
+{\endlist}
 
 %%
 % For some reason, this works to get the default font color
 % (Using fontspec never allowed for Sphinx's overrides to kick in.)
-\\makeatletter
-\\newcommand{\\globalcolor}[1]{
-  \\color{#1}\\global\\let\\default@color\\current@color
+\makeatletter
+\newcommand{\globalcolor}[1]{
+  \color{#1}\global\let\default@color\current@color
 }
-\\makeatother
-\\AtBeginDocument{\\globalcolor{BaseColor}}
+\makeatother
+\AtBeginDocument{\globalcolor{BaseColor}}
 """,
 }
 # For PdfLaTeX I gave up, but switching to XeLaTeX got it working
@@ -241,7 +244,7 @@ latex_elements = {
 #   \cjktext{enter your chinese text here}
 
 # Override the default styles with our own.
-latex_additional_files = ['sphinx.sty']
+latex_additional_files = ['sphinx.sty', 'sphinxmanual.cls']
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
