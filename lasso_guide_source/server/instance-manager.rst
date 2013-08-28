@@ -11,18 +11,19 @@ one convenient location.
 
 Lasso Instance Manager stands as an intermediary for the individual Lasso 9
 instances. Each Lasso 9 instance is configured with a host name pattern. Lasso
-Instance Manager catches all requests with the file extension .lasso and all
-requests where the URI begins with /lasso9/. It uses the instance host name
-patterns to determine which running Lasso 9 instance should serve each request.
+Instance Manager catches all requests with the file extension ".lasso" and all
+requests where the URI path begins with "/lasso9/", and it uses the instance's
+host name patterns to determine which running Lasso 9 instance should serve each
+request.
 
 
 Initialization
 ==============
 
-After the first installation, you will be presented with simple install
+After the initial installation, you will be presented with a simple install
 acknowledgment and a process to initialize and create the first new instance.
 Under OS X this will be a web page; under Linux you will see an output in the
-terminal that gives the URL of http://<IP address>/lasso9/instancemanager.
+terminal that gives the URL of "http://<IP address>/lasso9/instancemanager".
 
 When Lasso Instance Manager is run for the first time it will look for an
 existing Lasso 9.0 installation that was installed through the Lasso 9.0
@@ -33,15 +34,15 @@ file will be disabled.
 If no existing Lasso 9.0 instance is located, a new Lasso 9 instance will be
 created as a default. This default instance will be configured with the same
 administrative username and password that was selected when first initializing
-Lasso Instance Manager.
+Lasso Instance Manager, and is set up to respond to all host names.
 
 
 Main UI
 =======
 
 The main interface for Lasso Instance Manager consists of a list of all known
-Lasso 9 instances on that machine. Below this list is a button allowing a new
-instance to be created.
+Lasso 9 instances on that machine. Below this list is a button for creating new
+instances.
 
 Each instance in the list shows:
 
@@ -49,7 +50,7 @@ Each instance in the list shows:
 -  Current run status: red is not running, yellow is running but with a
    provisional license, green is running and fully licensed.
 -  Instance name
--  Instance version
+-  Instance version (as of 9.2.5)
 -  Instance uptime
 
 .. figure:: images/im_main_screen.png
@@ -121,12 +122,12 @@ OS User
    The new instance will consist of a process that runs as this specific
    operating system user. Additionally, the Lasso home directory will have its
    permissions adjusted to restrict access to other users besides this one. The
-   default user name is \_lasso.
+   default user name is "\_lasso".
 
 OS Group
    This group name will be used for adjusting the Lasso home directory
    permissions. If left blank, the OS User's default group will be used. The
-   default group is \_lasso, which is used with the OS User name of \_lasso.
+   default group is "\_lasso", which is used with the OS User name of "\_lasso".
 
 Home Parent Directory
    Every Lasso Instance has a home directory. This directory is automatically
@@ -142,22 +143,22 @@ Home Parent Directory
       This location will differ based on the platform Lasso Instance Manager is
       running on. This location is shown at the time a new instance is being
       created. If this path is edited, the new value will become the default for
-      subsequently created instances (where the path can be further edited).
+      subsequently created instances (though the path can still be edited).
 
-   -  By default, permissions on the new instance's home directory will be set
-      to that as specified in the OS User and OS Group fields.
+   -  By default, ownership of the new instance's home directory will be set to
+      what is specified in the "OS User" and "OS Group" fields.
 
 The most important bits of information to fill in are the instance name and the
-host pattern. The rest can be left as-is unless you hav a specific need to
+host pattern. The rest can be left as-is unless you have a specific need to
 tailor this instance.
 
-By default, all new instances run as the \_lasso operating system user. For best
-security between different Lasso instances, use a different OS user name for
-each. As an OS user is permitted to read files owned by that user, Lasso
-instances with the same OS user are able to share files amongst themselves. In
-many cases this is not a problem, or is even desired, but if a single computer
-is hosting many instances for many different users, differing usernames may be
-required.
+By default, all new instances run as the "\_lasso" operating system user. For
+enhanced security between different Lasso instances, use a different OS user
+and group for each. As an OS user is permitted to read files owned by that user,
+Lasso instances with the same OS user are able to share files amongst
+themselves. In many cases this is not a problem, or may even be desired, but if a
+single computer is hosting many instances for many different users, differing
+usernames may be required.
 
 
 Delete an Instance
@@ -169,8 +170,8 @@ contains a "Delete Instance" button and a checkbox for indicating that the
 instance's home directory should be deleted as well. If this checkbox is not
 checked when the "Delete Instance" button is clicked, the instance's home
 directory will be left in place. Deleting an instance will terminate that
-instance's process, remove the instance from the list and optionally delete the
-instance's home director.
+instance's process, remove the instance from the list, and optionally delete the
+instance's home directory.
 
 
 Disable Instance
@@ -179,8 +180,8 @@ Disable Instance
 If an instance needs to be temporarily disabled, first click the "Instance
 Details" button to expose the details for the instance. Then, click the "Disable
 Instance" button. This will terminate the instance's process. The instance will
-no longer be automatically started and can no longer serve requests. To re-
-enable the instance, click the "Start Instance" button near the top of the
+no longer be automatically started and can no longer serve requests. To
+re-enable the instance, click the "Start Instance" button near the top of the
 instance view.
 
 
@@ -201,10 +202,10 @@ Setting an instance's serial number will restart that instance.
 Restart an Instance
 ===================
 
-Clicking the "Restart Instance" button will cause an alert asking whether or not
-you really want to restart the instance. Pressing "Cancel" will clear the alert
-window and nothing further will happen. Pressing "OK" will terminate the instance's process
-and then restart that process. The instance's running light will switch
+Clicking the "Restart Instance" button will open an alert confirming your
+intention to restart the instance. Pressing "Cancel" will clear the alert window
+and nothing further will happen. Pressing "OK" will terminate the instance's
+process and then restart that process. The instance's running light will switch
 to green or yellow once the instance is fully running again.
 
 If the instance isn't currently running, the button will say "Start Instance",
@@ -215,9 +216,9 @@ the instance.
 Add Instance Notes
 ==================
 
-Instance notes are for personal usage. They permit reminders or important
-details to be associated with an instance. To add an instance note, click the
-"Notes" button to reveal the instance notes view. Type your note in the provided
+Instance notes are for personal use. They permit reminders or important details
+to be associated with an instance. To add an instance note, click the "Notes"
+button to reveal the instance notes view. Type your note in the provided
 textarea and then click the "+ Add Note" button.
 
 
@@ -251,7 +252,7 @@ Environment variables control how an instance runs or how the software an
 instance is utilizing (e.g. ImageMagick or Java) operates. Click the "Variables"
 button to expose the environment variables view. All current variables are shown
 in this view. Existing variables can be removed and new variables can be added.
-Any variable modifications will not take affect until the instance is restarted.
+Any variable modifications will not take effect until the instance is restarted.
 
 New instances are automatically configured with the LASSO9\_HOME and
 LASSO9\_MASTER\_HOME variables. It is recommended that these not be modified or
@@ -273,7 +274,7 @@ directory in order to override the files provided by the Instance Manager.
 LassoModules
 ------------
 
-The "LassoModules" directory contains all Lasso C-API (LCAPI) modules, These are
+The "LassoModules" directory contains all Lasso C-API (LCAPI) modules. These are
 all loaded when an instance is first started. The instance will first load all
 modules located in the Instance Manager's home, and then all modules located in
 the instance's home. This permits an instance to replace an LCAPI module with
@@ -288,8 +289,8 @@ made to utilize a non-existant method or type, the "LassoLibraries" directory is
 searched for a suitable implementation. An instance will first look in it's own
 home directory for such a library. If not found, the Instance Manager's home
 directory is searched. This permits an instance to override a library which
-would have been loaded from the Instance Manager home directory with it's own
-version, or to have an instance-specific library.
+would have been loaded from the Instance Manager's home directory with its own
+version or to have an instance-specific library.
 
 LassoApps
 ---------
@@ -309,18 +310,27 @@ Starting & Stopping Lasso Instance Manager
 
 Stopping the Lasso Instance Manager process differs on each platform.
 
-Mac OS X
-   Execute the following command from the terminal::
+OS X
+   Execute the following command from the terminal:
 
-      sudo launchctl unload
-      /Library/LaunchDaemons/com.lassosoft.lassoinstancemanager.plist
+   .. code-block:: none
+
+      $> sudo launchctl unload /Library/LaunchDaemons/com.lassosoft.lassoinstancemanager.plist
 
 Linux
-   The CentOS 5 installer creates a service "lassoimd" for the Instance Manager
-   executable, which loads at startup. To stop execute the following command
-   from the terminal::
+   CentOS and Ubuntu installations create a service "lassoimd" for the Instance
+   Manager executable, which loads at startup. To stop execute the following
+   command from the terminal:
 
-      sudo service lassoimd stop
+   .. code-block:: none
+
+      $> sudo service lassoimd stop
+
+Windows
+   The Windows installation installs a service that can be stopped using
+   Window's built-in Services application by selecting the service and clicking
+   the square stop icon.
+
 
 Stopping the Instance Manager will also stop all Lasso instances. No Lasso
 instance will be able to serve any requests while the Instance Manager is not
@@ -330,18 +340,28 @@ When installed, Lasso Instance Manager is configured to automatically
 start when the computer boots up. If the Instance Manager has been
 manually stopped it can be manually started again.
 
-Mac OS X
-   Execute the following command from the terminal::
+OS X
+   Execute the following command from the terminal:
 
-      sudo launchctl load
-      /Library/LaunchDaemons/com.lassosoft.lassoinstancemanager.plist
+   .. code-block:: none
+
+      sudo launchctl load /Library/LaunchDaemons/com.lassosoft.lassoinstancemanager.plist
 
 Linux
-   The CentOS 5 installer creates a service "lassoimd" for the Instance Manager
-   executable, which loads at startup. To start this service, execute the
-   following command from the terminal::
+   
+   The CentOS and Ubuntu installations create a service "lassoimd" for the
+   Instance Manager executable, which loads at startup. To start this service,
+   execute the following command from the terminal:
 
-      sudo service lassoimd start
+   .. code-block:: none
+
+      $> sudo service lassoimd start
+
+Windows
+   The Windows installation installs a service that can be started using
+   Window's built-in Services application by selecting the service and clicking
+   the triangle play icon.
+
 
 
 Uninstalling Lasso Instance Manager
@@ -352,4 +372,5 @@ installer. Run this to uninstall Lasso Instance Manager. This action will remove
 any Lasso instance home directories which have been created in the default
 location. This will not remove any home directories which were created in
 alternate custom locations. On Linux, use the standard package manager (yum or
-apt) to uninstall Lasso Instance Manager.
+apt) to uninstall Lasso Instance Manager. On Windows, use the system's built-in
+uninstall utility.

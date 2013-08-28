@@ -4,58 +4,59 @@
 Instance Administration & Configuration
 ***************************************
 
-Lasso 9 Server provides a convenient, Web-based interface for configuring Lasso
-instance settings, managing and maintaining databases, and much more. This
-interface is referred to as the Lasso Server Admin.
+Lasso 9 Server provides a convenient, Web-based interface for configuring a
+Lasso instance's settings, managing and maintaining databases, and much more.
+This interface is referred to as the Lasso Server Admin.
 
-This chapter provides an overview of Instance Administration, and is divided
-into the following sections.
+This section provides an overview of Lasso Server Admin, and is divided into the
+following sections:
 
-:ref:`Accessing Instance Administration<instance-administration-access>`
-   Describes how to connect to Instance Administration.
+:ref:`Accessing Lasso Server Admin<instance-administration-access>`
+   Describes how to connect to Lasso Server Admin.
 
-:ref:`Exploring Instance Administration<instance-administration-overview>`
-   Describes the three main sections of Instance Administration.
+:ref:`Exploring Lasso Server Admin<instance-administration-overview>`
+   Describes the three main sections of Lasso Server Admin.
 
 :ref:`Administrative Tasks<instance-administration-interface>`
    Describes the administrative tasks that can be performed in each of the main
    sections found in the Main Menu. These tasks are as follows:
 
-   -  :ref:`Configuring Datasources<instance-administration-datasources>`
+   -  :ref:`Configuring Data Sources<instance-administration-datasources>`
    -  :ref:`Entering Lasso 9 Server License<instance-administration-license>`
    -  :ref:`Manage Lasso Users<instance-administration-users>`
    -  :ref:`Manage Lasso Groups<instance-administration-groups>`
    -  :ref:`Monitoring & Managing Lasso Logs<instance-administration-log>`
    -  :ref:`Monitoring & Managing Lasso's Email Queue<instance-administration-email>`
    -  :ref:`Managing Lasso Sessions<instance-administration-sessions>`
-   -  :ref:`Browsing Datasources<instance-administration-db-browser>`
+   -  :ref:`Browsing Data Sources<instance-administration-db-browser>`
 
-The Lasso Server Admin is accessed via a Web browser similar to a standard HTML
-page and can be accessed in any Web browser that meets the Web browser
-requirements listed in the configuration sections of this guide.
 
 .. _instance-administration-access:
 
-Accessing Instance Administration
-=================================
+Accessing Lasso Server Admin
+============================
 
 Lasso 9 Server can have multiple independent instances defined within
 :ref:`Lasso Instance Manager<instance-manager>`. Each instance handles incoming
 Web requests based on the host name used to access the admin.
 
-A single instance will capture all incoming Web requests. If no additional
+The default instance will capture all incoming Web requests. If no additional
 instances have been created, then Lasso Server Admin for the sole instance can
-be accessed using one of the following URLs. Use localhost if accessing Lasso
-Server Admin from a browser on the same machine as the Lasso Service. Otherwise,
-replace www.example.com with the actual domain name or IP address::
+be accessed using one of the following URLs. (Use "localhost" if accessing Lasso
+Server Admin from a browser on the same machine as the Lasso service. Otherwise,
+replace "www.example.com" with the actual domain name or IP address.)
+
+.. code-block:: none
 
    http://www.example.com/lasso9/admin
    http://localhost/lasso9/admin
 
-To access the Lasso Server Admin for a particular instance, it is necessary to
+To access Lasso Server Admin for a particular instance, it is necessary to
 construct a URL that meets the criteria for the instance.  For example, if an
 instance has a criteria specifying that the host name must be secure.example.com
-then the following URL would load the Lasso Server Admin for that instance::
+then the following URL would load the Lasso Server Admin for that instance:
+
+.. code-block:: none
 
    http://secure.example.com/lasso9/admin
 
@@ -64,8 +65,8 @@ Web browser will not prompt if the Lasso Server Admin has already been accessed
 using the browser in the current session or if the authentication information
 has been stored in a keychain, passport, or browser preferences.
 
-If an error is displayed, make sure Lasso Service and the Web server are running
-as described in the configuration sections of this guide.
+If an error is displayed, make sure Lasso Server and the Web server are running
+as described in the installation sections of this guide.
 
 .. figure:: images/server_admin_landing.png
    :align: center
@@ -77,8 +78,8 @@ as described in the configuration sections of this guide.
 
 .. _instance-administration-overview:
 
-Exploring Instance Administration
-=================================
+Exploring Lasso Server Admin
+============================
 
 System Status
 -------------
@@ -93,10 +94,10 @@ The System Status tab, located in the top right portion of the page, contains
 information regarding the Lasso Server process.
 
 -  **Uptime:** Length of time current Lasso Server process has been running.
--  **CPU Time:**
+-  **CPU Time:** How much CPU time has been consumed
 -  **Threads:** Number of threads in use by current Lasso Server process.
--  **Memory:**
--  **Free:**
+-  **Memory:** Amount of memory consumed by the instance
+-  **Free:** Memory Lasso has allocated but is not currently using.
 
 .. _instance-administration-quick-code:
 
@@ -117,20 +118,20 @@ in the top, center of the page.
 The Lasso Quick Code console has two configurable options:
 
 <?lasso
-   When this option is checked, Lasso Quick Code defaults to LassoScript coding.
+   When this option is checked, the code in Lasso Quick Code is treated as
+   wrapped in "<?lasso ... ?>".
 
 Auto-collect
-   When this options is checked, Lasso Quick Code will automatically display the
-   results of the code in the Result box. When not checked, nothing will be
-   output.
+   When this options is checked, Lasso Quick Code will display the results of
+   auto-collecting the code in the "Result" box. output.
 
 
 Main Menu
 ---------
 
-Lasso 9 Server provides a new streamlined administration interface, referred to
-here as the Lasso Server Admin. The Lasso Server Admin is primarily navigated by
-using the pop up menu on the upper left portion of the page.
+The Lasso Server Admin is primarily navigated by using the pop up menu on the
+upper left portion of the page. This is the "Main Menu" which contains the
+following areas and options:
 
 .. figure:: images/server_admin_main_menu.png
    :align: center
@@ -164,30 +165,29 @@ Administrative Tasks
 
 Each of the links in the Main Menu take you to different sections in Lasso
 Server Admin to perform specific adminstrative tasks. These tasks are outlined
-in the documentation below.
+in the documentation that follows.
 
 .. _instance-administration-datasources:
 
-Configuring Datasources
------------------------
+Configuring Data Sources
+------------------------
 
 Clicking on the "Datasources" link in the Main Menu will bring you to a web page
-that lists the data sources your installation of Lasso 9 Server has access to.
-Clicking on a data source will reveal a list of hosts that have already been
-configured as well as an "Add host" button. Clicking on that button reveals a 
-form to enter the "Host", "Port", "Username", and "Password" information for a
-new host. Entering this information and clicking "Add Host" will add the new
-host to the list of hosts for that data source.
+that lists the data sources your instance can access. Clicking on a data source
+will reveal a list of hosts that have already been configured as well as an "Add
+host" button. Clicking on that button reveals a  form to enter the "Host",
+"Port", "Username", and "Password" information for a new host. Entering this
+information and clicking "Add Host" will add the new host to the list of hosts
+for that data source.
 
 Clicking on a host in the list of hosts for a data source will reveal a form
 that allows you to edit the connection information for the host or to delete the
-host. Below that form is a list of databases the credentials entered have access
-to.
+host. Below that form is a list of databases the credentials entered can access.
 
 Clicking on a database reveals a form that allows the alias name for that
 database to be set. The alias name is what is matched when the ``-database``
 parameter is used in an ``inline`` method. Below that form is a list of tables
-in the database that the entered credentials have access to.
+in the database that the entered credentials can access.
 
 See the :ref:`Setting Up Data Sources<datasource-setup>` chapter for detailed
 information on connecting to various data sources.
@@ -210,7 +210,7 @@ Manage Lasso Users
 
 Clicking on the "Users" link in the Main Menu will take you to an interface that
 allows you to add, remove, and search for Lasso users. Lasso users are stored in
-the instances internal SQLite databases. Each user has a name, password, and a
+the instance's internal SQLite databases. Each user has a name, password, and a
 status (enabled or disabled). They can optionally have a comment and belong to
 Lasso groups. These users can be used with the ``auth`` methods for HTTP
 authentication.
@@ -219,7 +219,7 @@ During initial installation and setup of the instance, Lasso Server Admin
 creates a user in the "ADMINISTRATORS" group and uses their credentials to
 authenticate anyone trying to access itself. Be sure you don't delete this user
 without first creating another user in the "ADMINISTRATORS" group. In fact, you
-should always have one adminstrator that can log in to Server Admin.
+should always have one adminstrator that can log in to Lasso Server Admin.
 
 
 Search for a User
@@ -227,11 +227,11 @@ Search for a User
 
 You have two ways to filter the list of Lasso users to find the user(s) you are
 seeking. You can filter users based on their membership to a group by selecting
-a group in the "Group" drop down list. Changing this selection will cause the
-list of users to update itself based on the criteria you have selcted. You can
+a group in the "Group" drop-down list. Changing this selection will cause the
+list of users to update itself based on the criteria you have selected. You can
 also search for a user by their name by typing part or all of the name in the
 "Name" text field. As you type you will notice the list updating itself based on
-the data you are entering.
+the data you enter.
 
 
 Add a User
@@ -259,16 +259,16 @@ Manage Lasso Groups
 
 Clicking on the "Groups" link in the Main Menu will take you to an interface
 that allows you to add, remove, and search for Lasso groups. Lasso groups are
-stored in the instances internal SQLite databases. Each group has a name and a
+stored in the instance's internal SQLite databases. Each group has a name and a
 status (enabled or disabled). They can optionally also have a comment. These
 groups can be used with Lasso users and the ``auth`` methods for HTTP
 authentication.
 
-During initial installation and setup of the instance, Lasso Server Admin
+During the initial installation and setup of the instance, Lasso Server Admin
 creates a group named "ADMINISTRATORS" and any user assigned to that group can
-authenticate into the Server Admin application. There is also a special group
-named "Any Group" that will appear in the Users area of Server Admin and is a
-way to reference every user since everyone is a member of this special group.
+authenticate into Lasso Server Admin. There is also a special group named "Any
+Group" that will appear in the Users area of Server Admin. This is a way to
+reference every user since everyone is a member of this special group.
 
 
 Search for a Group
@@ -276,7 +276,7 @@ Search for a Group
 
 You can filter groups based on their name by typing part or all of the name in
 the "Name" text field. As you type you will notice the list updating itself
-based on the data you are entering.
+based on the data you enter.
 
 
 Add a Group
@@ -303,15 +303,15 @@ Monitoring & Managing Lasso Logs
 
 Clicking on the "Log Book" link in the Main Menu takes you to the Log Book web
 page. The Log Book page allows you to view and delete errors, warnings, detail
-messages, deprecated functionality warnings, and database action statements that
-have been logged by Lasso 9 Server via the ``log`` methods. In this area you can
-also set site logging options.
+messages, and deprecated functionality warnings that have been logged by Lasso 9
+Server via the ``log`` methods. In this area you can also set site logging
+options.
 
 .. note::
-   Configuring error logging in Lasso 9 Server Administration is not the same
-   thing as configuring page-level error handling, such as for syntax errors and
-   security errors. Page-level error handling is described in the Error
-   Reporting chapter of the Lasso Language Guide.
+   Configuring error logging in Lasso Server Admin is not the same thing as
+   configuring page-level error handling, such as for syntax errors and security
+   errors. Page-level error handling is described in the Error Reporting chapter
+   of the Lasso Language Guide.
 
 
 Filter Log Messages
@@ -319,7 +319,7 @@ Filter Log Messages
 
 You can filter log entries based on their message by typing part of the message
 in the "Message" text field. As you type you will notice the list updating
-itself based on the data you are entering.
+itself based on the data you enter.
 
 
 Delete Log Messages
@@ -332,7 +332,7 @@ Delete All Messages
 
 Delete All Found
    This will delete all log entries that have been found based on the search
-   term in hte "Messages" text field above.
+   term in the "Messages" text field above.
 
 
 Log Book Settings
@@ -341,7 +341,7 @@ Log Book Settings
 Click on the "Settings" button at the top right of the Log Book interface. A
 modal window will appear with a matrix that allows you to select where each type
 of log message is sent to. Make your selections and then click the "Save" button
-to update Lasso 9 Server's logging settings.
+to update the instance's logging settings.
 
 
 .. _instance-administration-email:
@@ -350,17 +350,17 @@ Monitoring & Managing Lasso's Email Queue
 -----------------------------------------
 
 Clicking on the "Email Queue" link in the Main Menu takes you to a web page that
-displays Lasso 9 Server's email queue. The email queue logs all email messages
-that are sent from Lasso Server. Messages remain in the queue while they are
-being sent to the SMTP mail server looked up by Lasso or specified in the
-[Email_Send] method by the developer. For more information, see the Email
-chapter in the Lasso Language Guide.
+displays the instance's email queue. The email queue logs all email messages
+that are being sent from the instance. Messages remain in the queue while they
+are being sent to the SMTP mail server looked up by Lasso or specified in the
+:meth:`email_send` method by the developer. For more information, see :ref:`the
+documentation on Sending Email`.
 
 
 Filtering Email Messages
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can filter the email messages in the queue being displayed by their status:
+You can filter the email messages being displayed in the queue by their status:
 "Any", "Queued", "Sending", "Error". Simply choose one of those statuses from
 the "Queue Status" drop-down menu and the queue entries will automatically
 update to reflect your selection.
@@ -388,9 +388,9 @@ the location for storing sessions.
 Viewing Sessions
 ^^^^^^^^^^^^^^^^
 
-Sessions can be stored in any of the available datasources for your installation
-of Lasso 9 as well as in memory. The default is to use an SQLite database and
-table to store session information. You can view the session information you
+Sessions can be stored in any of the available data sources for your instance of
+Lasso 9 Server as well as in memory. The default is to use an SQLite database
+and table to store session information. You can view the session information you
 have stored in any of the data sources by selecting the data source from the
 "Driver" drop-down menu and then selecting the appropriate values in the
 "Database" and "Sessions Table" drop-down menus if appropriate. (These last two
@@ -428,22 +428,22 @@ the "SQLite" session driver. You can change this by taking the following steps:
 
 .. _instance-administration-db-browser:
 
-Browsing Datasources
---------------------
+Browsing Data Sources
+---------------------
 
 Clicking on the "DB Browser" link in the Main Menu takes you to the DB Browser
 section of Lasso Server Admin. The DB Browser provides a Web-based interface
-that allows you to issue SQL queries to Lasso-accessible SQL databases. This
-includes any SQLite, MySQL, or SQL-compliant ODBC database that has been set up
-in the Datasource area of Lasso Sever Admin.
+that allows you to issue SQL queries to accessible SQL databases. This includes
+any SQLite, MySQL, or SQL-compliant ODBC database that has been set up in the
+"Datasource" area of Lasso Sever Admin.
 
-Browsing data is as easy selecting the appropriate values in the "Datasource",
-"Host", "Database", and "Table" drop-down menus. The Server Admin will
-automatically issue a "SELECT \*" on the chosen table and display the results in
-the table below.
+Browsing data is as easy as selecting the appropriate values in the
+"Datasource", "Host", "Database", and "Table" drop-down menus. Lasso Server
+Admin will automatically issue a "SELECT \*" on the chosen table and display the
+results in the table below.
 
 You can run your own SQL statements on the chosen host/database/table by
 entering them in the provided "Statement" textarea and clicking the "Issue
 Statement" button below the textarea. The results will be shown in the table
 below. If there are any errors in your SQL statement, an alert message will
-inform you of the error and no results will be displayed.
+inform you of the error, and no results will be displayed.
