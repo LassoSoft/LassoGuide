@@ -20,7 +20,8 @@ file. Just create a normal HTML file with the ".lasso" suffix and you can
 intersperse Lasso code between the following dilimiters: "[ ... ]", "<?lasso ...
 ?>", and "<?= ... ?>".
 
-::
+For example, you could place the following code in a file named "test.lasso" in
+the root of your web root::
 
    <?lasso
       local(now) = date
@@ -44,9 +45,11 @@ intersperse Lasso code between the following dilimiters: "[ ... ]", "<?lasso ...
       [^}]
    </body>
 
-Now all you need to do is use your web browser to request the URL from the
-server and it will use Lasso to send you back an HTML page with something like
-the following content::
+Now all you need to do is use a web browser to request the URL from the server
+(ex http://www.example.com/test.lasso) and it will use Lasso to send you back an
+HTML page with something like the following content:
+
+.. code-block:: none
    
    This page was loaded on Wed, July 31, 2013 at 10:36:42 AM
    It is currently morning!
@@ -55,10 +58,10 @@ the following content::
 Creating LassoApps
 ==================
 
-A LassoApp is a bundle of source files, HTML, images and other media types into
-a single deployable unit. While developing, this deployable unit is a folder
-with the contents, but you can also choose to compile the bundle and have a
-binary file you distribute.
+A LassoApp is a bundle of source files, HTML files, images and other media files
+into a single deployable unit. While developing, this deployable unit is a
+folder with the contents, but you can also choose to compile the bundle and have
+a binary file you distribute.
 
 To create a LassoApp, create a directory in the LassoApps directory of your
 instance's home folder. By default, URLs for the LassoApp will start with
@@ -71,8 +74,8 @@ The _install Files
 ------------------
 
 The first time a LassoApp is loaded by the instance, it will execute any files
-with filename beginning with "_install" and ending with ".lasso" or ".inc". For
-example, an install file that performs a specific task, such as creating a
+with a file name beginning with "_install" and ending with ".lasso" or ".inc".
+For example, an install file that performs a specific task, such as creating a
 database required by the app, could be named "_install.create_dbs.lasso".
 
 
@@ -94,20 +97,22 @@ Matching URLs to Code Files
 LassoApps match the code files they process based on the type of content
 requested as represented by the extension in the URL path. The default type is
 HTML if no extension is used or if the ".lasso" extension is used. That means
-the following example URLs will all match the same code::
+the following example URLs will all match the same code:
+
+.. code-block:: none
 
    http://example.com/lasso9/AddressBook/people
    http://example.com/lasso9/AddressBook/people.html
    http://example.com/lasso9/AddressBook/people.lasso
 
 Lasso matches those URLs to a file named "people.lasso" in the root of the
-AddressBook directory. It processes that file and then it checks for amy
+AddressBook directory. It processes that file and then it checks for any
 secondary files to process. These secondary files are based on the content
 extension, so in the case of the above URLs, it will execute a file named
-"people[html].lasso". The primary file can return a value that can be used by the
-secondary file. This allows you to easily separate business logic from view
-code. (Note, if you use the URL ending in "people.lasso", then Lasso won't look
-for a secondary file to run based on content, only that code will be run.)
+"people[html].lasso". The primary file can return a value that can be used by
+the secondary file. This allows you to easily separate business logic from view
+code. (Note, if you use the URL ending in "people.lasso", Lasso won't look for a
+secondary file to run based on content, only that code file will be run.)
 
 For example, your "people.lasso" file might contain the code to create an array
 of people objects and then return that array at the end::
@@ -115,20 +120,21 @@ of people objects and then return that array at the end::
    local(found_people) = array
 
    /** Code to Populate that Array **/
-   // ....
+   // ...
 
    return #found_people
 
-Your "people[html].lasso" file maight look something like this::
+Your "people[html].lasso" file might look something like this::
 
    <?lasso
       // Store the value returned from people.lasso
       local(contacts) = #1
    ?>
+   <!DOCTYPE html>
    <html>
    <head>
       <title>Your Contacts</title>
-   </head
+   </head>
    <body>
       <table>
       <thead>

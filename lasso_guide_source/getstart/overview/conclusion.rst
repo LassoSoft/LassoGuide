@@ -5,14 +5,14 @@ Conclusion
 **********
 
 This has been just a taste of Lasso programming. Hopefully this guide has wet
-your appetite and you can now begin to use it for your own projects which is
+your appetite and you can now begin to use it for your own projects, which is
 always the best way to learn any language.
 
 .. only:: latex
 
    As you start to use Lasso, we recommend  reading through :ref:`the entire
    Language Guide <lasso-language-guide>` as it will go into detail about the
-   grammar, syntax, and features only outlined in this guide. Also, take a look
+   grammar, syntax, and features only outlined in this tour. Also, take a look
    at the section and chapter titles in the rest of this documentation to
    familiarize yourself with what it contains. When you find yourself needing to
    know more about those features / capabilities / types, then read the chapter

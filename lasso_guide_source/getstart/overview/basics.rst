@@ -9,9 +9,9 @@ It assumes you have prior programming experience and that you have properly
 installed Lasso and configured Lasso to work with your web server. (See
 :ref:`the installation guide for your OS. <lasso-installation>`)
 
-The examples in this particular chapter can all be run inside 
-:ref:`Lasso Quick Code <instance-administration-quick-code>` area in the
-instance administration web application. (Be sure to leave the "<?lasso" and
+The examples in this particular chapter can all be run inside the
+:ref:`Lasso Quick Code <instance-administration-quick-code>` area in the Lasso
+Server Admin web application. (Be sure to leave the "<?lasso" and
 "Auto-collect" checkboxes checked.)
 
 
@@ -35,7 +35,7 @@ called, and that value will therefore be outputted. (For a counter-example,
 assignment statements don't produce an object and so will *not* cause any value
 to be outputted.)
 
-In our example, we use a string literal to create a string object. Since that
+In our example, we used a string literal to create a string object. Since that
 statement produces an object, Lasso then calls the ``string->asString`` method
 on that object which has been implemented to return the value of the string.
 
@@ -56,7 +56,7 @@ block will be::
    else(false)
       "will never get to me either"
    else
-      `got me, but I won't be displayed`
+      `got to me, but I won't be displayed`
    }
 
    loop(5) => {^
@@ -68,7 +68,7 @@ block will be::
 Here we have a basic ``if`` block using a normal capture (``{ ... }``) and a
 ``loop`` block using an auto-collected capture (``{^ ... ^}``). The auto-collect
 captures concatenate all the values produced with "asString" and returns them
-while normal captures just ignores them.
+while normal captures just ignore them.
 
 
 Variables
@@ -79,8 +79,8 @@ variables. Local variables are lexically scoped while thread variables are
 available anywhere in the execution of the thread they are defined in. Here is
 an example of creating and using both types of variables::
 
-   var(threadVar)  = 12    // create a thread variable
-   local(localVar) = 30    // create a local variable
+   var(threadVar)  = 12    // creates a thread variable
+   local(localVar) = 30    // creates a local variable
 
    $threadVar + #localVar
    // => 42
@@ -99,4 +99,6 @@ easy to assign values from array-like data types into locals::
 For more information on variables, read :ref:`the Variables chapter <variables>`
 in the Language Guide.
 
-:ref:`Next Tutorial: Lasso Programming Features <overview-lasso-features>`
+.. only:: html
+
+   :ref:`Next Tutorial: Lasso Programming Features <overview-lasso-features>`
