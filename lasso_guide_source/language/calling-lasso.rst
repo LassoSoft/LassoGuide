@@ -5,14 +5,14 @@
 Calling Lasso
 *************
 
-This chapter describes two different methods of calling Lasso either using Lasso
-as a script processor on the command line or using Lasso as a web application
-server through the web browser.
+This chapter describes two different methods of calling Lasso: either using
+Lasso as a script processor on the command line or using Lasso as a Web
+application server through the Web browser.
 
-This information is presented in the overview as it is vital to understanding
-the rest of the topics and examples given in this document.
+This information is presented at the start of the Language Guide as it is vital
+to understanding the rest of the topics and examples given in this document.
 
--  Calling Lasso Web Pages describes how to call a Lasso page through a web
+-  Calling Lasso Web Pages describes how to call a Lasso page through a Web
    browser
 -  Calling Lasso on the CLI describes how to execute Lasso code on the command
    line.
@@ -21,8 +21,8 @@ the rest of the topics and examples given in this document.
 Calling Lasso Web Pages
 =======================
 
-Lasso is most often used to serve web applications. Lasso code can be embedded
-in HTML pages and executed before they are served to web visitors. A page which
+Lasso is most often used to serve Web applications. Lasso code can be embedded
+in HTML pages and executed before they are served to Web visitors. A page that
 includes Lasso code within it is referred to as a :term:`Lasso page`.
 
 Lasso code is embedded into a regular HTML file by inserting the code between a
@@ -63,12 +63,13 @@ will be treated as plain text. Turning square brackets off works on a per-file
 basis, and there is no way to turn them back on once they are off.
 
 To illustrate how Lasso code is embedded into a Lasso page, the following code
-may be stored in a file named "test.lasso" contained within the web server root.
+may be stored in a file named "test.lasso" contained within the Web server root.
 
 .. _call-web-example:
 
 ::
 
+   <!DOCTYPE html>
    <html>
    <head>
       <title>My Lasso Page</title>
@@ -79,12 +80,12 @@ may be stored in a file named "test.lasso" contained within the web server root.
    </html>
 
 The above begins with plain HTML markup, then embeds two Lasso code expressions
-into the document using the delimiter pair. When this file is loaded through a
-browser, the code shown above is executed and the result is returned to the web
+into the document using a delimiter pair. When this file is loaded through a
+browser, the code shown above is executed and the result is returned to the Web
 browser.
 
-If the embedded message is not visible in the web browser or an error occurs
-then you should make sure that Lasso Server has been installed properly on your
+If the embedded message is not visible in the Web browser or an error occurs
+then you should make sure that Lasso Server has been properly installed on your
 machine. Consult the :ref:`installation guide for your operating system
 <lasso-installation>` for complete instructions.
 
@@ -94,13 +95,13 @@ machine. Consult the :ref:`installation guide for your operating system
 Calling Lasso on the CLI
 ========================
 
-Lasso code can be specified in a file and then executed on the command line.
-This style of execution happens directly and does not require a web server or
-web browser. Additionally, since a web server or web request is not in effect
-during such execution, none of the web serving specific functionality is
-available in this context. (For more information on the command-line tools that
-come as part of the Lasso platform, see the chapter :ref:`Lasso Command-Line
-Tools <command-line-tools>`.)
+Lasso code can be saved in a file and then executed on the command line. This
+style of execution happens directly and does not require a Web server or Web
+browser. Additionally, since a Web server or Web request is not in effect during
+such execution, none of the Web-serving specific functionality is available in
+this context. (For more information on the command-line tools that come as part
+of the Lasso platform, see the chapter :ref:`Lasso Command-Line Tools
+<command-line-tools>`.)
 
 
 Using the lasso9 Tool
@@ -108,13 +109,15 @@ Using the lasso9 Tool
 
 The lasso9 tool is an executable included with Lasso that handles the parsing
 and execution of Lasso code from the command line. For example, the following
-text might be placed into a file test.lasso::
+text might be placed into a file "test.lasso"::
 
    'The current date is ' + date
 
 The file can be executed from the terminal using the lasso9 tool. If the reader
 has created such a test file and has done a ``cd`` to the location of the file,
-the file can be executed like so::
+then the file can be executed like so:
+
+.. code-block:: none
 
    $> lasso9 ./test.lasso
    The current date is 2012-08-08 15:07:25
@@ -126,10 +129,10 @@ machine. Consult the :ref:`installation guide for your operating system
 
 When running Lasso code on the command line, delimiters are not required, though
 they can be used. By default, text is assumed to consist of Lasso code only,
-unless the file's text begins with a ``<`` character, in which case it is
-assumed to start out as plain text. For example, the :ref:`test file shown in
-"Calling Lasso Web Pages"<call-web-example>` could be run on the command line
-and would generate the expected HTML result, including the embedded message.
+unless the file's text begins with a "<" character, in which case it is assumed
+to start out as plain text. For example, the :ref:`test file shown in "Calling
+Lasso Web Pages"<call-web-example>` could be run on the command line and would
+generate the expected HTML result, including the embedded message.
 
 
 Associating Files with the lasso9 Tool
@@ -144,23 +147,23 @@ The :term:`hashbang` line for a standard installation looks like this::
 
    #!/usr/bin/lasso9
 
-Using the same test.lasso file as before, but placing the :term:`hashbang` line
-at the top, the complete example would look as follows::
+Using the same "test.lasso" file as before, but placing the :term:`hashbang`
+line at the top, the complete example would look as follows::
 
    #!/usr/bin/lasso9
    'The current date is ' + date
 
-Once it is made executable, the file can be directly executed on the
+Once it has been made executable, the file can be directly executed on the
 command line.
 
-::
+.. code-block:: none
 
    $> ./test.lasso
    The current date is 2012-08-08 15:07:25
 
 The result, regardless of the execution method, is identical. Also, note that
 the file's extension (".lasso" in this case) is irrelevant when executing Lasso
-code on the command line. The example file could just have easily been called
+code on the command line. The example file could just have easily been named
 "test", with no extension, and the results would have been the same.
 
 
@@ -172,7 +175,7 @@ given to the tool is the Lasso code to be executed. This method bypasses the
 need to first place the code in a file. Instead, the source code can be given
 directly to the lasso9 tool when it is invoked.
 
-::
+.. code-block:: none
 
    $> lasso9 -s "'The current date is ' + date"
    The current date is 2012-08-08 15:07:25
@@ -190,9 +193,11 @@ Executing Code from STDIN
 
 The lasso9 tool can also accept code to execute from stdin. This is useful when
 piping results from one command to the lasso9 tool in order for it to execute
-the given code. In order to have lasso9 get its code from stdin, the ``--``
+the given code. In order to have lasso9 get its code from stdin, the "--"
 argument is used. The following example uses the standard "echo" command to
-produce code for the lasso 9 tool to read from stdin and then execute::
+produce code for the lasso 9 tool to read from stdin and then execute:
 
-   $> echo "'The current date is ' + date" \| lasso9 --
+.. code-block:: none
+
+   $> echo "'The current date is ' + date" | lasso9 --
    The current date is 2012-08-08 15:07:25

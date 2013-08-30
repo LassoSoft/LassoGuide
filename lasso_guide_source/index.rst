@@ -48,7 +48,7 @@ development goals.
 How to Use this Guide
 =====================
 
-This guide has many parts and is inteneded to cover all aspects of the Lasso
+This guide has many parts and is intended to cover all aspects of the Lasso
 programming language. Due to its comprehensive nature, you probably don't want
 to read it all the way through. The following is a suggestion for how to get the
 most out of this set of documentation:
