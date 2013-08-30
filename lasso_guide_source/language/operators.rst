@@ -397,6 +397,17 @@ three parameters.
    #lv(1, 'two', 3)
    // => local "lv" invoked with parameters
 
+It is also possible to dynamically generate parameters and programmatically pass
+them into an invocation. The following example results in the equivalent
+invocation as the previous one, but the parameters have first been added to an
+``array`` named "my_params" and the invocation syntax includes a colon after the
+opening parenthesis.
+
+::
+   local(my_params) = array(1, 'two', 3)
+   #lv(: #my_params )
+   // => local "lv" invoked with parameters
+
 The concept behind **invoke** is somewhat abstract, but it permits
 objects and methods to operate as "function objects". This is an object
 that can be called upon to do "a thing" with zero or more parameters and
