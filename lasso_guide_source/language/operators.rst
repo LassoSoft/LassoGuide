@@ -404,6 +404,7 @@ invocation as the previous one, but the parameters have first been added to an
 opening parenthesis.
 
 ::
+
    local(my_params) = array(1, 'two', 3)
    #lv(: #my_params )
    // => local "lv" invoked with parameters
