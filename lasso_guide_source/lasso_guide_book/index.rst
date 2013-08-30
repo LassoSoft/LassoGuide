@@ -120,6 +120,7 @@ Networking & Communications
 
 .. toctree::
 
+   /operations/curl
    /operations/sending-email
    /operations/retrieving-email
    /operations/dns

@@ -51,6 +51,7 @@
 .. toctree::
    :maxdepth: 2
 
+   curl
    sending-email
    retrieving-email
    dns
