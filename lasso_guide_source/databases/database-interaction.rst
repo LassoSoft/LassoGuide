@@ -161,7 +161,7 @@ perform database actions that are available in Lasso.
 .. note:: 
    Table *Inline Database Action Parameters* lists all of the database actions
    that Lasso supports. Individual data source connectors may only support a
-   subset of these parameters. The Lasso Connector for FileMaker Pro does not
+   subset of these parameters. The Lasso Connector for FileMaker Server does not
    support the ``-sql`` action. See the documentation for third party data
    source connectors for information about what parameters they support.
 
@@ -956,9 +956,10 @@ Showing Database Schema
 
 The schema of a database can be inspected using the ``database_…`` methods or
 the inline ``-show`` action parameter which allows information about a database
-to be returned using the ``field_name`` method. Value lists within FileMaker Pro
-databases can also be accessed using the ``-show`` parameter. This is documented
-in the :ref:`FileMaker Data Sources <filemaker-data-sources>` chapter.
+to be returned using the ``field_name`` method. Value lists within FileMaker
+Server databases can also be accessed using the ``-show`` parameter. This is
+documented in the :ref:`FileMaker Data Sources <filemaker-data-sources>`
+chapter.
 
 The ``-show`` action parameter functions like the ``-search`` parameter except
 that no name/value pair parameters, sort parameters, results parameters, or
@@ -1505,7 +1506,7 @@ the data source used (e.g. MySQL 4.x) supports this functionality. See your data
 source documentation to see if transactions are supported.
 
 .. note::
-   SQL transactions are not supported for FileMaker Pro data sources.
+   SQL transactions are not supported for FileMaker Server data sources.
 
 SQL transactions can be achieved within nested ``inline`` methods. A single
 connection to MySQL or JDBC data sources will be held open around the outer

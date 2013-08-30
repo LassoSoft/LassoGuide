@@ -2372,7 +2372,7 @@ multiple text styles.
       -font=#font2, 
       -indent=30
    )
-   #list->add('FileMaker Pro')
+   #list->add('FileMaker Server')
    #list->add('MySQL')
    #list->add('Microsoft SQL Server')
    #list->add('Frontbase')

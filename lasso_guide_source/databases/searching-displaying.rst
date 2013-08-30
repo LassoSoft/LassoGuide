@@ -28,7 +28,7 @@ database action.
    |``-findAll``|Finds all records within a database.              |
    +------------+--------------------------------------------------+
    |``-random`` |Returns a random record from a database. Only     |
-   |            |works with FileMaker Pro databases.               |
+   |            |works with FileMaker Server databases.            |
    +------------+--------------------------------------------------+
 
 How Searches are Performed
@@ -40,9 +40,9 @@ performed using Lasso:
 #. Lasso checks the database, table, and field name specified in the search to
    ensure that they are all valid.
 #. The search query is formatted and sent to the database application. FileMaker
-   Pro search queries are formatted as URLs and submitted to the Web Companion.
-   MySQL search queries are formatted as SQL statements and submitted directly
-   to MySQL.
+   Server search queries are formatted as URLs and submitted to the Web
+   Companion. MySQL search queries are formatted as SQL statements and submitted
+   directly to MySQL.
 #. The database application performs the desired search and assembles a found
    set. The database application is responsible for interpreting search
    criteria, wild cards in search strings, field operators, and logical
@@ -73,10 +73,10 @@ Inline Host
 MySQL
    By default all communication is in the UTF-8 character set.
 
-FileMaker Pro
+FileMaker Server
    By default all communication is in the MacRoman character set when Lasso
-   Professional is hosted on Mac OS X or in the Latin-1 (ISO 8859-1) character
-   set when Lasso Professional is hosted on Windows.
+   Server is hosted on Mac OS X or in the Latin-1 (ISO 8859-1) character set
+   when Lasso Server is hosted on Windows.
 
 JDBC
    All communication with JDBC data sources is in the UTF-8 character set.
@@ -320,8 +320,8 @@ The possible values for the ``-operator`` parameter are listed in
 begins with ("bw"). Case is unimportant when specifying operators.
 
 Field operators are interpreted differently depending on which data source is
-being accessed. For example, FileMaker Pro interprets "bw" to mean that any word
-within a field can begin with the value specified for that field. MySQL
+being accessed. For example, FileMaker Server interprets "bw" to mean that any
+word within a field can begin with the value specified for that field. MySQL
 interprets "bw" to mean that the first word within the field must begin with the
 value specified. See the chapters on each data source or the documentation that
 came with a third-party data source connector for more information.
@@ -418,7 +418,7 @@ operator.
 
 .. note::
    **FileMaker** - The ``-operatorBegin`` and `` -operatorEnd`` parameters do
-   not work with Lasso Connector for FileMaker Pro.
+   not work with Lasso Connector for FileMaker Server.
 
 
 Perform a Search Using an "AND" Operator
@@ -815,10 +815,10 @@ parameters are required.
 Find a Single Random Record From a Database
 -------------------------------------------
 
-The following inline finds a single random record from a FileMaker Pro database
-"contacts" and displays it. ``-maxRecords`` is set to "1" to ensure that only a
-single record is shown. One potential result is shown below. Each time this
-inline is run a different record will be returned::
+The following inline finds a single random record from a FileMaker Server
+database "contacts" and displays it. ``-maxRecords`` is set to "1" to ensure
+that only a single record is shown. One potential result is shown below. Each
+time this inline is run a different record will be returned::
 
    [inline(
       -random,
@@ -875,8 +875,8 @@ first record in the found set. If the found set is only one record then the
 ``records`` method is optional.
 
 .. note::
-   **FileMaker** - Lasso Connector for FileMaker Pro includes a collection of
-   FileMaker Pro specific methods which return database results. See the
+   **FileMaker** - Lasso Connector for FileMaker Server includes a collection of
+   FileMaker Server specific methods which return database results. See the
    :ref:`FileMaker Data Sources <FileMaker-Data-Sources>` chapter for more
    information.
 

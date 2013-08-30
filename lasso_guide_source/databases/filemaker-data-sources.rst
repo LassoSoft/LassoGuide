@@ -5,10 +5,10 @@
 Filemaker Data Sources
 **********************
 
-Lasso Server allows access to FileMaker Server 7, 8, 9, 10, or 11 Advanced and
-FileMaker Server 9, 10, or 11 through the Lasso Connector for FileMaker SA.
-Lasso provides several methods and options which are unique to FileMaker Server
-connections including ``-layoutResponse`` and ``-noValueLists``.
+Lasso Server allows access to FileMaker Server 7-12 Advanced and FileMaker
+Server 9-12 through the Lasso Connector for FileMaker. Lasso provides several
+methods and options which are unique to FileMaker Server connections including
+``-layoutResponse`` and ``-noValueLists``.
 
 Lasso is a predominantly data source-independent language. It does include
 many FileMaker specific tags which are documented in this chapter. However, all
@@ -73,15 +73,14 @@ FileMaker, even small optimizations can yield significant increases in the speed
 of Web serving under heavy load.
 
 Dedicated FileMaker Machine
-   For best performance, place the FileMaker Pro or FileMaker Server on a
-   different machine from Lasso Server and the web server.
+   For best performance, place the FileMaker Server on a different machine from
+   Lasso Server and the web server.
 
 FileMaker Server
    If a FileMaker database must be accessed by a mix of FileMaker clients and
    Web visitors through Lasso, it should be hosted on FileMaker Server. Lasso
-   can access the database directly through FileMaker Server 7, 8, 9, 10, or 11
-   Advanced, FileMaker Server 9, 10, or 11, or through a single FileMaker Pro 4,
-   5, or 6 client which is connected as a guest to FileMaker Server.
+   can access the database directly through FileMaker Server 7-12 Advanced,
+   FileMaker Server 9-12.
 
 Index Fields
    Any fields which will be searched through Lasso should have indexing turned
@@ -300,7 +299,7 @@ default a single query is generated and all of the search terms within it are
 combined using an “and” operator. Additional queries can be added to either
 extend the found set using an “or” operator or to omit records from the found
 set using a “not” operator. These queries correspond precisely to find requests
-within the FileMaker Pro user interface.
+within the FileMaker Server user interface.
 
 Each field can only be listed once per query. The standard Lasso operators can
 be used for most common search parameters like equals, begins with, ends with,

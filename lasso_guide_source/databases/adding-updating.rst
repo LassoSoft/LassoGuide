@@ -44,10 +44,10 @@ Inline Host
 MySQL
    By default all communication is in the UTF-8 character set.
 
-FileMaker Pro
+FileMaker Server
    By default all communication is in the MacRoman character set when Lasso
-   Professional is hosted on Mac OS X or in the Latin-1 (ISO 8859-1) character
-   set when Lasso Professional is hosted on Windows.
+   Server is hosted on Mac OS X or in the Latin-1 (ISO 8859-1) character set
+   when Lasso Server is hosted on Windows.
 
 JDBC
    All communication with JDBC data sources is in the UTF-8 character set.
@@ -148,19 +148,19 @@ SQL Data Sources
    where a large record is being added to the database and there is no need to
    inspect the values which were added.
 
-FileMaker Pro
+FileMaker Server
    The ``keyField_value`` method is set to the value of the internal "Record ID"
    for the new record. The "Record ID" functions as an auto-increment field that
-   is automatically maintained by FileMaker Pro for all records.
+   is automatically maintained by FileMaker Server for all records.
 
-   FileMaker Pro automatically performs a search for the record which was added
-   to the database. The found set resulting from an ``-add`` action is
+   FileMaker Server automatically performs a search for the record which was
+   added to the database. The found set resulting from an ``-add`` action is
    equivalent to a search for the single record using the ``keyField_value``
    method.
 
-   The value for ``-keyField`` is ignored when adding records to a FileMaker Pro
-   database. The value for ``keyField_value`` is always the internal "Record ID"
-   value.
+   The value for ``-keyField`` is ignored when adding records to a FileMaker
+   Server database. The value for ``keyField_value`` is always the internal
+   "Record ID" value.
 
 .. note::
    Consult the documentation for third-party data sources to see what behavior
@@ -416,10 +416,10 @@ SQL Data Sources
    record is being updated and the results of the update do not need to be
    inspected.
 
-FileMaker Pro
+FileMaker Server
    The ``keyField_value`` method is set to the value of the internal "Record ID"
    for the updated record. The "Record ID" functions as an auto-increment field
-   that is automatically maintained by FileMaker Pro for all records.
+   that is automatically maintained by FileMaker Server for all records.
 
 Lasso automatically performs a search for the record which was updated
 within the database. The found set resulting from an ``-update`` action
