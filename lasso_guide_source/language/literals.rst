@@ -209,6 +209,9 @@ decimal literals follow.
    infinity
    -infinity
 
+
+.. _literals-tag:
+
 Tag Literals
 ============
 
