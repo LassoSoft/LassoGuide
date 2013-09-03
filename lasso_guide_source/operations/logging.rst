@@ -119,7 +119,7 @@ desirable to create a separate log file specific to a custom solution. The
    collection is appended to a specified text file. The ``log`` method can write
    to any text file that is accessible from Lasso. The associated block must be
    an auto-collect block as the collected data from the associated block will be
-   included in the appended data. If you don't use an autocollect block then no
+   included in the appended data. If you don't use an auto-collect block then no
    data will be appended to the log file.
 
    The following ``log`` method outputs a single line containing the date and

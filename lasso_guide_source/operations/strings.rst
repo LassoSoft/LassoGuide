@@ -108,7 +108,7 @@ automatically cast to a string for the expression::
    // integer
 
 Array, map, and pair values are cast to strings automatically when they are
-output to a Web page or as part of an autocollect capture block. The value they
+output to a Web page or as part of an auto-collect capture block. The value they
 return is intended for the developer to be able to see the contents of the
 complex data type and is not intended to be displayed to site visitors::
 
