@@ -134,8 +134,8 @@ Do
 A ``do`` clause permits a block of code to be executed for each element that
 makes its way through the query expression. A do clause consists of the word
 "do" followed by either a single expression or a capture using either the
-regular curly bracketed form (``{ }``) or the auto-collect curly bracketed form
-(``{^ ^}``). If the code associated with a ``do`` consists of more than one
+regular curly-brace form (``{ }``) or the auto-collect curly-brace form (``{^
+^}``). If the code associated with a ``do`` consists of more than one
 expression, the code must be contained in a capture.
 
 The following examples show how the query expression do clause can be
