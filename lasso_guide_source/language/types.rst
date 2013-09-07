@@ -783,11 +783,12 @@ about an object. These methods are summarized below.
 
 .. method:: null->isA(name::tag)
 
-   Checks whether an object is of the given type. The method will return true if
-   the name of the type is specified or the name of any parent type other than
-   ``null``. The method will also return true for any trait name which the type
-   has applied to it. The method call ``null->isa(::null)`` will only return
-   true for the ``null`` type instance itself.
+   Checks whether an object is of the given type. The method will return an
+   integer greater than zero if the name of the type is specified or the name of
+   any parent type other than ``null``. The method will also return a positive
+   integer for any trait name which the type has applied to it. The method call
+   ``null->isA(::null)`` will only return true for the ``null`` type instance
+   itself.
 
 .. method:: null->isNotA(name::tag)
 
