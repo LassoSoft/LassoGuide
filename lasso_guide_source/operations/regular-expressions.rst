@@ -473,17 +473,17 @@ Creating a Regular Expression
 
 .. type:: regexp
 .. method:: regexp(p0::string, p1::string, p2::string, p3::boolean)
-.. method:: regexp(
-      find::string,
-      replace::string= ?,
-      input::string= ?,
-      -ignorecase::boolean= ?
+.. method:: regexp(\
+      find::string, \
+      replace::string= ?, \
+      input::string= ?, \
+      -ignorecase::boolean= ?\
    )
-.. method:: regexp(
-      -find::string,
-      -replace::string= ?,
-      -input::string= ?,
-      -ignorecase::boolean= ?
+.. method:: regexp(\
+      -find::string, \
+      -replace::string= ?, \
+      -input::string= ?, \
+      -ignorecase::boolean= ?\
    )
 
    The ``regExp`` creator method creates a reusable regular expression. The
@@ -578,11 +578,11 @@ methods described in the next section.
    ``-find`` and ``-replace`` patterns can also be specified within this method
    along with the ``-ignoreCase`` flag.
    
-.. member:: regExp->replaceFirst(
-      -input= ?,
-      -find= ?,
-      -replace= ?,
-      -ignoreCase= ?
+.. member:: regExp->replaceFirst(\
+      -input= ?, \
+      -find= ?, \
+      -replace= ?, \
+      -ignoreCase= ?\
   )
 
    Replaces the first occurrence of the current find pattern with the current
@@ -866,12 +866,12 @@ perform regular expression find and replace routines on text strings.
    the string parameter. Optional ``-ignoreCase`` parameter uses case
    insensitive patterns.
 
-.. method:: string_replaceRegExp(
-      input,
-      -find::string,
-      -replace::string,
-      -ignoreCase= ?,
-      -replaceOnlyOne= ?
+.. method:: string_replaceRegExp(\
+      input, \
+      -find::string, \
+      -replace::string, \
+      -ignoreCase= ?, \
+      -replaceOnlyOne= ?\
    )
 
    Takes three parameters: a string value, a ``-find`` keyword/value parameter,

@@ -90,33 +90,33 @@ The ``email_send`` method is used to send email messages from Lasso. This method
 supports the most common types of email including plain text, HTML, HTML with a
 plain text alternative, embedded HTML images, and attachments.
 
-.. method:: email_send(
-         -host= ?, 
-         -username= ?, 
-         -password= ?, 
-         -port= ?, 
-         -timeout= ?, 
-         -priority= ?, 
-         -to= ?, 
-         -cc= ?, 
-         -bcc= ?, 
-         -from= ?, 
-         -replyto= ?, 
-         -sender= ?, 
-         -subject= ?, 
-         -body= ?, 
-         -html= ?, 
-         -transferencoding= ?, 
-         -contenttype= ?, 
-         -characterset= ?, 
-         -attachments= ?, 
-         -extramimeheaders= ?, 
-         -simpleform= ?, 
-         -tokens= ?, 
-         -merge= ?, 
-         -date= ?, 
-         -immediate= ?, 
-         -ssl= ?
+.. method:: email_send(\
+         -host= ?, \
+         -username= ?, \
+         -password= ?, \
+         -port= ?, \
+         -timeout= ?, \
+         -priority= ?, \
+         -to= ?, \
+         -cc= ?, \
+         -bcc= ?, \
+         -from= ?, \
+         -replyto= ?, \
+         -sender= ?, \
+         -subject= ?, \
+         -body= ?, \
+         -html= ?, \
+         -transferencoding= ?, \
+         -contenttype= ?, \
+         -characterset= ?, \
+         -attachments= ?, \
+         -extramimeheaders= ?, \
+         -simpleform= ?, \
+         -tokens= ?, \
+         -merge= ?, \
+         -date= ?, \
+         -immediate= ?, \
+         -ssl= ?\
       )
 
    Adds a message to the email queue. The method requires a ``-subject``
@@ -702,27 +702,27 @@ priority, error handling, and connection handling features of the email sending
 system.
 
 .. type:: email_compose
-.. method:: email_compose(
-      -to= ?, 
-      -from= ?, 
-      -cc= ?, 
-      -bcc= ?, 
-      -subject= ?, 
-      -sender= ?, 
-      -replyto= ?, 
-      -body= ?, 
-      -html= ?, 
-      -date= ?, 
-      -contenttype= ?, 
-      -characterset= ?, 
-      -transferencoding= ?, 
-      -contentdisposition= ?, 
-      -headertype= ?, 
-      -extramimeheaders= ?, 
-      -attachments= ?, 
-      -attachment= ?, 
-      -htmlimages= ?, 
-      -parts= ?
+.. method:: email_compose(\
+      -to= ?, \
+      -from= ?, \
+      -cc= ?, \
+      -bcc= ?, \
+      -subject= ?, \
+      -sender= ?, \
+      -replyto= ?, \
+      -body= ?, \
+      -html= ?, \
+      -date= ?, \
+      -contenttype= ?, \
+      -characterset= ?, \
+      -transferencoding= ?, \
+      -contentdisposition= ?, \
+      -headertype= ?, \
+      -extramimeheaders= ?, \
+      -attachments= ?, \
+      -attachment= ?, \
+      -htmlimages= ?, \
+      -parts= ?\
    )
 
    Creates an ``email_compose`` object, accepting similar parameters as
@@ -778,20 +778,20 @@ system.
    be queued quickly. Any messages which are already queued will continue to
    send while the code in the specified block is running.
 
-.. method:: email_queue(
-         -data= ?,
-         -recipients= ?,
-         -from= ?,
-         -host= ?,
-         -username= ?,
-         -password= ?,
-         -port= ?,
-         -timeout= ?,
-         -priority= ?,
-         -tokens= ?,
-         -merge= ?,
-         -date= ?,
-         -ssl= ?
+.. method:: email_queue(\
+         -data= ?, \
+         -recipients= ?, \
+         -from= ?, \
+         -host= ?, \
+         -username= ?, \
+         -password= ?, \
+         -port= ?, \
+         -timeout= ?, \
+         -priority= ?, \
+         -tokens= ?, \
+         -merge= ?, \
+         -date= ?, \
+         -ssl= ?\
       )
 
    Queues a message for sending. Requires either a ``-data`` parameter with the
@@ -801,16 +801,16 @@ system.
    ``-username``, and ``-password`` parameters. A different ``-tokens``
    parameter can be specified for each queued message to perform email merge.
 
-.. method:: email_immediate(
-         -data,
-         -recipients =?,
-         -from =?,
-         -host =?,
-         -username =?,
-         -password =?,
-         -port =?,
-         -timeout =?,
-         -ssl =?
+.. method:: email_immediate(\
+         -data, \
+         -recipients =?, \
+         -from =?, \
+         -host =?, \
+         -username =?, \
+         -password =?, \
+         -port =?, \
+         -timeout =?, \
+         -ssl =?\
       )
 
    The same as ``email_queue``, but sends the message immediately without
@@ -907,39 +907,39 @@ The ``email_smtp`` type can be used directly for low-level access to remote SMTP
 servers, but this is not generally necessary.
 
 .. type:: email_smtp
-.. method:: email_smtp(
-      -host::string= ?,
-      -port::integer= ?,
-      -timeout::integer= ?,
-      -username= ?,
-      -password= ?,
-      -ssl::boolean= ?,
-      -clientip= ?
+.. method:: email_smtp(\
+      -host::string= ?, \
+      -port::integer= ?, \
+      -timeout::integer= ?, \
+      -username= ?, \
+      -password= ?, \
+      -ssl::boolean= ?, \
+      -clientip= ?\
    )
 
    Creates a new SMTP connection object. Can optionally pass in the SMTP server
    parameters.
 
-.. member:: email_smtp->open(
-      -host= ?, 
-      -port= ?, 
-      -timeout= ?, 
-      -username= ?, 
-      -password= ?, 
-      -ssl= ?, 
-      -clientip= ?
+.. member:: email_smtp->open(\
+      -host= ?, \
+      -port= ?, \
+      -timeout= ?, \
+      -username= ?, \
+      -password= ?, \
+      -ssl= ?, \
+      -clientip= ?\
    )
 
    Requires a ``-host`` that specifies the SMTP host to connect to. Also accepts
    optional ``-port``, ``-username``, ``-password``, and ``-timeout``
    parameters.
 
-.. member:: email_smtp->command(
-      -send= ?, 
-      -expect= ?, 
-      -multi= ?, 
-      -read= ?, 
-      -timeout= ?
+.. member:: email_smtp->command(\
+      -send= ?, \
+      -expect= ?, \
+      -multi= ?, \
+      -read= ?, \
+      -timeout= ?\
    )
 
    Sends a raw command to the SMTP server. The ``-send`` parameter specifies the

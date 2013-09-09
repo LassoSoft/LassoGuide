@@ -103,22 +103,22 @@ follows::
 DNS Lookup
 ==========
 
-.. method:: dns_lookup(
-      name::string,
-      -type= ?,
-      -class= ?,
-      -noRecurse::boolean= ?,
-      -inverse::boolean= ?,
-      -status::boolean= ?,
-      -showQuery::boolean= ?,
-      -formatQuery::boolean= ?,
-      -bitQuery::boolean= ?,
-      -showResponse::boolean= ?,
-      -format::boolean= ?,
-      -bitFormat::boolean= ?,
-      -hostname= ?,
-      -port::integer= ?,
-      -timeout::integer= ?
+.. method:: dns_lookup(\
+      name::string, \
+      -type= ?, \
+      -class= ?, \
+      -noRecurse::boolean= ?, \
+      -inverse::boolean= ?, \
+      -status::boolean= ?, \
+      -showQuery::boolean= ?, \
+      -formatQuery::boolean= ?, \
+      -bitQuery::boolean= ?, \
+      -showResponse::boolean= ?, \
+      -format::boolean= ?, \
+      -bitFormat::boolean= ?, \
+      -hostname= ?, \
+      -port::integer= ?, \
+      -timeout::integer= ?\
    )
 
    This method is used to query a DNS server for information about a specified

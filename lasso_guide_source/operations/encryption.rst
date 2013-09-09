@@ -67,14 +67,14 @@ SHA1
       parameter, the data to be encrypted. Returns a fixed size hash value in
       hexadecimal which cannot be decrypted.
 
-.. method:: encrypt_hmac(
-      -password,
-      -token,
-      -digest= ?,
-      -base64::boolean= ?,
-      -hex::boolean= ?,
-      -cram::boolean= ?,
-      ...
+.. method:: encrypt_hmac(\
+      -password, \
+      -token, \
+      -digest= ?, \
+      -base64::boolean= ?, \
+      -hex::boolean= ?, \
+      -cram::boolean= ?, \
+      ...\
    )
 
    Generates a keyed hash message authentication code for a given input and

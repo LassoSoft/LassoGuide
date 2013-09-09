@@ -113,10 +113,10 @@ options can be added to the new PDF document.
    Returns the value of a single form element. Requires one parameter which is
    the name of the field element to be inspected.
 
-.. member:: pdf_read->setFieldValue(
-         field::string,
-         value::string, 
-         -display::string= ?
+.. member:: pdf_read->setFieldValue(\
+         field::string, \
+         value::string, \
+         -display::string= ?\
       )
 
    Sets the value of a single form element. Requires two parameters: the name of
@@ -148,12 +148,12 @@ options can be added to the new PDF document.
 
    Adds a JavaScript action to the current PDF document.
 
-.. member:: pdf_read->save(
-         file::string,
-         -encryptStrong=false,
-         -permissions='',
-         -userPassword='',
-         -ownerPassword=''
+.. member:: pdf_read->save(\
+         file::string, \
+         -encryptStrong=false, \
+         -permissions='', \
+         -userPassword='', \
+         -ownerPassword=''\
       )
 
    Saves a copy of the current PDF document. Requires one parameter which
@@ -687,13 +687,13 @@ Before adding text, it is important to first define the font and style for the
 text to determine how it will appear. This is done using the ``pdf_font`` type.
 
 .. type:: pdf_font
-.. method:: pdf_font(
-      -face= ?,
-      -file= ?,
-      -size= ?,
-      -color= ?,
-      -encoding::string= ?,
-      -embed= ?
+.. method:: pdf_font(\
+      -face= ?, \
+      -file= ?, \
+      -size= ?, \
+      -color= ?, \
+      -encoding::string= ?, \
+      -embed= ?\
    )
 
    Stores all the specifications for a font style. This includes font family,
@@ -795,6 +795,7 @@ defined using the ``-file`` parameter, and are summarized below.
    Returns the current font size of a ``pdf_font`` object.
 
 .. member:: pdf_font->getEncoding()
+
    Returns the current encoding of a ``pdf_font`` object.
 
 .. member:: pdf_font->getPSFontName()
@@ -1014,15 +1015,15 @@ the page.
    fill color set using the ``pdf_doc->setColor`` method. The color of the
    ``-font`` parameter will not be recognized.
 
-.. member:: pdf_doc->drawText(text::string, 
-      -font= ?, 
-      -alignment= ?, 
-      -leading::decimal= ?, 
-      -rotate::decimal= ?, 
-      -left::integer= ?, 
-      -top::integer= ?, 
-      -width::integer= ?, 
-      -height::integer= ?
+.. member:: pdf_doc->drawText(text::string, \
+      -font= ?, \
+      -alignment= ?, \
+      -leading::decimal= ?, \
+      -rotate::decimal= ?, \
+      -left::integer= ?, \
+      -top::integer= ?, \
+      -width::integer= ?, \
+      -height::integer= ?\
    )
    
    Adds specified text that is positioned on a page using point coordinates. An
@@ -1193,14 +1194,14 @@ Creating Forms
 Form elements are created in ``pdf_doc`` objects using ``pdf_doc`` form member
 methods which are described below.
 
-.. member:: pdf_doc->addTextField(
-      name::string, 
-      value::string, 
-      -left, 
-      -top, 
-      -width, 
-      -height,
-      -font= ?
+.. member:: pdf_doc->addTextField(\
+      name::string, \
+      value::string, \
+      -left, \
+      -top, \
+      -width, \
+      -height, \
+      -font= ?\
    )
 
    Adds a text field to a form. Requires the first parameter to specify the name
@@ -1208,14 +1209,14 @@ methods which are described below.
    entered. An optional ``-font`` parameter can be used to specify a
    ``pdf_font`` object for the font of the text.
 
-.. member:: pdf_doc->addPasswordField(
-      name::string, 
-      value::string, 
-      -left, 
-      -top, 
-      -width, 
-      -height,
-      -font= ?
+.. member:: pdf_doc->addPasswordField(\
+      name::string, \
+      value::string, \
+      -left, \
+      -top, \
+      -width, \
+      -height, \
+      -font= ?\
    )
 
    Adds a password field to a form. Requires the first parameter to specify the
@@ -1223,14 +1224,14 @@ methods which are described below.
    value entered. An optional ``-font`` parameter can be used to specify a
    ``pdf_font`` object for the font of the text.
 
-.. member:: pdf_doc->addTextArea(
-      name::string, 
-      value::string, 
-      -left, 
-      -top, 
-      -width, 
-      -height,
-      -font= ?
+.. member:: pdf_doc->addTextArea(\
+      name::string, \
+      value::string, \
+      -left, \
+      -top, \
+      -width, \
+      -height, \
+      -font= ?\
    )
 
    Adds a text area to a form. Requires the first parameter to specify the name
@@ -1238,14 +1239,14 @@ methods which are described below.
    entered. An optional ``-font`` parameter can be used to specify a
    ``pdf_font`` object for the font of the text.
 
-.. member:: pdf_doc->addCheckBox(
-      name::string, 
-      value::string, 
-      -left, 
-      -top, 
-      -width, 
-      -height,
-      -checked::boolean= ?
+.. member:: pdf_doc->addCheckBox(\
+      name::string, \
+      value::string, \
+      -left, \
+      -top, \
+      -width, \
+      -height, \
+      -checked::boolean= ?\
    )
 
    Adds a check box to a form. Requires the first parameter to specify the name
@@ -1259,29 +1260,29 @@ methods which are described below.
    of the radio button group. Radio buttons must be assigned to the group using
    the ``pdf_doc->addRadioButton`` method.
 
-.. member:: pdf_doc->addRadioButton(
-      group::string, 
-      value::string,
-      -left, 
-      -top, 
-      -width, 
-      -height
+.. member:: pdf_doc->addRadioButton(\
+      group::string, \
+      value::string, \
+      -left, \
+      -top, \
+      -width, \
+      -height\
    )
 
    Adds a radio button to a form. Requires the first parameter to specify the
    name of the radio button group, and the second parameter to specify the value
    of the radio button.
 
-.. member:: pdf_doc->addComboBox(
-      name::string,
-      values::trait_forEach,
-      -default::string= ?, 
-      -editable::boolean= ?,
-      -left, 
-      -top, 
-      -width, 
-      -height,
-      -font= ?
+.. member:: pdf_doc->addComboBox(\
+      name::string, \
+      values::trait_forEach, \
+      -default::string= ?, \
+      -editable::boolean= ?, \
+      -left, \
+      -top, \
+      -width, \
+      -height, \
+      -font= ?\
    )
 
    Adds a pull-down menu to a form. Requires the first parameter to specify the
@@ -1296,15 +1297,15 @@ methods which are described below.
    edit the values on the menu. An optional ``-font`` parameter can be used to
    specify a ``pdf_font`` object for the font of the text.
 
-.. member:: pdf_doc->addSelectList(
-      name::string, 
-      values::trait_forEach,
-      -default='',
-      -left, 
-      -top, 
-      -width, 
-      -height,
-      -fone = ?
+.. member:: pdf_doc->addSelectList(\
+      name::string, \
+      values::trait_forEach, \
+      -default='', \
+      -left, \
+      -top, \
+      -width, \
+      -height, \
+      -fone = ?\
    )
 
    Adds a select list to a form. Requires the first parameter to specify the
@@ -1325,16 +1326,16 @@ methods which are described below.
    name of the hidden field and the second parameter to specify the default
    value entered.
 
-.. member:: pdf_doc->addSubmitButton(
-      name::string,
-      caption::string,
-      value::string,
-      url::string,
-      -left, 
-      -top, 
-      -width, 
-      -height,
-      -font= ?
+.. member:: pdf_doc->addSubmitButton(\
+      name::string, \
+      caption::string, \
+      value::string, \
+      url::string, \
+      -left, \
+      -top, \
+      -width, \
+      -height, \
+      -font= ?\
    )
 
    Adds a submit button to a form. Also specifies the URL to which the form data
@@ -1345,15 +1346,15 @@ methods which are described below.
    ``-font`` parameter can be used to specify a ``pdf_font`` object for the font
    of the text.
 
-.. member:: pdf_doc->addResetButton(
-      name::string,
-      caption::string,
-      value::string,
-      -left, 
-      -top, 
-      -width, 
-      -height,
-      -font= ?
+.. member:: pdf_doc->addResetButton(\
+      name::string, \
+      caption::string, \
+      value::string, \
+      -left, \
+      -top, \
+      -width, \
+      -height, \
+      -font= ?\
    )
 
    Adds a reset button to a form. Requires the first parameter to specify the

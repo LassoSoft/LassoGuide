@@ -510,11 +510,11 @@ merging. These methods are described below.
    standard deviation of the Gaussian in pixels. For reasonable results, the
    radius should be larger than the sigma.
 
-.. member:: image->sharpen(
-         -radius::integer, 
-         -sigma::integer, 
-         -amount::decimal= ?, 
-         -threshold::decimal= ?
+.. member:: image->sharpen(\
+         -radius::integer, \
+         -sigma::integer, \
+         -amount::decimal= ?, \
+         -threshold::decimal= ?\
       )
 
    Sharpens an image. Requires ``-radius`` and ``-sigma`` parameters that are
@@ -647,14 +647,14 @@ Adding Text to Images
 Lasso allows text to be overlaid on top of images using the ``image->annotate``
 method as described below.
 
-.. member:: image->annotate(
-         annotation::string,
-         -left::integer,
-         -top::integer,
-         -font::string = ?,
-         -size::integer = ?,
-         -color::string = ?,
-         -aliased::boolean = ?
+.. member:: image->annotate(\
+         annotation::string, \
+         -left::integer, \
+         -top::integer, \
+         -font::string = ?, \
+         -size::integer = ?, \
+         -color::string = ?, \
+         -aliased::boolean = ?\
       )
 
    Overlays text on to an image. Requires a string value as a parameter, which
@@ -700,11 +700,11 @@ Lasso allows images to be merged using the ``image->composite`` method. The
 ``image->composite`` method supports over 20 different composite methods, which
 are described in the table below.
 
-.. member:: image->composite(
-         second::image, 
-         -op::string= ?, 
-         -left::integer= ?, 
-         -top::integer= ?
+.. member:: image->composite(\
+         second::image, \
+         -op::string= ?, \
+         -left::integer= ?, \
+         -top::integer= ?\
       )
 
    Composites a second image onto the current image. Requires two Lasso image

@@ -36,19 +36,19 @@ messages for deletion.
 The following describes the ``email_pop`` type and some of its member methods:
 
 .. type:: email_pop
-.. method:: email_pop(
-      -server= ?,
-      -port= ?,
-      -username= ?,
-      -password= ?,
-      -apop= ?,
-      -timeout= ?,
-      -log= ?,
-      -debug= ?,
-      -get= ?,
-      -host= ?,
-      -ssl= ?,
-      ...
+.. method:: email_pop(\
+      -server= ?, \
+      -port= ?, \
+      -username= ?, \
+      -password= ?, \
+      -apop= ?, \
+      -timeout= ?, \
+      -log= ?, \
+      -debug= ?, \
+      -get= ?, \
+      -host= ?, \
+      -ssl= ?, \
+      ...\
    )
 
    Creates a new POP object. Requires a ``-host`` parameter. Optional ``-port``
@@ -106,10 +106,10 @@ The following describes the ``email_pop`` type and some of its member methods:
    Sends a ping to the server. Allows the connection to be kept open without
    timing out.
 
-.. member:: email_pop->authorize(
-      -username::string, 
-      -password::string, 
-      -APOP::boolean=true
+.. member:: email_pop->authorize(\
+      -username::string, \
+      -password::string, \
+      -APOP::boolean=true\
    )
 
    Requires a ``-username`` and ``-password`` parameter. Optional ``-APOP``

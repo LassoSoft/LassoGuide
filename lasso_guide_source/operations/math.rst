@@ -65,12 +65,12 @@ method detailed below.
 
 
 .. member:: integer->asString(p0::string, p1::string, p2::string)
-.. member:: integer->asString(
-      -hexadecimal::boolean= ?,
-      -padding::integer= ?,
-      -padChar::string= ?,
-      -padRight::boolean= ?,
-      -groupChar::string= ?
+.. member:: integer->asString(\
+      -hexadecimal::boolean= ?, \
+      -padding::integer= ?, \
+      -padChar::string= ?, \
+      -padRight::boolean= ?, \
+      -groupChar::string= ?\
    )
 
    Returns a string representation of the integer value formated as specified by
@@ -304,14 +304,14 @@ method detailed below.
    used to replace the functionality of Lasso 8's ``decimal->setFormat`` method.
 
 .. member:: decimal->asString(p0::string, p1::string, p2::string)
-.. member:: decimal->asString(
-      -decimalChar::string= ?,
-      -groupChar::string= ?,
-      -precision::integer= ?,
-      -scientific::boolean= ?,
-      -padding::integer= ?,
-      -padChar::string= ?,
-      -padRight::boolean= ?
+.. member:: decimal->asString(\
+      -decimalChar::string= ?, \
+      -groupChar::string= ?, \
+      -precision::integer= ?, \
+      -scientific::boolean= ?, \
+      -padding::integer= ?, \
+      -padChar::string= ?, \
+      -padRight::boolean= ?\
    )
 
    Returns a string representation of the decimal value formated as specified by

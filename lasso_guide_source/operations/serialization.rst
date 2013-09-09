@@ -97,8 +97,8 @@ available through methods named accordingly.
 
    Create a new ``serialization_element`` object with a key and value.
 
-.. method:: key()
-.. method:: value()
+.. member:: serialization_element->key()
+.. member:: serialization_element->value()
 
    These methods return, respectively, the key and value that was set when the
    object was created. The key and the value can be objects of any serializable

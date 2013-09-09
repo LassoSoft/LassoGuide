@@ -37,11 +37,11 @@ The Sys_Process API
    ``sys_process->open`` method and calls that method thereby immediately
    running the command passed to it.
 
-.. member:: sys_process->open(
-         command::string,
-         arguments::staticarray= ?,
-         environment::staticarray= ?,
-         user::string= ?
+.. member:: sys_process->open(\
+         command::string, \
+         arguments::staticarray= ?, \
+         environment::staticarray= ?, \
+         user::string= ?\
       )
 
    Opens a new process. The command string should consist of the full path to

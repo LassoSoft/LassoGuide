@@ -985,26 +985,26 @@ The ``include_url`` method is a nice wrapper around the curl type for requesting
 data via HTTP. We strongly recommend using this method for your HTTP request
 needs if possible.
 
-.. method:: include_url(
-      url::string, 
-      -getParams= ?, 
-      -postParams= ?, 
-      -sendMimeHeaders= ?, 
-      -username= ?, 
-      -password= ?, 
-      -noData= ?, 
-      -verifyPeer= ?, 
-      -sslCert= ?,
-      -sslCertType= ?,
-      -sslKey= ?,
-      -sslKeyType= ?,
-      -sslKeyPasswd= ?,
-      -timeout= ?,
-      -connectTimeout= ?,
-      -retrieveMimeHeaders= ?,
-      -options= ?,
-      -string= ?,
-      -basicAuthOnly= ?
+.. method:: include_url(\
+      url::string, \
+      -getParams= ?, \ 
+      -postParams= ?, \
+      -sendMimeHeaders= ?, \
+      -username= ?, \
+      -password= ?, \
+      -noData= ?, \
+      -verifyPeer= ?, \
+      -sslCert= ?, \
+      -sslCertType= ?, \
+      -sslKey= ?, \
+      -sslKeyType= ?, \
+      -sslKeyPasswd= ?, \
+      -timeout= ?, \
+      -connectTimeout= ?, \
+      -retrieveMimeHeaders= ?, \
+      -options= ?, \
+      -string= ?, \
+      -basicAuthOnly= ?\
    )
 
    This method requires a string representing a URL in the form of 
@@ -1185,11 +1185,11 @@ needs if possible.
 Retrieve the Contents of a Remote File
 --------------------------------------
 
-.. method:: ftp_getData(
-      url::string, 
-      -username::string= ?, 
-      -password::string= ?, 
-      -options::array= ?
+.. method:: ftp_getData(\
+      url::string, \
+      -username::string= ?, \
+      -password::string= ?, \
+      -options::array= ?\
    )
 
    This method returns a ``bytes`` object representing the remote file's
@@ -1214,12 +1214,12 @@ Retrieve the Contents of a Remote File
 Download a Remote File
 ----------------------
 
-.. method:: ftp_getFile(
-      url::string, 
-      -file::string, 
-      -username::string= ?, 
-      -password::string= ?, 
-      -options::array= ?
+.. method:: ftp_getFile(\
+      url::string, \
+      -file::string, \
+      -username::string= ?, \
+      -password::string= ?, \
+      -options::array= ?\
    )
 
    This method downloads the remote file specified by the FTP URL in the first
@@ -1244,12 +1244,12 @@ Download a Remote File
 List the Contents of a Remote Direectory
 ----------------------------------------
 
-.. method:: ftp_getListing(
-      url::string, 
-      -username= ?, 
-      -password= ?, 
-      -listonly::boolean= ?,
-      -options::array= ?
+.. method:: ftp_getListing(\
+      url::string, \
+      -username= ?, \
+      -password= ?, \
+      -listonly::boolean= ?, \
+      -options::array= ?\
    )
 
    This method gets a directory listing of the remote directory specified by the
@@ -1286,12 +1286,12 @@ List the Contents of a Remote Direectory
 Update an Existing Remote File
 ------------------------------
 
-.. method:: ftp_putData(
-      url::string, 
-      -data::bytes, 
-      -username= ?, 
-      -password= ?, 
-      -options::array= ?
+.. method:: ftp_putData(\
+      url::string, \
+      -data::bytes, \
+      -username= ?, \
+      -password= ?, \
+      -options::array= ?\
    )
 
    This method takes an FTP URL and a ``bytes`` object representing file data.
@@ -1325,12 +1325,12 @@ Update an Existing Remote File
 Upload a Local File to the Remote Server
 ----------------------------------------
 
-.. method:: ftp_putFile(
-      url::string, 
-      -file, 
-      -username= ?, 
-      -password= ?, 
-      -options::array= ?
+.. method:: ftp_putFile(\
+      url::string, \
+      -file, \
+      -username= ?, \
+      -password= ?, \
+      -options::array= ?\
    )
 
    This method uploads the local file specified by the "-file" parameter to the
@@ -1364,11 +1364,11 @@ Upload a Local File to the Remote Server
 Delete a Remote File
 --------------------
 
-.. method:: ftp_deleteFile(
-      url::string, 
-      -username= ?, 
-      -password= ?, 
-      -options::array= ?
+.. method:: ftp_deleteFile(\
+      url::string, \
+      -username= ?, \
+      -password= ?, \
+      -options::array= ?\
    )
 
    This method will delete the remote file specified by the FTP URL in the first

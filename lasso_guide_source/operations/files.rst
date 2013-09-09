@@ -309,10 +309,10 @@ isDir() method.
 Creating Directories
 --------------------
 
-.. member:: dir->create(perms::integer = integer_bitOr(
-                     io_file_s_irwxg, 
-                     io_file_s_irwxu, 
-                     io_file_s_irwxo)
+.. member:: dir->create(perms::integer = integer_bitOr(\
+                     io_file_s_irwxg, \
+                     io_file_s_irwxu, \
+                     io_file_s_irwxo)\
                   )
 
    Attempts to create the directory at the path indicated when the dir object

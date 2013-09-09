@@ -73,11 +73,11 @@ to deal with binary data. These methods are outlined below.
    first specifies the byte position to start from, and the second specifies how
    many bytes to return.
 
-.. member:: bytes->setRange(
-      what::bytes,
-      where::integer= ?,
-      whatStart::integer= ?,
-      whatLen::integer= ?
+.. member:: bytes->setRange(\
+      what::bytes, \
+      where::integer= ?, \
+      whatStart::integer= ?, \
+      whatLen::integer= ?\
    )
 
    Sets a range of characters within a byte stream. Requires one parameters: the
@@ -85,19 +85,19 @@ to deal with binary data. These methods are outlined below.
    specify the integer offset into the bytes stream to insert the new data, the
    offset and length of the new data to be inserted, respectively.
 
-.. member:: bytes->find(
-      find::bytes,
-      position::integer= ?,
-      length::integer= ?,
-      patPosition::integer= ?,
-      patLength::integer= ?
+.. member:: bytes->find(\
+      find::bytes, \
+      position::integer= ?, \
+      length::integer= ?, \
+      patPosition::integer= ?, \
+      patLength::integer= ?\
    )
-.. member:: bytes->find(
-      find::string,
-      position::integer= ?,
-      length::integer= ?,
-      patPosition::integer= ?,
-      patLength::integer= ?
+.. member:: bytes->find(\
+      find::string, \
+      position::integer= ?, \
+      length::integer= ?, \
+      patPosition::integer= ?, \
+      patLength::integer= ?\
    )
 
    Requires either a ``bytes`` or ``string`` sequence as the first parameter.

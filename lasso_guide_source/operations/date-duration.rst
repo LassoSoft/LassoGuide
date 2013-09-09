@@ -166,10 +166,10 @@ the field or variable should be in one of the format described above or the
 
 .. type:: date
 .. method:: date()
-.. method:: date(
-      -year= ?, -month= ?, -day= ?, 
-      -hour= ?, -minute= ?, -second= ?, 
-      -dateGMT= ?, -locale::locale= ?
+.. method:: date(\
+      -year= ?, -month= ?, -day= ?, \
+      -hour= ?, -minute= ?, -second= ?, \
+      -dateGMT= ?, -locale::locale= ?\
    )
 .. method:: date(date::string, -format::string= ?, -locale::locale= ?)
 .. method:: date(date::integer, -locale::locale= ?)
@@ -603,10 +603,7 @@ of the time.
 
    Returns a four-digit integer representing the year for a specified date.
   
-.. member:: date->month(
-      -long::boolean= ?,
-      -short::boolean= ?
-   )
+.. member:: date->month(-long::boolean= ?, -short::boolean= ?)
 
    Returns the number of the month (1=January, 12=December) for a specified date
    (defaults to current date). Optional ``-long`` parameter returns the full
@@ -901,32 +898,32 @@ Date Math Methods
 Lasso 9 provides a few top-level methods for performing date calculations.
 These methods are summarized below.
 
-.. method:: date_add(
-      value,
-      -millisecond::integer= ?,
-      -second::integer= ?,
-      -minute::integer= ?,
-      -hour::integer= ?,
-      -day::integer= ?,
-      -week::integer= ?,
-      -month::integer= ?,
-      -year::integer= ?
+.. method:: date_add(\
+      value, \
+      -millisecond::integer= ?, \
+      -second::integer= ?, \
+      -minute::integer= ?, \
+      -hour::integer= ?, \
+      -day::integer= ?, \
+      -week::integer= ?, \
+      -month::integer= ?, \
+      -year::integer= ?\
    )
 
    Adds a specified amount of time to a date object or valid date string. First
    parameter is a date object or valid value that can be cast as a date.
    Keyword/value parameters define what should be added to the first parameter.
   
-.. method:: date_subtract(
-      value,
-      -millisecond::integer= ?,
-      -second::integer= ?,
-      -minute::integer= ?,
-      -hour::integer= ?,
-      -day::integer= ?,
-      -week::integer= ?,
-      -month::integer= ?,
-      -year::integer= ?
+.. method:: date_subtract(\
+      value, \
+      -millisecond::integer= ?, \
+      -second::integer= ?, \
+      -minute::integer= ?, \
+      -hour::integer= ?, \
+      -day::integer= ?, \
+      -week::integer= ?, \
+      -month::integer= ?, \
+      -year::integer= ?\
    )
 
    Subtracts a specified amount of time from a sepcified date value. The first

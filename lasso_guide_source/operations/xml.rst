@@ -196,17 +196,13 @@ The following methods are use for creating new nodes:
 .. type:: xml_document
 
 .. member:: xml_document->createElement(tagName::string)::xml_element
-.. member:: xml_document->createElementNS(
-               namespaceURI::string,
-               qualifiedName::string)::xml_element
+.. member:: xml_document->createElementNS(namespaceURI::string, qualifiedName::string)::xml_element
 
    The first version of creates a new element node without a namespace. The
    second version permits a namespace to be specified.
 
 .. member:: xml_document->createAttribute(name::string)::xml_attr
-.. member:: xml_document->createAttributeNS(
-               namespaceURI::string,
-               qualifiedName::string)::xml_attr
+.. member:: xml_document->createAttributeNS(namespaceURI::string, qualifiedName::string)::xml_attr
 
    The first version of creates a new attribute without a namespace. The second
    version permits a namespace to be specified.
@@ -215,9 +211,7 @@ The following methods are use for creating new nodes:
 .. member:: xml_document->createTextNode(data::string)::xml_text
 .. member:: xml_document->createComment(data::string)::xml_comment
 .. member:: xml_document->createCDATASection(data::string)::xml_cdataSection
-.. member:: xml_document->createProcessingInstruction(
-               target::string,
-               data::string)::xml_processingInstruction
+.. member:: xml_document->createProcessingInstruction(target::string, data::string)::xml_processingInstruction
 .. member:: xml_document->createEntityReference(name::string)::xml_entityReference
 
 .. type:: xml_node
@@ -562,8 +556,7 @@ performed and a new XML document is returned.
 
 .. type:: xml_node
 
-.. member:: xml_node->transform(sheet::string,
-            variables::staticarray)::xml_document
+.. member:: xml_node->transform(sheet::string, variables::staticarray)::xml_document
 
    Performs an XSLT transformation on the document and returns the resulting
    newly produced document.

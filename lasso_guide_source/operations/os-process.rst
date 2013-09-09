@@ -44,10 +44,10 @@ Lasso From the Command Line**.
    conventions as the file type. This type has been deprecated in favor of
    :ref:`sys_process<sys-process>`
 
-.. member:: os_process->open(
-         command::string,
-         arguments::trait_array= ?,
-         env::trait_array= ?
+.. member:: os_process->open(\
+         command::string, \
+         arguments::trait_array= ?, \
+         env::trait_array= ?\
       )
 
    Opens a new process. The command string should consist of any path

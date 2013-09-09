@@ -43,9 +43,9 @@ succeed, then the methods return nothing. If electing to not abort when the
 check fails, a caller can check ``web_response->getStatus`` to determine the
 result.
 
-.. method:: auth_admin(-realm::string = 'Lasso Security',
-   -noAbort = false,
-   -errorResponse = '',
+.. method:: auth_admin(-realm::string = 'Lasso Security', \
+   -noAbort = false, \
+   -errorResponse = '', \
    -noResponse = false)
 
    This method checks that the current authenticated HTTP client user is in the
@@ -54,19 +54,19 @@ result.
    is generated, which body can be specified with the ``-errorResponse``
    parameter or the body can be left empty by passing ``-noResponse``.
 
-.. method:: auth_user(name::string,
-   -realm::string = 'Lasso Security',
-   -noAbort = false,
-   -errorResponse = '',
+.. method:: auth_user(name::string, \
+   -realm::string = 'Lasso Security', \
+   -noAbort = false, \
+   -errorResponse = '', \
    -noResponse = false)
 
    This method checks that the current authenticated HTTP client user matches
    the given name.
 
-.. method:: auth_group(group::string,
-   -realm::string = 'Lasso Security',
-   -noAbort = false,
-   -errorResponse = '',
+.. method:: auth_group(group::string, \
+   -realm::string = 'Lasso Security', \
+   -noAbort = false, \
+   -errorResponse = '', \
    -noResponse = false)
 
    This method checks that the current authenticated HTTP client user is in the
@@ -111,8 +111,8 @@ Once created, a security_registry can be used to:
 -  Assign/unassign users to groups
 -  Validate username/password/realm combinations
 
-.. member:: security_registry->addGroup(name::string, 
-   enabled::boolean = true,
+.. member:: security_registry->addGroup(name::string, \
+   enabled::boolean = true, \
    comment::string = '')
 
    This method attempts to add the specified group. A group is by default
@@ -142,18 +142,18 @@ Once created, a security_registry can be used to:
    These methods will remove the indicated group. All users are disassociated
    from the group.
 
-.. member:: security_registry->updateGroup(groupid::integer, 
-   -name = null,
-   -enabled = null,
+.. member:: security_registry->updateGroup(groupid::integer, \
+   -name = null, \
+   -enabled = null, \
    -comment = null)
 
    This method will modify the information for the group. Passing any of the
    ``-name``, ``-enabled`` or ``-comment`` parameters will set the appropriate
    data.
 
-.. member:: security_registry->addUser(username::string, password::string,
-   enabled::boolean = true, 
-   comment::string = '',
+.. member:: security_registry->addUser(username::string, password::string, \
+   enabled::boolean = true, \
+   comment::string = '', \
    -realm = 'Lasso Security')
 
    This method adds a new user to the system. A username and password must be
