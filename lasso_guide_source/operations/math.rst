@@ -20,7 +20,7 @@ or negative number which does not contain a decimal point is an integer value in
 Lasso. Examples include "-123" or "456". Integer objects may also contain
 hexadecimal values such as "0x1A" or "0xff".
 
-.. class:: integer
+.. type:: integer
 .. method:: integer()
 .. method:: integer(obj::any)
 
@@ -64,8 +64,8 @@ method detailed below.
    used to replace the functionality of Lasso 8's ``integer->setFormat`` method.
 
 
-.. method:: integer->asString(p0::string, p1::string, p2::string)
-.. method:: integer->asString(
+.. member:: integer->asString(p0::string, p1::string, p2::string)
+.. member:: integer->asString(
       -hexadecimal::boolean= ?,
       -padding::integer= ?,
       -padChar::string= ?,
@@ -126,48 +126,48 @@ This can greatly aid in constructing literals for use with the bit
 operation. For example, "0xff" is the integer literal "255".
 
 
-.. method:: integer->bitAnd(p0::integer)
+.. member:: integer->bitAnd(p0::integer)
 
    Performs a bitwise "And" operation between each bit in the base integer and
    the integer parameter and returns the result.
 
-.. method:: integer->bitOr(p0::integer)
+.. member:: integer->bitOr(p0::integer)
 
    Performs a bitwise "Or" operation between each bit in the base integer and
    the integer parameter returning the result.
 
-.. method:: integer->bitXOr(p0::integer)
+.. member:: integer->bitXOr(p0::integer)
 
    Performs a bitwise "Exclusive-Or" operation between each bit in the base
    integer and the integer parameter returning the result.
 
-.. method:: integer->bitNot()
+.. member:: integer->bitNot()
 
    Returns the result of flipping every bit in the base integer.
 
-.. method:: integer->bitShfitLeft(p0::integer)
+.. member:: integer->bitShfitLeft(p0::integer)
 
    Returns the result of shifting the bits in the base integer left by the
    number specified in the integer parameter.
 
-.. method:: integer->bitShiftRight(p0::integer)
+.. member:: integer->bitShiftRight(p0::integer)
 
    Returns the result of shifting the bits in the base integer right by the
    number specified in the integer parameter.
 
-.. method:: integer->bitClear(p0::integer)
+.. member:: integer->bitClear(p0::integer)
 
    Returns the result of clearing the bit specified in the integer parameter.
 
-.. method:: integer->bitFlip(p0::integer)
+.. member:: integer->bitFlip(p0::integer)
 
    Returns the result of Flipping the bit specified in the integer parameter.
 
-.. method:: integer->bitSet(p0::integer)
+.. member:: integer->bitSet(p0::integer)
    
    Returns the result of setting the bit specified in the integer parameter.
 
-.. method:: integer->bitTest(p0::integer)
+.. member:: integer->bitTest(p0::integer)
 
    Returns "true" if the bit specified in the integer parameter is true,
    otherwise "false".
@@ -226,7 +226,7 @@ point is a decimal object in Lasso. Examples include "-123.0" and
 such as "1.23e2" which is equivalent to "1.23" times "10^2" or
 "123.0".
 
-.. class:: decimal
+.. type:: decimal
 .. method:: decimal()
 .. method:: decimal(p0::integer)
 .. method:: decimal(p0::decimal)
@@ -303,8 +303,8 @@ method detailed below.
    their formatting information. The ``decimal->asString`` method in Lasso 9 is
    used to replace the functionality of Lasso 8's ``decimal->setFormat`` method.
 
-.. method:: decimal->asString(p0::string, p1::string, p2::string)
-.. method:: decimal->asString(
+.. member:: decimal->asString(p0::string, p1::string, p2::string)
+.. member:: decimal->asString(
       -decimalChar::string= ?,
       -groupChar::string= ?,
       -precision::integer= ?,

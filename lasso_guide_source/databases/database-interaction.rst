@@ -1310,14 +1310,16 @@ When referencing the name of a database and table in a SQL statement (e.g.
 "contacts.people"), only the true names of a database can be used as MySQL does
 not recognize Lasso aliases in a SQL command.
 
-.. method:: string->encodesql()
+.. member:: string->encodesql()
+   :noindex:
 
    Encodes illegal characters in MySQL string literals by escaping them with a
    backslash. Helps to prevent SQL injection attacks and ensures that SQL
    statements only contain valid characters. This method must be used to encode
    visitor supplied values within SQL statements for MySQL strings.
 
-.. method:: string->encodesql92
+.. member:: string->encodesql92
+   :noindex:
 
    Encodes illegal characters in SQL string literals by escaping a single quote
    with two single quotes. Helps to prevent SQL injection attacks and ensures

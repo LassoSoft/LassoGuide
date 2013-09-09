@@ -24,7 +24,7 @@ Methods
 Main Lasso Type
 ===============
 
-.. class:: java_jnienv
+.. type:: java_jnienv
 .. method:: java_jnienv()
 
    This type creates an object that is used to call Java Native Interface (JNI)
@@ -38,7 +38,7 @@ Main Lasso Type
 Version
 -------
 
-.. method:: java_jnienv->GetVersion(...)
+.. member:: java_jnienv->GetVersion(...)
 
    Returns the version of the Java Natitive Interface. See the documentation for
    more information:
@@ -48,7 +48,7 @@ Version
 Class Operations
 ----------------
 
-.. method:: java_jnienv->FindClass(...)
+.. member:: java_jnienv->FindClass(...)
 
    Returns a reference to a Java class. It takes a string of the fully-qualified
    class name or array type signature. See the documentation for more
@@ -59,14 +59,14 @@ Class Operations
 Exceptions
 ----------
 
-.. method:: java_jnienv->Throw(...)
+.. member:: java_jnienv->Throw(...)
 
    Throws a Java error (java.lang.Throwable). It takes a ``jobject`` thrown
    error reference and returns a ``jint``. See the documentation for more
    information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16086>`_
 
-.. method:: java_jnienv->ThrowNew(...)
+.. member:: java_jnienv->ThrowNew(...)
 
    Creates and throws a Java error with the message passed to it. It takes a
    ``jobject`` class reference to use to create the error, and a string with the
@@ -74,30 +74,30 @@ Exceptions
    information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16104>`_
 
-.. method:: java_jnienv->ExceptionOccurred(...)
+.. member:: java_jnienv->ExceptionOccurred(...)
 
    Returns whether or not a Java exception was thrown. See the documentation for
    more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16124>`_
 
-.. method:: java_jnienv->ExceptionDescribe(...)
+.. member:: java_jnienv->ExceptionDescribe(...)
 
    Outputs the error and stack trace for the Java exception.
    http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16146
 
-.. method:: java_jnienv->ExceptionClear(...)
+.. member:: java_jnienv->ExceptionClear(...)
 
    Clears any exceptions that have been thrown. See the documentation for more
    information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16166>`_
 
-.. method:: java_jnienv->FatalError(...)
+.. member:: java_jnienv->FatalError(...)
 
    Throws a fatal error to the JVM. It takes a string as the error message. See
    the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16186>`_
 
-.. method:: java_jnienv->ExceptionCheck(...)
+.. member:: java_jnienv->ExceptionCheck(...)
 
    Returns true if a Java exception has been thrown, otherwise returns false.
    See the documentation for more information:
@@ -107,20 +107,20 @@ Exceptions
 Global and Local References
 ---------------------------
 
-.. method:: java_jnienv->NewGlobalRef(...)
+.. member:: java_jnienv->NewGlobalRef(...)
 
    Creates a global reference from the specified object. It takes a ``jobject``
    reference to an object and returns a new ``jobject`` global object reference.
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#NewGlobalRef>`_
 
-.. method:: java_jnienv->DeleteGlobalRef(...)
+.. member:: java_jnienv->DeleteGlobalRef(...)
 
    Removes the specified global reference. It takes a ``jobject`` reference to a
    global object. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#DeleteGlobalRef>`_
 
-.. method:: java_jnienv->DeleteLocalRef(...)
+.. member:: java_jnienv->DeleteLocalRef(...)
 
    Removes the specified local reference. It takes a ``jobject`` reference to an
    object. See the documentation for more information:
@@ -130,7 +130,7 @@ Global and Local References
 Object Operations
 -----------------
 
-.. method:: java_jnienv->AllocObject(...)
+.. member:: java_jnienv->AllocObject(...)
 
    Allocates a Java object without calling any of the constructor methods. It
    takes a ``jobject`` class reference (like the return value of
@@ -138,7 +138,7 @@ Object Operations
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16337>`_
 
-.. method:: java_jnienv->NewObject(...)
+.. member:: java_jnienv->NewObject(...)
 
    Allocates and constructs a Java object. It takes a ``jobject`` class
    reference to the new object's class, a ``jmethodid`` reference to the
@@ -147,20 +147,20 @@ Object Operations
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4517>`_
 
-.. method:: java_jnienv->GetObjectClass(...)
+.. member:: java_jnienv->GetObjectClass(...)
 
    This method returns a class reference for the specified object. It takes a
    ``jobject`` object reference. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16454>`_
 
-.. method:: java_jnienv->IsInstanceOf(...)
+.. member:: java_jnienv->IsInstanceOf(...)
 
    Returns true if the specified object is an instance of the specified class,
    otherwise returns false. It takes a ``jobject`` object reference and a
    ``jobject`` class reference. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16472>`_
 
-.. method:: java_jnienv->IsSameObject(...)
+.. member:: java_jnienv->IsSameObject(...)
 
    Returns true if both specified objects refer to the same Java object,
    otherwise false. It takes two ``jobject`` object references. See the
@@ -171,7 +171,7 @@ Object Operations
 Accessing Fields of Objects
 ---------------------------
 
-.. method:: java_jnienv->GetFieldId(...)
+.. member:: java_jnienv->GetFieldId(...)
 
    Returns the field ID of a Java object's instance field. It takes a
    ``jobject`` class reference, a string with the value of the field's name, and
@@ -179,7 +179,7 @@ Accessing Fields of Objects
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16540>`_
 
-.. method:: java_jnienv->GetObjectField(...)
+.. member:: java_jnienv->GetObjectField(...)
 
    Returns the value of the specified Java object instance field. This method
    should be used for field values that are Java objects. It takes in a
@@ -187,7 +187,7 @@ Accessing Fields of Objects
    ``jobject`` object reference. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
 
-.. method:: java_jnienv->GetBooleanField(...)
+.. member:: java_jnienv->GetBooleanField(...)
 
    Returns the value of the specified Java object instance field. This method
    should be used for field values that are boolean primitives. It takes in a
@@ -195,7 +195,7 @@ Accessing Fields of Objects
    boolean. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
 
-.. method:: java_jnienv->GetByteField(...)
+.. member:: java_jnienv->GetByteField(...)
 
    Returns the value of the specified Java object instance field. This method
    should be used for field values that are Java byte primitives. It takes in a
@@ -203,7 +203,7 @@ Accessing Fields of Objects
    ``jbyte``. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
 
-.. method:: java_jnienv->GetCharField(...)
+.. member:: java_jnienv->GetCharField(...)
 
    Returns the value of the specified Java object instance field. This method
    should be used for field values that are Java char primitives. It takes in a
@@ -211,7 +211,7 @@ Accessing Fields of Objects
    ``jchar``. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
 
-.. method:: java_jnienv->GetShortField(...)
+.. member:: java_jnienv->GetShortField(...)
 
    Returns the value of the specified Java object instance field. This method
    should be used for field values that are Java short primitives. It takes in a
@@ -219,7 +219,7 @@ Accessing Fields of Objects
    ``jshort``. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
 
-.. method:: java_jnienv->GetIntField(...)
+.. member:: java_jnienv->GetIntField(...)
 
    Returns the value of the specified Java object instance field. This method
    should be used for field values that are Java int primitives. It takes in a
@@ -227,7 +227,7 @@ Accessing Fields of Objects
    ``jint``. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
 
-.. method:: java_jnienv->GetLongField(...)
+.. member:: java_jnienv->GetLongField(...)
 
    Returns the value of the specified Java object instance field. This method
    should be used for field values that are Java long primitives. It takes in a
@@ -235,7 +235,7 @@ Accessing Fields of Objects
    integer. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
 
-.. method:: java_jnienv->GetFloatField(...)
+.. member:: java_jnienv->GetFloatField(...)
 
    Returns the value of the specified Java object instance field. This method
    should be used for field values that are Java float primitives. It takes in a
@@ -243,7 +243,7 @@ Accessing Fields of Objects
    decimal. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
 
-.. method:: java_jnienv->GetDoubleField(...)
+.. member:: java_jnienv->GetDoubleField(...)
 
    Returns the value of the specified Java object instance field. This method
    should be used for field values that are Java double primitives. It takes in
@@ -251,7 +251,7 @@ Accessing Fields of Objects
    Lasso decimal. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
 
-.. method:: java_jnienv->SetObjectField(...)
+.. member:: java_jnienv->SetObjectField(...)
 
    Sets the value of the specified Java object instance field. This method
    should be used for fields that contain Java objects. It takes a ``jobject``
@@ -259,7 +259,7 @@ Accessing Fields of Objects
    the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
 
-.. method:: java_jnienv->SetBooleanField(...)
+.. member:: java_jnienv->SetBooleanField(...)
 
    Sets the value of the specified Java object instance field. This method
    should be used for fields that contain Java boolean primitives. It takes a
@@ -267,7 +267,7 @@ Accessing Fields of Objects
    value for the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
 
-.. method:: java_jnienv->SetByteField(...)
+.. member:: java_jnienv->SetByteField(...)
 
    Sets the value of the specified Java object instance field. This method
    should be used for fields that contain Java byte primitives. It takes a
@@ -275,7 +275,7 @@ Accessing Fields of Objects
    value for the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
 
-.. method:: java_jnienv->SetCharField(...)
+.. member:: java_jnienv->SetCharField(...)
 
    Sets the value of the specified Java object instance field. This method
    should be used for fields that contain Java char primitives. It takes a
@@ -283,7 +283,7 @@ Accessing Fields of Objects
    value for the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
 
-.. method:: java_jnienv->SetShortField(...)
+.. member:: java_jnienv->SetShortField(...)
 
    Sets the value of the specified Java object instance field. This method
    should be used for fields that contain Java short primitives. It takes a
@@ -291,7 +291,7 @@ Accessing Fields of Objects
    ``jshort`` value for the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
 
-.. method:: java_jnienv->SetIntField(...)
+.. member:: java_jnienv->SetIntField(...)
 
    Sets the value of the specified Java object instance field. This method
    should be used for fields that contain Java int primitives. It takes a
@@ -299,7 +299,7 @@ Accessing Fields of Objects
    value for the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
 
-.. method:: java_jnienv->SetLongField(...)
+.. member:: java_jnienv->SetLongField(...)
 
    Sets the value of the specified Java object instance field. This method
    should be used for fields that contain Java long primitives. It takes a
@@ -307,7 +307,7 @@ Accessing Fields of Objects
    value for the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
 
-.. method:: java_jnienv->SetFloatField(...)
+.. member:: java_jnienv->SetFloatField(...)
 
    Sets the value of the specified Java object instance field. This method
    should be used for fields that contain Java float primitives. It takes a
@@ -315,7 +315,7 @@ Accessing Fields of Objects
    ``jfloat`` value for the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
 
-.. method:: java_jnienv->SetDoubleField(...)
+.. member:: java_jnienv->SetDoubleField(...)
 
    Sets the value of the specified Java object instance field. This method
    should be used for fields that contain Java double primitives. It takes a
@@ -327,14 +327,14 @@ Accessing Fields of Objects
 Calling Instance Methods
 ------------------------
 
-.. method:: java_jnienv->GetMethodID(...)
+.. member:: java_jnienv->GetMethodID(...)
 
    Returns a ``jmethodid`` Lasso object for the Java object's specified instance
    member method. For constructor methods, use "<init>" as the method name. See
    the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16660>`_
 
-.. method:: java_jnienv->CallVoidMethod(...)
+.. member:: java_jnienv->CallVoidMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -343,7 +343,7 @@ Calling Instance Methods
    passed to the instance method. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
 
-.. method:: java_jnienv->CallObjectMethod(...)
+.. member:: java_jnienv->CallObjectMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -353,7 +353,7 @@ Calling Instance Methods
    the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
 
-.. method:: java_jnienv->CallBooleanMethod(...)
+.. member:: java_jnienv->CallBooleanMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -362,7 +362,7 @@ Calling Instance Methods
    passed to the instance method. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
 
-.. method:: java_jnienv->CallByteMethod(...)
+.. member:: java_jnienv->CallByteMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -371,7 +371,7 @@ Calling Instance Methods
    be passed to the instance method. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
 
-.. method:: java_jnienv->CallCharMethod(...)
+.. member:: java_jnienv->CallCharMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -380,7 +380,7 @@ Calling Instance Methods
    be passed to the instance method. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
 
-.. method:: java_jnienv->CallShortMethod(...)
+.. member:: java_jnienv->CallShortMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -390,7 +390,7 @@ Calling Instance Methods
    information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
 
-.. method:: java_jnienv->CallIntMethod(...)
+.. member:: java_jnienv->CallIntMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -399,7 +399,7 @@ Calling Instance Methods
    be passed to the instance method. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
 
-.. method:: java_jnienv->CallLongMethod(...)
+.. member:: java_jnienv->CallLongMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -408,7 +408,7 @@ Calling Instance Methods
    be passed to the instance method. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
 
-.. method:: java_jnienv->CallFloatMethod(...)
+.. member:: java_jnienv->CallFloatMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -418,7 +418,7 @@ Calling Instance Methods
    information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
 
-.. method:: java_jnienv->CallDoubleMethod(...)
+.. member:: java_jnienv->CallDoubleMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -428,7 +428,7 @@ Calling Instance Methods
    information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
 
-.. method:: java_jnienv->CallNonvirtualVoidMethod(...)
+.. member:: java_jnienv->CallNonvirtualVoidMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -438,7 +438,7 @@ Calling Instance Methods
    for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
 
-.. method:: java_jnienv->CallNonvirtualObjectMethod(...)
+.. member:: java_jnienv->CallNonvirtualObjectMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -448,7 +448,7 @@ Calling Instance Methods
    for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
 
-.. method:: java_jnienv->CallNonvirtualBooleanMethod(...)
+.. member:: java_jnienv->CallNonvirtualBooleanMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -458,7 +458,7 @@ Calling Instance Methods
    for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
 
-.. method:: java_jnienv->CallNonvirtualByteMethod(...)
+.. member:: java_jnienv->CallNonvirtualByteMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -468,7 +468,7 @@ Calling Instance Methods
    the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
 
-.. method:: java_jnienv->CallNonvirtualCharMethod(...)
+.. member:: java_jnienv->CallNonvirtualCharMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -478,7 +478,7 @@ Calling Instance Methods
    the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
 
-.. method:: java_jnienv->CallNonvirtualShortMethod(...)
+.. member:: java_jnienv->CallNonvirtualShortMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -488,7 +488,7 @@ Calling Instance Methods
    the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
 
-.. method:: java_jnienv->CallNonvirtualIntMethod(...)
+.. member:: java_jnienv->CallNonvirtualIntMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -498,7 +498,7 @@ Calling Instance Methods
    the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
 
-.. method:: java_jnienv->CallNonvirtualLongMethod(...)
+.. member:: java_jnienv->CallNonvirtualLongMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -508,7 +508,7 @@ Calling Instance Methods
    the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
 
-.. method:: java_jnienv->CallNonvirtualFloatMethod(...)
+.. member:: java_jnienv->CallNonvirtualFloatMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -518,7 +518,7 @@ Calling Instance Methods
    the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
 
-.. method:: java_jnienv->CallNonvirtualDoubleMethod(...)
+.. member:: java_jnienv->CallNonvirtualDoubleMethod(...)
 
    This method calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
@@ -532,7 +532,7 @@ Calling Instance Methods
 Accessing Static Fields
 -----------------------
 
-.. method:: java_jnienv->GetStaticFieldID(...)
+.. member:: java_jnienv->GetStaticFieldID(...)
 
    Returns a ``jfieldid`` reference to a Java class's static field. It takes a
    ``jobject`` class reference, a string with the value of the field's name, and
@@ -540,7 +540,7 @@ Accessing Static Fields
    information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16823>`_
 
-.. method:: java_jnienv->GetStaticObjectField(...)
+.. member:: java_jnienv->GetStaticObjectField(...)
 
    Returns the value of the specified Java class static field. This method
    should be used for field values that are Java objects. It takes in a
@@ -548,7 +548,7 @@ Accessing Static Fields
    ``jobject`` object reference. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
 
-.. method:: java_jnienv->GetStaticBooleanField(...)
+.. member:: java_jnienv->GetStaticBooleanField(...)
 
    Returns the value of the specified Java class static field. This method
    should be used for field values that are boolean primitives. It takes in a
@@ -556,7 +556,7 @@ Accessing Static Fields
    boolean. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
 
-.. method:: java_jnienv->GetStaticByteField(...)
+.. member:: java_jnienv->GetStaticByteField(...)
 
    Returns the value of the specified Java class static field. This method
    should be used for field values that are Java byte primitives. It takes in a
@@ -564,7 +564,7 @@ Accessing Static Fields
    ``jbyte``. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
 
-.. method:: java_jnienv->GetStaticCharField(...)
+.. member:: java_jnienv->GetStaticCharField(...)
 
    Returns the value of the specified Java class static field. This method
    should be used for field values that are Java char primitives. It takes in a
@@ -572,7 +572,7 @@ Accessing Static Fields
    ``jchar``. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
 
-.. method:: java_jnienv->GetStaticShortField(...)
+.. member:: java_jnienv->GetStaticShortField(...)
 
    Returns the value of the specified Java class static field. This method
    should be used for field values that are Java short primitives. It takes in a
@@ -580,7 +580,7 @@ Accessing Static Fields
    ``jshort``. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
 
-.. method:: java_jnienv->GetStaticIntField(...)
+.. member:: java_jnienv->GetStaticIntField(...)
 
    Returns the value of the specified Java class static field. This method
    should be used for field values that are Java int primitives. It takes in a
@@ -588,7 +588,7 @@ Accessing Static Fields
    ``jint``. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
 
-.. method:: java_jnienv->GetStaticLongField(...)
+.. member:: java_jnienv->GetStaticLongField(...)
 
    Returns the value of the specified Java class static field. This method
    should be used for field values that are Java long primitives. It takes in a
@@ -596,7 +596,7 @@ Accessing Static Fields
    integer. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
 
-.. method:: java_jnienv->GetStaticFloatField(...)
+.. member:: java_jnienv->GetStaticFloatField(...)
 
    Returns the value of the specified Java class static field. This method
    should be used for field values that are Java float primitives. It takes in a
@@ -604,7 +604,7 @@ Accessing Static Fields
    decimal. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
 
-.. method:: java_jnienv->GetStaticDoubleField(...)
+.. member:: java_jnienv->GetStaticDoubleField(...)
 
    Returns the value of the specified Java class static field. This method
    should be used for field values that are Java double primitives. It takes in
@@ -612,7 +612,7 @@ Accessing Static Fields
    Lasso decimal. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
 
-.. method:: java_jnienv->SetStaticObjectField(...)
+.. member:: java_jnienv->SetStaticObjectField(...)
 
    Sets the value of the specified Java class static field. This method should
    be used for fields that contain Java objects. It takes a ``jobject`` class
@@ -620,7 +620,7 @@ Accessing Static Fields
    field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
 
-.. method:: java_jnienv->SetStaticBooleanField(...)
+.. member:: java_jnienv->SetStaticBooleanField(...)
 
    Sets the value of the specified Java class static field. This method should
    be used for fields that contain Java boolean primitives. It takes a
@@ -628,7 +628,7 @@ Accessing Static Fields
    value for the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
 
-.. method:: java_jnienv->SetStaticByteField(...)
+.. member:: java_jnienv->SetStaticByteField(...)
 
    Sets the value of the specified Java class static field. This method should
    be used for fields that contain Java byte primitives. It takes a ``jobject``
@@ -636,7 +636,7 @@ Accessing Static Fields
    the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
 
-.. method:: java_jnienv->SetStaticCharField(...)
+.. member:: java_jnienv->SetStaticCharField(...)
 
    Sets the value of the specified Java class static field. This method should
    be used for fields that contain Java char primitives. It takes a ``jobject``
@@ -644,7 +644,7 @@ Accessing Static Fields
    the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
 
-.. method:: java_jnienv->SetStaticShortField(...)
+.. member:: java_jnienv->SetStaticShortField(...)
 
    Sets the value of the specified Java class static field. This method should
    be used for fields that contain Java short primitives. It takes a ``jobject``
@@ -652,7 +652,7 @@ Accessing Static Fields
    the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
 
-.. method:: java_jnienv->SetStaticIntField(...)
+.. member:: java_jnienv->SetStaticIntField(...)
 
    Sets the value of the specified Java class static field. This method should
    be used for fields that contain Java int primitives. It takes a ``jobject``
@@ -660,7 +660,7 @@ Accessing Static Fields
    field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
 
-.. method:: java_jnienv->SetStaticLongField(...)
+.. member:: java_jnienv->SetStaticLongField(...)
 
    Sets the value of the specified Java class static field. This method should
    be used for fields that contain Java long primitives. It takes a ``jobject``
@@ -668,7 +668,7 @@ Accessing Static Fields
    field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
 
-.. method:: java_jnienv->SetStaticFloatField(...)
+.. member:: java_jnienv->SetStaticFloatField(...)
 
    Sets the value of the specified Java class static field. This method should
    be used for fields that contain Java float primitives. It takes a ``jobject``
@@ -676,7 +676,7 @@ Accessing Static Fields
    the field. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
 
-.. method:: java_jnienv->SetStaticDoubleField(...)
+.. member:: java_jnienv->SetStaticDoubleField(...)
 
    Sets the value of the specified Java class static field. This method should
    be used for fields that contain Java double primitives. It takes a
@@ -688,7 +688,7 @@ Accessing Static Fields
 Calling Static Methods
 ----------------------
 
-.. method:: java_jnienv->GetStaticMethodID(...)
+.. member:: java_jnienv->GetStaticMethodID(...)
 
    Returns a ``jmethodid`` Lasso object for the specified static method. It
    takes a ``jobject`` class reference, a string specifying the name of the
@@ -696,7 +696,7 @@ Calling Static Methods
    more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20950>`_
 
-.. method:: java_jnienv->CallStaticVoidMethod(...)
+.. member:: java_jnienv->CallStaticVoidMethod(...)
 
    This method is used to call a Java class static method that doesn't return a
    value. It takes a ``jobject`` class reference, a ``jmethodid`` for the
@@ -704,7 +704,7 @@ Calling Static Methods
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
 
-.. method:: java_jnienv->CallStaticObjectMethod(...)
+.. member:: java_jnienv->CallStaticObjectMethod(...)
 
    This method is used to call a Java class static method that returns a Java
    object. It takes a ``jobject`` class reference, a ``jmethodid`` for the
@@ -712,7 +712,7 @@ Calling Static Methods
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
 
-.. method:: java_jnienv->CallStaticBooleanMethod(...)
+.. member:: java_jnienv->CallStaticBooleanMethod(...)
 
    This method is used to call a Java class static method that returns a Java
    boolean. It takes a ``jobject`` class reference, a ``jmethodid`` for the
@@ -720,7 +720,7 @@ Calling Static Methods
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
 
-.. method:: java_jnienv->CallStaticByteMethod(...)
+.. member:: java_jnienv->CallStaticByteMethod(...)
 
    This method is used to call a Java class static method that returns a Java
    byte primitive. It takes a ``jobject`` class reference, a ``jmethodid`` for
@@ -728,7 +728,7 @@ Calling Static Methods
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
 
-.. method:: java_jnienv->CallStaticCharMethod(...)
+.. member:: java_jnienv->CallStaticCharMethod(...)
 
    This method is used to call a Java class static method that returns a Java
    char primitive. It takes a ``jobject`` class reference, a ``jmethodid`` for
@@ -736,7 +736,7 @@ Calling Static Methods
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
 
-.. method:: java_jnienv->CallStaticShortMethod(...)
+.. member:: java_jnienv->CallStaticShortMethod(...)
 
    This method is used to call a Java class static method that returns a Java
    short primitive. It takes a ``jobject`` class reference, a ``jmethodid`` for
@@ -744,7 +744,7 @@ Calling Static Methods
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
 
-.. method:: java_jnienv->CallStaticIntMethod(...)
+.. member:: java_jnienv->CallStaticIntMethod(...)
 
    This method is used to call a Java class static method that returns a Java
    int primitive. It takes a ``jobject`` class reference, a ``jmethodid`` for
@@ -752,7 +752,7 @@ Calling Static Methods
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
 
-.. method:: java_jnienv->CallStaticLongMethod(...)
+.. member:: java_jnienv->CallStaticLongMethod(...)
 
    This method is used to call a Java class static method that returns a Java
    long primitive. It takes a ``jobject`` class reference, a ``jmethodid`` for
@@ -760,7 +760,7 @@ Calling Static Methods
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
 
-.. method:: java_jnienv->CallStaticFloatMethod(...)
+.. member:: java_jnienv->CallStaticFloatMethod(...)
 
    This method is used to call a Java class static method that returns a Java
    float primitive. It takes a ``jobject`` class reference, a ``jmethodid`` for
@@ -768,7 +768,7 @@ Calling Static Methods
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
 
-.. method:: java_jnienv->CallStaticDoubleMethod(...)
+.. member:: java_jnienv->CallStaticDoubleMethod(...)
 
    This method is used to call a Java class static method that returns a Java
    double primitive. It takes a ``jobject`` class reference, a ``jmethodid`` for
@@ -780,20 +780,20 @@ Calling Static Methods
 String Operations
 -----------------
 
-.. method:: java_jnienv->NewString(...)
+.. member:: java_jnienv->NewString(...)
 
    Takes in a Lasso string and returns a Lasso ``jobject`` that corresponds to a
    Java object of class ``java.lang.String``. See the documentation for more
    information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4925>`_
 
-.. method:: java_jnienv->GetStringLength(...)
+.. member:: java_jnienv->GetStringLength(...)
 
    Returns the number of characters in the specified Java string object. See the
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17132>`_
 
-.. method:: java_jnienv->GetStringChars(...)
+.. member:: java_jnienv->GetStringChars(...)
 
    It takes a ``jobject`` of a Java string and returns a Lasso string object.
    See the documentation for more information:
@@ -803,13 +803,13 @@ String Operations
 Array Operations
 ----------------
 
-.. method:: java_jnienv->GetArrayLength(...)
+.. member:: java_jnienv->GetArrayLength(...)
 
    Returns the number of elements in the specified Java array. See the
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp21732>`_
 
-.. method:: java_jnienv->NewObjectArray(...)
+.. member:: java_jnienv->NewObjectArray(...)
 
    Returns a ``jobject`` of a Java array containing Java objects of the
    specified class. It takes the length of the array, a ``jobject`` class
@@ -817,14 +817,14 @@ Array Operations
    each item in the array to. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp21619>`_
 
-.. method:: java_jnienv->GetObjectArrayElement(...)
+.. member:: java_jnienv->GetObjectArrayElement(...)
 
    Returns the specified element of a Java object array. It takes the
    ``jobject`` containing the array and an integer specifying the index into the
    array. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp21671>`_
 
-.. method:: java_jnienv->SetObjectArrayElement(...)
+.. member:: java_jnienv->SetObjectArrayElement(...)
 
    Sets the value at the specified index of the specified Java object array. It
    takes a ``jobject`` of the array, an integer specifying the index into the
@@ -832,103 +832,103 @@ Array Operations
    information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp21699>`_
 
-.. method:: java_jnienv->NewBooleanArray(...)
+.. member:: java_jnienv->NewBooleanArray(...)
 
    Returns a ``jobject`` of a Java array containing Java booleans. It takes the
    length of the array. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
 
-.. method:: java_jnienv->NewByteArray(...)
+.. member:: java_jnienv->NewByteArray(...)
 
    Returns a ``jobject`` of a Java array containing Java byte primitives. It
    takes the length of the array. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
 
-.. method:: java_jnienv->NewCharArray(...)
+.. member:: java_jnienv->NewCharArray(...)
 
    Returns a ``jobject`` of a Java array containing Java char primitives. It
    takes the length of the array. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
 
-.. method:: java_jnienv->NewShortArray(...)
+.. member:: java_jnienv->NewShortArray(...)
 
    Returns a ``jobject`` of a Java array containing Java short primitives. It
    takes the length of the array. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
 
-.. method:: java_jnienv->NewIntArray(...)
+.. member:: java_jnienv->NewIntArray(...)
 
    Returns a ``jobject`` of a Java array containing Java int primitives. It
    takes the length of the array. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
 
-.. method:: java_jnienv->NewLongArray(...)
+.. member:: java_jnienv->NewLongArray(...)
 
    Returns a ``jobject`` of a Java array containing Java long primitives. It
    takes the length of the array. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
 
-.. method:: java_jnienv->NewFloatArray(...)
+.. member:: java_jnienv->NewFloatArray(...)
 
    Returns a ``jobject`` of a Java array containing Java float primitives. It
    takes the length of the array. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
 
-.. method:: java_jnienv->NewDoubleArray(...)
+.. member:: java_jnienv->NewDoubleArray(...)
 
    Returns a ``jobject`` of a Java array containing Java double primitives. It
    takes the length of the array. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
 
-.. method:: java_jnienv->GetBooleanArrayElements(...)
+.. member:: java_jnienv->GetBooleanArrayElements(...)
 
    Takes a ``jobject`` Java boolean array and returns a Lasso staticarray of the
    elements. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
 
-.. method:: java_jnienv->GetByteArrayElements(...)
+.. member:: java_jnienv->GetByteArrayElements(...)
 
    Takes a ``jobject`` Java byte array and returns a Lasso staticarray of the
    elements. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
 
-.. method:: java_jnienv->GetCharArrayElements(...)
+.. member:: java_jnienv->GetCharArrayElements(...)
 
    Takes a ``jobject`` Java char array and returns a Lasso staticarray of the
    elements. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
 
-.. method:: java_jnienv->GetShortArrayElements(...)
+.. member:: java_jnienv->GetShortArrayElements(...)
 
    Takes a ``jobject`` Java short array and returns a Lasso staticarray of the
    elements. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
 
-.. method:: java_jnienv->GetIntArrayElements(...)
+.. member:: java_jnienv->GetIntArrayElements(...)
 
    Takes a ``jobject`` Java int array and returns a Lasso staticarray of the
    elements. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
 
-.. method:: java_jnienv->GetLongArrayElements(...)
+.. member:: java_jnienv->GetLongArrayElements(...)
 
    Takes a ``jobject`` Java long array and returns a Lasso staticarray of the
    elements. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
 
-.. method:: java_jnienv->GetFloatArrayElements(...)
+.. member:: java_jnienv->GetFloatArrayElements(...)
 
    Takes a ``jobject`` Java float array and returns a Lasso staticarray of the
    elements. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
 
-.. method:: java_jnienv->GetDoubleArrayElements(...)
+.. member:: java_jnienv->GetDoubleArrayElements(...)
 
    Takes a ``jobject`` Java double array and returns a Lasso staticarray of the
    elements. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
 
-.. method:: java_jnienv->GetBooleanArrayRegion(...)
+.. member:: java_jnienv->GetBooleanArrayRegion(...)
 
    Returns the specified region of elements from a Java boolean array in a Lasso
    staticarray. It takes a ``jobject`` of the array, an integer for the start
@@ -936,7 +936,7 @@ Array Operations
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
 
-.. method:: java_jnienv->GetByteArrayRegion(...)
+.. member:: java_jnienv->GetByteArrayRegion(...)
 
    Returns the specified region of elements from a Java byte array in a Lasso
    staticarray. It takes a ``jobject`` of the array, an integer for the start
@@ -944,7 +944,7 @@ Array Operations
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
 
-.. method:: java_jnienv->GetCharArrayRegion(...)
+.. member:: java_jnienv->GetCharArrayRegion(...)
 
    Returns the specified region of elements from a Java char array in a Lasso
    staticarray. It takes a ``jobject`` of the array, an integer for the start
@@ -952,7 +952,7 @@ Array Operations
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
 
-.. method:: java_jnienv->GetShortArrayRegion(...)
+.. member:: java_jnienv->GetShortArrayRegion(...)
 
    Returns the specified region of elements from a Java short array in a Lasso
    staticarray. It takes a ``jobject`` of the array, an integer for the start
@@ -960,7 +960,7 @@ Array Operations
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
 
-.. method:: java_jnienv->GetIntArrayRegion(...)
+.. member:: java_jnienv->GetIntArrayRegion(...)
 
    Returns the specified region of elements from a Java int array in a Lasso
    staticarray. It takes a ``jobject`` of the array, an integer for the start
@@ -968,7 +968,7 @@ Array Operations
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
 
-.. method:: java_jnienv->GetLongArrayRegion(...)
+.. member:: java_jnienv->GetLongArrayRegion(...)
 
    Returns the specified region of elements from a Java long array in a Lasso
    staticarray. It takes a ``jobject`` of the array, an integer for the start
@@ -976,7 +976,7 @@ Array Operations
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
 
-.. method:: java_jnienv->GetFloatArrayRegion(...)
+.. member:: java_jnienv->GetFloatArrayRegion(...)
 
    Returns the specified region of elements from a Java float array in a Lasso
    staticarray. It takes a ``jobject`` of the array, an integer for the start
@@ -984,7 +984,7 @@ Array Operations
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
 
-.. method:: java_jnienv->GetDoubleArrayRegion(...)
+.. member:: java_jnienv->GetDoubleArrayRegion(...)
 
    Returns the specified region of elements from a Java double array in a Lasso
    staticarray. It takes a ``jobject`` of the array, an integer for the start
@@ -992,7 +992,7 @@ Array Operations
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
 
-.. method:: java_jnienv->SetBooleanArrayRegion(...)
+.. member:: java_jnienv->SetBooleanArrayRegion(...)
 
    Replaces the specified portion of a Java boolean array with the values
    specified in a Lasso static array. It takes a ``jobject`` of the array, an
@@ -1001,7 +1001,7 @@ Array Operations
    See the documentation for more information:   
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
 
-.. method:: java_jnienv->SetByteArrayRegion(...)
+.. member:: java_jnienv->SetByteArrayRegion(...)
 
    Replaces the specified portion of a Java byte array with the values specified
    in a Lasso static array. It takes a ``jobject`` of the array, an integer for
@@ -1010,7 +1010,7 @@ Array Operations
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
 
-.. method:: java_jnienv->SetCharArrayRegion(...)
+.. member:: java_jnienv->SetCharArrayRegion(...)
 
    Replaces the specified portion of a Java char array with the values specified
    in a Lasso static array. It takes a ``jobject`` of the array, an integer for
@@ -1019,7 +1019,7 @@ Array Operations
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
 
-.. method:: java_jnienv->SetShortArrayRegion(...)
+.. member:: java_jnienv->SetShortArrayRegion(...)
 
    Replaces the specified portion of a Java short array with the values
    specified in a Lasso static array. It takes a ``jobject`` of the array, an
@@ -1028,7 +1028,7 @@ Array Operations
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
 
-.. method:: java_jnienv->SetIntArrayRegion(...)
+.. member:: java_jnienv->SetIntArrayRegion(...)
 
    Replaces the specified portion of a Java int array with the values specified
    in a Lasso static array. It takes a ``jobject`` of the array, an integer for
@@ -1037,7 +1037,7 @@ Array Operations
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
 
-.. method:: java_jnienv->SetLongArrayRegion(...)
+.. member:: java_jnienv->SetLongArrayRegion(...)
 
    Replaces the specified portion of a Java long array with the values
    specified in a Lasso static array. It takes a ``jobject`` of the array, an
@@ -1046,7 +1046,7 @@ Array Operations
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
 
-.. method:: java_jnienv->SetFloatArrayRegion(...)
+.. member:: java_jnienv->SetFloatArrayRegion(...)
 
    Replaces the specified portion of a Java float array with the values
    specified in a Lasso static array. It takes a ``jobject`` of the array, an
@@ -1055,7 +1055,7 @@ Array Operations
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
 
-.. method:: java_jnienv->SetDoubleArrayRegion(...)
+.. member:: java_jnienv->SetDoubleArrayRegion(...)
 
    Replaces the specified portion of a Java double array with the values
    specified in a Lasso static array. It takes a ``jobject`` of the array, an
@@ -1068,13 +1068,13 @@ Array Operations
 Monitor Operations
 ------------------
 
-.. method:: java_jnienv->MonitorEnter(...)
+.. member:: java_jnienv->MonitorEnter(...)
 
    Enters into the monitor associated with the specified Java object. Requires a
    non-null ``jobject`` object. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp23124>`_
 
-.. method:: java_jnienv->MonitorExit(...)
+.. member:: java_jnienv->MonitorExit(...)
 
    Decrements the monitor counter for the current thread and the specified Java
    object. Requires a non-null ``jobject`` object. See the documentation for
@@ -1085,25 +1085,25 @@ Monitor Operations
 Reflection Support
 ------------------
 
-.. method:: java_jnienv->FromReflectedMethod(...)
+.. member:: java_jnienv->FromReflectedMethod(...)
 
    Converts a specified Java reflection object into a Lasso ``jmethodid``. See
    the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#from_reflected_method>`_
 
-.. method:: java_jnienv->FromReflectedField(...)
+.. member:: java_jnienv->FromReflectedField(...)
 
    Converts a specified Java reflection field object into a lasso ``jfieldid``.
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#from_reflected_field>`_
 
-.. method:: java_jnienv->ToReflectedMethod(...)
+.. member:: java_jnienv->ToReflectedMethod(...)
 
    Converts a specified Lasso ``jmethodid`` to a Java reflection object returned
    as a ``jobject``. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#to_reflected_method>`_
 
-.. method:: java_jnienv->ToReflectedField(...)
+.. member:: java_jnienv->ToReflectedField(...)
 
    Converts a specified Lasso ``jfieldid`` to a Java reflection field object
    returned as a ``jobject``. See the documentation for more information:
@@ -1114,21 +1114,21 @@ Reflection Support
 Return Types
 ============
 
-.. class:: jobject
+.. type:: jobject
 .. method:: jobject()
    
    Stores a reference to either a Java class, instantiated object, or thrown
    error. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/types.html#wp15954>`_
 
-.. class:: jmethodid
+.. type:: jmethodid
 .. method:: jmethodid()
 
    Stores the JNI ID for a specific method (both member methods and class
    methods). See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/types.html#wp1064>`_
 
-.. class:: jfieldid 
+.. type:: jfieldid 
 .. method:: jfieldid()
 
    Stores the JNI ID for data field members of a class (both an object's and the
@@ -1139,7 +1139,7 @@ Return Types
 Helper Types for Java Data Primatives
 =====================================
 
-.. class:: jfloat
+.. type:: jfloat
 .. method:: jfloat(val::decimal)
 .. method:: jfloat(val::integer)
 .. method:: jfloat(val::jfloat)
@@ -1147,37 +1147,37 @@ Helper Types for Java Data Primatives
    Creat an object that can be passed to a Java method as a Java float
    primitive.
 
-.. class:: jint
+.. type:: jint
 .. method:: jint(val::integer)
 
    Creat an object that can be passed to a Java method as a Java integer
    primitive.
 
-.. class:: jshort
+.. type:: jshort
 .. method:: jshort(val::integer)
 
    Creat an object that can be passed to a Java method as a Java short
    primitive.
 
-.. class:: jchar
+.. type:: jchar
 .. method:: jchar(val::string)
 
    Creat an object that can be passed to a Java method as a Java char
    primitive.
 
-.. class:: jchararray
+.. type:: jchararray
 .. method:: jchararray(val::string)
 
    Creat an object that can be passed to a Java method as a Java array of char
    primitives.
 
-.. class:: jbyte
+.. type:: jbyte
 .. method:: jbyte(val::bytes)
 
    Creat an object that can be passed to a Java method as a Java byte
    primitive.
 
-.. class:: jbytearray
+.. type:: jbytearray
 .. method:: jbytearray(val::bytes)
 
    Creat an object that can be passed to a Java method as a Java array of byte

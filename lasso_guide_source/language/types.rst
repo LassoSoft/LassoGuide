@@ -776,12 +776,12 @@ Introspection
 Lasso provides a number of methods which can be used to gain information
 about an object. These methods are summarized below.
 
-.. method:: null->type()
+.. member:: null->type()
 
    Returns the type name for any type instance. The value is the name which was
    used when the type was defined.
 
-.. method:: null->isA(name::tag)
+.. member:: null->isA(name::tag)
 
    Checks whether an object is of the given type. The method will return an
    integer greater than zero if the name of the type is specified or the name of
@@ -790,35 +790,37 @@ about an object. These methods are summarized below.
    ``null->isA(::null)`` will only return true for the ``null`` type instance
    itself.
 
-.. method:: null->isNotA(name::tag)
+.. member:: null->isNotA(name::tag)
 
    The opposite of ``null->isA``.
 
-.. method:: null->listMethods()
+.. member:: null->listMethods()
 
    Returns a ``staticarray`` containing the signatures for all of the methods
    which are available for the type.
 
-.. method:: null->hasMethod(name::tag)
+.. member:: null->hasMethod(name::tag)
 
    Returns true if the type implements a method with the given name.
 
-.. method:: null->parent()
+.. member:: null->parent()
 
    Returns the name of the parent of the target object. If the method returns
    ``null`` then the final parent has been reached.
 
-.. method:: null->trait()
+.. member:: null->trait()
 
    Returns the trait for the target object. Returns ``null`` if the object does
    not have a trait.
 
-.. method:: null->setTrait(trait::trait)
+.. member:: null->setTrait(trait::trait)
+   :noindex:
 
    Sets the trait of the target object to the parameter. The existing trait is
    replaced.
 
-.. method:: null->addTrait(trait::trait)
+.. member:: null->addTrait(trait::trait)
+   :noindex:
 
    Combines the target object's trait with the parameter.
 

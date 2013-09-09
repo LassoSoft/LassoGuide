@@ -30,7 +30,7 @@ Lasso methods return data in the ``bytes`` type in the following situations:
    documentation in the Lasso Reference guide.
 
 
-.. class:: bytes
+.. type:: bytes
 .. method:: bytes()
 .. method:: bytes(initial::integer)
 .. method:: bytes(copy::bytes)
@@ -53,27 +53,27 @@ Byte streams are similar to strings and support many of the same member methods.
 In addition, byte streams support a number of member methods that make it easier
 to deal with binary data. These methods are outlined below.
 
-.. method:: bytes->size()
-.. method:: bytes->length()
+.. member:: bytes->size()
+.. member:: bytes->length()
 
    Returns the number of bytes contained in the bytes stream object.
 
-.. method:: bytes->get(position::integer)
+.. member:: bytes->get(position::integer)
 
    Returns a single byte from the stream. Requires a parameter which specifies
    which byte to fetch.
 
-.. method:: bytes->setSize(p0::integer)
+.. member:: bytes->setSize(p0::integer)
 
    Sets the byte stream to the specified number of bytes.
 
-.. method:: bytes->getRange(p0::integer, p1::integer)
+.. member:: bytes->getRange(p0::integer, p1::integer)
 
    Gets a range of bytes from the byte stream. Requires two parameters. The
    first specifies the byte position to start from, and the second specifies how
    many bytes to return.
 
-.. method:: bytes->setRange(
+.. member:: bytes->setRange(
       what::bytes,
       where::integer= ?,
       whatStart::integer= ?,
@@ -85,14 +85,14 @@ to deal with binary data. These methods are outlined below.
    specify the integer offset into the bytes stream to insert the new data, the
    offset and length of the new data to be inserted, respectively.
 
-.. method:: bytes->find(
+.. member:: bytes->find(
       find::bytes,
       position::integer= ?,
       length::integer= ?,
       patPosition::integer= ?,
       patLength::integer= ?
    )
-.. method:: bytes->find(
+.. member:: bytes->find(
       find::string,
       position::integer= ?,
       length::integer= ?,
@@ -107,36 +107,36 @@ to deal with binary data. These methods are outlined below.
    position, parameter length) indicate position and length limits that can be
    applied to the instance and the parameter sequence.
 
-.. method:: bytes->replace(find::bytes, replace::bytes)
+.. member:: bytes->replace(find::bytes, replace::bytes)
 
    Replaces all instances of a value within a bytes stream with a new value.
    Requires two parameters. The first parameter is the value to find, and the
    second parameter is the value to replace the first parameter with.
 
-.. method:: bytes->contains(find)
+.. member:: bytes->contains(find)
    
    Returns "true" if the instance contains the specified sequence.
 
-.. method:: bytes->beginsWith(find::string)
-.. method:: bytes->beginsWith(find::bytes)
+.. member:: bytes->beginsWith(find::string)
+.. member:: bytes->beginsWith(find::bytes)
    
    Returns "true" if the instance begins with the specified sequence.
 
-.. method:: bytes->endsWith(find::string)
-.. method:: bytes->endsWith(find::bytes)
+.. member:: bytes->endsWith(find::string)
+.. member:: bytes->endsWith(find::bytes)
 
    Returns "true" if the instance ends with the specified sequence.
 
-.. method:: bytes->split(find::string)
-.. method:: bytes->split(find::bytes)
+.. member:: bytes->split(find::string)
+.. member:: bytes->split(find::bytes)
 
    Returns an array of bytes instances using the specified sequence as the
    delimiter to split the byte stream. If the delimiter provided is an empty
    ``bytes`` or ``string`` object, the byte stream is split on each byte, so the
    returned array will have each byte as one of its elements.
 
-.. method:: bytes->remove()
-.. method:: bytes->remove(p0::integer, p1::integer)
+.. member:: bytes->remove()
+.. member:: bytes->remove(p0::integer, p1::integer)
 
    Removes bytes form a byte stream. When passed without a parameter, it removes
    all bytes, setting the object to an empty ``bytes`` object. In its second
@@ -154,19 +154,19 @@ bytes->removeTrailing(find::bytes)
     from the end of the instance. Requires one
     parameter which is the data to be removed.
 
-.. method:: bytes->append(p0::bytes)
-.. method:: bytes->append(rhs::string)
+.. member:: bytes->append(p0::bytes)
+.. member:: bytes->append(rhs::string)
 
    Appends the specified data to the end of the bytes stream. Requires one
    parameter which is the data to append.
 
-.. method:: bytes->trim()
+.. member:: bytes->trim()
 
    Removes all whitespace ASCII characters from the beginning and the end of the
    instance.
 
-.. method:: bytes->sub(pos::integer)
-.. method:: bytes->sub(p0::integer, p1::integer)
+.. member:: bytes->sub(pos::integer)
+.. member:: bytes->sub(p0::integer, p1::integer)
 
    Returns a specified slice of the byte stream. Requires an integer parameter
    that specifies the index into the byte stream to start taking the slice from.
@@ -174,59 +174,59 @@ bytes->removeTrailing(find::bytes)
    out of the byte stream. If the second parameter is not specified, then all of
    the rest of the byte stream is taken.
 
-.. method:: bytes->marker()
-.. method:: bytes->position()
+.. member:: bytes->marker()
+.. member:: bytes->position()
 
     Returns the current position at which imports will occur in the byte stream.
 
-.. method:: bytes->setPosition(i::integer)
+.. member:: bytes->setPosition(i::integer)
    
    Sets the current position within the byte stream. Requires a single integer
    parameter.
 
-.. method:: bytes->exportString(encoding::string)
+.. member:: bytes->exportString(encoding::string)
 
    Returns a string represeting the byte stream. Accepts a single parameter
    which is the character encoding (e.g. "ISO-8859-1", "UTF-8") for the export.
 
-.. method:: bytes->export8bits()
+.. member:: bytes->export8bits()
 
    Returns the first byte as an integer.
 
-.. method:: bytes->export16bits()
+.. member:: bytes->export16bits()
 
    Returns the first 2 bytes as an integer.
 
-.. method:: bytes->export32bits()
+.. member:: bytes->export32bits()
 
    Returns the first 4 bytes as an integer.
 
-.. method:: bytes->export64bits()
+.. member:: bytes->export64bits()
 
    Returns the first 8 bytes as an integer.
 
-.. method:: bytes->importString(s::string, enc::string= ?)
+.. member:: bytes->importString(s::string, enc::string= ?)
 
    Imports a string parameter. A second parameter can specify the encoding (e.g.
    "ISO-8859-1", "UTF-8") to use for the import.
 
-.. method:: bytes->import8bits(p0::integer)
+.. member:: bytes->import8bits(p0::integer)
 
    Imports the first byte of an integer parameter.
 
-.. method:: bytes->import16bits(p0::integer)
+.. member:: bytes->import16bits(p0::integer)
 
    Imports the first 2 bytes of an integer parameter.
 
-.. method:: bytes->import32bits(p0::integer)
+.. member:: bytes->import32bits(p0::integer)
    
    Imports the first 4 bytes of an integer parameter.
 
-.. method:: bytes->import64bits(p0::integer)
+.. member:: bytes->import64bits(p0::integer)
 
    Imports the first 8 bytes of an integer parameter.
 
-.. method:: bytes->swapBytes()
+.. member:: bytes->swapBytes()
 
    Swaps each two bytes with each other (e.g. a byte stream of 'father' becomes
    'afhtre').

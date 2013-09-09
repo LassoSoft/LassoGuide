@@ -701,7 +701,7 @@ the ``email_immediate`` method is not recommended since it bypasses the
 priority, error handling, and connection handling features of the email sending
 system.
 
-.. class:: email_compose
+.. type:: email_compose
 .. method:: email_compose(
       -to= ?, 
       -from= ?, 
@@ -730,7 +730,7 @@ system.
    not specified then a MIME part is created, otherwise a full MIME email is
    created.
 
-.. method:: email_compose->addAttachment(-data= ?, -name= ?, -path= ?, -type= ?)
+.. member:: email_compose->addAttachment(-data= ?, -name= ?, -path= ?, -type= ?)
 
    Adds an attachment to an email object. The data of the attachment can be
    specified directly in the ``-data`` parameter or the path to a file can be
@@ -738,7 +738,7 @@ system.
    specified in the ``-name`` parameter. The MIME type can be specified with the
    ``-type`` parameter.
 
-.. method:: email_compose->addHTMLPart(-data= ?, -path= ?, -images= ?)
+.. member:: email_compose->addHTMLPart(-data= ?, -path= ?, -images= ?)
 
    Adds an HTML part to an email object. The text of the HTML part can be
    specified directly in the ``-data`` parameter or the path to a file can be
@@ -746,27 +746,27 @@ system.
    can take the same values as the ``-htmlImages`` parameter of the
    ``email_send`` method.
 
-.. method:: email_compose->addTextPart(-data= ?, -path= ?)
+.. member:: email_compose->addTextPart(-data= ?, -path= ?)
 
    Adds a text part to an email object. The text of the part can be specified
    directly in the ``-data`` parameter or the path to a file can be specified in
    the ``-path`` parameter.
 
-.. method:: email_compose->addPart(-data= ?)
+.. member:: email_compose->addPart(-data= ?)
 
    Adds a generic part to an email object. Requires a parameter ``-data`` which
    specifies the data for the part. The part must be properly formatted as a
    MIME part. No formatting or encoding will be performed by Lasso.
 
-.. method:: email_compose->data(-prefix::boolean= ?, -force::boolean= ?)
+.. member:: email_compose->data(-prefix::boolean= ?, -force::boolean= ?)
 
    Returns the MIME text of the composed email.
 
-.. method:: email_compose->from()
+.. member:: email_compose->from()
 
    Returns the from address of the composed email.
 
-.. method:: email_compose->recipients()
+.. member:: email_compose->recipients()
 
    Returns a list of recipients of the composed email.
 
@@ -906,7 +906,7 @@ sending process.
 The ``email_smtp`` type can be used directly for low-level access to remote SMTP
 servers, but this is not generally necessary.
 
-.. class:: email_smtp
+.. type:: email_smtp
 .. method:: email_smtp(
       -host::string= ?,
       -port::integer= ?,
@@ -920,7 +920,7 @@ servers, but this is not generally necessary.
    Creates a new SMTP connection object. Can optionally pass in the SMTP server
    parameters.
 
-.. method:: email_smtp->open(
+.. member:: email_smtp->open(
       -host= ?, 
       -port= ?, 
       -timeout= ?, 
@@ -934,7 +934,7 @@ servers, but this is not generally necessary.
    optional ``-port``, ``-username``, ``-password``, and ``-timeout``
    parameters.
 
-.. method:: email_smtp->command(
+.. member:: email_smtp->command(
       -send= ?, 
       -expect= ?, 
       -multi= ?, 
@@ -949,13 +949,13 @@ servers, but this is not generally necessary.
    ``-read`` parameter can be specified to have it return the result from the
    SMTP server.
 
-.. method:: email_smtp->send(-from::string, -recipients::array, -message::string)
+.. member:: email_smtp->send(-from::string, -recipients::array, -message::string)
 
    Sends a single message to the SMTP server. Requires a ``-message`` parameter
    with the MIME data for the message, ``-recipients`` with an array of recpient
    email address, and ``-from`` with the email address of the sender.
 
-.. method:: email_smtp->close()
+.. member:: email_smtp->close()
 
    Closes the connection to the remote server.
 

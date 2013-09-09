@@ -248,24 +248,25 @@ actual response is fairly long and not shown here::
 DNS Response Type
 =================
 
-.. class:: dns_response
+.. type:: dns_response
+.. method:: dns_response
 
    An object of this data type can be returned in response to a ``dns_lookup``
    depending on its parameters. The member methods of this type are described
    below.
 
-.. method:: dns_response->format
+.. member:: dns_response->format
 
    Returns a formatted display of the entire response from the DNS server.
 
-.. method:: dns_response->bitFormat
+.. member:: dns_response->bitFormat
 
    Returns a formatted display of the raw bits returned by the DNS server.
 
-.. method:: dns_response->answer
+.. member:: dns_response->answer
 
    Returns the answer from the DNS server. This differs based on the type.
 
-.. method:: dns_response->data
+.. member:: dns_response->data
    
    Returns the raw byte stream.

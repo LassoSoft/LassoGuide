@@ -91,13 +91,13 @@ A ``security_registry`` object can be created with zero parameters. When
 created, it will open a connection to the security database. A
 ``security_registry`` object must be closed once it is no longer required.
 
-.. class:: security_registry
+.. type:: security_registry
 
 .. method:: security_registry()
 
    Creates a new security_registry object.
 
-.. method:: close()
+.. member:: security_registry->close()
 
    This method closes the ``security_registry`` object's connection to the
    security information database.
@@ -111,7 +111,7 @@ Once created, a security_registry can be used to:
 -  Assign/unassign users to groups
 -  Validate username/password/realm combinations
 
-.. method:: addGroup(name::string, 
+.. member:: security_registry->addGroup(name::string, 
    enabled::boolean = true,
    comment::string = '')
 
@@ -119,14 +119,14 @@ Once created, a security_registry can be used to:
    enabled but it can be explicitly disabled. A comment can be provided when the
    group is created and will be stored in the database for reference.
 
-.. method:: getGroupID(name::string)
+.. member:: security_registry->getGroupID(name::string)
 
    This method returns the integer id for the indicated group. This id can be
    passed to subsequent methods to identify the group.
 
-.. method:: listGroups(-name::string)
-.. method:: listGroupsByUser(userid::integer)
-.. method:: listGroupsByUser(username::string)
+.. member:: security_registry->listGroups(-name::string)
+.. member:: security_registry->listGroupsByUser(userid::integer)
+.. member:: security_registry->listGroupsByUser(username::string)
 
    These methods list groups in a variety of ways. The first method will list
    all groups. A ``-name`` parameter can be specified to perform wild card
@@ -136,13 +136,13 @@ Once created, a security_registry can be used to:
    Each group is represented by a map object containing the following keys: id,
    name, enabled, comment.
 
-.. method:: removeGroup(groupid::integer)
-.. method:: removeGroup(name::string)
+.. member:: security_registry->removeGroup(groupid::integer)
+.. member:: security_registry->removeGroup(name::string)
 
    These methods will remove the indicated group. All users are disassociated
    from the group.
 
-.. method:: updateGroup(groupid::integer, 
+.. member:: security_registry->updateGroup(groupid::integer, 
    -name = null,
    -enabled = null,
    -comment = null)
@@ -151,7 +151,7 @@ Once created, a security_registry can be used to:
    ``-name``, ``-enabled`` or ``-comment`` parameters will set the appropriate
    data.
 
-.. method:: addUser(username::string, password::string,
+.. member:: security_registry->addUser(username::string, password::string,
    enabled::boolean = true, 
    comment::string = '',
    -realm = 'Lasso Security')
@@ -164,12 +164,12 @@ Once created, a security_registry can be used to:
    and realm. Note: the ``email`` and ``real_name`` fields are not utilized at
    this time.
 
-.. method:: addUserToGroup(userid::integer, groupid::integer)
+.. member:: security_registry->addUserToGroup(userid::integer, groupid::integer)
 
    This method is utilized to add a user to a group. Both user and group must be
    indicated by their integer ids.
 
-.. method:: checkUser(username::string, password::string, -realm::string = 'Lasso Security')
+.. member:: security_registry->checkUser(username::string, password::string, -realm::string = 'Lasso Security')
 
    This method will authenticate the given username and password and will return
    user's record if it succeeds. The return value will be a map containing keys
@@ -177,19 +177,19 @@ Once created, a security_registry can be used to:
    fails, this method will return ``void``. The check will fail if the user
    account is not enabled.
 
-.. method:: countUsersByGroup(groupid::integer)
+.. member:: security_registry->countUsersByGroup(groupid::integer)
 
    This method returns the number of users in the indicated group.
 
-.. method:: getUser(userid::integer)
-.. method:: getUser(name::string, -realm::string = 'Lasso Security')
-.. method:: getUserID(name::string, -realm::string = 'Lasso Security')
+.. member:: security_registry->getUser(userid::integer)
+.. member:: security_registry->getUser(name::string, -realm::string = 'Lasso Security')
+.. member:: security_registry->getUserID(name::string, -realm::string = 'Lasso Security')
 
    The first two methods return the user record for the indicated user. The
    second method returns the id of the indicated user.
 
-.. method:: listUsers(-name::string = '', -realm = null)
-.. method:: listUsersByGroup(name::string)
+.. member:: security_registry->listUsers(-name::string = '', -realm = null)
+.. member:: security_registry->listUsersByGroup(name::string)
 
    These methods list users and return their user records. The first method
    permits a ``-name`` pattern to be specified as well as a realm. Not passing a
@@ -197,16 +197,16 @@ Once created, a security_registry can be used to:
 
    The second method lists all of the users in the indicated group.
 
-.. method:: removeUser(userid::integer)
-.. method:: removeUserFromGroup(userid::integer, groupid::integer)
-.. method:: removeUserFromAllGroups(userid::integer)
+.. member:: security_registry->removeUser(userid::integer)
+.. member:: security_registry->removeUserFromGroup(userid::integer, groupid::integer)
+.. member:: security_registry->removeUserFromAllGroups(userid::integer)
 
    These methods can be used to remove a user from the system, remove a user
    from a group, or remove a user from all groups, respectively.
 
-.. method:: userPassword(userid::integer) = password::string
-.. method:: userEnabled(userid::integer) = enabled::boolean
-.. method:: userComment(userid::integer) = comment::string
+.. member:: security_registry->userPassword(userid::integer) = password::string
+.. member:: security_registry->userEnabled(userid::integer) = enabled::boolean
+.. member:: security_registry->userComment(userid::integer) = comment::string
 
    Given a user id, these methods will assign that user's password, enabled
    state or associated comment.

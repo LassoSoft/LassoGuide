@@ -79,11 +79,11 @@ stripped. All underscores '_' are then converted to dashes '-'.
 The web_request object makes header data available through the following
 methods. All header names and values are treated as strings.
 
-.. class:: web_request
+.. type:: web_request
 
-.. method:: web_request->headers()::trait_forEach
-.. method:: web_request->header(name::string)
-.. method:: web_request->rawHeader(name::string)
+.. member:: web_request->headers()::trait_forEach
+.. member:: web_request->header(name::string)
+.. member:: web_request->rawHeader(name::string)
 
    The ``headers()`` method returns all of the headers as an object which can be
    iterated or used in a query expression. Each header element is presented as a
@@ -147,13 +147,13 @@ through the ``fileUploads()`` method.
 The value for any GET or POST argument is always a bytes object. The name is
 always a string.
 
-.. method:: web_request->queryParam(name::string)
-.. method:: web_request->postParam(name::string)
-.. method:: web_request->param(name::string)
-.. method:: web_request->param(name::string, joiner)
-.. method:: web_request->queryParams()
-.. method:: web_request->postParams()
-.. method:: web_request->params()
+.. member:: web_request->queryParam(name::string)
+.. member:: web_request->postParam(name::string)
+.. member:: web_request->param(name::string)
+.. member:: web_request->param(name::string, joiner)
+.. member:: web_request->queryParams()
+.. member:: web_request->postParams()
+.. member:: web_request->params()
 
    This set of methods refers to the GET arguments as the ``query`` params and
    any POST arguments as the ``post`` params. Both sets together are just the
@@ -174,8 +174,8 @@ always a string.
    argument pairs as an object which may be iterated or used in a query
    expression.
 
-.. method:: web_request->postString()
-.. method:: web_request->queryString()
+.. member:: web_request->postString()
+.. member:: web_request->queryString()
 
    These methods return the respective arguments in a format similar to how they
    were received. In the case of queryString the GET arguments are returned
@@ -191,8 +191,8 @@ Cookie values are sent as HTTP header fields. As such, they can be read and
 parsed from the various header related web_request methods. The ``web_request``
 object provides methods to directly access the pre-parsed cookie data.
 
-.. method:: web_request->cookie(named::string)
-.. method:: web_request->cookies()::trait_forEach
+.. member:: web_request->cookie(named::string)
+.. member:: web_request->cookies()::trait_forEach
 
    The first method searches for the named cookie and returns its value if
    found. If the cookie is not found then void is returned. The second method
@@ -253,12 +253,12 @@ the path to the component.
 
 Any of the following methods can be used to include file content.
 
-.. class:: web_response
+.. type:: web_response
 
-.. method:: web_response->include(path::string)
-.. method:: web_response->includeOnce(path::string)
-.. method:: web_response->includeLibrary(path::string)
-.. method:: web_response->includeLibraryOnce(path::string)
+.. member:: web_response->include(path::string)
+.. member:: web_response->includeOnce(path::string)
+.. member:: web_response->includeLibrary(path::string)
+.. member:: web_response->includeLibraryOnce(path::string)
 
    These methods locate and run the file indicated by the path. The
    includeLibrary and includeLibraryOnce methods run the file but do not insert
@@ -268,12 +268,12 @@ Any of the following methods can be used to include file content.
    
    These methods will fail if the indicated file does not exist.
 
-.. method:: web_response->includeBytes(path::string)::bytes
+.. member:: web_response->includeBytes(path::string)::bytes
 
    This method will locate the file and include the raw file data as bytes. The
    method will fail if the file does not exist.
 
-.. method:: web_response->includes()::trait_forEach
+.. member:: web_response->includes()::trait_forEach
 
 Lasso keeps track of web files which are being executed. As execution of a file
 begins, the file's name is pushed into an internally kept stack. As a file's
@@ -281,7 +281,7 @@ execution ends, that name is popped from the stack. This method provides access
 to that stack. This method returns the list of currently executing file names as
 an object which can be iterated or used in a query expression.
 
-.. method:: web_response->getInclude(path::string)
+.. member:: web_response->getInclude(path::string)
 
    This method will locate the file and will return an object which can be
    invoked to execute the file. The method will fail if the file does not exist.
@@ -289,8 +289,8 @@ an object which can be iterated or used in a query expression.
 For compatibility and simplicity, Lasso supports the following unbound methods
 which function in the same manner as the ``web_response`` bound methods.
 
-.. method:: web_response->include(path::string)
-.. method:: web_response->library(path::string)
+.. member:: web_response->include(path::string)
+.. member:: web_response->library(path::string)
 
    These methods include the file indicated by the path in the same manner as
    the ``web_response->include`` and ``web_response->library`` methods.
@@ -307,8 +307,8 @@ data has been sent then headers can no longer be effectively manipulated.
 Note that the HTTP status code and message are not HTTP headers and so are not
 manipulated through these methods.
 
-.. method:: web_response->header(name::path)
-.. method:: web_response->headers()::trait_ForEach
+.. member:: web_response->header(name::path)
+.. member:: web_response->headers()::trait_ForEach
 
    These methods return existing outgoing headers. The first method finds the
    first occurrence of the indicated header and returns its value. The second
@@ -316,9 +316,9 @@ manipulated through these methods.
    used in a query expression. Each element is a pair object containing the
    header name/value and the pair's first/second.
 
-.. method:: web_response->setHeaders(headers::trait_forEach)
-.. method:: web_response->replaceHeader(header::pair)
-.. method:: web_response->addHeader(header::pair)
+.. member:: web_response->setHeaders(headers::trait_forEach)
+.. member:: web_response->replaceHeader(header::pair)
+.. member:: web_response->addHeader(header::pair)
 
    These methods permit headers to be set or replaced. The first method sets all
    the headers for the response. These headers should be given as a series of
@@ -340,7 +340,7 @@ expiration, path, and SSL secure flag. These values are supplied as parameters
 when setting a cookie. Cookie headers are not created until the request
 processing is completed and the response is to be sent to the client.
 
-.. method:: web_response->setCookie(nv::pair, -domain=void, -expires=void, -path=void, -secure=false)
+.. member:: web_response->setCookie(nv::pair, -domain=void, -expires=void, -path=void, -secure=false)
 
    This method sets the indicated cookie. Any duplicate cookie would be
    replaced. The first parameter must be the cookie name=value pair. If used,
@@ -354,7 +354,7 @@ processing is completed and the response is to be sent to the client.
    indicates the number of minutes until the cookie expires. Any other object
    type is appended directly to the outgoing cookie header string.
 
-.. method:: web_response->cookies()::trait_forEach
+.. member:: web_response->cookies()::trait_forEach
 
    This method returns a list of all the cookies set for this response. The
    individual cookies are represented by map objects containing keys for:
@@ -384,7 +384,7 @@ The ``web_response`` object provides the ``sendFile`` method which packages
 together many of the steps required to send binary data to the client to be
 viewed either inline or downloaded as an attachment.
 
-.. method:: web_response->sendFile(data::trait_each_sub, name = null, 
+.. member:: web_response->sendFile(data::trait_each_sub, name = null, 
                      -type = null, -disposition = 'attachment',
                      -charset = '', -skipProbe = false,
                      -noAbort = false, -chunkSize = fcgi_bodyChunkSize,
@@ -450,8 +450,8 @@ the status can no longer effectively be set.
 
 The following methods get or set the HTTP response status.
 
-.. method:: web_response->setStatus(code::integer, msg::string)
-.. method:: web_response->getStatus()::pair
+.. member:: web_response->setStatus(code::integer, msg::string)
+.. member:: web_response->getStatus()::pair
 
    The first method sets the HTTP status code and message. The second returns
    the status as a pair containing the code/message as the pair's first/second.

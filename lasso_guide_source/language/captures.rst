@@ -254,45 +254,45 @@ forms.)
 Capture API
 ===========
 
-.. class:: capture
+.. type:: capture
 
-.. method:: capture->invoke(...)
+.. member:: capture->invoke(...)
 
    This executes the capture object and the code that is associated with it.
 
-.. method:: capture->detach()
+.. member:: capture->detach()
 
    Detaches the capture so that it no longer has a home capture and then returns
    itself. After this, calling ``capture->home`` will return ``void``.
 
-.. method:: capture->restart()
+.. member:: capture->restart()
 
    Resets the program counter (PC) for the capture and begins executing the
    capture's code again.
 
-.. method:: capture->continuation()
+.. member:: capture->continuation()
 
    Returns the capture that will be executed after this capture completes.
 
-.. method:: capture->home()
+.. member:: capture->home()
 
    Returns the home capture of the current capture object.
 
-.. method:: capture->callSite_file()
+.. member:: capture->callSite_file()
 
    Returns the file name where the capture object was defined.
 
-.. method:: capture->callSite_line()
+.. member:: capture->callSite_line()
 
    Returns the current line of code that is being executed in the capture object
    based on the file where the capture was defined.
 
-.. method:: capture->callSite_col()
+.. member:: capture->callSite_col()
 
    Returns the current column of code that is being executed in the capture
    object based on the file where the capture was defined.
 
-.. method:: capture->callStack()
+.. member:: capture->callStack()
 
    Returns the current call stack of the code that is being executed based on
    where the capture was called. Each line of the call stack consists of a line
@@ -300,32 +300,32 @@ Capture API
    the current one. The top of the stack has the most recent capture call and
    the list works its way back through each call.
 
-.. method:: capture->givenBlock()
+.. member:: capture->givenBlock()
 
    Returns the ``givenBlock`` associated with the current capture object, if
    any.
 
-.. method:: capture->autoCollectBuffer()
+.. member:: capture->autoCollectBuffer()
 
    If the capture is an auto-collect capture, then this will store the current
    auto-collect value created by invoking the capture.
 
-.. method:: capture->autoCollectBuffer=(p0)
+.. member:: capture->autoCollectBuffer=(p0)
 
    If the capture is an auto-collect capture, this method allows for setting the
    the auto-collect value.
 
-.. method:: capture->calledName()
+.. member:: capture->calledName()
 
    If the capture was created to run a method, this will return the method's
    name.
 
-.. method:: capture->methodName()
+.. member:: capture->methodName()
 
    If the capture was created to run a method, this will return the method's
    name.
 
-.. method:: capture->invokeAutoCollect(...)
+.. member:: capture->invokeAutoCollect(...)
 
    This invokes the capture. If it is an auto-collect capture, it will return
    the auto-collecte value, but it will not update

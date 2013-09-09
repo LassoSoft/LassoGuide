@@ -29,11 +29,11 @@ can be used to open or accept TCP connections.
 Opening TCP Connections
 -----------------------
 
-.. class:: net_tcp
+.. type:: net_tcp
 .. method:: net_tcp()
 .. method:: net_tcp(fd::filedesc)
 
-.. method:: net_tcp->connect(to::string, port::integer, timeout::integer = 4)
+.. member:: net_tcp->connect(to::string, port::integer, timeout::integer = 4)
 
    This method opens a TCP connection to the indicated server. TCP connections
    are made based on an address string and a port number. A server must be
@@ -60,8 +60,8 @@ connects, a new net_tcp object is returned for that connection. There are severa
 steps for establishing a server. The series of methods is generally: bind,
 listen and then either accept or forEachAccept.
 
-.. method:: net_tcp->bind(port::integer, address::string = '0.0.0.0')
-.. method:: net_tcp->listen(backlog::integer = 128)
+.. member:: net_tcp->bind(port::integer, address::string = '0.0.0.0')
+.. member:: net_tcp->listen(backlog::integer = 128)
 
    When acting as a server, the net_tcp object must first be bound to a local
    port and optional address. The address can be ignored in most cases, but is
@@ -73,8 +73,8 @@ listen and then either accept or forEachAccept.
    When creating a server, listen is called after bind. This method begins the
    net_tcp object accepting client connections.
 
-.. method:: net_tcp->accept(timeoutSeconds::integer = -1)
-.. method:: net_tcp->forEachAccept()
+.. member:: net_tcp->accept(timeoutSeconds::integer = -1)
+.. member:: net_tcp->forEachAccept()
 
    After a net_tcp object has been bound and is listening then client
    connections can be accepted. The accept method is called to accept one
@@ -111,14 +111,14 @@ Examples - Creating a simple multi-threaded server::
 Closing TCP Connections
 -----------------------
 
-.. method:: net_tcp->close()
+.. member:: net_tcp->close()
 
    TCP connections should be closed as soon as they are no longer needed. Once a
    net_tcp object has been closed it should not be used again.
 
-.. method:: net_tcp->shutdownRd()
-.. method:: net_tcp->shutdownWr()
-.. method:: net_tcp->shutdownRdWr()
+.. member:: net_tcp->shutdownRd()
+.. member:: net_tcp->shutdownWr()
+.. member:: net_tcp->shutdownRdWr()
 
    These methods give greater control over closing the connection at the TCP
    level. Respectively, these methods close down communications channels for the
@@ -128,7 +128,7 @@ Closing TCP Connections
 Reading TCP Data
 ----------------
 
-.. method:: net_tcp->readSomeBytes(count::integer, timeoutSeconds::integer)
+.. member:: net_tcp->readSomeBytes(count::integer, timeoutSeconds::integer)
 
    This method will attempt to read up to the indicated number of bytes. If any
    bytes are immediately available then those will be returned and may be fewer
@@ -139,7 +139,7 @@ Reading TCP Data
 Writing TCP Data
 ----------------
 
-.. method:: net_tcp->writeBytes(data::bytes, offset::integer = 0, length::integer = -1)
+.. member:: net_tcp->writeBytes(data::bytes, offset::integer = 0, length::integer = -1)
 
    This method will attempt to send the indicated bytes. An optional zero-based
    offset parameter indicates how far in the bytes to skip before sending. An
@@ -171,11 +171,11 @@ This creates and returns a new net_tcpssl object. It accepts no parameters.
 Loading SSL Certificates
 ------------------------
 
-.. class:: net_tcpssl
+.. type:: net_tcpssl
 .. method:: net_tcpssl()
 .. method:: net_tcpssl(fd::filedesc)
 
-.. method:: net_tcpssl->loadCerts(cert::string, privateKey::string)
+.. member:: net_tcpssl->loadCerts(cert::string, privateKey::string)
 
    This method accepts the file paths to a certificate file and a private key
    file. This method is required when creating a TCP SSL server. The paths
@@ -188,7 +188,7 @@ Loading SSL Certificates
 Beginning & Ending SSL Sessions
 -------------------------------
 
-.. method:: net_tcpssl->beginTLS(timeoutSecs::integer = 5)
+.. member:: net_tcpssl->beginTLS(timeoutSecs::integer = 5)
 
    This method begins SSL communications for the connection. Because starting
    SSL requires a series of communications between the two ends, this method
@@ -198,7 +198,7 @@ Beginning & Ending SSL Sessions
    This method returns no value, but will fail if an error is produced by the
    underlying OpenSSL library.
 
-.. method:: net_tcpssl->endTLS()
+.. member:: net_tcpssl->endTLS()
 
    This method ends the SSL session and returns the connection to its non-SSL
    state. The connection is not terminated in any way.
@@ -216,7 +216,7 @@ net_tcpssl object which has started the SSL session. Because some protocols
 require connections to be established first and then switched to SSL, net_tcpssl
 also provides an acceptNoSSL method.
 
-.. method:: net_tcpssl->acceptNoSSL(timeoutSeconds::integer = -1)::net_tcpssl
+.. member:: net_tcpssl->acceptNoSSL(timeoutSeconds::integer = -1)::net_tcpssl
 
    This method accepts a new connection and returns a net_tcpssl object for it.
    This connections has not yet started an SSL session and operates just as a
@@ -246,11 +246,11 @@ method. Data is returned as a net_udp_packet object which contains the bytes
 data sent as well as the address of the sender and the port from which it was
 sent.
 
-.. class:: net_udp
+.. type:: net_udp
 .. method:: net_udp()
 .. method:: net_udp(fd::filedesc)
 
-.. method:: net_udp->readPacket(maxBytes::integer, timeoutSeconds::integer = -1)
+.. member:: net_udp->readPacket(maxBytes::integer, timeoutSeconds::integer = -1)
 
    This method waits to receive a new UDP packet. The maxBytes parameter
    indicates the maximum size for the data to receive. The number of bytes
@@ -264,15 +264,15 @@ sent.
 
    When successful, this method returns a net_udp_packet object.
 
-.. class:: net_udp_packet
+.. type:: net_udp_packet
 .. method:: net_udp_packet(bytes, name, port)
 
-.. method:: net_udp_packet->bytes()::bytes
+.. member:: net_udp_packet->bytes()::bytes
 
    This method returns the bytes received.
 
-.. method:: net_udp_packet->fromName()::string
-.. method:: net_udp_packet->fromPort()::integer
+.. member:: net_udp_packet->fromName()::string
+.. member:: net_udp_packet->fromPort()::integer
 
 These methods returns the address of the sender and the port from which the
 packet was sent.
@@ -284,7 +284,7 @@ With a net_udp object, data is sent one packet at a time to a particular address
 and port combination. The receivers must be waiting to accept packets from other
 hosts.
 
-.. method:: net_udp->writeBytes(b::bytes, toAddress::string, toPort::integer)::integer
+.. member:: net_udp->writeBytes(b::bytes, toAddress::string, toPort::integer)::integer
 
    This method sends the specified bytes to the indicated host. It returns the
    number of bytes which were sent.
@@ -292,7 +292,7 @@ hosts.
 Closing net_udp Objects
 -----------------------
 
-.. method:: net_udp->close()
+.. member:: net_udp->close()
 
    Although net_udp objects do no maintain a connection, they must still be
    closed when they are no longer needed to free up resources.
@@ -323,11 +323,11 @@ No parameters are required to create a new net_named_pipe object.
 Opening Named Pipe Connections
 ------------------------------
 
-.. class:: net_named_pipe
+.. type:: net_named_pipe
 .. method:: net_named_pipe()
 .. method:: net_named_pipe(fd::filedesc)
 
-.. method:: net_named_pipe->connect(to::string, timeoutSeconds::integer = 4)
+.. member:: net_named_pipe->connect(to::string, timeoutSeconds::integer = 4)
 
    This method will attempt to connect to the indicated named pipe. This method
    returns true if the connection was made, and false otherwise.
@@ -335,9 +335,9 @@ Opening Named Pipe Connections
 Accepting Named Pipe Connections
 --------------------------------
 
-.. method:: net_named_pipe->bind(to::string)
-.. method:: net_named_pipe->listen(backlog::integer = 128)
-.. method:: net_named_pipe->accept(timeoutSeconds::integer = -1)
+.. member:: net_named_pipe->bind(to::string)
+.. member:: net_named_pipe->listen(backlog::integer = 128)
+.. member:: net_named_pipe->accept(timeoutSeconds::integer = -1)
 
    The bind method attempts to create a pipe with the given name. Bind accepts
    one parameter which is the name of the pipe to create. There can be only one

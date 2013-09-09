@@ -354,7 +354,7 @@ displays the instance's email queue. The email queue logs all email messages
 that are being sent from the instance. Messages remain in the queue while they
 are being sent to the SMTP mail server looked up by Lasso or specified in the
 :meth:`email_send` method by the developer. For more information, see :ref:`the
-documentation on Sending Email`.
+documentation on Sending Email <sending-email>`.
 
 
 Filtering Email Messages

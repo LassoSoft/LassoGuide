@@ -21,7 +21,7 @@ different environment including DOS commands and batch files.
 The Sys_Process API
 ===================
 
-.. class:: sys_process
+.. type:: sys_process
 .. method:: sys_process()
 .. method:: sys_process(cmd::string, args= ?, env= ?, user::string= ?)
 
@@ -37,7 +37,7 @@ The Sys_Process API
    ``sys_process->open`` method and calls that method thereby immediately
    running the command passed to it.
 
-.. method:: sys_process->open(
+.. member:: sys_process->open(
          command::string,
          arguments::staticarray= ?,
          environment::staticarray= ?,
@@ -55,14 +55,14 @@ The Sys_Process API
    run the new process under. This option only works if the current user is the
    superuser.
 
-.. method:: sys_process->wait()::integer
+.. member:: sys_process->wait()::integer
 
    Calling this member method causes execution of your code to pause until the
    new process you have opened with ``sys_process`` finishes its execution. It
    returns the exit code of the command you ran. If you have not yet opened up
    a new process, it will return "-1"
 
-.. method:: sys_process->read(count::integer= ?, -timeout= ?)::bytes
+.. member:: sys_process->read(count::integer= ?, -timeout= ?)::bytes
 
    Reads the specified number of bytes from the process's standard out (STDOUT).
    Returns a bytes object. The number of bytes of data actually returned from
@@ -73,7 +73,7 @@ The Sys_Process API
    The default value for this is "0" which means that it will just read what is
    currently available.
 
-.. method:: sys_process->readError(count::integer= ?, -timeout= ?)::bytes
+.. member:: sys_process->readError(count::integer= ?, -timeout= ?)::bytes
 
    Reads the specified number of bytes from the process's standard error 
    (STDERR) output. Returns a bytes object. Calling this method without a byte
@@ -82,51 +82,51 @@ The Sys_Process API
    The default value for this is "0" which means that it will just read what is
    currently available.
 
-.. method:: sys_process->readString(count::integer= ?, -timeout= ?)::string
+.. member:: sys_process->readString(count::integer= ?, -timeout= ?)::string
 
    This method is identical to :meth:`sys_process->read` but returns a string
    object instead of a bytes object.
 
-.. method:: sys_process->write(data::bytes)
-.. method:: sys_process->write(data::string)
+.. member:: sys_process->write(data::bytes)
+.. member:: sys_process->write(data::string)
 
    Writes the specified data to the new process's standard in (STDIN). If the
    data is a string, the current encoding is used to convert the data before
    being sent. If the data is a bytes object, the data is sent unaltered.
 
-.. method:: sys_process->setEncoding(encoding::string)
+.. member:: sys_process->setEncoding(encoding::string)
 
    Sets the encoding for the instance. The encoding controls how string data is
    written via ``sys_process->write`` and how string data is returned via
    ``sys_process->readString``. By default, "UTF-8" is used.
 
-.. method:: sys_process->isOpen()::boolean
+.. member:: sys_process->isOpen()::boolean
 
    Returns ``true`` as long as the process is running. If the process is
    terminated, it will return ``false``.
 
-.. method:: sys_process->detach()
+.. member:: sys_process->detach()
    
    Detaches the ``sys_process`` object from the process. This will prevent the
    process from terminating when the ``sys_process`` object is destroyed.
 
-.. method:: sys_process->close()
+.. member:: sys_process->close()
 
    Closes the connection to the process. This will cause the process to
    terminate unless it has previously been detached from the ``sys_process``
    object by calling ``sys_process->detach``
 
-.. method:: sys_process->closeWrite()
+.. member:: sys_process->closeWrite()
 
    Closes the "write" portion of the connection to the process. This results in
    the process's standard in (STDIN) being closed.
 
-.. method:: sys_process->exitCode()
+.. member:: sys_process->exitCode()
 
    This method is synonymous with :meth:`sys_process->wait` except that it
    does not return a value if no process has been opened.
 
-.. method:: sys_process->testExitCode()
+.. member:: sys_process->testExitCode()
 
    This method returns the exit code of the process if it has terminated,
    otherwise it returns void.

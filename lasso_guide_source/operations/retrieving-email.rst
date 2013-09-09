@@ -35,7 +35,7 @@ messages for deletion.
 
 The following describes the ``email_pop`` type and some of its member methods:
 
-.. class:: email_pop
+.. type:: email_pop
 .. method:: email_pop(
       -server= ?,
       -port= ?,
@@ -57,56 +57,56 @@ The following describes the ``email_pop`` type and some of its member methods:
    opened to the server with authentication. The ``-get`` parameter specifies
    what command to perform when calling ``email_pop->get``.
 
-.. method:: email_pop->size()
+.. member:: email_pop->size()
 
    Returns the number of messages availble for download
 
-.. method:: email_pop->get()
-.. method:: email_pop->get(command::string)
+.. member:: email_pop->get()
+.. member:: email_pop->get(command::string)
 
    Performs the command specified when the object was created. "UniqueID" by
    default, or can be set to "Retrieve", "Headers", or "Delete".
 
-.. method:: email_pop->delete()
-.. method:: email_pop->delete(position::integer)
+.. member:: email_pop->delete()
+.. member:: email_pop->delete(position::integer)
 
    Marks the current message for deletion. Optionally accepts a position to mark
    a specific message.
 
-.. method:: email_pop->retrieve()
-.. method:: email_pop->retrieve(position::integer)
-.. method:: email_pop->retrieve(position::integer, maxLines::integer)
+.. member:: email_pop->retrieve()
+.. member:: email_pop->retrieve(position::integer)
+.. member:: email_pop->retrieve(position::integer, maxLines::integer)
 
    Retrieves the current message from the server. Optionally accepts a position
    to retrieve a specific message. Optional second parameter specifies the
    maximum number of lines to fetch for each email.
 
-.. method:: email_pop->uniqueID()
-.. method:: email_pop->uniqueID(position::integer)
+.. member:: email_pop->uniqueID()
+.. member:: email_pop->uniqueID(position::integer)
 
    Gets the Uniquid ID of the current message from the server. Optionally
    accepts a position to get the Unique ID of a specific message.
 
-.. method:: email_pop->headers()
-.. method:: email_pop->headers(position::integer)
+.. member:: email_pop->headers()
+.. member:: email_pop->headers(position::integer)
 
    Gets the headers of the current message from the server. Optionally accepts a
    position to get the headers of a specific message.
 
-.. method:: email_pop->close()
+.. member:: email_pop->close()
 
    Closes the POP connection, performing any specified deletes.
 
-.. method:: email_pop->cancel()
+.. member:: email_pop->cancel()
 
    Closes the POP connection, but does not perform any deletes.
 
-.. method:: email_pop->noop()
+.. member:: email_pop->noop()
 
    Sends a ping to the server. Allows the connection to be kept open without
    timing out.
 
-.. method:: email_pop->authorize(
+.. member:: email_pop->authorize(
       -username::string, 
       -password::string, 
       -APOP::boolean=true
@@ -372,17 +372,17 @@ used to inspect the headers and parts of the email message. Outputting an
 most common headers and the default body part. ``email_parse`` can be used with
 the ``iterate`` methods to inspect each part of the message in turn.
 
-.. class:: email_parse
+.. type:: email_parse
 .. method:: email_parse(mime::string)
 
    Parses the raw MIME text of an email. Requires a single string parameter.
    Outputs the raw data of the email if displayed on the page or cast to string.
 
-.. method:: email_parse->headers()
+.. member:: email_parse->headers()
 
    Returns an array of pairs containing all the headers of the message.
 
-.. method:: email_parse->header(name::string, ...)
+.. member:: email_parse->header(name::string, ...)
 
    Returns a single specified header. Requires one parameter, the name of the
    header to be returned. See also the shortcuts for specific headers listed
@@ -394,36 +394,36 @@ the ``iterate`` methods to inspect each part of the message in turn.
    returns an array if multiple headers with the same name are found. ``-join``
    can be optionally specified to combine the values in the array into a string.
 
-.. method:: email_parse->mode()
+.. member:: email_parse->mode()
 
    Returns the mode from the ``Content-Type`` for the message. Usually either
    text or multipart.
 
-.. method:: email_parse->body(...)
+.. member:: email_parse->body(...)
 
    Returns the body of the message. Optional parameter specifies the prefered
    type of body to return (e.g. ``text/plain`` or ``text/html``). If the body is
    encoded using Quoted-Printable or Base64 encoding then it is automatically
    decoded before being returned by this method.
 
-.. method:: email_parse->size()::integer
+.. member:: email_parse->size()::integer
 
    Returns the number of parts in the message.
 
-.. method:: email_parse->get(position::integer)
+.. member:: email_parse->get(position::integer)
 
    Returns the specified part of the message. Requires a position parameter. The
    part is returned as an ``email_parse`` object that can be further inspected.
 
-.. method:: email_parse->data()
+.. member:: email_parse->data()
 
    Returns the raw data of the message.
 
-.. method:: email_parse->rawHeaders()
+.. member:: email_parse->rawHeaders()
 
    Returns the raw data of the headers.
 
-.. method:: email_parse->recipients()
+.. member:: email_parse->recipients()
 
    Returns an array containing all of the email addresses in the To, Cc, and Bcc
    headers.

@@ -90,7 +90,7 @@ add_function_parentheses = False
 # The default language for syntax coloring
 highlight_language='html+lasso'
 
-#primary_domain = 'ls'
+primary_domain = 'ls'
 unused_docs = ['_demo', '_test']
 
 # -- Breathe Options

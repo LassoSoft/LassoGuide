@@ -471,7 +471,7 @@ find/replace operation. These are described below.
 Creating a Regular Expression
 -----------------------------
 
-.. class:: regexp
+.. type:: regexp
 .. method:: regexp(p0::string, p1::string, p2::string, p3::boolean)
 .. method:: regexp(
       find::string,
@@ -516,27 +516,27 @@ Creating a Regular Expression
       local(my_regex) = regExp(-find=`[aeiou]`, -replace='x', -ignoreCase)
 
 
-.. method:: regExp->findPattern()
+.. member:: regExp->findPattern()
 
    Returns the find pattern.
    
-.. method:: regExp->replacePattern()
+.. member:: regExp->replacePattern()
 
    Returns the replacement pattern.
    
-.. method:: regExp->input()
+.. member:: regExp->input()
 
    Returns the input string.
    
-.. method:: regExp->ignoreCase()
+.. member:: regExp->ignoreCase()
 
    Returns "true" if the ``-ignoreCase`` flag has been set, otherwise "false".
    
-.. method:: regExp->groupCount()
+.. member:: regExp->groupCount()
 
    Returns an integer specifying how many groups were found in the find pattern.
    
-.. method:: regExp->output()
+.. member:: regExp->output()
 
    Returns the output string.
    
@@ -567,8 +567,8 @@ an array. These methods are documented with examples below. These methods are
 short cuts for longer operations which can be performed using the interactive
 methods described in the next section.
 
-.. method:: regExp->replaceAll(replace::string)
-.. method:: regExp->replaceAll(-input= ?, -find= ?, -replace= ?, -ignoreCase= ?)
+.. member:: regExp->replaceAll(replace::string)
+.. member:: regExp->replaceAll(-input= ?, -find= ?, -replace= ?, -ignoreCase= ?)
 
    The first listed incarnation of this method allows you to change the
    replacement string. The second will replace all occurrences of the current
@@ -578,7 +578,7 @@ methods described in the next section.
    ``-find`` and ``-replace`` patterns can also be specified within this method
    along with the ``-ignoreCase`` flag.
    
-.. method:: regExp->replaceFirst(
+.. member:: regExp->replaceFirst(
       -input= ?,
       -find= ?,
       -replace= ?,
@@ -592,7 +592,7 @@ methods described in the next section.
    patterns can also be specified within this method along with the
    ``-ignoreCase`` flag.
    
-.. method:: regExp->split(-input= ?, -find= ?, -replace= ?, -ignoreCase= ?)
+.. member:: regExp->split(-input= ?, -find= ?, -replace= ?, -ignoreCase= ?)
 
    Splits the string using the regular expression as a delimiter and returns a
    staticarray of substrings. The ``-input`` parameter specifies what string
@@ -752,8 +752,8 @@ operation. The power of this methodology comes in the fourth step where the
 replacement string can be generated using any code necessary, rather than
 needing to be a simple replacement pattern.
 
-.. method:: regExp->find()
-.. method:: regExp->find(pos::integer)
+.. member:: regExp->find()
+.. member:: regExp->find(pos::integer)
 
    Advances the regular expression one match in the input string. Returns "true"
    if the regular expression was able to find another match, otherwise false.
@@ -761,47 +761,47 @@ needing to be a simple replacement pattern.
    the most recent match), but you can optionally pass an integer parameter to
    set the position in the input string at which to start the search.
 
-.. method:: regExp->matchString()
-.. method:: regExp->matchString(group::integer)
+.. member:: regExp->matchString()
+.. member:: regExp->matchString(group::integer)
 
    Returns a string containing the last pattern match. Optional integer
    parameter specifies a group from the find pattern to return (defaults to
    returning the entire pattern match).
    
-.. method:: regExp->matchPosition()
-.. method:: regExp->matchPosition(p0::integer)
+.. member:: regExp->matchPosition()
+.. member:: regExp->matchPosition(p0::integer)
 
    Returns a pair containing the start position and length of the last pattern
    match. Optional integer parameter specifies a group from the find pattern to
    return (defaults to returning information about the entire pattern match).
    
-.. method:: regExp->appendReplacement(p0::string)
+.. member:: regExp->appendReplacement(p0::string)
 
    Performs a replace operation on the current pattern match and appends the
    result onto the output string. Requires a single parameter which specifies
    the replacement pattern including group placeholders "$0 … $9".
    Automatically appends any unmatched runs from the input string.
    
-.. method:: regExp->appendTail()
+.. member:: regExp->appendTail()
 
    The final step in an interactive find/replace operation. This tag appends the
    final unmatched run from the input string onto the output string.
    
-.. method:: regExp->reset(-input= ?, -find= ?, -replace= ?, -ignoreCase= ?)
+.. member:: regExp->reset(-input= ?, -find= ?, -replace= ?, -ignoreCase= ?)
 
    Resets the object. If called with no parameters, the input string is set to
    the output string. Accepts optional ``-find``, ``-replace``, ``-input``, and
    ``-ignoreCase`` parameters.
    
-.. method:: regExp->matches()
-.. method:: regExp->matches(p0::integer)
+.. member:: regExp->matches()
+.. member:: regExp->matches(p0::integer)
 
    Returns "true" if the pattern matches the entire input string. Optional
    integer parameter sets the position in the input string at which to start the
    search.
    
-.. method:: regExp->matchesStart()
-.. method:: regExp->matchesStart(p0::integer)
+.. member:: regExp->matchesStart()
+.. member:: regExp->matchesStart(p0::integer)
 
    Returns "true" if the pattern matches a substring of the input string.
    Defaults to checking the start of the input string. Optional integer

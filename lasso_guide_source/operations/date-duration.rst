@@ -164,7 +164,7 @@ the field or variable should be in one of the format described above or the
    date(web_request->param('birth_date'))
 
 
-.. class:: date
+.. type:: date
 .. method:: date()
 .. method:: date(
       -year= ?, -month= ?, -day= ?, 
@@ -441,32 +441,32 @@ In addition to ``date_format`` and ``date_setFormat``, Lasso 9 also
 offers the ``date->format`` and ``date->setFormat`` member methods for performing format
 conversions on date objects.
 
-.. method:: date->format()
-.. method:: date->format(format::string, -locale::locale= ?)
-.. method:: date->format(-format::string, -locale::locale= ?)
+.. member:: date->format()
+.. member:: date->format(format::string, -locale::locale= ?)
+.. member:: date->format(-format::string, -locale::locale= ?)
 
    Outputs the date object in the specified format. If no format is passed, the
    current format stored with the object will be used. Otherwise, it requries a
    format string to specify the format. Optionally takes a ``locale`` object to
    set its locale.
 
-.. method:: date->setFormat(format::string)
+.. member:: date->setFormat(format::string)
 
    Sets a date output format for a particular date object. Requires a format    
    string as a parameter.
 
-.. method:: date->getformat()
+.. member:: date->getformat()
 
    Returns the current format string set for the current date object.
 
-.. method:: date->clear()
+.. member:: date->clear()
 
    Resets the specified fields to their default values. The following fields can
    be specified as keyword parameters: ``-second``, ``-minute``, ``-hour``,
    ``-day``, ``-week``, ``-month``, ``-year``. If no parameters are specified,
    then the entire date is reset to default values.
 
-.. method:: date->set(...)
+.. member:: date->set(...)
 
    Sets one or more elements of the date to a new value. If a field overflows
    then other fields may be modified as well.  For example, if you have the date
@@ -478,7 +478,7 @@ conversions on date objects.
    <table-date-field-elements-for-get-set>` for the full list of parameters that
    this method can set.
 
-.. method:: date->get(...)
+.. member:: date->get(...)
 
    Returns the current value for the specified field of the current date object.
    Only one field value can be fetched at a time. Note that many of the more
@@ -599,11 +599,11 @@ A date accessor method returns a specific integer or string value from
 a date object, such as the name of the current month or the seconds
 of the time.
 
-.. method:: date->year()
+.. member:: date->year()
 
    Returns a four-digit integer representing the year for a specified date.
   
-.. method:: date->month(
+.. member:: date->month(
       -long::boolean= ?,
       -short::boolean= ?
    )
@@ -613,102 +613,102 @@ of the time.
    month name (e.g. "January") or an optional ``-short`` parameter returns an
    abbreviated month name (e.g. "Jan").
   
-.. method:: date->day()
+.. member:: date->day()
 
    Returns the integer day of the month (e.g. 15).
   
-.. method:: date->dayOfYear()
+.. member:: date->dayOfYear()
 
    Returns integer day of year (out of 365). Will work with leap years as well
    (out of 366).
   
-.. method:: date->dayOfWeek()
+.. member:: date->dayOfWeek()
 
    Returns the number of the day of the week (1=Sunday, 7=Saturday) for the date
    object.
   
-.. method:: date->week()
-.. method:: date->weekOfYear()
+.. member:: date->week()
+.. member:: date->weekOfYear()
 
    Returns the integer week number for the year of the specified date (out of
    52).
 
-.. method:: date->weekOfMonth()
+.. member:: date->weekOfMonth()
 
    Returns the week of month field for the date.
 
-.. method:: date->dayOfMonth()
+.. member:: date->dayOfMonth()
 
    Returns the day of month field for the date.
 
-.. method:: date->dayOfWeekInMonth()
+.. member:: date->dayOfWeekInMonth()
 
    Returns the day of week in month field for the date.
   
-.. method:: date->hour()
-.. method:: date->hourOfDay()
+.. member:: date->hour()
+.. member:: date->hourOfDay()
 
    Returns the hour for the date object (0-23).
 
-.. method:: date->hourOfAMPM()
+.. member:: date->hourOfAMPM()
 
    Returns the relative hour for the date object (1-12).
 
-.. method:: date->minute()
+.. member:: date->minute()
 
    Returns integer minutes from "0" to "59" for the date object.
   
-.. method:: date->second()
+.. member:: date->second()
 
    Returns integer seconds from "0" to "59" for the date object.
   
-.. method:: date->millisecond()
+.. member:: date->millisecond()
 
    Returns the current integer milliseconds of the current date object.
   
-.. method:: date->time()
+.. member:: date->time()
    
    Returns the time of the date object.
 
-.. method:: date->ampm()
+.. member:: date->ampm()
    
    Returns "0" if the time is before noon and "1" if it's noon or later.
 
-.. method:: date->am()
+.. member:: date->am()
 
    Returns "true" if the time is in the morning (before noon), otherwise returns
    false.
 
-.. method:: date->pm()
+.. member:: date->pm()
 
    Returns "true" if the time is in the evening (after noon), otherwise returns
    false.
 
-.. method:: date->timezone()
+.. member:: date->timezone()
 
    Returns the timezone setup for the date. Defaults to the current timezone of
    the server.
 
-.. method:: date->zoneOffset()
+.. member:: date->zoneOffset()
 
    Returns the time zone offset field for the date.
   
-.. method:: date->gmt()
+.. member:: date->gmt()
 
    Returns "true" if the date object is in GMT time and "false" if it is in
    local time.
   
-.. method:: date->dst()
+.. member:: date->dst()
 
    Returns "true" if the date object is in daylight saving time and "false" if
    it is not.
 
-.. method:: date->dstOffset()
+.. member:: date->dstOffset()
 
    Returns the daylight saving time (DST) offset field for the date. Returns "0"
    if the date for the timezone is not experiencing daylight savings.
 
-.. method:: date->asInteger()
+.. member:: date->asInteger()
 
    Returns epoch time - the number of seconds from 1/1/1970 to the time of the
    current date object.
@@ -778,7 +778,7 @@ end date/times are either specified when creating the duration or the current
 date/time is used as the start date/time while the end date/time is calculated
 based on the specified length for the duration.
 
-.. class:: duration
+.. type:: duration
 .. method:: duration(time::string)
 .. method:: duration(time::integer)
 .. method:: duration(start::date, end::date)
@@ -792,35 +792,35 @@ based on the specified length for the duration.
    of time indicated by the name of the keyword parameter: ``-year``, ``-week``,
    ``-day``, ``-hour``, ``-minute``, ``-second``
   
-.. method:: duration->year()
+.. member:: duration->year()
 
    Returns the integer number of years in a duration (based on the specified
    start and end date or based on a start date of when the duration object was
    created with an end date dependant on the specified length of time).
   
-.. method:: duration->month()
+.. member:: duration->month()
 
    Returns the integer number of months in a duration (based on the specified
    start and end date or based on a start date of when the duration object was
    created with an end date dependant on the specified length of time).
 
-.. method:: duration->week()
+.. member:: duration->week()
 
    Returns the integer number of weeks in the duration.
 
-.. method:: duration->day()
+.. member:: duration->day()
 
    Returns the integer number of days in the duration.
 
-.. method:: duration->hour()
+.. member:: duration->hour()
 
    Returns the integer number of hours in the duration.
 
-.. method:: duration->minute()
+.. member:: duration->minute()
 
    Returns the integer number of minutes in the duration.
 
-.. method:: duration->second()
+.. member:: duration->second()
 
    Returns the integer number of seconds in the duration.
 
@@ -1037,14 +1037,14 @@ objects. These methods are used for adding durations to dates, subtracting a
 duration from a date, and determining a duration between two dates. These
 methods are summarized below.
 
-.. method:: date->add(...)
+.. member:: date->add(...)
 
    Adds a specified amount of time to a data object. Can pass a duraction object
    or specify the amount of time by passing keyword/value parameters to define
    what should be added to the object: ``-second``, ``-minute``, ``-hour``,
    ``-day``, ``-week``, ``-month``, or ``-year``.
 
-.. method:: date->roll(...)
+.. member:: date->roll(...)
 
    Like ``date->add``, this method adds the specified amount of time to the
    current date object. However, unlike ``date->add``, only the specified field
@@ -1053,14 +1053,14 @@ methods are summarized below.
    field will not be modified. Valid fields to roll are ``-second``,
    ``-minute``, ``-hour``, ``-day``, ``-week``, ``-month``, or ``-year``.
   
-.. method:: date->subtract(...)
+.. member:: date->subtract(...)
 
    Subtracts a specified amount of time from a date object. Can pass a duration
    object or specify the amount of time by passing keyword/value parameters to
    define what should be subtracted from the object: ``-millisecond``,
    ``-second``, ``-minute``, ``-hour``, ``-day``, or ``-week``.
   
-.. method:: date->difference(when, ...)
+.. member:: date->difference(when, ...)
 
    Calculates the duration between two date objects. The first paramater must be
    a valid value that can be cast as a date. By default, this method returns a
@@ -1068,27 +1068,27 @@ methods are summarized below.
    following optional parameter is specified: ``-millisecond``, ``-second``,
    ``-minute``, ``-hour``, ``-day``, ``-week``, ``-month``, or ``-year``.
 
-.. method:: date->minutesBetween(other::date)
+.. member:: date->minutesBetween(other::date)
    
    Requires one parameter - another date object - and returns the number of
    minutes between the current date object and the specified date object.
 
-.. method:: date->hoursBetween(other::date)
+.. member:: date->hoursBetween(other::date)
    
    Requires one parameter - another date object - and returns the number of
    hours between the current date object and the specified date object.
 
-.. method:: date->secondsBetween(other::date)
+.. member:: date->secondsBetween(other::date)
    
    Requires one parameter - another date object - and returns the number of
    seconds between the current date object and the specified date object.
 
-.. method:: date->daysBetween(other::date)
+.. member:: date->daysBetween(other::date)
    
    Requires one parameter - another date object - and returns the number of days
    between the current date object and the specified date object.
 
-.. method:: date->businessDaysBetween(other::date)
+.. member:: date->businessDaysBetween(other::date)
    
    Requires one parameter - another date object - and returns the number of
    business days between the current date object and the specified date object.
@@ -1177,11 +1177,11 @@ date or duration appears to the left of a math symbol then the
 appropriate math operation will be performed and the result will be a
 date or duration as appropriate.
 
-.. method:: date->+(rhs)
+.. member:: date->+(rhs)
 
   ``+`` Used for adding a date and a duration, or adding two durations.
 
-.. method:: date->-(rhs)
+.. member:: date->-(rhs)
 
   ``-`` Used for subtracting a duration from a date, subtracting a duration from
   a duration, or determining the duration between two dates.

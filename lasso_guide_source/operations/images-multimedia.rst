@@ -130,7 +130,7 @@ variable has been set to an image data type, various member methods can be used
 to manipulate the image. Once the image file is manipulated, it can either be
 served directly to the client browser, or it can be saved to disk on the server.
 
-.. class:: image
+.. type:: image
 .. method:: image()
 .. method:: image(filePath::string, -info = ?)
 .. method:: image(bytes::bytes, -info = ?)
@@ -166,48 +166,48 @@ methods. These methods return specific values representing the attributes of an
 image such as size, resolution, format, and file comments. All image information
 methods in Lasso 9 are defined below.
 
-.. method:: image->width()::integer
+.. member:: image->width()::integer
 
    Returns the image width in pixels.
 
-.. method:: image->height()::integer
+.. member:: image->height()::integer
 
    Returns the image height in pixels.
 
-.. method:: image->resolutionh()::integer
+.. member:: image->resolutionh()::integer
 
    Returns the horizontal resolution of the image in dpi.
 
-.. method:: image->resolutionv()::integer
+.. member:: image->resolutionv()::integer
 
    Returns the vertical resolution of the image in dpi.
 
-.. method:: image->depth()::integer
+.. member:: image->depth()::integer
 
    Returns the color depth of the image in bits. Can be either 8 or 16.
 
-.. method:: image->format()
+.. member:: image->format()
 
    Returns the image format (GIF, JPEG, etc).
 
-.. method:: image->pixel(x::integer, y::integer, -hex = ?)
+.. member:: image->pixel(x::integer, y::integer, -hex = ?)
 
    Returns the color of the pixel located at the specified pixel coordinates
    (X,Y). The returned value is an array of RGB color integers (0-255) by
    default. An optional ``-hex`` parameter returns a hex color string
    (``#FFCCDD``) instead of an RGB array.                                            
 
-.. method:: image->comments()
+.. member:: image->comments()
 
    Returns any comments included in the image file header.
 
-.. method:: image->describe()
-.. method:: image->describe(-short)
+.. member:: image->describe()
+.. member:: image->describe(-short)
 
    Lists various image attributes, mostly for debugging purposes. An optional
    ``-short`` parameter displays abbreviated information.
 
-.. method:: image->file()
+.. member:: image->file()
 
    Returns the image file path and name, or ``null`` for in-memory images.
 
@@ -286,8 +286,8 @@ This section describes how image files can be converted from one format to
 another and saved to file. This is all accomplished using the ``image->save``
 method, which is described below.
 
-.. method:: image->convert(ext::string)
-.. method:: image->convert(ext::string, -quality::integer)
+.. member:: image->convert(ext::string)
+.. member:: image->convert(ext::string, -quality::integer)
 
    Converts an image object to a new format. Requires a file extension as a
    string parameter which represents the new format the image is being converted
@@ -295,8 +295,8 @@ method, which is described below.
    compression ratio (integer value of 1-100) used when saving to JPEG or GIF
    format.
 
-.. method:: image->save(path::string)
-.. method:: image->save(path::string, -quality::integer)
+.. member:: image->save(path::string)
+.. member:: image->save(path::string, -quality::integer)
 
    Saves the image to a file in a format defined by the file extension.
    Automatically converts images when the extension of the image to save as
@@ -304,7 +304,7 @@ method, which is described below.
    the image compression ratio (integer value of 1-100) used when saving to JPEG
    or GIF format.
 
-.. method:: image->addComment(comment)
+.. member:: image->addComment(comment)
    
    Adds a file header comment to the image before it is saved. Passing a
    ``null`` parameter removes any existing comments.
@@ -384,7 +384,7 @@ Changing Image Size and Orientation
 Lasso provides methods that allow you to scale, rotate, crop, and invert images.
 These methods are defined below.
 
-.. method:: image->scale(...)
+.. member:: image->scale(...)
 
    Scales an image to a specified size. Requires either a ``-width`` or
    ``-height`` parameter, which specify the new size of the image using either
@@ -395,14 +395,14 @@ These methods are defined below.
    one of the ``-width`` or ``-height`` is specified then the other value is
    calculated proportionally.
 
-.. method:: image->rotate(deg::integer)
-.. method:: image->rotate(deg::integer, -bgColor=::string)
+.. member:: image->rotate(deg::integer)
+.. member:: image->rotate(deg::integer, -bgColor=::string)
 
    Rotates an image counterclockwise by the specified amount in degrees (integer
    value of ``0-360``). An optional ``-bgColor`` parameter specifies the hex
    color to fill the blank areas of the resulting image.
 
-.. method:: image->crop(...)
+.. member:: image->crop(...)
 
    Crops the original image by cutting off extra pixels beyond the boundaries
    specified by the parameters. Requires ``-height`` and ``-width`` parameters
@@ -410,12 +410,12 @@ These methods are defined below.
    ``-right`` parameters specify the offset of the resulting image within the
    initial image.
 
-.. method:: image->flipv
+.. member:: image->flipv
 
    Creates a vertical mirror image by reflecting the pixels around the central
    X-axis.
 
-.. method:: image->fliph
+.. member:: image->fliph
 
    Creates a horizontal mirror image by reflecting the pixels around the central
    Y-axis.
@@ -486,20 +486,20 @@ image filters. This includes color modulation, image noise enhancement,
 sharpness controls, blur controls, contrast controls, and composite image
 merging. These methods are described below.
 
-.. method:: image->modulate(bright::integer, saturation::integer, hue::integer)
+.. member:: image->modulate(bright::integer, saturation::integer, hue::integer)
 
    Controls the brightness, saturation, and hue of an image. Brightness,
    saturation, and hue are controlled by three comma-delimited integer
    parameters, where 100 equals the original value.
 
-.. method:: image->contrast(increase::boolean=true)
+.. member:: image->contrast(increase::boolean=true)
 
    Enhances the intensity differences between the lighter and darker elements of
    the image. Specify ``false`` to reduce the image contrast, otherwise the
    contrast is increased.
 
-.. method:: image->blur(-angle::decimal)
-.. method:: image->blur(-gaussian, -radius::decimal, -sigma::decimal)
+.. member:: image->blur(-angle::decimal)
+.. member:: image->blur(-gaussian, -radius::decimal, -sigma::decimal)
 
    Applies either a motion or Gaussian blur to an image. To apply a motion blur,
    an ``-angle`` parameter with a decimal degree value must be specified to
@@ -510,7 +510,7 @@ merging. These methods are described below.
    standard deviation of the Gaussian in pixels. For reasonable results, the
    radius should be larger than the sigma.
 
-.. method:: image->sharpen(
+.. member:: image->sharpen(
          -radius::integer, 
          -sigma::integer, 
          -amount::decimal= ?, 
@@ -527,7 +527,7 @@ merging. These methods are described below.
    added back into the original, and ``-threshold`` specifies the threshold in
    decimal pixels needed to apply the difference amount.
 
-.. method:: image->enhance
+.. member:: image->enhance
 
    Applies a filter that improves the quality of a noisy, lower-quality image.
 
@@ -647,7 +647,7 @@ Adding Text to Images
 Lasso allows text to be overlaid on top of images using the ``image->annotate``
 method as described below.
 
-.. method:: image->annotate(
+.. member:: image->annotate(
          annotation::string,
          -left::integer,
          -top::integer,
@@ -700,7 +700,7 @@ Lasso allows images to be merged using the ``image->composite`` method. The
 ``image->composite`` method supports over 20 different composite methods, which
 are described in the table below.
 
-.. method:: image->composite(
+.. member:: image->composite(
          second::image, 
          -op::string= ?, 
          -left::integer= ?, 
@@ -854,7 +854,7 @@ For users who have experience using the ImageMagick command line utility, Lasso
 provides the ``image->execute`` method to allow advanced users to take advantage
 of additional ImageMagick commands and functionality.
 
-.. method:: image->execute
+.. member:: image->execute
 
    Execute ImageMagick commands. Provides direct access to the ImageMagick
    command-line interface. Supports the ``composite``, ``mogrify`, and
@@ -961,7 +961,7 @@ configuration of the Web server or Web browser. The MIME type for a GIF is
    of the procedures below to serve an image file from a path with a ``.lasso``
    extension.
 
-.. method:: image->data
+.. member:: image->data
 
    Converts an image object to a binary bytes object. This is useful for serving
    images to a browser without writing the image to file.

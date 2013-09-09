@@ -34,7 +34,7 @@ For more information on writing shell scripts, see the chapter on **Calling
 Lasso From the Command Line**.
 
 
-.. class:: os_process
+.. type:: os_process
 .. method:: os_process(...)
 
    The ``os_process`` type allows a developer to create a new process on the
@@ -44,7 +44,7 @@ Lasso From the Command Line**.
    conventions as the file type. This type has been deprecated in favor of
    :ref:`sys_process<sys-process>`
 
-.. method:: os_process->open(
+.. member:: os_process->open(
          command::string,
          arguments::trait_array= ?,
          env::trait_array= ?
@@ -59,7 +59,7 @@ Lasso From the Command Line**.
    on the command line with the Lasso site folder as the current working
    directory.
 
-.. method:: os_process->read(length::integer= ?)::bytes
+.. member:: os_process->read(length::integer= ?)::bytes
 
    Reads the specified number of bytes from the process. Returns a bytes object.
    The number of bytes of data actually returned from this method may be less
@@ -67,55 +67,55 @@ Lasso From the Command Line**.
    available to read. Calling this method without a byte count will read all
    bytes as they become available until the peer process terminates.
 
-.. method:: os_process->readError(length::integer= ?)::bytes
+.. member:: os_process->readError(length::integer= ?)::bytes
 
    Reads the specified number of bytes from standard error output for the
    process. Returns a bytes object. Calling this method without a byte count
    will read all bytes as they become available until the peer process
    terminates.
 
-.. method:: os_process->readLine()::string
+.. member:: os_process->readLine()::string
 
    Reads data up until a carriage return or line feed. Returns a string object
    created by utilizing the current encoding set for the instance.
 
-.. method:: os_process->readString(length::integer= ?)::string
+.. member:: os_process->readString(length::integer= ?)::string
 
    Reads the specified number of bytes from the process. Returns a string object
    created by utilizing the current encoding set for the instance. Calling this
    method without a byte count will read all bytes as they become available
    until the peer process terminates.
 
-.. method:: os_process->write(data::bytes)
-.. method:: os_process->write(data::string)
+.. member:: os_process->write(data::bytes)
+.. member:: os_process->write(data::string)
 
    Writes the data to the process. If the data is a string, the current encoding
    is used to convert the data before being written. If the data is a bytes
    object, the data is sent unaltered.
 
-.. method:: os_process->setEncoding(encoding::string)
+.. member:: os_process->setEncoding(encoding::string)
 
    Sets the encoding for the instance. The encoding controls how string data is
    written via ``os_process->write`` and how string data is returned via
    ``os_process->readString``. By default, "UTF-8" is used.
 
-.. method:: os_process->isOpen()::boolean
+.. member:: os_process->isOpen()::boolean
 
    Returns ``true`` as long as the process is running. If the process was
    terminated, it will return ``false``.
 
-.. method:: os_process->detach()
+.. member:: os_process->detach()
    
    Detaches the ``os_process`` object from the process. This will prevent the
    process from terminating when the ``os_process`` object is destroyed.
 
-.. method:: os_process->close()
+.. member:: os_process->close()
 
    Closes the connection to the process. This will cause the process to
    terminate unless it has previously been detached from the ``os_process``
    object by calling ``os_process->detach``
 
-.. method:: os_process->closeWrite
+.. member:: os_process->closeWrite
 
    Closes the "write" portion of the connection to the process. This results in
    the process's standard input file being closed.

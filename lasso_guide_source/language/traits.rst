@@ -307,17 +307,18 @@ The trait of any object in Lasso can be programmatically manipulated using the
 Trait Manipulation Methods
 --------------------------
 
-.. method:: null->trait(t::trait)
+.. member:: null->trait(t::trait)
+   :noindex:
 
    Returns the trait for the target object. Returns ``null`` if the object does
    not have a trait.
 
-.. method:: null->setTrait(t::trait)
+.. member:: null->setTrait(t::trait)
 
    Sets the trait of the target object to the parameter. The existing trait is
    replaced.
 
-.. method:: null->addTrait(t::trait)
+.. member:: null->addTrait(t::trait)
 
    Combines the target objects trait with the parameter.
 

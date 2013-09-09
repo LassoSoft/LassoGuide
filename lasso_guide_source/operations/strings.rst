@@ -77,7 +77,7 @@ Casting Values to Strings
 Values can be cast to the string data type automatically in many situations or
 they can be cast explicitly using the ``string`` creator method.
 
-.. class:: string
+.. type:: string
 .. method:: string(obj::any)
 .. method:: string(obj::bytes, enc::string= ?)
 
@@ -184,23 +184,23 @@ String Inspection Methods
 The ``string`` type has many member methods that return information about the
 value of the string object. Many of these metods are documented below.
 
-.. method:: string->size()
-.. method:: string->length()
+.. member:: string->size()
+.. member:: string->length()
 
    Returns the number of characters in the string. The ``string->length`` method
    had been deprecated in favor of simply the ``string->size`` method.
 
-.. method:: string->charName(p0::integer)
+.. member:: string->charName(p0::integer)
    
    This method takes a parameter that specifies the position of the character to
    inspect. It returns the Unicode name for the specified character.
 
-.. method:: string->charType(p0::integer)
+.. member:: string->charType(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect. It returns the Unicode type for the specified character.
 
-.. method:: string->digit(p0::integer, base::integer)
+.. member:: string->digit(p0::integer, base::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect and a parameter that specifies the base or radix. If the specified
@@ -208,182 +208,182 @@ value of the string object. Many of these metods are documented below.
    value for that digit. (Remember that when integers are cast as strings, they
    default to displaying in base 10.) The radix or base can be any from 1 to 36.
 
-.. method:: string->sub(pos::integer)
-.. method:: string->substring(start::integer)
-.. method:: string->sub(p0::integer, p1::integer)
-.. method:: string->substring(start::integer, end::integer),
+.. member:: string->sub(pos::integer)
+.. member:: string->substring(start::integer)
+.. member:: string->sub(p0::integer, p1::integer)
+.. member:: string->substring(start::integer, end::integer),
 
    This method returns a portion of the string, the starting point is specfied
    by the fist parameter and the number of characters to return is specified by
    the second. If the second parameter is not specified, then all characters
    from the specified position to the end of the string are returned.
 
-.. method:: string->integer()
-.. method:: string->integer(p0::integer)
+.. member:: string->integer()
+.. member:: string->integer(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character if no position is specified. It
    returns the Unicode integer value of that character.
 
-.. method:: string->charDigitValue(p0::integer)
+.. member:: string->charDigitValue(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect. If the specified character is a digit, then it will return an
    integer of the value of the digit. Otherwise it returns "-1".
 
-.. method:: string->getNumericValue(p0::integer)
+.. member:: string->getNumericValue(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect. If the specified character is a digit, then it will return a decimal
    of the value of the digit. Otherwise it returns the decimal "-123456789.0".
 
-.. method:: string->isAlnum()
-.. method:: string->isAlnum(p0::integer)
+.. member:: string->isAlnum()
+.. member:: string->isAlnum(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is
    alphanumeric the method will return "true" otherwise it will return "false".
 
-.. method:: string->isAlpha()
-.. method:: string->isAlpha(p0::integer)
+.. member:: string->isAlpha()
+.. member:: string->isAlpha(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is
    alphabetic the method will return "true" otherwise it will return "false".
 
-.. method:: string->isBase()
-.. method:: string->isBase(p0::integer)
+.. member:: string->isBase()
+.. member:: string->isBase(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is a
    base Unicode character the method will return "true" otherwise it will return
    "false".
 
-.. method:: string->isCntrl()
-.. method:: string->isCntrl(p0::integer)
+.. member:: string->isCntrl()
+.. member:: string->isCntrl(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is a
    control character then the method will return "true" otherwise it will return
    "false".
 
-.. method:: string->isDigit()
-.. method:: string->isDigit(p0::integer)
+.. member:: string->isDigit()
+.. member:: string->isDigit(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is a
    base 10 digit then the method will return "true" otherwise it will return
    "false".
 
-.. method:: string->isXDigit()
-.. method:: string->isXDigit(p0::integer)
+.. member:: string->isXDigit()
+.. member:: string->isXDigit(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is a
    hexadecimal digit then the method will return "true" otherwise it will return
    "false".
 
-.. method:: string->isLower()
-.. method:: string->isLower(p0::integer)
+.. member:: string->isLower()
+.. member:: string->isLower(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is
    lowercase the method will return "true" otherwise it will return "false".
 
-.. method:: string->isPrint()
-.. method:: string->isPrint(p0::integer)
+.. member:: string->isPrint()
+.. member:: string->isPrint(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is
    printable the method will return "true" otherwise it will return "false".
 
-.. method:: string->isSpace()
-.. method:: string->isSpace(p0::integer)
+.. member:: string->isSpace()
+.. member:: string->isSpace(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is
    white space the method will return "true" otherwise it will return "false".
 
-.. method:: string->isTitle()
-.. method:: string->isTitle(p0::integer)
+.. member:: string->isTitle()
+.. member:: string->isTitle(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is in
    the Unicode category "Letter, Titlecase" then the method will return "true"
    otherwise it will return "false".
 
-.. method:: string->isPunct()
-.. method:: string->isPunct(p0::integer)
+.. member:: string->isPunct()
+.. member:: string->isPunct(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is
    punctuation the method will return "true" otherwise it will return "false".
 
-.. method:: string->isGraph()
-.. method:: string->isGraph(p0::integer)
+.. member:: string->isGraph()
+.. member:: string->isGraph(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is
    printable and not white space then the method will return "true" otherwise it
    will return "false".
 
-.. method:: string->isBlank()
-.. method:: string->isBlank(p0::integer)
+.. member:: string->isBlank()
+.. member:: string->isBlank(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is a
    space or tab the method will return "true" otherwise it will return "false".
 
-.. method:: string->isUAlphabetic()
-.. method:: string->isUAlphabetic(p0::integer)
+.. member:: string->isUAlphabetic()
+.. member:: string->isUAlphabetic(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character has
    the Unicode alphabetic property then the method will return "true" otherwise
    it will return "false".
 
-.. method:: string->isULowercase()
-.. method:: string->isULowercase(p0::integer)
+.. member:: string->isULowercase()
+.. member:: string->isULowercase(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character has
    the Unicode lowercase property then the method will return "true" otherwise
    it will return "false".
 
-.. method:: string->isUpper()
-.. method:: string->isUpper(p0::integer)
+.. member:: string->isUpper()
+.. member:: string->isUpper(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is
    uppercased the method will return "true" otherwise it will return "false".
 
-.. method:: string->isUUppercase()
-.. method:: string->isUUppercase(p0::integer)
+.. member:: string->isUUppercase()
+.. member:: string->isUUppercase(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character has
    the Unicode uppercase property then the method will return "true" otherwise
    it will return "false".
 
-.. method:: string->isUWhiteSpace()
-.. method:: string->isUWhiteSpace(p0::integer)
+.. member:: string->isUWhiteSpace()
+.. member:: string->isUWhiteSpace(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character has
    the Unicode white space property then the method will return "true" otherwise
    it will return "false".
 
-.. method:: string->isWhitespace()
-.. method:: string->isWhitespace(p0::integer)
+.. member:: string->isWhitespace()
+.. member:: string->isWhitespace(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect, defaulting to the first character. If the specified character is
    white space the method will return "true" otherwise it will return "false".
 
-.. method:: string->find(find::string, offset::integer, length::integer)
-.. method:: string->find(find::string, offset::integer, -case::boolean= ?)
-.. method:: string->find(find::string, offset::integer, length::integer, patOffset::integer, patLength::integer, case::boolean)
-.. method:: string->find(find::string, -offset::integer= ?, -length::integer= ?, -patOffset::integer= ?, -patLength::integer= ?, -case::boolean= ?)
+.. member:: string->find(find::string, offset::integer, length::integer)
+.. member:: string->find(find::string, offset::integer, -case::boolean= ?)
+.. member:: string->find(find::string, offset::integer, length::integer, patOffset::integer, patLength::integer, case::boolean)
+.. member:: string->find(find::string, -offset::integer= ?, -length::integer= ?, -patOffset::integer= ?, -patLength::integer= ?, -case::boolean= ?)
 
    This method takes a string parameter that specifies a pattern to search the
    string object for and returns the position in the string object where that
@@ -399,13 +399,13 @@ value of the string object. Many of these metods are documented below.
    be used for matching - they behave similarly for the pattern string as the
    ``-offset`` and ``-length`` parameters do for the base string.
 
-.. method:: string->findLast(find::string, offset::integer= ?, -length::integer= ?, -patOffset::integer= ?, -patLength::integer= ?, -case::boolean= ?)
+.. member:: string->findLast(find::string, offset::integer= ?, -length::integer= ?, -patOffset::integer= ?, -patLength::integer= ?, -case::boolean= ?)
 
    This method is similar to ``string->find`` except that it returns the
    starting position of the last match found in the string object.
 
-.. method:: string->contains(find, -case::boolean= ?)
-.. method:: string->contains(find::regexp, -ignoreCase::boolean= ?)
+.. member:: string->contains(find, -case::boolean= ?)
+.. member:: string->contains(find::regexp, -ignoreCase::boolean= ?)
 
    This method takes a parameter that specifies a string or regulare expression
    to match as part of the string object. It returns "true" if it finds a match,
@@ -416,20 +416,20 @@ value of the string object. Many of these metods are documented below.
    is case-sensitive unless the optional ``-ignoreCase`` parameter is passed to
    the method.
 
-.. method:: string->get(position::integer)
+.. member:: string->get(position::integer)
 
    This method takes a parameter that specifies the position of the character to
    return.
 
-.. method:: string->equals(find, case::boolean)
-.. method:: string->equals(find, -case::boolean= ?)
+.. member:: string->equals(find, case::boolean)
+.. member:: string->equals(find, -case::boolean= ?)
 
    This method is similar to the ``==`` comparison operator. It returns true if
    the specified string is equivalent to the base string. This matching will not
    be case-sensitive unless passed the ``-case`` parameter.
 
-.. method:: string->compare(find::string, -case::boolean= ?)
-.. method:: string->compare(find::string, offset::integer, length::integer= ?, patOffset::integer= ?, patLength::integer= ?, -case::boolean= ?)
+.. member:: string->compare(find::string, -case::boolean= ?)
+.. member:: string->compare(find::string, offset::integer, length::integer= ?, patOffset::integer= ?, patLength::integer= ?, -case::boolean= ?)
 
    This method takes a string pattern to compare with the string object and
    returns "0" if they are equal, "1" if the characters in the string are bitwise
@@ -441,8 +441,8 @@ value of the string object. Many of these metods are documented below.
    object by passing an offset and length parameter and smaller portions of the
    pattern by passing an offset and length parameter for the patern.
 
-.. method:: string->beginsWith(find, case::boolean)
-.. method:: string->beginsWith(find::string, -case::boolean= ?)
+.. member:: string->beginsWith(find, case::boolean)
+.. member:: string->beginsWith(find::string, -case::boolean= ?)
 
    This method takes a parameter that specifies a string  to match the beginning
    of the string object. It returns "true" if it matches the beginning,
@@ -451,8 +451,8 @@ value of the string object. Many of these metods are documented below.
    By default, string matching is not case-sensitive unless the optional
    ``-case`` parameter is passed to the method.
 
-.. method:: string->endsWith(find, case::boolean)
-.. method:: string->endsWith(find::string, -case::boolean= ?)
+.. member:: string->endsWith(find, case::boolean)
+.. member:: string->endsWith(find::string, -case::boolean= ?)
 
    This method takes a parameter that specifies a string  to match the end of
    the string object. It returns "true" if it matches the end, otherwise
@@ -461,7 +461,7 @@ value of the string object. Many of these metods are documented below.
    By default, string matching is not case-sensitive unless the optional
    ``-case`` parameter is passed to the method.
 
-.. method:: string->getPropertyValue(p0::integer, p1::integer)
+.. member:: string->getPropertyValue(p0::integer, p1::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect and a second parameter that specifies a Unicode property. It returns
@@ -472,7 +472,7 @@ value of the string object. Many of these metods are documented below.
    Lasso defines many methods that return values for these Unicode property
    names. All of these values have the "UCHAR\_" prefix.
 
-.. method:: string->hasBinaryProperty(p0::integer, p1::integer)
+.. member:: string->hasBinaryProperty(p0::integer, p1::integer)
 
    This method takes a parameter that specifies the position of the character to
    inspect and a second parameter that specifies a Unicode property. It returns
@@ -578,22 +578,22 @@ manipulate a string object in place. These methods do not return a value but
 modify the value of the string object. Many of these member methods are
 documented below.
 
-.. method:: string->append(p0::string)
-.. method:: string->append(s)
+.. member:: string->append(p0::string)
+.. member:: string->append(s)
 
    This method takes a single parameter that will be cast as a string and then
    concatenated on to the end of the string object. It modifies the string
    object in place, not returning any value.
 
-.. method:: string->appendChar(p0::integer)
+.. member:: string->appendChar(p0::integer)
 
    This method takes an integer that is the Unicode integer value in base 10 of
    a character. This character is then concatenated on to the end of the string
    object. It modifies the string object in place, not returning any value.
 
-.. method:: string->remove()
-.. method:: string->remove(i::integer)
-.. method:: string->remove(p0::integer, p1::integer)
+.. member:: string->remove()
+.. member:: string->remove(i::integer)
+.. member:: string->remove(p0::integer, p1::integer)
 
    This method takes a parameter that specifies the position of the first
    character to remove, defaulting to the first character. A second parameter
@@ -601,7 +601,7 @@ documented below.
    the characters from the starting position. It modifies the string object in
    place, not returning any value.
 
-.. method:: string->normalize()
+.. member:: string->normalize()
 
    This method transforms a string object into its normailzed form. It modifies
    the string object in place, not returning any value. For more information on
@@ -609,60 +609,60 @@ documented below.
    `<http://unicode.org/faq/normalization.html>`_ and
    `<http://www.unicode.org/reports/tr15/>`_
 
-.. method:: string->foldCase()
+.. member:: string->foldCase()
 
    This method converts the characters in the string object to allow for case-
    insensitive comparisons. It modifies the string object in place, not
    returning any value.
 
-.. method:: string->trim()
+.. member:: string->trim()
 
    This method removes any white space from the beginning and end of a string.
    It modifies the string object in place, not returning any value.
 
-.. method:: string->reverse()
+.. member:: string->reverse()
 
    This method changes the string object to the value of the base string in
    reverse order. It modifies the string object in place, not returning any
    value.
 
-.. method:: string->toTitle(p0::integer)
+.. member:: string->toTitle(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    modify. That character is converted to title case if possible. It modifies
    the string object in place, not returning any value.
 
-.. method:: string->toUpper(p0::integer)
+.. member:: string->toUpper(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    modify. That character is converted to uppercase if possible. It modifies the
    string object in place, not returning any value.
 
-.. method:: string->toLower(p0::integer)
+.. member:: string->toLower(p0::integer)
 
    This method takes a parameter that specifies the position of the character to
    modify. That character is converted to lowercase if possible. It modifies the
    string object in place, not returning any value.
 
-.. method:: string->lowercase()
+.. member:: string->lowercase()
 
    This method changes every possible character in a string to lowercase. It
    modifies the string object in place, not returning any value.
 
-.. method:: string->uppercase()
+.. member:: string->uppercase()
 
    This method changes every possible character in a string to uppercase. It
    modifies the string object in place, not returning any value.
 
-.. method:: string->titlecase()
-.. method:: string->titlecase(p0::string, p1::string)
+.. member:: string->titlecase()
+.. member:: string->titlecase(p0::string, p1::string)
 
    This method changes every possible word in a string to title case. It can
    optionally take a language code for the first parameter and a country code
    for the second to specify a locale to be used when completing this operation.
    It modifies the string object in place, not returning any value.
 
-.. method:: string->padLeading(tosize::integer, with::string= ?)
+.. member:: string->padLeading(tosize::integer, with::string= ?)
 
    This method takes a parameter that specifies the length of the string. If the
    base string object is smaller in size, then it changes the string by
@@ -671,7 +671,7 @@ documented below.
    can be set as the optional second parameter. It modifies the string object in
    place, not returning any value.
 
-.. method:: string->padTrailing(tosize::integer, with::string= ?)
+.. member:: string->padTrailing(tosize::integer, with::string= ?)
 
    This method takes a parameter that specifies the length of the string. If the
    base string object is smaller in size, then it changes the string by
@@ -680,7 +680,7 @@ documented below.
    be set as the optional second parameter. It modifies the string object in
    place, not returning any value.
 
-.. method:: string->merge(where::integer, what::string, offset::integer= ?, length::integer= ?)
+.. member:: string->merge(where::integer, what::string, offset::integer= ?, length::integer= ?)
 
    This method merges a specified string into the base string. It requires the
    first parameter to specify the position in the base string for the merge to
@@ -691,23 +691,23 @@ documented below.
    string to be used in the merge and a fourth can specify the number of
    characters to after the offset to be merged from the passed string.
 
-.. method:: string->removeLeading(find::string)
-.. method:: string->removeLeading(find::regexp)
+.. member:: string->removeLeading(find::string)
+.. member:: string->removeLeading(find::regexp)
 
    This method takes either a string or a regular expression and removes all
    matches specified from the beginning of the string. It keeps removing until
    the beginning of the string no longer matches the specified parameter. It
    modifies the string object in place, not returning any value.
 
-.. method:: string->removeTrailing(find::string)
+.. member:: string->removeTrailing(find::string)
 
    This method takes a string and removes all matches specified from the end of
    the string. It keeps removing until the end of the string no longer matches
    the specified parameter. It modifies the string object in place, not
    returning any value.
 
-.. method:: string->replace(find::regexp, replace= ?, ignorecase= ?)
-.. method:: string->replace(find::string, replace::string, -case::boolean= ?)
+.. member:: string->replace(find::regexp, replace= ?, ignorecase= ?)
+.. member:: string->replace(find::string, replace::string, -case::boolean= ?)
 
    This method takes either a string or a regular expression and replaces all
    matches specified from the string with the specified replacement. For regular
@@ -780,18 +780,18 @@ This exmaple removes all the trailing commas from the string::
 String Encoding Methods
 =======================
 
-.. method:: string->hash()
+.. member:: string->hash()
 
    This method returns a simple hash of the string object.
 
-.. method:: string->unescape()
+.. member:: string->unescape()
 
    This method returns a string with any escape sequences in the base string
    object replaced with their literal Unicode equivalents. This is the same
    escape process Lasso does for string literals.
 
-.. method:: string->encodeHtml()
-.. method:: string->encodeHtml(p0::boolean, p1::boolean)
+.. member:: string->encodeHtml()
+.. member:: string->encodeHtml(p0::boolean, p1::boolean)
 
    This method returns a string with any reserved, illegal, or extended ASCII
    characters in the base string object converted to their equivalent HTML
@@ -802,41 +802,41 @@ String Encoding Methods
    less than or left angle bracket, and greater than or right angle bracket,
    respectively).
 
-.. method:: string->decodeHtml()
+.. member:: string->decodeHtml()
    
    This method returns a string with any HTML entities in the base string object
    converted to their Unicode equivalent. This is the opposite of the
    ``string->encodehtml`` method.
 
-.. method:: string->encodeXml()
+.. member:: string->encodeXml()
 
    This method returns a string from the base string object with any reserved or
    illegal XML characters encoded into their equivalent XML entity.
 
-.. method:: string->decodeXml()
+.. member:: string->decodeXml()
 
    This method returns a string from the base string object with any XML
    entities converted to their Unicode equivalent. This is the opposite of the
    ``string->encodeXml`` method.
 
-.. method:: string->encodeHtmlToXml()
+.. member:: string->encodeHtmlToXml()
 
    This method returns a string from the base string object with any HTML
    encoding converted to XML encoding.
 
-.. method:: string->asBytes()
-.. method:: string->asBytes(encoding::string)
+.. member:: string->asBytes()
+.. member:: string->asBytes(encoding::string)
 
    This method returns the value of the base string as a ``bytes`` object. By
    default, UTF-8 encoding is used for this conversion, but any encoding can be
    specified as a stirng to this method.
 
-.. method:: string->encodesql92()
+.. member:: string->encodesql92()
 
    This method returns the value of the base string with any illegal characters
    for SQL-92 compliant databases properly escaped. Not for use with MySQL.
 
-.. method:: string->encodesql()
+.. member:: string->encodesql()
 
    This method returns the value of the base string with any illegal characters
    for MySQL data sources properly escaped.
@@ -888,19 +888,19 @@ a MySQL SQL statement::
 String Iteration Methods
 ========================
 
-.. method:: string->forEachCharacter()
+.. member:: string->forEachCharacter()
 
    This method takes a capture block and executes that block once for every
    character in the base string. That character can be accessed in the capture
    block through the special local variable "#1".
 
-.. method:: string->forEachWordBreak()
+.. member:: string->forEachWordBreak()
 
    This method takes a capture block and executes that block once for every word
    in the base string. That word can be accessed in the capture block through
    the special local variable "#1".
 
-.. method:: string->forEachLineBreak()
+.. member:: string->forEachLineBreak()
 
    This method takes a capture block and executes that block once for every
    substring that would be generated by splitting the base string object on a
@@ -908,28 +908,28 @@ String Iteration Methods
    of the substrings can be accessed in the capture block through the special
    local variable "#1".
 
-.. method:: string->forEachMatch(exp::regexp)
-.. method:: string->forEachMatch(exp::string)
+.. member:: string->forEachMatch(exp::regexp)
+.. member:: string->forEachMatch(exp::string)
 
    This method takes a capture block and executes that block once for every
    specified match in the base string object. Matches can be specified with
    either a ``string`` or ``regexp`` object. That match can be accessed in the
    capture block through the special local variable "#1".
 
-.. method:: string->eachCharacter()
+.. member:: string->eachCharacter()
 
    This method returns an ``eacher`` which can be used in conjuction with query
    expressions to inspect and perform complex operations on every character in
    the base string object.
 
-.. method:: string->eachWordBreak()
+.. member:: string->eachWordBreak()
 
    This method returns an ``eacher`` which can be used in conjuction with query
    expressions to inspect and perform complex operations on every word in
    the base string object.
 
-.. method:: string->eachMatch(exp::regexp)
-.. method:: string->eachMatch(exp::string)
+.. member:: string->eachMatch(exp::regexp)
+.. member:: string->eachMatch(exp::string)
 
    This method returns an ``eacher`` which can be used in conjuction with query
    expressions to inspect and perform complex operations on every specified
@@ -997,18 +997,18 @@ string::
 Miscellaneous String Methods
 ============================
 
-.. method:: string->split(find::string)
+.. member:: string->split(find::string)
 
    This method returns an array with elements created by breaking up the string
    on the specified string. If an empty string is specified, each element of the
    array is a single character of the string.
 
-.. method:: string->values()
+.. member:: string->values()
 
    This method returns an array, each element of which is one character of the
    string.
 
-.. method:: string->keys()
+.. member:: string->keys()
 
    This method returns a ``generateSeries`` from 1 to the length of the string,
    or an empty ``generateSeries`` if the string is empty.

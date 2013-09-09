@@ -22,7 +22,7 @@ be first unless subsequently repositioned.
 Pair
 ----
 
-.. class:: pair
+.. type:: pair
 
    Pairs are one of the most basic of containers. A pair always contains two
    elements. These are referred to as the 'first' and 'second' elements and are
@@ -45,14 +45,14 @@ Creating Pair Objects
 Using Pair Objects
 ^^^^^^^^^^^^^^^^^^
 
-.. method:: pair->first()
-.. method:: pair->second()
+.. member:: pair->first()
+.. member:: pair->second()
 
    These methods are used to access the elements of a pair. They return the
    value stored within.
 
-.. method:: pair->first = (f)
-.. method:: pair->second = (s)
+.. member:: pair->first = (f)
+.. member:: pair->second = (s)
 
    These methods permit the elements of a pair to be set.
 
@@ -61,7 +61,7 @@ Using Pair Objects
 Array
 -----
 
-.. class:: array
+.. type:: array
 
    Array objects store zero or more elements and provide random access to those
    elements by position. Positions are 1-based integers. Arrays will grow as
@@ -82,8 +82,8 @@ the array method will be inserted into the new array.
 Using Array Objects
 ^^^^^^^^^^^^^^^^^^^
 
-.. method:: array->insert(v)
-.. method:: array->insert(v, position::integer)
+.. member:: array->insert(v)
+.. member:: array->insert(v, position::integer)
 
    These methods add  new elements to the array. The first method adds the
    element at the end of the array. The second method permits the position of
@@ -92,11 +92,11 @@ Using Array Objects
    position larger than the size of the array will insert the element at the
    end.
 
-.. method:: array->remove()
-.. method:: array->remove(position::integer)
-.. method:: array->remove(position::integer, count::integer)
-.. method:: array->removeAll()
-.. method:: array->removeAll(matching)
+.. member:: array->remove()
+.. member:: array->remove(position::integer)
+.. member:: array->remove(position::integer, count::integer)
+.. member:: array->removeAll()
+.. member:: array->removeAll(matching)
 
    These methods remove one of more elements from the array. Remove with no
    parameters removes the last element from the array. Remove with a position
@@ -109,9 +109,9 @@ Using Array Objects
    array. The second removeAll method takes one parameter. All elements in the
    array to which the parameter compares equally will be removed.
 
-.. method:: array->get(position::integer)
-.. method:: array->get(position::integer) = value
-.. method:: array->sub(position::integer, count::integer=(self->size - #pos) + 1)
+.. member:: array->get(position::integer)
+.. member:: array->get(position::integer) = value
+.. member:: array->sub(position::integer, count::integer=(self->size - #pos) + 1)
 
    The get method returns the element located at the indicated position. The
    method will fail if the position is out of range. This method also permits
@@ -121,18 +121,18 @@ Using Array Objects
    parameter indicates the starting position and the second parameter indicates
    how many of the elements to return.
 
-.. method:: array->first()
-.. method:: array->second()
-.. method:: array->last()
+.. member:: array->first()
+.. member:: array->second()
+.. member:: array->last()
 
    These methods return the first, second and last elements from the array,
    respectively. If the array does not have an element for that position, null
    is returned.
 
-.. method:: array->contains(matching)::boolean
-.. method:: array->count(matching)::integer
-.. method:: array->findPosition(matching, startPosition=1)
-.. method:: array->find(matching)
+.. member:: array->contains(matching)::boolean
+.. member:: array->count(matching)::integer
+.. member:: array->findPosition(matching, startPosition=1)
+.. member:: array->find(matching)
 
    These methods search the array for elements matching the parameter. The
    contains method returns true if the matching parameter compares equally to
@@ -142,16 +142,16 @@ Using Array Objects
    the search should begin. The find method returns a new array containing all
    of the matched objects.
 
-.. method:: array->size()::integer
+.. member:: array->size()::integer
 
    This method returns the number of elements in the array.
 
-.. method:: array->sort(ascending::boolean=true)
+.. member:: array->sort(ascending::boolean=true)
 
    This method performs a sort on the elements. Elements are repositioned in
    either ascending or descending order depending on the given parameter.
 
-.. method:: array->join(delimiter::string='')::string
+.. member:: array->join(delimiter::string='')::string
 
    This method joins all the elements as strings with the delimiter parameter in
    between each.
@@ -161,11 +161,11 @@ Using Array Objects
       array(1, 2, 3, 4, 5)->join(', ')
       // => 1, 2, 3, 4, 5
 
-.. method:: array->asStaticArray()::staticarray
+.. member:: array->asStaticArray()::staticarray
 
    This method returns the array's elements in a new staticarray.
 
-.. method:: array->+(rhs::trait_forEach)::array
+.. member:: array->+(rhs::trait_forEach)::array
 
    Arrays can be combined with other compound types by using the + operator. A new
    array containing all the elements is returned.
@@ -180,7 +180,7 @@ Using Array Objects
 Staticarray
 -----------
 
-.. class:: staticarray
+.. type:: staticarray
 
    A staticarray is a container object that is not resizable. Staticarrays are
    created with a fixed size. Objects can be reassigned within the staticarray,
@@ -214,23 +214,23 @@ Example of creating a few staticarrays::
 Using Staticarray Objects
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. method:: staticarray->get(position::integer)
-.. method:: staticarray->get(position::integer) = value
+.. member:: staticarray->get(position::integer)
+.. member:: staticarray->get(position::integer) = value
 
    The get method returns the element at the indicated position. This method
    will fail if the position is out of range. The get method also permits the
    element to be reassigned.
 
-.. method:: staticarray->first()
-.. method:: staticarray->second()
-.. method:: staticarray->last()
+.. member:: staticarray->first()
+.. member:: staticarray->second()
+.. member:: staticarray->last()
 
    The first, second and last methods return the corresponding element or null
    if there is no element at the position.
 
-.. method:: staticarray->contains(matching)::boolean
-.. method:: staticarray->findPosition(matching, startPosition=1)
-.. method:: staticarray->find(matching)
+.. member:: staticarray->contains(matching)::boolean
+.. member:: staticarray->findPosition(matching, startPosition=1)
+.. member:: staticarray->find(matching)
 
    These methods search the staticarray for elements matching the parameter. The
    contains method returns true if the matching parameter compares equally to
@@ -239,8 +239,8 @@ Using Staticarray Objects
    indicates where the search should begin. The find method returns a new array
    containing all of the matched objects.
 
-.. method:: staticarray->join(count::integer, o)::staticarray
-.. method:: staticarray->join(s::staticarray)::staticarray
+.. member:: staticarray->join(count::integer, o)::staticarray
+.. member:: staticarray->join(s::staticarray)::staticarray
 
    These methods combine the staticarray with other elements to create a new
    staticarray. The first method adds the number indicated by the first
@@ -253,14 +253,14 @@ Example of joining new elements into a new staticarray::
    (:1, 2, 3)->join(5, 'Hi')
    // => staticarray(1, 2, 3, Hi, Hi, Hi, Hi, Hi)
 
-.. method:: staticarray->sub(position::integer, count::integer=(self->size - #pos) + 1)::staticarray
+.. member:: staticarray->sub(position::integer, count::integer=(self->size - #pos) + 1)::staticarray
 
    The sub method returns a range of elements. The first parameter indicates the
    starting position and the second parameter indicates how many of the elements
    to return. The elements are returned as a new staticarray object.
 
-.. method:: staticarray->+(s::staticarray)::staticarray
-.. method:: staticarray->+(o)::staticarray
+.. member:: staticarray->+(s::staticarray)::staticarray
+.. member:: staticarray->+(o)::staticarray
 
    The + operator can be used with staticarrays to either add one new element or
    all the elements from another staticarray. Either variant will return the
@@ -269,7 +269,7 @@ Example of joining new elements into a new staticarray::
 List
 ----
 
-.. class:: list
+.. type:: list
 
    A list presents a series of objects stored in a linked manner. Elements can
    be efficiently added or removed from a list at the end or the beginning, but
@@ -289,35 +289,35 @@ Creating List Objects
 Using List Objects
 ^^^^^^^^^^^^^^^^^^
 
-.. method:: list->insertFirst(e)
-.. method:: list->insertLast(e)
-.. method:: list->insert(e)
+.. member:: list->insertFirst(e)
+.. member:: list->insertLast(e)
+.. member:: list->insert(e)
 
    These methods insert new elements into the list. Elements can be inserted at
    the beginning or the ending of the list. The insert method with no parameters
    inserts at the end of the list.
 
-.. method:: list->removeFirst()
-.. method:: list->removeLast()
-.. method:: list->remove()
+.. member:: list->removeFirst()
+.. member:: list->removeLast()
+.. member:: list->remove()
 
    These methods remove elements from the list. Either the first element or the
    last element can be removed. The remove method with no parameters removes the
    last element.
 
-.. method:: list->removeAll()
-.. method:: list->removeAll(matching)
+.. member:: list->removeAll()
+.. member:: list->removeAll(matching)
 
    The first removeAll method with no parameters removes every element from the
    list. The second accepts a parameter which is compared against the elements.
    All matching elements are removed from the list.
 
-.. method:: list->first()
-.. method:: list->last()
+.. member:: list->first()
+.. member:: list->last()
 
    These methods returns the first and last elements, respectively.
 
-.. method:: list->contains(matching)::boolean
+.. member:: list->contains(matching)::boolean
 
    This method takes one parameter and compares it against the elements in the
    list. It returns true if the list contains a match.
@@ -325,7 +325,7 @@ Using List Objects
 Queue
 -----
 
-.. class:: queue
+.. type:: queue
 
    Queue objects store data in a "first in, first out" (FIFO) manner. Elements
    can effeciently be inserted into the end of the queue (called pushing) and
@@ -345,31 +345,31 @@ Creating Queue Objects
 Using Queue Objects
 ^^^^^^^^^^^^^^^^^^^
 
-.. method:: queue->insert(value)
-.. method:: queue->insertLast(value)
-.. method:: queue->insertFrom(value::trait_foreach)
+.. member:: queue->insert(value)
+.. member:: queue->insertLast(value)
+.. member:: queue->insertFrom(value::trait_foreach)
 
    These methods insert new elements into the queue. Elements will always be
    inserted at the end of the queue. The ``queue->insertFrom`` method allows
    for multiple elements to be inserted into the queue by taking an object that
    implements ``trait_forEach``.
 
-.. method:: queue->first()
-.. method:: queue->get()
+.. member:: queue->first()
+.. member:: queue->get()
 
    These methods return the first element in the queue. The ``queue->get``
    method additionally removes the element from the queue.
 
-.. method:: queue->size()
+.. member:: queue->size()
 
    This method returns the number of elements in the queue.
 
-.. method:: queue->remove()
-.. method:: queue->removeFirst()
+.. member:: queue->remove()
+.. member:: queue->removeFirst()
 
    These methods remove the first element in the queue.
 
-.. method:: queue->unspool(n::integer= ?)
+.. member:: queue->unspool(n::integer= ?)
 
    This method returns a staticarray of the elements in the queue and removing
    them from the queue. The number of elements to return and remove can be
@@ -379,7 +379,7 @@ Using Queue Objects
 Stack
 -----
 
-.. class:: stack
+.. type:: stack
 
    Stack objects store data in a "last in, first out" (LIFO) manner. Elements
    can effeciently be inserted onto the beginning of the stack (called pushing)
@@ -399,25 +399,25 @@ Creating Stack Objects
 Using Stack Objects
 ^^^^^^^^^^^^^^^^^^^
 
-.. method:: stack->insert(value)
-.. method:: stack->insertFirst(value)
+.. member:: stack->insert(value)
+.. member:: stack->insertFirst(value)
 
    These methods insert new elements into the stack. Elements will always be
    inserted at the beginning of the stack.
 
-.. method:: stack->first()
-.. method:: stack->get()
+.. member:: stack->first()
+.. member:: stack->get()
 
    These methods return the first element in the stack. (This is the most
    recently inserted element.) The ``stack->get`` method additionally removes
    the element from the stack.
 
-.. method:: stack->size()
+.. member:: stack->size()
 
    This method returns the number of elements in the stack.
 
-.. method:: stack->remove()
-.. method:: stack->removeFirst()
+.. member:: stack->remove()
+.. member:: stack->removeFirst()
 
    These methods remove the first element in the stack. (This is the most
    recently inserted element.)
@@ -436,7 +436,7 @@ themselves.
 Map
 ---
 
-.. class:: map
+.. type:: map
 
    Maps are used to store values along with associated keys. An element can
    later be found given the key value it was inserted with. New elements can be
@@ -468,22 +468,22 @@ Example of creating a map with a series of parameters using string based keys::
 Using Map Objects
 ^^^^^^^^^^^^^^^^^
 
-.. method:: map->insert(p::pair)
+.. member:: map->insert(p::pair)
 
    This method inserts a new key/value pair into the map. Any already existing
    duplicate key is replaced.
 
-.. method:: map->remove(key)
-.. method:: map->removeAll()
+.. member:: map->remove(key)
+.. member:: map->removeAll()
 
    The first method, remove, removed the indicated key/value from the map. If
    the key does not exist in the map then no action is taken. The second method,
    removeAll, removes all of the key/values from the map.
 
-.. method:: map->get(key)
-.. method:: map->get(key) = value
-.. method:: map->find(key)
-.. method:: map->contains(key)::boolean
+.. member:: map->get(key)
+.. member:: map->get(key) = value
+.. member:: map->find(key)
+.. member:: map->contains(key)::boolean
 
    These methods get particular elements from the map or test that a key is
    contained within the map. The get method finds the element within the map
@@ -493,14 +493,14 @@ Using Map Objects
    void. The contains method returns true if the matching parameter compares
    equally to any contained elements.
 
-.. method:: map->size()::integer
+.. member:: map->size()::integer
 
    This method returns the number of elements contained within the map.
 
 Set
 ---
 
-.. class:: set
+.. type:: set
 
    A set contains a within it only unique elements. Each element is itself a
    key. Sets support quickly determining if an object is contained within in.
@@ -518,22 +518,22 @@ Creating Set Objects
 Using Set Objects
 ^^^^^^^^^^^^^^^^^
 
-.. method:: set->find(k)
-.. method:: set->get(k)
-.. method:: set->contains(k)::boolean
+.. member:: set->find(k)
+.. member:: set->get(k)
+.. member:: set->contains(k)::boolean
 
    These methods find the given key within the set. The find method will return
    the key if it is found. It returns void if the key is not within the set. The
    get method will return the key, but will fail if the key is not contained
    within the set. The contains method returns true if the key is in the set.
 
-.. method:: set->insert(k)
+.. member:: set->insert(k)
 
    This method inserts the key into the set. Any duplicate key value is
    replaced.
 
-.. method:: set->remove(k)
-.. method:: set->removeAll()
+.. member:: set->remove(k)
+.. member:: set->removeAll()
 
    The remove method removes the indicated key from the set. If the key is not
    contained within the set then no action is taken. The removeAll method

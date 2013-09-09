@@ -26,7 +26,7 @@ more.
 Lasso Curl API
 ==============
 
-.. class:: curl
+.. type:: curl
 .. method:: curl()
 .. method:: curl(url::string, -username::string= ?, -password::string= ?)
 
@@ -35,16 +35,16 @@ Lasso Curl API
    called, and it optionally takes a username and password to be used for
    authentication.
 
-.. method:: curl->url()
+.. member:: curl->url()
 
    Returns the current URL set for the ``curl`` object.
 
-.. method:: curl->url=(s::string)
+.. member:: curl->url=(s::string)
 
    Sets the URL for the current ``curl`` object.
 
-.. method:: curl->postFields=(s::string)
-.. method:: curl->postFields=(b::bytes)
+.. member:: curl->postFields=(s::string)
+.. member:: curl->postFields=(b::bytes)
 
    Sets the full data to post in an HTTP POST operation. You must make sure that
    the data is formatted the way you want the server to receive it. The ``curl``
@@ -55,79 +55,79 @@ Lasso Curl API
    encoding of the data to be sent to the destination server. An example of this
    would be sending a binary image file.
 
-.. method:: curl->contentType=(s::string)
+.. member:: curl->contentType=(s::string)
 
    Override the default HTTP "Content-Type:" header by setting this value.
 
-.. method:: curl->close()
+.. member:: curl->close()
 
    Close the current ``curl`` object.
 
-.. method:: curl->asString()
+.. member:: curl->asString()
 
    Return the result of performing the current curl object's action as a string.
    If no URL is set, it will just return an empty string.
 
-.. method:: curl->asBytes()
+.. member:: curl->asBytes()
 
    Returns the result of performing the current curl object's action as bytes.
 
-.. method:: curl->done()
+.. member:: curl->done()
 
    Returns true or false, indicating the completion state of the current curl
    operation.
 
-.. method:: curl->get(key)
+.. member:: curl->get(key)
 
    Request internal information from the curl session. The key should be one of
    the ``CURLINFO_…`` methods.
 
-.. method:: curl->set(key, value)
+.. member:: curl->set(key, value)
 
    Used to set specific curl option behavior. The key should be one of the
    ``CURLOPT_…`` methods. These options and appropriate values can be reviewed
    in the curl documentation at
    `<http://curl.haxx.se/libcurl/c/curl_easy_setopt.html>`_
 
-.. method:: curl->header()
+.. member:: curl->header()
 
    Returns the header data as ``bytes`` for the current curl request.
 
-.. method:: curl->result()
+.. member:: curl->result()
 
    Returns the result of performing the current ``curl`` object's action as
    ``bytes``. (For HTTP requests, it just returns the body portion, not the
    headers.)
 
-.. method:: curl->statusCode()
+.. member:: curl->statusCode()
 
    Return the last received HTTP, FTP or SMTP response code. The value will be
    zero if no server response code has been received.
 
-.. method:: curl->raw()
+.. member:: curl->raw()
 
    Returns the result of performing the current ``curl`` object request as a
    ``staticarray`` containing the ready state (``boolean``), the header response
    (``bytes``), and the body response (``bytes``).
 
-.. method:: curl->reset()
+.. member:: curl->reset()
 
    Resets the current ``curl`` object to an empty ``curl`` object.
 
-.. method:: curl->version(info= ?)
+.. member:: curl->version(info= ?)
 
    Returns a ``string`` of the version of curl currently deployed on the host
    system. If the optional "info" parameter is supplied as "true", then more
    detailed information will be returned as a ``staticarray``.
 
-.. method:: curl->readSomeBytes()
+.. member:: curl->readSomeBytes()
 
    This is a low level function and is not recommended to be for casual use. If
    a request is still in progress, it returns the current response as a
    ``bytes`` object and clears the internal mechanism that is buffering those
    bytes.
 
-.. method:: curl->download(f::string= ?, -asBytes::boolean= ?)
+.. member:: curl->download(f::string= ?, -asBytes::boolean= ?)
 
    Triggers the download of the file specified by the URL. The default is to
    download the file to the path specified in the first optional parameter. If
@@ -135,20 +135,20 @@ Lasso Curl API
    ``bytes`` object representing the file's data. Refer to the detailed
    documentation later in this chapter for example usage.
 
-.. method:: curl->upload(f::string)
-.. method:: curl->upload(f::file)
-.. method:: curl->upload(f::bytes)
+.. member:: curl->upload(f::string)
+.. member:: curl->upload(f::file)
+.. member:: curl->upload(f::bytes)
 
    Triggers the uploading of a specified file to the file location specified by
    the URL. The file to be uploaded can be specified as either a ``string`` of
    the file path and name, a ``file`` object, or a ``bytes`` object of the data.
    Refer to the detailed documentation later in this chapter for example usage.
 
-.. method:: curl->ftpDeleteFile()
+.. member:: curl->ftpDeleteFile()
 
    Deletes the file specified by the URL from the FTP server.
 
-.. method:: curl->ftpGetListing(-listOnly::boolean= ?, -options::array= ?)
+.. member:: curl->ftpGetListing(-listOnly::boolean= ?, -options::array= ?)
 
    Retrieves the directory listing from the FTP server and directory path
    specified by the URL. If the ``-listOnly`` option is specified, the result

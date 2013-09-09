@@ -75,45 +75,45 @@ elements. Pages from the file can be placed within a new PDF document. A range
 of pages from the PDF document can be saved as a new PDF document and encryption
 options can be added to the new PDF document.
 
-.. class:: pdf_read
+.. type:: pdf_read
 .. method:: pdf_read(-file::string, -password::string= ?)
 
    Reads an existing PDF document into an object. Requires one parameter
    ``-file`` which specifies the name of the PDF document to be read. Optional
    ``-password`` parameter specifies the owner's password for the file.
 
-.. method:: pdf_read->pageCount()::integer
+.. member:: pdf_read->pageCount()::integer
 
    Returns the number of pages in the document.
 
-.. method:: pdf_read->pageSize(page::integer= ?)::staticarray
+.. member:: pdf_read->pageSize(page::integer= ?)::staticarray
 
    Returns the size of a page in the document as a staticarray of width and
    height. Optional integer parameter specifies which page in the PDF to return
    the size of.
 
-.. method:: pdf_read->getHeaders()::map
-.. method:: pdf_read->getHeaders(name::string)
+.. member:: pdf_read->getHeaders()::map
+.. member:: pdf_read->getHeaders(name::string)
 
    Returns a map of header elements from the PDF document, or the value for a
    specified header name.
 
-.. method:: pdf_read->fieldNames()::array
+.. member:: pdf_read->fieldNames()::array
 
    Returns an array of form elements embedded in the PDF document.
 
-.. method:: pdf_read->fieldType(name::string)
+.. member:: pdf_read->fieldType(name::string)
 
    Returns the type of a single form element. Requires one parameter which is
    the name of the field element to be inspected. Types include "Checkbox",
    "Combobox", "List", "PushButton", "RadioButton", "Text", and "Signature".
 
-.. method:: pdf_read->fieldValue(name::string)
+.. member:: pdf_read->fieldValue(name::string)
 
    Returns the value of a single form element. Requires one parameter which is
    the name of the field element to be inspected.
 
-.. method:: pdf_read->setFieldValue(
+.. member:: pdf_read->setFieldValue(
          field::string,
          value::string, 
          -display::string= ?
@@ -123,8 +123,8 @@ options can be added to the new PDF document.
    a form element and a new value for the element. Optional ``-display``
    parameter specifies a display string for the element.
 
-.. method:: pdf_read->importFDF(file::string, -noFields= ?, -noComments= ?)
-.. method:: pdf_read->importFDF(data::bytes, -noFields= ?, -noComments= ?)
+.. member:: pdf_read->importFDF(file::string, -noFields= ?, -noComments= ?)
+.. member:: pdf_read->importFDF(data::bytes, -noFields= ?, -noComments= ?)
 
    Merges an FDF file into the current PDF document. Any form elements within
    the document will be populated with the values from the FDF file. Accepts a
@@ -133,22 +133,22 @@ options can be added to the new PDF document.
    ``-noComments`` parameters prevent either fields or comments from being
    merged.
 
-.. method:: pdf_read->exportFDF(path::string= ?)
+.. member:: pdf_read->exportFDF(path::string= ?)
 
    Exports an FDF file from the current PDF document. The FDF file will contain
    values for each of the form elements in the PDF document. If a parameter is
    specified then the FDF file will be written to that path. Otherwise, a byte
    object containing the data for the FDF file will be returned.
 
-.. method:: pdf_read->javaScript()
+.. member:: pdf_read->javaScript()
 
    Returns the global document JavaScript action for the current PDF document.
 
-.. method:: pdf_read->addJavaScript(script::string)
+.. member:: pdf_read->addJavaScript(script::string)
 
    Adds a JavaScript action to the current PDF document.
 
-.. method:: pdf_read->save(
+.. member:: pdf_read->save(
          file::string,
          -encryptStrong=false,
          -permissions='',
@@ -163,7 +163,7 @@ options can be added to the new PDF document.
    documentation on the ``pdf_doc`` type for more information about these
    parameters.
 
-.. method:: pdf_read->setPageRange(to::string)
+.. member:: pdf_read->setPageRange(to::string)
 
    Selects a range of pages to save into a new PDF document. Multiple ranges can
    be specified separated by comments. Ranges take the form "4-10" to specify a
@@ -205,7 +205,7 @@ PDF documents are initialized and created using the ``pdf_doc`` type. This is
 the basic type used to create PDF documents with Lasso, and is used in concert
 with all tags described in this chapter.
 
-.. class:: pdf_doc
+.. type:: pdf_doc
 .. method:: pdf_doc(...)
 
    Initializes a PDF document. Uses optional parameters which set the basic
@@ -379,7 +379,7 @@ document. Many of these types are first defined as objects using methods such as
 then added to a ``pdf_doc`` object using the ``pdf_doc->add`` member method.
 Each data type is described separately in subsequent sections of this chapter.
 
-.. method:: pdf_doc->add(elm, ...)
+.. member:: pdf_doc->add(elm, ...)
 
    Adds a PDF content object to a document. This can be used to add
    ``pdf_text``, ``pdf_list``, ``pdf_image``, ``pdf_table``, or ``pdf_barcode``
@@ -424,7 +424,7 @@ Each data type is described separately in subsequent sections of this chapter.
    and barcode PDF objects to a ``pdf_doc`` object, see the corresponding
    sections in this chapter.
 
-.. method:: pdf_doc->getVerticalPosition()
+.. member:: pdf_doc->getVerticalPosition()
 
    Returns the current vertical position where text will next be inserted on the
    page.
@@ -437,7 +437,7 @@ If the content of a PDF document will span more than one page, additional pages
 can be added using special ``pdf_doc`` member methods. These methods signal
 where pages start and stop within the flow of the Lasso PDF creation methods.
 
-.. method:: pdf_doc->addPage()
+.. member:: pdf_doc->addPage()
 
    Adds additional blank pages to the ``pdf_doc`` object. When used, this method
    ends in the current page and starts a new page.
@@ -449,8 +449,8 @@ where pages start and stop within the flow of the Lasso PDF creation methods.
       #my_file->add('On page 2, we will discuss something else.')
 
 
-.. method:: pdf_doc->addChapter(text::string, -number::integer, -hideNumber= ?)
-.. method:: pdf_doc->addChapter(text::pdf_text, -number::integer, -hideNumber= ?)
+.. member:: pdf_doc->addChapter(text::string, -number::integer, -hideNumber= ?)
+.. member:: pdf_doc->addChapter(text::pdf_text, -number::integer, -hideNumber= ?)
 
    Adds a page with a named chapter title (and bookmark) to a ``pdf_doc``
    object. Requires a text string or ``pdf_text`` object as a parameter, which
@@ -464,7 +464,7 @@ where pages start and stop within the flow of the Lasso PDF creation methods.
       #my_file->addChapter('Important Chapter', -number=30)
 
 
-.. method:: pdf_doc->setPageNumber(page::integer)
+.. member:: pdf_doc->setPageNumber(page::integer)
 
    Sets a page number for a new page. Requires an integer value.
 
@@ -473,7 +473,7 @@ where pages start and stop within the flow of the Lasso PDF creation methods.
       #my_file->setPageNumber(5)
 
 
-.. method:: pdf_doc->getPageNumber()::integer
+.. member:: pdf_doc->getPageNumber()::integer
 
    Returns the current page number.
 
@@ -500,7 +500,7 @@ Once an existing PDF document has been cast as a Lasso object using
 ``pdf_read``, it may be added to a ``pdf_doc`` object using the
 ``pdf-doc->insertPage`` method.
 
-.. method:: pdf_doc->insertPage(pdf::pdf_read, number::integer, ...)
+.. member:: pdf_doc->insertPage(pdf::pdf_read, number::integer, ...)
 
    Inserts a page from a ``pdf_read`` object into a ``pdf_doc`` object. Requires
    the name of a ``pdf_read`` variable, followed by a comma and the number of
@@ -579,26 +579,26 @@ methods. These methods return specific values such as the page size, margin
 size, or the value of any other ``pdf_doc`` data members described in the
 previous section. All PDF accessor methods are defined below.
 
-.. method:: pdf_doc->getMargins()::staticarray
+.. member:: pdf_doc->getMargins()::staticarray
 
    Returns the current page margins as a staticarray ``(: left, right, top,
    bottom)``.
 
-.. method:: pdf_doc->getSize()::staticarray
+.. member:: pdf_doc->getSize()::staticarray
 
    Returns the current page size as a staticarray of width and height point
    values ``(: width, height)``.
 
-.. method:: pdf_doc->getColor()::string
+.. member:: pdf_doc->getColor()::string
 
    Returns the current color as a hex string.
 
-.. method:: pdf_doc->getHeaders
+.. member:: pdf_doc->getHeaders
 
    Returns all document headers as a map data type
    ``map('header1'='content1', 'header2'='content2', …)``.
 
-.. method:: pdf_doc->setFont(font::pdf_font)
+.. member:: pdf_doc->setFont(font::pdf_font)
    
    Sets a font for all following text. The value is a ``pdf_font`` object.
 
@@ -640,7 +640,7 @@ Once a ``pdf_doc`` object has been filled with the desired content, the
 ``pdf_doc->close`` method must be used to signal that the PDF file is finished
 and is ready to be written to file or served to a visitor's browser.
 
-.. method:: pdf_doc->close()
+.. member:: pdf_doc->close()
 
    Closes a ``pdf_doc`` object and commits it to file after all desired data has
    been added to it. Additional data may not be added to the specified object
@@ -686,7 +686,7 @@ Using Fonts
 Before adding text, it is important to first define the font and style for the
 text to determine how it will appear. This is done using the ``pdf_font`` type.
 
-.. class:: pdf_font
+.. type:: pdf_font
 .. method:: pdf_font(
       -face= ?,
       -file= ?,
@@ -752,71 +752,71 @@ object using ``pdf_font`` member methods. These parameters are most
 useful for retrieving information about a ``pdf_font`` object that was
 defined using the ``-file`` parameter, and are summarized below.
 
-.. method:: pdf_font->setFace(face::string)
+.. member:: pdf_font->setFace(face::string)
 
    Changes the font face of the ``pdf_font`` object to one of the allowed font
    names.
 
-.. method:: pdf_font->setColor(color::string)
-.. method:: pdf_font->setColor(color::pdf_color)
+.. member:: pdf_font->setColor(color::string)
+.. member:: pdf_font->setColor(color::pdf_color)
    
    Changes the font color of the ``pdf_font`` object.
 
-.. method:: pdf_font->setSize(size::integer)
+.. member:: pdf_font->setSize(size::integer)
 
    Changes the font size of the ``pdf_font`` object.
 
-.. method:: pdf_font->setEncoding(encoding::string)
+.. member:: pdf_font->setEncoding(encoding::string)
 
    Changes the encoding of the ``pdf_font`` object.
 
-.. method:: pdf_font->setUnderline(on::boolean=true)
+.. member:: pdf_font->setUnderline(on::boolean=true)
 
    Sets or unsets the ``pdf_font`` object style to underlined.
 
-.. method:: pdf_font->setBold(on::boolean=true)
+.. member:: pdf_font->setBold(on::boolean=true)
 
    Sets or unsets the ``pdf_font`` object style to bold.
 
-.. method:: pdf_font->setItalic(on::boolean=true)
+.. member:: pdf_font->setItalic(on::boolean=true)
 
    Sets or unsets the ``pdf_font`` object style to italic.
 
-.. method:: pdf_font->getFace()
+.. member:: pdf_font->getFace()
 
    Returns the current font face of a ``pdf_font`` object.
 
-.. method:: pdf_font->getColor()
+.. member:: pdf_font->getColor()
 
    Returns the current font color of a ``pdf_font`` object.
 
-.. method:: pdf_font->getSize()
+.. member:: pdf_font->getSize()
 
    Returns the current font size of a ``pdf_font`` object.
 
-.. method:: pdf_font->getEncoding()
+.. member:: pdf_font->getEncoding()
    Returns the current encoding of a ``pdf_font`` object.
 
-.. method:: pdf_font->getPSFontName()
+.. member:: pdf_font->getPSFontName()
 
    Returns the exact PostScript font name of the current font of a ``pdf_font``
    object (e.g. "AdobeCorIDMinBd").
 
-.. method:: pdf_font->isTrueType()
+.. member:: pdf_font->isTrueType()
 
    Returns "true" if the current font is a TrueType font.
 
-.. method:: pdf_font->getSupportedEncodings()
+.. member:: pdf_font->getSupportedEncodings()
 
    Returns an array of all supported encodings for a current TrueType font face
    "array('1252 Latin 1','1253 Greek')".
 
-.. method:: pdf_font->getFullFontName()
+.. member:: pdf_font->getFullFontName()
 
    Returns the full TrueType name of the current font of a ``pdf_font`` object
    (e.g. "Comic Sans", "MS Negreta").
 
-.. method:: pdf_font->textWidth(text::string)
+.. member:: pdf_font->textWidth(text::string)
 
    Returns an integer value representing how wide (in pixels) the text would be
    using the current ``pdf_font`` object. Requires a string value that is the
@@ -877,7 +877,7 @@ PDF text content is constructed using the ``pdf_text`` type, which is
 then added to a ``pdf_doc`` object using the ``pdf_doc->add`` method.
 The ``pdf_text`` constructor method and parameters are described below.
 
-.. class:: pdf_text
+.. type:: pdf_text
 .. method:: pdf_text(text::string, ...)
 
    Creates a text object to be added to a ``pdf_doc`` object. The constructor 
@@ -1014,7 +1014,7 @@ the page.
    fill color set using the ``pdf_doc->setColor`` method. The color of the
    ``-font`` parameter will not be recognized.
 
-.. method:: pdf_doc->drawText(text::string, 
+.. member:: pdf_doc->drawText(text::string, 
       -font= ?, 
       -alignment= ?, 
       -leading::decimal= ?, 
@@ -1055,7 +1055,7 @@ A list of items can be constructed using the ``pdf_list`` type, which can be
 added to a ``pdf_doc`` objcet. The ``pdf_list`` constructor method and
 parameters are described below.
 
-.. class:: pdf_list
+.. type:: pdf_list
 .. method:: pdf_list(...)
 
    Creates a list object to be added to a ``pdf_doc`` object. Text list items
@@ -1101,8 +1101,8 @@ parameters are described below.
    |                    |Optional.                                             |
    +--------------------+------------------------------------------------------+
 
-.. method:: pdf_list->add(text::string)
-.. method:: pdf_list->add(text::pdf_text)
+.. member:: pdf_list->add(text::string)
+.. member:: pdf_list->add(text::pdf_text)
 
    Add objects to the list. Requires a text string or a ``pdf_text`` object as a
    parameter.
@@ -1193,7 +1193,7 @@ Creating Forms
 Form elements are created in ``pdf_doc`` objects using ``pdf_doc`` form member
 methods which are described below.
 
-.. method:: pdf_doc->addTextField(
+.. member:: pdf_doc->addTextField(
       name::string, 
       value::string, 
       -left, 
@@ -1208,7 +1208,7 @@ methods which are described below.
    entered. An optional ``-font`` parameter can be used to specify a
    ``pdf_font`` object for the font of the text.
 
-.. method:: pdf_doc->addPasswordField(
+.. member:: pdf_doc->addPasswordField(
       name::string, 
       value::string, 
       -left, 
@@ -1223,7 +1223,7 @@ methods which are described below.
    value entered. An optional ``-font`` parameter can be used to specify a
    ``pdf_font`` object for the font of the text.
 
-.. method:: pdf_doc->addTextArea(
+.. member:: pdf_doc->addTextArea(
       name::string, 
       value::string, 
       -left, 
@@ -1238,7 +1238,7 @@ methods which are described below.
    entered. An optional ``-font`` parameter can be used to specify a
    ``pdf_font`` object for the font of the text.
 
-.. method:: pdf_doc->addCheckBox(
+.. member:: pdf_doc->addCheckBox(
       name::string, 
       value::string, 
       -left, 
@@ -1253,13 +1253,13 @@ methods which are described below.
    checkbox. An optional ``-Checked`` parameter specifies that the checkbox is
    checked by default.
 
-.. method:: pdf_doc->addRadioGroup(name::string)
+.. member:: pdf_doc->addRadioGroup(name::string)
 
    Adds a radio button group to a form. Requires a parameter specifying the name
    of the radio button group. Radio buttons must be assigned to the group using
    the ``pdf_doc->addRadioButton`` method.
 
-.. method:: pdf_doc->addRadioButton(
+.. member:: pdf_doc->addRadioButton(
       group::string, 
       value::string,
       -left, 
@@ -1272,7 +1272,7 @@ methods which are described below.
    name of the radio button group, and the second parameter to specify the value
    of the radio button.
 
-.. method:: pdf_doc->addComboBox(
+.. member:: pdf_doc->addComboBox(
       name::string,
       values::trait_forEach,
       -default::string= ?, 
@@ -1296,7 +1296,7 @@ methods which are described below.
    edit the values on the menu. An optional ``-font`` parameter can be used to
    specify a ``pdf_font`` object for the font of the text.
 
-.. method:: pdf_doc->addSelectList(
+.. member:: pdf_doc->addSelectList(
       name::string, 
       values::trait_forEach,
       -default='',
@@ -1319,13 +1319,13 @@ methods which are described below.
    select. An optional ``-font`` parameter can be used to specify a ``pdf_font``
    object for the font of the text.
 
-.. method:: pdf_doc->addHiddenField(name::string, value::string)
+.. member:: pdf_doc->addHiddenField(name::string, value::string)
 
    Adds a hidden field to a form. Requires the first parameter to specify the
    name of the hidden field and the second parameter to specify the default
    value entered.
 
-.. method:: pdf_doc->addSubmitButton(
+.. member:: pdf_doc->addSubmitButton(
       name::string,
       caption::string,
       value::string,
@@ -1345,7 +1345,7 @@ methods which are described below.
    ``-font`` parameter can be used to specify a ``pdf_font`` object for the font
    of the text.
 
-.. method:: pdf_doc->addResetButton(
+.. member:: pdf_doc->addResetButton(
       name::string,
       caption::string,
       value::string,
@@ -1657,7 +1657,7 @@ Defining Tables
 Tables for organizing data can be defined for use in a PDF document using the
 ``pdf_table`` type. Objects of this type are added to a ``pdf_doc`` object.
 
-.. class:: pdf_table
+.. type:: pdf_table
 .. method:: pdf_table(cols::integer, rows::integer, ...)
 
    Creates a table to be placed in a PDF. Uses parameters which set the basic
@@ -1700,15 +1700,15 @@ Tables for organizing data can be defined for use in a PDF document using the
    ``pdf_table`` object, as well as access data member values from ``pdf_table``
    objects. These methods are summarized below.
 
-.. method:: pdf_table->getColumnCount()
+.. member:: pdf_table->getColumnCount()
 
    Returns the number of columns in a ``pdf_table`` object.
 
-.. method:: pdf_table->getRowCount()
+.. member:: pdf_table->getRowCount()
 
    Returns the number of rows in a ``pdf_table`` object.
 
-.. method:: pdf_table->getAbsWidth()
+.. member:: pdf_table->getAbsWidth()
 
    Returns the total ``pdf_table`` object width in pixels.
 
@@ -1783,11 +1783,11 @@ Adding Content to Table Cells
 Content is added to table cells using additional ``pdf_table`` member methods
 which are summarized below.
 
-.. method:: pdf_table->add(str::string, col::integer, row::integer, ...)
-.. method:: pdf_table->add(text::pdf_text, col::integer, row::integer, ...)
-.. method:: pdf_table->add(table::pdf_table, col::integer, row::integer, ...)
-.. method:: pdf_table->add(image::pdf_image, col::integer, row::integer, ...)
-.. method:: pdf_table->add(barcode::pdf_barcode, col::integer, row::integer, ...)
+.. member:: pdf_table->add(str::string, col::integer, row::integer, ...)
+.. member:: pdf_table->add(text::pdf_text, col::integer, row::integer, ...)
+.. member:: pdf_table->add(table::pdf_table, col::integer, row::integer, ...)
+.. member:: pdf_table->add(image::pdf_image, col::integer, row::integer, ...)
+.. member:: pdf_table->add(barcode::pdf_barcode, col::integer, row::integer, ...)
    
    Inserts text content, a new nested table, an image, or a barcode into a cell.
    Requires a text string, ``pdf_text`` object, ``pdf_table`` object, 
@@ -1930,7 +1930,7 @@ Inserting Images
 Image files can be placed within PDF pages via the ``pdf_doc->addImage`` method,
 which is documented below.
 
-.. class:: pdf_image
+.. type:: pdf_image
 .. method:: pdf_image(...)
 
    Casts an image file as a Lasso object so it can be placed in a PDF file.
@@ -2017,8 +2017,8 @@ methods. These member methods operate by controlling a “virtual pen” which d
 graphics similar to a true graphics editor. These member methods are summarized
 below.
 
-.. method:: pdf_doc->setColor(type::string, color::pdf_color)
-.. method:: pdf_doc->setColor(type::string, color::string, ...)
+.. member:: pdf_doc->setColor(type::string, color::pdf_color)
+.. member:: pdf_doc->setColor(type::string, color::string, ...)
 
    Sets the color and style for subsequent drawing operations on the page.
    Requires the first parameter to specify whether the drawing action is of type
@@ -2030,22 +2030,22 @@ below.
    values specify cyan, magenta, yellow, and black values respectively. Color
    values are specified as decimals ranging from "0" to "1.0".
 
-.. method:: pdf_doc->setLineWidth(width::decimal)
+.. member:: pdf_doc->setLineWidth(width::decimal)
 
    Sets the line width for subsequent drawing actions on the page in points.
    Requires a decimal point value.
 
-.. method:: pdf_doc->Line(x1, y1, x2, y2)
+.. member:: pdf_doc->Line(x1, y1, x2, y2)
 
    Draws a line. Requires a set of integer points which specifies the starting
    point and ending point of the line.
 
-.. method:: pdf_doc->curveTo(x1, y1, x2, y2, x3, y3)
+.. member:: pdf_doc->curveTo(x1, y1, x2, y2, x3, y3)
 
    Draws a curve. Requires a set of integer points as parameters which specifies
    the starting point, middle point, and ending point of the curve.
 
-.. method:: pdf_doc->rect(x, y, width, height, -fill::boolean= ?)
+.. member:: pdf_doc->rect(x, y, width, height, -fill::boolean= ?)
 
    Draws a rectangle. Requires the first two parameters to be a set of "X" and
    "Y" integer points which specifies the lower right corner of the rectangle,
@@ -2053,14 +2053,14 @@ below.
    sides from that coordinate. An optional ``-fill`` parameter draws a filled
    rectangle.
 
-.. method:: pdf_doc->circle(x, y, radius, -fill::boolean= ?)
+.. member:: pdf_doc->circle(x, y, radius, -fill::boolean= ?)
    
    Draws a circle. Requires the first two parameters to be a set of integer
    points for the center coordinates of the circle and the third parameter to be
    the length of the radius. An optional ``-fill`` parameter draws a filled
    circle.
 
-.. method:: pdf_doc->arc(x, y, radius, start, end, -fill::boolean= ?)
+.. member:: pdf_doc->arc(x, y, radius, start, end, -fill::boolean= ?)
 
    Draws an arc. Requires the first two parameters to be a set of integer points
    for the center coordinates of the arc and the third parameter to be the
@@ -2178,7 +2178,7 @@ Creating Bar Codes
 Barcodes can be defined for use in a PDF file using the ``pdf_barcode`` type.
 Objects of this type can then be added to  ``pdf_doc`` objects.
 
-.. class:: pdf_barcode
+.. type:: pdf_barcode
 .. method:: pdf_barcode(...)
 
    Creates a barcode image to be placed in a PDF. Uses parameters which set the
