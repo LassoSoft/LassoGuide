@@ -339,7 +339,7 @@ whatever those might be.
    }
 
 Only one parent type can be listed. The parent section can appear only once in a
-type expression. While you can plae it anywhere in the type expression, it is
+type expression. While you can place it anywhere in the type expression, it is
 recommended that you place it at the top.
 
 The following code defines two simple types: ``one`` and ``two``. Type ``two``
