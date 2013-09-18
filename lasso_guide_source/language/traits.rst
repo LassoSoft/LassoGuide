@@ -15,7 +15,7 @@ Introduction
 
 Traits provide a way to define data type functionality in a modular fashion.
 Each trait includes a set of reusable method implementations along with a set of
-requirements that must be satisfied in order for the included methodss to
+requirements that must be satisfied in order for the included methods to
 function properly.
 
 Traits allow a hierarchy of data types which share common functionality to be
