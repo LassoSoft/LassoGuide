@@ -357,7 +357,7 @@ Return Type
 -----------
 
 Specifying a return type for a signature enforces that the value returned by the
-associated code blcok is of a specific type. If a method returns a value having
+associated code block is of a specific type. If a method returns a value having
 a type which does not pass the "isa" test for the specified return type, then a
 failure is generated. (The "isa" test involves calling the object's "isa" method
 with the constraint; if a non-zero value is returned, then it passes. See
