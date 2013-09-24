@@ -44,7 +44,7 @@ Some valid examples of method names are shown below.
    String_ReplaceRegexp
 
 There are several other characters which are valid in specific circumstances.
-The mathematical symbols "+", "-", "*", "/", "%", and "=" are used in method
+The mathematical symbols "+", "-", "*", "/", and "%" are used in method
 names when supplying implementations for these operations for data types. See
 :ref:`the Types chapter <types>` for more information.
 
@@ -424,7 +424,7 @@ a method allows it to be called by name from within other methods.
 
 The "define" reserved word is used to define new methods, data types, and
 traits. When defining a method, the word "define" is followed by a
-signature, the association operator (=>), and then an expression which
+signature, the association operator (``=>``), and then an expression which
 provides the body for the new method.
 
 ::
@@ -444,7 +444,7 @@ Methods Returning Simple Expressions
 
 A simple method definition is shown below. The signature "hello()" describes
 what and how the method will be called, in this case "hello" with no parameters.
-After the association operator (=>) the expression ``'Hello, world!'`` provides
+After the association operator, the expression ``'Hello, world!'`` provides
 the method's return value. The method below simply returns a string.
 
 ::
@@ -468,7 +468,7 @@ Code Blocks
 
 Many methods will need to do more than return a single easily calculated value.
 A method body can be composed of multiple expressions enclosed by a pair of
-curly-braces ({ ... }). This type of method body is referred to as a code block.
+curly-braces (``{ ... }``). This type of method body is referred to as a code block.
 
 Code blocks provide the most flexibility when defining methods. They allow a
 series of expressions to be encapsulated as the implementation of the method.

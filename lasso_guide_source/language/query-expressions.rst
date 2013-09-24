@@ -459,8 +459,8 @@ A ``group by`` clause permits similar elements to be grouped together by a
 particular key expression and represented as a single object called a
 *queriable_grouping*. This new object can be further utilized throughout the
 query expression. A queriable_grouping object maintains a reference to each of
-the original elements within the group. It also possesses a ->key() method which
-produces the value by which the particular elements were mutually grouped.
+the original elements within the group. It also possesses a ``key()`` method
+which produces the value by which the particular elements were mutually grouped.
 
 A group by consists of three elements: the object going into the group, the key
 by which the objects are grouped, and a new local variable name. This new

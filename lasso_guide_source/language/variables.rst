@@ -89,10 +89,10 @@ Lasso permits the parameter values given to a method to be accessed by
 position using the local variable symbol "#" followed by an integer value.
 The integer value corresponds to the position of the desired parameter
 value, beginning with "1". For example, in a method given two parameters,
-the first would be available using "#1" and the second would be available
-using "#2".
+the first would be available using ``#1`` and the second would be available
+using ``#2``.
 
-See the chapter on :ref:`methods<methods>` for information on methods and method
+See the chapter on :ref:`Methods<methods>` for information on methods and method
 parameters.
 
 Thread Variables
@@ -150,7 +150,7 @@ used and when it is not accompanied by an initial value.
    // => the value of "name", potentially creating "name"
 
 Vars can also be accessed using the "$" symbol before the name. When
-using this method, it is an error if the var has not been previously
+using this method, an error is returned if the var has not been previously
 defined.
 
 ::

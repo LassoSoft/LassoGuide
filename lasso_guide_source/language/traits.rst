@@ -159,9 +159,9 @@ required for the trait to operate properly. The signatures may be simple method
 names, or they may be complete signatures with parameter specifications. As many
 require sections as are necessary can be specified.
 
-The section begins with the reserved word "require" followed by a comma-
-separated list of method signatures. The following trait requires a getter and
-setter for the "firstName" data member.
+The section begins with the reserved word "require" followed by a
+comma-separated list of method signatures. The following trait requires a getter
+and setter for the "firstName" data member.
 
 ::
 
@@ -300,8 +300,8 @@ When an instance of the type is create the instance has the specified trait
 applied to it automatically.
 
 The trait of any object in Lasso can be programmatically manipulated using the
-:meth:`null->trait(t::trait)`, :meth:`null->setTrait(t::trait)`, and
-:meth:`null->addTrait(t::trait)` methods described in the next section.
+:meth:`~null->trait`, :meth:`~null->setTrait`, and :meth:`~null->addTrait`
+methods described in the next section.
 
 
 Trait Manipulation Methods
@@ -326,5 +326,7 @@ The ``null->setTrait`` method should be used with care since resetting the trait
 of a type instance may result in many of its member methods becoming unavailable
 or ceasing to function. In general, traits will be added to a type instance to
 provide additional functionality rather than resetting the entire trait for a
-given object. Using ``#myinstance->addtrait(trait_firstlast)`` is equivalent to
-using ``#myinstance->settrait(#myinstance->trait + trait_firstlast)``.
+given object. The two examples below are equivalent::
+
+   #myinstance->addtrait(trait_firstlast)
+   #myinstance->settrait(#myinstance->trait + trait_firstlast)

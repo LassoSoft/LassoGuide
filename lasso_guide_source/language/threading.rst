@@ -142,7 +142,7 @@ counter.
 ::
 
    define counter_thread => thread {
-         data private val = 0
+      data private val = 0
       public advanceBy(value::integer) => {
          .val += #value
          return .val

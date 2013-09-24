@@ -140,8 +140,8 @@ custom error codes into the error recovery mechanisms for a site.
 
 .. method:: error_obj()
 
-   Returns the current error name from the Lasso variable "$\_err_obj" or "null"
-   if no error object is present.
+   Returns the current error name from the Lasso variable "$\_err_obj", or
+   "null" if no error object is present.
 
 .. method:: error_push()
 
@@ -179,7 +179,7 @@ result shown below::
 Alternatively, the ``error_currentError`` method could be used to create the
 same message with the following code::
 
-   "The current error is " + error_currentError(-errorCode)] + ": " + error_currentError
+   "The current error is " + error_currentError(-errorCode) + ": " + error_currentError
    // => The current error is 0: No Error
 
 
@@ -203,7 +203,6 @@ called later in the page, unless any intervening code changed the error message
 again::
 
    "The current error is " + error_code + ": " + error_msg
-   
    // => The current error is -1: A custom error occurred
 
 The current error code and message can also be set using the ``error_code`` and

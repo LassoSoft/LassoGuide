@@ -250,7 +250,7 @@ levels.
    the public interface of the data type. When the type is documented for others
    to use the public methods are described.
 
- ``private``
+``private``
    Private member methods can only be called from methods defined within the
    owning type. Private methods are to be used for low-level implementation
    details. Details which shouldn't be exposed to the end user or to inheriting
@@ -582,8 +582,8 @@ value returned.
 Contains
 ^^^^^^^^
 
-The ``contains`` method is called whenever the contains (>>) or not contains
-(!>>) operators are used.
+The ``contains`` method is called whenever the contains (``>>``) or not contains
+(``!>>``) operators are used.
 
 A ``contains`` method should have the following signature. The method accepts
 one parameter and must return a boolean value, "true" or "false".
@@ -770,6 +770,20 @@ A trait section can appear anywhere within a type expression, but can appear
 only once.
 
 
+Modifying Types
+===============
+
+Lasso permits types to have methods added to them outside of the original
+defining type expression. This is done by defining the method using the word
+"define" followed by the name of the type, the target operator ``->``, and then
+the rest of the method signature and body. The following example adds the method
+``speak`` to the ``person`` type.
+
+::
+
+   define person->speak() => 'Hello, world!'
+
+
 Introspection
 =============
 
@@ -823,17 +837,3 @@ about an object. These methods are summarized below.
    :noindex:
 
    Combines the target object's trait with the parameter.
-
-
-Modifying Types
-===============
-
-Lasso permits types to have methods added to them outside of the original
-defining type expression. This is done by defining the method using the word
-"define" followed by the name of the type, the target operator ``->``, and then
-the rest of the method signature and body. The following example adds the method
-``speak`` to the ``person`` type.
-
-::
-
-   define person->speak() => 'Hello, world!'

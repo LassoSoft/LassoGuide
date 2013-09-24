@@ -9,8 +9,8 @@ so within a capture. When a method is invoked, a capture is first automatically
 created for that method to execute in. When executing code in a source file, a
 capture is again automatically created for that code to execute in.
 
-Captures are everywhere in Lasso and learning how to use them will give you a
-powerful tool to use in solving some complex problems. This chapter provides
+Captures are everywhere in Lasso, and learning how to use them will give you a
+powerful tool to use for solving some complex problems. This chapter provides
 in-depth information about captures and examples of their use.
 
 
@@ -35,16 +35,16 @@ This state consists of:
 
 *  The name of the current method call
 
-*  The current "continuation" - the element which is executed after the current
-   capture completes
+*  The current :dfn:`continuation`, which is the element to be executed after
+   the current capture completes
    
 *  The set of handlers that must be executed before the capture completes
 
-*  A "home" capture, which is the capture in which this capture was created
+*  A :dfn:`home` capture, which is the capture in which this capture was created
    
 When a capture is invoked, it will in turn execute its associated code which
 will execute within the context of that capture's state. The currently executing
-capture is known as the "current capture" and is made available through the
+capture is known as the :dfn:`current capture` and is made available through the
 ``currentCapture`` method.
 
 
@@ -255,6 +255,10 @@ Capture API
 ===========
 
 .. type:: capture
+
+   A capture is a block of Lasso code that can be passed to another method or
+   invoked locally. Captures are context-aware and retain state during
+   execution.
 
 .. member:: capture->invoke(...)
 

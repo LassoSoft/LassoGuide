@@ -12,7 +12,7 @@ literals.
 
 The method for using these literals is straightforward. For example, an
 integer literal is expressed, as one might expect, by simply using the
-numeral in the source text. 23 is an example of an integer literal.
+numeral in the source text. `23` is an example of an integer literal.
 
 -  `String Literals`_ describes the syntax used to represent string
    objects.
