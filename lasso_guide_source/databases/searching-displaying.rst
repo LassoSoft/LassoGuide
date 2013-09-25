@@ -417,7 +417,7 @@ operator.
    "neq", "lt" and "gte", and "gt" and "lte".
 
 .. note::
-   **FileMaker** - The ``-operatorBegin`` and `` -operatorEnd`` parameters do
+   **FileMaker** - The ``-operatorBegin`` and ``-operatorEnd`` parameters do
    not work with Lasso Connector for FileMaker Server.
 
 

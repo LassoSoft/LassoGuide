@@ -346,7 +346,7 @@ The required parameters are detailed in the following table.
 
 Lasso has two methods to find which records are to be updated.
 
--KeyField and -KeyValue
+``-KeyField`` and ``-KeyValue``
    Lasso can identify the record which is to be updated using the values for the
    parameters ``-keyField`` and ``-keyValue``. ``-keyField`` must be set to the
    name of a field in the table. Usually, this is the primary key field for the
@@ -372,7 +372,7 @@ Lasso has two methods to find which records are to be updated.
    has a unique value for every record in the table) then the inline will only
    update one record.
 
--Key
+``-Key``
    Lasso can identify the records that are to be updated using a search that is
    specified in an array. The search can use any of the fields in the current
    database table and any of the operators and logical operators which are
@@ -677,7 +677,7 @@ are detailed in the following table.
   
 Lasso has two methods to find which records are to be deleted.
 
--KeyField and -KeyValue
+``-KeyField`` and ``-KeyValue``
    Lasso can identify the record which is to be deleted using the values for the
    ``-keyField`` and ``-keyValue`` parameters. ``-keyField`` must be set to the
    name of a field in the table. Usually, this is the primary key field for the
@@ -701,7 +701,7 @@ Lasso has two methods to find which records are to be deleted.
    has a unique value for every record in the table) then the inline will only
    delete one record.
 
--Key
+``-Key``
    Lasso can identify the records that are to be deleted using a search which is
    specified in an array. The search can use any of the fields in the current
    database table and any of the operators and logical operators which are

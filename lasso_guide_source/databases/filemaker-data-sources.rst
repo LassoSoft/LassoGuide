@@ -10,7 +10,7 @@ Server 9-12 through the Lasso Connector for FileMaker. Lasso provides several
 methods and options which are unique to FileMaker Server connections including
 ``-layoutResponse`` and ``-noValueLists``.
 
-Lasso is a predominantly data source-independent language. It does include
+Lasso is a predominantly datasource-independent language. It does include
 many FileMaker specific tags which are documented in this chapter. However, all
 of the common procedures outlined in the
 :ref:`Database Interaction Fundamentals<database-interaction>`,
