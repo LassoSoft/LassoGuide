@@ -69,7 +69,8 @@ same type of escape sequence can be used to embed any Unicode character, e.g.
 Lasso also supports common escape sequences including "\\r" for a return
 character, "\\n" for a new-line character, "\\r\\n" for a Windows return/new-
 line, "\\f" for a form-feed character, "\\t" for a tab, and "\\v" for a
-vertical-tab.
+vertical-tab. See the :ref:`table of supported escape sequences
+<table-supported-escape-sequences>` for the full list.
 
 Casting Values to Strings
 =========================
@@ -77,7 +78,6 @@ Casting Values to Strings
 Values can be cast to the string data type automatically in many situations or
 they can be cast explicitly using the ``string`` creator method.
 
-.. type:: string
 .. method:: string(obj::any)
 .. method:: string(obj::bytes, enc::string= ?)
 
@@ -184,8 +184,9 @@ String Inspection Methods
 The ``string`` type has many member methods that return information about the
 value of the string object. Many of these metods are documented below.
 
-.. member:: string->size()
+.. type:: string
 .. member:: string->length()
+.. member:: string->size()
 
    Returns the number of characters in the string. The ``string->length`` method
    had been deprecated in favor of simply the ``string->size`` method.

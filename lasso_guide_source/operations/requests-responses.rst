@@ -473,22 +473,22 @@ used. These methods are described below.
 
 .. method:: define_atBegin(code)
 
-This method installs code to be invoked at the beginning of each request. The
-code will have access to the ``web_request`` and ``web_response`` objects that
-will be available during the request proper. At-begin code can set response
-headers and data and complete the request if it chooses, thus fully intercepting
-the normal request URI file request and processing routines. This is the
-recommended route for applications wanting to provide virtual URLs. Once an
-at-begin is in place it can not be removed. Multiple at-begins are supported and
-are run in the order in which they are installed.
-
-The object installed as the at-begin code is copied to each request's thread
-each time. This means that a capture's local variables or any object's data
-members are deeply copied each time. The most efficient steps would be to define
-a method as the at-begin handler and then pass a reference to that method as the
-at-begin code. For example passing ``\foo`` to ``define_atBegin`` would pass the
-``foo`` method to ``define_atBegin``. It would be invoked for each request and
-utilize the ``web_request`` and ``web_response`` within it.
+   This method installs code to be invoked at the beginning of each request. The
+   code will have access to the ``web_request`` and ``web_response`` objects that
+   will be available during the request proper. At-begin code can set response
+   headers and data and complete the request if it chooses, thus fully intercepting
+   the normal request URI file request and processing routines. This is the
+   recommended route for applications wanting to provide virtual URLs. Once an
+   at-begin is in place it can not be removed. Multiple at-begins are supported and
+   are run in the order in which they are installed.
+   
+   The object installed as the at-begin code is copied to each request's thread
+   each time. This means that a capture's local variables or any object's data
+   members are deeply copied each time. The most efficient steps would be to define
+   a method as the at-begin handler and then pass a reference to that method as the
+   at-begin code. For example passing ``\foo`` to ``define_atBegin`` would pass the
+   ``foo`` method to ``define_atBegin``. It would be invoked for each request and
+   utilize the ``web_request`` and ``web_response`` within it.
 
 .. method:: addAtEnd(code)
 

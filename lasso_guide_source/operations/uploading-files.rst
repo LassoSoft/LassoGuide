@@ -124,7 +124,11 @@ index.lasso
       <script type="text/javascript">
       //<!--
          function trackProgress(id) {
-            window.open("/progress.lasso?id=" + id, null, "height=100,width=400,location=no,menubar=no,resizable=yes,scrollbars=yes,title=yes");
+            window.open(
+              "/progress.lasso?id=" + id,
+              null,
+              "height=100,width=400,location=no,menubar=no,resizable=yes,scrollbars=yes,title=yes"
+            );
          }
       //-->
       </script>
@@ -162,7 +166,9 @@ progress.lasso
    [if(#info->first > 0 and #info->second > 0)]
    [#info->last]
    <div style="background-color: white;border: 1px solid black;width:380px;height: 20px;">
-      <div style="background-color: black;height: 20px;width: [380 * (decimal(#info->first) / decimal(#info->second))]px;"></div>
+      <div style="background-color: black;height: 20px;width: [
+        380 * (decimal(#info->first) / decimal(#info->second))
+      ]px;"></div>
    </div>
    [/if]
    </body>

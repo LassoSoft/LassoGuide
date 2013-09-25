@@ -143,12 +143,12 @@ to deal with binary data. These methods are outlined below.
    form, it requires an offset into the byte stream and the number of bytes to
    remove starting from there.
 
-bytes->removeLeading(find::bytes)
+.. member:: bytes->removeLeading(find::bytes)
 
    Removes all occurrences of the specified sequence from the beginning of the
    byte stream. Requires one parameter which is the data to be removed.
 
-bytes->removeTrailing(find::bytes)
+.. member:: bytes->removeTrailing(find::bytes)
 
     Removes all occurrences of the parameter sequence
     from the end of the instance. Requires one

@@ -115,10 +115,11 @@ In order to successfully create, manipulate, and save image files using the
 ``image`` methods, the user running the Lasso process must be allowed by the
 operating system to write and execute files inside the folder. To check folder
 permissions in Windows, right-click on the folder and select 
-``Properties > Security``. For OS X or Linux, use ``ls -al`` from the command-
-line to check permissions and use the ``chmod`` and ``chown`` commands to adjust
-the permissions. (Refer to the ``ls``, ``chmod``, and ``chown`` man pages for
-more information on their use).
+:menuselection:`Properties > Security`. For OS X or Linux, use :command:`ls -al`
+from the command-line to check permissions and use the :command:`chmod` and
+:command:`chown` commands to adjust the permissions. (Refer to the
+:command:`ls`, :command:`chmod`, and :command:`chown` man pages for more
+information on their use).
 
 
 Referencing Images as Lasso Objects

@@ -171,8 +171,9 @@ For example a simple "Contacts" LassoApp might have a structure similar to the f
             footer.lasso
             header.lasso
 
-This layout would provide the "root" of the LassoApp as http://www.example.com/lasso9/mycontacts 
-and will serve the ``index.lasso`` file.
+This layout would provide the "root" of the LassoApp as
+http://www.example.com/lasso9/mycontacts and will serve the ``index.lasso``
+file.
 
 Serving Content from a LassoApp
 ===============================
@@ -366,7 +367,8 @@ Example File users[xml].lasso
 To pass multiple values from primary to secondary
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To pass multiple values from primary to secondary processors, use a Static Array (shortcut ":") as a return from the primary:
+To pass multiple values from primary to secondary processors, use a Static Array
+(shortcut ":") as a return from the primary:
 
 ::
 
@@ -375,8 +377,9 @@ To pass multiple values from primary to secondary processors, use a Static Array
      user('Francis', 'Crick'), 
      user('Massimo', 'Pigliucci')),'hello world')
      
-The following sets local variables to the returned values from the primary processor, in the order they are specified.
-The number of local variables being set must match the number of elements in the returned Static Array.
+The following sets local variables to the returned values from the primary
+processor, in the order they are specified. The number of local variables being
+set must match the number of elements in the returned Static Array.
 
 ::
 
@@ -620,29 +623,39 @@ Installing the GCC compiler
 ---------------------------
 
 On OS X either:
-- Install then open Xcode, go to Preferences -> Downloads -> Components -> Command Line Tools, click "install".
-- Install the command line tools package directly from https://developer.apple.com/downloads/index.action (Apple ID required)
+
+- Install then open Xcode, go to :menuselection:`Preferences > Downloads > Components > Command Line Tools`,
+  and click :guilabel:`install`.
+- Install the command line tools package directly from
+  https://developer.apple.com/downloads/index.action (Apple ID required)
 
 On CentOS:
-- run "sudo yum install make" on the command line. This will install all required dependencies including GCC.
+
+- run :command:`sudo yum install make` on the command line. This will install
+all required dependencies including GCC.
 
 On Ubuntu:
-- run "sudo apt-get install make" on the command line. As with CentOS this will install all required dependencies.
 
-Platform Specific Considerations
+- run :command:`sudo apt-get install make` on the command line. As with CentOS
+this will install all required dependencies.
+
+Platform-Specific Considerations
 --------------------------------
 
-It is important to note that the target for each compiled LassoApp is specific to that which it is compiled on.
-If your development platform is OS X and you wish to deploy your compiled LassoApp on 64-bit CentOS, you must
-compile the LassoApp on a 64-bit CentOS. The same issue exists for 32- vs. 64-bit architectures on the same distribution.
-A LassoApp compiled for 32-bit Ubuntu will not run on 64-bit Ubuntu. 
+It is important to note that the target for each compiled LassoApp is specific
+to that which it is compiled on. If your development platform is OS X and you
+wish to deploy your compiled LassoApp on 64-bit CentOS, you must compile the
+LassoApp on a 64-bit CentOS. The same issue exists for 32- vs. 64-bit
+architectures on the same distribution. A LassoApp compiled for 32-bit Ubuntu
+will not run on 64-bit Ubuntu. 
 
 Makefiles
 ---------
 
-In order to compile a LassoApp the Lasso 9 makefile must be present in the same parent directory as the source.
-The makefile is not distributed with the Lasso 9 installer, but is available from the LassoSoft source repository.
-This makefile is the same for each platform and architecture Lasso 9 supports.
+In order to compile a LassoApp the Lasso 9 makefile must be present in the same
+parent directory as the source. The makefile is not distributed with the Lasso 9
+installer, but is available from the LassoSoft source repository. This makefile
+is the same for each platform and architecture Lasso 9 supports.
 
 .. code-block:: none
 
@@ -669,7 +682,7 @@ LassoApp. The following example for the Apache 2 web server illustrates
 how the Lasso Server Administration app would be served out of a virtual
 host named "admin.local".
 
-.. code-block:: none
+.. code-block:: apacheconf
 
     <virtualhost :80="">
         ServerName admin.local
@@ -687,8 +700,9 @@ Tips & Tricks
 Loading all required types, traits and methods at initialization
 ----------------------------------------------------------------
 
-It is a good habit to load all types and methods required by the LassoApp at the time it is loaded by Lasso Server.
-This can be achieved by utilizing _init.lasso::
+It is a good habit to load all types and methods required by the LassoApp at the
+time it is loaded by Lasso Server. This can be achieved by utilizing
+_init.lasso::
 
    /* ==========================================================
    Init loader for LassoApp startup
@@ -718,11 +732,12 @@ Note that these types can be individually redefined by accessing the URL directl
 Creating required SQLite database(s) on installation
 ----------------------------------------------------
 
-It is often desirable to keep configuration data for your LassoApp in a database rather than a local config file.
-One method of storing this is to leverage Lasso Server's embedded SQLite datasource.
+It is often desirable to keep configuration data for your LassoApp in a database
+rather than a local config file. One method of storing this is to leverage Lasso
+Server's embedded SQLite datasource.
 
-The following code demosntrates automatically creating a SQLite database whenever the 
-LassoApp is installed on a new instance.
+The following code demosntrates automatically creating a SQLite database
+whenever the LassoApp is installed on a new instance.
 
 ::
 
@@ -739,17 +754,20 @@ LassoApp is installed on a new instance.
       #sql->executeNow('CREATE TABLE IF NOT EXISTS '+myLassoApp_config_table+' (host PRIMARY KEY,dbname,username,pwd,status INTEGER,registerkey)')
    }
 
-The code within _install.lasso will only ever be executed when this LassoApp is first placed in the LassoApps directory
-of an instance and the instance is restarted.
+The code within _install.lasso will only ever be executed when this LassoApp is
+first placed in the LassoApps directory of an instance and the instance is
+restarted.
 
 Serving JSON / XHR Files
 ------------------------
 
-Content Representation can be leveraged to provide a range of data formats. One of these is XHR (XMLHttpRequest). 
-Commonly the request will be in the form of a REST request (http://www.myserver.com/lasso9/myLassoapp/userdata.xhr?id=123)
+Content Representation can be leveraged to provide a range of data formats. One
+of these is XHR (XMLHttpRequest). Commonly the request will be in the form of a
+REST request (http://www.myserver.com/lasso9/myLassoapp/userdata.xhr?id=123)
 
-While discussions directly regarding AJAX, jQuery, XHR, REST, XML and JSON are outside the scope of this chapter, 
-XHR response data can be in various forms, including JSON, which we will use for this example.
+While discussions directly regarding AJAX, jQuery, XHR, REST, XML and JSON are
+outside the scope of this chapter, XHR response data can be in various forms,
+including JSON, which we will use for this example.
 
 Consider the following JavaScript (using jQuery):
 
@@ -769,8 +787,9 @@ Consider the following JavaScript (using jQuery):
          }
    });
 
-The XHR request is for userdata.xhr, which Lasso Server will interpret as a request for userdata[xhr].lasso 
-and serve as an XHR file with the correct MIME type::
+The XHR request is for userdata.xhr, which Lasso Server will interpret as a
+request for userdata[xhr].lasso and serve as an XHR file with the correct MIME
+type::
 
    /* =====================================================
    contents of userdata[xhr].lasso

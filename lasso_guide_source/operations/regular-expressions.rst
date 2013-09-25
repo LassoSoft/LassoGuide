@@ -742,10 +742,10 @@ The order of operations of an interactive find/replace operation is as follows:
 
 #. Finally, the output string from the regular expression object is displayed::
 
-   #my_regex->output
-
-   // =>
-   // ehT kciuq nworb xof depmuj revo eht yzal god.
+     #my_regex->output
+  
+     // =>
+     // ehT kciuq nworb xof depmuj revo eht yzal god.
 
 This same basic order of operation is used for any interactive find/replace
 operation. The power of this methodology comes in the fourth step where the

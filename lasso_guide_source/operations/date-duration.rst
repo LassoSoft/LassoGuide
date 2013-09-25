@@ -279,6 +279,7 @@ the current time zone::
 
 
 Time a Section of Lasso Code
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Call the ``date_msec`` method to get a clock value before and after the code has
 executed. The difference in times represents the number of milliseconds which
