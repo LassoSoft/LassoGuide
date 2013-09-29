@@ -632,12 +632,12 @@ On OS X either:
 On CentOS:
 
 - run :command:`sudo yum install make` on the command line. This will install
-all required dependencies including GCC.
+  all required dependencies including GCC.
 
 On Ubuntu:
 
 - run :command:`sudo apt-get install make` on the command line. As with CentOS
-this will install all required dependencies.
+  this will install all required dependencies.
 
 Platform-Specific Considerations
 --------------------------------
