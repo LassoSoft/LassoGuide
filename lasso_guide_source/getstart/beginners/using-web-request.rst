@@ -31,10 +31,10 @@ a client. Let's look at the following example URL:
 http://example.com/rhino.lasso?first=hello&second=42
 
 It starts with the protocol ("http") followed by "://". Next comes the host name
-followed by a slash delimited path. The last part is the query string and it
-starts with a question mark to seperate the itself from the path. The query
-string contains the key/value data for the query parameters. Query parameters
-are seperated by ampersands. In our example above, we have two query parameters:
+followed by a slash delimited path. The last part is the query string which
+starts with a question mark to seperate itself from the path. The query string
+contains the key/value data for the query parameters. Query parameters are
+seperated by ampersands. In our example above, we have two query parameters:
 "first=hello" and "second=42". The keys and values are separated from each other
 by an equal sign.
 

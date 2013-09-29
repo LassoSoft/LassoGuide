@@ -36,9 +36,9 @@ of the page in an HTML document::
       <body>Hello! I am an HTML document</body>
    </html>
 
-This would look like this in your browser::
+This would look like this in your browser:
 
-   Hello! I am an HTML document
+Hello! I am an HTML document
 
 
 Dealing with Dynamically Changing Content
@@ -91,20 +91,24 @@ Lasso code to display the date in the manner you intended. For example::
 
    <html>
       <body>Hello! I am an HTML document. Today is [date->format('E, MMMM d, YYYY')].</body>
-   </html
+   </html>
 
 This would have the date display as "Wed, July 24, 2013".
 
 What we have just done here is embedded Lasso code into a document. With Lasso
 properly installed and configured, the web server will ask Lasso to process the
 document and create a response for it to send back to the requesting Web
-browser.
+browser. When Lasso processes the document, it looks for the embedded Lasso code
+to execute within special delimiters and leaves the rest of the document alone.
+Text that is within square brackets (``[]``) or within ``<?lasso ?>`` or within
+``<?= ?>`` is interpreted as Lasso code.
 
 Let's take a closer look at the Lasso code we just used. In the first example,
 it was simply ``date``. This creates a date object with the current date and
 time. Think of an object as an item that can be interacted with. In the second
-example, we are interacting with the object by telling it how to format itself
-for display. (More on creating and working with objects in future chapters.)
+example, we are interacting with the object by calling its format method with a
+special string that tells it how we want it to format itself for display. (More
+on creating and working with objects in future chapters.)
 
 This is a very simple example, so let's move to something a little more complex.
 

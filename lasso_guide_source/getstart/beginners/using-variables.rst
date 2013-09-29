@@ -9,7 +9,7 @@ Variables allow programmers to create a named reference to data they want to
 reference later.
 
 In Lasso, variables come in two flavors: local and thread. The main difference
-between these two types of variables is the scope the operate in (meaning where
+between these two types of variables is the scope they operate in (meaning where
 you can reference them after they are created). In general, local variables can
 only be referenced inside the method they were created in or on the same page
 they were created in while thread variables can be referenced anywhere. (This

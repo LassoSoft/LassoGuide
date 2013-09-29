@@ -12,7 +12,7 @@ compound data type.
 Compound data types are values that can hold multiple different values. In the
 example on the previous page, we store an integer of the current hour into one
 variable and a string of the greeting we are going to use in another. We could,
-however, store them in the same variable be using a compound data type.
+however, store them in the same variable by using a compound data type.
 
 .. note::
    For more information on various compound data types available in Lasso, see
@@ -64,7 +64,7 @@ named "get".
 
 If we wanted to add things to the end of the array, we could do so by passing
 the value we want to add to the ``array->insert`` method. For the array object
-stored in the "all_greetings" variable, it woudl look like this::
+stored in the "all_greetings" variable, it would look like this::
 
    #all_greeting->insert("G'day, mate!")
 

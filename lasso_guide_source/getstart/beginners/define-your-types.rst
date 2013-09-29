@@ -114,10 +114,13 @@ values can be stored in it. Also notice that I use the assignment operator ("=")
 to assign a starting value to "time_info".
 
 The access level keywords are used to specify who has access to retrieve and
-store data in the data member through getter and setter methods respectively.
-Public data members have getter and setter methods that can be called in any
-context. Private data members have getter and setter methods that can only be
-called within the type's own member methods. The getter and setter methods for
+store data in the data member through getter and setter methods respectively. (A
+"getter method" is simply the term we use for a methd that returns the value
+stored in a data member, and a "setter method" is the term that refers to a
+method that sets the value of a data member to a given value.) Public data
+members have getter and setter methods that can be called in any context.
+Private data members have getter and setter methods that can only be called
+within the type's own member methods. The getter and setter methods for
 protected data members can only be called by the type's member methods and by
 member methods of any types that inherit from this type. (Type inheritance is
 beyond the scope of this tutorial.)
