@@ -120,7 +120,7 @@ Thread Objects
 ==============
 
 Thread objects represent a second way to create new threads in Lasso. Thread
-objects ar objects that exist in their own thread. This means that any method
+objects are objects that exist in their own thread. This means that any method
 calls to a thread object run serially in the object's thread. Thread objects
 exist as singletons, which means that only one instance of a particular thread
 type can exist. Thread objects permit data to be globally available, yet forces

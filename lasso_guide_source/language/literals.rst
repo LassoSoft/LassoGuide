@@ -98,6 +98,8 @@ Additionally, it is an error to use an unrecognized character name.
 Also supported are a series of commonly used escape sequences. The
 following table shows all of the permissible escape sequences.
 
+.. _table-supported-escape-sequences:
+
 Table 1: Supported Escape Sequences
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
