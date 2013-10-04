@@ -34,9 +34,8 @@ HTML file becomes a template, with the final resulting data being the
 combination of whatever plain text the file contained, plus whatever text was
 generated via any contained Lasso code.
 
-The available delimiting elements are described below. The "..." shown
-between the delimiters illustrates where Lasso code would be inserted by
-the developer.
+The available delimiting elements are described below. The "..." shown between
+the delimiters illustrates where Lasso code would be inserted by the developer.
 
 ::
 
@@ -140,8 +139,8 @@ Associating Files with the lasso9 Tool
 
 Files containing Lasso code can be directly associated with the lasso9 tool by
 inserting a standard :term:`hashbang` line **at the very top of the file**, and
-by making the file executable (usually accomplished using
-``$> chmod +x thefile``).
+by making the file executable (usually accomplished using :command:`chmod +x
+thefile`).
 
 The :term:`hashbang` line for a standard installation looks like this::
 
@@ -195,7 +194,7 @@ The lasso9 tool can also accept code to execute from stdin. This is useful when
 piping results from one command to the lasso9 tool in order for it to execute
 the given code. In order to have lasso9 get its code from stdin, the "--"
 argument is used. The following example uses the standard "echo" command to
-produce code for the lasso 9 tool to read from stdin and then execute:
+produce code for the lasso9 tool to read from stdin and then execute:
 
 .. code-block:: none
 

@@ -44,8 +44,8 @@ Some valid examples of method names are shown below.
    String_ReplaceRegexp
 
 There are several other characters which are valid in specific circumstances.
-The mathematical symbols "+", "-", "*", "/", and "%" are used in method
-names when supplying implementations for these operations for data types. See
+The mathematical symbols "+", "-", "*", "/", and "%" are used in method names
+when supplying implementations for these operations for data types. See
 :ref:`the Types chapter <types>` for more information.
 
 Most signatures consist of a method name followed by parentheses which surround
@@ -244,6 +244,7 @@ generate a failure since the input is being specified after a keyword. All
 required parameters and any optional parameters being passed must be specified
 before the first keyword parameter.
 
+
 Boolean Keywords
 ----------------
 
@@ -255,8 +256,8 @@ boolean "true" value for that parameter. Boolean keywords are normally specified
 with a default value of "false" so if the keyword is not specified the
 pre-defined variable will have a value of "false".
 
-The following signature defines the method "server_date" as accepting
-either a "-short" or a "-long" keyword parameter or neither one.
+The following signature defines the method "server_date" as accepting either a
+"-short" or a "-long" keyword parameter or neither one.
 
 ::
 
@@ -266,6 +267,7 @@ If the method is called as ``server_date(-short)`` then the pre-defined local
 variable "short" will have a value of "true" and the pre-defined local variable
 "long" will have a value of "false". If the method is called as
 ``server_date()`` then both variables will have a value of "false".
+
 
 Rest Parameters
 ---------------
@@ -389,8 +391,7 @@ type. This is referred to as the type binding for the signature. A signature
 with no bound type is referred to as being unbound. All example signatures given
 up to this point were unbound signatures. A type binding occurs at the beginning
 of the signature, before the signature's name. It consists of a type name
-followed by the target operator (``->``). The rest of the signature follows
-that.
+followed by the target operator (``->``). The rest of the signature follows that.
 
 ::
 
@@ -423,9 +424,9 @@ combines together a signature and a method body creating a new method. Defining
 a method allows it to be called by name from within other methods.
 
 The "define" reserved word is used to define new methods, data types, and
-traits. When defining a method, the word "define" is followed by a
-signature, the association operator (``=>``), and then an expression which
-provides the body for the new method.
+traits. When defining a method, the word "define" is followed by a signature,
+the association operator (``=>``), and then an expression which provides the
+body for the new method.
 
 ::
 
@@ -468,7 +469,8 @@ Code Blocks
 
 Many methods will need to do more than return a single easily calculated value.
 A method body can be composed of multiple expressions enclosed by a pair of
-curly-braces (``{ ... }``). This type of method body is referred to as a code block.
+curly-braces (``{ ... }``). This type of method body is referred to as a code
+block.
 
 Code blocks provide the most flexibility when defining methods. They allow a
 series of expressions to be encapsulated as the implementation of the method.

@@ -13,8 +13,8 @@ A query expression can take each element in a sequence, manipulate it and
 produce a new sequence. Query expressions let a developer drill down into nested
 sequences. For example, a query expression could iterate over each line in a
 block of text, then each word, and then each character — all in one expression.
-Query expressions provide a variety of useful operations, such as *order by,
-sum, average* and *group by*.
+Query expressions provide a variety of useful operations, such as *order by*,
+*sum*, *average* and *group by*.
 
 
 Anatomy of a Query Expression
@@ -35,21 +35,22 @@ Every query expression consists of three parts.
    expression. Actions include ``do``, ``select``, ``sum``, ``average``,
    ``min``, and ``max``.
 
-Whitespace, including line breaks, is insignificant within the clauses
-of a query expression. Syntactically, a query expression will begin with
-the word *with* and will end when terminated by an *action*.
+Whitespace, including line breaks, is insignificant within the clauses of a
+query expression. Syntactically, a query expression will begin with the word
+*with* and will end when terminated by an *action*.
 
-Query expressions can be treated as objects. This means they can be
-assigned to variables and used repeatedly, and they can be passed as
-parameters. Unless otherwise noted, query expressions are evaluated in a
-lazy manner. This means that creating the query expression does not
-execute it. It is only when something else attempts to draw elements
-from the query expression that it begins to generate results.
+Query expressions can be treated as objects. This means they can be assigned to
+variables and used repeatedly, and they can be passed as parameters. Unless
+otherwise noted, query expressions are evaluated in a lazy manner. This means
+that creating the query expression does not execute it. It is only when
+something else attempts to draw elements from the query expression that it
+begins to generate results.
 
-All local variables available at the location of a query expression's
-creation are available within the query expresion itself. However, new
-variables introduced by a query expression clause will not be available
-outside of the query expression that introduces them.
+All local variables available at the location of a query expression's creation
+are available within the query expresion itself. However, new variables
+introduced by a query expression clause will not be available outside of the
+query expression that introduces them.
+
 
 The With Clause
 ---------------
@@ -67,10 +68,10 @@ construct.
 
    with variable_name in source
 
-Multiple subsequent with clauses can follow the first. When this occurs,
-the second "with" word can optionally be replaced by a comma. Multiple
-with clauses indicate a nesting of iterations. The following two example
-snippets are equivalent::
+Multiple subsequent with clauses can follow the first. When this occurs, the
+second "with" word can optionally be replaced by a comma. Multiple with clauses
+indicate a nesting of iterations. The following two example snippets are
+equivalent::
 
    with variable_name in source
    with another_name in #variable_name
@@ -80,28 +81,28 @@ snippets are equivalent::
    with variable_name in source,
    another_name in #variable_name
 
+
 Actions
 =======
 
-An action clause defines the result of a query expression. Actions
-permit a sequence to be transformed into a new sequence, or permit
-sequence elements to be used to compute an aggregate, or permit an
-arbitrary block of code to be executed for each resulting element.
+An action clause defines the result of a query expression. Actions permit a
+sequence to be transformed into a new sequence, or permit sequence elements to
+be used to compute an aggregate, or permit an arbitrary block of code to be
+executed for each resulting element.
+
 
 Select
 ------
 
-A ``select`` clause permits a new sequence to be generated based upon
-the source sequence. A ``select`` clause consists of the word
-"select" followed by a single expression. The expression is evaluated
-once for each element from the source sequence that makes its way
-through the query expression. The result of the select's expression will
-be an element going into the new sequence.
+A ``select`` clause permits a new sequence to be generated based upon the source
+sequence. A ``select`` clause consists of the word "select" followed by a single
+expression. The expression is evaluated once for each element from the source
+sequence that makes its way through the query expression. The result of the
+select's expression will be an element going into the new sequence.
 
-The following example computes the square of each element in the source
-array. The expression in the select clause performs the math to compute the
-square, the result of which becomes an element in the resulting
-sequence.
+The following example computes the square of each element in the source array.
+The expression in the select clause performs the math to compute the square, the
+result of which becomes an element in the resulting sequence.
 
 ::
 
@@ -111,10 +112,10 @@ sequence.
 When the query expression above is evaluated, the result will be a sequence with
 the numbers: *1, 4, 9, 16, 25, 36, 49, 64, 81*.
 
-One query expression can be utilized in another. In the next example,
-the query expression is assigned to a variable. That variable is used in
-a subsequent query expression. The first query expresion is not
-evaluated until the second query expression is evaluated.
+One query expression can be utilized in another. In the next example, the query
+expression is assigned to a variable. That variable is used in a subsequent
+query expression. The first query expresion is not evaluated until the second
+query expression is evaluated.
 
 ::
 
@@ -125,8 +126,9 @@ evaluated until the second query expression is evaluated.
    with newN in #qe
    select #newN * #newN
 
-The resulting sequence from the above would be the numbers: *1, 16, 81,
-256, 625, 1296, 2401, 4096, 6561*.
+The resulting sequence from the above would be the numbers: *1, 16, 81, 256,
+625, 1296, 2401, 4096, 6561*.
+
 
 Do
 --
@@ -138,9 +140,9 @@ regular curly-brace form (``{ }``) or the auto-collect curly-brace form (``{^
 ^}``). If the code associated with a ``do`` consists of more than one
 expression, the code must be contained in a capture.
 
-The following examples show how the query expression do clause can be
-used to manipulate the elements in the source array. Both query
-expressions operate identically.
+The following examples show how the query expression do clause can be used to
+manipulate the elements in the source array. Both query expressions operate
+identically.
 
 ::
 
@@ -155,13 +157,14 @@ expressions operate identically.
    }
 
 It is important to note that when using ``do`` the query is immediately
-evaluated and that the query expression produces no result value. All
-other query expression actions are evaluated lazily, only as needed, and
-produce a result value dependent on the action in question.
+evaluated and that the query expression produces no result value. All other
+query expression actions are evaluated lazily, only as needed, and produce a
+result value dependent on the action in question.
 
-The block of code given to a ``do`` remains attached to the surrounding
-method context such that one could return or yield or access and create
-local variables.
+The block of code given to a ``do`` remains attached to the surrounding method
+context such that one could return or yield or access and create local
+variables.
+
 
 Sum
 ---
@@ -173,20 +176,21 @@ summation. The sum is performed using the "+" operator, so each element in the
 sequence must support the addition operator for the sum to succeed. The result
 of a query expression using sum will be a single value.
 
-The following example uses a sum clause to add together each element
-from the initial sequence::
+The following example uses a sum clause to add together each element from the
+initial sequence::
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    sum #n
    // => 45
 
+
 Average
 -------
 
-An ``average`` clause produces the average of each element that makes
-its way through the query expression. As expected, using average will
-take the sum of each element and then divide that value by the number of
-elements. As with sum, average produces a single result value.
+An ``average`` clause produces the average of each element that makes its way
+through the query expression. As expected, using average will take the sum of
+each element and then divide that value by the number of elements. As with sum,
+average produces a single result value.
 
 ::
 
@@ -246,10 +250,10 @@ turn as the expression is evaluated.
    select #n
    // => 1, 3, 5, 7, 9
 
-Multiple where operations can be utilized in a query expression. Using
-multiple where operations is essentially the same as combining the
-expressions using the logical and operator ("&&" or "and"). The following two
-snippets are equivalent, though the third is not.
+Multiple where operations can be utilized in a query expression. Using multiple
+where operations is essentially the same as combining the expressions using the
+logical and operator ("&&" or "and"). The following two snippets are equivalent,
+though the third is not.
 
 ::
 
@@ -292,8 +296,8 @@ A let operation consists of the word "let" followed by a new variable name, the
 assignment operator ("="), and then an expression, the result of which will be
 assigned to the new variable.
 
-The following example snippet assigns the square of the current
-iteration value to a new variable using a ``let`` operation.
+The following example snippet assigns the square of the current iteration value
+to a new variable using a ``let`` operation.
 
 ::
 
@@ -316,14 +320,14 @@ The next example snippet uses both ``where`` and ``let`` together.
 Skip
 ----
 
-A ``skip`` operation permits a specified number of values from the
-source sequence to be skipped. A ``skip`` operation consists of the word
-*skip* followed by either a literal integer, or an expression which
-will evaluate to an integer.
+A ``skip`` operation permits a specified number of values from the source
+sequence to be skipped. A ``skip`` operation consists of the word *skip*
+followed by either a literal integer, or an expression which will evaluate to an
+integer.
 
 The following example snippet skips the first 5 elements from the source
-container. Only the 6th element and beyond are sent to the remaining
-portion of the query expression.
+container. Only the 6th element and beyond are sent to the remaining portion of
+the query expression.
 
 ::
 
@@ -336,14 +340,14 @@ portion of the query expression.
 Take
 ----
 
-A ``take`` operation permits only a certain number of elements to be
-iterated upon. Elements beyond the specified value are ignored and not
-sent to the remainder of the query expression. A ``take`` operation consists
-of the word *take* followed by a literal integer or an expression which
-will evaluate to an integer.
+A ``take`` operation permits only a certain number of elements to be iterated
+upon. Elements beyond the specified value are ignored and not sent to the
+remainder of the query expression. A ``take`` operation consists of the word
+*take* followed by a literal integer or an expression which will evaluate to an
+integer.
 
-The following example snippet takes only the first 5 elements from the
-data source. The remaining elements are ignored.
+The following example snippet takes only the first 5 elements from the data
+source. The remaining elements are ignored.
 
 ::
 
@@ -357,9 +361,9 @@ query expression will operate over to a specific range. The order in which
 ``skip`` and ``take`` are specified is significant. (Generally, ``skip`` is
 specified before ``take``, though this is not a requirement.)
 
-The following example snippet skips the first 3 elements, takes only the
-next 4 and leaves the rest ignored. This results in only the numbers 3,
-4, 5, and 6 for the rest of the query expression.
+The following example snippet skips the first 3 elements, takes only the next 4
+and leaves the rest ignored. This results in only the numbers 3, 4, 5, and 6 for
+the rest of the query expression.
 
 ::
 
@@ -513,10 +517,10 @@ The example above example breaks down into 6 steps:
       let swapped = pair(#n->second, #n->first)
 
 #. Group each of the new user pairs by last name — ``#n->first`` is used as
-   the key as it still contains the original last name. From this point
-   forward, no previously introduced variables are available. Only ``#g``
-   exists now. It will contain each ``queriable_grouping`` object generated by
-   the group by clause at this step (3).
+   the key as it still contains the original last name. From this point forward,
+   no previously introduced variables are available. Only ``#g`` exists now. It
+   will contain each ``queriable_grouping`` object generated by the group by
+   clause at this step (3).
 
    ::
 

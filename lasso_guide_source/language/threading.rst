@@ -8,8 +8,8 @@ Threading
 Threading refers to how a language manages the running of multiple tasks at the
 same time. Lasso has integrated support for running multiple threads, allowing
 it to handle many application requests at the same time. Threading in Lasso is
-designed to be easy to use and safe. Lasso does not feature global variables,
-thus all data is local to individual threads. Threads can communicate with one
+designed to be easy to use and safe. Lasso does not feature global variables, so
+all data is local to individual threads. Threads can communicate with one
 another by sending object messages back and forth. These objects are copied as
 they are transmitted to ensure that data structures remain consistent.
 
@@ -130,6 +130,7 @@ Thread objects are created and begin running at the point where they are
 defined. Thread types are defined similarly to how normal types are defined,
 except that in such a definition, the word "type" is replaced with the word
 "thread".
+
 
 Simple ``counter_thread``
 -------------------------

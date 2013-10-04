@@ -45,8 +45,8 @@ have its corresponding conditional body executed. Once completed, no further
 conditions will be tested and execution will resume at the end of the if/else
 conditional.
 
-The second form operates like the first, but permits the if/else to be
-used with the association/givenBlock syntax.
+The second form operates like the first, but permits the if/else to be used with
+the association/givenBlock syntax.
 
 ::
 
@@ -70,19 +70,17 @@ information about the different types of code blocks.
 Match Conditional
 =================
 
-A match conditional allows code to be selectively executed based upon
-the logical equivalence of two or more objects. Match conditionals are
-given an initial test value and a series of case values and conditional
-bodies. The initial value is tested against each case value using the initial value's
-"onCompare" method. The first case value that matches the initial test value will
-have its conditional body executed. Each case can have more than one value
-to test against. If no case values match, then the default case, if
-present, has its conditional body executed.
+A match conditional allows code to be selectively executed based upon the
+logical equivalence of two or more objects. Match conditionals are given an
+initial test value and a series of case values and conditional bodies. The
+initial value is tested against each case value using the initial value's
+"onCompare" method. The first case value that matches the initial test value
+will have its conditional body executed. Each case can have more than one value
+to test against. If no case values match, then the default case, if present, has
+its conditional body executed.
 
 Like the if/else conditional, a match conditional has two forms. The following
-example shows the first form with several case values and a default case.
-
-::
+example shows the first form with several case values and a default case::
 
    match (expression)
    case (c1, c2)
@@ -119,16 +117,15 @@ information about the different types of code blocks.
 Looping
 =======
 
-Lasso offers several operations that loop — executing a body of code
-repeatedly — based upon some criteria. This criteria can be a boolean
-expression, a number counting to a pre-defined point, or the
-count of the number of elements in a composite object. Each method of
-looping supports skipping to the top of the next iteration, aborting the
-loop process entirely, and retrieving the current count of the number of
-loops that have occurred.
+Lasso offers several operations that loop — executing a body of code repeatedly
+— based upon some criteria. This criteria can be a boolean expression, a number
+counting to a pre-defined point, or the count of the number of elements in a
+composite object. Each method of looping supports skipping to the top of the
+next iteration, aborting the loop process entirely, and retrieving the current
+count of the number of loops that have occurred.
 
 Each of these looping operations support the two forms shown for if/else and
-match. Most examples are shown in both froms. Also like if/else and match
+match. Most examples are shown in both forms. Also, like if/else and match
 conditionals, looping operations do not produce a value, but the first form does
 auto-collection as will the second if associated with an auto-collect block
 (``=>{^ ... ^}``). See :ref:`the chapter on Captures <captures>` for more
@@ -181,7 +178,7 @@ In the following example, the body will be executed 5 times::
    }
 
 To specify the starting number, ending number, and increment, you can use the
-following too forms of the ``loop`` method::
+following two forms of the ``loop`` method::
 
    // loop to 5 starting from -10 incrementing by 10
    loop(5, -10, 10)
@@ -197,7 +194,7 @@ following too forms of the ``loop`` method::
 
 In the case of using unnamed parameters, the order of the integers is
 significant. In the case of using keywords, either the "-from" or "-by" may be
-omitted and all keywords may be supplied in any order.
+omitted, and all keywords may be supplied in any order.
 
 
 Iterate
@@ -252,6 +249,6 @@ Loop Operations
    number begins with the loop's from value and advances either forward or
    backward depending on how the loop was constructed.
 
-.. Note::
+.. note::
    Query Expressions do not support ``loop_abort``, ``loop_continue``, or
    ``loop_count``.

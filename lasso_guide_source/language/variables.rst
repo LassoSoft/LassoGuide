@@ -6,40 +6,39 @@ Variables
 *********
 
 A *variable* is a construct for saving and referencing the result of an
-expression. A variable points to an object and permits that object to be
-saved and used repeatedly later.
+expression. A variable points to an object and permits that object to be saved
+and used repeatedly later.
 
-There are two types of variables: local variables and thread variables.
-The type of the variable defines its scope and the rules about using it.
-Each variable is given a name and that name is used to access the
-variable's value. An object which a variable points to can be changed, or
-reassigned, as described in :ref:`the chapter on Operators<operators>`.
+There are two types of variables: local variables and thread variables. The type
+of the variable defines its scope and the rules about using it. Each variable is
+given a name and that name is used to access the variable's value. An object
+which a variable points to can be changed, or reassigned, as described in
+:ref:`the chapter on Operators<operators>`.
 
 
 Variable Names
 ==============
 
-Lasso variable names can begin with an underscore, or the characters "A-Z"
-and then can be followed by zero or more underscores, letters, numbers
-or period characters. Variable names are case-insensitive, so a variable named
-"rhino" can also be accessed with "RhINo" as well.
+Lasso variable names can begin with an underscore, or the characters "A-Z" and
+then can be followed by zero or more underscores, letters, numbers or period
+characters. Variable names are case-insensitive, so a variable named "rhino" can
+also be accessed with "RhINo" as well.
+
 
 Local Variables
 ===============
 
-Each capture runs with its own set of variables. These are called
-**local variables** or **locals**, and they are the most commonly used
-type of variable. Locals begin and end within the capture in which they
-are defined, though the objects they point to may exist beyond that
-point. Nested captures also have access to any locals defined in their parent
-capture before their own definition.
+Each capture runs with its own set of variables. These are called **local
+variables** or **locals**, and they are the most commonly used type of variable.
+Locals begin and end within the capture in which they are defined, though the
+objects they point to may exist beyond that point. Nested captures also have
+access to any locals defined in their parent capture before their own definition.
 
-A local must be defined before it can be used. When a variable is
-defined, it is generally done so along with an initial value to be
-assigned to that variable. If an initial value is omitted, the variable
-will have the default value of "``null``". Multiple locals can be defined at
-one time, either with or without default values, using the following
-syntax examples.
+A local must be defined before it can be used. When a variable is defined, it is
+generally done so along with an initial value to be assigned to that variable.
+If an initial value is omitted, the variable will have the default value of
+"``null``". Multiple locals can be defined at one time, either with or without
+default values, using the following syntax examples.
 
 ::
 
@@ -50,59 +49,58 @@ syntax examples.
    local(name, b = 1)
 
 The first of the above examples sets the variable "name" to the value of the
-expression. The second defines "name" without a value and defines "b" with
-the value of "1".
+expression. The second defines "name" without a value and defines "b" with the
+value of "1".
 
-A local can be accessed using two different methods. In the first
-method, the local variable may or may not have previously been defined.
-If the local has not been defined, then it is defined and assigned a
-value of "``null``". Regardless, the value of the variable is produced as the
-result. This is only the case when one variable name is used and when it
-is not accompanied by an initial value.
+A local can be accessed using two different methods. In the first method, the
+local variable may or may not have previously been defined. If the local has not
+been defined, then it is defined and assigned a value of "``null``". Regardless,
+the value of the variable is produced as the result. This is only the case when
+one variable name is used and when it is not accompanied by an initial value.
 
 ::
 
    local(name)
    // => the value of "name", potentially creating "name"
 
-Local variables can also be accessed using the "#" symbol before the name.
-This is the preferred method for accessing local variables.
+Local variables can also be accessed using the "#" symbol before the name. This
+is the preferred method for accessing local variables.
 
 ::
 
    #name
    // => the value of "name"
 
-When using this method, the local variable must have already been
-defined or it is considered an error. This error checking is done at the
-time the code is parsed, meaning that the local definition must
-*physically* precede the # access point within the source code.
+When using this method, the local variable must have already been defined or it
+is considered an error. This error-checking is done at the time the code is
+parsed, meaning that the local definition must *physically* precede the # access
+point within the source code.
 
 The set of local variables for each capture is determined as the code is
-compiled, and can not be modified at runtime unlike thread variables
-which can be given names dynamically.
+compiled, and cannot be modified at runtime unlike thread variables which can be
+given names dynamically.
+
 
 Parameter Pseudo-locals
 -----------------------
 
-Lasso permits the parameter values given to a method to be accessed by
-position using the local variable symbol "#" followed by an integer value.
-The integer value corresponds to the position of the desired parameter
-value, beginning with "1". For example, in a method given two parameters,
-the first would be available using ``#1`` and the second would be available
-using ``#2``.
+Lasso permits the parameter values given to a method to be accessed by position,
+using the local variable symbol "#" followed by an integer value. The integer
+value corresponds to the position of the desired parameter value, beginning with
+"1". For example, in a method given two parameters, the first would be available
+using ``#1`` and the second would be available using ``#2``.
 
 See the chapter on :ref:`Methods<methods>` for information on methods and method
 parameters.
 
+
 Thread Variables
 ================
 
-Thread variables, or **vars**, are variables that are shared and
-accessible outside of any particular capture, yet are restricted to
-the currently executing thread. Each thread maintains its own set of
-vars. Vars are useful for maintaining program states which go beyond the
-operation of any one method.
+Thread variables, or **vars**, are variables that are shared and accessible
+outside of any particular capture, yet are restricted to the currently executing
+thread. Each thread maintains its own set of vars. Vars are useful for
+maintaining program states which go beyond the operation of any one method.
 
 Vars are created in a manner similar to locals, but use the "var" declaration.
 
@@ -117,46 +115,45 @@ Vars are created in a manner similar to locals, but use the "var" declaration.
 A var created without an initial value will be given the default value
 of "``null``".
 
-Vars can be created using an expression value for a name, unlike locals
-which require a fixed literal name. This expression must result in a
-string or a tag object. That value is used as the variable's name.
+Vars can be created using an expression value for a name, unlike locals which
+require a fixed literal name. This expression must result in a string or a tag
+object. That value is used as the variable's name.
 
 ::
 
    // Defines var with name of nameExpr
    var(nameExpr = expression)
 
-*Syntax Note: Because a literal variable name can resemble a method call
-with no parameters, if the variable name is intended to be the result of
-a method call then that call should be given empty parentheses () to
-disambiguate.*
+.. note::
+  Because a literal variable name can resemble a method call with no parameters,
+  if the variable name is intended to be the result of a method call, then that
+  call should be given empty parentheses () to disambiguate.
 
 ::
 
    // Defines var with the name of what nameCall() returns
    var(nameCall() = expression)
 
-A var can be accessed using two methods, similar to that of local
-variables. First, the var may simply be referenced using the
-``var`` construct along with the var's name. The var may or may not
-have previously been defined. If the var has not been defined, then it
-is defined and assigned a value of "``null``". The value of the variable is
-produced as the result. This is only the case when one variable name is
-used and when it is not accompanied by an initial value.
+A var can be accessed using two methods, similar to that of local variables.
+First, the var may simply be referenced using the ``var`` construct along with
+the var's name. The var may or may not have previously been defined. If the var
+has not been defined, then it is defined and assigned a value of "``null``". The
+value of the variable is produced as the result. This is only the case when one
+variable name is used and when it is not accompanied by an initial value.
 
 ::
 
    var(name)
    // => the value of "name", potentially creating "name"
 
-Vars can also be accessed using the "$" symbol before the name. When
-using this method, an error is returned if the var has not been previously
-defined.
+Vars can also be accessed using the "$" symbol before the name. When using this
+method, an error is returned if the var has not been previously defined.
 
 ::
 
    $name
    // => the value of "name"
+
 
 Type Constraints
 ================
@@ -210,11 +207,11 @@ default value be provided.
 Decompositional Assignment
 ==========================
 
-Lasso will "decompose" the right-hand value (RHS or rvalue) of an
-assignment when the left-hand side (LHS) is a local declaration
-containing just a list of variable names. This supports wildcards (the
-_ character) as well as nested name lists. Any type which supports
-``trait_forEach`` can be used like this on the RHS.
+Lasso will "decompose" the right-hand value (RHS or rvalue) of an assignment
+when the left-hand side (LHS) is a local declaration containing just a list of
+variable names. This supports wildcards (the _ character) as well as nested name
+lists. Any type which supports ``trait_forEach`` can be used like this on the
+RHS.
 
 The following examples should help clarify::
 
@@ -256,8 +253,8 @@ The following examples should help clarify::
    #w2
    // => C
 
-Note that the local must have more than one element in it and none of
-the elements can be given values.
+Note that the local must have more than one element in it and none of the
+elements can be given values.
 
 ::
 

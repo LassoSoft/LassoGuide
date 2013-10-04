@@ -9,18 +9,16 @@ An **operator** is a special symbol which, combined with one or more
 **operands**, performs an operation using those operands and, generally,
 produces a value.
 
-Lasso supports the standard arithmetic operators and logical operators
-as well as numerous other useful operations. Operators can be **unary**,
-taking only one operand, **binary** requiring two operands, or
-**ternary**, in the case of the **condition** operator, requiring up to
-three operands.
+Lasso supports the standard arithmetic operators and logical operators as well
+as numerous other useful operations. Operators can be **unary**, taking only one
+operand, **binary** requiring two operands, or **ternary**, in the case of the
+**condition** operator, requiring up to three operands.
 
-Lasso permits the behavior of some operators to be controlled by the
-operand objects themselves. This is accomplished in an object by having
-it implement a method whose name matches the symbol for that operator.
-For example, a type that needed to support addition would implement a
-method named "+" which accepts one parameter and returns the resulting
-value.
+Lasso permits the behavior of some operators to be controlled by the operand
+objects themselves. This is accomplished in an object by having it implement a
+method whose name matches the symbol for that operator. For example, a type that
+needed to support addition would implement a method named "+" which accepts one
+parameter and returns the resulting value.
 
 
 .. _operators-assignment:
@@ -51,8 +49,8 @@ the value of "1" to "dst1", "dst2" and "dst3" and also produces "1".
    dst1 := dst2 := dst3 := 1
    // => 1
 
-Locals and vars can be assigned using the access syntax for either
-variable type.
+Locals and vars can be assigned using the access syntax for either variable
+type.
 
 ::
 
@@ -78,6 +76,7 @@ permit such assignment are useful as "setters" and let an object control how the
 assignment is ultimately made. See :ref:`the chapter on Types<types>` for more
 detail on creating setter methods.
 
+
 Arithmetic
 ==========
 
@@ -85,14 +84,15 @@ Arithmetic usually refers to mathmatical operations using integer or decimal
 numbers. However, an arithmetic operator can be applied to any object that
 supports the operation.
 
+
 Addition, Subtraction, Multiplication, Division, Modulo
 -------------------------------------------------------
 
-These operators are all binary, requiring two operands. All of these
-operators can be implemented by a type containing the properly named
-method. Only the left-hand operand's method is called. None of these
-operators should modify either operand, but must return a new object.
-The examples that follow show the use of each operator respectively.
+These operators are all binary, requiring two operands. All of these operators
+can be implemented by a type containing the properly named method. Only the
+left-hand operand's method is called. None of these operators should modify
+either operand, but must return a new object. The examples that follow show the
+use of each operator respectively.
 
 ::
 
@@ -110,6 +110,7 @@ The examples that follow show the use of each operator respectively.
 
    op1 % op2
    // => // Returns the value of the remainder from dividing op1 by op2 (modulo)
+
 
 Assignment Variants
 -------------------
@@ -144,8 +145,9 @@ assignment operations, so a type does not need to do anything to support them
 aside from implementing the assignment operator method and the appropriate
 arithmetic operator method.
 
-Pre & Post Increment & Decrement
---------------------------------
+
+Pre / Post Increment and Decrement
+----------------------------------
 
 There is a common need to "advance" an object in a bi-directional manner.
 Usually this is done with integers being used as counters, though the concept
@@ -175,19 +177,20 @@ the original operand, then produces the copied object as a result.
    op--
    // => // produces a copy of "op" before decrementation
 
-These increment/decrement operators are translated into regular
-arithmetic method calls with "1" as the method parameter. This means that
-if a type intends to be used with the "++" and "--" operators, it should not
-implement a method with a name such as "++", but instead should
-implement "+" and "-" which will be called with "1" as the parameter.
+These increment/decrement operators are translated into regular arithmetic
+method calls with "1" as the method parameter. This means that if a type intends
+to be used with the "++" and "--" operators, it should not implement a method
+with a name such as "++", but instead should implement "+" and "-" which will be
+called with "1" as the parameter.
 
-Positive & Negative
--------------------
 
-Lasso supports the unary operators usually intended to change the sign
-of an integer or decimal number. These operators can be applied to any
-object which supports them. When applied, these operators will produce a
-new object, leaving the single operand unchanged.
+Positive and Negative
+---------------------
+
+Lasso supports the unary operators usually intended to change the sign of an
+integer or decimal number. These operators can be applied to any object which
+supports them. When applied, these operators will produce a new object, leaving
+the single operand unchanged.
 
 ::
 
@@ -205,13 +208,12 @@ negative number is created from the beginning.
 
 .. _logic-operators:
 
-Boolean & Logical
-=================
+Boolean and Logical
+===================
 
 **Boolean** describes the values "true" and "false". Lasso supports several
-operators which either treat their operands as boolean values and/or
-produce boolean values. These operators are broken down into several
-categories.
+operators which either treat their operands as boolean values and/or produce
+boolean values. These operators are broken down into several categories.
 
 .. note::
    In Lasso, most objects will be treated as "true", but the following objects
@@ -220,6 +222,7 @@ categories.
    evaluates to "false", but this functionality is deprecated — change your code
    to call ``string->size`` to check for empty strings. All other objects and
    values are assumed to be "true".
+
 
 Logical Operators
 -----------------
@@ -246,7 +249,7 @@ logical "and", and double pipes ("||") or the ``or`` keyword for logical "or".
 These binary operators treat their first operand as a boolean value and perform
 their operation based on that value. Logical "and" inspects its first operand,
 and if it is "true", produces its second operand. If the first operand is
-"false", logical and will produce the value "false". Logical "or" inspects its
+"false", logical "and" will produce the value "false". Logical "or" inspects its
 first operand, and if it is "true", produces that first operand. If the first
 operand is "false", logical "or" will produce the second operand.
 
@@ -261,7 +264,7 @@ operand is "false", logical "or" will produce the second operand.
 These operators perform shortcut evaluation, meaning that if the result of the
 operation is determined before the second operand is evaluated, then the second
 operand will not be evaluated. Also note that the behavior of the logical
-operators can not be defined by the operand objects.
+operators cannot be defined by the operand objects.
 
 
 .. _operators-equality:
@@ -294,21 +297,22 @@ These operators all produce either a "true" or "false" value.
 
 If an object is to be tested for equality against another, its type must
 implement the method named "onCompare". The "onCompare" method is automatically
-called at run-time to perform equality checks. It is only called on the
-left-hand operand and this method must accept one parameter, which is the
-right-hand operand. The "onCompare" method indicates whether the left-hand
-operand is less than, equal to, or greater than the right-hand operand by
-returning either an ``integer`` less than zero, zero, or greater than zero,
-respectively. The act of checking the object types in the case of strict
-equality testing is automatically performed by the runtime, so a type need not
-bother with that scenario in its own implementation of "onCompare".
+called at runtime to perform equality checks. It is only called on the left-hand
+operand, and this method must accept one parameter, which is the right-hand
+operand. The "onCompare" method indicates whether the left-hand operand is less
+than, equal to, or greater than the right-hand operand by returning either an
+``integer`` less than zero, zero, or greater than zero, respectively. The act of
+checking the object types in the case of strict equality testing is
+automatically performed by the runtime, so a type need not bother with that
+scenario in its own implementation of "onCompare".
+
 
 Relative Equality Operators
 ---------------------------
 
-Relative equality indicates if an object is less than, greater than,
-or possibly equal to another object. These operators all produce either
-a "true" or "false" value.
+Relative equality indicates if an object is less than, greater than, or possibly
+equal to another object. These operators all produce either a "true" or "false"
+value.
 
 ::
 
@@ -363,13 +367,12 @@ contents.
 Conditional Operator
 --------------------
 
-The **conditional operator** allows the construction of an if/then/else
-scenario in which an expression is tested and depending on its boolean
-value either the "then" or the "else" expressions will be executed, and
-their values produced as the result of the operator. The "then" and
-"else" can consist of only one expression. The "else" portion of a
-conditional operator may be omitted. In such a case, if the condition is
-false, a ``void`` object will be produced.
+The **conditional operator** allows the construction of an if/then/else scenario
+in which an expression is tested and depending on its boolean value, either the
+"then" or the "else" expressions will be executed and their values produced as
+the result of the operator. The "then" and "else" can consist of only one
+expression. The "else" portion of a conditional operator may be omitted. In such
+a case, if the condition is false, a ``void`` object will be produced.
 
 The conditional operator uses the two characters  "?"  and "|". The "?" follows
 the test condition and the "|" delimits the "then" and "else" expressions. A
@@ -382,6 +385,7 @@ conditional operator with no "else" will have no delimiting "|" character.
 
    test ? expression
    // => // Produces expression if test is "true" else void
+
 
 Grouping
 ========
@@ -405,15 +409,14 @@ precedence.
 Invoke
 ======
 
-Parentheses can be applied to some expressions in order to
-**invoke** the value. Invoking can have different results for different
-objects. By default, most objects return a copy of themselves when they
-are invoked. Methods, when invoked, execute the method, returning its
-value.
+Parentheses can be applied to some expressions in order to **invoke** the value.
+Invoking can have different results for different objects. By default, most
+objects return a copy of themselves when they are invoked. Methods, when
+invoked, execute the method, returning its value.
 
-Invoking an object by applying parentheses is always equivalent to
-directly calling the method named "invoke". The following examples
-invoke a local variable and a thread variable with no parameters.
+Invoking an object by applying parentheses is always equivalent to directly
+calling the method named "invoke". The following examples invoke a local
+variable and a thread variable with no parameters.
 
 ::
 
@@ -441,28 +444,27 @@ opening parenthesis.
    #lv(: #my_params )
    // => // Produces the value of invoking the object stored in the local "lv" with those parameters
 
-The concept behind **invoke** is somewhat abstract, but it permits
-objects and methods to operate as "function objects". This is an object
-that can be called upon to do "a thing" with zero or more parameters and
-produce a value. For example, a sorting routine might employ such an
-object to handle the actual comparisons between two objects, invoking
-the object each time it is required, while the routine handles only the
-shifting of the objects during the sort.
+The concept behind **invoke** is somewhat abstract, but it permits objects and
+methods to operate as "function objects". This is an object that can be called
+upon to do "a thing" with zero or more parameters and produce a value. For
+example, a sorting routine might employ such an object to handle the actual
+comparisons between two objects, invoking the object each time it is required,
+while the routine handles only the shifting of the objects during the sort.
 
-This technique would permit the sorting routine to be customized for a
-wide variety of object types as well as ascending and descending
-directions by just switching out the objects designated to handle each
-permutation while keeping the internal operations identical.
+This technique would permit the sorting routine to be customized for a wide
+variety of object types as well as ascending and descending directions by just
+switching out the objects designated to handle each permutation while keeping
+the internal operations identical.
+
 
 Target and Re-target
 ====================
 
-To **target** means to access a particular member method or data member
-from an object. The target operator is a binary operator accepting the
-target object as the left-hand operand and the method name as the
-right-hand operand. The target operator uses the characters "``->``".
-Targeting a member method always executes that method, passing along any
-given parameters.
+To **target** means to access a particular member method or data member from an
+object. The target operator is a binary operator accepting the target object as
+the left-hand operand and the method name as the right-hand operand. The target
+operator uses the characters "``->``". Targeting a member method always executes
+that method, passing along any given parameters.
 
 ::
 
@@ -479,25 +481,23 @@ given parameters.
    // => // Produces the value of calling "meth" on the object stored in #lv with 2 parameters
 
 Accessing a data member is accomplished through a similar syntax but by
-surrounding the name in single quotes. A data member can only be
-accessed from within the type in which the data member is defined. When
-accessing a data member, it is an error to have any value except for
-"self" as the left-hand operand, and the right-hand operand must be
-single quoted.
+surrounding the name in single quotes. A data member can only be accessed from
+within the type in which the data member is defined. When accessing a data
+member, it is an error to have any value except for "self" as the left-hand
+operand, and the right-hand operand must be single quoted.
 
 ::
 
    self->'dMem'
    // => // Produces the value stored in the "dMem" data member
 
-As it is very common to access data and methods using the current
-"self", Lasso provides a shortcut syntax for accessing self or
-inherited members. Using a period "." before the member name will target
-the current self. Using two periods ".." before the member name will
-target inherited members, skipping the current self and searching for
-the member starting from the parent of the type which defined the
-currently executing member method. Two periods ".." can only be used for
-methods, as only "self" can access data members.
+As it is very common to access data and methods using the current "self", Lasso
+provides a shortcut syntax for accessing self or inherited members. Using a
+period "." before the member name will target the current self. Using two
+periods ".." before the member name will target inherited members, skipping the
+current self and searching for the member starting from the parent of the type
+which defined the currently executing member method. Two periods ".." can only
+be used for methods, as only "self" can access data members.
 
 ::
 
@@ -510,19 +510,19 @@ methods, as only "self" can access data members.
    ..meth(3, 4)
    // => // Produces the value of calling inherited->meth(3, 4)
 
+
 Re-target
 ---------
 
 The re-target operator ("&") allows the same target object to be used for
-multiple method calls. The "&" symbol is placed in-between the individual method
+multiple method calls. The "&" symbol is placed between the individual method
 calls. Re-target is only ever used in the context of a member method call using
 the target operator ("``->``"). The target object of the last target operator is
 used as the object for the re-targetted member call. For each method call, the
 "&" is placed following the method name, parameters and givenBlock (if present).
 
-The re-target operator can be used to string two or more methods
-together. The return value of the final method will be produced by this
-type of re-target.
+The re-target operator can be used to string two or more methods together. The
+return value of the final method will be produced by this type of re-target.
 
 ::
 
@@ -563,17 +563,16 @@ The following example illustrates this formatting principle.
 Escape Method
 =============
 
-Escaping a method allows a method to be searched for by name and
-returned to the caller. The caller can later use that method, executing
-it by applying parentheses as described in **Invoke**. This makes it
-easy for methods to be treated as regular values and to be used as
-callbacks. It is an error if the method that is being escaped is not
-defined.
+Escaping a method allows a method to be searched for by name and returned to the
+caller. The caller can later use that method, executing it by applying
+parentheses as described in **Invoke**. This makes it easy for methods to be
+treated as regular values and to be used as callbacks. It is an error if the
+method that is being escaped is not defined.
 
-Both member methods and unbound methods can be escaped. There are two
-escape method operators, one for member methods and one for unbound
-methods. Escaping a member method uses a binary operator "``->\``".
-Escaping an unbound method uses unary "``\``".
+Both member methods and unbound methods can be escaped. There are two escape
+method operators, one for member methods and one for unbound methods. Escaping a
+member method uses a binary operator "``->\``". Escaping an unbound method uses
+unary "``\``".
 
 ::
 
@@ -583,16 +582,16 @@ Escaping an unbound method uses unary "``\``".
    \meth
    // => // Produces a reference to the unbound method "meth"
 
-When a member method is escaped, the resulting value is bound to that
-target object. This insures that when the resulting value/method is
-invoked, that the current self will be the object from which the method
-was escaped. Additionally, if there is more than one method defined
-under the given name, all of the methods are retrieved. This permits
-multiple-dispatch to be used with an escaped method.
+When a member method is escaped, the resulting value is bound to that target
+object. This insures that when the resulting value/method is invoked, that the
+current self will be the object from which the method was escaped. Additionally,
+if there is more than one method defined under the given name, all of the
+methods are retrieved. This permits multiple-dispatch to be used with an escaped
+method.
 
-The right-hand method name operand can come from the result of any
-expression. When using such a dynamic method name, the expression must be
-surrounded in parentheses, to disambiguate.
+The right-hand method name operand can come from the result of any expression.
+When using such a dynamic method name, the expression must be surrounded in
+parentheses, to disambiguate.
 
 ::
 
@@ -600,19 +599,19 @@ surrounded in parentheses, to disambiguate.
    // => // Produces a reference to the member method defined by concating "name" with the value of "meth"
 
 Though the escape operators are used to find methods by name, the object
-produced by the operators is a **memberstream**. This object manages the
-finding of the desired method, the potential bundling of the target
-object (in the case of ``->\``), and the execution of the method when the
-memberstream is invoked.
+produced by the operators is a **memberstream**. This object manages the finding
+of the desired method, the potential bundling of the target object (in the case
+of ``->\``), and the execution of the method when the memberstream is invoked.
+
 
 Additional Syntax
 =================
 
-There are several other operator-like syntax elements that will be
-described in detail in later sections of this document. Many of them
-apply in limited situations or special contexts and so are beyond the
-scope of this chapter, but the following gives pointers to the
-appropriate sections, where more information can be found.
+There are several other operator-like syntax elements that will be described in
+detail in later sections of this document. Many of them apply in limited
+situations or special contexts and so are beyond the scope of this chapter. The
+following gives pointers to the appropriate sections where more information can
+be found.
 
 **Association Operator** ``=>`` See :ref:`Methods<methods>`, :ref:`Types<types>`
 

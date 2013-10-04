@@ -42,7 +42,7 @@ section is optional. Sections can occur in any order. The sections "trait" and
 "parent" can occur only once.
 
 The most simple type definition is shown below. It defines a type named "person"
-and contains no sections, thus, the ``person`` type contains no methods or data
+and contains no sections. Thus, the ``person`` type contains no methods or data
 members of its own. It is a completely valid, if somewhat boring, type.
 
 ::
@@ -61,10 +61,10 @@ characters A-Z and then can be followed by zero or more underscores, letters,
 numbers or period characters. Character case is irrelevant for data member
 names.
 
-Like variables, data members store values. Thee values are unique to each
+Like variables, data members store values. Three values are unique to each
 instance of the type. If a person type was created then it could contain data
-members for the first and last name of the person, their birthdate, social
-security number, address, etc. Just as every individual has their own values for
+members for the first and last name of the person, his/her birthdate, social
+security number, address, etc. Just as every individual has his own values for
 these items, so would every instatiated object.
 
 The following example type implementation shows several different methods for
@@ -83,6 +83,7 @@ other sections in the type expression if necessary.
       data address1, address2, city,
          state, zip, country
    }
+
 
 Type Constraints
 ^^^^^^^^^^^^^^^^
@@ -151,7 +152,7 @@ Getters and Setters
 A "getter" is a member method which produces the value of a data member and a
 "setter" is a member method which permits the value of a data member to be
 assigned. If the value of a data member should be accessible from outside of the
-owning type then it is necessary to create a getter and/or a setter method for
+owning type, then it is necessary to create a getter and/or a setter method for
 that data member.
 
 Lasso will automatically create a getter method and a setter method if the word
@@ -237,13 +238,12 @@ A member method is a method that belongs to a particular type. A member method
 can operate on the data members of its owning type in addition to any parameters
 the method may receive.
 
-Member methods are created in sections of a type expression beginning
-with the word "public", "private", or "protected", followed by a method
-signature, the association operator (=>), and the implementation of the
-method. Each section can define one or more methods separated by commas.
-The choice of word used to begin a member methods section influences how
-the methods are permitted to be accessed. There are three such access
-levels.
+Member methods are created in sections of a type expression beginning with the
+word "public", "private", or "protected", followed by a method signature, the
+association operator (``=>``), and the implementation of the method. Each section
+can define one or more methods separated by commas. The choice of word used to
+begin a member methods section influences how the methods are permitted to be
+accessed. There are three such access levels.
 
 ``public``
    Public member methods can be called without any restrictions. They represent
@@ -253,15 +253,14 @@ levels.
 ``private``
    Private member methods can only be called from methods defined within the
    owning type. Private methods are to be used for low-level implementation
-   details. Details which shouldn't be exposed to the end user or to inheriting
-   types.
+   details, which shouldn't be exposed to the end user or to inheriting types.
 
 ``protected``
    Protected member methods can be called from within the owning type
-   implementation or any type that inherits from the that type. Protected
-   methods represent functionality that is not intended to be exposed to the
-   public, but which may be overridden, modified, or used from within types
-   inheriting from the owning type.
+   implementation or any type that inherits from that type. Protected methods
+   represent functionality that is not intended to be exposed to the public, but
+   which may be overridden, modified, or used from within types inheriting from
+   the owning type.
 
 The following type expression defines three data members and three member
 methods. The method ``describe()`` returns a description of the person and is
@@ -284,8 +283,8 @@ the outside world.
      protected describeAge() => 'age ' + .age
    }
 
-Given the definition above, the following example illustrates valid and
-invalid use of a ``person`` object::
+Given the definition above, the following example illustrates valid and invalid
+use of a ``person`` object::
 
    local(p = person)
    #p->describe
@@ -357,7 +356,7 @@ the second type, but the ``first()`` method is not.
       public second() => 'gamma'
    }
 
-When the ``first()`` method of a ``two`` object is called, the vaule "alpha" is
+When the ``first()`` method of a ``two`` object is called, the value "alpha" is
 returned since it is automatically calling the method from the parent type. The
 ``second()`` method returns "gamma" since it is calling the overridden method
 from type ``two``.
@@ -439,7 +438,7 @@ Many types allow one or more parameters to be provided when a new object is
 created in order to customize the object before it is used. A type can specify
 its own type creators by defining one or more methods named "onCreate". When a
 new object is created, the ``onCreate`` method corresponding to the given
-parameters is immediately called, before the new object is returned to the user.
+parameters is immediately called before the new object is returned to the user.
 Each ``onCreate`` must be a public member method.
 
 To illustrate, the following type definition defines an ``onCreate`` method that
@@ -500,10 +499,10 @@ and a birthdate.
 Callbacks
 ---------
 
-In addition to the ``onCreate`` method, Lasso reserves a number of other
-method names as callbacks which are automatically used in different
-situations. Lasso provides default behavior so all callbacks are
-optional, but by defining a callback a type can customize its behavior.
+In addition to the ``onCreate`` method, Lasso reserves a number of other method
+names as callbacks which are automatically used in different situations. Lasso
+provides default behavior so all callbacks are optional, but by defining a
+callback a type can customize its behavior.
 
 
 .. _types-callbacks-onCompare:
@@ -635,8 +634,8 @@ methods to alter this behavior. The following code shows how an instance of the
       }
    }
 
-The following shows how a ``person`` object would be invoked, by either
-directly calling the ``invoke`` method or by applying parentheses::
+The following shows how a ``person`` object would be invoked, by either directly
+calling the ``invoke`` method or by applying parentheses::
 
    local(per = person('Bob', 'Parker'))
    #per()
@@ -649,10 +648,9 @@ directly calling the ``invoke`` method or by applying parentheses::
 ^^^^^^^^^^^^
 
 The "\_unknowntag" callback can be utilized in order to let a type handle
-requests for methods which it does not have. When a search for a member
-method fails, the system will call the ``_unknowntag`` method if it is
-defined. The method name that was originally sought is available by
-calling ``method_name``.
+requests for methods which it does not have. When a search for a member method
+fails, the system will call the ``_unknowntag`` method if it is defined. The
+method name that was originally sought is available by calling ``method_name``.
 
 The following example creates a type whose only member method is
 ``_unknowntag``, which returns the name of the method that was called::
@@ -787,8 +785,8 @@ the rest of the method signature and body. The following example adds the method
 Introspection
 =============
 
-Lasso provides a number of methods which can be used to gain information
-about an object. These methods are summarized below.
+Lasso provides a number of methods which can be used to gain information about
+an object. These methods are summarized below.
 
 .. member:: null->type()
 

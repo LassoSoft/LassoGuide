@@ -24,7 +24,7 @@ mixins and abstract classes found in other languages.
 
 Each trait encapsulates a set of requirements and provides a set of member
 methods. When a trait is applied to a data type, the requirements are checked.
-If they are satisfied then the provided member methods are added to the type as
+If they are satisfied, then the provided member methods are added to the type as
 if they had been implemented directly in the type. Traits can only define public
 member methods.
 
@@ -54,7 +54,7 @@ a trait this requirement would be specified as follows::
    require get(x::integer)
    require size()::integer
 
-The requirements take the form of a list of memeber method signatures. If all of
+The requirements take the form of a list of member method signatures. If all of
 the member method signatures are defined by the type which the trait is applied
 to, then the methods which are provided by the trait will work.
 
@@ -133,7 +133,7 @@ Provide
 
 The member methods that a trait provides are specified similarly to the public
 section of a data type definition. The section begins with the reserved word
-"provide" which is followed by a comma-separated list of member method
+"provide", which is followed by a comma-separated list of member method
 definitions. The member list has the same form as custom method definitions.
 Each method is defined using a signature, the association operator (``=>``), and
 an expression or code block that defines the implementation of the method.
@@ -180,7 +180,7 @@ Import
 ------
 
 The import section allows the characteristics of other traits to be imported
-into this trait definition. Using import a hierarchy of traits can be defined.
+into this trait definition. Using import, a hierarchy of traits can be defined.
 As many import sections as are necessary can be specified.
 
 The section begins with the reserved word "import" followed by a comma-separated
@@ -193,11 +193,11 @@ the built-in ``trait_array`` trait.
      import trait_array
    }
 
-All of the requirements and provided member methods of the imported trait
-will be added to the trait being defined. The requirements of one of the
-traits may be satisfied by the methods provided by another trait.
+All of the requirements and provided member methods of the imported trait will
+be added to the trait being defined. The requirements of one of the traits may
+be satisfied by the methods provided by another trait.
 
-However, if two traits provide the same member method then there is a conflict.
+However, if two traits provide the same member method, then there is a conflict.
 The conflict is resolved by eliminating both implementations of that member
 method and adding a requirement for it to the trait. The type which the trait is
 ultimately applied to must implement that member method in order for the trait
@@ -216,7 +216,7 @@ The same rules that are used for importing traits apply to composed traits. The
 requirements of one trait may be satisified by a member method provided by
 another trait in the composition.
 
-However, if two traits provide the same member method then there is a conflict.
+However, if two traits provide the same member method, then there is a conflict.
 The conflict is resolved by eliminating both implementations of that member
 method and adding a requirement for it to the trait. The type which the trait is
 ultimately applied to must implement that member method in order for the trait
@@ -243,7 +243,7 @@ compose them into a single trait.
    define trait_firstLast => trait_first + trait_second + trait_last
 
 Replacing the last line with the trait definition below would produce exactly
-the same result. In general the latter method is preferred for trait
+the same result. In general, the latter method is preferred for trait
 definitions, while the composition operator (+) is preferred for runtime
 changes.
 
@@ -296,7 +296,7 @@ many traits as are needed.
      public ...
    }
 
-When an instance of the type is create the instance has the specified trait
+When an instance of the type is created, the instance has the specified trait
 applied to it automatically.
 
 The trait of any object in Lasso can be programmatically manipulated using the
