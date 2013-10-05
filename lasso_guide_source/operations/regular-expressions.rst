@@ -9,6 +9,7 @@ operations on strings and byte streams. This chapter details how the regular
 expression data type works and other Lasso methods which use regular
 expressions.
 
+
 Introduction to Regular Expressions
 ===================================
 
@@ -62,7 +63,7 @@ character including punctuation or most white space characters. It will not
 match return or new-line characters.
 
 A number of other predefined wild cards are available. The predefined wild
-cards are all preceded by a backslash "\\". 
+cards are all preceded by a backslash "\\".
 
 Many of the predefined wild cards come in pairs. The wild card "\\s" matches any
 white space character including tabs, spaces, returns, or new lines. The wild
@@ -94,12 +95,12 @@ backslash for escape sequences, so you must use a double backslash to use the
 predefined wild cards and to escape special characters. You can avoid having to
 use a double backslash by using ticked string literals. However, use of ticked
 string literals make it difficult to match common escape sequences such as
-returns ("\\r") or new-lines ("\\n"). It is recommended that you use ticked string
-literals for all of your regular expressions until you need one of these escape
-sequences and then that you concatenate in a non-ticked string literal for these
-sequences. For example, the following string concatenation would create a
-regular expression that matches a letter followed by a tab followed by a
-number::
+returns ("\\r") or new-lines ("\\n"). It is recommended that you use ticked
+string literals for all of your regular expressions until you need one of these
+escape sequences and then that you concatenate in a non-ticked string literal
+for these sequences. For example, the following string concatenation would
+create a regular expression that matches a letter followed by a tab followed by
+a number::
 
    local(my_regex) = `\w` + "\t" + `\d`
 
@@ -116,80 +117,80 @@ attention to whether or not ticked string literals are being used.
 
 ```.```
     Period matches any single character.
-   
+
 ```[ ]```
    Character class. Matches any character contained within the square
    brackets.
-   
+
 ```[^ ]```
    Character exception class. Matches any character which is not contained
    within the square brackets.
-   
+
 ```[a-z]```
    Lowercase character range. Matches any character between the two specified.
-   
+
 ```[A-Z]```
    Uppercase character range.
-   
+
 ```[a-zA-Z]```
    Combination character range.
-   
+
 ```[0-9]```
    Numeric character range.
-   
+
 ```[a-zA-Z0-9\_]```
    Complex character range matches any letter, number, or underscore.
-   
+
 ``"\t"``
    Matches a tab character.
-   
+
 ``"\r"``
    Matches a return character.
-   
+
 ``"\n"``
    Matches a new-line character.
-   
+
 ```"```
    Matches a double quote.
-   
+
 ```'```
    Matches a single quote.
-   
+
 ```\u####```
    Matches a single Unicode character. The number signs should be replaced with
    the 4-digit hex value for the Unicode character.
-   
+
 ```\p{ }```
    Matches a single Unicode character with the stated property. The available
    properties are listed next.
-   
+
 ```\P{ }```
    Matches a single Unicode character which does not have the stated property.
    The available properties are listed next.
-   
+
 ```\w```
    Matches an alphanumeric "word" character (underscore included). Does not
    match Unicode characters.
-   
+
 ```\W```
-   Matches a non-alphanumeric character (whitespace or punctuation).    
-   
+   Matches a non-alphanumeric character (whitespace or punctuation).
+
 ```\s```
    Matches a blank, whitespace character (space, tab, carriage return, etc.).
-   
+
 ```\S```
    Matches a non-blank, non-whitespace character.
-   
+
 ```\d```
    Matches a digit character (0-9).
-   
+
 ```\D```
    Matches a non-digit character.
-   
+
 ```\```
    Escapes the next character. This allows any symbol to be specified as a
-   matching character including the reserved characters ``"[ ] ( ) { } . * + ? ^ $
-   | / \\"``.
+   matching character including the reserved characters ``"[ ] ( ) { } . * + ? ^
+   $ | / \\"``.
 
 
 Unicode Properties
@@ -203,34 +204,34 @@ characters that are matched by each of the variations.
    Matches a single letter. Variations include: "Lu" - Uppercase Letter, "Ll" -
    Lowercase Letter, "Lt" - Titlecase Letter, "Lm" - Modifier Letter, and "Lo" -
    Other Letter.
-   
+
 ``N``
    Matches a single number. Variations include: "Nd" - Decimal Digit Number,
    "Nl" - Letter Number, and "No" - Other Number.
-   
+
 ``P``
    Matches a single punctuation character. Variations include: "Pc" - Connector
    Punctuation, "Pd" - Dash Punctuation, "Ps" - Open Punctuation "Pe" - Close
    Punctuation, "Pi" - Initial Punctuation, "Pf" - Final Punctuation, and "Po" -
    Other Punctuation.
-   
+
 ``S``
    Matches a single symbol. Variations include: "Sm" - Math Symbol, "Sc" -
    Currency Symbol, "Sk" - Modifier Symbol, and "So" - Other Symbol.
-   
+
 ``Z``
    Matches a single separator (usually a white space character). Variations
    include: "Zs" - Space Separator, "Zl" - Line Separator, and "Zp" - Paragraph
    Separator.
-   
+
 ``M``
    Matches a single mark. Variations include: "Mn - Non-Spacing Mark, "Mc" -
    Spacing Combining Mark, and "Me" - Enclosing Mark.
-   
+
 ``C``
    Matches a single "other" character. Variations include: "Cc" - Control, "Cf"
    - Format, "Cs" - Surrogate, "Co" - Private Use, and "Cn" - Not Assigned.
-   
+
 
 Combining Symbols
 -----------------
@@ -271,9 +272,9 @@ allow for any number of repetitions from the lower number to the upper number.
 is omitted then the braces function similarly to a "+". "[a-z]{3,}" matches any
 string of lowercase letters with a length of 3 or longer.
 
-The symbol "?" on its own makes the preceding matcher optional. For
-example, the expression "mee?t" will match either the string "met" or
-"meet" since the second "e" is optional but won't match "meeeet".
+The symbol "?" on its own makes the preceding matcher optional. For example, the
+expression "mee?t" will match either the string "met" or "meet" since the second
+"e" is optional but won't match "meeeet".
 
 When used after a "+", "*", or braces the "?" makes the match non-greedy.
 Normally, a sub-expression will match as much of the input string as possible.
@@ -285,32 +286,32 @@ of the expression will match the last part of the string "</b>".
 
 ``+``
    Matches 1 or more repetitions of the preceding symbol.
-   
+
 ``*``
    Matches 0 or more repetitions of the preceding symbol.
-   
+
 ``?``
    Makes the preceding symbol optional.
-   
+
 ``{n}``
    Braces. Matches "n" repetitions of the preceding symbol.
-   
+
 ``{n,}``
    Matches at least "n" repetitions of the preceding symbol.
-   
+
 ``{n,m}``
    Matches at least "n", but no more than "m" repetitions of the preceding
    symbol.
-   
+
 ``+?``
    Non-greedy variant of the plus sign, matches the shortest string possible.
-   
+
 ``\*?``
    Non-greedy variant of the asterisk, matches the shortest string possible.
-   
+
 ``{ }?``
       Non-greedy variant of braces, matches the shortest string possible.
-   
+
 
 Groupings
 ---------
@@ -352,7 +353,7 @@ word "blue" or the word "red".
 ``( )``
    Grouping for output. Defines a named group for output. Nine groups can be
    defined.
-   
+
 ``(?: )``
    Grouping without output. Can be used to create a logical grouping that should
    not be assigned to an output.
@@ -386,7 +387,7 @@ would result in "360-555-1212" after a find/replace operation.
 ``$0 … $9``
    Names a group in the replace string. \`$0\` represents the entire matched
    string. Up to nine groups can be specified using the numerals 1 through 9.
-   
+
 .. note::
    In order to place a literal \`$\` in a replacement string it is necessary to
    escape it as \`\\$\`.
@@ -403,69 +404,69 @@ these symbols and other advanced concepts.
 ``(#)``
    Regular expression comment. The contents are not interpreted as part of the
    regular expression.
-   
+
 ``(?i)``
    Sets the remainder of the regular expression to be case insensitive. Similar
    to specifying ``-ignoreCase``.
-   
+
 ``(?-i)``
    Sets the remainder of the regular expression to be case sensitive (the
    default).
-   
+
 ``(?i:)``
    The contents of this group will be matched case insensitive and the group
    will not be added to the output.
-   
+
 ``(?-i:)``
    The contents of this group will be matched case sensitive and the group will
    not be added to the output.
-   
+
 ``(?=)``
    Positive look ahead assertion. The contents are matched following the current
    position, but not added to the output pattern.
-   
+
 ``(?!)``
    Negative look ahead assertion. The same as above, but the content must not
    match following the current position.
-   
+
 ``(?<=)``
    Positive look behind assertion. The contents are matched preceding the
    current position, but not added to the output pattern.
-   
+
 ``(?<!)``
    Negative look behind assertion. The same as above, but the contents must not
    match preceding the current position.
-   
+
 ```\b```
    Matches the boundary between a word and a space. Does not properly interpret
    Unicode characters. The transition between any regular ASCII character
    (matched by \`\\w\`) and a Unicode character is seen as a word boundary.
-   
+
 ```\B```
    Matches a boundary not between a word and a space.
-   
+
 ```^```
    Circumflex matches the beginning of a line.
-   
+
 ```$```
    Dollar sign matches the end of a line.
-   
+
 
 The RegExp Type
 ===============
 
-The ``regexp`` type allows a regular expression to be defined once and
-then re-used many times. It facilitates simple search operations, splitting
-strings, and interactive find/replace operations.
+The ``regexp`` type allows a regular expression to be defined once and then
+re-used many times. It facilitates simple search operations, splitting strings,
+and interactive find/replace operations.
 
 The ``regExp`` type has some advantages over the string methods which perform
 regular expression operations. Performance can be increased by compiling a
 regular expression once and then reusing it multiple times.
 
-The regular expression type has a number of member methods which allow
-access to the stored regular expressions and input and output strings,
-perform find/replace operations, or act as components in an interactive
-find/replace operation. These are described below.
+The regular expression type has a number of member methods which allow access to
+the stored regular expressions and input and output strings, perform
+find/replace operations, or act as components in an interactive find/replace
+operation. These are described below.
 
 
 Creating a Regular Expression
@@ -495,7 +496,7 @@ Creating a Regular Expression
    overridden with particular member methods. The type also has an
    ``-ignoreCase`` option which controls whether regular expressions are applied
    with case sensitivity or not.
-   
+
    A regular expression can be created which explicitly specifies the find
    pattern, replacement pattern, input string, and optionally with the
    ``-ignoreCase`` option. Using a fully qualified regular expression which is
@@ -519,27 +520,27 @@ Creating a Regular Expression
 .. member:: regExp->findPattern()
 
    Returns the find pattern.
-   
+
 .. member:: regExp->replacePattern()
 
    Returns the replacement pattern.
-   
+
 .. member:: regExp->input()
 
    Returns the input string.
-   
+
 .. member:: regExp->ignoreCase()
 
    Returns "true" if the ``-ignoreCase`` flag has been set, otherwise "false".
-   
+
 .. member:: regExp->groupCount()
 
    Returns an integer specifying how many groups were found in the find pattern.
-   
+
 .. member:: regExp->output()
 
    Returns the output string.
-   
+
 
 For example, the regular expression above can be inspected by the following
 code. The group count is "0" since the find expression does not contain any
@@ -555,6 +556,7 @@ groups (designated by parentheses)::
    // ReplacePattern: x
    // IgnoreCase: true
    // GroupCount: 0
+
 
 .. _regular-expressions-simple:
 
@@ -577,7 +579,7 @@ methods described in the next section.
    input stored in the regular expression object is used. If desired, new
    ``-find`` and ``-replace`` patterns can also be specified within this method
    along with the ``-ignoreCase`` flag.
-   
+
 .. member:: regExp->replaceFirst(\
       -input= ?, \
       -find= ?, \
@@ -591,7 +593,7 @@ methods described in the next section.
    expression object is used. If desired, new ``-find`` and ``-replace``
    patterns can also be specified within this method along with the
    ``-ignoreCase`` flag.
-   
+
 .. member:: regExp->split(-input= ?, -find= ?, -replace= ?, -ignoreCase= ?)
 
    Splits the string using the regular expression as a delimiter and returns a
@@ -600,7 +602,7 @@ methods described in the next section.
    regular expression object is used. If desired, new ``-find`` and ``-replace``
    patterns can also be specified within this method along with the
    ``-ignoreCase`` flag.
-   
+
 
 Use the Same Regular Expression on Multiple Inputs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -667,7 +669,7 @@ The ``-find`` pattern can be modified within the ``regExp->split`` method to
 split the string on a different regular expression. In this example the string
 is split on any one of one or more non-word characters. This splits the string
 into words not including any whitespace or punctuation::
-   
+
    #my_regex->split(-find=`\W+`, -input='The quick brown fox jumped over the lazy dog.')
 
    // =>
@@ -743,7 +745,7 @@ The order of operations of an interactive find/replace operation is as follows:
 #. Finally, the output string from the regular expression object is displayed::
 
      #my_regex->output
-  
+
      // =>
      // ehT kciuq nworb xof depmuj revo eht yzal god.
 
@@ -767,46 +769,46 @@ needing to be a simple replacement pattern.
    Returns a string containing the last pattern match. Optional integer
    parameter specifies a group from the find pattern to return (defaults to
    returning the entire pattern match).
-   
+
 .. member:: regExp->matchPosition()
 .. member:: regExp->matchPosition(p0::integer)
 
    Returns a pair containing the start position and length of the last pattern
    match. Optional integer parameter specifies a group from the find pattern to
    return (defaults to returning information about the entire pattern match).
-   
+
 .. member:: regExp->appendReplacement(p0::string)
 
    Performs a replace operation on the current pattern match and appends the
    result onto the output string. Requires a single parameter which specifies
    the replacement pattern including group placeholders "$0 … $9".
    Automatically appends any unmatched runs from the input string.
-   
+
 .. member:: regExp->appendTail()
 
    The final step in an interactive find/replace operation. This tag appends the
    final unmatched run from the input string onto the output string.
-   
+
 .. member:: regExp->reset(-input= ?, -find= ?, -replace= ?, -ignoreCase= ?)
 
    Resets the object. If called with no parameters, the input string is set to
    the output string. Accepts optional ``-find``, ``-replace``, ``-input``, and
    ``-ignoreCase`` parameters.
-   
+
 .. member:: regExp->matches()
 .. member:: regExp->matches(p0::integer)
 
    Returns "true" if the pattern matches the entire input string. Optional
    integer parameter sets the position in the input string at which to start the
    search.
-   
+
 .. member:: regExp->matchesStart()
 .. member:: regExp->matchesStart(p0::integer)
 
    Returns "true" if the pattern matches a substring of the input string.
    Defaults to checking the start of the input string. Optional integer
    parameter sets the position in the input string at which to start the search.
-   
+
 
 Perform an Interactive Find/Replace Operation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -833,9 +835,9 @@ through all the matches in the input string. The method ``regExp->matchString``
 with a parameter of "1" returns the map key for each match. If this key exists
 then its value is substituted back into output string using
 ``regExp->appendReplacement``, otherwise, the full match is substituted back
-into the output string with the replacement pattern "$0". Finally, any
-remaining unmatched input string is appended to the end of the output string
-using ``regExp->appendTail``::
+into the output string with the replacement pattern "$0". Finally, any remaining
+unmatched input string is appended to the end of the output string using
+``regExp->appendTail``::
 
    local(my_regex) = regExp(-find=`\$(\w+)`, -input=#my_string, -ignoreCase)
    while(#my_regex->find) => {

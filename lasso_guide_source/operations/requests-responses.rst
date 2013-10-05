@@ -2,9 +2,9 @@
 
 .. only:: html
 
-   ************************
-   Web Requests & Responses
-   ************************
+   **************************
+   Web Requests and Responses
+   **************************
 
 Lasso Server receives requests from whatever HTTP servers it is connected with.
 That request consists of the headers and body data as sent by the requesting
@@ -12,7 +12,7 @@ user agent, as well as data from the HTTP server such as the local web file root
 directory and other meta-data. The request data is parsed and made available for
 the code that is run to handle the request. Handling a request entails creating
 the resulting headers and body data for the reply. This data is sent to the web
-server which is then sent to the connected user agent. The request is complete
+server, which is then sent to the connected user agent. The request is complete
 after the data is sent.
 
 The code that is chosen to handle a request is based on the path in the
@@ -25,16 +25,17 @@ Either way, the file is compiled if necessary and executed.
 
 If the indicated file is not present or an unhandled failure occurs while
 processing the request, then Lasso will look for a file named ``error.lasso`` at
-the original file's directory path. If an error.lasso file is not found then
+the original file's directory path. If an error.lasso file is not found, then
 Lasso will look up one directory level for the error file, and so on, until the
 web file root directory is reached or the error file is found. If no error file
-is found to handle the situation then a standard error message and stack trace
+is found to handle the situation, then a standard error message and stack trace
 is printed.
 
 Finally, Lasso provides a means for running code before or after a request. This
 enables interception of the standard request processing flow at either point.
 This can be useful when utilizing virtual urls and serving dynamic database
 driven content or when rewriting outgoing response data.
+
 
 Web Requests
 ============
@@ -65,6 +66,7 @@ on the incoming Content-Type. Both ``multipart/form-data`` and
 This includes the processing of file uploads, the results of which are made
 available through the ``fileUploads()`` method.
 
+
 Request Headers
 ---------------
 
@@ -88,12 +90,12 @@ methods. All header names and values are treated as strings.
    The ``headers()`` method returns all of the headers as an object which can be
    iterated or used in a query expression. Each header element is presented as a
    pair object containing the header name and value as the pair's first and
-   second elements, respectively. The next method returns the first header pair
+   second elements, respectively. The next method returns the first header pair,
    which matches the name parameter. It returns void if the header is not found.
    The rawHeader method works the same, but fetches the raw unnormalized header
    name/value as sent by the web server.
 
-The next set of methods is presented an a table matching the method name to its
+The next set of methods is presented in a table matching the method name to its
 corresponding raw web request variable name. For headers that return a string
 value, an empty string is returned if the header has no value or is not present.
 A zero or false is returned for other non-existent value types.
@@ -135,13 +137,14 @@ httpAcceptLanguage HTTP_ACCEPT_LANGUAGE string
 isHttps            HTTPS                boolean
 ================== ==================== ============
 
-GET & POST Arguments
---------------------
+
+GET and POST Arguments
+----------------------
 
 Lasso automatically tokenizes GET arguments and processes the POST body into a
 series of name/value pairs according to the sent content type. These two sets of
 pairs can be retrieved separately or treated as a single series of elements.
-File uploads are not included in the POST arguments, but are made available
+File uploads are not included in the POST arguments but are made available
 through the ``fileUploads()`` method.
 
 The value for any GET or POST argument is always a bytes object. The name is
@@ -158,7 +161,7 @@ always a string.
    This set of methods refers to the GET arguments as the ``query`` params and
    any POST arguments as the ``post`` params. Both sets together are just the
    ``params``. For the methods which accept a name parameter, they return the
-   first matching argument string value. If no argument matches then a void
+   first matching argument string value. If no argument matches, then a void
    value is returned.
 
    The ``param()`` method treats both argument sources as a single source with
@@ -180,9 +183,10 @@ always a string.
    These methods return the respective arguments in a format similar to how they
    were received. In the case of queryString the GET arguments are returned
    verbatim. The POST string is created by concatenating each POST argument
-   together with ``&`` in between each name/value and with ``=`` in between each
+   together with ``&`` in between each name/value and with ``=`` between each
    of those. This will vary from the exact given POST only in the case of
    ``multipart/form-data`` input.
+
 
 Read Cookies
 ------------
@@ -196,9 +200,10 @@ object provides methods to directly access the pre-parsed cookie data.
 
    The first method searches for the named cookie and returns its value if
    found. If the cookie is not found then void is returned. The second method
-   returns all the cookies as an object which can be iterated or used in a query
+   returns all the cookies as an object, which can be iterated or used in a query
    expression. The cookie elements are presented as pair objects containing the
    cookie names and values as the pairs' first and second members.
+
 
 Web Responses
 =============
@@ -235,11 +240,12 @@ paths that begin with ``/lasso9/`` are reserved for LassoApp usage and will be
 routed there. Physical file paths beginning with ``/lasso9/`` are ignored by
 Lasso Server during processing of a web request.
 
+
 Include
 -------
 
 It is often useful to split up large template files into smaller reusable
-components. For example a header or footer might be split out and reused on all
+components. For example, a header or footer might be split out and reused on all
 pages. The ``web_response`` object provides a variety of methods for including
 other code files. Files included like this behave just as a file directly
 accessed would. That is, they begin executing as plain text and any Lasso code
@@ -265,7 +271,7 @@ Any of the following methods can be used to include file content.
    the result into the response. The includeOnce and includeLibraryOnce methods
    will only include the file if it has not already been included during the
    course of that request.
-   
+
    These methods will fail if the indicated file does not exist.
 
 .. member:: web_response->includeBytes(path::string)::bytes
@@ -287,13 +293,14 @@ an object which can be iterated or used in a query expression.
    invoked to execute the file. The method will fail if the file does not exist.
 
 For compatibility and simplicity, Lasso supports the following unbound methods
-which function in the same manner as the ``web_response`` bound methods.
+which function in the same manner as the ``web_response`` bound methods:
 
 .. member:: web_response->include(path::string)
 .. member:: web_response->library(path::string)
 
    These methods include the file indicated by the path in the same manner as
    the ``web_response->include`` and ``web_response->library`` methods.
+
 
 Response Headers
 ----------------
@@ -328,6 +335,7 @@ manipulated through these methods.
    accepts a new header name/value pair and adds it to the list of outgoing
    headers. This method ignores any duplicate matching headers.
 
+
 Set Cookies
 -----------
 
@@ -360,6 +368,7 @@ processing is completed and the response is to be sent to the client.
    individual cookies are represented by map objects containing keys for:
    'name', 'value', 'domain', 'expiration', 'path' and 'secure'. Manipulating a
    cookie value in the list will alter its resulting cookie header.
+
 
 Bytes Response Data
 -------------------
@@ -402,7 +411,7 @@ viewed either inline or downloaded as an attachment.
    agent will use to save a downloaded file.
 
    The subsequent keyword parameters control the following:
-   
+
    ``-type``
       This string indicates the value for the Content-Type header. If this is
       not specified and -skipProbe is not set to false, then the incoming data
@@ -432,8 +441,9 @@ viewed either inline or downloaded as an attachment.
       given here will have its invoke method called for each chunk send. The
       invoke will be passed the bytes object for the current chunk as well as an
       integer indicating the overall size of the bytes being sent.
-   
+
    If the sendFile method succeeds and it does not abort, no value is returned.
+
 
 HTTP Response Status
 --------------------
@@ -448,13 +458,14 @@ The status can be set or reset multiple times. It's value is not used until the
 request data is sent to the client. However, once any data has been sent then
 the status can no longer effectively be set.
 
-The following methods get or set the HTTP response status.
+The following methods get or set the HTTP response status:
 
 .. member:: web_response->setStatus(code::integer, msg::string)
 .. member:: web_response->getStatus()::pair
 
    The first method sets the HTTP status code and message. The second returns
    the status as a pair containing the code/message as the pair's first/second.
+
 
 At Begin and End
 ================
@@ -474,21 +485,22 @@ used. These methods are described below.
 .. method:: define_atBegin(code)
 
    This method installs code to be invoked at the beginning of each request. The
-   code will have access to the ``web_request`` and ``web_response`` objects that
-   will be available during the request proper. At-begin code can set response
-   headers and data and complete the request if it chooses, thus fully intercepting
-   the normal request URI file request and processing routines. This is the
-   recommended route for applications wanting to provide virtual URLs. Once an
-   at-begin is in place it can not be removed. Multiple at-begins are supported and
-   are run in the order in which they are installed.
-   
+   code will have access to the ``web_request`` and ``web_response`` objects
+   that will be available during the request proper. At-begin code can set
+   response headers and data and complete the request if it chooses, thus, fully
+   intercepting the normal request URI file request and processing routines.
+   This is the recommended route for applications wanting to provide virtual
+   URLs. Once an at-begin is in place it can not be removed. Multiple at-begins
+   are supported and are run in the order in which they are installed.
+
    The object installed as the at-begin code is copied to each request's thread
    each time. This means that a capture's local variables or any object's data
-   members are deeply copied each time. The most efficient steps would be to define
-   a method as the at-begin handler and then pass a reference to that method as the
-   at-begin code. For example passing ``\foo`` to ``define_atBegin`` would pass the
-   ``foo`` method to ``define_atBegin``. It would be invoked for each request and
-   utilize the ``web_request`` and ``web_response`` within it.
+   members are deeply copied each time. The most efficient steps would be to
+   define a method as the at-begin handler and then pass a reference to that
+   method as the at-begin code. For example, passing ``\foo`` to
+   ``define_atBegin`` would pass the ``foo`` method to ``define_atBegin``. It
+   would be invoked for each request and utilize the ``web_request`` and
+   ``web_response`` within it.
 
 .. method:: addAtEnd(code)
 

@@ -86,6 +86,7 @@ and into the ``/assets/img/avatars/`` directory in the webroot::
          ->moveTo(#path + #upload->find('filename')->first->second, true)
    }
 
+
 Monitoring Uploads
 ==================
 
@@ -112,6 +113,7 @@ unique ID that gets passed to it. It also uses ``<meta http-equiv="refresh"
 content="1">`` to refresh itself every second. The result is that we get an
 updated progress bar every second.
 
+
 index.lasso
 -----------
 
@@ -136,18 +138,19 @@ index.lasso
    <body>
       [local(id) = lasso_uniqueid]
       <form action="upload_file.lasso" method="post" enctype="multipart/form-data">
-         <input type="hidden" 
+         <input type="hidden"
             name="_lasso_upload_tracker_id" value="[#id]">
          <fieldset>
             <legend>Upload a Photo</legend>
             <input type="file" name="photo">
-            <input type="submit" 
-               value="Upload" 
+            <input type="submit"
+               value="Upload"
                onclick="trackProgress('[#id->encodeUrl]')">
          </fieldset>
       </form>
    </body>
    </html>
+
 
 progress.lasso
 --------------

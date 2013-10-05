@@ -4,9 +4,10 @@
 Logging
 *******
 
-Lasso 9 server has a built-in error logging system which allows warning messages
-to be logged at several different levels. Each log level can be routed to one or
-more destinations allowing for a great deal of flexibility in handling.
+Lasso 9 server has a built-in error logging system, which allows warning
+messages to be logged at several different levels. Each log level can be routed
+to one or more destinations, allowing for a great deal of flexibility in
+handling.
 
 The built-in log levels include:
 
@@ -150,11 +151,11 @@ the name of the server and the page they were loading, and the "GET" and "POST"
 parameters that were specified::
 
    log('//tmp/foo.bar') => {^
-      date->format('%Q %T') + 
-      ' ' + web_request->remoteAddr + 
-      ' ' + (web_request->isHttps ? 'https://' | 'http://') + 
-      web_request->httpHost + 
-      web_request->requestUri + 
+      date->format('%Q %T') +
+      ' ' + web_request->remoteAddr +
+      ' ' + (web_request->isHttps ? 'https://' | 'http://') +
+      web_request->httpHost +
+      web_request->requestUri +
       ' ' + web_request->postParams + '\n'
    ^}
 
@@ -200,19 +201,19 @@ change the log settings programmatically.
    Returns the integer value for specifying the "Critical" message level in the
    ``log_setDestination`` method. Using this method will help future-proof your
    code.
-  
+
 .. method:: log_level_warning()
 
    Returns the integer value for specifying the "Warning" message level in the
    ``log_setDestination`` method. Using this method will help future-proof your
    code.
-  
+
 .. method:: log_level_detail()
 
    Returns the integer value for specifying the "Detail" message level in the
    ``log_setDestination`` method. Using this method will help future-proof your
    code.
-  
+
 .. method:: log_level_deprecated()
 
    Returns the integer value for specifying the "Deprecated" message level in
@@ -224,7 +225,7 @@ change the log settings programmatically.
    Returns the integer value for specifying the "Console" destination in the
    ``log_setDestination`` method. Using this method will help future-proof your
    code.
-  
+
 .. method:: log_destination_file()
 
    Returns the integer value for specifying the "File" destination in the

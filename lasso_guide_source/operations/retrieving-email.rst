@@ -22,7 +22,9 @@ used to extract the different parts of the downloaded messages, inspect the
 headers of the downloaded messages, or to extract attachments from the
 downloaded messages.
 
-**Note:** Lasso does not support downloading email from IMAP servers.
+.. note::
+   Lasso does not support downloading email via the IMAP protocol.
+
 
 .. _email-pop-type:
 
@@ -113,8 +115,8 @@ The following describes the ``email_pop`` type and some of its member methods:
    )
 
    Requires a ``-username`` and ``-password`` parameter. Optional ``-APOP``
-   parameter specifies whether APOP authentication should be used or not.
-   Opens a connection to the server if one is not already established.
+   parameter specifies whether APOP authentication should be used or not. Opens
+   a connection to the server if one is not already established.
 
 
 Methodology
@@ -169,6 +171,7 @@ connection, but cancels all of the marked deletes.
 
    [#myPOP->close]
 
+
 Examples
 --------
 
@@ -176,6 +179,7 @@ This section includes examples of the most common tasks that are performed using
 the ``email_pop`` type. See the :ref:`Email Parsing <email-parsing>` section
 that follows for examples of downloading messages and parsing them for storage
 in a database.
+
 
 Download and delete all emails from a POP server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -213,9 +217,9 @@ not. No delete of messages is performed in this example.
 
 For the purposes of this example, it is assumed that unique IDs are being stored
 in a variable array called ``myUniqueIDs``. For each waiting message this
-variable is checked to see if it contains the unique ID of the current
-message. If it does not then the message is downloaded and the unique ID is
-inserted into ``myUniqueIDs``.
+variable is checked to see if it contains the unique ID of the current message.
+If it does not then the message is downloaded and the unique ID is inserted into
+``myUniqueIDs``.
 
 ::
 
@@ -266,6 +270,7 @@ fetched with ``email_pop->headers`` and two variables, ``needDownload`` and
 The downloaded headers can be processed using the techniques in the
 :ref:`Email Parsing <email-parsing>` section that follows.
 
+
 .. _email-parsing:
 
 Email Parsing
@@ -275,6 +280,7 @@ Each of the messages which is downloaded from a POP server is returned in raw
 MIME text form. This section describes the basic structure of email messages,
 then the ``email_parse`` type that can be used to parse them into headers and
 parts, and finally some examples of parsing messages.
+
 
 Email Structure
 ---------------
@@ -362,6 +368,7 @@ this way, very complex recursive email structures can be created.
 Lasso allows access to the headers and each part (including recursive parts) of
 downloaded email messages through the ``email_parse`` type.
 
+
 The Email_Parse Type
 --------------------
 
@@ -448,11 +455,13 @@ email_parse->content_disposition       Content-Disposition
 email_parse->content_transfer_encoding Content-Transfer-Encoding
 ====================================== =========================
 
-**Note:** The methods ``email_parse->to``, ``email_parse->from``,
-``email_parse->cc``, and ``email_parse->bcc`` headers also accept ``-extract``,
-``-comment``, and ``-safeEmail`` parameters like the ``email_parse->header``
-method. These methods join multiple parameters by default, but ``-join=null``
-can be specified to return an array instead.
+.. note::
+   The methods ``email_parse->to``, ``email_parse->from``, ``email_parse->cc``,
+   and ``email_parse->bcc`` headers also accept ``-extract``, ``-comment``, and
+   ``-safeEmail`` parameters like the ``email_parse->header`` method. These
+   methods join multiple parameters by default, but ``-join=null`` can be
+   specified to return an array instead.
+
 
 Examples
 --------
@@ -460,6 +469,7 @@ Examples
 This section includes examples of the most common tasks that are performed using
 the ``email_parse`` type. See the preceding :ref:`POP Type <email-pop-type>`
 section for examples of downloading messages from a POP email server.
+
 
 Display a downloaded message
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -511,9 +521,9 @@ There are three ways to inspect the headers of a downloaded message.
       <br />Subject: [#myParse->subject->encodeHTML]
       <br />Date:    [#myParse->date->encodeHTML]
 
-      // => 
-      // To: Example Recipient 
-      // From: Example Sender 
+      // =>
+      // To: Example Recipient
+      // From: Example Sender
       // Subject: Test Message
       // Date: Thu, 8 Jul 2004 08:07:42 -0700
 
@@ -639,8 +649,9 @@ part that includes an attachment is used to write out a file using
       }
    }
 
-**Note:** In order for this code to work the "Attachments" folder should already
-exist and Lasso Server should have permission to write to it.
+.. note::
+   In order for this code to work, the "Attachments" folder should already exist
+   and Lasso Server should have permission to write to it.
 
 
 Store a downloaded message in a database
@@ -671,7 +682,7 @@ the messages are going to be used later.
             'email_format' = $myParse
          ) => {}
       }
-      
+
 
 -  Often it is desirable to store the common headers of the message in
    individual fields as well as the different body parts. This example shows how

@@ -40,6 +40,7 @@ server.
    saving time, see the :ref:`Date and Duration Math<date-duration-math>`
    section.
 
+
 Date Type
 =========
 
@@ -83,8 +84,8 @@ adjust the date/time to the equivalent GMT date/time.
 If using a date format not listed above, custom date formats can be defined
 using the ``-format`` parameter of the ``date`` creator method.
 
-The following variations of the automatically recognized date formats
-are valid without using the ``-format`` parameter:
+The following variations of the automatically recognized date formats are valid
+without using the ``-format`` parameter:
 
 -  If the ``date`` creator method is used without a parameter then the current
    date and time are returned. Milliseconds are rounded to the nearest second.
@@ -96,7 +97,7 @@ are valid without using the ``-format`` parameter:
    .. code-block:: none
 
       mm/dd/yyyy -> mm/dd/yyyy 22:00:00
-   
+
 -  If the seconds are not specified then the time is assumed to be even on the
    minute:
 
@@ -138,8 +139,8 @@ are valid without using the ``-format`` parameter:
 Cast a Value as a Date Type
 ---------------------------
 
-If the value is in a recognized string format described previously,
-simply use the ``date`` creator method::
+If the value is in a recognized string format described previously, simply use
+the ``date`` creator method::
 
    date('05/22/2002')          // => 05/22/2002
    date('05/22/2002 12:30:00') // => 05/22/2002 12:30:00
@@ -205,13 +206,13 @@ the field or variable should be in one of the format described above or the
 .. method:: date_gmtToLocal(value)
 
    Converts the date/time of any object that can be cast as a date object from
-   Greenwich Mean Time to the local time of the machine running Lasso 9. 
+   Greenwich Mean Time to the local time of the machine running Lasso 9.
 
 .. method:: date_localToGMT(value)
 
    Converts the date/time of any object that can be cast as a date object from
    local time to Greenwich Mean Time.
-  
+
 .. method:: date_getLocalTimeZone()
 
    Returns the current time zone of the machine running Lasso 9 as a standard
@@ -221,11 +222,11 @@ the field or variable should be in one of the format described above or the
 .. method:: date_minimum()
 
    Returns the minimum possible date recognized by a date object in Lasso.
-  
+
 .. method:: date_maximum()
 
    Returns the maximum possible date recognized by a date object in Lasso.
-  
+
 .. method:: date_msec()
 
    Returns an integer representing the number of milliseconds recorded on the
@@ -292,6 +293,7 @@ disregarded::
       // ... The code to time ...
       'The code took ' + (date_msec - #start) + ' milliseconds to process.'
    ?>
+
 
 .. _date-duration-formatting-dates:
 
@@ -377,19 +379,19 @@ Lasso date strings to alternate formats::
 
    date_format('06/14/2001', -format='%A, %B %d')
    // => Thursday, June 14
-   
+
    date_format('06/14/2001', '%a, %b %d')
    // => Thu, Jun 14
-   
+
    date_format('2001-06-14', -format='%Y%m%d%H%M')
    // => 200106141600
-   
+
    date_format(date('1/4/2002'), '%m.%d.%y')
    // => 01.04.02
-   
+
    date_format(date('1/4/2002 02:30:00'), -format='%B, %Y')
    // => January, 2002
-   
+
    date_format(date('1/4/2002 02:30:00'), '%r')
    // => 02:30:00 AM
 
@@ -438,8 +440,8 @@ dates converted to strings will use that format. Ex::
 Date Format Member Methods
 --------------------------
 
-In addition to ``date_format`` and ``date_setFormat``, Lasso 9 also
-offers the ``date->format`` and ``date->setFormat`` member methods for performing format
+In addition to ``date_format`` and ``date_setFormat``, Lasso 9 also offers the
+``date->format`` and ``date->setFormat`` member methods for performing format
 conversions on date objects.
 
 .. member:: date->format()
@@ -453,7 +455,7 @@ conversions on date objects.
 
 .. member:: date->setFormat(format::string)
 
-   Sets a date output format for a particular date object. Requires a format    
+   Sets a date output format for a particular date object. Requires a format
    string as a parameter.
 
 .. member:: date->getformat()
@@ -575,6 +577,7 @@ formatting things such as dates and currency based on known standards for
 various locations. You can use locale objects to output dates in these standard
 formats.
 
+
 Using Locales to Display Dates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -596,35 +599,34 @@ Canada) and uses them to output the date in the format for each locale::
 Date Accessors
 --------------
 
-A date accessor method returns a specific integer or string value from
-a date object, such as the name of the current month or the seconds
-of the time.
+A date accessor method returns a specific integer or string value from a date
+object, such as the name of the current month or the seconds of the time.
 
 .. member:: date->year()
 
    Returns a four-digit integer representing the year for a specified date.
-  
+
 .. member:: date->month(-long::boolean= ?, -short::boolean= ?)
 
    Returns the number of the month (1=January, 12=December) for a specified date
    (defaults to current date). Optional ``-long`` parameter returns the full
    month name (e.g. "January") or an optional ``-short`` parameter returns an
    abbreviated month name (e.g. "Jan").
-  
+
 .. member:: date->day()
 
    Returns the integer day of the month (e.g. 15).
-  
+
 .. member:: date->dayOfYear()
 
    Returns integer day of year (out of 365). Will work with leap years as well
    (out of 366).
-  
+
 .. member:: date->dayOfWeek()
 
    Returns the number of the day of the week (1=Sunday, 7=Saturday) for the date
    object.
-  
+
 .. member:: date->week()
 .. member:: date->weekOfYear()
 
@@ -642,7 +644,7 @@ of the time.
 .. member:: date->dayOfWeekInMonth()
 
    Returns the day of week in month field for the date.
-  
+
 .. member:: date->hour()
 .. member:: date->hourOfDay()
 
@@ -655,21 +657,21 @@ of the time.
 .. member:: date->minute()
 
    Returns integer minutes from "0" to "59" for the date object.
-  
+
 .. member:: date->second()
 
    Returns integer seconds from "0" to "59" for the date object.
-  
+
 .. member:: date->millisecond()
 
    Returns the current integer milliseconds of the current date object.
-  
+
 .. member:: date->time()
-   
+
    Returns the time of the date object.
 
 .. member:: date->ampm()
-   
+
    Returns "0" if the time is before noon and "1" if it's noon or later.
 
 .. member:: date->am()
@@ -690,12 +692,12 @@ of the time.
 .. member:: date->zoneOffset()
 
    Returns the time zone offset field for the date.
-  
+
 .. member:: date->gmt()
 
    Returns "true" if the date object is in GMT time and "false" if it is in
    local time.
-  
+
 .. member:: date->dst()
 
    Returns "true" if the date object is in daylight saving time and "false" if
@@ -751,6 +753,7 @@ milliseconds (as related to the clock time) for the machine running Lasso::
    date->millisecond
    // => 957
 
+
 Duration Type
 =============
 
@@ -789,13 +792,13 @@ based on the specified length for the duration.
    specifying one or more of the following keyword parameters to add the amount
    of time indicated by the name of the keyword parameter: ``-year``, ``-week``,
    ``-day``, ``-hour``, ``-minute``, ``-second``
-  
+
 .. member:: duration->year()
 
    Returns the integer number of years in a duration (based on the specified
    start and end date or based on a start date of when the duration object was
    created with an end date dependant on the specified length of time).
-  
+
 .. member:: duration->month()
 
    Returns the integer number of months in a duration (based on the specified
@@ -873,6 +876,7 @@ memebr methods::
    duration('8766:30:45')->second
    // => 31559445
 
+
 .. _date-duration-math:
 
 Date and Duration Math
@@ -914,7 +918,7 @@ These methods are summarized below.
    Adds a specified amount of time to a date object or valid date string. First
    parameter is a date object or valid value that can be cast as a date.
    Keyword/value parameters define what should be added to the first parameter.
-  
+
 .. method:: date_subtract(\
       value, \
       -millisecond::integer= ?, \
@@ -931,7 +935,7 @@ These methods are summarized below.
    parameter is a Lasso date object or valid value that can be cast as a date.
    Keyword/value parameters define what should be subtracted from the first
    parameter.
-  
+
 .. method:: date_difference(value, when, ...)
 
    Returns the time difference between two specified dates. A duration is
@@ -998,9 +1002,9 @@ different values from the date ``5/22/2001 14:02:05``::
 Determine the Time Difference Between Two Dates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``date_difference`` method. The following examples show how to
-calculate the time difference between two date object or valid values that can
-be cast as a date::
+Use the ``date_difference`` method. The following examples show how to calculate
+the time difference between two date object or valid values that can be cast as
+a date::
 
    date_difference(date('5/23/2002'), date('5/22/2002'))
    // => 24:00:00
@@ -1050,14 +1054,14 @@ methods are summarized below.
    since the minute field will roll back to its original value and the hour
    field will not be modified. Valid fields to roll are ``-second``,
    ``-minute``, ``-hour``, ``-day``, ``-week``, ``-month``, or ``-year``.
-  
+
 .. member:: date->subtract(...)
 
    Subtracts a specified amount of time from a date object. Can pass a duration
    object or specify the amount of time by passing keyword/value parameters to
    define what should be subtracted from the object: ``-millisecond``,
    ``-second``, ``-minute``, ``-hour``, ``-day``, or ``-week``.
-  
+
 .. member:: date->difference(when, ...)
 
    Calculates the duration between two date objects. The first paramater must be
@@ -1067,27 +1071,27 @@ methods are summarized below.
    ``-minute``, ``-hour``, ``-day``, ``-week``, ``-month``, or ``-year``.
 
 .. member:: date->minutesBetween(other::date)
-   
+
    Requires one parameter - another date object - and returns the number of
    minutes between the current date object and the specified date object.
 
 .. member:: date->hoursBetween(other::date)
-   
+
    Requires one parameter - another date object - and returns the number of
    hours between the current date object and the specified date object.
 
 .. member:: date->secondsBetween(other::date)
-   
+
    Requires one parameter - another date object - and returns the number of
    seconds between the current date object and the specified date object.
 
 .. member:: date->daysBetween(other::date)
-   
+
    Requires one parameter - another date object - and returns the number of days
    between the current date object and the specified date object.
 
 .. member:: date->businessDaysBetween(other::date)
-   
+
    Requires one parameter - another date object - and returns the number of
    business days between the current date object and the specified date object.
 
@@ -1169,11 +1173,10 @@ calculate the time difference between two dates and return a duration::
 Using Math Symbols
 ------------------
 
-In Lasso 9, one has the ability to perform date and duration
-calculations using math symbols (similar to integer objects). If a
-date or duration appears to the left of a math symbol then the
-appropriate math operation will be performed and the result will be a
-date or duration as appropriate.
+In Lasso 9, one has the ability to perform date and duration calculations using
+math symbols (similar to integer objects). If a date or duration appears to the
+left of a math symbol then the appropriate math operation will be performed and
+the result will be a date or duration as appropriate.
 
 .. member:: date->+(rhs)
 

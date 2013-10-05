@@ -30,12 +30,13 @@ Lasso Admin application as well as other system-related applications.
 The built-in security system is accessed through two different interfaces: the
 set of ``auth_*`` methods and the ``security_registry`` object.
 
+
 Auth
 ====
 
 The ``auth`` methods are used by web apps to execute simple security checks. The
 checks acquire the username, password and realm information from the current web
-request and therefore require that a request be active. In all cases, if the
+request and, therefore, require that a request be active. In all cases, if the
 check fails or if no username and password was provided, then the auth methods
 will generate a HTTP 401 Unauthorized response with a ``WWW-Authenticate:
 Digest`` header. The request is then aborted, by default. If the security checks
@@ -72,6 +73,7 @@ result.
    This method checks that the current authenticated HTTP client user is in the
    specified group.
 
+
 The ``security_registry`` Object
 =================================
 
@@ -81,7 +83,7 @@ freely once the system is initialized. The ``security_registry`` methods permit
 a realm to be specified, but the object otherwise defaults to using the 'Lasso
 Security' realm.
 
-Before the security system be be used, it must be initialized by calling the
+Before the security system can be used, it must be initialized by calling the
 ``security_initialize()`` method. Lasso Server calls this method as it starts up
 and so this can be safely ignored by web applications. Command line or other
 tools that want to use the security system should call this method as early as
@@ -115,9 +117,9 @@ Once created, a security_registry can be used to:
    enabled::boolean = true, \
    comment::string = '')
 
-   This method attempts to add the specified group. A group is by default
-   enabled but it can be explicitly disabled. A comment can be provided when the
-   group is created and will be stored in the database for reference.
+   This method attempts to add the specified group. A group is enabled by
+   default, but it can be explicitly disabled. A comment can be provided when
+   the group is created and will be stored in the database for reference.
 
 .. member:: security_registry->getGroupID(name::string)
 

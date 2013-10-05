@@ -10,11 +10,13 @@ designed to fit tightly into the language runtime's threading model. Each method
 call which might block accepts a timeout parameter. All such timeouts are in
 seconds.
 
+
 TCP
 ===
 
 TCP networking is provided through the net_tcp object. This object represents
 either the client or the server end of a connection.
+
 
 Creating net_tcp Objects
 ------------------------
@@ -25,6 +27,7 @@ can be used to open or accept TCP connections.
 ::
 
    net_tcp()
+
 
 Opening TCP Connections
 -----------------------
@@ -52,13 +55,14 @@ Opening TCP Connections
    tailored for the expected network conditions. A value of -1 indicates no
    timeout.
 
+
 Accepting TCP Connections
 -------------------------
 
 A TCP server listens on a specific port for client connections. Once a client
-connects, a new net_tcp object is returned for that connection. There are several
-steps for establishing a server. The series of methods is generally: bind,
-listen and then either accept or forEachAccept.
+connects, a new net_tcp object is returned for that connection. There are
+several steps for establishing a server. The series of methods is generally:
+bind, listen and then either accept or forEachAccept.
 
 .. member:: net_tcp->bind(port::integer, address::string = '0.0.0.0')
 .. member:: net_tcp->listen(backlog::integer = 128)
@@ -96,17 +100,18 @@ Examples - Creating a simple multi-threaded server::
 
    net_tcp->bind(8080) & listen & forEachAccept => {
      local(con = #1) // new client connection
-   
+
      // move connection into new thread
      split_thread => {
        #con->writeString('HTTP/1.1 404 NOT FOUND\r\n\
                Connection: close\r\n\
                Server: Lasso\r\n\
                Content-Length: 11\r\n\r\n\
-               NOT FOUND\r\n') 
+               NOT FOUND\r\n')
          & close
      }
    }
+
 
 Closing TCP Connections
 -----------------------
@@ -125,6 +130,7 @@ Closing TCP Connections
    read, write or read and write directions. close() should still be called
    after a shutdown.
 
+
 Reading TCP Data
 ----------------
 
@@ -135,6 +141,7 @@ Reading TCP Data
    than the requested amount. The timeout parameter controls how long the method
    will wait for data if there is none to be read. The method will return null
    if the timeout is reached.
+
 
 Writing TCP Data
 ----------------
@@ -150,6 +157,7 @@ Writing TCP Data
    will always match the number of bytes requested to be sent. This method
    automatically handles TCP flow control but does not accept a timeout value.
 
+
 TCP/SSL
 =======
 
@@ -159,6 +167,7 @@ SSL specific additions. SSL is turned on and off for connections which are
 already established. When  being used as a server, the net_tcpssl object will
 return new net_tcpssl objects with SSL turned on.
 
+
 Creating net_tcpssl Objects
 ---------------------------
 
@@ -167,6 +176,7 @@ Creating net_tcpssl Objects
    net_tcpssl()
 
 This creates and returns a new net_tcpssl object. It accepts no parameters.
+
 
 Loading SSL Certificates
 ------------------------
@@ -185,6 +195,7 @@ Loading SSL Certificates
    from the OpenSSL functions. The OpenSSL specific error code and message will
    be set.
 
+
 Beginning & Ending SSL Sessions
 -------------------------------
 
@@ -202,6 +213,7 @@ Beginning & Ending SSL Sessions
 
    This method ends the SSL session and returns the connection to its non-SSL
    state. The connection is not terminated in any way.
+
 
 Accepting SSL Connections
 -------------------------
@@ -222,11 +234,13 @@ also provides an acceptNoSSL method.
    This connections has not yet started an SSL session and operates just as a
    net_tcp connection would. SSL can be started though the beginTLS method.
 
+
 UDP
 ===
 
 UDP is a connectionless protocol. It is used to transmit individual packets of
 data to a server.
+
 
 Creating net_udp Objects
 ------------------------
@@ -236,6 +250,7 @@ Creating net_udp Objects
    net_udp()
 
 This method accepts no parameters and returns a new tcp_udp object.
+
 
 Reading UDP Data
 ----------------
@@ -277,6 +292,7 @@ sent.
 These methods returns the address of the sender and the port from which the
 packet was sent.
 
+
 Writing UDP Data
 ----------------
 
@@ -289,6 +305,7 @@ hosts.
    This method sends the specified bytes to the indicated host. It returns the
    number of bytes which were sent.
 
+
 Closing net_udp Objects
 -----------------------
 
@@ -296,6 +313,7 @@ Closing net_udp Objects
 
    Although net_udp objects do no maintain a connection, they must still be
    closed when they are no longer needed to free up resources.
+
 
 Named Pipes
 ===========
@@ -311,6 +329,7 @@ will return a net_named_pipe object for the new connection.
 net_named_pipe objects are implemented as UNIX domain sockets on UNIX based
 systems and as Named Pipes on Windows.
 
+
 Creating net_named_pipe Objects
 -------------------------------
 
@@ -319,6 +338,7 @@ Creating net_named_pipe Objects
    net_named_pipe()
 
 No parameters are required to create a new net_named_pipe object.
+
 
 Opening Named Pipe Connections
 ------------------------------
@@ -331,6 +351,7 @@ Opening Named Pipe Connections
 
    This method will attempt to connect to the indicated named pipe. This method
    returns true if the connection was made, and false otherwise.
+
 
 Accepting Named Pipe Connections
 --------------------------------

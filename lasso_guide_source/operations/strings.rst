@@ -16,6 +16,7 @@ used to manipulate string values.
    character encodings (UTF-8, ISO-8859-1). See the :ref:`Bytes<bytes>` chapter
    for more information about the bytes type.
 
+
 Overview
 ========
 
@@ -54,6 +55,7 @@ Each of these methods is described in detail in the sections that follow. This
 guide contains a description and examples of using symbols and methods to
 manipulate strings.
 
+
 Unicode Characters
 ==================
 
@@ -72,6 +74,7 @@ line, "\\f" for a form-feed character, "\\t" for a tab, and "\\v" for a
 vertical-tab. See the :ref:`table of supported escape sequences
 <table-supported-escape-sequences>` for the full list.
 
+
 Casting Values to Strings
 =========================
 
@@ -85,6 +88,7 @@ they can be cast explicitly using the ``string`` creator method.
    to a string. An optional second parameter can be used when casting byte
    streams to a string and specified what character set should be used to
    translate the byte stream (defaults to UTF-8).
+
 
 Examples of Automatic String Casting
 ------------------------------------
@@ -192,7 +196,7 @@ value of the string object. Many of these metods are documented below.
    had been deprecated in favor of simply the ``string->size`` method.
 
 .. member:: string->charName(p0::integer)
-   
+
    This method takes a parameter that specifies the position of the character to
    inspect. It returns the Unicode name for the specified character.
 
@@ -752,6 +756,7 @@ beginning and end of the string and then outputs the string::
    // =>
    // Ralph the Ringed Rhino
 
+
 Ensure All Characters are Lowercase
 -----------------------------------
 
@@ -764,6 +769,7 @@ then outputs the changed string::
 
    // =>
    // ralph the ringed rhino races red radishes in the rink.
+
 
 Remove a Pattern From the End of a String
 -----------------------------------------
@@ -804,7 +810,7 @@ String Encoding Methods
    respectively).
 
 .. member:: string->decodeHtml()
-   
+
    This method returns a string with any HTML entities in the base string object
    converted to their Unicode equivalent. This is the opposite of the
    ``string->encodehtml`` method.
@@ -878,7 +884,7 @@ Encode For Use in MySQL
 
 The following example returns a string whose quotes have been encoded for use in
 a MySQL SQL statement::
-   
+
    local(my_string) = "Don't forget to encode"
    #my_string->encodesql()
 
@@ -984,7 +990,7 @@ string::
 
    local(my_string) = "ralph is a red rhinoceros."
    local(vowels)    = map("a"=0, "e"=0, "i"=0, "o"=0, "u"=0)
-   
+
    with letter in #my_string->eachMatch(regexp(`[aeiouAEIOU]`))
    do {
       #vowels->find(#letter)++

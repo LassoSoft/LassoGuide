@@ -52,11 +52,10 @@ The PDF is then written to file upon execution of the ``#my_file->close``. The
 file named "MyFile.pdf" is created in the same folder as the page whose code
 created it.
 
-This chapter explains in detail how these and other tags are used to
-create and edit PDF files. This chapter also shows how to output a PDF
-file to a client browser within the context of a Lasso page, which is
-described in the :ref:`Serving PDF Files <serving-pdf-files>` section of this
-chapter.
+This chapter explains in detail how these and other tags are used to create and
+edit PDF files. This chapter also shows how to output a PDF file to a client
+browser within the context of a Lasso page, which is described in the
+:ref:`Serving PDF Files <serving-pdf-files>` section of this chapter.
 
 .. note::
    When creating files, the user running the Lasso Server instance or
@@ -176,6 +175,7 @@ options can be added to the new PDF document.
    A ``pdf_read`` object can be used in concert with the ``pdf_doc->insertPage``
    method described below to insert pages from an existing PDF document into a
    new PDF document.
+
 
 Read in an Existing PDF Document
 --------------------------------
@@ -307,7 +307,7 @@ with all tags described in this chapter.
    +----------------------+--------------------------------------------------+
 
    The examples below show creating basic PDF files, however these files contain
-   little or no data. Various types of data can be added to these files using 
+   little or no data. Various types of data can be added to these files using
    the methods described in the remainder of this chapter.
 
 
@@ -419,7 +419,7 @@ Each data type is described separately in subsequent sections of this chapter.
    |           |value which is the desired object width in points. Works only  |
    |           |for ``pdf_image`` and ``pdf_barcode`` objects. Optional.       |
    +-----------+---------------------------------------------------------------+
-   
+
    For examples of using the ``pdf_doc->add`` method to add text, image, table,
    and barcode PDF objects to a ``pdf_doc`` object, see the corresponding
    sections in this chapter.
@@ -599,7 +599,7 @@ previous section. All PDF accessor methods are defined below.
    ``map('header1'='content1', 'header2'='content2', …)``.
 
 .. member:: pdf_doc->setFont(font::pdf_font)
-   
+
    Sets a font for all following text. The value is a ``pdf_font`` object.
 
 
@@ -654,8 +654,8 @@ Use the ``pdf_doc->close`` method after all desired modifications have been
 performed on the ``pdf_doc`` object::
 
    local(my_file) = pdf_doc(
-      -file='MyFile.pdf', 
-      -size='A4', 
+      -file='MyFile.pdf',
+      -size='A4',
       -margins=(: 144.0, 144.0, 72.0, 72.0)
    )
    local(font) = pdf_font(-face='Helvetica', -size=36)
@@ -677,6 +677,7 @@ A ``pdf_text`` object may be positioned within the current PDF page using the
 ``-left`` and ``-top`` parameters of the ``pdf_doc->add`` method. Otherwise, if
 no positioning parameters are specified, the text will be added to the top left
 corner of the page by default.
+
 
 .. _using-fonts:
 
@@ -738,6 +739,7 @@ text to determine how it will appear. This is done using the ``pdf_font`` type.
 The following examples show how to set variables as ``pdf_font`` objects
 that define the font styles that are used in a PDF document.
 
+
 Set a Basic Font Style
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -759,7 +761,7 @@ defined using the ``-file`` parameter, and are summarized below.
 
 .. member:: pdf_font->setColor(color::string)
 .. member:: pdf_font->setColor(color::pdf_color)
-   
+
    Changes the font color of the ``pdf_font`` object.
 
 .. member:: pdf_font->setSize(size::integer)
@@ -881,7 +883,7 @@ The ``pdf_text`` constructor method and parameters are described below.
 .. type:: pdf_text
 .. method:: pdf_text(text::string, ...)
 
-   Creates a text object to be added to a ``pdf_doc`` object. The constructor 
+   Creates a text object to be added to a ``pdf_doc`` object. The constructor
    method requires the text string to be added to the PDF document as the first
    parameter. Optional parameters are listed below.
 
@@ -954,6 +956,7 @@ The ``pdf_text`` constructor method and parameters are described below.
 The following examples show how to add text to a defined PDF variable named
 "my_file" that has been initialized previously using the ``pdf_doc`` method.
 
+
 Add a Chunk of Text
 ^^^^^^^^^^^^^^^^^^^
 
@@ -977,9 +980,9 @@ predefined font::
          file cabinet had been traveling at a velocity of 300 meters per \
          second. Top scientists suspect that the cabinet had been in orbit for \
          some time.',
-      -type='Paragraph', 
-      -font=#my_font, 
-      -leading=10.0, 
+      -type='Paragraph',
+      -font=#my_font,
+      -leading=10.0,
       -indentLeft=20.0
    )
    #my_file->add(#text)
@@ -993,8 +996,8 @@ adds the text "Click here to go somewhere" to the ``pdf_doc`` object with a
 predefined font, and links the phrase to "http://www.example.com"::
 
    local(text) = pdf_text(
-      'Click here to go somewhere', 
-      -type='Chunk', 
+      'Click here to go somewhere',
+      -type='Chunk',
       -font=#my_font,
       -anchor='http://www.example.com',
       -underline
@@ -1025,7 +1028,7 @@ the page.
       -width::integer= ?, \
       -height::integer= ?\
    )
-   
+
    Adds specified text that is positioned on a page using point coordinates. An
    optional ``-leading`` parameter (decimal value) sets the text leading space
    in points (the space above each line of the text). A ``-left`` parameter
@@ -1042,9 +1045,9 @@ floating text" to the ``pdf_doc`` object with a predefined font at the
 coordinates specified in the ``-top`` and ``-left`` parameters. The coordinates
 represent the distance in points from the lower and left sides of the page::
 
-    #my_file->drawText('Some floating text', 
-      -font=#my_font, 
-      -left=144.0, 
+    #my_file->drawText('Some floating text',
+      -font=#my_font,
+      -left=144.0,
       -top=480.0
    )
 
@@ -1183,7 +1186,7 @@ submitting information to a Web site in place of an HTML form. This section
 describes how to create form elements within a PDF file, and also how PDF forms
 can be used to submit data to a Lasso-enabled database.
 
-.. Note::
+.. note::
    Due to the iText implementation of PDF support in Lasso 9, PDF documents
    created may contain one form only.
 
@@ -1287,7 +1290,7 @@ methods which are described below.
 
    Adds a pull-down menu to a form. Requires the first parameter to specify the
    name of the pull-down menu, and the second parameter to specify the array of
-   values contained in the menu ``(: 'Value1', 'Value2')``. Optionally, the 
+   values contained in the menu ``(: 'Value1', 'Value2')``. Optionally, the
    array passed as the second parameter can contain a pair for each value. The
    first element in the pair is the value to be used upon form submission, and
    the second element is the human-readable label to be used for display only.
@@ -1364,7 +1367,7 @@ methods which are described below.
    the font of the text.
 
 
-.. note:: 
+.. note::
    **Field Label** - With the exception of the ``pdf_doc->addSubmitButton`` and
    ``pdf_doc->addResetButton`` methods, no form input element tags include
    captions or labels with the field elements. Field captions and labels can be
@@ -1373,7 +1376,7 @@ methods which are described below.
    section for more information.
 
 .. note::
-   All ``pdf_doc`` form member methods, with the exception of 
+   All ``pdf_doc`` form member methods, with the exception of
    ``pdf_doc->addHiddenField`` and ``pdf_doc->addRadioButtonGroup``, require
    placement parameters for specifying the exact positioning of form elements
    within a page. These parameters are summarized in
@@ -1580,6 +1583,7 @@ Lasso-enabled site to interact with a database. PDF forms may be used in the
 same way as HTML forms to submit request parameters to a Lasso response page,
 where database actions can occur via an ``inline`` method.
 
+
 Submit Information to a Database Using a PDF Form
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1604,7 +1608,7 @@ Submit Information to a Database Using a PDF Form
 
 #. Create a submit button in the ``form.lasso`` page that contains the name and
    URL of the Lasso response page::
-       
+
       #my_file->addSubmitButton(
          'Search',
          'Click here to Search',
@@ -1621,7 +1625,7 @@ Submit Information to a Database Using a PDF Form
    action parameters passed from the PDF form to perform a database action.
    This example performs a search on the "Contacts" database using the
    "First_Name" and "Last_Name" parameters passed from the PDF form::
-    
+
       [inline(
          -search,
          -database='Contacts',
@@ -1638,7 +1642,7 @@ Submit Information to a Database Using a PDF Form
 
    If the user of the PDF form entered "Jane" for the first name and "Doe" for
    the last name, then the following results would be returned::
-   
+
       // =>
       // There were 1 record(s) found in the People table.
       // Jane Doe
@@ -1789,9 +1793,9 @@ which are summarized below.
 .. member:: pdf_table->add(table::pdf_table, col::integer, row::integer, ...)
 .. member:: pdf_table->add(image::pdf_image, col::integer, row::integer, ...)
 .. member:: pdf_table->add(barcode::pdf_barcode, col::integer, row::integer, ...)
-   
+
    Inserts text content, a new nested table, an image, or a barcode into a cell.
-   Requires a text string, ``pdf_text`` object, ``pdf_table`` object, 
+   Requires a text string, ``pdf_text`` object, ``pdf_table`` object,
    ``pdf_image`` object, or a ``pdf_barcode`` object to be inserted as the first
    parameter. Also requires specifying the column number as the second parameter
    and row number as the third parameter. Row and columns numbers start from "0"
@@ -1925,6 +1929,7 @@ Creating Graphics
 This section describes how to draw custom graphic objects and insert image files
 within a PDF document.
 
+
 Inserting Images
 ----------------
 
@@ -2006,12 +2011,12 @@ Drawing Graphics
 To draw custom graphics, Lasso uses a coordinate system to determine the
 placement of each graphical object. This coordinate system is a standard
 coordinate plane with horizontal (X) vertical (Y) axis, where a point on a page
-is defined by an array containing horizontal and vertical position values
-"(X, Y)". The base point of the coordinate plane "(0, 0)" is located in the
-lower left corner for the current page. Increasing an X-Value moves a point to
-the right in the page, and increasing the Y-Value moves the point up in the
-page. The maximum X and Y values are defined by the current width and height of
-the page in points.
+is defined by an array containing horizontal and vertical position values "(X,
+Y)". The base point of the coordinate plane "(0, 0)" is located in the lower
+left corner for the current page. Increasing an X-Value moves a point to the
+right in the page, and increasing the Y-Value moves the point up in the page.
+The maximum X and Y values are defined by the current width and height of the
+page in points.
 
 Custom graphics may be drawn in PDF pages using ``pdf_doc`` drawing member
 methods. These member methods operate by controlling a “virtual pen” which draws
@@ -2055,7 +2060,7 @@ below.
    rectangle.
 
 .. member:: pdf_doc->circle(x, y, radius, -fill::boolean= ?)
-   
+
    Draws a circle. Requires the first two parameters to be a set of integer
    points for the center coordinates of the circle and the third parameter to be
    the length of the radius. An optional ``-fill`` parameter draws a filled
@@ -2186,7 +2191,7 @@ Objects of this type can then be added to  ``pdf_doc`` objects.
    basic specifications of the barcode to be created.
 
    .. tabularcolumns:: |l|L|
-   
+
    +------------------------+--------------------------------------------------+
    |Parameters              |Description                                       |
    +========================+==================================================+
@@ -2351,7 +2356,7 @@ multiple text styles.
 
    local(title) = pdf_text('Lasso 9 Server', -type='Chunk', -font=#font1)
    #text_example->add(#title, -number=1)
-   
+
    local(text1) = pdf_text('\n\nThe Lasso product line consists of
       authoring and serving tools that allow Web designers and Web
       developers to quickly build and serve powerful data-driven Web
@@ -2361,16 +2366,16 @@ multiple text styles.
       building and testing data-driven Web sites within a graphical
       editor.\n\nLasso 9 Server works with the following data
       sources:',
-      -type='Paragraph', 
+      -type='Paragraph',
       -leading=15,
       -font=#font2
    )
    #text_example->add(#text1)
 
    local(list) = pdf_list(
-      -format='Bullet', 
+      -format='Bullet',
       -bullet='-',
-      -font=#font2, 
+      -font=#font2,
       -indent=30
    )
    #list->add('FileMaker Server')
@@ -2389,16 +2394,16 @@ multiple text styles.
       firmly positioning Lasso technology within the rapidly evolving
       server-side Web tools market. Lasso technology is used at
       hundreds of thousands of Web sites worldwide.\n\n',
-      -type='Paragraph', 
+      -type='Paragraph',
       -font=#font2
    )
    #text_example->add(#text2)
 
    local(text3) = pdf_text(
       'Click here to go to the LassoSoft Web site',
-      -Type='Phrase', 
-      -Font=#font3, 
-      -Underline='true', 
+      -Type='Phrase',
+      -Font=#font3,
+      -Underline='true',
       -Anchor='http://www.lassosoft.com'
    )
    #text_example->add(#text3)
@@ -2417,9 +2422,9 @@ multiple text styles.
       that adds a suite of dynamic functionality and administration to
       your Web server. This functionality empowers you to build and
       serve just about any dynamic Web application that can be built
-      with maximum productivity and ease.\n\n', 
+      with maximum productivity and ease.\n\n',
       -type='Paragraph',
-      -leading=15, 
+      -leading=15,
       -font=#font2
    )
    #text_example->add(#text4)
@@ -2434,16 +2439,16 @@ multiple text styles.
       serving applications. In addition, Lasso's extensibility allows
       Web Server Connectors to be authored for any Web server for
       which default connectivity is not provided.\n\n",
-      -type='Paragraph', 
-      -leading=15, 
+      -type='Paragraph',
+      -leading=15,
       -font=#font2
    )
    #text_example->add(#text5)
 
    #text_example->drawText(
       #text_example->GetPageNumber->asString,
-      -font=#font2, 
-      -top=30, 
+      -font=#font2,
+      -top=30,
       -left=560
    )
    #text_example->close
@@ -2460,26 +2465,26 @@ The following example creates a PDF file that contains both text and a form.
    local(myFont)       = pdf_font(-face='Helvetica', -size='12')
 
    #form_example->addText(
-      'This PDF file contains a form. See below.\n', 
+      'This PDF file contains a form. See below.\n',
       -font=#myFont
    )
    #form_example->drawText('Select List', -font=#myFont, -left=90, -top=116)
    #form_example->addSelectList(
       'mySelectList',
-      (: 'one', 'two', 'three', 'four'), 
+      (: 'one', 'two', 'three', 'four'),
       -default='one',
       -left=216, -top=104, -width=144, -height=72,
       -font=#myFont
    )
    #form_example->drawText(
-      'Pull-Down Menu', 
+      'Pull-Down Menu',
       -font=#myFont,
       -left=90,
       -top=200
    )
    #form_example->addComboBox(
       'myComboBox',
-      (: 'one', 'two', 'three', 'four'), 
+      (: 'one', 'two', 'three', 'four'),
       -default='one',
       -left=216, -top=188, -width=144, -height=18,
       -font=#myFont
@@ -2500,9 +2505,9 @@ The following example creates a PDF file that contains both text and a form.
    )
    #form_example->drawText('Text Field', -font=#myFont, -left=90, -top=368)
    #form_example->addTextField(
-      'myTextField', 
+      'myTextField',
       'Some More Text',
-      -left=216, -top=360, -width=144, -height=18, 
+      -left=216, -top=360, -width=144, -height=18,
       -font=#myFont
    )
    #form_example->addHiddenField('myHiddenField', 'Shh')
@@ -2511,18 +2516,18 @@ The following example creates a PDF file that contains both text and a form.
       'Submit Form',
       'Submit',
       'http://www.example.com/response.lasso',
-      -left=216, -top=400, -width=100, -height=26, 
+      -left=216, -top=400, -width=100, -height=26,
       -font=#myFont
    )
    #form_example->addResetButton(
-      'Reset', 
+      'Reset',
       'Reset Form',
       'Reset',
       -left=365, -top=400, -width=100, -height=26,
       -font=#myFont
    )
    #form_example->close
-    
+
 
 PDF Table Example
 -----------------
@@ -2532,15 +2537,15 @@ The following example creates a PDF file that contains both text and a table.
 ::
 
    local(table_example) = pdf_doc(-file='Table_Example.pdf', -size='A4')
-   
+
    local(font1) = pdf_font(-face='Helvetica', -size='24')
    local(text)  = pdf_text(
-      'This PDF file contains a table. See below.\n\n', 
-      -leading=15, 
+      'This PDF file contains a table. See below.\n\n',
+      -leading=15,
       -font=#font1
    )
    #table_example->add(#text)
-   
+
    local(font2)    = pdf_font(-face='Helvetica', -size='12')
    local(cell1)    = pdf_text('Cell One'  , -font=#font2)
    local(cell2)    = pdf_text('Cell Two'  , -font=#font2)
@@ -2607,9 +2612,9 @@ accompanied by a barcode.
       -showCode39StartStop,
       -textSize=6.0
    )
-   #barcode_example->drawText('The Shipping Company\n', 
-      -font=#font1, 
-      -left=72, 
+   #barcode_example->drawText('The Shipping Company\n',
+      -font=#font1,
+      -left=72,
       -top=90
    )
    #barcode_example->add(#myBarcode, -left=72, -top=40)
@@ -2633,6 +2638,7 @@ Named PDF files may be linked to in a Lasso page using basic HTML. Once a user
 clicks on a link to a file with a ".pdf" extension, the client browser should
 prompt to download the file or launch the file in PDF reader (if configured to
 do so).
+
 
 Link a PDF file
 ^^^^^^^^^^^^^^^
@@ -2696,7 +2702,7 @@ on the local server. This is done using the ``pdf_doc`` type without the
 ``-file`` parameter. This allows a PDF file to be created in the system memory,
 but does not the save the file to a hard drive location. The resulting file can
 be saved by the end user to a location on the end user's hard drive::
-   
+
    local(my_file) = pdf_doc(-size='A4', -noCompress)
    #my_file->add(pdf_text('Hello World'))
    #my_file->close

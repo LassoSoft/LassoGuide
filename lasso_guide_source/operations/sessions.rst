@@ -4,7 +4,7 @@
 Sessions
 ********
 
-Sessions allow variables to be created which are persistent from request to 
+Sessions allow variables to be created which are persistent from request to
 request within a web site. Rather than passing data using HTML forms or URLs,
 visitor-specific data can be stored in Lasso variables which are automatically
 saved and retrieved by Lasso for each page a visitor loads.
@@ -12,13 +12,13 @@ saved and retrieved by Lasso for each page a visitor loads.
 Sessions can be utilized for a variety of purposes, including:
 
 -  **Current state** - Sessions can store the current state of a Web site for a
-   given visitor. They can determine what the last search they performed was, 
+   given visitor. They can determine what the last search they performed was,
    how the data on a results page was sorted, or in what format the data should
    be presented.
 -  **Store references to database data** - Key column values can be stored in a
    session for quick access. These might include records in a user database or a
    shopping cart database.
--  **Store authentication information** - After a visitor has authenticated 
+-  **Store authentication information** - After a visitor has authenticated
    using a username and password, that authentication information can be stored
    in a session and then checked to ensure that the same visitor is accessing
    data from page request to page request.
@@ -27,6 +27,7 @@ Sessions can be utilized for a variety of purposes, including:
    forms the data from each form can be stored in a session and only placed in
    the database once the final form is submitted. Or, a shopping cart can be
    stored in a session and only placed in an orders table on checkout.
+
 
 How Sessions Work
 =================
@@ -68,8 +69,9 @@ its stored value will be set each time the ``session_start`` method is called.
 The variable does not need to be added to the session on each request, though it
 is safe to do so. A variable can be removed from a session using the
 ``session_removeVar`` method. This method does not alter a variable's current
-value, but does prevents the value of the variable from being saved for the
+value but does prevent the value of the variable from being saved for the
 session.
+
 
 Session Methods
 ===============
@@ -100,8 +102,8 @@ Below is a description of each of the session methods:
 
    Deletes the stored information about a named session for the current visitor.
    Accepts a required parameter: the name of the session to be deleted, and an
-   optional keyword parameter: ``-secure``. The ``-secure`` keyword should be true
-   if the ``-secure`` keyword was true when ``session_start`` was called.
+   optional keyword parameter: ``-secure``. The ``-secure`` keyword should be
+   true if the ``-secure`` keyword was true when ``session_start`` was called.
 
 .. method:: session_abort(sessionName::string)
 
@@ -121,9 +123,10 @@ Below is a description of each of the session methods:
 
 .. method:: session_deleteExpired()
 
-   This method is used internally by the session manager and does not normally 
+   This method is used internally by the session manager and does not normally
    need to be called directly. It trigers a cleanup routine which deletes
    expired sessions from the current session storage location.
+
 
 Session_Start Parameters
 ------------------------
@@ -144,14 +147,14 @@ name           string  *none*  The name of the session. This is the only
                                the developer. If no ID is specified then Lasso
                                will automatically create an ID.
 -useCookie     boolean true    If true, then sessions will be tracked by cookie.
-                               ``-useCookie`` defaults to true unless 
+                               ``-useCookie`` defaults to true unless
                                ``-useLink``, ``-useAuto``, or ``-useNone`` are
                                specified.
 -useLink       boolean false   If true, then sessions will be tracked by
                                modifying all the absolute and relative links in
                                the outgoing response data.
 -useNone       boolean false   If specified, no links on the current page will
-                               be modified and a cookie will not be set. 
+                               be modified and a cookie will not be set.
                                ``-useNone`` allows custom session tracking to be
                                used, bypassing the automated methods provided by
                                Lasso.
@@ -169,7 +172,7 @@ name           string  *none*  The name of the session. This is the only
                                session cookie. This permits the cookie
                                expiration to be set, regardless of the overall
                                expiration for the session itself.
--domain        string  *none*  Optionally sets the domain for the session 
+-domain        string  *none*  Optionally sets the domain for the session
                                cookie.
 -path          string  *none*  Optionally sets the path for the session cookie.
 -secure        boolean false   If true, the session cookie will only be sent
@@ -181,10 +184,12 @@ name           string  *none*  The name of the session. This is the only
                                for it on each request.
 ============== ======= ======= =================================================
 
-***Note:** ``-useCookie`` is the default for ``session_start`` unless
-``-useLink`` or ``-useNone`` are specified. Use ``-useLink`` to track a
-session using only links. Use both ``-useLink`` and ``-useCookie`` to
-track a session using both links and a cookie.
+.. note::
+   ``-useCookie`` is the default for ``session_start`` unless ``-useLink`` or
+   ``-useNone`` are specified. Use ``-useLink`` to track a session using only
+   links. Use both ``-useLink`` and ``-useCookie`` to track a session using both
+   links and a cookie.
+
 
 Starting a Session
 ==================
@@ -203,7 +208,7 @@ current visitor. The ID is searched for in the following three locations:
    the session ID.
 
 The name of the session and the ID are used to check whether a session has
-already been created for the current visitor. If it has then the variables in
+already been created for the current visitor. If it has, then the variables in
 the session are loaded replacing the values for any variables of the same name
 that are already active on the current page.
 
@@ -215,8 +220,10 @@ can be used to retrieve the ID of the current session. It is guaranteed that
 either a valid session will be loaded or a new session will be created when
 ``session_start`` is called.
 
-***Note:** The ``session_start`` method must be used once for each request that
-will access session variables.
+.. note::
+   The ``session_start`` method must be used once for each request that will
+   access session variables.
+
 
 Session Tracking
 ================
@@ -226,24 +233,26 @@ methods or a custom tracking system can be devised. The tracking system to be
 used depends on which parameters are specified when the ``session_start`` method
 is called.
 
+
 Using Cookies
 -------------
 
 The default session tracking method is to use a browser cookie. If no other
-method is specified when creating a session then the ``-useCookie`` method is
+method is specified when creating a session, then the ``-useCookie`` method is
 used by default. The cookie will be inspected automatically when the visitor
 makes another request which includes a call to the ``session_start`` method. No
 additional programming is required.
 
-The session tracking cookie is of the following form: The name of the cookie 
+The session tracking cookie is of the following form: The name of the cookie
 starts with "_LassoSessionTracker_" and is followed by the name given to the
 session in ``session_start``. The value for the cookie is the session ID as
 returned by ``session_id``.
 
+
 Using Links
 -----------
 
-If the ``-useLink`` parameter is specified in the ``session_start`` method then
+If the ``-useLink`` parameter is specified in the ``session_start`` method, then
 Lasso will automatically modify links contained on the current page. No
 additional programming beyond specifying the ``-useLink`` parameter is required.
 
@@ -259,16 +268,18 @@ the ``session_id`` method. For example, an anchor tag referencing the current
 file with a session named "Cart" would have "?-lassosession:Cart=" followed by
 the session ID tacked on after the file name.
 
+
 Use Cookies with a Link Fallback
 --------------------------------
 
 If the ``-useAuto`` parameter is specified in the ``session_start`` method then
 Lasso will check for a cookie with an appropriate name for the current session.
 If the cookie is found then ``-useCookie`` will be used to propagate the
-session. If the cookie cannot be found then ``-useLink`` will be used to
+session. If the cookie cannot be found, then ``-useLink`` will be used to
 propagate the session. This allows a site to preferentially use cookies to
-propagate the session, but to fall back on links if cookies are disabled in the
+propagate the session but to fall back on links if cookies are disabled in the
 visitor's browser.
+
 
 Using Custom Tracking
 ---------------------
@@ -277,8 +288,10 @@ If the ``-useNone`` parameter is specified in the ``session_start`` method then
 Lasso will not attempt to propagate the session. The techniques described later
 in this chapter for manually propagating the session must be used.
 
+
 Session Examples
 ================
+
 
 Start a Session
 ---------------
@@ -291,30 +304,33 @@ both cookies and links.
 
    session_start('Site_Preferences', -expires=1440, -useLink, -useCookie)
 
+
 Add Variables to a Session
 --------------------------
 
 Use the ``session_addVar`` method to add a variable to a session. Once a
 variable has been added to a session its value will be restored when
-``session_start`` is next called. In the following example a variable named
+``session_start`` is next called. In the following example, a variable named
 ``RealName`` is added to a session named ``Site_Preferences``.
 
 ::
 
    session_addVar('Site_Preferences', 'Real_Name')
 
+
 Remove Variables From a Session
 -------------------------------
 
 Use the ``session_removeVar`` method to remove a variable from a session. The
-variable will no longer be stored with the session and its value will not be
+variable will no longer be stored with the session, and its value will not be
 restored in subsequent requests. The value of the variable in the current
-request will not be affected. In the following example a variable named
+request will not be affected. In the following example, a variable named
 ``RealName`` is removed from a session named ``Site_Preferences``.
 
 ::
 
    session_removeVar('Site_Preferences', 'Real_Name')
+
 
 Delete a Session
 ----------------
@@ -330,12 +346,13 @@ example the session ``Site_Preferences`` is ended.
 
    session_end('Site_Preferences')
 
+
 Pass a Session in an HTML Form
 ------------------------------
 
 Sessions can be added to URLs automatically using the ``-useLink`` keyword in
 the ``session_start`` method. In order to pass a session using a form, a hidden
-input must be added explicitly. The hidden input should have the name 
+input must be added explicitly. The hidden input should have the name
 ``-lassosession:SessionName`` and a value of ``session_id``. In the following
 example, the ID for a session ``Site_Preferences`` is returned using
 ``session_id`` and passed explicitly in an HTML form.
@@ -345,6 +362,7 @@ example, the ID for a session ``Site_Preferences`` is returned using
    <form action="save.lasso" method="post">
      <input type="hidden" name="-lassosession:Site_Preferences" value="[session_id('Site_Preferences')]" />
    </form>
+
 
 Track a Session Using Link Decoration Only If Cookies Are Disabled
 ------------------------------------------------------------------
@@ -360,10 +378,11 @@ the session.
 
     session_start('Site_Preferences', -useAuto)
 
+
 Session Example
 ---------------
 
-This example demonstrates how to use sessions to store user-specific values
+This example demonstrates how to use sessions to store user-specific values,
 which are persisted from request to request. It displays a form which the user
 can manipulate. The user's selections are saved from one request to the next.
 
@@ -378,7 +397,7 @@ color, and favorite forms of FTL travel in session variables.
        // start the session
        session_start(#sessionName)
        if(session_result(#sessionName) != 'load') => {
-           // the session did not already exist, 
+           // the session did not already exist,
            // so set the variables we want to be saved
            session_addVar(#sessionName, 'realName')
            session_addVar(#sessionName, 'emailAddress')
@@ -392,7 +411,7 @@ color, and favorite forms of FTL travel in session variables.
 
            // initialize our vars to empty values
            var(realName, emailAddress, favoriteColor,
-               hyperDrive, warpDrive, wormHole, 
+               hyperDrive, warpDrive, wormHole,
                improbabilityDrive,  spaceFold, jumpGate)
        else(#wr->param('submit'))
            // the session existed
@@ -414,22 +433,22 @@ color, and favorite forms of FTL travel in session variables.
        <input type="text" name="realName" value="[$realName]" />
        <br />
        Your Email Address:
-       <input type="text" name="emailAddress" 
+       <input type="text" name="emailAddress"
          value="[$emailAddress]" />
        <br />
        Your Favorite Color:
        <select name="favoriteColor">
          <option value="blue"[
-           $favoriteColor == 'blue'? 
-             ' selected="yes"' 
+           $favoriteColor == 'blue'?
+             ' selected="yes"'
           ]> Blue </option>
          <option value="red"[
-           $favoriteColor == 'red'? 
-             ' selected="yes"' 
+           $favoriteColor == 'red'?
+             ' selected="yes"'
           ]> Red </option>
          <option value="green"[
-           $favoriteColor == 'green'? 
-             ' selected="yes"' 
+           $favoriteColor == 'green'?
+             ' selected="yes"'
           ]> Green </option>
        </select>
        <br />
@@ -440,16 +459,16 @@ color, and favorite forms of FTL travel in session variables.
          [$warpDrive? ' checked="yes"'] /> Warp Drive<br />
        <input type="checkbox" name="wormhole" value="wormhole"
          [$wormHole? ' checked="yes"'] /> Worm Hole<br />
-       <input type="checkbox" name="improbabilitydrive" 
+       <input type="checkbox" name="improbabilitydrive"
          value="improbabilitydrive"
-         [$improbabilityDrive? ' checked="yes"'] 
+         [$improbabilityDrive? ' checked="yes"']
          /> Improbability Drive<br />
        <input type="checkbox" name="spacefold" value="spacefold"
          [$spaceFold? ' checked="yes"'] /> Space Fold<br />
        <input type="checkbox" name="jumpgate" value="jumpgate"
          [$jumpGate? ' checked="yes"'] /> Jump Gate<br />
        <br />
-       <input type="submit" name="submit" value="Submit" /> 
+       <input type="submit" name="submit" value="Submit" />
        <a href="[include_currentPath]">Reload This Page</a>
      </form>
    </body>

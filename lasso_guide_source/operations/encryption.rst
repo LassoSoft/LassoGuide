@@ -52,14 +52,14 @@ SHA1
    truncated after the first null character. It is necessary to use
    ``encode_base64``, ``encode_hex``, or ``encode_utf8`` prior to encrypting
    data that might contain binary characters using these methods.
-   
+
 .. method:: decrypt_blowfish(cyphertext, -seed::string)
 
       Decrypts a string encrypted using the industry standard BlowFish
       algorithm. Accepts two parameters, a string to be decrypted and a
       ``-seed`` keyword parameter with the key or password for the decryption.
       Returns a decrypted bytes object.
-   
+
 .. method:: encrypt_md5(data::bytes)::string
 .. method:: encrypt_md5(data::any)::string
 
@@ -220,11 +220,10 @@ encryption algorithms. These cipher methods provide implementations of many
 industry standard encryption methods and can be very useful when communicating
 using Internet protocols or communicating with legacy systems.
 
-The table below lists the ``[Cipher_ ]`` tags in Lasso. The following
-tables list several of the cipher algorithms and digest algorithms that
-can be used with the ``[Cipher_ ]`` tags. The ``[Cipher_List]`` tag can
-be used to list what algorithms are supported in a particular Lasso
-installation.
+The table below lists the ``[Cipher_ ]`` tags in Lasso. The following tables
+list several of the cipher algorithms and digest algorithms that can be used
+with the ``[Cipher_ ]`` tags. The ``[Cipher_List]`` tag can be used to list what
+algorithms are supported in a particular Lasso installation.
 
 .. note::
    The actual list of supported algorithms may vary from Lasso installation to
@@ -270,32 +269,32 @@ AES
    Advanced Encryption Standard. A symmetric key encryption algorithm which is
    slated to be the replacement for DES. An implementation of the Rijndael
    algorithm.
-   
+
 DES
    Data Encryption Standard. A block cipher developed by IBM in 1977 and used as
    the government standard encryption algorithm for years.
-   
+
 3DES
    Triple DES. This algorithm uses the DES algorithm three times in succession
    with different keys.
-   
+
 RSA
    A public key algorithm named after Rivest, Shamir, and Adelmen. One of the
    most commonly used encyrption algorithsm. Note: Lasso does not generate
    public/private key pairs.
-   
+
 DSA
    Digital Signature Algorithm. Part of the Digital Signature Standard. Can be
    used to sign messages, but not for general encryption.
-   
+
 SHA1
    Secure Hash Algorithm. Produces a 160-bit hash value. Used by DSA.
-   
+
 MD5
    Message Digest. A hash function that generates a 128-bit message digest.
    Replaces the MD4 and MD2 algorithms (which are also supported). Also
    implemented in Lasso as ``encrypt_md5``.
-   
+
 
 List All Supported Algorithms
 -----------------------------
@@ -344,10 +343,10 @@ The compression algorithm should only be used on large string values. For
 strings of less than one hundred characters the algorithm may actually result in
 a larger string than the source.
 
-These methods can be used in concert with the ``null->serialize`` method
-that creates a string representation of a type that implements ``trait_serializable`` and
-the ``serialization_reader->read`` method that returns the original value based on
-a string representation. An example below shows how to compress and
+These methods can be used in concert with the ``null->serialize`` method that
+creates a string representation of a type that implements ``trait_serializable``
+and the ``serialization_reader->read`` method that returns the original value
+based on a string representation. An example below shows how to compress and
 decompress an array object.
 
 .. method:: compress(b::bytes)
@@ -359,7 +358,7 @@ decompress an array object.
 .. method:: decompress(b::bytes)
 
    Decompresses a byte stream.
-   
+
 
 Compress and Decompress a String
 --------------------------------

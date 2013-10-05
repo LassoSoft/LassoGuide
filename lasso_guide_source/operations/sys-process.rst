@@ -5,9 +5,9 @@ Shell Commands with sys_process
 *******************************
 
 Lasso provides the ability to execute local processes or shell commands through
-the ``sys_process`` type. This type allows local processes to be launched with an
-array of parameters and shell variables. Some processes will execute and return
-a result immediately. Other processes can be left open for interactive
+the ``sys_process`` type. This type allows local processes to be launched with
+an array of parameters and shell variables. Some processes will execute and
+return a result immediately. Other processes can be left open for interactive
 read/write operations. The ``sys_process`` type enables Lasso users to do things
 such as execute AppleScripts, print PDF files, and filter data through external
 applications.
@@ -27,9 +27,9 @@ The Sys_Process API
 
    The ``sys_process`` type allows a developer to create a new process on the
    machine and both read from and write data to it. The process is usually
-   closed after the ``sys_process`` type is destroyed, but can optionally be 
+   closed after the ``sys_process`` type is destroyed, but can optionally be
    left running. The ``sys_process`` type shares many of the same member methods
-   and conventions as the file type. 
+   and conventions as the file type.
 
    There are two constructor methods for creating objects of type
    ``sys_process``: the first allows for an empty object with no information
@@ -75,7 +75,7 @@ The Sys_Process API
 
 .. member:: sys_process->readError(count::integer= ?, -timeout= ?)::bytes
 
-   Reads the specified number of bytes from the process's standard error 
+   Reads the specified number of bytes from the process's standard error
    (STDERR) output. Returns a bytes object. Calling this method without a byte
    count will read 1024 bytes. A timeout value may also be specified which is
    the number of milliseconds to wait for the number of bytes being requested.
@@ -106,7 +106,7 @@ The Sys_Process API
    terminated, it will return ``false``.
 
 .. member:: sys_process->detach()
-   
+
    Detaches the ``sys_process`` object from the process. This will prevent the
    process from terminating when the ``sys_process`` object is destroyed.
 
@@ -133,7 +133,7 @@ The Sys_Process API
 
 .. note::
    If you wish to run a command that you expect to run briefly and you want to
-   inspect it's output after it has run, then don't forget to call either 
+   inspect it's output after it has run, then don't forget to call either
    :meth:`sys_process->wait` or :meth:`sys_process->exitCode` before calling
    any of the ``sys_process->read…`` methods. If you don't wait, your code will
    more than likely call the read method before the new process fully starts up,
@@ -149,6 +149,7 @@ Mac OS X and Linux Examples
 This section includes several examples of using ``sys_process`` on OS X. Except
 for the AppleScript example, all of these examples should also work on Linux
 machines.
+
 
 Echo
 ----
@@ -173,9 +174,9 @@ This example uses the ``/bin/ls`` command to list the contents of a directory::
 
    <?lasso
       local(proc) = sys_process('/bin/ls', (: '/' + sys_homePath))
-      
+
       fail_if(#proc->exitCode != 0)
-      
+
       #proc->readString->encodeHTML(true, false)
       #proc->close
    ?>
@@ -280,6 +281,7 @@ This section includes several examples of using ``sys_process`` on Windows. Each
 of the examples uses the command-line processor ``CMD`` with the option ``/C``
 to interpret an individual command.
 
+
 Echo
 ----
 
@@ -353,7 +355,7 @@ This example uses the ``CMD`` processor interactively to run several commands.
 The processor is started with a parameter of ``/Q`` which suppresses the echoing
 of commands back to the output. The result is exactly the same as what would be
 provided if these commands were entered directly into the command line shell. In
-order to process the results it would be necessary to strip off the header and
+order to process the results, it would be necessary to strip off the header and
 the directory prefix from each line::
 
    <?lasso
@@ -376,8 +378,8 @@ Batch File
 ----------
 
 This example uses the ``CMD`` processor to process a batch file. The contents of
-batch file batch.bat is shown below. The file is assumed to be located in the
-folder for the current site in the Lasso 9 Server application folder::
+batch file ``batch.bat`` are shown below. The file is assumed to be located in
+the folder for the current site in the Lasso 9 Server application folder::
 
    @ECHO OFF
    CLS

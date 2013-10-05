@@ -18,8 +18,8 @@ with image files in the supported image formats:
 -  Retrieval of image attributes, such as dimensions, bit depth, and format.
 -  Executing extended ImageMagick commands.
 
-.. note:: 
-   
+.. note::
+
    The image type and features in Lasso 9 are implemented using ImageMagick
    6.6.6-10 (July 7, 2011 build), which is installed as part of Lasso 9 Server
    on Mac OS X. Windows and Linux require ImageMagick to be installed
@@ -36,6 +36,7 @@ an image file on the server using the ``image`` type, and then using various
 member methods to manipulate the variable. Once the image file is manipulated,
 it can either be served directly to the client browser, or it can be saved to
 disk on the server.
+
 
 Dynamically Manipulate An Image On The Server
 ---------------------------------------------
@@ -61,6 +62,7 @@ This chapter explains in detail how these and other methods are used to
 manipulate image and multimedia files. This chapter also shows how to output an
 image file to a client browser within the context of a Lasso page.
 
+
 Supported Image Formats
 -----------------------
 
@@ -70,7 +72,7 @@ A comprehensive list of supported image formats can be found at the following
 URL: `<http://www.imagemagick.org/script/formats.php#supported>`_
 
 A list of commonly used image formats that are certified to work with Lasso 9
-out of the box without additional components installed are shown in 
+out of the box without additional components installed are shown in
 :ref:`Table 1: Tested and Certified Image Formats
 <images-and-multimedia-table-1>`.
 
@@ -100,7 +102,7 @@ out of the box without additional components installed are shown in
     |``TIFF``|Tagged Image File Format. Also known as TIF.      |
     +--------+--------------------------------------------------+
 
-.. note:: 
+.. note::
    Many of the supported formats listed on the ImageMagick site such as EPS and
    PDF may be used with the ``image_…`` methods, but require additional
    components such as Ghostscript to be installed before they will work. These
@@ -114,7 +116,7 @@ File Permissions
 In order to successfully create, manipulate, and save image files using the
 ``image`` methods, the user running the Lasso process must be allowed by the
 operating system to write and execute files inside the folder. To check folder
-permissions in Windows, right-click on the folder and select 
+permissions in Windows, right-click on the folder and select
 :menuselection:`Properties > Security`. For OS X or Linux, use :command:`ls -al`
 from the command-line to check permissions and use the :command:`chmod` and
 :command:`chown` commands to adjust the permissions. (Refer to the
@@ -196,7 +198,7 @@ methods in Lasso 9 are defined below.
    Returns the color of the pixel located at the specified pixel coordinates
    (X,Y). The returned value is an array of RGB color integers (0-255) by
    default. An optional ``-hex`` parameter returns a hex color string
-   (``#FFCCDD``) instead of an RGB array.                                            
+   (``#FFCCDD``) instead of an RGB array.
 
 .. member:: image->comments()
 
@@ -306,7 +308,7 @@ method, which is described below.
    or GIF format.
 
 .. member:: image->addComment(comment)
-   
+
    Adds a file header comment to the image before it is saved. Passing a
    ``null`` parameter removes any existing comments.
 
@@ -379,6 +381,7 @@ client browser. This includes methods for changing image size and orientation,
 applying image effects, adding text to images, and merging images, which are
 described in the following sub-sections.
 
+
 Changing Image Size and Orientation
 -----------------------------------
 
@@ -420,14 +423,14 @@ These methods are defined below.
 
    Creates a horizontal mirror image by reflecting the pixels around the central
    Y-axis.
-   
+
 
 Enlarge an Image
 ^^^^^^^^^^^^^^^^
 
 Use the ``image->scale`` method on an image object. The following example
-enlarges ``image.jpg`` to 225 X 225 pixels. The optional ``-sample``
-parameter specifies that pixel sampling should be used::
+enlarges ``image.jpg`` to 225 X 225 pixels. The optional ``-sample`` parameter
+specifies that pixel sampling should be used::
 
    local(myImage) = image('/images/image.jpg')
    #myImage->scale(-height=225, -width=225, -sample)
@@ -686,9 +689,9 @@ the text ``(c) 2013 LassoSoft`` to the specified image::
       '(c) 2003 LassoSoft',
       -left=5,
       -top=300,
-      -font='/Library/Fonts/Arial.ttf', 
-      -size=8, 
-      -color='#000000', 
+      -font='/Library/Fonts/Arial.ttf',
+      -size=8,
+      -color='#000000',
       -aliased
    )
    #myImage->save('/images/image.jpg')
@@ -860,9 +863,8 @@ of additional ImageMagick commands and functionality.
    Execute ImageMagick commands. Provides direct access to the ImageMagick
    command-line interface. Supports the ``composite``, ``mogrify`, and
    ``montage`` commands. For detailed descriptions of these commands and their
-   corresponding parameters, see the following URL: 
+   corresponding parameters, see the following URL:
    `<http://www.imagemagick.com/www/utilities.html>`_
-
 
 
 Execute an ImageMagick Command Using Lasso
@@ -989,7 +991,9 @@ example shows a GIF named ``picture.gif`` being served from an ``images``
 folder. It is the only contents of this file being called by the client browser
 and has the code all on one line to avoid any data corruption::
 
-   [web_response->replaceHeader('Content-Type'='image/gif')][web_response->includeBytes('/images/picture.gif')][abort]
+   [web_response->replaceHeader('Content-Type'='image/gif')]
+   [web_response->includeBytes('/images/picture.gif')]
+   [abort]
 
 .. note::
    If either of the code examples above is stored in a file named "image.lasso"
@@ -1006,7 +1010,7 @@ Use the :meth:`web_response->sendFile` method to set the MIME type of the file
 to be served and pass it a ``file`` object to include data from the multimedia
 file. The following example shows a sound file named ``ArtOfNoise.mp3`` being
 served from a ``sounds`` folder::
-   
+
    [web_response->sendFile(
       file('/sounds/ArtOfNoise.mp3'),
       'ArtOfNoise.mp3',
@@ -1016,7 +1020,7 @@ If the code above is stored in a file named ``ArtOfNoise.lasso`` at the root of
 the Web serving folder then the sound file could be accessed with the following
 ``<a>`` tag::
 
-    <a href="/ArtOfNoise.lasso">Art of Noise Song</a> 
+    <a href="/ArtOfNoise.lasso">Art of Noise Song</a>
 
 This same technique can be used to serve multimedia files of any type by
 designating the appropriate MIME type in the ``-type`` option passed to the
@@ -1039,12 +1043,12 @@ system::
    if('John' == client_username) {
       web_response->sendFile(
          file('//secret/picture.gif'),
-         'picture.gif', 
+         'picture.gif',
          -type='image/gif')
    else
       web_response->sendFile(
          file('/images/error.gif'),
-         'picture.gif', 
+         'picture.gif',
          -type='image/gif')
    }
 

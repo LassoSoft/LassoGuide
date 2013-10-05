@@ -4,15 +4,16 @@
 Sending Email
 *************
 
-Overview
-========
-
 Lasso includes a built-in system for queuing and sending email messages to SMTP
 servers. Email messages can be sent to site visitors to notify them when they
 create a new account or to remind them of their login information. Email
 messages can be sent to administrators when various errors or other conditions
 occur. Email messages can even be sent in bulk to many email addresses to notify
 site visitors of updates to the Web site or other news.
+
+
+Overview
+========
 
 Email messages are queued using the ``email_send`` method. All outgoing messages
 are stored in tables of the Site database. The queue can be examined and
@@ -49,6 +50,7 @@ priority messages.
    than 8MB using the ``email_send`` method . If necessary, larger messages can
    be sent using the ``email_immediate`` method described in the
    :ref:`Email Composing<email-composing>` section.
+
 
 Email Structure
 ---------------
@@ -134,7 +136,7 @@ plain text alternative, embedded HTML images, and attachments.
       separating their email addresses with commas.
 
    ``-cc``
-      Carbon copy recipients of the message. 
+      Carbon copy recipients of the message.
 
    ``-bcc``
       Blind carbon copy recipients of the message.
@@ -171,30 +173,30 @@ plain text alternative, embedded HTML images, and attachments.
    ``-priority``
       Specifies the priority of the message. Valid values include 'High' or
       'Low'. Default is 'Medium'.
-   
+
    ``-replyTo``
       The email address that should be used for replies to this message.
-   
+
    ``-sender``
       The email address that should be reported as the sender of this message.
-   
+
    ``-contentType``
       The value for the Content-Type header of the message.
-   
+
    ``-transferEncoding``
       The value for the Transfer-Encoding header of the message.
-   
+
    ``-characterSet``
       The character set in which the message should be encoded.
-   
+
    ``-contentDisposition``
       Can be set to 'inline' in order to embed all attachments inline. Defaults
       to 'attachment'.
-   
+
    ``-extraMIMEHeaders``
       A pair array which defines extra MIME headers that should be added to the
       email message.
-   
+
    ``-immediate``
       If specified then the email is sent immediately without using the outgoing
       message queue. This option can be used for messages which have very large
@@ -261,6 +263,7 @@ be executed before the email is sent::
       -subject = 'An Email',
       -body    = include('format.lasso')
    )
+
 
 Send An Email Message To Multiple Recipients
 --------------------------------------------
@@ -337,7 +340,7 @@ need to be loaded from within the email client without any other information
 about the Web server::
 
    <h2>Money Saving Coupon</h2>
-   <p>Print out the money saving coupon below or click on it to order directly from our Web site.<br /> 
+   <p>Print out the money saving coupon below or click on it to order directly from our Web site.<br />
       <a href="http://www.example.com/couponoffer.html">
          <img src="http://www.example.com/couponoffer.gif" border="0" width="288" height="288" />
       </a>
@@ -659,7 +662,6 @@ some time later using ``email_status`` to see if the email message was sent or
 if the address it was sent to was invalid.
 
 
-
 .. _email-composing:
 
 Composing Email
@@ -772,7 +774,7 @@ system.
 
 
 .. method:: email_batch()
-   
+
    Takes a block of code, and with in this code it temporarily suspends some
    back-end operations of the email queue so that a batch of email messages can
    be queued quickly. Any messages which are already queued will continue to
@@ -976,8 +978,9 @@ The first time an MX record is looked up it will be cached and the same
 information will be returned on subsequent lookups::
 
    email_mxlookup('gmail.com')
-   // => 
+   // =>
    // map(domain = gmail.com, host = gmail-smtp-in.l.google.com, priority = 5)
+
 
 Communicate with an SMTP Server
 -------------------------------

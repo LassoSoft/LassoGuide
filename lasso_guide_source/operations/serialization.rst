@@ -14,6 +14,7 @@ Lasso uses XML for object serialization. An object which supports serialization
 can be converted to and from XML. The object is given control over which of its
 data members will be written to the output.
 
+
 Serializing Objects
 ===================
 
@@ -28,12 +29,13 @@ provided through :trait:`trait_serializable`, which is described here.
    This method serializes the object and returns the resulting data. That data
    can then be used to deserialize the object.
 
+
 Deserializing Objects
 =====================
 
 Serialized object data is converted back into an object by using a
 ``serialization_reader`` object. This object is created with the serialized data
-and then its ``read()`` method is called. If read is successful then a new
+and then its ``read()`` method is called. If read is successful, then a new
 object is returned of the same type as the original serialized object.
 
 Example - Serialize an array of objects, then deserialize it back into a new
@@ -43,6 +45,7 @@ array::
    local(data = #a->serialize)
    local(a2 = serialization_reader(#data)->read)
    #a == #a2
+
 
 Supporting Serialization
 ========================
@@ -83,14 +86,16 @@ Serializable objects must implement the following methods:
    original object state.
 
 In addition to implementing the proper methods, the object must have
-:trait:`trait_serializable`. This trait should be added when the type is defined.
+:trait:`trait_serializable`. This trait should be added when the type is
+defined.
+
 
 Serialization_element Objects
 -----------------------------
 
-``serialization_element`` objects are used when both serializing and deserializing. This
-simple object must be created with a key and a value. The key and value are made
-available through methods named accordingly.
+``serialization_element`` objects are used when both serializing and
+deserializing. This simple object must be created with a key and a value. The
+key and value are made available through methods named accordingly.
 
 .. type:: serialization_element
 .. method:: serialization_element(key, value)
@@ -104,6 +109,7 @@ available through methods named accordingly.
    object was created. The key and the value can be objects of any serializable
    type.
 
+
 Example Serializable Type
 -------------------------
 
@@ -114,16 +120,16 @@ The example type has data members that it saves to the resulting data.
 
    define example_obj => type {
      trait { import trait_serializable }
-   
+
      data public dmem1 = 'Value for first member',
           public dmem2 = 'Second member\'s value'
-   
+
      public serializationElements()::trait_forEach => {
-       return (: 
+       return (:
          serialization_element(1, .dmem1),
          serialization_element(2, .dmem2) )
        }
-   
+
      public acceptDeserializedElement(d::serialization_element) => {
        match(#d->key) => {
          case(1)
@@ -133,7 +139,7 @@ The example type has data members that it saves to the resulting data.
        }
      }
    }
-   
+
    local(
      obj = example_obj,
      data = #obj->serialize,

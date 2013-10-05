@@ -105,7 +105,7 @@ Lasso From the Command Line**.
    terminated, it will return ``false``.
 
 .. member:: os_process->detach()
-   
+
    Detaches the ``os_process`` object from the process. This will prevent the
    process from terminating when the ``os_process`` object is destroyed.
 
@@ -127,6 +127,7 @@ Mac OS X and Linux Examples
 This section includes several examples of using ``os_process`` on OS X. Except
 for the AppleScript example, all of these examples should also work on Linux
 machines.
+
 
 Echo
 ----
@@ -248,6 +249,7 @@ Windows Examples
 This section includes several examples of using ``os_process`` on Windows. Each
 of the examples uses the command-line processor ``CMD`` with the option ``/C``
 to interpret an individual command.
+
 
 Echo
 ----

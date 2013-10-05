@@ -68,8 +68,8 @@ government institutions, ".org" is a top-level domain reserved for non-profit
 organizations.
 
 Each country has its own top level domain defined by its standard two letter
-abbreviation. ".us" is the top-level domain for the United States, ".uk" is
-the top-level domain for the United Kingdom, ".cn" is the top-level domain for
+abbreviation. ".us" is the top-level domain for the United States, ".uk" is the
+top-level domain for the United Kingdom, ".cn" is the top-level domain for
 China. The domain ".to" is actually the country domain for Tonga. Each country
 decides how it wants to assign domain names within their own top-level domain.
 Some have created virtual top-level domains like ".com.uk", ".org.uk",
@@ -85,6 +85,7 @@ number represents a single 8 bit integer and the entire IP address represents a
 typical IP address appears as follows::
 
    127.0.0.1
+
 
 IPv6 Addresses
 ==============
@@ -182,6 +183,7 @@ DNS Lookup
    ``-timeout``      How long to wait for a response when doing a DNS lookup.
    ================= ===========================================================
 
+
 IP Lookup Example
 -----------------
 
@@ -268,5 +270,5 @@ DNS Response Type
    Returns the answer from the DNS server. This differs based on the type.
 
 .. member:: dns_response->data
-   
+
    Returns the raw byte stream.

@@ -12,12 +12,14 @@ Lasso provides a variety of ordered and unordered compound data types. These
 objects contain zero or more other arbitrary objects. Built-in support is
 provided for arrays, lists, maps and others.
 
+
 Ordered Containers
 ==================
 
 Ordered containers store their elements positioned by the order in which they
 are inserted. The elements inserted first into an ordered container will always
 be first unless subsequently repositioned.
+
 
 Pair
 ----
@@ -27,6 +29,7 @@ Pair
    Pairs are one of the most basic of containers. A pair always contains two
    elements. These are referred to as the 'first' and 'second' elements and are
    accessed through methods of the same name.
+
 
 Creating Pair Objects
 ^^^^^^^^^^^^^^^^^^^^^
@@ -42,6 +45,7 @@ Creating Pair Objects
    pair can be created by specifying the first and second values as parameters
    when calling the pair method.
 
+
 Using Pair Objects
 ^^^^^^^^^^^^^^^^^^
 
@@ -56,6 +60,7 @@ Using Pair Objects
 
    These methods permit the elements of a pair to be set.
 
+
 .. _array:
 
 Array
@@ -66,9 +71,10 @@ Array
    Array objects store zero or more elements and provide random access to those
    elements by position. Positions are 1-based integers. Arrays will grow as
    needed to accommodate new elements. Elements can be inserted and removed from
-   arrays at any position, however, inserting an element anywhere but at the end
+   arrays at any position. However, inserting an element anywhere but at the end
    of an array results in all subsequent elements being moved down. Thus, arrays
    are best used when inserting or removing only at the end of the array.
+
 
 Creating Array Objects
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -78,6 +84,7 @@ Creating Array Objects
 
 An array can be created with zero or more parameters. All parameters passed to
 the array method will be inserted into the new array.
+
 
 Using Array Objects
 ^^^^^^^^^^^^^^^^^^^
@@ -98,7 +105,7 @@ Using Array Objects
 .. member:: array->removeAll()
 .. member:: array->removeAll(matching)
 
-   These methods remove one of more elements from the array. Remove with no
+   These methods remove one or more elements from the array. Remove with no
    parameters removes the last element from the array. Remove with a position
    parameter will remove the element from that location. All subsequent elements
    must then be moved up to fill the slot. A second count parameter can be
@@ -167,8 +174,8 @@ Using Array Objects
 
 .. member:: array->+(rhs::trait_forEach)::array
 
-   Arrays can be combined with other compound types by using the + operator. A new
-   array containing all the elements is returned.
+   Arrays can be combined with other compound types by using the + operator. A
+   new array containing all the elements is returned.
 
    Example of combining an array and a staticarray and a pair into a new array::
 
@@ -176,6 +183,7 @@ Using Array Objects
       + (:'6','7','8')
       + pair('nine', 'ten')
       // => array(1, 2, 3, 4, 5, 6, 7, 8, nine, ten)
+
 
 Staticarray
 -----------
@@ -194,6 +202,7 @@ Staticarray
    followed by a colon. Then follows zero or more elements, finalized by a close
    parenthesis.
 
+
 Creating Staticarray Objects
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -210,6 +219,7 @@ Example of creating a few staticarrays::
    The first method creates a new staticarray given zero or more elements. The
    second method, staticarray_join, creates a new staticarray of the given size
    with each element filled by the value given as the second parameter.
+
 
 Using Staticarray Objects
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -266,17 +276,19 @@ Example of joining new elements into a new staticarray::
    all the elements from another staticarray. Either variant will return the
    elements in a new staticarray object.
 
+
 List
 ----
 
 .. type:: list
 
    A list presents a series of objects stored in a linked manner. Elements can
-   be efficiently added or removed from a list at the end or the beginning, but
+   be efficiently added or removed from a list at the end or the beginning but
    cannot be added into the middle. Lists do not support random access, so the
    only way to get particular elements from a list is through one of the
    iteration-related methods such as :ref:`query expressions
    <query-expressions>`.
+
 
 Creating List Objects
 ^^^^^^^^^^^^^^^^^^^^^
@@ -285,6 +297,7 @@ Creating List Objects
 
    The list method creates a new list object using the parameters given as the
    elements for the list.
+
 
 Using List Objects
 ^^^^^^^^^^^^^^^^^^
@@ -322,17 +335,19 @@ Using List Objects
    This method takes one parameter and compares it against the elements in the
    list. It returns true if the list contains a match.
 
+
 Queue
 -----
 
 .. type:: queue
 
    Queue objects store data in a "first in, first out" (FIFO) manner. Elements
-   can effeciently be inserted into the end of the queue (called pushing) and
+   can efficiently be inserted into the end of the queue (called pushing) and
    removed from the front of the queue (called popping). Queues do not support
    random access, so the only way to get particular elements from a queue is
    through one of the iteration-related methods such as :ref:`query expressions
    <query-expressions>`.
+
 
 Creating Queue Objects
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -341,6 +356,7 @@ Creating Queue Objects
 
    This method creates a queue object using the parameters passed to it as the
    elements of the queue.
+
 
 Using Queue Objects
 ^^^^^^^^^^^^^^^^^^^
@@ -388,6 +404,7 @@ Stack
    through one of the iteration-related methods such as :ref:`query expressions
    <query-expressions>`.
 
+
 Creating Stack Objects
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -395,6 +412,7 @@ Creating Stack Objects
 
    This method creates a stack object using the parameters passed to it as the
    elements of the stack.
+
 
 Using Stack Objects
 ^^^^^^^^^^^^^^^^^^^
@@ -431,6 +449,7 @@ based ordering. Lasso supports two unordered container types: map and set. Maps
 provide access to the elements via separate keys. Sets store only the elements
 themselves.
 
+
 .. _map:
 
 Map
@@ -448,6 +467,7 @@ Map
    < B`` then always ``B >= A``. Most Lasso builtin types, such as strings,
    integers and decimals, fit this criteria.
 
+
 Creating Map Objects
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -464,6 +484,7 @@ Example of creating a map with a series of parameters using string based keys::
       'G' = 97.401,
       'N' = array(4, 5, 6)
    )
+
 
 Using Map Objects
 ^^^^^^^^^^^^^^^^^
@@ -497,23 +518,26 @@ Using Map Objects
 
    This method returns the number of elements contained within the map.
 
+
 Set
 ---
 
 .. type:: set
 
-   A set contains a within it only unique elements. Each element is itself a
-   key. Sets support quickly determining if an object is contained within in.
+   A set contains within it only unique elements. Each element is itself a key.
+   Sets support quickly determining if an object is contained within in.
    Elements within a set must be able to onCompare themselves just as described
    for map keys.
+
 
 Creating Set Objects
 ^^^^^^^^^^^^^^^^^^^^
 
 .. method:: set(...)
 
-   A set is created with zero or more elements parameters. The element values are
-   inserted into the set.
+   A set is created with zero or more elements parameters. The element values
+   are inserted into the set.
+
 
 Using Set Objects
 ^^^^^^^^^^^^^^^^^

@@ -73,6 +73,7 @@ xml_namedNodeMap          NamedNodeMap          Represents a collection of nodes
                                                 which can be accessed by name.
 ========================= ===================== ================================
 
+
 Creating XML Documents
 ======================
 
@@ -181,6 +182,7 @@ The resulting document would have the following format::
    <!DOCTYPE svg:svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
    <svg xmlns:svg="http://www.w3.org/2000/svg"/>
 
+
 Creating XML Node Objects
 -------------------------
 
@@ -223,6 +225,7 @@ The following methods are use for creating new nodes:
    document and so it has no parent. If false is given for parameter two, then
    the node's children and attributes are not copied. If true is given, then all
    attributes and child nodes are copied into the current document.
+
 
 Inspecting XML Objects
 ----------------------
@@ -358,6 +361,7 @@ show the methods most commonly utilized when working with an XML document.
    Returns the node indicated by the index. Indexes start at zero and go up to
    length-1. Returns null if the index is invalid.
 
+
 Modifying XML Objects
 ---------------------
 
@@ -455,6 +459,7 @@ removing items from node maps.
    Removes the node with the given namespace/name combination from the map.
    Returns the removed node.
 
+
 XPath
 =====
 
@@ -542,6 +547,7 @@ Extract the 'at' attribute from the second child element of the a node::
    #doc->extractOne('//n:a/*[2]/@at', (:'n'='my_uri'))
 
    // => at="val2"
+
 
 XSLT
 ====

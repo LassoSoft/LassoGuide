@@ -75,31 +75,42 @@ method detailed below.
 
    Returns a string representation of the integer value formated as specified by
    the parameters passed to the method. If no parameters are passed to the
-   method, the string will return the integer value outputed in base 10. The
-   parameters are outlined in the table below.
+   method, the string will return the integer value outputed in base 10.
 
-   .. tabularcolumns:: |l|L|
+   :param boolean -hexadecimal:
+      If set to "True", the integer will output in hexadecimal notation.
+   :param integer -padding:
+      Specifies the desired length for the output. If the formatted number is
+      less than this length then the number is padded.
+   :param string -padChar:
+      Specifies the character that will be inserted if padding is required.
+      Defaults to a space.
+   :param boolean -padRight:
+      Set to "True" to pad the right side of the output. By default, padding is
+      appended to the left side of the output.
+   :param string -groupChar:
+      The character which should be used for thousands grouping. Defaults to
+      empty.
 
-   +----------------+----------------------------------------------------------+
-   |Keyword         |Description                                               |
-   +================+==========================================================+
-   |``-hexadecimal``|If set to "True", the integer will output in hexadecimal  |
-   |                |notation.                                                 |
-   +----------------+----------------------------------------------------------+
-   |``-padding``    |Specifies the desired length for the output. If the       |
-   |                |formatted number is less than this length then the number |
-   |                |is padded.                                                |
-   +----------------+----------------------------------------------------------+
-   |``-padChar``    |Specifies the character that will be inserted if padding  |
-   |                |is required. Defaults to a space.                         |
-   +----------------+----------------------------------------------------------+
-   |``-padRight``   |Set to "True" to pad the right side of the output. By     |
-   |                |default, padding is appended to the left side of the      |
-   |                |output.                                                   |
-   +----------------+----------------------------------------------------------+
-   |``-groupChar``  |The character which should be used for thousands grouping.|
-   |                |Defaults to empty.                                        |
-   +----------------+----------------------------------------------------------+
+   .. original table
+      .. tabularcolumns:: |l|L|
+
+      ================ ==========================================================
+      Keyword          Description
+      ================ ==========================================================
+      ``-hexadecimal`` If set to "True", the integer will output in hexadecimal
+                       notation.
+      ``-padding``     Specifies the desired length for the output. If the
+                       formatted number is less than this length then the number
+                       is padded.
+      ``-padChar``     Specifies the character that will be inserted if padding
+                       is required. Defaults to a space.
+      ``-padRight``    Set to "True" to pad the right side of the output. By
+                       default, padding is appended to the left side of the
+                       output.
+      ``-groupChar``   The character which should be used for thousands grouping.
+                       Defaults to empty.
+      ================ ==========================================================
 
 
 Format an Integer as a Hexadecimal Value
@@ -121,9 +132,9 @@ Bit operations can be performed with Lasso’s integer objects. These operations
 can be used to examine and manipulate binary data. They can also be used for
 general purpose binary set operations.
 
-Integer literals in Lasso can be specified using hexadecimal notation.
-This can greatly aid in constructing literals for use with the bit
-operation. For example, "0xff" is the integer literal "255".
+Integer literals in Lasso can be specified using hexadecimal notation. This can
+greatly aid in constructing literals for use with the bit operation. For
+example, "0xff" is the integer literal "255".
 
 
 .. member:: integer->bitAnd(p0::integer)
@@ -164,7 +175,7 @@ operation. For example, "0xff" is the integer literal "255".
    Returns the result of Flipping the bit specified in the integer parameter.
 
 .. member:: integer->bitSet(p0::integer)
-   
+
    Returns the result of setting the bit specified in the integer parameter.
 
 .. member:: integer->bitTest(p0::integer)
@@ -176,7 +187,6 @@ operation. For example, "0xff" is the integer literal "255".
    In previous versions of Lasso, these bit methods modified the integer in
    place. In Lasso 9, integers are by-value objects and are immutable, so it is
    not possible to change their value in place.
-
 
 
 Performing a Bitwise Or
@@ -219,12 +229,11 @@ In the following example, the second bit an integer is set and then tested::
 Decimal Type
 ============
 
-The decimal data type represents real or floating point numbers.
-Basically, 0.0 or any positive or negative number that contains a decimal
-point is a decimal object in Lasso. Examples include "-123.0" and
-"456.789". Decimal values can also be written in exponential notation
-such as "1.23e2" which is equivalent to "1.23" times "10^2" or
-"123.0".
+The decimal data type represents real or floating point numbers. Basically, 0.0
+or any positive or negative number that contains a decimal point is a decimal
+object in Lasso. Examples include "-123.0" and "456.789". Decimal values can
+also be written in exponential notation such as "1.23e2" which is equivalent to
+"1.23" times "10^2" or "123.0".
 
 .. type:: decimal
 .. method:: decimal()
@@ -257,7 +266,7 @@ value because the other parameter of the "+" operator is the decimal value
    456.0 + 123
 
    // => 579.0
-        
+
 The following example shows how a variable with a value of "123" is
 automatically cast to a decimal value::
 
@@ -290,7 +299,7 @@ appended. The value of the number does not change::
 
    decimal(123)
    // => 123.0
-        
+
 
 Formatting Decimal Objects
 ==========================
@@ -320,7 +329,7 @@ method detailed below.
    precision. The parameters are outlined in the table below.
 
    .. tabularcolumns:: |l|L|
-   
+
    +----------------+----------------------------------------------------------+
    |Keyword         |Description                                               |
    +================+==========================================================+
@@ -674,9 +683,9 @@ integer, or the ``math_ceil`` method to found to the next highest integer::
 Rounding to Specified Precision
 -------------------------------
 
-Numbers can be rounded to arbitrary precision using the
-``math_round`` method with a decimal parameter. The second parameter
-should be of the form "0.01", "0.0001", "0.000001," etc::
+Numbers can be rounded to arbitrary precision using the ``math_round`` method
+with a decimal parameter. The second parameter should be of the form "0.01",
+"0.0001", "0.000001," etc::
 
    math_round(3.1415926, 0.0001)
    // => 3.141600

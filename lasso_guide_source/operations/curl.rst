@@ -17,7 +17,7 @@ more.
 .. Over view of where Jono was going
    Using curl - basic curl usage
    Additional options - describes setting options to customize curl functionality
-   Retrieving information - describes how to get further information about the current request 
+   Retrieving information - describes how to get further information about the current request
    Include_URL - a method to include content from a remote source
    FTP - communicating with FTP servers
    Examples
@@ -277,7 +277,7 @@ Network Options
 
 .. method:: CURLOPT_PORT()
 
-   Used with :meth:`curl->set(key, value)`. Specifies what remote port number to
+   Used with :meth:`curl->set(key, value)`. Specifies which remote port number to
    connect to instead of the one specified in the URL, or speicy the default
    port for the used protocol. This value should be an integer.
 
@@ -425,10 +425,10 @@ HTTP Options
    either bytes or a string. You must make sure that the data is formatted the
    way you want the server to receive it — curl will not convert or encode it
    for you. Most web servers will assume this data to be url-encoded.
-   
+
    Using ``CURLOPT_POSTFIELDS`` implies :meth:`CURLOPT_POST()` — that option
    will be automatically set along with all of its other side effects.
-   
+
    If you want to do a zero-byte POST, you need to set
    :meth:`CURLOPT_POSTFIELDSIZE()` explicitly to zero. Simply setting
    ``CURLOPT_POSTFIELDS`` to NULL or an empty string effectively disables the
@@ -735,7 +735,7 @@ Connection Options
    operation can have simultaneously opened. The default is 5.
 
 .. method:: CURLOPT_FRESH_CONNECT()
-   
+
    Used with :meth:`curl->set(key, value)`. Set this to 1 to force the next
    operation to use a new connection. (This option should be used with caution
    and only if you understand what it does.)
@@ -844,7 +844,7 @@ SSL & Security Options
    ``CURLE_SSL_ENGINE_SETFAILED`` error is returned.
 
 .. method:: CURLOPT_SSLVERSION()
-   
+
    Used with :meth:`curl->set(key, value)`. This option is used to control which
    version(s) of SSL/TLS can be used. The value passed should be one of the
    following methods to force using the version specfied by the method name:
@@ -907,12 +907,12 @@ SSL & Security Options
    of either 'clear', 'safe', 'confidential', or 'private'. It is used to set
    the kerberos security level for FTP and enable kerberos awareness. Set the
    option to "null" to disable kerberos.
-   
+
 
 Using the ``curl`` Type
 =======================
 
-The ``curl`` type is meant to be a low-level implementation which means that it
+The ``curl`` type is meant to be a low-level implementation, which means that it
 is usually not necessary to use it directly. For the most part, the
 ``include_url`` method is all that is needed for HTTP requests and the ``ftp_…``
 methods handle your FTP needs. In fact, the examples below could have easily
@@ -948,8 +948,8 @@ server::
    // Server: ECS (atl/5834)
    // X-Cache: HIT
    // x-ec-custom-error: 1
-   // Content-Length: 1270   
-   // 
+   // Content-Length: 1270
+   //
    // , )
 
 
@@ -987,7 +987,7 @@ needs if possible.
 
 .. method:: include_url(\
       url::string, \
-      -getParams= ?, \ 
+      -getParams= ?, \
       -postParams= ?, \
       -sendMimeHeaders= ?, \
       -username= ?, \
@@ -1007,7 +1007,7 @@ needs if possible.
       -basicAuthOnly= ?\
    )
 
-   This method requires a string representing a URL in the form of 
+   This method requires a string representing a URL in the form of
    "http://www.example.com" ("https://" can also be used). By default, this
    method returns the HTML body result of performing an HTTP GET request at the
    specified URL.
@@ -1159,7 +1159,7 @@ variable named "my_headers" and then displays them::
    )
    $my_headers
 
-   // => 
+   // =>
    // HTTP/1.1 200 OK
    // Accept-Ranges: bytes
    // Cache-Control: max-age=604800
@@ -1315,7 +1315,7 @@ Update an Existing Remote File
 
       ftp_putData(
          'ftp://example.com/test.txt',
-         -data     = bytes("\nAs You Wish"), 
+         -data     = bytes("\nAs You Wish"),
          -username = `MyUsername`,
          -password = `Shh...Secret`,
          -options  = array(CURLOPT_FTPAPPEND=1)
@@ -1353,8 +1353,8 @@ Upload a Local File to the Remote Server
    ::
 
       ftp_putFile(
-         'ftp://example.com/new_dir/test.txt', 
-         -file     = "/test.txt", 
+         'ftp://example.com/new_dir/test.txt',
+         -file     = "/test.txt",
          -username = `MyUsername`,
          -password = `Shh...Secret`,
          -options  = array(CURLOPT_FTP_CREATE_MISSING_DIRS=1)
@@ -1382,7 +1382,7 @@ Delete a Remote File
    remote server::
 
       ftp_deleteFile(
-         'ftp://example.com/test.txt', 
+         'ftp://example.com/test.txt',
          -username = `MyUsername`,
          -password = `Shh...Secret`
       )

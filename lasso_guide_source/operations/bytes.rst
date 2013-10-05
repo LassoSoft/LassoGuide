@@ -14,6 +14,7 @@ binary data.
    the :ref:`Strings<strings>` chapter for more information about the string
    type.
 
+
 Creating Bytes Objects
 ======================
 
@@ -114,12 +115,12 @@ to deal with binary data. These methods are outlined below.
    second parameter is the value to replace the first parameter with.
 
 .. member:: bytes->contains(find)
-   
+
    Returns "true" if the instance contains the specified sequence.
 
 .. member:: bytes->beginsWith(find::string)
 .. member:: bytes->beginsWith(find::bytes)
-   
+
    Returns "true" if the instance begins with the specified sequence.
 
 .. member:: bytes->endsWith(find::string)
@@ -150,9 +151,8 @@ to deal with binary data. These methods are outlined below.
 
 .. member:: bytes->removeTrailing(find::bytes)
 
-    Removes all occurrences of the parameter sequence
-    from the end of the instance. Requires one
-    parameter which is the data to be removed.
+    Removes all occurrences of the parameter sequence from the end of the
+    instance. Requires one parameter which is the data to be removed.
 
 .. member:: bytes->append(p0::bytes)
 .. member:: bytes->append(rhs::string)
@@ -180,7 +180,7 @@ to deal with binary data. These methods are outlined below.
     Returns the current position at which imports will occur in the byte stream.
 
 .. member:: bytes->setPosition(i::integer)
-   
+
    Sets the current position within the byte stream. Requires a single integer
    parameter.
 
@@ -219,7 +219,7 @@ to deal with binary data. These methods are outlined below.
    Imports the first 2 bytes of an integer parameter.
 
 .. member:: bytes->import32bits(p0::integer)
-   
+
    Imports the first 4 bytes of an integer parameter.
 
 .. member:: bytes->import64bits(p0::integer)
@@ -234,6 +234,7 @@ to deal with binary data. These methods are outlined below.
 
 Examples
 ========
+
 
 Cast String Data as a Bytes Object
 ----------------------------------
@@ -251,6 +252,7 @@ Use the ``bytes`` creator method. The example below creates an empty ``bytes``
 object with a size of 1024 bytes::
 
    local(obj) = bytes(1024)
+
 
 Return the Size of a Byte Stream
 --------------------------------
@@ -326,7 +328,7 @@ Export a String From a Bytes Stream
 
 Use the ``bytes->exportString`` method. The following example exports a string
 using UTF-8 encoding::
-   
+
    local(obj) = bytes('This is a string')
    #obj->exportString('UTF-8')
 

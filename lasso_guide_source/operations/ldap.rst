@@ -32,6 +32,7 @@ combined name, "ln" for last name, "fn" for first name, or "ou" for operational
 unit. Attributes might also have longer names like "email", "telephonenumber",
 etc.
 
+
 LDAP Searches
 =============
 
@@ -85,6 +86,7 @@ parentheses "()", an asterisk "*", a backslash "\", or a null character the
 following escape sequences can be used. "\\2a" for "(", "\\28" for ")", "\\29"
 for "*", "\\5c" for "\\", and "\\00" for null.
 
+
 LDAP Results
 ============
 
@@ -119,7 +121,7 @@ LDAP Type
 =========
 
 The ``ldap`` data type can be used to create a connection to an LDAP server and
-then to send queries to the server. 
+then to send queries to the server.
 
 .. type:: ldap
 .. method:: ldap(...)
@@ -209,7 +211,7 @@ code is checked to make sure that it is "0" indicating success. If the result
 code is greater than "0" then an error is reported::
 
    local(my_ldap) = ldap
-   
+
    #my_ldap->open('ldap.example.com')
    fail_if(#my_ldap->code != 0, #my_ldap->code, 'LDAP Error ' + #my_ldap->code)
 
