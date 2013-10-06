@@ -68,7 +68,7 @@ release = '9.2'
 exclude_patterns = ['**/.svn']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
-#default_role = None
+default_role = 'meth'
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
 add_function_parentheses = False
@@ -96,6 +96,7 @@ unused_docs = ['_demo', '_test']
 # -- Breathe Options
 breathe_projects = { "LCAPI": os.path.abspath("../doxyxml/") }
 breathe_default_project = "LCAPI"
+#breathe_domain_by_extension = { "h" : "cpp" }
 
 # -- Options for HTML output ---------------------------------------------------
 
