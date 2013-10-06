@@ -17,31 +17,23 @@ in-depth information about captures and examples of their use.
 Overview
 ========
 
-A capture is a representation of the control state of a section of code. While
-methods are stateless (once they have had their code established), captures
-maintain state, some of which may change frequently during execution.
+A :dfn:`capture` is a representation of the control state of a section of code.
+While methods are stateless (once they have had their code established),
+captures maintain state, some of which may change frequently during execution.
 This state consists of:
-   
-*  The current method's code
 
-*  The current "self" and "inherited"
-
-*  The current "params" staticarray
-
-*  The current set of local variables, and their values
-
-*  The current program counter, or "PC". This value is the offset within that
+-  The current method's code
+-  The current "self" and "inherited"
+-  The current "params" staticarray
+-  The current set of local variables, and their values
+-  The current program counter, or "PC". This value is the offset within that
    capture's code at which execution is currently happening.
-
-*  The name of the current method call
-
-*  The current :dfn:`continuation`, which is the element to be executed after
+-  The name of the current method call
+-  The current :dfn:`continuation`, which is the element to be executed after
    the current capture completes
-   
-*  The set of handlers that must be executed before the capture completes
+-  The set of handlers that must be executed before the capture completes
+-  A :dfn:`home` capture, which is the capture in which this capture was created
 
-*  A :dfn:`home` capture, which is the capture in which this capture was created
-   
 When a capture is invoked, it will in turn execute its associated code which
 will execute within the context of that capture's state. The currently executing
 capture is known as the :dfn:`current capture` and is made available through the
@@ -55,14 +47,14 @@ As previously mentioned, captures are automatically created when a method is
 executed. Captures can also be manually created by using curly braces as an
 expression. This commonly occurs when a capture is used in a ``givenBlock``
 association::
-   
+
    #ary->forEach => {
       // ... a capture of the surrounding code ...
    }
-   
-In the code above, the block associated with ``array->forEach`` is a capture
-object which ``array->forEach`` receives as its ``givenBlock`` and may execute
-as needed.
+
+In the code above, the block associated with `array->forEach` is a capture
+object which `array->forEach` receives as its ``givenBlock`` and may execute as
+needed.
 
 Captures can also be assigned to variables like any other object. The following
 example creates a capture and assigns it to the variable "cap"::
@@ -86,7 +78,7 @@ created based on the invocation of a method will not have a home. A capture that
 is created within a capture that does have a home will have its home set to its
 parent capture's home. This means that nested captures will all have the same
 home.
-   
+
 A capture with a home will always take the following environment values from
 that home: self, locals, params, current call name. A capture without a home
 will have state values based on the circumstances of the call. All other capture
@@ -97,14 +89,14 @@ important for determining the behavior of ``return`` and ``yield``.
 Executing Captures
 ==================
 
-Captures are executed by calling their ``capture->invoke`` method::
-   
+Captures are executed by calling their `capture->invoke` method::
+
    local(cap) = { /* ... the capture's code ... */ }
    #cap->invoke  // Invoke the capture
    #cap()        // Shorthand invocation
 
-You can pass parameters to the ``capture->invoke`` method, and these are
-available with the special parameter local variables (``#1``, ``#2``, etc.)::
+You can pass parameters to the `capture->invoke` method, and these are available
+with the special parameter local variables (``#1``, ``#2``, etc.)::
 
    local(dist) = {
       local(x1) = #1
@@ -115,7 +107,7 @@ available with the special parameter local variables (``#1``, ``#2``, etc.)::
    #dist(8,2,10,5) // Sets #x1, #y1, #x2, #y2 to 8, 2, 10, 5 respectively
 
 When you invoke an auto-collect capture, the auto-collected value will be
-returned and can be accessed using ``capture->autoCollectBuffer``::
+returned and can be accessed using `capture->autoCollectBuffer`::
 
    local(distance) = {^
       local(x1) = #1
@@ -128,7 +120,7 @@ returned and can be accessed using ``capture->autoCollectBuffer``::
    #distance(8,2,10,5)
    '\n'
    #distance->autoCollectBuffer
-   // => 
+   // =>
    // 3.605551
    // 3.605551
 
@@ -141,7 +133,7 @@ different scope. The example below illustrates this by creating a capture in the
 "method1". We then invoke that capture in "method2" which changes the value for
 "my_local" in "method1". Returning "my_local" confirms that the value has been
 updated by "method2"::
-   
+
    define method1 => {
       local(my_local)
       local(my_cap) = {
@@ -150,7 +142,7 @@ updated by "method2"::
 
       #my_local = 'Hello'
       method2(#my_cap)
-      
+
       return #my_local
    }
    define method2(cap::capture) => {
@@ -173,27 +165,27 @@ if it is executed a second time. A capture that has been returned from will
 begin executing from the start of the capture. A capture that has been yielded
 from will begin executing immediately after the expression which caused it to
 yield in the first place. A capture may ``yield`` many times::
-   
+
    local(cap) = {
       yield 1
       yield 2
       yield 3
       yield 4
    }->detach
-   
-   #cap() 
+
+   #cap()
    // => 1
-   #cap() 
-   // => 2 
-   #cap() 
+   #cap()
+   // => 2
+   #cap()
    // => 3
-   #cap() 
+   #cap()
    // => 4
-   #cap() 
+   #cap()
    // => 1   // capture reached the end and reset
-   
+
 Note that once a capture reaches its end, the PC will automatically be reset
-back to the top. (Read on for a discussion of why we use ``capture->detach``
+back to the top. (Read on for a discussion of why we use `capture->detach`
 here.)
 
 Even though a capture has yielded, it can still elect to return later in the
@@ -205,14 +197,14 @@ code, thus resetting itself::
       return 3 // subsequent calls will start from beginning
       yield  4 // this is unreachable
    }
-   
+
 The current home capture is very important for determining the behavior of
 ``return`` and ``yield``. Because captures are intended to execute as if they
 had been invoked directly within their home, ``return`` and ``yield`` will both
 behave by exiting from the current home as well as itself. This type of return
 is known as "non-local", and is illustrated in the following example which
 implements a potential "contains" method::
-   
+
    define contains(a::array, val) => {
       #a->forEach => {
          #val == #1?
@@ -227,7 +219,7 @@ their execution (with all their handlers executing in the process) up to and
 including the capture's home.
 
 A capture can be detached from its home in order to escape from this behavior.
-The easiest way to accomplish this is to call the capture's ``capture->detach``
+The easiest way to accomplish this is to call the capture's `capture->detach`
 method. This method detaches the capture from its home and returns itself as the
 method's result. (This is what we did in the first yield example above.)
 
@@ -267,7 +259,7 @@ Capture API
 .. member:: capture->detach()
 
    Detaches the capture so that it no longer has a home capture and then returns
-   itself. After this, calling ``capture->home`` will return ``void``.
+   itself. After this, calling `capture->home` will return ``void``.
 
 .. member:: capture->restart()
 
@@ -332,5 +324,4 @@ Capture API
 .. member:: capture->invokeAutoCollect(...)
 
    This invokes the capture. If it is an auto-collect capture, it will return
-   the auto-collecte value, but it will not update
-   ``capture->autoCollectBuffer``.
+   the auto-collecte value, but it will not update `capture->autoCollectBuffer`.

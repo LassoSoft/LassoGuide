@@ -1,5 +1,5 @@
-.. _calling-lasso:
 .. http://www.lassosoft.com/Language-Guide-Calling-Lasso
+.. _calling-lasso:
 
 *************
 Calling Lasso
@@ -83,7 +83,7 @@ into the document using a delimiter pair. When this file is loaded through a
 browser, the code shown above is executed and the result is returned to the Web
 browser.
 
-If the embedded message is not visible in the Web browser or an error occurs
+If the embedded message is not visible in the Web browser or an error occurs,
 then you should make sure that Lasso Server has been properly installed on your
 machine. Consult the :ref:`installation guide for your operating system
 <lasso-installation>` for complete instructions.
@@ -192,7 +192,7 @@ Executing Code from STDIN
 
 The lasso9 tool can also accept code to execute from stdin. This is useful when
 piping results from one command to the lasso9 tool in order for it to execute
-the given code. In order to have lasso9 get its code from stdin, the "--"
+the given code. In order to have lasso9 get its code from stdin, the "``--``"
 argument is used. The following example uses the standard "echo" command to
 produce code for the lasso9 tool to read from stdin and then execute:
 

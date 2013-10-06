@@ -1,5 +1,5 @@
-.. _variables:
 .. http://www.lassosoft.com/Language-Guide-Variables
+.. _variables:
 
 *********
 Variables
@@ -38,9 +38,7 @@ A local must be defined before it can be used. When a variable is defined, it is
 generally done so along with an initial value to be assigned to that variable.
 If an initial value is omitted, the variable will have the default value of
 "``null``". Multiple locals can be defined at one time, either with or without
-default values, using the following syntax examples.
-
-::
+default values, using the following syntax examples::
 
    // Defines local "name" set to the value of the expression
    local(name = expression)
@@ -56,17 +54,13 @@ A local can be accessed using two different methods. In the first method, the
 local variable may or may not have previously been defined. If the local has not
 been defined, then it is defined and assigned a value of "``null``". Regardless,
 the value of the variable is produced as the result. This is only the case when
-one variable name is used and when it is not accompanied by an initial value.
-
-::
+one variable name is used and when it is not accompanied by an initial value. ::
 
    local(name)
    // => the value of "name", potentially creating "name"
 
 Local variables can also be accessed using the "#" symbol before the name. This
-is the preferred method for accessing local variables.
-
-::
+is the preferred method for accessing local variables. ::
 
    #name
    // => the value of "name"
@@ -90,7 +84,7 @@ value corresponds to the position of the desired parameter value, beginning with
 "1". For example, in a method given two parameters, the first would be available
 using ``#1`` and the second would be available using ``#2``.
 
-See the chapter on :ref:`Methods<methods>` for information on methods and method
+See the chapter on :ref:`methods` for information on methods and method
 parameters.
 
 
@@ -102,13 +96,12 @@ outside of any particular capture, yet are restricted to the currently executing
 thread. Each thread maintains its own set of vars. Vars are useful for
 maintaining program states which go beyond the operation of any one method.
 
-Vars are created in a manner similar to locals, but use the "var" declaration.
-
-::
+Vars are created in a manner similar to locals, but instead use the "var"
+declaration. ::
 
    // Defines var "name" with the value of the expression
    var(name = expression)
-   
+
    // Defines vars "name" and "b", setting "b" to "1"
    var(name, b = 1)
 
@@ -117,9 +110,7 @@ of "``null``".
 
 Vars can be created using an expression value for a name, unlike locals which
 require a fixed literal name. This expression must result in a string or a tag
-object. That value is used as the variable's name.
-
-::
+object. That value is used as the variable's name. ::
 
    // Defines var with name of nameExpr
    var(nameExpr = expression)
@@ -127,9 +118,7 @@ object. That value is used as the variable's name.
 .. note::
   Because a literal variable name can resemble a method call with no parameters,
   if the variable name is intended to be the result of a method call, then that
-  call should be given empty parentheses () to disambiguate.
-
-::
+  call should be given empty parentheses ``()`` to disambiguate. ::
 
    // Defines var with the name of what nameCall() returns
    var(nameCall() = expression)
@@ -139,17 +128,13 @@ First, the var may simply be referenced using the ``var`` construct along with
 the var's name. The var may or may not have previously been defined. If the var
 has not been defined, then it is defined and assigned a value of "``null``". The
 value of the variable is produced as the result. This is only the case when one
-variable name is used and when it is not accompanied by an initial value.
-
-::
+variable name is used and when it is not accompanied by an initial value. ::
 
    var(name)
    // => the value of "name", potentially creating "name"
 
 Vars can also be accessed using the "$" symbol before the name. When using this
-method, an error is returned if the var has not been previously defined.
-
-::
+method, an error is returned if the var has not been previously defined. ::
 
    $name
    // => the value of "name"
@@ -173,18 +158,14 @@ Type constraints are applied when a local or thread variable is first defined.
 This is done by supplying a :ref:`tag literal<literals-tag>`, which consists of
 two colons and then the name of the type to which the variable will be
 constrained, immediately following the variable name. The following example
-applies type constraints to a local and a var.
-
-::
+applies type constraints to a local and a var::
 
    local(lname::integer = 0)
    var(vname::string = '')
 
 In the above example, "#lname" is constrained to hold only integers, and
 "$vname" is constrained to hold only strings. The next example shows valid and
-invalid usage of the two variables.
-
-::
+invalid usage of the two variables::
 
    #lname = 400
    // Valid: 400 is an integer
@@ -196,9 +177,7 @@ invalid usage of the two variables.
    // FAILURE: #lname can only hold integers
 
 When applying a type constraint in a variable declaration, it is required that a
-default value be provided.
-
-::
+default value be provided. ::
 
    local(lname::integer, x, y, z)
    // FAILURE: #lname requires default value
@@ -218,13 +197,13 @@ The following examples should help clarify::
    local(one, two, three, four) = (:1, 2, 3, 4, 5, 6)
    #one
    // => 1
-   
+
    #two
    // => 2
-   
+
    #three
    // => 3
-   
+
    #four
    // => 4
 
@@ -238,7 +217,7 @@ The following examples should help clarify::
    local(_, two, _, four) = 1 to 100 by 3
    #two
    // => 4
-   
+
    #four
    // => 10
 
@@ -249,14 +228,12 @@ The following examples should help clarify::
    local(wanted, _, w2) = 'ABCDEFGH'
    #wanted
    // => A
-   
+
    #w2
    // => C
 
-Note that the local must have more than one element in it and none of the
-elements can be given values.
-
-::
+Note that the local must include more than one element, and none of the elements
+can be assigned values. ::
 
    local(x) = #foo
    // unchanged, works as expected
@@ -266,4 +243,4 @@ elements can be given values.
    // FAILURE: x cannot have value
 
 Also note that assign-produce ``:=`` cannot be used with decompositional
-assignment and that quoted variable names are not permitted.
+assignment, and that quoted variable names are not permitted.

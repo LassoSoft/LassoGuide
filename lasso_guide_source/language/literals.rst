@@ -1,5 +1,5 @@
-.. _literals:
 .. http://www.lassosoft.com/Language-Guide-Literals
+.. _literals:
 
 ********
 Literals
@@ -40,9 +40,7 @@ Quoted Strings
 The first kind of string literal is a series of zero or more characters
 surrounded by either single or double quotes. If a string literal begins with a
 single quote, then it must end with a single quote. The same holds for a string
-literal that begins with a double quote; it must end with a double quote.
-
-::
+literal that begins with a double quote; it must end with a double quote. ::
 
    'This is a string literal'
    "This is also a string literal"
@@ -51,9 +49,7 @@ Within this type of string literal, the **backslash** character  ``[\\0x5C]`` is
 interpreted as an escape character. This means that when a backslash is
 encountered in a string literal, it changes the meaning of the immediately
 following character(s). For example, a backslash is required in order to create
-a string literal that contains the quote character that surrounds the string.
-
-::
+a string literal that contains the quote character that surrounds the string. ::
 
    'This is a \'string literal\' with quotes'
    "This is also a \"string literal\" with quotes"
@@ -64,9 +60,7 @@ double quote without having to escape it.
 
 A backslash is also required in order to insert a literal backslash into a
 string. In order to embed a backslash into a string, two backslashes must be
-used.
-
-::
+used. ::
 
    'This string literal has a backslash \\ in it'
 
@@ -76,9 +70,7 @@ literal whitespace to be removed from the resulting string. The string resumes
 starting with the first encountered non-whitespace character. This sort of
 escape sequence can be useful for preserving the visual formatting of a string
 literal while removing the characters used to achieve that formatting from the
-resulting string.
-
-::
+resulting string. ::
 
    'This string \
           had a break in it'
@@ -94,33 +86,32 @@ Also supported are a series of commonly used escape sequences. The following
 table shows all of the permissible escape sequences.
 
 
-.. _table-supported-escape-sequences:
+.. _literals-table-1:
 
-Table 1: Supported Escape Sequences
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. table:: Table 1: Supported Escape Sequences
 
-================== ================= ======================
-Sequence           Value             Description
-================== ================= ======================
-``\xhh``           Unicode character 1-2 hex digits
-``\uhhhh``         Unicode character 4 hex digits
-``\Uhhhhhhhh``     Unicode character 8 hex digits
-``\ooo``           Unicode character 1-3 octal digits
-``\:NAME:``        Unicode character Unicode character name
-``\a``             0x07              Bell
-``\b``             0x08              Backspace
-``\e``             0x1B              Escape
-``\f``             0x0C              Form feed
-``\n``             0x0A              Line feed
-``\r``             0x0D              Carriage return
-``\t``             0x09              Tab
-``\v``             0x0B              Vertical tab
-``\"``             0x22              Quotation mark
-``\'``             0x27              Apostrophe
-``\?``             0x3F              Question mark
-``\\``             0x5C              Backslash
-``\<end of line>`` none              Escape whitespace
-================== ================= ======================
+   ================== ================= ======================
+   Sequence           Value             Description
+   ================== ================= ======================
+   ``\xhh``           Unicode character 1-2 hex digits
+   ``\uhhhh``         Unicode character 4 hex digits
+   ``\Uhhhhhhhh``     Unicode character 8 hex digits
+   ``\ooo``           Unicode character 1-3 octal digits
+   ``\:NAME:``        Unicode character Unicode character name
+   ``\a``             0x07              Bell
+   ``\b``             0x08              Backspace
+   ``\e``             0x1B              Escape
+   ``\f``             0x0C              Form feed
+   ``\n``             0x0A              Line feed
+   ``\r``             0x0D              Carriage return
+   ``\t``             0x09              Tab
+   ``\v``             0x0B              Vertical tab
+   ``\"``             0x22              Quotation mark
+   ``\'``             0x27              Apostrophe
+   ``\?``             0x3F              Question mark
+   ``\\``             0x5C              Backslash
+   ``\<end of line>`` none              Escape whitespace
+   ================== ================= ======================
 
 
 Ticked Strings
@@ -132,12 +123,10 @@ holds no special meaning. Ticked strings do not recognize any escape sequences,
 and this can make them particularly useful when using regular expressions which
 often require many backslashes. (Using regular quoted strings, the backslashes
 would themselves have to be.) The caveat for this is that a literal backtick
-character cannot appear within a ticked string.
-
-::
+character cannot appear within a ticked string. ::
 
    `This is a ticked string`
-   `A ticked string can contain 'single quotes', "double quotes", 
+   `A ticked string can contain 'single quotes', "double quotes",
    \backslash characters\ and more - anything except backticks!`
 
 
@@ -146,9 +135,7 @@ Boolean Literals
 
 A ``boolean`` is an object which is either "true" or "false". Lasso supports the
 creation of these objects by using the word **true** or **false** directly in
-the source code.
-
-::
+the source code. ::
 
    true
    false
@@ -159,9 +146,7 @@ Integer Literals
 
 An integer is a whole number. Integers can be positive or negative and Lasso
 puts no limit on the size of an integer. Integers consist of the digits 0
-through 9 and can be written directly into the source code.
-
-::
+through 9 and can be written directly into the source code. ::
 
    1
    -4
@@ -172,9 +157,7 @@ Integers can also be written using hexadecimal notation. Hexadecimal integers
 begin with a zero followed by upper or lower case "x" followed by one or more
 hexadecimal digits (0-9 and A-F). Either upper or lower case letters are
 permitted. A hexadecimal integer literal is always interpreted as a positive
-integer.
-
-::
+integer. ::
 
    0x1
    0x04
@@ -198,9 +181,7 @@ begins with an upper or lower case "E", followed by an optional "-" or "+"
 followed by one or more digits. Lasso also supports decimal literals for "NaN"
 (not a number) as well and positive and negative "infinity". Note that case is
 irrelevant when using the "NaN" and "infinity" literals. Various examples of
-decimal literals follow.
-
-::
+decimal literals follow. ::
 
    .1
    -.89
@@ -214,7 +195,6 @@ decimal literals follow.
 
 .. _literals-tag:
 
-
 Tag Literals
 ============
 
@@ -227,9 +207,7 @@ characters. Tags cannot contain spaces.
 Tags are commonly used when applying type constraints to methods, data members
 and variables, though they have other purposes as well.
 
-A tag literal consists of two colons followed by the tag characters.
-
-::
+A tag literal consists of two colons followed by the tag characters. ::
 
    // Creates a tag object representing "name"
    ::name
@@ -248,10 +226,8 @@ holding any object types. This object is used in many places in Lasso and it's
 not unlikely that a Lasso programmer will come into contact with one.
 Staticarrays are created in the same way as any object, but Lasso supports a
 "shortcut" syntax to produce staticarrays. This expression begins with an open
-parenthesis immediately followed by a colon and then zero or more comma
-delimited expressions, ending with the closing parenthesis.
-
-::
+parenthesis immediately followed by a colon, then zero or more comma delimited
+expressions, ending with the closing parenthesis. ::
 
    // Creates a staticarray containing 1, 2 and "hello"
    (: 1, 2, 'hello')
@@ -276,9 +252,7 @@ Single Line Comments
 
 A single line comment begins with two forward slashes ("//"). The comment runs
 until the end of the line, which is either a carriage return, line feed or a
-carriage return/line feed pair.
-
-::
+carriage return/line feed pair. ::
 
    local(n = 123) // this is the first comment
    // this is another comment
@@ -291,9 +265,7 @@ Block Comments
 A block comment permits a large section of code to be commented. Block comments
 begin with the characters "/\*" and end with "\*/". Any characters, as well as
 multiple lines, are permitted within the opening and closing. Block comments
-cannot be nested.
-
-::
+cannot be nested. ::
 
    local(n = 123)
    /* this is a block comment
@@ -314,8 +286,7 @@ Doc comments can only appear in the following locations:
 
 -  Immediately before a type definition
 -  Immediately before a trait definition
--  Immediately before a method definition; either inside or outside of a type
-   definition
+-  Immediately before a member or unbound method definition
 -  Immediately before a trait's provide or require section
 
 ::

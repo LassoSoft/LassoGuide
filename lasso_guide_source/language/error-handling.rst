@@ -1,5 +1,5 @@
-.. _error-handling:
 .. http://www.lassosoft.com/Language-Guide-Error-Handling
+.. _error-handling:
 
 **************
 Error Handling
@@ -66,11 +66,14 @@ to provide comprehensive error handling:
 
 -  Automatic error reporting is performed by Lasso in response to unhandled
    errors.
+
 -  A custom error page allows the automatic error report to be replaced by a
    custom page. Custom error pages are usually created for each site on a
    server.
+
 -  Error handling methods allow action and logical errors and security
    violations to be handled within a Lasso page.
+
 -  Error handling methods allow advanced error handling to be built into Lasso
    pages. These techniques allow error handling routines to be built into a page
    without disrupting the normal processing of a page if no errors occur.
@@ -240,7 +243,7 @@ code and message are restored just before the custom method returns a value::
    define myMethod() => {
       // Push current error on to stack.
       error_push
-      
+
       // Code that may generate error.
       // ...
 
@@ -349,12 +352,12 @@ contents of the page being served.
 
 There are two ways to use ``handle`` methods within a Lasso page:
 
--  When used on their own in a Lasso page, the code inside the ``handle``
+#. When used on their own in a Lasso page, the code inside the ``handle``
    methods will be conditionally executed after all the rest of the code in the
    Lasso page has completed. The ``handle`` methods can be used to provide post-
    processing code for a Lasso page.
 
--  When used within any Lasso capture block, the code inside the ``handle``
+#. When used within any Lasso capture block, the code inside the ``handle``
    methods will be conditionally executed after the capture block is executed.
    The ``handle`` methods will most commonly be used within a ``protect`` block
    to provide error handling.
@@ -478,6 +481,6 @@ these custom error codes. This ``handle`` block will only execute if one of the
       '\nAfter the fail_if'
    ^}
 
-   // => 
+   // =>
    // Before the fail_if
    // ... Handle custom error -2 ...

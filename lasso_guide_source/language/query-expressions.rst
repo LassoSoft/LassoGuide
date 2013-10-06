@@ -1,5 +1,5 @@
-.. _query-expressions:
 .. http://www.lassosoft.com/Language-Guide-Query-Expressions
+.. _query-expressions:
 
 *****************
 Query Expressions
@@ -12,7 +12,7 @@ which is reminiscent of SQL.
 A query expression can take each element in a sequence, manipulate it and
 produce a new sequence. Query expressions let a developer drill down into nested
 sequences. For example, a query expression could iterate over each line in a
-block of text, then each word, and then each character — all in one expression.
+block of text, then each word, and then each character; all in one expression.
 Query expressions provide a variety of useful operations, such as *order by*,
 *sum*, *average* and *group by*.
 
@@ -62,9 +62,7 @@ which is any object whose type supports the ``trait_queriable`` trait, such as
 an ``array`` or a ``list``. Note that when declaring the variable at the
 beginning of the with clause, the variable name is given by itself, without the
 "#" character, just as if the local were being defined using the standard local
-construct.
-
-::
+construct. ::
 
    with variable_name in source
 
@@ -102,9 +100,7 @@ select's expression will be an element going into the new sequence.
 
 The following example computes the square of each element in the source array.
 The expression in the select clause performs the math to compute the square, the
-result of which becomes an element in the resulting sequence.
-
-::
+result of which becomes an element in the resulting sequence. ::
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    select #n * #n
@@ -115,11 +111,9 @@ the numbers: *1, 4, 9, 16, 25, 36, 49, 64, 81*.
 One query expression can be utilized in another. In the next example, the query
 expression is assigned to a variable. That variable is used in a subsequent
 query expression. The first query expresion is not evaluated until the second
-query expression is evaluated.
+query expression is evaluated. ::
 
-::
-
-   local(qe = 
+   local(qe =
      with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
      select #n * #n
    )
@@ -142,12 +136,10 @@ expression, the code must be contained in a capture.
 
 The following examples show how the query expression do clause can be used to
 manipulate the elements in the source array. Both query expressions operate
-identically.
-
-::
+identically. ::
 
    local(ary = array('the', 'quick', 'brown', 'fox', 'jumped', 'the', 'shark'))
-   
+
    with n in #ary
    do #n->upperCase
 
@@ -190,9 +182,7 @@ Average
 An ``average`` clause produces the average of each element that makes its way
 through the query expression. As expected, using average will take the sum of
 each element and then divide that value by the number of elements. As with sum,
-average produces a single result value.
-
-::
+average produces a single result value. ::
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    average #n
@@ -204,9 +194,7 @@ Min & Max
 
 The ``min`` and ``max`` clauses produce the smallest or largest value from the
 sequence, respectively. The standard "<" and ">" operators are used to find the
-result value.
-
-::
+result value. ::
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    min #n
@@ -241,9 +229,7 @@ expression. The result of the expression should be boolean "true" or "false".
 The following example performs a query expression using the numbers in an array.
 The where operation filters out all even numbers, leaving only odd numbers for
 the rest of the query expression. The local variable "n" holds each number in
-turn as the expression is evaluated.
-
-::
+turn as the expression is evaluated. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
      where #n % 2 != 0 // ignore even numbers
@@ -253,9 +239,7 @@ turn as the expression is evaluated.
 Multiple where operations can be utilized in a query expression. Using multiple
 where operations is essentially the same as combining the expressions using the
 logical and operator ("&&" or "and"). The following two snippets are equivalent,
-though the third is not.
-
-::
+though the third is not. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
      where #n % 2 != 0 // ignore even numbers
@@ -297,18 +281,14 @@ assignment operator ("="), and then an expression, the result of which will be
 assigned to the new variable.
 
 The following example snippet assigns the square of the current iteration value
-to a new variable using a ``let`` operation.
-
-::
+to a new variable using a ``let`` operation::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
      let n2 = #n * #n
    select #n2
    // => 0, 1, 4, 9, 16, 25, 36, 49, 64, 81
 
-The next example snippet uses both ``where`` and ``let`` together.
-
-::
+The next example snippet uses both ``where`` and ``let`` together::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
      let n2 = #n * #n // square the current value
@@ -327,9 +307,7 @@ integer.
 
 The following example snippet skips the first 5 elements from the source
 container. Only the 6th element and beyond are sent to the remaining portion of
-the query expression.
-
-::
+the query expression. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
      skip 5
@@ -347,9 +325,7 @@ remainder of the query expression. A ``take`` operation consists of the word
 integer.
 
 The following example snippet takes only the first 5 elements from the data
-source. The remaining elements are ignored.
-
-::
+source. The remaining elements are ignored. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
      take 5
@@ -363,9 +339,7 @@ specified before ``take``, though this is not a requirement.)
 
 The following example snippet skips the first 3 elements, takes only the next 4
 and leaves the rest ignored. This results in only the numbers 3, 4, 5, and 6 for
-the rest of the query expression.
-
-::
+the rest of the query expression. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
      skip 3
@@ -376,9 +350,7 @@ the rest of the query expression.
 The next example snippets show how the ordering of ``skip`` and ``take`` is
 important. This first query expression takes only the first 4 elements of the
 series, though the first 3 of them are skipped. The second query produces the
-same result, but uses ``skip`` and ``take`` in the reverse order.
-
-::
+same result, but uses ``skip`` and ``take`` in the reverse order. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
      take 4
@@ -426,9 +398,7 @@ The expression provided to order by can be any arbitrary expression. This
 permits elements to be ordered in any manner as desired by the developer. For
 example, a series of string objects could be ordered based upon their lengths,
 or elements could be randomly ordered based upon a random number generated for
-this purpose.
-
-::
+this purpose. ::
 
    with n in array('the', 'quick', 'brown', 'fox', 'jumped', 'the', 'shark')
      order by #n->size
@@ -443,9 +413,7 @@ this purpose.
    // => 9, 8, 6, 5, 2, 1, 7, 0, 4, 3
 
 In the next example snippet, a series of user objects, represented by their
-first and last names, could be ordered in an alphabetical manner.
-
-::
+first and last names, could be ordered in an alphabetical manner::
 
    with n in array('Krinn'='Jones', 'Ármarinn'='Hammershaimb',
        'Kjarni'='Jones', 'Halbjörg'='Skywalker',
@@ -475,9 +443,7 @@ will be a ``queriable_grouping`` object. It has the following form::
 
 A group by operation makes the most sense when used with other operations and
 actions. The following example takes a series of users, represented by a pair
-with their last and first name, and performs a query expression over them.
-
-::
+with their last and first name, and performs a query expression over them. ::
 
    with n in array('Jones'='Krinn', 'Hammershaimb'='Ármarinn',
        'Jones'='Kjarni', 'Skywalker'='Halbjörg',
@@ -501,59 +467,45 @@ The example above example breaks down into 6 steps:
    ``#n`` will start off pointing to the first element. Once the query
    expression completes its first iteration, ``#n`` will point to the second
    element and the query will perform another iteration, and so on, until the
-   end of the array is reached.
-
-   ::
+   end of the array is reached. ::
 
       with n in array('Jones'='Krinn', 'Hammershaimb'='Ármarinn',
           'Jones'='Kjarni', 'Skywalker'='Halbjörg', 'Riley'='Björg',
           'Hammershaimb'='Hjörtur')
 
 #. Create a new pair containing the swapped last and first names. Name
-   this #swapped.
-
-   ::
+   this #swapped. ::
 
       let swapped = pair(#n->second, #n->first)
 
-#. Group each of the new user pairs by last name — ``#n->first`` is used as
+#. Group each of the new user pairs by last name: ``#n->first`` is used as
    the key as it still contains the original last name. From this point forward,
    no previously introduced variables are available. Only ``#g`` exists now. It
    will contain each ``queriable_grouping`` object generated by the group by
-   clause at this step (3).
-
-   ::
+   clause at this step (3). ::
 
       group #swapped by #n->first into g
 
 #. Access the grouping key for the current value of ``#g``. Save it into
-   ``#key``.
-
-   ::
+   ``#key``. ::
 
       let key = #g->key
 
 #. Order/sort the resulting grouping objects by ``#key``, which contains the
    last name. Thus, all of the resulting group objects will come out of the
-   query expression ordered alphabetically by last name.
-
-   ::
+   query expression ordered alphabetically by last name. ::
 
       order by #key
 
 #. Finally, create a new pair containing #key and the grouping object
    and select that, making the new pair one of the new elements in the
-   result of the query expression.
-
-   ::
+   result of the query expression. ::
 
       select pair(#key, #g)
 
 The result of the example query expression looks as follows. Notice how the
 results for 'Hammershaimb' and 'Jones' each contain both of the users in those
-groups.
-
-::
+groups. ::
 
    // => // Breaking up the value for readability
    // (Hammershaimb = (Ármarinn = Hammershaimb), (Hjörtur = Hammershaimb)),
@@ -574,9 +526,7 @@ element in turn.
 
 The following example implements a user list type. Objects of this type can be
 used in query expressions. For the sake of this example, it permits iteration
-over a fixed list of users, which it provides to the query one by one.
-
-::
+over a fixed list of users, which it provides to the query one by one. ::
 
    // define the user_list type
    define user_list => type {

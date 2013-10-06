@@ -1,5 +1,5 @@
-.. _operators:
 .. http://www.lassosoft.com/Language-Guide-Operators
+.. _operators:
 
 *********
 Operators
@@ -29,40 +29,34 @@ Assignment
 Assignment places the result of an expression into a destination. The
 destination must be a local or thread variable, or it must be an appropriately
 named method call. Lasso supports two types of assignment, one that produces the
-assigned value (":=") and one that does not ("=").
-
-::
+assigned value (":=") and one that does not ("="). ::
 
    // "dest" assigned value of expression
    dest = expression
-   
+
    // "dest" assigned value of expression, "dest" produced
    dest := expression
    // => // produces a reference to "dest"
 
 The second assignment type, which produces the left-hand operand, is right-
 associative so that multiple assignments can be lined up. The following assigns
-the value of "1" to "dst1", "dst2" and "dst3" and also produces "1".
-
-::
+the value of "1" to "dst1", "dst2" and "dst3" and also produces "1"::
 
    dst1 := dst2 := dst3 := 1
    // => 1
 
 Locals and vars can be assigned using the access syntax for either variable
-type.
-
-::
+type. ::
 
    // local "l" assigned expression
    #l = expression
-   
+
    // local "l" assigned expression
    local(l) = expression
 
    // var "v" assigned expression
    $v = expression
-   
+
    // var "v" assigned expression
    var(v) = expression
 
@@ -92,13 +86,11 @@ These operators are all binary, requiring two operands. All of these operators
 can be implemented by a type containing the properly named method. Only the
 left-hand operand's method is called. None of these operators should modify
 either operand, but must return a new object. The examples that follow show the
-use of each operator respectively.
-
-::
+use of each operator respectively. ::
 
    op1 + op2
    // => // Returns the value of adding op2 to op1
-   
+
    op1 - op2
    // => // Returns the value of subtracting opt2 from op1
 
@@ -121,22 +113,20 @@ the operands. The following operators perform their operation and assign the
 result to the left-hand side operand. Only the left-hand operand can be assigned
 to and not every expression is capable of being assigned to, as described in
 :ref:`Assignment <operators-assignment>` above. These assignment expressions do
-not produce a value.
-
-::
+not produce a value. ::
 
    // Equivalent to op1 = op1 + op2
    op1 += op2
-   
+
    // Equivalent to op1 = op1 - op2
    op1 -= op2
-   
+
    // Equivalent to op1 = op1 * op2
    op1 *= op2
 
    // Equivalent to op1 = op1 / op2
    op1 /= op2
-   
+
    // Equivalent to op1 = op1 % op2
    op1 %= op2
 
@@ -157,9 +147,7 @@ can be applied elsewhere. Lasso supports the increment and decrement operators
 Pre-incrementing and pre-decrementing an object will add or subtract "1" from
 the object and then produce that object as a result. Post-incrementing and post-
 decrementing an object first copies that object, then adds or subtracts "1" from
-the original operand, then produces the copied object as a result.
-
-::
+the original operand, then produces the copied object as a result. ::
 
    // Pre-increment "op"
    ++op
@@ -190,9 +178,7 @@ Positive and Negative
 Lasso supports the unary operators usually intended to change the sign of an
 integer or decimal number. These operators can be applied to any object which
 supports them. When applied, these operators will produce a new object, leaving
-the single operand unchanged.
-
-::
+the single operand unchanged. ::
 
    +op1
    // => // produces a new object whose value is positive op1
@@ -219,8 +205,8 @@ boolean values. These operators are broken down into several categories.
    In Lasso, most objects will be treated as "true", but the following objects
    and values will be treated as "false": the ``integer`` "0", the ``decimal``
    "0.0", and the types ``null`` and ``void``. An empty ``string`` also
-   evaluates to "false", but this functionality is deprecated — change your code
-   to call ``string->size`` to check for empty strings. All other objects and
+   evaluates to "false", but this functionality is deprecated; change your code
+   to call `string->size` to check for empty strings. All other objects and
    values are assumed to be "true".
 
 
@@ -232,9 +218,7 @@ operator treats its single operand as a boolean value and produces the opposite
 of that value. "Not" turns a "true" into a "false" and a "false" into a "true".
 Though the operand can be of any type, this operator always produces a "true" or
 "false" value. The "not" operand can take one of two forms: an exclamation mark
-("!") or the ``not`` keyword.
-
-::
+("!") or the ``not`` keyword. ::
 
    !true
    // => false
@@ -251,9 +235,7 @@ their operation based on that value. Logical "and" inspects its first operand,
 and if it is "true", produces its second operand. If the first operand is
 "false", logical "and" will produce the value "false". Logical "or" inspects its
 first operand, and if it is "true", produces that first operand. If the first
-operand is "false", logical "or" will produce the second operand.
-
-::
+operand is "false", logical "or" will produce the second operand. ::
 
    op1 && op2
    // => // Returns "false" if either op1 or op2 evaluates to "false" else opt2
@@ -279,19 +261,17 @@ if one object **is equal to** another object while a negative equality test
 checks if an object **is not equal to** another. Strict equality testing further
 tests the types of the operand objects. If the right-hand operand is not an
 instance of the type of the left-hand operand, then the equality test fails.
-These operators all produce either a "true" or "false" value.
-
-::
+These operators all produce either a "true" or "false" value. ::
 
    op1 == op2
    // => // Produces "true" if op1 is equal to op2 else false
 
    op1 != op2
    // => // Produces "true" if op1 is not equal to op2 else false
-   
+
    op1 === op2
    // => // Produces "true" if op1 is equal to op2 and they share the same type else false
-   
+
    op1 !== op2
    // => // Produces "true" if op1 is not equal to op2 or they do not share the same type else false
 
@@ -312,9 +292,7 @@ Relative Equality Operators
 
 Relative equality indicates if an object is less than, greater than, or possibly
 equal to another object. These operators all produce either a "true" or "false"
-value.
-
-::
+value. ::
 
    op1 < op2
    // => // Produces "true" if op1 less than op2 else "false"
@@ -326,7 +304,7 @@ value.
    // => // Produces "true" if op1 less than or equal to op2 else "false"
 
    op1 >= op2
-   // => // Produces "true" if  op1 greater than or equal to op2 else "false"
+   // => // Produces "true" if op1 greater than or equal to op2 else "false"
 
 Types control how equality checks behave by implementing the "onCompare" method
 as described above in :ref:`Equality Operators <operators-equality>`. Because
@@ -341,9 +319,7 @@ Containment Operators
 There are two operators used to test if an object "contains" another object. One
 checks for positive containment (">>") and the other for negative containment
 ("!>>"). Both are binary operators and both produce either a "true" or "false"
-value.
-
-::
+value. ::
 
    op1 >> op2
    // => // Produces "true" if op2 is contained within op1 else false
@@ -376,9 +352,7 @@ a case, if the condition is false, a ``void`` object will be produced.
 
 The conditional operator uses the two characters  "?"  and "|". The "?" follows
 the test condition and the "|" delimits the "then" and "else" expressions. A
-conditional operator with no "else" will have no delimiting "|" character.
-
-::
+conditional operator with no "else" will have no delimiting "|" character. ::
 
    test ? expression1 | expression2
    // => // Produces expression1 if test is "true" else expression2
@@ -395,9 +369,7 @@ This can be used to alter the normal precedence of some operations. All sub-
 expressions in parentheses are evaluated before the expressions surrounding
 them. The first example below shows how multiplication normally occurs before
 addition. The second example applies parentheses to have the addition take
-precedence.
-
-::
+precedence. ::
 
    2 * 5 + 7
    // => 17
@@ -416,9 +388,7 @@ invoked, execute the method, returning its value.
 
 Invoking an object by applying parentheses is always equivalent to directly
 calling the method named "invoke". The following examples invoke a local
-variable and a thread variable with no parameters.
-
-::
+variable and a thread variable with no parameters::
 
    #lv()
    // => // Produces the value of invoking the object stored in the local "lv"
@@ -436,9 +406,7 @@ It is also possible to dynamically generate parameters and programmatically pass
 them into an invocation. The following example results in the equivalent
 invocation as the previous one, but the parameters have first been added to an
 ``array`` named "my_params" and the invocation syntax includes a colon after the
-opening parenthesis.
-
-::
+opening parenthesis. ::
 
    local(my_params) = array(1, 'two', 3)
    #lv(: #my_params )
@@ -464,16 +432,14 @@ To **target** means to access a particular member method or data member from an
 object. The target operator is a binary operator accepting the target object as
 the left-hand operand and the method name as the right-hand operand. The target
 operator uses the characters "``->``". Targeting a member method always executes
-that method, passing along any given parameters.
-
-::
+that method, passing along any given parameters. ::
 
    #lv->meth()
    // => // Produces the value of calling "meth" on the object stored in #lv with no parameters
 
    #lv->meth
    // => // Same as the first example, showing parentheses are optional
-   
+
    #lv->meth(40)
    // => // Produces the value of calling "meth" on the object stored in #lv with 1 parameter
 
@@ -484,9 +450,7 @@ Accessing a data member is accomplished through a similar syntax but by
 surrounding the name in single quotes. A data member can only be accessed from
 within the type in which the data member is defined. When accessing a data
 member, it is an error to have any value except for "self" as the left-hand
-operand, and the right-hand operand must be single quoted.
-
-::
+operand, and the right-hand operand must be single-quoted. ::
 
    self->'dMem'
    // => // Produces the value stored in the "dMem" data member
@@ -497,9 +461,7 @@ period "." before the member name will target the current self. Using two
 periods ".." before the member name will target inherited members, skipping the
 current self and searching for the member starting from the parent of the type
 which defined the currently executing member method. Two periods ".." can only
-be used for methods, as only "self" can access data members.
-
-::
+be used for methods, as only "self" can access data members. ::
 
    .'dMem'
    // => // Produces the value stored in the "dMem" data member (same as self->'dMem')
@@ -522,9 +484,7 @@ used as the object for the re-targetted member call. For each method call, the
 "&" is placed following the method name, parameters and givenBlock (if present).
 
 The re-target operator can be used to string two or more methods together. The
-return value of the final method will be produced by this type of re-target.
-
-::
+return value of the final method will be produced by this type of re-target. ::
 
    object->meth & meth2
    // => // Execute meth on the object then execute meth2 and produce its value
@@ -534,9 +494,7 @@ return value of the final method will be produced by this type of re-target.
 
 Re-target can also be used to change the produced value of a member method call
 to be that of the target object. This is done by having a trailing "&" at the
-end of a method call.
-
-::
+end of a method call. ::
 
    targetObject->meth(1, 2) &;
    // => // Execute meth, but produce targetObject
@@ -550,9 +508,7 @@ help with readability. It is important, however, to keep the "&" on the same
 line as the **next** method call. This holds only for cases that have a next
 method and method call expressions which are not ultimately parenthesized.
 
-The following example illustrates this formatting principle.
-
-::
+The following example illustrates this formatting principle::
 
    targetObject->meth(5, 7)
    & meth2()
@@ -572,9 +528,7 @@ method that is being escaped is not defined.
 Both member methods and unbound methods can be escaped. There are two escape
 method operators, one for member methods and one for unbound methods. Escaping a
 member method uses a binary operator "``->\``". Escaping an unbound method uses
-unary "``\``".
-
-::
+unary "``\``". ::
 
    #lv->\meth
    // => // Produces a reference to the member method "meth" of the object in local "lv"
@@ -591,9 +545,7 @@ method.
 
 The right-hand method name operand can come from the result of any expression.
 When using such a dynamic method name, the expression must be surrounded in
-parentheses, to disambiguate.
-
-::
+parentheses to disambiguate. ::
 
    #lv->\(meth + 'name')
    // => // Produces a reference to the member method defined by concating "name" with the value of "meth"
@@ -609,12 +561,10 @@ Additional Syntax
 
 There are several other operator-like syntax elements that will be described in
 detail in later sections of this document. Many of them apply in limited
-situations or special contexts and so are beyond the scope of this chapter. The
-following gives pointers to the appropriate sections where more information can
-be found.
+situations or special contexts and so are beyond the scope of this chapter.
 
-**Association Operator** ``=>`` See :ref:`Methods<methods>`, :ref:`Types<types>`
+.. seealso::
 
-**Keywords** ``return``, ``yield``, etc. See :ref:`Methods<methods>`
-
-**Captures/Codeblocks** ``{ }``, ``{^ ^}`` See :ref:`Captures<captures>`, :ref:`Methods<methods>`
+   -  **Association Operator** ``=>`` See :ref:`methods`, :ref:`types`
+   -  **Keywords** ``return``, ``yield``, etc. See :ref:`methods`
+   -  **Captures/Codeblocks** ``{ }``, ``{^ ^}`` See :ref:`captures`, :ref:`methods`

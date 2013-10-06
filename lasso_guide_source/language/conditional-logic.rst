@@ -1,5 +1,5 @@
-.. _conditional-logic:
 .. http://www.lassosoft.com/Language-Guide-Conditional-Logic
+.. _conditional-logic:
 
 *****************
 Conditional Logic
@@ -25,9 +25,7 @@ expressions are true.
 
 The if/else conditional can take two forms. The following example shows the
 first form. The "// ..." in the example shows where the body expressions for
-that particular condition would occur.
-
-::
+that particular condition would occur. ::
 
    if (expression1)
      // Code here executed if expression1 evalutes true
@@ -46,9 +44,7 @@ conditions will be tested and execution will resume at the end of the if/else
 conditional.
 
 The second form operates like the first, but permits the if/else to be used with
-the association/givenBlock syntax.
-
-::
+the association/givenBlock syntax. ::
 
    if (expression1) => {
      // Code here executed if expression1 evalutes true
@@ -117,12 +113,12 @@ information about the different types of code blocks.
 Looping
 =======
 
-Lasso offers several operations that loop — executing a body of code repeatedly
-— based upon some criteria. This criteria can be a boolean expression, a number
-counting to a pre-defined point, or the count of the number of elements in a
-composite object. Each method of looping supports skipping to the top of the
-next iteration, aborting the loop process entirely, and retrieving the current
-count of the number of loops that have occurred.
+Lasso offers several operations which loop---executing a body of code
+repeatedly---based upon some criteria. This criteria can be a boolean
+expression, a number counting to a pre-defined point, or the count of the number
+of elements in a composite object. Each method of looping supports skipping to
+the top of the next iteration, aborting the loop process entirely, and
+retrieving the current count of the number of loops that have occurred.
 
 Each of these looping operations support the two forms shown for if/else and
 match. Most examples are shown in both forms. Also, like if/else and match
@@ -136,9 +132,7 @@ While Loop
 ----------
 
 A while loop executes its body as long as its test expression is true. The test
-expression is evaluated before the beginning of each loop.
-
-::
+expression is evaluated before the beginning of each loop. ::
 
    // Form 1
    while (expression)
@@ -185,7 +179,7 @@ following two forms of the ``loop`` method::
       // Code here executed each pass through the loop
       // ...
    /loop
-   
+
    // loop to 5 starting from -10 incrementing by 10
    loop(-to=5, -from= -10, -by=10)
       // Code here executed each pass through the loop

@@ -1,5 +1,5 @@
-.. _methods:
 .. http://www.lassosoft.com/Language-Guide-Defining-Methods
+.. _methods:
 
 *******
 Methods
@@ -30,13 +30,11 @@ Method names in Lasso consist of letters, numbers, and the underscore character
 followed by a letter. Lasso does not take case into account when comparing
 method names.
 
-Method names beginning with an underscore are generally intended to be used
-internally only — they represent methods that might change in the future and are
+Method names beginning with an underscore are generally intended to only be used
+internally, as they represent methods that might change in the future and are
 thus considered unstable.
 
-Some valid examples of method names are shown below.
-
-::
+Some valid examples of method names are shown below::
 
    Field
    _date_msec
@@ -53,9 +51,7 @@ a list of parameters for the method, and an optional return type.
 
 A signature for the loop method is shown below. The parameter list includes
 three parameters: a "to" parameter which must be an integer and two more integer
-parameters each with default values of "1".
-
-::
+parameters each with default values of "1". ::
 
    loop(to::integer, from::integer=1, by::integer=1)
 
@@ -74,9 +70,7 @@ Empty Signature
 A signature which is specified with an empty set of parentheses indicates that
 the method will not require or accept any parameters. Giving parameters to a
 method defined with such a signature will result in a failure. The following is
-an example of a signature without any parameters.
-
-::
+an example of a signature without any parameters::
 
    method_name()
 
@@ -87,9 +81,7 @@ Rest-Only Signature
 A signature whose parameter list is just three periods indicates that the method
 will accept any number and type of parameters. A method defined with such a
 signature can be called with no parameters or any combination of values and
-keyword parameters.
-
-::
+keyword parameters. ::
 
    method_name(...)
 
@@ -116,15 +108,11 @@ letter or underscore and a letter.
 
 The following signature defines two required parameters named "firstname" and
 "lastname". Within the method these parameters can be accessed through the local
-variables "firstname" and "lastname".
-
-::
+variables "firstname" and "lastname". ::
 
    method_name(firstname, lastname)
 
-When calling this method, both parameters must be given in order.
-
-::
+When calling this method, both parameters must be given in order. ::
 
    method_name('Henry', 'Gibbons')
 
@@ -160,9 +148,7 @@ parameters must also be omitted.
 The parameters in the following signature are both optional. If the host
 parameter is not specified the local variable "host" within the method will have
 the default value "localhost". If the port parameter is not specified, it will
-have the default value of "80".
-
-::
+have the default value of "80". ::
 
    connect(host='localhost', port=80)
 
@@ -185,9 +171,7 @@ first. While there are sufficient remaining values, the optional parameters will
 be assigned in order.
 
 For example, the following signature has one required parameter, "host", and two
-optional parameters: "port" and "timeout".
-
-::
+optional parameters: "port" and "timeout"::
 
    connect(host, port=80, timeout=15)
 
@@ -218,17 +202,13 @@ value.
 
 For example, a hypothetical ``find_in_string`` method might have the following
 signature. The required input is followed by two keywords: the required "-find"
-and the optional "-ignoreCase".
-
-::
+and the optional "-ignoreCase"::
 
    find_in_string(input, -find::string, -ignoreCase::boolean=false)
 
 When this method is called the input must always be given first. However, the
 two keywords can be given in either order, provided they follow all non-keyword
-parameters. It is valid to call the method in all of the following ways.
-
-::
+parameters. It is valid to call the method in all of the following ways::
 
    find_in_string('the fox', -find='x', -ignoreCase=true)
    find_in_string('the fox', -ignoreCase=true, -find='x')
@@ -257,9 +237,7 @@ with a default value of "false" so if the keyword is not specified the
 pre-defined variable will have a value of "false".
 
 The following signature defines the method "server_date" as accepting either a
-"-short" or a "-long" keyword parameter or neither one.
-
-::
+"-short" keyword parameter, a "-long" keyword parameter, or neither::
 
    server_date(-short=false, -long=false)
 
@@ -284,20 +262,16 @@ The signature below specifies that the "string_concatenate" method requires one
 parameter named "value", but will accept any number of additional parameters.
 Within the method, the first parameter will be placed into the pre-defined local
 variable "value", and the remaining parameters, if any, will be placed into the
-pre-defined local variable "rest".
-
-::
+pre-defined local variable "rest". ::
 
    string_concatenate(value, ...)
 
-Note that these are three periods — not a Unicode ellipsis character.
+Note that these are three periods, rather than a Unicode ellipsis character.
 
 By default, the rest parameter local variable is always named "rest", but an
 alternate variable name can be specified in the signature by placing the desired
 name immediately after the three periods. The following signature would rename
-the rest variable to "other".
-
-::
+the rest variable to "other". ::
 
    string_concatenate(value, ...other)
 
@@ -316,31 +290,25 @@ failure will be generated. Any type or trait name can be used as a constraint,
 and all parameter values must pass the "isa" test for their constraint before
 the method body begins to execute. (The "isa" test involves calling the object's
 "isa" method with the constraint; if a non-zero value is returned, then it
-passes. See :meth:`null->isA(name::tag)` for details about this member method.)
-Additionally, all parameter default values must produce results of a type which
-fit the type constraint set for their respective parameters.
+passes. See `~null->isA()` for details about this member method.) Additionally,
+all parameter default values must produce results of a type which fit the type
+constraint set for their respective parameters.
 
 A type constraint is specified by following the parameter name with a double
 colon (``::``) followed by a type name. Whitespace is permitted on either side
 of the double colons (examples herein will not include whitespace). The
 signature below has both of its required parameters constrained to only accept
-values that are of type string.
-
-::
+values that are of type :type:`string`. ::
 
    method_name(firstname::string, lastname::string)
 
 If the parameter has a default value, it should be placed after the type
-constraint.
-
-::
+constraint. ::
 
    method_name(firstname::string, lastname::string = '')
 
 A parameter with no type constraint will accept any type of value. Constrained
-and unconstrained parameters can be mixed.
-
-::
+and unconstrained parameters can be mixed. ::
 
    method_name(firstname::string, lastname)
    method_name(firstname, lastname::string)
@@ -363,10 +331,10 @@ associated code block is of a specific type. If a method returns a value having
 a type which does not pass the "isa" test for the specified return type, then a
 failure is generated. (The "isa" test involves calling the object's "isa" method
 with the constraint; if a non-zero value is returned, then it passes. See
-:meth:`null->isA(name::tag)` for details about this member method.) Specifying a
-return type provides knowledge to the caller of the method about the method's
-resulting value. It also insures to the method's developer that their programing
-is correct, at least with respect to the method returning the proper value type.
+`~null->isA()` for details about this member method.) Specifying a return type
+provides knowledge to the caller of the method about the method's resulting
+value. It also insures to the method's developer that their programing is
+correct, at least with respect to the method returning the proper value type.
 Specifying a return type is optional, and a method without a specified return
 type may return values of any type, or may return no value at all (in which case
 the value returned to the caller is "``void``").
@@ -376,9 +344,7 @@ following the parameter list parentheses, by including two colons (``::``)
 followed by a type or trait name.
 
 The following signature specifies that the method will always return a string
-value.
-
-::
+value. ::
 
    string_concatenate(value, ...other)::string
 
@@ -391,9 +357,8 @@ type. This is referred to as the type binding for the signature. A signature
 with no bound type is referred to as being unbound. All example signatures given
 up to this point were unbound signatures. A type binding occurs at the beginning
 of the signature, before the signature's name. It consists of a type name
-followed by the target operator (``->``). The rest of the signature follows that.
-
-::
+followed by the target operator (``->``). The rest of the signature follows
+that. ::
 
    type_name->method_name(...)
    method_name(...)
@@ -426,9 +391,7 @@ a method allows it to be called by name from within other methods.
 The "define" reserved word is used to define new methods, data types, and
 traits. When defining a method, the word "define" is followed by a signature,
 the association operator (``=>``), and then an expression which provides the
-body for the new method.
-
-::
+body for the new method. ::
 
    define signature => expression
 
@@ -446,18 +409,14 @@ Methods Returning Simple Expressions
 A simple method definition is shown below. The signature "hello()" describes
 what and how the method will be called, in this case "hello" with no parameters.
 After the association operator, the expression ``'Hello, world!'`` provides
-the method's return value. The method below simply returns a string.
-
-::
+the method's return value. The method below simply returns a string. ::
 
    define hello() => 'Hello, world!'
 
 Any single expression, including the ternary conditional operator or mathmatical
 expressions can be used as the method's return value. Assignments, local or
 thread variable declarations, or any other expression known at compilation time
-to not produce a value may not be used as a method's return value expression.
-
-::
+to not produce a value may not be used as a method's return value expression. ::
 
    define pi() => math_acos(-1)
    define times_twenty(n) => #n * 20
@@ -493,9 +452,7 @@ the end of the expression.
 
 The following definition for the hypothetical "strings_combine" method uses a
 series of instructions within the method body to generate the return value for
-the method.
-
-::
+the method. ::
 
    define strings_combine(value::string, with, alsoWith) => {
       local(result = string(#value))
@@ -577,12 +534,10 @@ Using Multiple Dispatch
 Multiple dispatch comes into play any time more than one method is defined under
 a single name. As example, consider the scenario where special diagnostic
 information needs to be created for a variety of possible types: ``array``,
-``string``, ``bytes`` and a default "any" type.  In the example below, the
+``string``, ``bytes`` and a default "any" type. In the example below, the
 ``log_object`` method is defined multiple times, each accepting a different
 possible type. Each of the four methods is written to handle only their input
-value types.
-
-::
+value types. ::
 
    define log_object(a::array) => {
       return '[log] array with ' + #a->size + ' elements'
@@ -628,10 +583,8 @@ would likely have to resort to writing their own set of log methods, falling
 back to ``log_object``'s functionality only for object types that it is known to
 handle. However, with multiple dispatch, the user may directly add their own
 ``log_object`` method with its own unique signature. The new method is
-incorporated automatically into the system and none of the other methods needs
-to be modified.
-
-::
+incorporated automatically into the system and none of the other methods need
+to be modified. ::
 
    define log_object(p::pair) => {
       return '[log] pair with: ' + #p->first + ', ' + #p->second
@@ -657,9 +610,7 @@ The number of parameters that a set of methods accepts can be used to determine
 method dispatch. For example, one method may require a single parameter while a
 second method requires two parameters, such as in the example that follows. Note
 how the body of the second method calls the first method to get the initial
-result string before augmenting it and returning that value.
-
-::
+result string before augmenting it and returning that value. ::
 
    define log_object(a::array) => {
       return '[log] array with ' + #a->size + ' elements'

@@ -1,5 +1,5 @@
-.. _threading:
 .. http://www.lassosoft.com/Language-Guide-Threading
+.. _threading:
 
 *********
 Threading
@@ -43,9 +43,7 @@ Thread with Capture
 The following example shows a new thread being created. The new thread simply
 prints a message to the console. This illustrates how ``split_thread`` is used
 and how a new capture (within curly braces ``{ }``) is given to ``split_thread``
-which will be run in a new thread.
-
-::
+which will be run in a new thread. ::
 
    split_thread => {
       stdoutnl("I'm alive in a new thread!")
@@ -104,7 +102,7 @@ and received::
    #creatorPipes->first->writeObject("Sent from the creator 2!")
    stdoutnl(#creatorPipes->second->readObject)
 
-   // => 
+   // =>
    // I read an object: Sent from the creator!
    // Reply from the new thread
    // I read an object: Sent from the creator 2!
@@ -138,9 +136,7 @@ Simple ``counter_thread``
 The following example creates a simple thread object. This object maintains a
 counter that can be advanced and retreive its current value. Because this is a
 thread object, it is globally available and other threads can safely advance the
-counter.
-
-::
+counter. ::
 
    define counter_thread => thread {
       data private val = 0
@@ -173,9 +169,7 @@ type as a parent.
 
 This next example creates a thread type that inherits from type map. This
 results in creating a global map of values that can be safely accessed by other
-threads.
-
-::
+threads. ::
 
    define map_thread => thread {
       parent map

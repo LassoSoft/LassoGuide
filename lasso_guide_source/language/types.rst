@@ -22,9 +22,7 @@ Before a type can be utilized, it must first be defined. Defining a type is done
 in the same manner as other entities (traits, methods). The word "define" is
 used, followed by the name for the type, the association operator (``=>``), and
 a type expression which provides the description of the type's methods and data
-members.
-
-::
+members. ::
 
    define typeName => type expression
 
@@ -43,9 +41,7 @@ section is optional. Sections can occur in any order. The sections "trait" and
 
 The most simple type definition is shown below. It defines a type named "person"
 and contains no sections. Thus, the ``person`` type contains no methods or data
-members of its own. It is a completely valid, if somewhat boring, type.
-
-::
+members of its own. It is a completely valid, if somewhat boring, type. ::
 
    define person => type { }
 
@@ -70,9 +66,7 @@ these items, so would every instatiated object.
 The following example type implementation shows several different methods for
 defining data members. These methods can be mixed and matched in a single type
 to provide the best readability. Data sections can also be interspersed with the
-other sections in the type expression if necessary.
-
-::
+other sections in the type expression if necessary. ::
 
    define person => type {
       data firstName, lastName
@@ -93,9 +87,7 @@ To do this, follow the data member name with two colons (``::``) and then a type
 or trait name. When a data member is constrained, it cannot be assigned any
 value which does not fit the constraint. The following type constrains
 "firstName" and "lastName" to be ``string`` objects and "age" to be an
-``integer`` value.
-
-::
+``integer`` value::
 
    define person => type {
       data firstName::string, lastName::string
@@ -106,9 +98,7 @@ Data members can be given default values. When a type instance is first created,
 before it can be otherwise used, its data members are assigned their default
 values. A default value can be any single expression. The following type
 definition uses both type constraints and default values for "firstName" and
-"lastName", but just a default value for "age".
-
-::
+"lastName", but just a default value for "age"::
 
    define person => type {
       data firstName::string = '', lastName::string = ''
@@ -157,9 +147,7 @@ that data member.
 
 Lasso will automatically create a getter method and a setter method if the word
 "public", "protected", or "private" is given in front of the data member name.
-The following code defines three publicly accessible data members.
-
-::
+The following code defines three publicly accessible data members::
 
    define person => type {
       data public firstName, public lastName
@@ -169,9 +157,7 @@ The following code defines three publicly accessible data members.
 The automatically created getter method has the same name as the data member.
 Parentheses are optional after the getter (as they are with all methods
 accepting zero parameters). The current value for the data member can be
-returned as follows.
-
-::
+returned as follows::
 
    #person->firstName
    // => // Produces the value stored in the "firstName" data member
@@ -181,13 +167,11 @@ returned as follows.
 
 The automatically created setter permits the assignment operator (=) to assign a
 new value to the data member. As with the getter, parentheses are optional.
-Either the "=" or ":=" assignment operators can be used.
-
-::
+Either the "=" or ":=" assignment operators can be used. ::
 
    // Sets "firstName" to a new value
    #person->firstName = 'John'
-   
+
    // Sets "lastName" to a new value
    #person->lastName() := 'Doe'
    // => Doe
@@ -197,15 +181,13 @@ However, getters and setters can also be added manually without automatically
 exposing both get and set behaviors. One hypothetical use for this is a type
 that wants to provide to the outside world read-only access to one of its data
 members. Additionally, a getter or a setter can be added manually in order to
-override or replace the automatically provided behavior — perhaps to validate
+override or replace the automatically provided behavior; perhaps to validate
 the values in a particular manner.
 
 The following example defines a ``person`` type that manually exposes its
 "firstName" data member by defining two member methods, one for the getter and
-another for the setter. See the section of this chapter on :ref:`Member Methods
-<types-member-methods>` for more information on creating member methods.
-
-::
+another for the setter. See the section of this chapter on
+:ref:`types-member-methods` for more information on creating member methods. ::
 
    define person => type {
       // the firstName data member
@@ -265,10 +247,8 @@ accessed. There are three such access levels.
 The following type expression defines three data members and three member
 methods. The method ``describe()`` returns a description of the person and is
 intended to be called by users of the type. The methods ``describeName()`` and
-``describeAge()`` are private and protected methods — not intended to be used by
-the outside world.
-
-::
+``describeAge()`` are private and protected methods, not intended to be used by
+the outside world. ::
 
    define person => type {
       data
@@ -288,7 +268,7 @@ use of a ``person`` object::
 
    local(p = person)
    #p->describe
-   // =>  , age 
+   // =>  , age
 
    #p->describeAge
    // => FAILURE: access not permitted
@@ -329,9 +309,7 @@ The parent section names the parent that the type being defined is to inherit
 from. For example, the ``person`` type can inherit from the ``entity`` type by
 naming it in its parent section. Each person object that gets created will then
 possess all of the data members and methods found in the ``entity`` type,
-whatever those might be.
-
-::
+whatever those might be. ::
 
    define person => type {
      parent entity
@@ -343,9 +321,7 @@ recommended that you place it at the top.
 
 The following code defines two simple types: ``one`` and ``two``. Type ``two``
 inherits from type ``one``. Notice that the ``second()`` method is overridden by
-the second type, but the ``first()`` method is not.
-
-::
+the second type, but the ``first()`` method is not. ::
 
    define one => type {
       public first() => 'alpha'
@@ -359,9 +335,7 @@ the second type, but the ``first()`` method is not.
 When the ``first()`` method of a ``two`` object is called, the value "alpha" is
 returned since it is automatically calling the method from the parent type. The
 ``second()`` method returns "gamma" since it is calling the overridden method
-from type ``two``.
-
-::
+from type ``two``. ::
 
    two->first
    // => 'alpha'
@@ -379,9 +353,7 @@ be accessed by using the "inherited" keyword followed by the target operator
 
 In the following example, the method ``third()`` is defined to call the
 inherited method ``second()``. The method from type ``two`` will be bypassed in
-favor of the corresponding method from type ``one``.
-
-::
+favor of the corresponding method from type ``one``. ::
 
    define one => type {
       public first() => 'alpha'
@@ -398,9 +370,7 @@ favor of the corresponding method from type ``one``.
 
 Equivalently, Lasso 9 supports a shortcut syntax of two periods for targeting
 "inherited" which can be used to access the methods of a parent type. The
-example above can be rewritten using ".." in place of "``inherited->``".
-
-::
+example above can be rewritten using ".." in place of "``inherited->``"::
 
    define two => type {
       parent one
@@ -418,18 +388,14 @@ default each type has a creator method that corresponds to the name of the type
 and requires no parameters.
 
 The example type ``person`` would automatically have a creator method
-``person()`` that returns a new instance of the type.
-
-::
+``person()`` that returns a new instance of the type. ::
 
    // Assigns a new person object to #myperson
    local(myperson = person())
 
 If a type does not define its own creator method(s), then it is provided with a
 default zero-parameter type creator. Attempting to provide parameters to a type
-creator which does not accept any parameters will fail.
-
-::
+creator which does not accept any parameters will fail. ::
 
    local(myperson = person(264))
    // => FAILURE: person() accepts no parameters
@@ -445,9 +411,7 @@ To illustrate, the following type definition defines an ``onCreate`` method that
 requires three parameters: "firstName", "lastName", and "birthdate". These
 parameters correspond to the data members of the type and allow them to be set
 when the object is first created. The creator simply assigns the parameter
-values to the data members.
-
-::
+values to the data members. ::
 
    define person => type {
       data firstName::string, lastName::string
@@ -473,9 +437,7 @@ Many type creators can be defined by specifying multiple ``onCreate`` methods.
 The following type defines three type creators. The first permits ``person``
 objects to be created with no parameters. The second permits ``person`` objects
 to be created with first and last names. The third, with first and last names
-and a birthdate.
-
-::
+and a birthdate. ::
 
    define person => type {
       data firstName::string, lastName::string
@@ -516,9 +478,7 @@ operators are used and when objects are compared for ordinality using any of the
 greater than or less than operators (< <= > >=).
 
 An ``onCompare`` method must accept one parameter and must return an ``integer``
-value.
-
-::
+value. ::
 
    public onCompare(rhs)::integer
 
@@ -565,9 +525,7 @@ would have one ``onCompare`` method for ``integer`` and another for ``decimal``
 objectss. This example also shows how the ``onCompare`` method can be manually
 called on objects. In this case, the "value" data member is responsible for
 doing the actual comparisons, so its ``onCompare`` method is called and the
-value returned.
-
-::
+value returned. ::
 
    define myint => type {
       data private value
@@ -585,9 +543,7 @@ The ``contains`` method is called whenever the contains (``>>``) or not contains
 (``!>>``) operators are used.
 
 A ``contains`` method should have the following signature. The method accepts
-one parameter and must return a boolean value, "true" or "false".
-
-::
+one parameter and must return a boolean value, "true" or "false". ::
 
    public contains(rhs)::boolean
 
@@ -596,9 +552,7 @@ logic makes sense for the type) then a value of "true" should be returned;
 otherwise, a value of "false" should be returned.
 
 For example, the type ``odds``, overrides the contains operators so that ``odds
->> 3`` will return "true" and ``odds >> 4`` will return "false".
-
-::
+>> 3`` will return "true" and ``odds >> 4`` will return "false". ::
 
    define odds => type {
       public contains(rhs::integer)::boolean => {
@@ -618,9 +572,7 @@ The "invoke" callback is used by the system when an object is invoked by
 applying parentheses to it. By default, invoking an object produces a copy of
 the object that was invoked. However, objects can add their own ``invoke``
 methods to alter this behavior. The following code shows how an instance of the
-``person`` type might be invoked.
-
-::
+``person`` type might be invoked::
 
    define person => type {
       data
@@ -670,9 +622,7 @@ The ``asString`` method can be called when a type should be converted into a
 ``string``. By default, a type instance will simply output the name of the type.
 Overriding this method allows a type to control how it is output. The following
 code defines a simple type which outputs a greeting when its ``asString`` method
-is called.
-
-::
+is called::
 
    define mytype => type {
       public asString() => 'Hello World!'
@@ -697,9 +647,7 @@ Overloading +, -, \*, /, %
 An arithmetic operator is overloaded by defining a member method whose name is
 the same as the operator symbol. The method must accept one parameter and return
 an appropriate value. The type instance should not be modified by these
-operations.
-
-::
+operations. ::
 
    public +(rhs)
    public -(rhs)
@@ -708,9 +656,7 @@ operations.
    public %(rhs)
 
 The following example provides a full set of arithmetic operators for the
-``myint`` type. The operators can be called in expressions like: ``myint + 35``
-
-::
+``myint`` type::
 
    define myint => type {
       data private value
@@ -754,9 +700,7 @@ traits are created.
 The trait section of a type expression can import one or more other traits.
 These traits are combined to form the trait for the type. The following code
 shows a type definition which imports the ``trait_array`` and ``trait_map``
-traits.
-
-::
+traits::
 
    define mytype => type {
      trait {
@@ -775,9 +719,7 @@ Lasso permits types to have methods added to them outside of the original
 defining type expression. This is done by defining the method using the word
 "define" followed by the name of the type, the target operator ``->``, and then
 the rest of the method signature and body. The following example adds the method
-``speak`` to the ``person`` type.
-
-::
+``speak`` to the ``person`` type::
 
    define person->speak() => 'Hello, world!'
 

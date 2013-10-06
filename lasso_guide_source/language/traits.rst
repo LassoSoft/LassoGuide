@@ -1,5 +1,5 @@
-.. _traits:
 .. http://www.lassosoft.com/Language-Guide-Defining-Traits
+.. _traits:
 
 ******
 Traits
@@ -30,9 +30,7 @@ member methods.
 
 Lasso includes many types which have common member methods. For example, the
 ``pair``, ``array``, ``string``, and other data types implement ``first``,
-``second``, and ``last`` methods which return the named element.
-
-::
+``second``, and ``last`` methods which return the named element. ::
 
    array(1, 2, 3, 4)->last
    // => 4
@@ -85,9 +83,7 @@ The full trait definition for ``trait_firstLast`` would be as follows::
 
 If we define a new type (e.g. ``month``) that supports ``get`` and ``size``,
 then we can import this trait to automatically get an implementation of
-``first``, ``second``, and ``last``.
-
-::
+``first``, ``second``, and ``last``. ::
 
    define month => type {
      trait {
@@ -114,9 +110,7 @@ Defining Traits
 
 A trait is defined using the "define" reserved word followed by the trait name,
 the association operator (``=>``), the reserved word "trait", and a code block
-containing the definition of the trait.
-
-::
+containing the definition of the trait. ::
 
    define myTrait => trait {
      // ...
@@ -161,9 +155,7 @@ require sections as are necessary can be specified.
 
 The section begins with the reserved word "require" followed by a
 comma-separated list of method signatures. The following trait requires a getter
-and setter for the "firstName" data member.
-
-::
+and setter for the "firstName" data member::
 
    define myTrait => trait {
      require firstName, firstName=
@@ -185,9 +177,7 @@ As many import sections as are necessary can be specified.
 
 The section begins with the reserved word "import" followed by a comma-separated
 list of trait names. The following trait simply imports the characteristics of
-the built-in ``trait_array`` trait.
-
-::
+the built-in ``trait_array`` trait::
 
    define myTrait => trait {
      import trait_array
@@ -223,10 +213,8 @@ ultimately applied to must implement that member method in order for the trait
 to be applied.
 
 An alternate method of defining the trait example from the start of this chapter
-would be to define three sub-traits and then use the composition operator (+) to
-compose them into a single trait.
-
-::
+would be to define three sub-traits and then use the composition operator
+(``+``) to compose them into a single trait. ::
 
    define trait_first => trait {
      require get
@@ -244,10 +232,8 @@ compose them into a single trait.
 
 Replacing the last line with the trait definition below would produce exactly
 the same result. In general, the latter method is preferred for trait
-definitions, while the composition operator (+) is preferred for runtime
-changes.
-
-::
+definitions, while the composition operator (``+``) is preferred for runtime
+changes. ::
 
    define trait_firstlast => trait {
      import trait_first
@@ -260,15 +246,13 @@ Checking Traits
 ===============
 
 Since traits provide member methods for a type it is often useful to check
-whether a given type instance has a trait applied. The
-:meth:`null->isA(name::tag)` method can be used for this check. This member
-method can be used on any type instance and will return a positive integer if
-the instance has the provided trait name applied to it.
+whether a given type instance has a trait applied. The `~null->isA()` method can
+be used for this check. This member method can be used on any type instance and
+will return a positive integer if the instance has the provided trait name
+applied to it.
 
-In this code the :meth:`null->isA(name::tag)` method returns "2" since the
-``month`` data type does have the ``trait_firstLast`` trait applied to it.
-
-::
+In this code the `~null->isA()` method returns "2" since the ``month`` data type
+does have the ``trait_firstLast`` trait applied to it::
 
    local(mymonth = month(2008, 12));
    #mymonth->isa(::trait_firstlast)
@@ -284,15 +268,13 @@ indistinguishable to the user of the type from member methods that are
 implemented directly in the type.
 
 Each type definition can include a single trait section. The trait can import as
-many traits as are needed.
+many traits as are needed. ::
 
-::
-
-   define myType => type { 
-     trait { 
-       import ... 
+   define myType => type {
+     trait {
+       import ...
      }
-     data ... 
+     data ...
      public ...
    }
 
@@ -300,8 +282,8 @@ When an instance of the type is created, the instance has the specified trait
 applied to it automatically.
 
 The trait of any object in Lasso can be programmatically manipulated using the
-:meth:`~null->trait`, :meth:`~null->setTrait`, and :meth:`~null->addTrait`
-methods described in the next section.
+`~null->trait()`, `~null->setTrait()`, and `~null->addTrait()` methods described
+in the next section.
 
 
 Trait Manipulation Methods
@@ -322,7 +304,7 @@ Trait Manipulation Methods
 
    Combines the target objects trait with the parameter.
 
-The ``null->setTrait`` method should be used with care since resetting the trait
+The `~null->setTrait` method should be used with care since resetting the trait
 of a type instance may result in many of its member methods becoming unavailable
 or ceasing to function. In general, traits will be added to a type instance to
 provide additional functionality rather than resetting the entire trait for a
