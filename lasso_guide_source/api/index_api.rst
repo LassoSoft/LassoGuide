@@ -1,4 +1,5 @@
 .. mostly from book
+.. _lasso-api-guide-index:
 
 #################
  Lasso API Guide

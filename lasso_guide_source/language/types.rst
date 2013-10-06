@@ -1,5 +1,5 @@
-.. _types:
 .. http://www.lassosoft.com/Language-Guide-Defining-Types
+.. _types:
 
 *****
 Types

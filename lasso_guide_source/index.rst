@@ -2,6 +2,7 @@
    sphinx-quickstart on Tue Jul 31 01:26:58 2012.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
+.. _lasso-guide-index:
 
 *****************************
  Welcome to **Lasso**\ Guide
@@ -128,8 +129,8 @@ Here are some additional resources you may find handy:
 
    - :ref:`search`
    - :ref:`genindex`
-   - :ref:`glossary`
 
+   .. - :ref:`glossary`
    .. - :ref:`credits`
    .. - :ref:`copyright`
    .. - :ref:`license`

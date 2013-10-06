@@ -80,7 +80,7 @@ methods: ``example_file->open``, ``example_file->close``,
 ``example_file->read``, ``example_file->write``.
 
 The example project is the "LCAPIFile" project in the LCAPI examples found
-`here <http://lassoguide.com/_static/lcapi_examples.zip>`_. Due to the length of
+:download:`here <../_downloads/lcapi_examples.zip>`. Due to the length of
 the code in that file, the entire code is not reproduced here. Instead this
 section provides a conceptual overview of the ``example_file`` type and
 describes the basic LCAPI functions used to implement it.

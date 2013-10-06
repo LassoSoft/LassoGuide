@@ -1,3 +1,5 @@
+:orphan:
+
 .. _book-table-of-contents:
 
 *****************
@@ -13,7 +15,6 @@ Introduction and Installation
    /index
    /server/overview
 
-.. _lasso-installation:
    
 ++++++++++++
 Installation

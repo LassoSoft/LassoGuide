@@ -1110,7 +1110,6 @@ Reflection Support
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#to_reflected_field>`_
 
 
-
 Return Types
 ============
 

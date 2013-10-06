@@ -24,9 +24,7 @@ Requirements
 ============
 
 -  Lasso 9 installed on a supported OS
-
 -  Java installed
-
 -  If there is a separate package for Java support in Lasso, install it
 
 

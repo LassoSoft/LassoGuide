@@ -67,8 +67,8 @@ Custom Method Tutorial
 
 This section provides a walk-through of building an example method to show how
 LCAPI features are used. This code can be found in the "SampleMethod" folder in
-the LCAPI examples which can be
-`downloaded here <http://lassoguide.com/_static/lcapi_examples.zip>`_.
+the LCAPI examples which can be :download:`downloaded here
+<../_downloads/lcapi_examples.zip>`.
 
 The method will simply display its parameters, and it will look like the example
 below when called in Lasso code::

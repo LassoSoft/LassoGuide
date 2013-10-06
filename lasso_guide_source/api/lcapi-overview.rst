@@ -12,7 +12,7 @@ Windows, OS X, and Linux.
 
 This chapter provides a walk-through for building and debugging an example
 LCAPI method. You can download the source code for this and other examples
-`here <http://lassoguide.com/_static/lcapi_examples.zip>`_.
+:download:`here <../_downloads/lcapi_examples.zip>`.
 
 
 .. _lcapi-overview-requirements:
@@ -24,23 +24,19 @@ In order to compile LCAPI methods, data types, or data connectors you need the
 following:
 
 Windows
-   - Lasso 9 installed on a supported Windows OS
-
-   - Microsoft Visual C++ .NET
+   -  Lasso 9 installed on a supported Windows OS
+   -  Microsoft Visual C++ .NET
 
 OS X
-   - Lasso 9 installed on a supported OS
-
-   - The developer tools installed 
-
-   - You need the 10.5 SDK which does not come in the newest development tools.
-     For unspported help on getting older SDKs installed, `see this link
-     <http://hints.macworld.com/article.php?story=20110318050811544>`_
+   -  Lasso 9 installed on a supported OS
+   -  The developer tools installed 
+   -  You need the 10.5 SDK which does not come in the newest development tools.
+      For unspported help on getting older SDKs installed, `see this link
+      <http://hints.macworld.com/article.php?story=20110318050811544>`_
 
 Linux
-   - Lasso 9 installed on a supported OS
-
-   - The gcc C/C++ development libraries and executables
+   -  Lasso 9 installed on a supported OS
+   -  The gcc C/C++ development libraries and executables
 
 
 .. _lcapi-overview-quickstart:
