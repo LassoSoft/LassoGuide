@@ -47,7 +47,7 @@ something else attempts to draw elements from the query expression that it
 begins to generate results.
 
 All local variables available at the location of a query expression's creation
-are available within the query expresion itself. However, new variables
+are available within the query expression itself. However, new variables
 introduced by a query expression clause will not be available outside of the
 query expression that introduces them.
 
@@ -58,11 +58,11 @@ The With Clause
 The ``with`` clause always begins with the word "with" followed by a variable
 name which is created as a local variable available only within the current
 query expression. Next follows the word "in" and then the source data element,
-which is any object whose type supports the ``trait_queriable`` trait, such as
-an ``array`` or a ``list``. Note that when declaring the variable at the
-beginning of the with clause, the variable name is given by itself, without the
-"#" character, just as if the local were being defined using the standard local
-construct. ::
+which is any object whose type supports the :trait:`trait_queriable` trait, such
+as an :type:`array` or a :type:`list`. Note that when declaring the variable at
+the beginning of the with clause, the variable name is given by itself, without
+the "#" character, just as if the local were being defined using the standard
+local construct. ::
 
    with variable_name in source
 
@@ -110,7 +110,7 @@ the numbers: *1, 4, 9, 16, 25, 36, 49, 64, 81*.
 
 One query expression can be utilized in another. In the next example, the query
 expression is assigned to a variable. That variable is used in a subsequent
-query expression. The first query expresion is not evaluated until the second
+query expression. The first query expression is not evaluated until the second
 query expression is evaluated. ::
 
    local(qe =

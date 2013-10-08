@@ -61,7 +61,7 @@ Like variables, data members store values. Three values are unique to each
 instance of the type. If a person type was created then it could contain data
 members for the first and last name of the person, his/her birthdate, social
 security number, address, etc. Just as every individual has his own values for
-these items, so would every instatiated object.
+these items, so would every instantiated object.
 
 The following example type implementation shows several different methods for
 defining data members. These methods can be mixed and matched in a single type
@@ -520,9 +520,9 @@ persons::
 Multiple ``onCompare`` methods can be provided, each specialized to compare
 against particular object types. For example, an ``integer`` type would want to
 permit itself to be compared against other ``integer`` objects, but it might
-also want to be comparable to ``decimal`` objectss. Such an ``integer`` type
+also want to be comparable to ``decimal`` objects. Such an ``integer`` type
 would have one ``onCompare`` method for ``integer`` and another for ``decimal``
-objectss. This example also shows how the ``onCompare`` method can be manually
+objects. This example also shows how the ``onCompare`` method can be manually
 called on objects. In this case, the "value" data member is responsible for
 doing the actual comparisons, so its ``onCompare`` method is called and the
 value returned. ::

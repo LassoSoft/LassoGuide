@@ -28,13 +28,13 @@ first form. The "// ..." in the example shows where the body expressions for
 that particular condition would occur. ::
 
    if (expression1)
-     // Code here executed if expression1 evalutes true
+     // Code here executed if expression1 evaluates true
      // ...
    else (expression2)
-     // Code here executed if expression2 evalutes true
+     // Code here executed if expression2 evaluates true
      // ...
    else
-     // Code here executed if neither expression1 or expression2 evalutes true
+     // Code here executed if neither expression1 or expression2 evaluates true
      // ...
    /if
 
@@ -47,13 +47,13 @@ The second form operates like the first, but permits the if/else to be used with
 the association/givenBlock syntax. ::
 
    if (expression1) => {
-     // Code here executed if expression1 evalutes true
+     // Code here executed if expression1 evaluates true
      // ...
    else (expression2)
-     // Code here executed if expression2 evalutes true
+     // Code here executed if expression2 evaluates true
      // ...
    else
-     // Code here executed if neither expression1 or expression2 evalutes true
+     // Code here executed if neither expression1 or expression2 evaluates true
      // ...
    }
 

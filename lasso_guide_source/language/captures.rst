@@ -324,4 +324,4 @@ Capture API
 .. member:: capture->invokeAutoCollect(...)
 
    This invokes the capture. If it is an auto-collect capture, it will return
-   the auto-collecte value, but it will not update `capture->autoCollectBuffer`.
+   the auto-collect value, but it will not update `capture->autoCollectBuffer`.

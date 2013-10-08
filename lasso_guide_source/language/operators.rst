@@ -74,7 +74,7 @@ detail on creating setter methods.
 Arithmetic
 ==========
 
-Arithmetic usually refers to mathmatical operations using integer or decimal
+Arithmetic usually refers to mathematical operations using integer or decimal
 numbers. However, an arithmetic operator can be applied to any object that
 supports the operation.
 
@@ -159,11 +159,11 @@ the original operand, then produces the copied object as a result. ::
 
    // Post-Increment "op"
    op++
-   // => // produces a copy of "op" before incrementation
+   // => // produces a copy of "op" before incrementing
 
    // Post-Decrement "op"
    op--
-   // => // produces a copy of "op" before decrementation
+   // => // produces a copy of "op" before decrementing
 
 These increment/decrement operators are translated into regular arithmetic
 method calls with "1" as the method parameter. This means that if a type intends
@@ -325,7 +325,7 @@ value. ::
    // => // Produces "true" if op2 is contained within op1 else false
 
    op1 !>> op2
-   // => // Produces "true" if op2 is not contained withing op1 else false
+   // => // Produces "true" if op2 is not contained within op1 else false
 
 In order to support containment testing, a type must implement a method named
 "contains". This method must accept one parameter, which is the right-hand
@@ -480,7 +480,7 @@ The re-target operator ("&") allows the same target object to be used for
 multiple method calls. The "&" symbol is placed between the individual method
 calls. Re-target is only ever used in the context of a member method call using
 the target operator ("``->``"). The target object of the last target operator is
-used as the object for the re-targetted member call. For each method call, the
+used as the object for the re-targeted member call. For each method call, the
 "&" is placed following the method name, parameters and givenBlock (if present).
 
 The re-target operator can be used to string two or more methods together. The
@@ -548,7 +548,7 @@ When using such a dynamic method name, the expression must be surrounded in
 parentheses to disambiguate. ::
 
    #lv->\(meth + 'name')
-   // => // Produces a reference to the member method defined by concating "name" with the value of "meth"
+   // => // Produces a reference to the member method defined by concatenating "name" with the value of "meth"
 
 Though the escape operators are used to find methods by name, the object
 produced by the operators is a **memberstream**. This object manages the finding

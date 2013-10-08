@@ -203,7 +203,7 @@ trait that has all the requirements and provides all the member methods of the
 traits that have been combined.
 
 The same rules that are used for importing traits apply to composed traits. The
-requirements of one trait may be satisified by a member method provided by
+requirements of one trait may be satisfied by a member method provided by
 another trait in the composition.
 
 However, if two traits provide the same member method, then there is a conflict.

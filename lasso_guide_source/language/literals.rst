@@ -164,8 +164,8 @@ integer. ::
    0x3A9
    0x11F018BE6
 
-Both numeric and hexadecimal integer literals produce the same ``integer`` type
-with the same set of member methods.
+Both numeric and hexadecimal integer literals produce the same :type:`integer`
+type with the same set of member methods.
 
 
 Decimal Literals
@@ -221,7 +221,7 @@ tags for equality is very fast.
 Staticarray Literals
 ====================
 
-Lasso's ``staticarray`` type is an efficient, non-resizable container for
+Lasso's :type:`staticarray` type is an efficient, non-resizable container for
 holding any object types. This object is used in many places in Lasso and it's
 not unlikely that a Lasso programmer will come into contact with one.
 Staticarrays are created in the same way as any object, but Lasso supports a

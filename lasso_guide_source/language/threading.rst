@@ -134,7 +134,7 @@ Simple ``counter_thread``
 -------------------------
 
 The following example creates a simple thread object. This object maintains a
-counter that can be advanced and retreive its current value. Because this is a
+counter that can be advanced and retrieve its current value. Because this is a
 thread object, it is globally available and other threads can safely advance the
 counter. ::
 

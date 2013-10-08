@@ -126,7 +126,7 @@ custom error codes into the error recovery mechanisms for a site.
 
 .. method:: error_currentError(-errorCode= ?)
 
-   Returns the current error message. Optional "-errorCode" paramater causes the
+   Returns the current error message. Optional "-errorCode" parameter causes the
    current error code to be returned instead.
 
 .. method:: error_code()
@@ -465,7 +465,7 @@ these custom error codes. This ``handle`` block will only execute if one of the
          else(error_code == -2)
             '... Handle custom error -2 ...'
          else
-            '... Another error has ocurred ...'
+            '... Another error has occurred ...'
          /if
       ^}
 

@@ -333,7 +333,7 @@ failure is generated. (The "isa" test involves calling the object's "isa" method
 with the constraint; if a non-zero value is returned, then it passes. See
 `~null->isA()` for details about this member method.) Specifying a return type
 provides knowledge to the caller of the method about the method's resulting
-value. It also insures to the method's developer that their programing is
+value. It also insures to the method's developer that their programming is
 correct, at least with respect to the method returning the proper value type.
 Specifying a return type is optional, and a method without a specified return
 type may return values of any type, or may return no value at all (in which case
@@ -364,7 +364,7 @@ that. ::
    method_name(...)
 
 In the above example, the first signature is bound to the type "type_name" while
-the second signature is unbound. A method using the first signature can not be
+the second signature is unbound. A method using the first signature cannot be
 called except with a target instance of ``type_name``. The second signature can
 be called at any point without a target type instance.
 
@@ -397,7 +397,7 @@ body for the new method. ::
 
 If a method is defined which has a signature equivalent to an already defined
 method, the new definition will replace the old and the old definition will no
-longer be available. Keywords can not be used to uniquely identify a method. A
+longer be available. Keywords cannot be used to uniquely identify a method. A
 method which takes, for example, two required parameters and a certain set of
 keyword parameters will be overwritten by a new method which requires two of the
 same parameters and an entirely different set of keywords.
@@ -413,10 +413,11 @@ the method's return value. The method below simply returns a string. ::
 
    define hello() => 'Hello, world!'
 
-Any single expression, including the ternary conditional operator or mathmatical
-expressions can be used as the method's return value. Assignments, local or
-thread variable declarations, or any other expression known at compilation time
-to not produce a value may not be used as a method's return value expression. ::
+Any single expression, including the ternary conditional operator or
+mathematical expressions can be used as the method's return value. Assignments,
+local or thread variable declarations, or any other expression known at
+compilation time to not produce a value may not be used as a method's return
+value expression. ::
 
    define pi() => math_acos(-1)
    define times_twenty(n) => #n * 20
@@ -521,7 +522,7 @@ removing the first from future consideration during dispatch.
 
 Keyword parameters are never considered during the method selection process
 until the end where the single remaining method's keyword parameters (if any)
-are validated. Two methods can not differentiate themselves based on accepting a
+are validated. Two methods cannot differentiate themselves based on accepting a
 different set of keywords. Methods must be distinguished based solely on their
 required or optional parameters.
 
