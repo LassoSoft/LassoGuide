@@ -28,21 +28,21 @@ users. The special group "ADMINISTRATORS" is used to control who can access the
 Lasso Admin application as well as other system-related applications.
 
 The built-in security system is accessed through two different interfaces: the
-set of ``auth_*`` methods and the ``security_registry`` object.
+set of ``auth_…`` methods and the :type:`security_registry` object.
 
 
 Auth
 ====
 
-The ``auth`` methods are used by web apps to execute simple security checks. The
-checks acquire the username, password and realm information from the current web
-request and, therefore, require that a request be active. In all cases, if the
-check fails or if no username and password was provided, then the auth methods
-will generate a HTTP 401 Unauthorized response with a ``WWW-Authenticate:
-Digest`` header. The request is then aborted, by default. If the security checks
-succeed, then the methods return nothing. If electing to not abort when the
-check fails, a caller can check ``web_response->getStatus`` to determine the
-result.
+The ``auth_…`` methods are used by web apps to execute simple security checks.
+The checks acquire the username, password and realm information from the current
+web request and, therefore, require that a request be active. In all cases, if
+the check fails or if no username and password was provided, then the auth
+methods will generate a HTTP 401 Unauthorized response with a
+:mailheader:`WWW-Authenticate: Digest` header. The request is then aborted, by
+default. If the security checks succeed, then the methods return nothing. If
+electing not to abort when the check fails, a caller can check
+`web_response->getStatus` to determine the result.
 
 .. method:: auth_admin(-realm::string = 'Lasso Security', \
    -noAbort = false, \
@@ -77,14 +77,14 @@ result.
 The ``security_registry`` Object
 =================================
 
-The ``security_registry`` object provides a more complete interface to Lasso's
-security system. It does not rely on an ongoing web request and can be used
-freely once the system is initialized. The ``security_registry`` methods permit
-a realm to be specified, but the object otherwise defaults to using the 'Lasso
-Security' realm.
+The :type:`security_registry` object provides a more complete interface to
+Lasso's security system. It does not rely on an ongoing web request and can be
+used freely once the system is initialized. The ``security_registry`` methods
+permit a realm to be specified, but the object otherwise defaults to using the
+'Lasso Security' realm.
 
 Before the security system can be used, it must be initialized by calling the
-``security_initialize()`` method. Lasso Server calls this method as it starts up
+`security_initialize()` method. Lasso Server calls this method as it starts up
 and so this can be safely ignored by web applications. Command line or other
 tools that want to use the security system should call this method as early as
 possible when starting up.

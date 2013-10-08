@@ -82,7 +82,9 @@ IPv4 Addresses
 IPv4 addresses consist of four numbers from 0 to 255 separated by periods. Each
 number represents a single 8 bit integer and the entire IP address represents a
 32 bit integer. There are thus effectively about 4 billion IPv4 addresses. A
-typical IP address appears as follows::
+typical IP address appears as follows:
+
+.. code-block:: none
 
    127.0.0.1
 
@@ -96,7 +98,9 @@ version 6 of the Internet Protocol and is abbreviated IPv6. The most recent
 versions of Windows, Mac OS X, and Linux all support IPv6 addresses. The DNS
 lookup methods in Lasso do not support IPv6 addresses at this time. IPv6
 addresses are essentially 128-bit integers. A typical IPv6 address may appear as
-follows::
+follows:
+
+.. code-block:: none
 
    fe80:0000:0000:0000:0000:0000:0000:0000
 
@@ -123,65 +127,57 @@ DNS Lookup
    )
 
    This method is used to query a DNS server for information about a specified
-   domain name. It requires one paremeter: the domain name being queried. The
+   domain name. It requires one parameter: the domain name being queried. The
    optional parameters are described in the table below. This method will return
-   either a string, array, or ``dns_response`` object.
+   either a string, array, or :type:`dns_response` object.
 
-   .. tabularcolumns:: |l|L|
-
-   ================= ===========================================================
-   Parameter         Description
-   ================= ===========================================================
-   ``-type``         The type of data to look up. Defaults to "*" if the name
-                     parameter is a domain name or "PTR" if it is an IP address.
-                     Possible values include "*", "A", "NS", "MD", "MF",
-                     "CNAME", "SOA", "MB", "MG", "MR", "NULL", "WKS", "PTR",
-                     "HINFO", "MINFO", "MX", "TXT", "AXFR", "MAILB", "MAILA".
-
-   ``-class``        The class in which to perform the lookup. Defaults to "IN"
-                     which represents the Internet DNS system. Searching other
-                     classes is very rare. Possible values include "*", "IN",
-                     "CS", "CH".
-
-   ``-noRecurse``    By default the local DNS server will automatically query
-                     other DNS servers to find the answer to a request. If this
-                     parameter is included then the query will only return
-                     information which is known directly by the local DNS
-                     server.
-
-   ``-inverse``      Sets the inverse bit in the DNS query.
-
-   ``-status``       Sets the status bit in the DNS query.
-
-   ``-showQuery``    If specified the query is not actually performed, but a
-                     ``dns_response`` object representing the query is returned.
-
-   ``-formatQuery``  If specified the query is not actually performed, but a
-                     string is returned which describes the query that was
-                     constructed.
-
-   ``-bitQuery``     If specified the query is not actually performed, but a
-                     string is returned which shows the low-level bit
-                     representation of the query that was constructed.
-
-   ``-showResponse`` If specified the response is returned as ``dns_response``
-                     object which can be inspected using the member methods
-                     described in the documentation below.
-
-   ``-format``       If specified a string is returned which describes the
-                     response from the DNS server.
-
-   ``-bitFormat``    If specified a string is returned which shows the low-level
-                     bit representation of the response from the DNS server.
-
-   ``-hostname``     The name of a specific DNS server to query. Defaults to the
-                     DNS server set up in the OS.
-
-   ``-port``         The port of the DNS server to connect to when doing a DNS
-                     lookup.
-
-   ``-timeout``      How long to wait for a response when doing a DNS lookup.
-   ================= ===========================================================
+   :param string name:
+      The domain name being queried.
+   :param -type:
+      The type of data to look up. Defaults to "*" if the name parameter is a
+      domain name or "PTR" if it is an IP address. Possible values include "*",
+      "A", "NS", "MD", "MF", "CNAME", "SOA", "MB", "MG", "MR", "NULL", "WKS",
+      "PTR", "HINFO", "MINFO", "MX", "TXT", "AXFR", "MAILB", "MAILA".
+   :param -class:
+      The class in which to perform the lookup. Defaults to "IN" which
+      represents the Internet DNS system. Searching other classes is very rare.
+      Possible values include "*", "IN", "CS", "CH".
+   :param boolean -noRecurse:
+      By default the local DNS server will automatically query other DNS servers
+      to find the answer to a request. If this parameter is included then the
+      query will only return information which is known directly by the local
+      DNS server.
+   :param boolean -inverse:
+      Sets the inverse bit in the DNS query.
+   :param boolean -status:
+      Sets the status bit in the DNS query.
+   :param  boolean-showQuery:
+      If specified the query is not actually performed, but a
+      :type:`dns_response` object representing the query is returned.
+   :param boolean -formatQuery:
+      If specified the query is not actually performed, but a string is returned
+      which describes the query that was constructed.
+   :param boolean -bitQuery:
+      If specified the query is not actually performed, but a string is returned
+      which shows the low-level bit representation of the query that was
+      constructed.
+   :param boolean -showResponse:
+      If specified the response is returned as :type:`dns_response` object which
+      can be inspected using the member methods described in the documentation
+      below.
+   :param boolean -format:
+      If specified a string is returned which describes the response from the
+      DNS server.
+   :param boolean -bitFormat:
+      If specified a string is returned which shows the low-level bit
+      representation of the response from the DNS server.
+   :param -hostname:
+      The name of a specific DNS server to query. Defaults to the DNS server set
+      up in the OS.
+   :param integer -port:
+      The port of the DNS server to connect to when doing a DNS lookup.
+   :param integer -timeout:
+      How long to wait for a response when doing a DNS lookup.
 
 
 IP Lookup Example
@@ -253,9 +249,9 @@ DNS Response Type
 .. type:: dns_response
 .. method:: dns_response
 
-   An object of this data type can be returned in response to a ``dns_lookup``
-   depending on its parameters. The member methods of this type are described
-   below.
+   An object of this data type can be returned in response to a
+   :type:`dns_lookup` depending on its parameters. The member methods of this
+   type are described below.
 
 .. member:: dns_response->format
 

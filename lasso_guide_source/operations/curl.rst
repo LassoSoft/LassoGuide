@@ -11,10 +11,10 @@ transfers data with URL syntax, supporting a wide variety of protocols such as
 "Telnet" and "TFTP".
 
 Curl has built-in support for SSL certificates, HTTP POST, HTTP PUT, FTP
-uploading, proxies, cookies, user+password authentication, proxy tunneling, and
+uploading, proxies, cookies, user+password authentication, proxy tunnelling, and
 more.
 
-.. Over view of where Jono was going
+.. Overview of where Jono was going
    Using curl - basic curl usage
    Additional options - describes setting options to customize curl functionality
    Retrieving information - describes how to get further information about the current request
@@ -57,7 +57,8 @@ Lasso Curl API
 
 .. member:: curl->contentType=(s::string)
 
-   Override the default HTTP "Content-Type:" header by setting this value.
+   Override the default HTTP :mailheader:`Content-Type:` header by setting this
+   value.
 
 .. member:: curl->close()
 
@@ -166,8 +167,8 @@ Curl Options
 ============
 
 A myriad of curl options can be set for the current ``curl`` object to customize
-its behavior. This can be done by using the ``curl->set`` method - passing it
-the ``CURLOPT_…`` macro methods representing the option you wish to set and the
+its behavior. This can be done by using the `curl->set` method, passing it the
+``CURLOPT_…`` macro methods representing the option you wish to set and the
 value you wish to set it to as the second param. What follows is a list of
 options that can be set on Lasso's ``curl`` object. It has been adapted from
 `the curl documentation <http://curl.haxx.se/libcurl/c/curl_easy_setopt.html>`_,
@@ -199,7 +200,7 @@ Behavior Options
    Used with :meth:`curl->set(key, value)`. If set to 1, it tells the library to
    shut off the progress meter completely. It will also prevent the
    CURLOPT_PROGRESSFUNCTION from getting called. Future versions of libcurl are
-   likely to not have any built-in progress meter at all.
+   likely not to have any built-in progress meter at all.
 
 
 Callback Options
@@ -235,9 +236,9 @@ Network Options
 .. method:: CURLOPT_URL()
 
    Used with :meth:`curl->set(key, value)`. You can use this instead of
-   :meth:`curl->url=(s::string)` to change the URL for the ``curl`` object. All
-   URLs should be in the general form of "scheme://host:port/path" as detailed
-   `in RFC 3986 <http://www.ietf.org/rfc/rfc3986.txt>`_
+   `curl->url=` to change the URL for the ``curl`` object. All URLs should be in
+   the general form of "scheme://host:port/path" as detailed in
+   :rfc:`3986`.
 
 .. method:: CURLOPT_PROXY()
 
@@ -277,8 +278,8 @@ Network Options
 
 .. method:: CURLOPT_PORT()
 
-   Used with :meth:`curl->set(key, value)`. Specifies which remote port number to
-   connect to instead of the one specified in the URL, or speicy the default
+   Used with :meth:`curl->set(key, value)`. Specifies which remote port number
+   to connect to instead of the one specified in the URL, or speicy the default
    port for the used protocol. This value should be an integer.
 
 .. method:: CURLOPT_TCP_NODELAY()
@@ -332,9 +333,9 @@ Authentication Options
 .. method:: CURLOPT_PROXYUSERPWD()
 
    Used with :meth:`curl->set(key, value)`. This option expects a string that
-   specifies the authentication for the HTTP prxy in the format of
-   "username:password". Use meth:`CURLOPT_PROXYAUTH()` to specify the
-   authentication method.
+   specifies the authentication for the HTTP proxy in the format of
+   "username:password". Use `CURLOPT_PROXYAUTH()` to specify the authentication
+   method.
 
 .. method:: CURLOPT_HTTPAUTH()
 
@@ -352,8 +353,8 @@ Authentication Options
 .. method:: CURLOPT_PROXYAUTH()
 
    Used with :meth:`curl->set(key, value)`. Use this option to specify which
-   HTTP authentication method(s) you want curl to use. See
-   :meth:`CURLOPT_HTTPAUTH()` for a list of values for this option.
+   HTTP authentication method(s) you want curl to use. See `CURLOPT_HTTPAUTH()`
+   for a list of values for this option.
 
 
 HTTP Options
@@ -362,60 +363,62 @@ HTTP Options
 .. method:: CURLOPT_ENCODING()
 
    Used with :meth:`curl->set(key, value)`. This option takes a string value
-   specifying the "Accept-Encoding" header which also enables decoding of a
-   response when a "Content-Encoding" header is received. The string value
-   passed should be one of the following: "identity", which does nothing;
-   "deflate", which requests the server to compress its response using the zlib
-   algorithm; or "gzip", which requests the gzip algorithm.
+   specifying the :mailheader:`Accept-Encoding` header which also enables
+   decoding of a response when a :mailheader:`Content-Encoding` header is
+   received. The string value passed should be one of the following: "identity",
+   which does nothing; "deflate", which requests the server to compress its
+   response using the zlib algorithm; or "gzip", which requests the gzip
+   algorithm.
 
 .. method:: CURLOPT_AUTOREFERER()
 
    Used with :meth:`curl->set(key, value)`. If set to 1, then curl will set the
-   "Referer" header when it follows a "Location" redirect.
+   :mailheader:`Referer` header when it follows a :mailheader:`Location`
+   redirect.
 
 .. method:: CURLOPT_FOLLOWLOCATION()
 
    Used with :meth:`curl->set(key, value)`. If set to 1, then curl will follow
-   any "Location" header the server sends as part of its HTTP response. This
-   means that curl will send the same request to the new location and follow any
-   new "Location" headers all the way until no more such headers are returned.
-   :meth:`CURLOPT_MAXREDIRS()` can be used to limit the number of redirects curl
-   will follow.
+   any :mailheader:`Location` header the server sends as part of its HTTP
+   response. This means that curl will send the same request to the new location
+   and follow any new :mailheader:`Location` headers all the way until no more
+   such headers are returned. `CURLOPT_MAXREDIRS()` can be used to limit the
+   number of redirects curl will follow.
 
 .. method:: CURLOPT_UNRESTRICTED_AUTH()
 
    Used with :meth:`curl->set(key, value)`. If set to 1, then curl will continue
    to send authentication (username & password) when following locations, even
    if the hostname changes. (This option is meaningful only when setting
-   :meth:`CURLOPT_FOLLOWLOCATION()`.)
+   `CURLOPT_FOLLOWLOCATION()`.)
 
 .. method:: CURLOPT_MAXREDIRS()
 
    Used with :meth:`curl->set(key, value)`. Expects an integer value specifying
    the number of times curl will repeat the recursive following of the
-   "Location" header. A value of 0 will mean that no redirects will be followed
-   while a value of -1 (the default) means that an infinite number of redirects
-   will be followed.
+   :mailheader:`Location` header. A value of 0 will mean that no redirects will
+   be followed while a value of -1 (the default) means that an infinite number
+   of redirects will be followed.
 
 .. method:: CURLOPT_PUT()
 
    Used with :meth:`curl->set(key, value)`. If set to 1, then curl will use the
    HTTP PUT method to transfer data. The data should be set with
-   :meth:`CURLOPT_READDATA()` and :meth:`CURLOPT_INFILESIZE()`.
+   `CURLOPT_READDATA()` and `CURLOPT_INFILESIZE()`.
 
-   This option is deprecated in curl in favor of using :meth:`CURLOPT_UPLOAD()`.
+   This option is deprecated in curl in favor of using `CURLOPT_UPLOAD()`.
 
 .. method:: CURLOPT_POST()
 
    Used with :meth:`curl->set(key, value)`. if set to 1, then curl will use the
    HTTP POST method for its request. This will also have the request use a
-   "Content-Type: application/x-www-form-urlencoded" header (by far the most
-   commonly used "Content-Type" for the POST method). You can override this
-   header by setting your own with :meth:`CURLOPT_HTTPHEADER()`.
+   :mailheader:`Content-Type: application/x-www-form-urlencoded` header (by far
+   the most commonly used :mailheader:`Content-Type` for the POST method). You
+   can override this header by setting your own with `CURLOPT_HTTPHEADER()`.
 
-   Use :meth:`CURLOPT_POSTFIELDS()` to specify what data to post and
-   :meth:`CURLOPT_POSTFIELDSIZE()` or :meth:`CURLOPT_POSTFIELDSIZE_LARGE` to set
-   the data size.
+   Use `CURLOPT_POSTFIELDS()` to specify what data to post and
+   `CURLOPT_POSTFIELDSIZE()` or `CURLOPT_POSTFIELDSIZE_LARGE` to set the data
+   size.
 
 .. method:: CURLOPT_POSTFIELDS()
 
@@ -423,17 +426,16 @@ HTTP Options
    :meth:`curl->postFields=(s::string)` or :meth:`curl->postFields=(b::bytes)`
    to specify the data to post in an HTTP POST operation. The value can be
    either bytes or a string. You must make sure that the data is formatted the
-   way you want the server to receive it — curl will not convert or encode it
+   way you want the server to receive it; curl will not convert or encode it
    for you. Most web servers will assume this data to be url-encoded.
 
-   Using ``CURLOPT_POSTFIELDS`` implies :meth:`CURLOPT_POST()` — that option
-   will be automatically set along with all of its other side effects.
+   Using `CURLOPT_POSTFIELDS()` implies `CURLOPT_POST()`; that option will be
+   automatically set along with all of its other side effects.
 
-   If you want to do a zero-byte POST, you need to set
-   :meth:`CURLOPT_POSTFIELDSIZE()` explicitly to zero. Simply setting
-   ``CURLOPT_POSTFIELDS`` to NULL or an empty string effectively disables the
-   sending of the specified string, and curl will instead assume that you'll
-   send the POST data using the read callback.
+   If you want to do a zero-byte POST, you need to set `CURLOPT_POSTFIELDSIZE()`
+   explicitly to zero. Simply setting `CURLOPT_POSTFIELDS()` to NULL or an empty
+   string effectively disables the sending of the specified string, and curl
+   will instead assume that you'll send the POST data using the read callback.
 
 
 .. method:: CURLOPT_POSTFIELDSIZE()
@@ -447,19 +449,19 @@ HTTP Options
 .. method:: CURLOPT_POSTFIELDSIZE_LARGE()
 
    Used with :meth:`curl->set(key, value)`. This is the large file version of
-   :meth:`CURLOPT_POSTFIELDSIZE()`
+   `CURLOPT_POSTFIELDSIZE()`.
 
 .. method:: CURLOPT_REFERER()
 
    Used with :meth:`curl->set(key, value)`. This option takes a string value
-   that specifies the value for the "Referer" header in the HTTP request sent to
-   the remote server.
+   that specifies the value for the :mailheader:`Referer` header in the HTTP
+   request sent to the remote server.
 
 .. method:: CURLOPT_USERAGENT()
 
    Used with :meth:`curl->set(key, value)`. This option takes a string value
-   that specifies the value for the "User-Agent" header in the HTTP request sent
-   to the remote server.
+   that specifies the value for the :mailheader:`User-Agent` header in the HTTP
+   request sent to the remote server.
 
 .. method:: CURLOPT_HTTPHEADER()
 
@@ -501,8 +503,8 @@ HTTP Options
 
    Used with :meth:`curl->set(key, value)`. This option takes a string value
    specifying the path and file name for curl to store cookies in. If the file
-   can't be created, no error will be reported. (Using :meth:`CURLOPT_VERBOSE()`
-   will have a warning printed, but this is the only way to get this feedback.)
+   can't be created, no error will be reported. (Using `CURLOPT_VERBOSE()` will
+   have a warning printed, but this is the only way to get this feedback.)
 
 .. method:: CURLOPT_COOKIESESSION()
 
@@ -545,7 +547,7 @@ FTP Options
    specifying the address to use for the FTP PORT instruction. The string may be
    an IP address, a host name, a network interface name (under Unix) or just a
    '-' symbol to let the library use your system's default IP address. The
-   address can the be folowed by a colon and a port number or port range
+   address can the be followed by a colon and a port number or port range
    separated by a dash.
 
 .. method:: CURLOPT_QUOTE()
@@ -654,7 +656,7 @@ Protocol Options
 .. method:: CURLOPT_RESUME_FROM_LARGE()
 
    Used with :meth:`curl->set(key, value)`. This is the large file version of
-   :meth:`CURLOPT_RESUME_FROM()` and takes an integer for its value too.
+   `CURLOPT_RESUME_FROM()` and takes an integer for its value too.
 
 .. method:: CURLOPT_CUSTOMREQUEST()
 
@@ -682,7 +684,7 @@ Protocol Options
 .. method:: CURLOPT_INFILESIZE_LARGE()
 
    Used with :meth:`curl->set(key, value)`. This is the large file version of
-   :meth:`CURLOPT_INFILESIZE()`.
+   `CURLOPT_INFILESIZE()`.
 
 .. method:: CURLOPT_UPLOAD()
 
@@ -693,13 +695,13 @@ Protocol Options
 
    Used with :meth:`curl->set(key, value)`. This option takes an integer value
    specifying the maximum size of the file to download in bytes. If the
-   requested file is larger then this size, nothing will be transfered and an
+   requested file is larger then this size, nothing will be transferred and an
    error of ``CURLE_FILESIZE_EXCEEDED`` will be produced.
 
 .. method:: CURLOPT_MAXFILESIZE_LARGE()
 
    Used with :meth:`curl->set(key, value)`. This is the large file version of
-   :meth:`CURLOPT_MAXFILESIZE()`.
+   `CURLOPT_MAXFILESIZE()`.
 
 .. The values for CURLOPT_TIMECONDITION aren't available
 ..   .. method:: CURLOPT_TIMECONDITION()
@@ -718,15 +720,14 @@ Connection Options
 
    Used with :meth:`curl->set(key, value)`. This option takes an integer value
    that specifies the number of bytes per second the transfer should be below
-   for the duration of :meth:`CURLOPT_LOW_SPEED_TIME()` for curl to consider to
+   for the duration of `CURLOPT_LOW_SPEED_TIME()` for curl to consider too
    slow and abort.
 
 .. method:: CURLOPT_LOW_SPEED_TIME()
 
    Used with :meth:`curl->set(key, value)`. This option takes an integer value
    that specifies the number of seconds a curl transfer must be below the rate
-   set by :meth:`CURLOPT_LOW_SPEED_LIMIT()` for curl to abort due to bad
-   connection.
+   set by `CURLOPT_LOW_SPEED_LIMIT()` for curl to abort due to bad connection.
 
 .. method:: CURLOPT_MAXCONNECTS()
 
@@ -755,7 +756,7 @@ Connection Options
 
 .. method:: CURLOPT_IPRESOLVE()
 
-   Used with :meth:`curl->set(key, value)`. This option specifyies which type of
+   Used with :meth:`curl->set(key, value)`. This option specifies which type of
    IP address to use if a host name resolves to more than one kind of IP
    address. The value passed should be one of the following methods:
 
@@ -847,7 +848,7 @@ SSL & Security Options
 
    Used with :meth:`curl->set(key, value)`. This option is used to control which
    version(s) of SSL/TLS can be used. The value passed should be one of the
-   following methods to force using the version specfied by the method name:
+   following methods to force using the version specified by the method name:
    ``CURL_SSLVERSION_TLSv1``, ``CURL_SSLVERSION_SSLv2``,  or
    ``CURL_SSLVERSION_SSLv3``. ``CURL_SSLVERSION_DEFAULT`` can be passed to tell
    curl to figure out the remote server's protocol, though it won't use
@@ -865,7 +866,7 @@ SSL & Security Options
    Used with :meth:`curl->set(key, value)`. This option expects a string value
    that specifies the path and file name to a file containing one or more
    certificates needed to do peer verification. By default, this option is set
-   to the path curl believes your system keeps its cacert bundle.
+   to the path curl believes your system keeps its CA cert bundle.
 
 .. method:: CURLOPT_CAPATH()
 
@@ -879,7 +880,7 @@ SSL & Security Options
    of either "0", "1", or "2". When the value is "0", the connection to the
    remote server will succeed regardless of the SSL credentials. When the value
    is "1", curl will return a failure if the authenticity of the server's SSL
-   credentials can not be verified, and when the value is "2", the connection
+   credentials cannot be verified, and when the value is "2", the connection
    will fail without verification. The default for this option is "2".
 
 .. method:: CURLOPT_RANDOM_FILE()
@@ -896,7 +897,7 @@ SSL & Security Options
 
 .. method:: CURLOPT_SSL_CIPHER_LIST()
 
-   Used with :meth:`curl->set(key, value)`. This opiton expects a string value
+   Used with :meth:`curl->set(key, value)`. This option expects a string value
    specifying the list of ciphers that can be used in the SSL connection. See
    `the documentation <http://curl.haxx.se/libcurl/c/curl_easy_setopt.html#CURLOPTSSLCIPHERLIST>`_
    for a discussion of the proper syntax needed.
@@ -917,7 +918,7 @@ is usually not necessary to use it directly. For the most part, the
 ``include_url`` method is all that is needed for HTTP requests and the ``ftp_…``
 methods handle your FTP needs. In fact, the examples below could have easily
 been done using one of those methods, but are provided to give you an
-understading of how to use the ``curl`` type in case you find yourself needing
+understanding of how to use the ``curl`` type in case you find yourself needing
 more control.
 
 
@@ -1014,75 +1015,60 @@ needs if possible.
 
    This method has several optional parameters that modify its behavior:
 
-   -getParams
+   :param -getParams:
       Pass this parameter a ``staticarray`` or ``array`` of key/value ``pairs``.
       This data is then converted into a query string and appended to the URL
       when making the HTTP request.
-
-   -postParams
-      This option can take either a ``string``, ``bytes``, or ``trait_forEach``
-      object. For ``string`` and ``bytes`` objects, the data is set as the POST
-      field (:meth:`CURLOPT_POSTFIELDS()`) for the request without modification.
-      If passed a ``trait_forEach`` object, each value should be a key/value
-      pair object that will then first be converted into the query string format
-      before being set as the POST field.
-
-   -sendMimeHeaders
-      This option can take either a ``string``, ``bytes``, or ``trait_forEach``
-      object. For ``string`` and ``bytes`` objects, the data is set as
-      additional HTTP headers for the request without modification. If passed a
-      ``trait_forEach`` object, each value should be a key/value pair object
-      whose first value is the header name and the second value is the value.
-      These will then first be converted into the form "Header: Value" and
-      joined with "\\r\\n" before being set as additional HTTP headers.
-
-   -username
+   :param -postParams:
+      This option can take either a ``string``, ``bytes``, or
+      :trait:`trait_forEach` object. For ``string`` and ``bytes`` objects, the
+      data is set as the POST field (`CURLOPT_POSTFIELDS()`) for the request
+      without modification. If passed a :trait:`trait_forEach` object, each
+      value should be a key/value pair object that will then first be converted
+      into the query string format before being set as the POST field.
+   :param -sendMimeHeaders:
+      This option can take either a ``string``, ``bytes``, or
+      :trait:`trait_forEach` object. For ``string`` and ``bytes`` objects, the
+      data is set as additional HTTP headers for the request without
+      modification. If passed a :trait:`trait_forEach` object, each value should
+      be a key/value pair object whose first value is the header name and the
+      second value is the value. These will then first be converted into the
+      form "Header: Value" and joined with "\\r\\n" before being set as
+      additional HTTP headers.
+   :param -username:
       This option allows you to specify the username for connections that
       require authentication.
-
-   -password
+   :param -password:
       This option allows you to specify the password for connections that
       require authentication.
-
-   -noData
+   :param -noData:
       Passing this option does not change any aspect of the curl HTTP request,
-      but tells ``include_url`` to not return any data.
-
-   -verifyPeer
+      but tells ``include_url`` not to return any data.
+   :param -verifyPeer:
       Use this option to specify whether or not Lasso should verify the SSL
       certificate of the HTTP peer being connected to. The default is true.
-
-   -sslCert
-      This parameter is used to set the :meth:`CURLOPT_SSLCERT()` option.
-
-   -sslCertType
-      This parameter is used to set the :meth:`CURLOPT_SSLCERTTYPE()` option.
-
-   -sslKey
-      This parameter is used to set the :meth:`CURLOPT_SSLKEY()` option.
-
-   -sslKeyType
-      This parameter is used to set the :meth:`CURLOPT_SSLKEYTYPE()` option.
-
-   -sslKeyPasswd
-      This parameter is used to set the :meth:`CURLOPT_SSLKEYPASSWD()` option.
-
-   -timeout
-      This parameter is used to set the :meth:`CURLOPT_TIMEOUT()` option.
-
-   -connectTimeout
-      This parameter is used to set the :meth:`CURLOPT_CONNECTTIMEOUT()` option.
-
-   -retrieveMimeHeaders
+   :param -sslCert:
+      This parameter is used to set the `CURLOPT_SSLCERT()` option.
+   :param -sslCertType:
+      This parameter is used to set the `CURLOPT_SSLCERTTYPE()` option.
+   :param -sslKey:
+      This parameter is used to set the `CURLOPT_SSLKEY()` option.
+   :param -sslKeyType:
+      This parameter is used to set the `CURLOPT_SSLKEYTYPE()` option.
+   :param -sslKeyPasswd:
+      This parameter is used to set the `CURLOPT_SSLKEYPASSWD()` option.
+   :param -timeout:
+      This parameter is used to set the `CURLOPT_TIMEOUT()` option.
+   :param -connectTimeout:
+      This parameter is used to set the `CURLOPT_CONNECTTIMEOUT()` option.
+   :param -retrieveMimeHeaders:
       This parameter expect a ``string`` specifying the name of a thread
       variable to store the HTTP response header data in.
-
-   -options
+   :param -options:
       Pass this parameter a ``staticarray`` or ``array`` of ``pairs``, the first
       value of the ``pair`` should be one of the ``CURLOPT_…`` methods and the
       second value should be the appropriate setting for that curl option.
-
-   -string
+   :param -string:
       The default is for ``include_url`` to return a ``bytes`` object, but if
       this parameter is set, then it will return a ``string`` object. You can
       pass a ``string`` to this parameter to specify the character set to use.
@@ -1090,8 +1076,7 @@ needs if possible.
       curl headers for the character set to use, otherwise Lasso will try and
       determine the character set itself from the body of the response. If that
       fails, the default is to use UTF-8 encoding.
-
-   -basicAuthOnly
+   :param -basicAuthOnly:
       Setting this option to "true" causes ``include_url`` to only use HTTP
       Basic authentication.
 
@@ -1116,9 +1101,7 @@ Sending Data with an HTTP PUT Request
 
 The following example issues an HTTP PUT request, passing data in the body of
 the request. The example result is a JSON formatted string, but would be the
-body of the HTTP response given by your server.
-
-::
+body of the HTTP response given by your server. ::
 
    include_url(
       'http://www.example.com/',
@@ -1132,7 +1115,8 @@ body of the HTTP response given by your server.
 Specifying HTTP Headers
 -----------------------
 
-The following example adds a "User-Agent" header to the HTTP request::
+The following example adds a :mailheader:`User-Agent` header to the HTTP
+request::
 
    include_url(
       'http://www.example.com/',
@@ -1223,7 +1207,7 @@ Download a Remote File
    )
 
    This method downloads the remote file specified by the FTP URL in the first
-   paramater to the location specified by the "-file" parameter. It can also
+   parameter to the location specified by the "-file" parameter. It can also
    optionally take a username and password to be used for authentication to the
    FTP server. Also, the "-options" parameter can be passed an ``array`` of
    ``pairs``, the first value of the ``pair`` should be one of the ``CURLOPT_…``
@@ -1241,8 +1225,8 @@ Download a Remote File
       )
 
 
-List the Contents of a Remote Direectory
-----------------------------------------
+List the Contents of a Remote Directory
+---------------------------------------
 
 .. method:: ftp_getListing(\
       url::string, \
@@ -1308,10 +1292,8 @@ Update an Existing Remote File
    appropriate setting for that curl option.
 
    The following example will take the data "\\nAs You Wish" and append it to
-   the remote "test.txt" file. (The :meth:`CURLOPT_FTPAPPEND()` method changes
-   the behavior to append the data.)
-
-   ::
+   the remote "test.txt" file. (The `CURLOPT_FTPAPPEND()` method changes the
+   behavior to append the data.) ::
 
       ftp_putData(
          'ftp://example.com/test.txt',
@@ -1346,11 +1328,9 @@ Upload a Local File to the Remote Server
    appropriate setting for that curl option.
 
    The following example takes the local file "test.txt" at the current webroot
-   and uploades it as "file.txt" to the specified path in the URL. The
-   :meth:`CURLOPT_FTP_CREATE_MISSING_DIRS()` option specifies that any missing
-   intermediary directories on the remote server will be created.
-
-   ::
+   and uploads it as "file.txt" to the specified path in the URL. The
+   `CURLOPT_FTP_CREATE_MISSING_DIRS()` option specifies that any missing
+   intermediary directories on the remote server will be created. ::
 
       ftp_putFile(
          'ftp://example.com/new_dir/test.txt',

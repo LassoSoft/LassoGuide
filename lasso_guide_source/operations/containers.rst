@@ -1,8 +1,7 @@
-.. _containers:
-
 .. priorityQueue
    series
    treemap
+.. _containers:
 
 **********
 Containers
@@ -82,8 +81,8 @@ Creating Array Objects
 .. method:: array()
 .. method:: array(e, ...)
 
-An array can be created with zero or more parameters. All parameters passed to
-the array method will be inserted into the new array.
+   An array can be created with zero or more parameters. All parameters passed
+   to the array method will be inserted into the new array.
 
 
 Using Array Objects
@@ -92,7 +91,7 @@ Using Array Objects
 .. member:: array->insert(v)
 .. member:: array->insert(v, position::integer)
 
-   These methods add  new elements to the array. The first method adds the
+   These methods add new elements to the array. The first method adds the
    element at the end of the array. The second method permits the position of
    the insert to be specified. Position 1 is at the beginning of the array.
    Positions zero and negative positions will cause the method to fail. A
@@ -192,7 +191,7 @@ Staticarray
 
    A staticarray is a container object that is not resizable. Staticarrays are
    created with a fixed size. Objects can be reassigned within the staticarray,
-   but new positions can not be added or removed. Staticarrays are designed to
+   but new positions cannot be added or removed. Staticarrays are designed to
    be as efficient as possible both in the time used to create a new object and
    in the memory used for the object itself. The elements of a staticarray are
    accessed randomly, like an array, with 1-based positions.
@@ -217,8 +216,8 @@ Example of creating a few staticarrays::
 .. method:: staticarray_join(count::integer, e)
 
    The first method creates a new staticarray given zero or more elements. The
-   second method, staticarray_join, creates a new staticarray of the given size
-   with each element filled by the value given as the second parameter.
+   second method, `staticarray_join`, creates a new staticarray of the given
+   size with each element filled by the value given as the second parameter.
 
 
 Using Staticarray Objects
@@ -366,15 +365,15 @@ Using Queue Objects
 .. member:: queue->insertFrom(value::trait_foreach)
 
    These methods insert new elements into the queue. Elements will always be
-   inserted at the end of the queue. The ``queue->insertFrom`` method allows
-   for multiple elements to be inserted into the queue by taking an object that
-   implements ``trait_forEach``.
+   inserted at the end of the queue. The `queue->insertFrom` method allows for
+   multiple elements to be inserted into the queue by taking an object that
+   implements :trait:`trait_forEach`.
 
 .. member:: queue->first()
 .. member:: queue->get()
 
-   These methods return the first element in the queue. The ``queue->get``
-   method additionally removes the element from the queue.
+   These methods return the first element in the queue. The `queue->get` method
+   additionally removes the element from the queue.
 
 .. member:: queue->size()
 
@@ -398,7 +397,7 @@ Stack
 .. type:: stack
 
    Stack objects store data in a "last in, first out" (LIFO) manner. Elements
-   can effeciently be inserted onto the beginning of the stack (called pushing)
+   can efficiently be inserted onto the beginning of the stack (called pushing)
    and removed from the top of the queue (called popping). Stacks do not support
    random access, so the only way to get particular elements from a stack is
    through one of the iteration-related methods such as :ref:`query expressions
@@ -427,8 +426,8 @@ Using Stack Objects
 .. member:: stack->get()
 
    These methods return the first element in the stack. (This is the most
-   recently inserted element.) The ``stack->get`` method additionally removes
-   the element from the stack.
+   recently inserted element.) The `stack->get` method additionally removes the
+   element from the stack.
 
 .. member:: stack->size()
 
@@ -445,9 +444,9 @@ Unordered Containers
 ====================
 
 Unordered containers store their elements in a manner where there is no position
-based ordering. Lasso supports two unordered container types: map and set. Maps
-provide access to the elements via separate keys. Sets store only the elements
-themselves.
+based ordering. Lasso supports two unordered container types: :type:`map` and
+:type:`set`. Maps provide access to the elements via separate keys. Sets store
+only the elements themselves.
 
 
 .. _map:
@@ -464,7 +463,7 @@ Map
 
    The keys used in a map can be of any type, provided that type has a suitable
    onCompare method. Keys must compare themselves consistently such that if ``A
-   < B`` then always ``B >= A``. Most Lasso builtin types, such as strings,
+   < B`` then always ``B >= A``. Most Lasso built-in types, such as strings,
    integers and decimals, fit this criteria.
 
 

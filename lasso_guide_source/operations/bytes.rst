@@ -4,15 +4,14 @@
 Bytes
 *****
 
-Binary data in Lasso is stored and manipulated using the ``bytes`` data type.
-This chapter details the symbols and methods that can be used to manipulate
-binary data.
+Binary data in Lasso is stored and manipulated using the :type:`bytes` data
+type. This chapter details the symbols and methods that can be used to
+manipulate binary data.
 
 .. note::
    The bytes type is often used in conjunction with the string type to convert
    binary data between different character encodings (UTF-8, ISO-8859-1). See
-   the :ref:`Strings<strings>` chapter for more information about the string
-   type.
+   the :ref:`strings` chapter for more information about the string type.
 
 
 Creating Bytes Objects
@@ -24,9 +23,9 @@ All string data in Lasso is processed as double-byte Unicode characters. The
 
 Lasso methods return data in the ``bytes`` type in the following situations:
 
--  The ``field`` method returns a byte stream from MySQL "BLOB" fields.
+-  The `field` method returns a byte stream from MySQL "BLOB" fields.
 -  The ``bytes`` creator method can be used to allocate a new byte stream.
--  The ``web_request->param`` methods return a bytes stream
+-  The `web_request->param` methods return a bytes stream
 -  Other methods that return or require binary data as outlined in their
    documentation in the Lasso Reference guide.
 
@@ -39,12 +38,12 @@ Lasso methods return data in the ``bytes`` type in the following situations:
 .. method:: bytes(import::string, encoding::string)
 .. method:: bytes(doc::pdf_doc)
 
-   Allocates a byte stream. Can be used to cast a ``string`` or ``pdf_doc`` data
-   type as a ``bytes`` type, or to instantiate a new ``bytes`` object. Accepts
-   one optional parameter that can specify the initial size in bytes for the
-   stream or the ``string``, ``pdf_doc``, or ``bytes`` object to cast as a new
-   bytes object. If casting a ``string`` object, it can accept a second optional
-   parameter to specify the encoding of the string.
+   Allocates a byte stream. Can be used to cast a :type:`string` or
+   :type:`pdf_doc` data type as a ``bytes`` type, or to instantiate a new
+   ``bytes`` object. Accepts one optional parameter that can specify the initial
+   size in bytes for the stream or the ``string``, ``pdf_doc``, or ``bytes``
+   object to cast as a new bytes object. If casting a ``string`` object, it can
+   accept a second optional parameter to specify the encoding of the string.
 
 
 Inspecting and Manipulating Bytes Objects
@@ -186,7 +185,7 @@ to deal with binary data. These methods are outlined below.
 
 .. member:: bytes->exportString(encoding::string)
 
-   Returns a string represeting the byte stream. Accepts a single parameter
+   Returns a string representing the byte stream. Accepts a single parameter
    which is the character encoding (e.g. "ISO-8859-1", "UTF-8") for the export.
 
 .. member:: bytes->export8bits()
@@ -257,8 +256,8 @@ object with a size of 1024 bytes::
 Return the Size of a Byte Stream
 --------------------------------
 
-Use the ``bytes->size`` method. The example below returns the size of a
-``bytes`` object::
+Use the `bytes->size` method. The example below returns the size of a ``bytes``
+object::
 
    local(obj) = bytes('ect…')
    #obj->size
@@ -269,9 +268,9 @@ Use the ``bytes->size`` method. The example below returns the size of a
 Return a Single Byte From a Byte Stream
 ---------------------------------------
 
-Use the ``bytes->get`` method. An integer parameter specifies the index of the
+Use the `bytes->get` method. An integer parameter specifies the index of the
 byte to return. Note that this method returns an integer, not a fragment of the
-orignial data (such as a string character)::
+original data (such as a string character)::
 
    local(obj) = bytes('hello world')
    #obj->get(2)
@@ -282,7 +281,7 @@ orignial data (such as a string character)::
 Find a Value Within a Byte Stream
 ---------------------------------
 
-Use the ``bytes->find`` method. The example below returns the starting byte
+Use the `bytes->find` method. The example below returns the starting byte
 number of the value "rhino", which is contained within the byte stream::
 
    bytes('running rhinos risk rampage')->find('rhino')
@@ -293,7 +292,7 @@ number of the value "rhino", which is contained within the byte stream::
 Determine If a Value is Contained Within a Byte Stream
 ------------------------------------------------------
 
-Use the ``bytes->contains`` method. The example below returns "true" if the
+Use the `bytes->contains` method. The example below returns "true" if the
 value "Rhino" is contained within the byte stream. Note that in this example it
 returns false due to the bytes of "rhino" being a different sequence then the
 bytes of "Rhino"::
@@ -306,8 +305,8 @@ bytes of "Rhino"::
 Add a String to a Byte Stream
 -----------------------------
 
-Use the ``bytes->append`` method. The following example adds the string "I am"
-to the end of a bytes stream::
+Use the `bytes->append` method. The following example adds the string "I am" to
+the end of a bytes stream::
 
    local(obj) = bytes
    #obj->append("I am")
@@ -316,7 +315,7 @@ to the end of a bytes stream::
 Find and Replace Values in a Byte Stream
 ----------------------------------------
 
-Use the ``bytes->replace`` method. The following example finds the string "Blue"
+Use the `bytes->replace` method. The following example finds the string "Blue"
 and replaces with the string "Green" within the bytes stream::
 
    local(colors) = bytes('Blue Red Yellow')
@@ -326,7 +325,7 @@ and replaces with the string "Green" within the bytes stream::
 Export a String From a Bytes Stream
 -----------------------------------
 
-Use the ``bytes->exportString`` method. The following example exports a string
+Use the `bytes->exportString` method. The following example exports a string
 using UTF-8 encoding::
 
    local(obj) = bytes('This is a string')
@@ -338,7 +337,7 @@ using UTF-8 encoding::
 Import a String Into a Bytes Stream
 -----------------------------------
 
-Use the ``bytes->importString`` method. The following example imports a string
+Use the `bytes->importString` method. The following example imports a string
 using "ISO-8859-1" encoding::
 
    local(obj) = bytes('This is a string')
