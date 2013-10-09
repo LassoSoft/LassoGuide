@@ -15,8 +15,8 @@ An LDAP server provides access to a directory information tree (DIT). Each
 element in the tree is called an entry and has several attributes. Any element
 in the tree can be found using its distinguished name (DN). The distinguished
 name is like the path to a file in an operating system. For example, the DN of
-the record for John Doe in the directory might be as follows: "cn=John Doe,
-ou=People, o=LassoSoft"
+the record for John Doe in the directory might be "cn=John Doe, ou=People,
+o=LassoSoft".
 
 The DN is made up of three parts separated by commas. Each part of the DN is
 called a relative distinguished name (RDN) and must be unique for all entries at
@@ -40,20 +40,26 @@ A search is defined starting at a DN within the directory tree. This DN will
 usually be provided by the LDAP server administrator. The scope allows the
 search to be limited to the object itself (i.e. is the object contained within
 the tree), children of the object, or the entire tree below the object. Some
-possible DNs are shown below::
+possible DNs are shown below:
+
+.. code-block:: none
 
    dc=omnipilot, dc=com
    ou=People, o=LassoSoft
 
 The filter actually defines the search query. It is a series of query terms
 (attributes and values) joined by logical operators. The most basic filter
-specifies that all objects in the tree should be returned::
+specifies that all objects in the tree should be returned:
+
+.. code-block:: none
 
    (objectClass=*)
 
 This is actually a special case of the exists filter. This filter returns any
 entries which have a defined objectClass. Similarly, all entries which have a
-full name attribute "cn" could be found with this filter::
+full name attribute "cn" could be found with this filter:
+
+.. code-block:: none
 
    (cn=*)
 
@@ -64,7 +70,9 @@ than. The equals operator supports "*" asterisk as a wildcard character allowing
 for contains, begins with, and ends with searches. Greater than and less than
 operators may only be supported on numeric fields. For example, the following
 simple filters would find all entries whose full name started with "John", ended
-with "Doe", or were exactly "John Doe"::
+with "Doe", or were exactly "John Doe":
+
+.. code-block:: none
 
    (cn=John*)
    (cn=*Doe)
@@ -74,7 +82,9 @@ Two or more filters can be combined using a logical operator "&" for and, "|"
 for or, or a filter can be negated using "!" for not. The following three
 filters would find all entries who have a first name of "John" and a last name
 of "Doe", a first name of "John" or a last name of "Doe", and a first name which
-is not "John" and a last name which is not "Doe"::
+is not "John" and a last name which is not "Doe":
+
+.. code-block:: none
 
    (& (cn=John*) (cn=*Doe))
    (| (cn=John*) (cn=*Doe))
@@ -120,13 +130,13 @@ names and values are returned.
 LDAP Type
 =========
 
-The ``ldap`` data type can be used to create a connection to an LDAP server and
+The :type:`ldap` data type can be used to create a connection to an LDAP server and
 then to send queries to the server.
 
 .. type:: ldap
 .. method:: ldap(...)
 
-   Creates a new ``ldap`` object. Accepts an optional host name and port to
+   Creates a new `ldap` object. Accepts an optional host name and port to
    immediately open a connection to a server.
 
 .. member:: ldap->open(...)
@@ -145,11 +155,10 @@ then to send queries to the server.
    attributes, and attributes-only option for the query. See the following list
    for details about these parameters. Returns no value.
 
-   Base
+   :param base:
       The distinguished name (DN) of the entry at which to start the search.
       Required.
-
-   Scope
+   :param scope:
       The scope of the search. Optional. This parameter should be one of the
       following values:
 
@@ -157,23 +166,20 @@ then to send queries to the server.
       -  ``ldap_scope_onelevel`` - Search the object's immediate children.
       -  ``ldap_scope_subtree`` - Search the object and all its descendants.
 
-   Filter
+   :param filter:
       The filter to apply to the search. Optional.
-
-   Attributes
+   :param attributes:
       An array of strings specifying the attribute types to return in the search
       results. Optional.
 
-      "*" (asterisk) may be specified in the array to indicate that all
-      attributes are to be returned.
+      -  "*" (asterisk) may be specified in the array to indicate that all
+         attributes are to be returned.
+      -  "+" (plus sign) may be specified in the array to indicate that all
+         operational attributes should be returned.
+      -  "1.1" may be specified in the array to indicate that no attributes
+         should be returned.
 
-      "+" (plus sign) may be specified in the array to indicate that all
-      operational attributes should be returned.
-
-      "1.1" may be specified in the array to indicate that no attributes should
-      be returned.
-
-   Attribute-Only
+   :param attribute-only:
       A boolean indicating that only attributes and no values should be
       returned. Defaults to "False". Optional.
 
@@ -198,7 +204,6 @@ then to send queries to the server.
 .. member:: ldap->close(...)
 
    Closes the connection to the LDAP server.
-
 
 For example, the following code performs an LDAP query against a server
 "ldap.example.com". The base of the query is "dc=example,dc=com". The scope is

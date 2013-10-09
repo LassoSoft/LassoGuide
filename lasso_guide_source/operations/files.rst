@@ -24,32 +24,33 @@ using the path in any system function.
 
 Paths can be either relative or full. Full paths always start with at least one
 slash, or in the case of Windows, may start with a drive letter designation
-(i.e. C:). Full file paths are based from the file system root. When serving web
-requests under Lasso Server, the file system root defaults to the web document
-root as indicated by the web server for that request (IIS, Apache, etc.) or as
-set by the ``LASSOSERVER_DOCUMENT_ROOT`` web request variable. This applies to
-the current thread only. Any new threads will not inherit the request specific
-file system root.
+(i.e. ``C:``). Full file paths are based from the file system root. When serving
+web requests under Lasso Server, the file system root defaults to the web
+document root as indicated by the web server for that request (IIS, Apache,
+etc.) or as set by the :envvar:`LASSOSERVER_DOCUMENT_ROOT` web request variable.
+This applies to the current thread only. Any new threads will not inherit the
+request specific file system root.
 
 It is possible to escape the web document root and target the real file system
 root by using a full path with either a drive letter designation in the case of
 Windows, or by prefixing the path with two additional forward slashes. For
-example, ``//foo/bar`` and ``C:\foo\bar`` would both reference the same file on
-Windows, provided C: is the system drive.
+example, :file:`//foo/bar` and :file:`C:\\foo\\bar` would both reference the
+same file on Windows, provided ``C:`` is the system drive.
 
 When not serving a web request, such as when running LassoStartup items or when
-running scripts through the ``lasso9`` command line tool, the file system root
-is set to the system's natural root which is ``/`` for UNIX-based systems or C:
-(for example) on Windows-based systems.
+running scripts through the :program:`lasso9` command line tool, the file system
+root is set to the system's natural root which is ``/`` for UNIX-based systems
+or ``C:`` (for example) on Windows-based systems.
 
 Relative paths do not begin with a slash or drive designation and indicate a
 file or directory which is located based on the current working directory.
 During a web request, the current working directory is equal to the directory
 location of the currently active source file. For example, when processing a
-request for the file '/foo/bar.lasso', '/foo/' is the current working directory
-and a file with a relative path of 'baz.lasso' will be looked for as
-'/foo/baz.lasso'. To illustrate, consider the following three example files.
-Within the first two are tests checking for the existence of the next file.
+request for the file :file:`/foo/bar.lasso`, :file:`/foo/` is the current
+working directory and a file with a relative path of :file:`baz.lasso` will be
+looked for as :file:`/foo/baz.lasso`. To illustrate, consider the following
+three example files. Within the first two are tests checking for the existence
+of the next file.
 
 .. code-block:: none
 
@@ -57,13 +58,12 @@ Within the first two are tests checking for the existence of the next file.
    /dir/test.lasso - file 'dir2/test.lasso' exists
    /dir/dir2/test.lasso
 
-When not serving a web request or when running scripts via the ``lasso9``
+When not serving a web request or when running scripts via the :program:`lasso9`
 command line tool, the current working directory is as set by the operating
 system or shell. In this situation, the current working directory path can be
-retrieved with the ``io_file_getcwd()`` method. The current working directory
-can be set with ``io_file_chdir(s::path)`` method. Manipulating the working
-directory in this way changes it globally for all threads in the current
-process.
+retrieved with the `io_file_getcwd` method. The current working directory can be
+set with `io_file_chdir(s::path)` method. Manipulating the working directory in
+this way changes it globally for all threads in the current process.
 
 
 Working with File Objects
@@ -95,10 +95,13 @@ promptly will improve system performance.
 .. member:: file->openTruncate()
 
    These methods open the file using the open mode indicated in the method name.
-   openRead will open the file in read-only mode. openWrite will open the file
-   in read/write mode. openAppend will open the file in read/write mode and will
-   set the current write position to the end of the file. openTruncate will open
-   the file in read/write mode and will set the file's size to zero.
+
+   -  `openRead` will open the file in read-only mode.
+   -  `openWrite` will open the file in read/write mode.
+   -  `openAppend` will open the file in read/write mode and will set the
+      current write position to the end of the file.
+   -  `openTruncate` will open the file in read/write mode and will set the
+      file's size to zero.
 
    Write, append and truncate modes will create the file if it does not exists.
    Read-only mode will fail if the file does not exist.
@@ -152,22 +155,22 @@ Example::
 
 .. member:: file->close()
 
-   This method simply close the file.
+   This method simply closes the file.
 
 
 Reading File Data
 -----------------
 
-File data can be read as either bytes or string objects. By default, string
-objects, which are always Unicode, are created with the assumption that the file
-contains UTF-8 encoded data. This assumption can be changed by settings the file
-objects's character encoding value. When reading the data as a bytes object, the
-unaltered file data is returned.
+File data can be read as either ``bytes`` or ``string`` objects. By default,
+string objects, which are always Unicode, are created with the assumption that
+the file contains UTF-8 encoded data. This assumption can be changed by settings
+the file objects's character encoding value. When reading the data as a bytes
+object, the unaltered file data is returned.
 
 Data can be read line by line or as individual bytes or in chunks of bytes. Each
 read will return the bytes immediately following the previously read bytes
 unless the file's read/write position is moved. Attempts to read past the end of
-the file will return a zero sized bytes object.
+the file will return a zero-sized bytes object.
 
 .. member:: file->readBytes()::bytes
 .. member:: file->readString()::string
@@ -176,7 +179,7 @@ the file will return a zero sized bytes object.
 
 .. member:: file->readBytes(count::integer)::bytes
 
-   This method reads up to the requested number of bytes. There may  be fewer
+   This method reads up to the requested number of bytes. There may be fewer
    bytes available than requested.
 
 .. member:: file->readString(count::integer)::string
@@ -254,7 +257,7 @@ Other File Operations
 
 .. member:: file->parentDir()::dir
 
-   This method returns a dir object set to the file's parent directory.
+   This method returns a :type:`dir` object set to the file's parent directory.
 
 .. member:: file->size()::integer
 .. member:: file->size=(s::integer)
@@ -306,11 +309,11 @@ are garbage collected.
 Working with Dir Objects
 ========================
 
-Dir objects are instantiated with a path and an optional -resolveLinks keyword
-parameter. This parameter defaults to false. If set to true, then the dir object
-will resolve symbolic links when iterating over its contents, when returning
-it's own perms() and when determining if it is indeed a directory through the
-isDir() method.
+:type:`Dir` objects are instantiated with a path and an optional -resolveLinks
+keyword parameter. This parameter defaults to false. If set to true, then the
+:type:`dir` object will resolve symbolic links when iterating over its contents,
+when returning its own `perms` and when determining if it is indeed a directory
+through the `isDir` method.
 
 .. type:: dir
 .. method:: dir(path::string, -resolveLinks = false)
@@ -346,8 +349,8 @@ forward slash. A dir object never returns a path or object representing the ".."
 or "." directory entries.
 
 Each of the values returned by these methods can be used in query expressions or
-in iterate(...). A dir object itself can be utilized in a query expression or
-iterate. In this case, the behavior will be the same as with the eachPath()
+in ``iterate(...)``. A dir object itself can be utilized in a query expression
+or iterate. In this case, the behavior will be the same as with the `eachPath`
 method, described below.
 
 .. member:: dir->eachPath()
@@ -355,8 +358,9 @@ method, described below.
 .. member:: dir->eachDirPath()
 
    These methods are used to list the relative paths of the contents of the
-   directory. eachPath will return both files and sub-directories. eachFilePath
-   and eachDirPath return only the file or sub-directory paths, respectively.
+   directory. `eachPath` will return both files and sub-directories.
+   `eachFilePath` and `eachDirPath` return only the file or sub-directory paths,
+   respectively.
 
 .. member:: dir->eachPathRecursive()
 .. member:: dir->eachFilePathRecursive()
@@ -371,20 +375,21 @@ method, described below.
 .. member:: dir->eachDir()
 
    This set of methods returns the directory contents as file or dir objects.
-   The each() method returns both the files and dirs within the directory.
-   eachFile and eachDir return only the files or dirs, respectively.
+   The `each` method returns both the files and dirs within the directory.
+   `eachFile` and `eachDir` return only the files or dirs, respectively.
 
 
 Examples
 ^^^^^^^^
 
-Use a dir object in a query expression to list the contents of the current
-working directory::
+Use a :type:`dir` object in a query expression to list the contents of the
+current working directory::
 
    with path in dir('.')
    select #path // is a string such as 'foo/'
 
-Use a dir object to list a directory's contents as file objects::
+Use a :type:`dir` object to list a directory's contents as :type:`file`
+objects::
 
    iterate(dir('foo/')->eachFile, local(f))
      #f // is a file object
@@ -414,4 +419,4 @@ Other Dir Operations
 
 .. member:: dir->parentDir()::dir
 
-   This method returns the directory's parent directory as a dir object.
+   This method returns the directory's parent directory as a :type:`dir` object.

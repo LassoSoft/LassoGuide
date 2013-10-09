@@ -13,9 +13,9 @@ Lasso has built-in methods for the BlowFish encryption algorithm and for the
 SHA1 and MD5 hash algorithms.
 
 Lasso's cipher methods provide access to a wide range of industry standard
-encryption algorithms. The ``cipher_list`` method lists which algorithms are
-available on your system and the ``cipher_encrypt``, ``cipher_decrypt``, and
-``cipher_digest`` methods allow values to be encrypted, decrypted, or digest
+encryption algorithms. The `cipher_list` method lists which algorithms are
+available on your system and the `cipher_encrypt`, `cipher_decrypt`, and
+`cipher_digest` methods allow values to be encrypted, decrypted, or digest
 values to be generated respectively.
 
 Finally, Lasso provides a set of methods to compress or decompress data for more
@@ -35,37 +35,37 @@ BlowFish
    securely and decrypted later.
 
 MD5
-   This is a one-way encryption algorithm that is often used for passwords.
-   There is no way to decrypt data which has been encrypted using MD5.
+   This is a one-way encryption algorithm that is often used to verify file
+   integrity. MD5 is generally considered unsuitably weak for security purposes.
 
 SHA1
    This is a one-way encryption algorithm that is often used for passwords.
-   There is no way to decrypt data which has been encrypted using SHA.
+   There is no way to decrypt data which has been encrypted using SHA1.
 
 .. method:: encrypt_blowfish(plaintext, -seed::string)
 
-   Encrypts a string using an industry standard BlowFish algorithm. Accepts two
+   Encrypts a string using an industry-standard BlowFish algorithm. Accepts two
    parameters, a string to be encrypted and a ``-seed`` keyword with the key or
    password for the encryption. It returns an encrypted bytes object.
 
    The BlowFish methods are not binary-safe. The output of the tag will be
    truncated after the first null character. It is necessary to use
-   ``encode_base64``, ``encode_hex``, or ``encode_utf8`` prior to encrypting
-   data that might contain binary characters using these methods.
+   `encode_base64`, `encode_hex`, or `encode_utf8` prior to encrypting data that
+   might contain binary characters using these methods.
 
-.. method:: decrypt_blowfish(cyphertext, -seed::string)
+.. method:: decrypt_blowfish(ciphertext, -seed::string)
 
-      Decrypts a string encrypted using the industry standard BlowFish
-      algorithm. Accepts two parameters, a string to be decrypted and a
-      ``-seed`` keyword parameter with the key or password for the decryption.
-      Returns a decrypted bytes object.
+   Decrypts a string encrypted using the industry standard BlowFish algorithm.
+   Accepts two parameters, a string to be decrypted and a ``-seed`` keyword
+   parameter with the key or password for the decryption. Returns a decrypted
+   bytes object.
 
 .. method:: encrypt_md5(data::bytes)::string
 .. method:: encrypt_md5(data::any)::string
 
-      Encrypts a string using the one-way MD5 hash algorithm. Accepts one
-      parameter, the data to be encrypted. Returns a fixed size hash value in
-      hexadecimal which cannot be decrypted.
+   Encrypts a string using the one-way MD5 hash algorithm. Accepts one
+   parameter, the data to be encrypted. Returns a fixed-size hash value in
+   hexadecimal.
 
 .. method:: encrypt_hmac(\
       -password, \
@@ -84,19 +84,21 @@ SHA1
    a byte stream. The digest algorithm used for the hash can be specified using
    an optional ``-digest`` parameter. The digest algorithm defaults to "MD5".
    "SHA1" is another common option. However, any of the digest algorithms
-   returned by ``cipher_list(-digest)`` can be used. The output is a byte stream
-   by default. The ``-base64`` parameter specifies the output should be a Base64
-   encoded string. The ``-hex`` parameter specifies the output should be a hex
-   format string like "0x0123456789abcdef". The ``-cram`` parameter specifies
-   the output should be in a cram hex format like "0123456789ABCDEF".
+   returned by `cipher_list(-digest)` can be used.
+
+   The output is a byte stream by default. The ``-base64`` parameter specifies
+   the output should be a Base64 encoded string. The ``-hex`` parameter
+   specifies the output should be a hex format string like "0x0123456789abcdef".
+   The ``-cram`` parameter specifies the output should be in a cram hex format
+   like "0123456789ABCDEF".
 
 
 BlowFish Seeds
 --------------
 
 BlowFish requires a seed in order to encrypt or decrypt a string. The same seed
-which was used to encrypt data using the ``encrypt_blowfish`` method must be
-passed to the ``decrypt_blowfish`` method to decrypt that data. If you lose the
+which was used to encrypt data using the `encrypt_blowfish` method must be
+passed to the `decrypt_blowfish` method to decrypt that data. If you lose the
 key used to encrypt data then the data will be essentially unrecoverable.
 
 Seeds can be any string between 4 characters and 112 characters long. Pick the
@@ -113,13 +115,13 @@ very important for your web site.
 Store Data Securely in a Database
 ---------------------------------
 
-Use the ``encrypt_blowfish`` and ``decrypt_blowfish`` methods to encrypt data
-which will be stored in a database and then to decrypt the data when it is
-retrieved from the database.
+Use the `encrypt_blowfish` and `decrypt_blowfish` methods to encrypt data which
+will be stored in a database and then to decrypt the data when it is retrieved
+from the database.
 
 In the example below, the data in the variable "plaintext" is encrypted and
 stored in the "ciphertext" variable. This is then used to store the data in the
-"ciphertext" field of the "people" table in the "contacts" database::
+"ciphertext" field of the "people" table in the "contacts" database. ::
 
    local(plaintext) = 'The data to be encrypted.'
    local(ciphertext) = encrypt_blowfish(#plaintext, -seed='My Insecure Seed')
@@ -136,7 +138,7 @@ stored in the "ciphertext" variable. This is then used to store the data in the
 
 The example below retrieves the record created above and sticks the Base64
 decoded "ciphertext" field in a variable of the same name. It then decrypts the
-data into the "plaintext" variable and displays that variable::
+data into the "plaintext" variable and displays that variable. ::
 
    inline(
       -search,
@@ -158,12 +160,12 @@ data into the "plaintext" variable and displays that variable::
 Store and Check Encrypted Passwords
 -----------------------------------
 
-The ``encrypt_md5`` method can be used to store a secure version of a password
-for a site visitor. On every subsequent visit, the password given by the visitor
-is encrypted using the same method and compared to the stored value. If they
-match, then the visitor has supplied the same password they initially supplied.
+The `encrypt_md5` method can be used to store a secure version of a password for
+a site visitor. On every subsequent visit, the password given by the visitor is
+encrypted using the same method and compared to the stored value. If they match,
+then the visitor has supplied the same password they initially supplied.
 
-The following example takes a vistor-supplied password from a form and stores it
+The following example takes a visitor-supplied password from a form and stores it
 into the "people" table in the "contacts" database::
 
    local(visitor_password) = web_request->param('password')
@@ -182,7 +184,7 @@ On subsequent visits, prompt the visitor for their username and password. The
 following example shows how you can verify the credentials they pass in a form::
 
    local(username) = web_request->param('username')
-   local(password) = web_request->param('passowrd')
+   local(password) = web_request->param('password')
 
    inline(
       -search,
@@ -195,7 +197,7 @@ following example shows how you can verify the credentials they pass in a form::
       local(is_authenticated) = (found_count > 0)
    }
    if(#is_authenticated) => {
-      // Log in successfull
+      // Log in successful
       // ...
    else
       // Credentials don't match
@@ -220,9 +222,9 @@ encryption algorithms. These cipher methods provide implementations of many
 industry standard encryption methods and can be very useful when communicating
 using Internet protocols or communicating with legacy systems.
 
-The table below lists the ``[Cipher_ ]`` tags in Lasso. The following tables
+The table below lists the ``cipher_…`` tags in Lasso. The following tables
 list several of the cipher algorithms and digest algorithms that can be used
-with the ``[Cipher_ ]`` tags. The ``[Cipher_List]`` tag can be used to list what
+with the ``cipher_…`` tags. The `cipher_list` tag can be used to list what
 algorithms are supported in a particular Lasso installation.
 
 .. note::
@@ -240,7 +242,7 @@ algorithms are supported in a particular Lasso installation.
    algorithm. An optional ``-seed`` parameter can be used to seed some
    algorithms with a random component.
 
-.. method:: cipher_decypt(data, -cipher::string, -key, -seed= ?)::bytes
+.. method:: cipher_decrypt(data, -cipher::string, -key, -seed= ?)::bytes
 
    Decrypts a string using a specified algorithm. Requires three parameters: The
    data to be decrypted, a ``-cipher`` keyword parameter specifying which
@@ -257,9 +259,8 @@ algorithms are supported in a particular Lasso installation.
 
 .. method:: cipher_list(-digest::boolean= ?)
 
-   Lists the algorithms that the cipher methods support. With the opitonal
+   Lists the algorithms that the cipher methods support. With the optional
    ``-digest`` parameter, it returns only digest algorithms.
-
 
 The following list some of the cipher algorithms that can be used
 with ``cipher_encrypt`` and some of the digest algorithms that can be used with
@@ -280,7 +281,7 @@ DES
 
 RSA
    A public key algorithm named after Rivest, Shamir, and Adelmen. One of the
-   most commonly used encyrption algorithsm. Note: Lasso does not generate
+   most commonly used encryption algorithms. Note: Lasso does not generate
    public/private key pairs.
 
 DSA
@@ -299,7 +300,7 @@ MD5
 List All Supported Algorithms
 -----------------------------
 
-Use the ``Cipher_List`` method. The following example will return a list of all
+Use the `cipher_list` method. The following example will return a list of all
 the cipher algorithms supported by this installation of Lasso::
 
    cipher_list
@@ -315,7 +316,7 @@ the digest algorithms supported by this installation of Lasso::
 Calculate a Digest Value
 ------------------------
 
-Use the ``cipher_digest`` method. The following example will return the DSA
+Use the `cipher_digest` method. The following example will return the DSA
 signature for the value of a database field "message"::
 
    cipher_digest(field('message'), -digest='DSA')
@@ -324,7 +325,7 @@ signature for the value of a database field "message"::
 Encrypt a Value Using 3DES
 --------------------------
 
-Use the ``cipher_encrypt`` method. The following example will return the 3DES
+Use the `cipher_encrypt` method. The following example will return the 3DES
 encryption for the value of a database field "message"::
 
    cipher_encrypt(field('message'), -cipher='3DES', -key='My Secret Key')
@@ -334,20 +335,20 @@ Compression Methods
 ===================
 
 Lasso provides two methods that allow data to be stored or transmitted more
-efficiently. The ``compress`` method can be used to compress any text string
+efficiently. The `compress` method can be used to compress any text string
 into an efficient byte stream that can be stored in a binary field in a database
-or transmitted to another server. The ``decompress`` method can then be used to
+or transmitted to another server. The `decompress` method can then be used to
 restore a compressed byte stream into the original string.
 
 The compression algorithm should only be used on large string values. For
 strings of less than one hundred characters the algorithm may actually result in
 a larger string than the source.
 
-These methods can be used in concert with the ``null->serialize`` method that
-creates a string representation of a type that implements ``trait_serializable``
-and the ``serialization_reader->read`` method that returns the original value
-based on a string representation. An example below shows how to compress and
-decompress an array object.
+These methods can be used in concert with the `serialize` method that creates a
+string representation of a type that implements :trait:`trait_serializable` and
+the `serialization_reader->read` method that returns the original value based on
+a string representation. An example below shows how to compress and decompress
+an array object.
 
 .. method:: compress(b::bytes)
 .. method:: compress(s::string)

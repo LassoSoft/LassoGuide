@@ -151,7 +151,7 @@ DNS Lookup
       Sets the inverse bit in the DNS query.
    :param boolean -status:
       Sets the status bit in the DNS query.
-   :param  boolean-showQuery:
+   :param boolean -showQuery:
       If specified the query is not actually performed, but a
       :type:`dns_response` object representing the query is returned.
    :param boolean -formatQuery:

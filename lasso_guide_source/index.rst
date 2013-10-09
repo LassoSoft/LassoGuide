@@ -127,13 +127,13 @@ Here are some additional resources you may find handy:
    Appendices
    ==========
 
-   - :ref:`search`
-   - :ref:`genindex`
+   -  :ref:`search`
+   -  :ref:`genindex`
 
-   .. - :ref:`glossary`
-   .. - :ref:`credits`
-   .. - :ref:`copyright`
-   .. - :ref:`license`
+   .. -  :ref:`glossary`
+   .. -  :ref:`credits`
+   .. -  :ref:`copyright`
+   .. -  :ref:`license`
 
    .. toctree::
       :hidden:

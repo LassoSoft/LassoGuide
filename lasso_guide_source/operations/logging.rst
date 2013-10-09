@@ -4,10 +4,9 @@
 Logging
 *******
 
-Lasso 9 server has a built-in error logging system, which allows warning
-messages to be logged at several different levels. Each log level can be routed
-to one or more destinations, allowing for a great deal of flexibility in
-handling.
+Lasso 9 server has a built-in error logging system which allows warning messages
+to be logged at several different levels. Each log level can be routed to one or
+more destinations, allowing for a great deal of flexibility in handling.
 
 The built-in log levels include:
 
@@ -43,24 +42,24 @@ Database
 Console
    The Lasso 9 Server instance's console which is viewable from the instance
    manager. It is stored in a file named "lasso.out.txt" in the instance's
-   :term:`LASSO9_HOME` directory and has a max file size of 10MB by default.
+   :envvar:`LASSO9_HOME` directory and has a max file size of 10MB by default.
 
 File
-   The "lasso_logbook.txt" file, located in the instance's :term:`LASSO9_HOME`
+   The "lasso_logbook.txt" file, located in the instance's :envvar:`LASSO9_HOME`
    folder. This file is also capped at 10MB by default.
 
 The routing of Lasso's internal log levels can be modified in the "Log Book"
 section of Lasso Server Admin (http://example.com/lasso9/Admin/logbook). For
 details about how to change the log level routing programmatically see the
-subsequent :ref:`Log Routing<log-routing>` section.
+subsequent :ref:`log-routing` section.
 
 
 Logging Methods
 ===============
 
-The ``log_critical``, ``log_warning``, ``log_detail``, and ``log_deprecated``
-methods are used to log custom data to the Lasso internal error logs with a
-defined Lasso error level of "Critical", "Warning", "Detail", or "Deprecated"
+The `log_critical`, `log_warning`, `log_detail`, and `log_deprecated` methods
+are used to log custom data to the Lasso internal error logs with a defined
+Lasso error level of "Critical", "Warning", "Detail", or "Deprecated",
 respectively.
 
 .. method:: log_critical(...)
@@ -89,7 +88,7 @@ respectively.
 
 .. method:: log_always(...)
 
-   Logs to Lasso's console. This error level cannot be routed, but is always
+   Logs to Lasso's console. This error level cannot be routed, and is always
    sent to Lasso's console.
 
 
@@ -98,13 +97,13 @@ Create a Log Message
 
 The following example will create a log statement at the level of "Warning" if
 Lasso throws a "Divide By Zero" error. The displayed result is the log message
-that gets sent to the console - note that it contains a timestamp in brackets::
+that gets sent to the console; note that it contains a timestamp in brackets::
 
    handle(error_code == error_code_divideByZero) => {
-      error_warning('A mathmatical error occured while processing this page')
+      error_warning('A mathematical error occurred while processing this page')
    }
 
-   // => [2013-03-23 16:59:41] A mathmatical error occured while processing this page
+   // => [2013-03-23 16:59:41] A mathematical error occurred while processing this page
 
 
 Log Files
@@ -112,20 +111,20 @@ Log Files
 
 In addition to using the built-in log level routing system, it is sometimes
 desirable to create a separate log file specific to a custom solution. The
-``log`` method can be used to write text messages out to a log file.
+`log` method can be used to write text messages out to a log file.
 
 .. method:: log(path)
 
-   When executed, the contents of the ``log`` method's associated block's auto-
-   collection is appended to a specified text file. The ``log`` method can write
+   When executed, the contents of the `log` method's associated block's auto-
+   collection is appended to a specified text file. The `log` method can write
    to any text file that is accessible from Lasso. The associated block must be
    an auto-collect block as the collected data from the associated block will be
    included in the appended data. If you don't use an auto-collect block then no
    data will be appended to the log file.
 
-   The following ``log`` method outputs a single line containing the date and
-   time with a return at the end to the file specified. The methods are shown
-   first with a Windows path, then with an OS X or Linux path::
+   The following example outputs a single line containing the date and time with
+   a return at the end to the file specified. The methods are shown first with a
+   Windows path, then with an OS X or Linux path::
 
       log('C://Logs/LassoLog.txt') => {^
          date->format('%Q %T')
@@ -179,7 +178,7 @@ Log Routing
 ===========
 
 Log preferences can be viewed or changed in the "Log Book" section of Lasso
-Server Admin. Use of the ``log_setDestination`` method is only necessary to
+Server Admin. Use of the `log_setDestination` method is only necessary to
 change the log settings programmatically.
 
 .. method:: log_setDestination(\
@@ -242,7 +241,7 @@ change the log settings programmatically.
 Change the Log Preferences
 --------------------------
 
-Use the ``log_setDestination`` method to change the destination of a given log
+Use the `log_setDestination` method to change the destination of a given log
 message level. In the following example, detail messages are sent to the console
 and to the errors table of the instance database::
 
@@ -258,7 +257,7 @@ Reset the Log Preferences
 
 The following four commands reset the log preferences to their default values.
 Critical errors are sent to all three destinations. Warnings, detail, and
-deprecation messages are sent only to the console::
+deprecation messages are sent only to the console. ::
 
    log_setDestination(
       log_level_critical,

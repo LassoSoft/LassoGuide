@@ -31,8 +31,8 @@ The built-in security system is accessed through two different interfaces: the
 set of ``auth_…`` methods and the :type:`security_registry` object.
 
 
-Auth
-====
+Authenticating Users
+====================
 
 The ``auth_…`` methods are used by web apps to execute simple security checks.
 The checks acquire the username, password and realm information from the current
@@ -74,8 +74,8 @@ electing not to abort when the check fails, a caller can check
    specified group.
 
 
-The ``security_registry`` Object
-=================================
+Managing Users
+==============
 
 The :type:`security_registry` object provides a more complete interface to
 Lasso's security system. It does not rely on an ongoing web request and can be

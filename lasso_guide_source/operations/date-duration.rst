@@ -710,7 +710,7 @@ object, such as the name of the current month or the seconds of the time.
 
 .. member:: date->asInteger()
 
-   Returns epoch time - the number of seconds from 1/1/1970 to the time of the
+   Returns "epoch time", the number of seconds from 1/1/1970 to the time of the
    current date object.
 
 

@@ -243,7 +243,7 @@ Network Options
 .. method:: CURLOPT_PROXY()
 
    Used with :meth:`curl->set(key, value)`. Sets the HTTP proxy to use for the
-   current curl object’s request. This value should be passed as a string.
+   current curl object's request. This value should be passed as a string.
 
 .. method:: CURLOPT_PROXYPORT()
 
@@ -278,7 +278,7 @@ Network Options
 
 .. method:: CURLOPT_PORT()
 
-   Used with :meth:`curl->set(key, value)`. Specifies which remote port number
+   Used with :meth:`curl->set(key, value)`. Specifies which remote port number
    to connect to instead of the one specified in the URL, or speicy the default
    port for the used protocol. This value should be an integer.
 
@@ -589,7 +589,7 @@ FTP Options
 .. method:: CURLOPT_FTP_USE_EPSV()
 
    Used with :meth:`curl->set(key, value)`. If set to 1, curl will use the EPSV
-   command for passive FTP downloads. (This is actually the default - turn it
+   command for passive FTP downloads. (This is actually the default; turn it
    off by setting it to 0.)
 
 .. method:: CURLOPT_FTP_CREATE_MISSING_DIRS()

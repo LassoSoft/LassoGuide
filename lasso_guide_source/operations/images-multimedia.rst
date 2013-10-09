@@ -1,3 +1,5 @@
+:tocdepth: 3
+
 .. _images-multimedia:
 
 *******************
@@ -5,8 +7,8 @@ Images & Multimedia
 *******************
 
 Lasso 9 includes features that allow you to manipulate and serve images and
-multimedia files on the fly. The ``image`` methods allow you to do the following
-with image files in the supported image formats:
+multimedia files on the fly. The ``image_…`` methods allow you to do the
+following with image files in the supported image formats:
 
 -  Scaling and cropping images, facilitating the creation of thumbnail images on
    the fly.
@@ -19,20 +21,18 @@ with image files in the supported image formats:
 -  Executing extended ImageMagick commands.
 
 .. note::
-
    The image type and features in Lasso 9 are implemented using ImageMagick
    6.6.6-10 (July 7, 2011 build), which is installed as part of Lasso 9 Server
    on Mac OS X. Windows and Linux require ImageMagick to be installed
    separately, which is covered in the installation guide For more information
-   on ImageMagick, visit
-   `http://www.imagemagick.com <http://www.imagemagick.com/>`_.
+   on ImageMagick, visit http://www.imagemagick.com.
 
 
 Introduction to Manipulating Image Files
 ========================================
 
 Image files can be manipulated via Lasso by setting a variable that references
-an image file on the server using the ``image`` type, and then using various
+an image file on the server using the :type:`image` type, and then using various
 member methods to manipulate the variable. Once the image file is manipulated,
 it can either be served directly to the client browser, or it can be saved to
 disk on the server.
@@ -42,7 +42,7 @@ Dynamically Manipulate An Image On The Server
 ---------------------------------------------
 
 The following shows an example of initializing, manipulating, and serving an
-image file named "image.jpg" using the ``image`` type::
+image file named "image.jpg" using the :type:`image` type::
 
    <?lasso
       local(myImage) = image('/images/image.tif')
@@ -52,11 +52,11 @@ image file named "image.jpg" using the ``image`` type::
    <img src="/images/image.jpg" border="0">
 
 In the example above, an image file named "image.tif" is referenced as a Lasso
-image object using the ``image`` type, then resized to 35 x 35 pixels using the
-``image->scale`` method. (The optional ``-thumbnail`` parameter optimizes the
+image object using the :type:`image` type, then resized to 35 x 35 pixels using the
+`image->scale` method. (The optional ``-thumbnail`` parameter optimizes the
 image for the Web.) Then, the image is converted to JPEG format and saved to
-disk using the ``image->save`` method, and displayed on the current page using
-an HTML ``<img>`` tag.
+disk using the `image->save` method, and displayed on the current page using an
+HTML ``<img>`` tag.
 
 This chapter explains in detail how these and other methods are used to
 manipulate image and multimedia files. This chapter also shows how to output an
@@ -66,41 +66,33 @@ image file to a client browser within the context of a Lasso page.
 Supported Image Formats
 -----------------------
 
-Because the ``image`` member methods are based on ImageMagick, Lasso supports
-reading and manipulating over 88 major file formats (not including sub-formats).
-A comprehensive list of supported image formats can be found at the following
-URL: `<http://www.imagemagick.org/script/formats.php#supported>`_
+Because the :type:`image` member methods are based on ImageMagick, Lasso
+supports reading and manipulating over 88 major file formats (not including
+sub-formats). A comprehensive list of supported image formats can be found at
+the following URL: http://www.imagemagick.org/script/formats.php#supported
 
 A list of commonly used image formats that are certified to work with Lasso 9
-out of the box without additional components installed are shown in
+out-of-the-box without additional components installed are shown in
 :ref:`Table 1: Tested and Certified Image Formats
-<images-and-multimedia-table-1>`.
+<images-multimedia-table-1>`.
 
-.. _images-and-multimedia-table-1:
+.. _images-multimedia-table-1:
 
 .. table:: Table 1: Tested and Certified Image Formats
 
-    +--------+--------------------------------------------------+
-    |Format  |Description                                       |
-    +========+==================================================+
-    |``BMP`` |Microsoft Windows bitmap.                         |
-    +--------+--------------------------------------------------+
-    |``CMYK``|Raw cyan, magenta, yellow, and black samples.     |
-    +--------+--------------------------------------------------+
-    |``GIF`` |CompuServe Graphics Interchange Format. 8-bit RGB |
-    |        |PseudoColor with up to 256 palette entries.       |
-    +--------+--------------------------------------------------+
-    |``JPEG``|Joint Photographic Experts Group JFIF format. Also|
-    |        |known as JPG.                                     |
-    +--------+--------------------------------------------------+
-    |``PNG`` |Portable Network Graphics.                        |
-    +--------+--------------------------------------------------+
-    |``PSD`` |Adobe Photoshop bitmap file.                      |
-    +--------+--------------------------------------------------+
-    |``RGB`` |Raw red, green, and blue samples.                 |
-    +--------+--------------------------------------------------+
-    |``TIFF``|Tagged Image File Format. Also known as TIF.      |
-    +--------+--------------------------------------------------+
+   =========== =================================================================
+   Format      Description
+   =========== =================================================================
+   :dfn:`BMP`  Microsoft Windows bitmap.
+   :dfn:`CMYK` Raw cyan, magenta, yellow, and black samples.
+   :dfn:`GIF`  CompuServe Graphics Interchange Format. 8-bit RGB PseudoColor
+               with up to 256 palette entries.
+   :dfn:`JPEG` Joint Photographic Experts Group JFIF format. Also known as JPG.
+   :dfn:`PNG`  Portable Network Graphics.
+   :dfn:`PSD`  Adobe Photoshop bitmap file.
+   :dfn:`RGB`  Raw red, green, and blue samples.
+   :dfn:`TIFF` Tagged Image File Format. Also known as TIF.
+   =========== =================================================================
 
 .. note::
    Many of the supported formats listed on the ImageMagick site such as EPS and
@@ -114,13 +106,13 @@ File Permissions
 ----------------
 
 In order to successfully create, manipulate, and save image files using the
-``image`` methods, the user running the Lasso process must be allowed by the
+``image_…`` methods, the user running the Lasso process must be allowed by the
 operating system to write and execute files inside the folder. To check folder
 permissions in Windows, right-click on the folder and select
-:menuselection:`Properties > Security`. For OS X or Linux, use :command:`ls -al`
-from the command-line to check permissions and use the :command:`chmod` and
+:menuselection:`Properties --> Security`. For OS X or Linux, use :command:`ls
+-al` from the command-line to check permissions and use the :command:`chmod` and
 :command:`chown` commands to adjust the permissions. (Refer to the
-:command:`ls`, :command:`chmod`, and :command:`chown` man pages for more
+:manpage:`ls`, :manpage:`chmod`, and :manpage:`chown` man pages for more
 information on their use).
 
 
@@ -128,10 +120,11 @@ Referencing Images as Lasso Objects
 ===================================
 
 For Lasso to be able to edit an image via Lasso, an image file or image data
-must first be modeled as a Lasso image object using the ``image`` type. Once a
-variable has been set to an image data type, various member methods can be used
-to manipulate the image. Once the image file is manipulated, it can either be
-served directly to the client browser, or it can be saved to disk on the server.
+must first be modelled as a Lasso image object using the :type:`image` type.
+Once a variable has been set to an image data type, various member methods can
+be used to manipulate the image. Once the image file is manipulated, it can
+either be served directly to the client browser, or it can be saved to disk on
+the server.
 
 .. type:: image
 .. method:: image()
@@ -218,7 +211,7 @@ methods in Lasso 9 are defined below.
 Return the height and Width of an Image
 ---------------------------------------
 
-Use the ``image->height`` and ``image-width`` methods on an image object. This
+Use the `image->height` and `image-width` methods on an image object. This
 returns an integer value representing the height and width of the image in
 pixels::
 
@@ -232,7 +225,7 @@ pixels::
 Return the Resolution of an Image
 ---------------------------------
 
-Use the ``image->resolutionh`` and ``image->resolutionv`` methods on an image
+Use the `image->resolutionh` and `image->resolutionv` methods on an image
 object. This returns a decimal value representing the horizontal and vertical
 DPI (Dots Per inch) of the image::
 
@@ -246,8 +239,8 @@ DPI (Dots Per inch) of the image::
 Return the Color Depth of an Image
 ----------------------------------
 
-Use the ``image->depth`` method on an image object. This returns an integer
-value representing the color depth of an image in bits::
+Use the `image->depth` method on an image object. This returns an integer value
+representing the color depth of an image in bits::
 
    [local(myImage) = image('/images/image.jpg')]
    [#myImage->depth]
@@ -259,7 +252,7 @@ value representing the color depth of an image in bits::
 Return the Format of an Image
 -----------------------------
 
-Use the ``image->format`` method on an image object. This returns a string value
+Use the `image->format` method on an image object. This returns a string value
 representing the file format of the image::
 
    [local(myImage) = image('/images/image.gif')]
@@ -272,7 +265,7 @@ representing the file format of the image::
 Return pixel Information About an Image
 ---------------------------------------
 
-Use the ``image->pixel`` method on an image object. This returns a string value
+Use the `image->pixel` method on an image object. This returns a string value
 representing the color of the pixel at the specified coordinates::
 
    [local(myImage) = image('/images/image.jpg')]
@@ -286,7 +279,7 @@ Converting and Saving Images
 ============================
 
 This section describes how image files can be converted from one format to
-another and saved to file. This is all accomplished using the ``image->save``
+another and saved to file. This is all accomplished using the `image->save`
 method, which is described below.
 
 .. member:: image->convert(ext::string)
@@ -316,8 +309,8 @@ method, which is described below.
 Convert an Image File From One Format to Another
 ------------------------------------------------
 
-Use the ``image->convert`` and ``image->save`` methods on an image object,
-specifying the new format as part of the ``image->convert`` method::
+Use the `image->convert` and `image->save` methods on an image object,
+specifying the new format as part of the `image->convert` method::
 
    local(myImage) = image('/images/image.gif')
    #myImage->convert('JPG', -quality=100)
@@ -327,7 +320,7 @@ specifying the new format as part of the ``image->convert`` method::
 Automatically Convert an Image File From One Format to Another
 --------------------------------------------------------------
 
-Use the ``image->save`` method on an image object, changing the image file
+Use the `image->save` method on an image object, changing the image file
 extension to the desired image format. A ``-quality`` parameter value of ``100``
 specifies that the resulting JPEG file will be saved at the highest quality
 resolution::
@@ -339,7 +332,7 @@ resolution::
 Save an Image Object to a File
 ------------------------------
 
-Use the ``image->save`` method on an image object, specifying the desired image
+Use the `image->save` method on an image object, specifying the desired image
 name, path, and format::
 
    local(myImage) = image('/folder/asdf1.jpg')
@@ -349,9 +342,9 @@ name, path, and format::
 Add a Comment to an Image File Header
 -------------------------------------
 
-Use the ``image->addComment`` method to add a comment to an image object before
-it is saved to file. This comment is not displayed, but stored with the image
-file information::
+Use the `image->addComment` method to add a comment to an image object before it
+is saved to file. This comment is not displayed, but stored with the image file
+information::
 
    local(myImage) = image('/images/image.gif')
    #myImage->addComment('This is a comment')
@@ -361,7 +354,7 @@ file information::
 Remove All Comments From an Image File Header
 ---------------------------------------------
 
-Use the ``image->addComment`` method with a ``null`` parameter to remove all
+Use the `image->addComment` method with a ``null`` parameter to remove all
 comments from an image object before it is saved to file. The following code
 adds a comment and then removes all comments. The result is an image with no
 comments::
@@ -428,9 +421,9 @@ These methods are defined below.
 Enlarge an Image
 ^^^^^^^^^^^^^^^^
 
-Use the ``image->scale`` method on an image object. The following example
-enlarges ``image.jpg`` to 225 X 225 pixels. The optional ``-sample`` parameter
-specifies that pixel sampling should be used::
+Use the `image->scale` method on an image object. The following example enlarges
+``image.jpg`` to 225 X 225 pixels. The optional ``-sample`` parameter specifies
+that pixel sampling should be used::
 
    local(myImage) = image('/images/image.jpg')
    #myImage->scale(-height=225, -width=225, -sample)
@@ -440,9 +433,9 @@ specifies that pixel sampling should be used::
 Shrink an Image
 ^^^^^^^^^^^^^^^
 
-Use the ``image->scale`` method on an image object. The following example
-shrinks ``image.jpg`` to 25 x 25 pixels. The optional ``-thumbnail`` parameter
-optimizes the image for the Web::
+Use the `image->scale` method on an image object. The following example shrinks
+``image.jpg`` to 25 x 25 pixels. The optional ``-thumbnail`` parameter optimizes
+the image for the Web::
 
    local(myImage) = image('/images/image.jpg')
    #myImage->scale(-height=25, -width=25, -thumbnail)
@@ -452,8 +445,8 @@ optimizes the image for the Web::
 Rotate an Image
 ^^^^^^^^^^^^^^^
 
-Use the ``image->rotate`` method on an image object. The following example
-rotates the image 60 degrees counterclockwise on top of a white background::
+Use the `image->rotate` method on an image object. The following example rotates
+the image 60 degrees counterclockwise on top of a white background::
 
    local(myImage) = image('/images/image.jpg')
    #myImage->rotate(60, -bgColor='FFFFFF')
@@ -463,7 +456,7 @@ rotates the image 60 degrees counterclockwise on top of a white background::
 Crop an Image
 ^^^^^^^^^^^^^
 
-Use the ``image->crop`` method on an image object. The example below crops 10
+Use the `image->crop` method on an image object. The example below crops 10
 pixels off of each side of a 70 x 70 image::
 
    local(myImage) = image('/images/image.jpg')
@@ -474,8 +467,8 @@ pixels off of each side of a 70 x 70 image::
 Mirror an Image
 ^^^^^^^^^^^^^^^
 
-Use the ``image->flipv`` method on an image object. The following example
-mirrors the image vertically::
+Use the `image->flipv` method on an image object. The following example mirrors
+the image vertically::
 
    local(myImage) = image('/images/image.jpg')
    #myImage->flipv
@@ -539,8 +532,8 @@ merging. These methods are described below.
 Adjust the Brightness of an Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->modulate`` method on an image object and adjust the first
-integer parameter, representing brightness. The following example increases the
+Use the `image->modulate` method on an image object and adjust the first integer
+parameter, representing brightness. The following example increases the
 brightness of an image by a factor of two::
 
    local(myImage) = image('/images/image.jpg')
@@ -551,7 +544,7 @@ brightness of an image by a factor of two::
 Adjust the Color Saturation of an Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->modulate`` method on an image object and adjust the second
+Use the `image->modulate` method on an image object and adjust the second
 integer parameter, representing color saturation. The following example
 decreases the color saturation of an image by 25%::
 
@@ -563,9 +556,9 @@ decreases the color saturation of an image by 25%::
 Adjust the Hue of an Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->modulate`` method on an image object and adjust the third
-integer parameter, representing hue. The following example tints the image green
-by increasing the hue value. Decreasing the hue value tints the image red::
+Use the `image->modulate` method on an image object and adjust the third integer
+parameter, representing hue. The following example tints the image green by
+increasing the hue value. Decreasing the hue value tints the image red::
 
    local(myImage) = image('/images/image.jpg')
    #myImage->modulate(100, 100, 175)
@@ -575,9 +568,9 @@ by increasing the hue value. Decreasing the hue value tints the image red::
 Adjust the Contrast of an Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->contrast`` method on an image object. The first example
-increases the contrast. The second example uses a ``false`` parameter, which
-reduces the contrast instead::
+Use the `image->contrast` method on an image object. The first example increases
+the contrast. The second example uses a ``false`` parameter, which reduces the
+contrast instead::
 
    local(myImage) = image('/images/image.jpg')
    #myImage->Contrast
@@ -591,8 +584,8 @@ reduces the contrast instead::
 Apply a Motion Blur to an Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->blur`` method on an image object. The following example applies
-a motion blur at 20 degrees::
+Use the `image->blur` method on an image object. The following example applies a
+motion blur at 20 degrees::
 
    local(myImage) = image('/images/image.jpg')
    #myImage->blur(-angle=20)
@@ -602,7 +595,7 @@ a motion blur at 20 degrees::
 Apply a Gaussian Blur to an Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->blur`` method with the ``-Gaussian`` parameter on an image
+Use the `image->blur` method with the ``-Gaussian`` parameter on an image
 object. The following example applies a Gaussian blur with a radius of 15 pixels
 and a standard deviation of 10 pixels::
 
@@ -614,7 +607,7 @@ and a standard deviation of 10 pixels::
 Sharpen an Image
 ^^^^^^^^^^^^^^^^
 
-Use the ``image->sharpen`` method on an image object. The following example
+Use the `image->sharpen` method on an image object. The following example
 applies a Gaussian sharp effect with a radius of 20 pixels and a standard
 deviation of 10 pixels::
 
@@ -626,7 +619,7 @@ deviation of 10 pixels::
 Sharpen an Image with an Unsharp Mask Effect
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->sharpen`` method with the ``-amount`` and ``-threshold``
+Use the `image->sharpen` method with the ``-amount`` and ``-threshold``
 parameters on an image object. The following example applies an unsharp mask
 effect with a radius of 20 pixels and a standard deviation of 10 pixels::
 
@@ -638,7 +631,7 @@ effect with a radius of 20 pixels and a standard deviation of 10 pixels::
 Enhance a Low-Quality Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->enhance`` method on an image object::
+Use the `image->enhance` method on an image object::
 
     local(myImage) = image('/images/image.jpg')
     #myImage->enhance
@@ -648,7 +641,7 @@ Use the ``image->enhance`` method on an image object::
 Adding Text to Images
 ---------------------
 
-Lasso allows text to be overlaid on top of images using the ``image->annotate``
+Lasso allows text to be overlaid on top of images using the `image->annotate`
 method as described below.
 
 .. member:: image->annotate(\
@@ -681,8 +674,8 @@ method as described below.
 Add Text to an Image
 ^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->annotate`` method on an image object. The example below adds
-the text ``(c) 2013 LassoSoft`` to the specified image::
+Use the `image->annotate` method on an image object. The example below adds the
+text ``(c) 2013 LassoSoft`` to the specified image::
 
    local(myImage) = image('/images/image.jpg')
    #myImage->annotate(
@@ -700,9 +693,9 @@ the text ``(c) 2013 LassoSoft`` to the specified image::
 Merging Images
 --------------
 
-Lasso allows images to be merged using the ``image->composite`` method. The
-``image->composite`` method supports over 20 different composite methods, which
-are described in the table below.
+Lasso allows images to be merged using the `image->composite` method. This
+method supports over 20 different composite methods, which are described in the
+table below.
 
 .. member:: image->composite(\
          second::image, \
@@ -726,85 +719,57 @@ are described in the table below.
 
    .. table:: Composite Image Tag Operators
 
-      +------------------+--------------------------------------------------+
-      |Composite Operator|Description                                       |
-      +==================+==================================================+
-      |``Over``          |The result is the union of the the two image      |
-      |                  |shapes with the composite image obscuring the     |
-      |                  |image in the region of overlap.                   |
-      +------------------+--------------------------------------------------+
-      |``In``            |The result is the first image cut by the shape of |
-      |                  |the second image. None of the second image data is|
-      |                  |included in the result.                           |
-      +------------------+--------------------------------------------------+
-      |``Out``           |The result is the second image cut by the shape of|
-      |                  |the first image. None of the first image data is  |
-      |                  |included in the result.                           |
-      +------------------+--------------------------------------------------+
-      |``Plus``          |The result is the sum of the raw image data with  |
-      |                  |output image color channels cropped to 255.       |
-      +------------------+--------------------------------------------------+
-      |``Minus``         |The result is the subtraction of the raw image    |
-      |                  |data with color channel underflow cropped to zero.|
-      +------------------+--------------------------------------------------+
-      |``Add``           |The result is the sum of the raw image data with  |
-      |                  |color channel overflow channel wrapping around    |
-      |                  |256.                                              |
-      +------------------+--------------------------------------------------+
-      |``Subtract``      |The result is the subtraction of the raw image    |
-      |                  |data with color channel underflow wrapping around |
-      |                  |256.                                              |
-      +------------------+--------------------------------------------------+
-      |``Difference``    |Returns the difference between two images. This is|
-      |                  |useful for comparing two very similar images.     |
-      +------------------+--------------------------------------------------+
-      |``Bumpmap``       |The resulting image is shaded by the second image.|
-      +------------------+--------------------------------------------------+
-      |``CopyRed``       |The resulting image is the red layer in the image |
-      |                  |replaced with the red layer in the second image.  |
-      +------------------+--------------------------------------------------+
-      |``CopyGreen``     |The resulting image is the green layer in the     |
-      |                  |image replaced with the green layer in the second |
-      |                  |image.                                            |
-      +------------------+--------------------------------------------------+
-      |``CopyBlue``      |The resulting image is the blue layer in the image|
-      |                  |replaced with the blue layer in the second image. |
-      +------------------+--------------------------------------------------+
-      |``CopyOpacity``   |The resulting image is the opaque layer in the    |
-      |                  |image replaced with the opaque layer in the second|
-      |                  |image.                                            |
-      +------------------+--------------------------------------------------+
-      |``Displace``      |Displaces part of the first image where the second|
-      |                  |image is overlaid.                                |
-      +------------------+--------------------------------------------------+
-      |``Threshold``     |Only colors in the second image that are darker   |
-      |                  |than the colors in the first image are overlaid.  |
-      +------------------+--------------------------------------------------+
-      |``Darken``        |Only dark colors in the second image are overlaid.|
-      +------------------+--------------------------------------------------+
-      |``Lighten``       |Only light colors in the second image are         |
-      |                  |overlaid.                                         |
-      +------------------+--------------------------------------------------+
-      |``Colorize``      |Only base spectrum colors in the second image are |
-      |                  |overlaid.                                         |
-      +------------------+--------------------------------------------------+
-      |``Hue``           |Only the hue of the second image is overlaid.     |
-      +------------------+--------------------------------------------------+
-      |``Saturate``      |Only the saturation of the second image is        |
-      |                  |overlaid.                                         |
-      +------------------+--------------------------------------------------+
-      |``Luminize``      |Only the luminosity of the the second image is    |
-      |                  |overlaid.                                         |
-      +------------------+--------------------------------------------------+
-      |``Modulate``      |Has the effect of Hue, Saturate, and Luminize     |
-      |                  |functions applied at the same time.               |
-      +------------------+--------------------------------------------------+
+      ================== =======================================================
+      Composite Operator Description
+      ================== =======================================================
+      ``Over``           The result is the union of the two image shapes with
+                         the composite image obscuring the image in the region
+                         of overlap.
+      ``In``             The result is the first image cut by the shape of the
+                         second image. None of the second image data is included
+                         in the result.
+      ``Out``            The result is the second image cut by the shape of the
+                         first image. None of the first image data is included
+                         in the result.
+      ``Plus``           The result is the sum of the raw image data with output
+                         image color channels cropped to 255.
+      ``Minus``          The result is the subtraction of the raw image data
+                         with color channel underflow cropped to zero.
+      ``Add``            The result is the sum of the raw image data with color
+                         channel overflow channel wrapping around 256.
+      ``Subtract``       The result is the subtraction of the raw image data
+                         with color channel underflow wrapping around 256.
+      ``Difference``     Returns the difference between two images. This is
+                         useful for comparing two very similar images.
+      ``Bumpmap``        The resulting image is shaded by the second image.
+      ``CopyRed``        The resulting image is the red layer in the image
+                         replaced with the red layer in the second image.
+      ``CopyGreen``      The resulting image is the green layer in the image
+                         replaced with the green layer in the second image.
+      ``CopyBlue``       The resulting image is the blue layer in the image
+                         replaced with the blue layer in the second image.
+      ``CopyOpacity``    The resulting image is the opaque layer in the image
+                         replaced with the opaque layer in the second image.
+      ``Displace``       Displaces part of the first image where the second
+                         image is overlaid.
+      ``Threshold``      Only colors in the second image that are darker than
+                         the colors in the first image are overlaid.
+      ``Darken``         Only dark colors in the second image are overlaid.
+      ``Lighten``        Only light colors in the second image are overlaid.
+      ``Colorize``       Only base spectrum colors in the second image are
+                         overlaid.
+      ``Hue``            Only the hue of the second image is overlaid.
+      ``Saturate``       Only the saturation of the second image is overlaid.
+      ``Luminize``       Only the luminosity of the second image is overlaid.
+      ``Modulate``       Has the effect of Hue, Saturate, and Luminize functions
+                         applied at the same time.
+      ================== =======================================================
 
 
 Overlay an Image On Top of Another Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->composite`` method to add an image object to a second image
+Use the `image->composite` method to add an image object to a second image
 object. The following example adds ``image2.jpg`` offset by five pixels in the
 upper left corner of ``image1.jpg``::
 
@@ -817,7 +782,7 @@ upper left corner of ``image1.jpg``::
 Add a Watermark to an Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->composite`` method with the ``-opacity`` parameter to add an
+Use the `image->composite` method with the ``-opacity`` parameter to add an
 image object to a second image object. The following example adds a mostly
 transparent version of ``image2.jpg`` to ``image1.jpg``::
 
@@ -830,7 +795,7 @@ transparent version of ``image2.jpg`` to ``image1.jpg``::
 Shade Image with a Second Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->composite`` method with the ``Bumpmap`` operator to shade an
+Use the `image->composite` method with the ``Bumpmap`` operator to shade an
 image object over a second image object::
 
    local(myImage1) = image('/images/image1.jpg')
@@ -842,8 +807,8 @@ image object over a second image object::
 Return the Pixel Difference Between Two Images
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``image->composite`` method with the ``Difference`` operator to return
-the pixel difference between two defined image variables::
+Use the `image->composite` method with the ``Difference`` operator to return the
+pixel difference between two defined image variables::
 
    local(myImage1) = image('/images/image1.jpg')
    local(myImage2) = image('/images/image2.jpg')
@@ -855,7 +820,7 @@ Extended ImageMagick Commands
 =============================
 
 For users who have experience using the ImageMagick command line utility, Lasso
-provides the ``image->execute`` method to allow advanced users to take advantage
+provides the `image->execute` method to allow advanced users to take advantage
 of additional ImageMagick commands and functionality.
 
 .. member:: image->execute
@@ -870,9 +835,9 @@ of additional ImageMagick commands and functionality.
 Execute an ImageMagick Command Using Lasso
 ------------------------------------------
 
-Use the ``image->execute`` method on an image object, with the desired command
-as the parameter. The following example shows the ``mogrify`` command for adding
-a stunning blue border to an image::
+Use the `image->execute` method on an image object, with the desired command as
+the parameter. The following example shows the ``mogrify`` command for adding a
+stunning blue border to an image::
 
    local(myImage) = image('/images/image.gif')
    #myImage->execute('mogrify -bordercolor blue -border=3x3')
@@ -945,17 +910,16 @@ Serving Files via HTTP
 
 Lasso can also be used to serve image and multimedia files rather than merely
 referencing them by path. Files are served through Lasso using the
-:meth:`web_response->sendFile` method or a combination of the
-:meth:`web_response->replaceHeader` method and
-:meth:`web_response->includeBytes` method. Lasso 9 also includes an
-``image->data`` method that automatically converts an image object to a bytes
-object, allowing an edited ``image`` object to be outputted by
-:meth:`web_response->sendFile` without it first being written to disk.
+`web_response->sendFile` method or a combination of the
+`web_response->replaceHeader` method and `web_response->includeBytes` method.
+Lasso 9 also includes an `image->data` method that automatically converts an
+image object to a bytes object, allowing an edited ``image`` object to be
+outputted by `web_response->sendFile` without it first being written to disk.
 
 In order to serve an image or multimedia file through Lasso the MIME type of the
 file must be determined. Often, this can be discovered by looking at the
 configuration of the Web server or Web browser. The MIME type for a GIF is
-``image/gif`` and the MIME type for a JPEG is ``image/jpeg``.
+:mimetype:`image/gif` and the MIME type for a JPEG is :mimetype:`image/jpeg`.
 
 .. note::
    It is not recommended that you configure your Web server application to
@@ -973,23 +937,23 @@ configuration of the Web server or Web browser. The MIME type for a GIF is
 Serve an Image File
 ^^^^^^^^^^^^^^^^^^^
 
-Use the :meth:`web_response->sendFile` method to set the MIME type of the
-image to be served, and use the ``image->data`` method to get the binary data
-from an ``image`` object. The :meth:`web_response->sendFile` method aborts the
-current file, so it will be the last line of code to be processed. The following
-example shows a GIF named ``picture.gif`` being served from an "images" folder::
+Use the `web_response->sendFile` method to set the MIME type of the image to be
+served, and use the `image->data` method to get the binary data from an
+``image`` object. The `web_response->sendFile` method aborts the current file,
+so it will be the last line of code to be processed. The following example shows
+a GIF named ``picture.gif`` being served from an "images" folder::
 
    local(image) = image('/images/picture.gif')
    web_response->sendFile(#image->data, -type='image/gif')
 
-Use the :meth:`web_response->replaceHeader` method to set the MIME type of the
-image to be served and use the :meth:`web_response->includeBytes` method to
-include data from the image file. If using this method, you need to ensure that
-no stray character data is inadvertently added into the outgoing data buffer as
-it will corrupt the output. This includes whitespace characters. The following
-example shows a GIF named ``picture.gif`` being served from an ``images``
-folder. It is the only contents of this file being called by the client browser
-and has the code all on one line to avoid any data corruption::
+Use the `web_response->replaceHeader` method to set the MIME type of the image
+to be served and use the `web_response->includeBytes` method to include data
+from the image file. If using this method, you need to ensure that no stray
+character data is inadvertently added into the outgoing data buffer as it will
+corrupt the output. This includes whitespace characters. The following example
+shows a GIF named ``picture.gif`` being served from an ``images`` folder. It is
+the only contents of this file being called by the client browser and has the
+code all on one line to avoid any data corruption::
 
    [web_response->replaceHeader('Content-Type'='image/gif')]
    [web_response->includeBytes('/images/picture.gif')]
@@ -1006,10 +970,10 @@ and has the code all on one line to avoid any data corruption::
 Serve a Multimedia File
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the :meth:`web_response->sendFile` method to set the MIME type of the file
-to be served and pass it a ``file`` object to include data from the multimedia
-file. The following example shows a sound file named ``ArtOfNoise.mp3`` being
-served from a ``sounds`` folder::
+Use the `web_response->sendFile` method to set the MIME type of the file to be
+served and pass it a ``file`` object to include data from the multimedia file.
+The following example shows a sound file named ``ArtOfNoise.mp3`` being served
+from a ``sounds`` folder::
 
    [web_response->sendFile(
       file('/sounds/ArtOfNoise.mp3'),
@@ -1024,7 +988,7 @@ the Web serving folder then the sound file could be accessed with the following
 
 This same technique can be used to serve multimedia files of any type by
 designating the appropriate MIME type in the ``-type`` option passed to the
-:meth:`web_response->sendFile` method.
+`web_response->sendFile` method.
 
 
 Limit Access to a File
@@ -1032,8 +996,8 @@ Limit Access to a File
 
 Since the Lasso page can process any Lasso code before serving the image it is
 easy to create a file that generates an error if an unauthorized person tries to
-access a file. The following code checks the ``[client_username]`` for the name
-``John``. If the current user is not named ``John`` then a file ``Error.gif`` is
+access a file. The following code checks the ``client_username`` for the name
+``John``. If the current user is not named ``John`` then a file ``error.gif`` is
 served instead of the desired ``picture.gif`` file. To really limit access to
 the files, they are being served from outside the web root of the web server so
 that the files couldn't be loaded directly by a URL. In this example, the files
