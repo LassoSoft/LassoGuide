@@ -79,7 +79,7 @@ The preceding example produces HTML like this::
    </dl>
 
 The following example will move uploaded files out of their temporary location
-and into the ``'/assets/img/avatars/'`` directory in the web root::
+and into the ``/assets/img/avatars/`` directory in the web root::
 
    local(path) = '/assets/img/avatars/'
    with upload in web_request->fileUploads do {
@@ -114,9 +114,7 @@ unique ID that gets passed to it. It also uses ``<meta http-equiv="refresh"
 content="1">`` to refresh itself every second. The result is that we get a
 progress bar which is updated every second.
 
-
-index.lasso
------------
+.. rubric:: index.lasso
 
 ::
 
@@ -152,9 +150,7 @@ index.lasso
    </body>
    </html>
 
-
-progress.lasso
---------------
+.. rubric:: progress.lasso
 
 ::
 

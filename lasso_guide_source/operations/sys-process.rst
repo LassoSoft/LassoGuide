@@ -5,37 +5,39 @@ Shell Commands with sys_process
 *******************************
 
 Lasso provides the ability to execute local processes or shell commands through
-the ``sys_process`` type. This type allows local processes to be launched with
-an array of parameters and shell variables. Some processes will execute and
-return a result immediately. Other processes can be left open for interactive
-read/write operations. The ``sys_process`` type enables Lasso users to do things
+the `sys_process` type. This type allows local processes to be launched with an
+array of parameters and shell variables. Some processes will execute and return
+a result immediately. Other processes can be left open for interactive
+read/write operations. The `sys_process` type enables Lasso users to do things
 such as execute AppleScripts, print PDF files, and filter data through external
 applications.
 
-The ``sys_process`` type works across all three platforms which Lasso supports.
+The `sys_process` type works across all three platforms which Lasso supports.
 The UNIX underpinnings of OS X and Linux mean that those two operating systems
 can run many of the same commands and shell scripts. Windows presents a very
 different environment including DOS commands and batch files.
 
+For more information on writing shell scripts, see the chapter on
+:ref:`command-line-tools`.
 
-The Sys_Process API
-===================
+
+Using sys_process
+=================
 
 .. type:: sys_process
 .. method:: sys_process()
 .. method:: sys_process(cmd::string, args= ?, env= ?, user::string= ?)
 
-   The ``sys_process`` type allows a developer to create a new process on the
+   The `sys_process` type allows a developer to create a new process on the
    machine and both read from and write data to it. The process is usually
-   closed after the ``sys_process`` type is destroyed, but can optionally be
-   left running. The ``sys_process`` type shares many of the same member methods
-   and conventions as the file type.
+   closed after the `sys_process` type is destroyed, but can optionally be left
+   running. The `sys_process` type shares many of the same member methods and
+   conventions as the `file` type.
 
-   There are two constructor methods for creating objects of type
-   ``sys_process``: the first allows for an empty object with no information
-   being passed to it. The second takes the same parameters as the
-   ``sys_process->open`` method and calls that method thereby immediately
-   running the command passed to it.
+   There are two constructor methods for creating objects of type `sys_process`:
+   the first allows for an empty object with no information being passed to it.
+   The second takes the same parameters as the `sys_process->open` method and
+   calls that method, thereby immediately running the command passed to it.
 
 .. member:: sys_process->open(\
          command::string, \
@@ -45,11 +47,11 @@ The Sys_Process API
       )
 
    Opens a new process. The command string should consist of the full path to
-   the executable unless it is just a built-in command that does not have a path
-   - in that case just pass the name of the command. An optional staticarray of
-   arguments can be passed as the second parameter. Any arguments are converted
-   to strings and passed to the new process. An optional staticarray of
-   environment strings may be specified as the third parameter, and these too
+   the executable unless it is just a built-in command that does not have a
+   path; in that case just pass the name of the command. An optional staticarray
+   of arguments can be passed as the second parameter. Any arguments are
+   converted to strings and passed to the new process. An optional staticarray
+   of environment strings may be specified as the third parameter, and these too
    will be passed to the new process. By default, the new process is run as the
    current user. The fourth parameter allows for optionally specifying a user to
    run the new process under. This option only works if the current user is the
@@ -58,9 +60,9 @@ The Sys_Process API
 .. member:: sys_process->wait()::integer
 
    Calling this member method causes execution of your code to pause until the
-   new process you have opened with ``sys_process`` finishes its execution. It
+   new process you have opened with `sys_process` finishes its execution. It
    returns the exit code of the command you ran. If you have not yet opened up
-   a new process, it will return "-1"
+   a new process, it will return "-1".
 
 .. member:: sys_process->read(count::integer= ?, -timeout= ?)::bytes
 
@@ -84,8 +86,8 @@ The Sys_Process API
 
 .. member:: sys_process->readString(count::integer= ?, -timeout= ?)::string
 
-   This method is identical to :meth:`sys_process->read` but returns a string
-   object instead of a bytes object.
+   This method is identical to `sys_process->read` but returns a string object
+   instead of a bytes object.
 
 .. member:: sys_process->write(data::bytes)
 .. member:: sys_process->write(data::string)
@@ -97,24 +99,24 @@ The Sys_Process API
 .. member:: sys_process->setEncoding(encoding::string)
 
    Sets the encoding for the instance. The encoding controls how string data is
-   written via ``sys_process->write`` and how string data is returned via
-   ``sys_process->readString``. By default, "UTF-8" is used.
+   written via `sys_process->write` and how string data is returned via
+   `sys_process->readString`. By default, UTF-8 is used.
 
 .. member:: sys_process->isOpen()::boolean
 
-   Returns ``true`` as long as the process is running. If the process is
-   terminated, it will return ``false``.
+   Returns "true" as long as the process is running. After the process is
+   terminated, it will return "false".
 
 .. member:: sys_process->detach()
 
-   Detaches the ``sys_process`` object from the process. This will prevent the
-   process from terminating when the ``sys_process`` object is destroyed.
+   Detaches the `sys_process` object from the process. This will prevent the
+   process from terminating when the `sys_process` object is destroyed.
 
 .. member:: sys_process->close()
 
    Closes the connection to the process. This will cause the process to
-   terminate unless it has previously been detached from the ``sys_process``
-   object by calling ``sys_process->detach``
+   terminate unless it has previously been detached from the `sys_process`
+   object by calling `sys_process->detach`.
 
 .. member:: sys_process->closeWrite()
 
@@ -123,46 +125,45 @@ The Sys_Process API
 
 .. member:: sys_process->exitCode()
 
-   This method is synonymous with :meth:`sys_process->wait` except that it
-   does not return a value if no process has been opened.
+   This method is synonymous with `sys_process->wait` except that it does not
+   return a value if no process has been opened.
 
 .. member:: sys_process->testExitCode()
 
    This method returns the exit code of the process if it has terminated,
-   otherwise it returns void.
+   otherwise it returns "void".
 
 .. note::
    If you wish to run a command that you expect to run briefly and you want to
-   inspect it's output after it has run, then don't forget to call either
-   :meth:`sys_process->wait` or :meth:`sys_process->exitCode` before calling
-   any of the ``sys_process->read…`` methods. If you don't wait, your code will
-   more than likely call the read method before the new process fully starts up,
-   and you may miss anything written to STDOUT or STDERR. If the process may
-   take a long time, or output a lot of data, you may want to use either
-   :meth:`sys_process->isOpen` or :meth:`sys_process->testExitCode` as test
-   conditions in a while loop that does the reading. (See examples below.)
+   inspect its output after it has run, then don't forget to call either
+   `sys_process->wait` or `sys_process->exitCode` before calling any of the
+   ``sys_process->read…`` methods. If you don't wait, your code will more than
+   likely call the read method before the new process fully starts up, and you
+   may miss anything written to STDOUT or STDERR. If the process may take a long
+   time, or output a lot of data, you may want to use either
+   `sys_process->isOpen` or `sys_process->testExitCode` as test conditions in a
+   while loop that does the reading. (See examples below.)
 
 
-Mac OS X and Linux Examples
-===========================
+OS X and Linux Examples
+=======================
 
-This section includes several examples of using ``sys_process`` on OS X. Except
+This section includes several examples of using `sys_process` on OS X. Except
 for the AppleScript example, all of these examples should also work on Linux
-machines.
+installations.
 
 
 Echo
 ----
 
-This example uses the ``/bin/echo`` command to simply echo the input back to
-stdout which is then read by Lasso::
+This example uses the :command:`/bin/echo` command to simply echo the input back
+to STDOUT, which is then read by Lasso::
 
-   <?lasso
-      local(proc) = sys_process('/bin/echo', array( 'Hello World!'))
-      local(_) = #proc->wait
-      #proc->read->encodeHTML
-      #proc->close
-   ?>
+   local(proc) = sys_process('/bin/echo', array( 'Hello World!'))
+   local(_) = #proc->wait
+   #proc->read->encodeHTML
+   #proc->close
+
    // =>
    // Hello World!
 
@@ -170,16 +171,14 @@ stdout which is then read by Lasso::
 List
 ----
 
-This example uses the ``/bin/ls`` command to list the contents of a directory::
+This example uses the :command:`/bin/ls` command to list the contents of a
+directory::
 
-   <?lasso
-      local(proc) = sys_process('/bin/ls', (: '/' + sys_homePath))
+   local(proc) = sys_process('/bin/ls', (: '/' + sys_homePath))
+   fail_if(#proc->exitCode != 0)
+   #proc->readString->encodeHTML(true, false)
+   #proc->close
 
-      fail_if(#proc->exitCode != 0)
-
-      #proc->readString->encodeHTML(true, false)
-      #proc->close
-   ?>
    // =>
    // JDBCDrivers
    // JavaLibraries
@@ -195,55 +194,50 @@ This example uses the ``/bin/ls`` command to list the contents of a directory::
 Create File
 -----------
 
-This example uses the ``/usr/bin/tee`` command to create a file "test.txt" in
-the site folder. The code does not generate any output, it just creates the
-file::
+This example uses the :command:`/usr/bin/tee` command to create a file
+``test.txt`` in the site folder. The code does not generate any output, it
+just creates the file::
 
-   <?lasso
-      local(proc) = sys_process
-      handle => {
-         #proc->close
-      }
-      #proc->open('/usr/bin/tee', (: './test.txt'))
-      #proc->write('This is a test\n')
-      #proc->write('This is a test\n')
+   local(proc) = sys_process
+   handle => {
       #proc->close
-   ?>
+   }
+   #proc->open('/usr/bin/tee', (: './test.txt'))
+   #proc->write('This is a test\n')
+   #proc->write('This is a test\n')
+   #proc->close
 
 
 Print
 -----
 
-This example uses the ``/usr/bin/lpr`` command to print some text on the default
-printer. The result in this case is a page that contains the phrase "This is a
-test" at the top. This style of printing can be used to output text data using
-the default font for the printer. The ``lpr`` command can also be used with some
-common file formats such as PDF files::
+This example uses the :command:`/usr/bin/lpr` command to print some text on the
+default printer. The result in this case is a page that contains the phrase
+"This is a test" at the top. This style of printing can be used to output text
+data using the default font for the printer. The :command:`lpr` command can also
+be used with some common file formats such as PDF files. ::
 
-   <?lasso
-      local(proc) = sys_process('/usr/bin/lpr')
-      #proc->write('This is a test')
-      #proc->write(bytes->import8Bits(4)&)
-      #proc->closeWrite
-      #proc->close
-   ?>
+   local(proc) = sys_process('/usr/bin/lpr')
+   #proc->write('This is a test')
+   #proc->write(bytes->import8Bits(4)&)
+   #proc->closeWrite
+   #proc->close
 
 
 AppleScript
 -----------
 
-This example uses the ``/usr/bin/osascript`` command to run a simple
-AppleScript. AppleScript is a full programming language which provides access to
-the system and running applications in Mac OS X. The script shown simply returns
-the current date and time::
+This example uses the :command:`/usr/bin/osascript` command to run a simple
+AppleScript. AppleScript is a full scripting language which provides access to
+the system and running applications in OS X. The script shown simply returns the
+current date and time::
 
-   <?LassoScript
-      local(proc) = sys_process('/usr/bin/osascript', (: '-'))
-      #proc->write('return current date')
-      local(_) = #proc->closeWrite&wait
-      #proc->readString->encodeHTML
-      #proc->close
-   ?>
+   local(proc) = sys_process('/usr/bin/osascript', (: '-'))
+   #proc->write('return current date')
+   local(_) = #proc->closeWrite&wait
+   #proc->readString->encodeHTML
+   #proc->close
+
    // =>
    // Tuesday, March 21, 2006 11:52:34 AM
 
@@ -251,20 +245,18 @@ the current date and time::
 Web Request
 -----------
 
-This example uses the ``/usr/bin/curl`` command to fetch a Web page and return
-the results. The ``curl`` type or ``include_url`` method can be used for the
-same purpose. You'll notice that we don't just wait and then do a read. This is
+This example uses the :command:`/usr/bin/curl` command to fetch a web page and
+return the results. The `curl` type or `include_url` method can be used for the
+same purpose. You'll notice that we don't just wait and then do a read; this is
 to show how to deal with not knowing how large of a response you will get from
-STDOUT. Only the first part of the output is shown::
+STDOUT. Only the first part of the output is shown. ::
 
-   <?lasso
-      local(proc) = sys_process('/usr/bin/curl', (: 'http://www.apple.com/'))
-      local(data)
-      while(#proc->isOpen or #data := #proc->readString) => {^
-         #data->asString->encodeHTML
-      ^}
-      #proc->close
-   ?>
+   local(proc) = sys_process('/usr/bin/curl', (: 'http://www.apple.com/'))
+   local(data)
+   while(#proc->isOpen or #data := #proc->readString) => {^
+      #data->asString->encodeHTML
+   ^}
+   #proc->close
 
    // =>
    // <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -277,23 +269,22 @@ STDOUT. Only the first part of the output is shown::
 Windows Examples
 ================
 
-This section includes several examples of using ``sys_process`` on Windows. Each
-of the examples uses the command-line processor ``CMD`` with the option ``/C``
-to interpret an individual command.
+This section includes several examples of using `sys_process` on Windows. Each
+of the examples uses the command-line processor :program:`CMD` with the option
+``/C`` to interpret an individual command.
 
 
 Echo
 ----
 
-This example uses the ``CMD`` processor with an ``ECHO`` command to simply echo
-the input back to Lasso::
+This example uses the :program:`CMD` processor with an :command:`ECHO` command
+to simply echo the input back to Lasso::
 
-   <?lasso
-      local(proc) = sys_process('cmd', array('/C ECHO Hello World!'))
-      local(_) = #proc->wait
-      #proc->readString->encodeHTML
-      #proc->close
-   ?>
+   local(proc) = sys_process('cmd', array('/C ECHO Hello World!'))
+   local(_) = #proc->wait
+   #proc->readString->encodeHTML
+   #proc->close
+
    // =>
    // Hello World!
 
@@ -301,16 +292,16 @@ the input back to Lasso::
 List
 ----
 
-This example uses the ``CMD`` processor with a ``DIR`` command to list the
-contents of a directory. The ``/B`` option instructs Windows to only list the
-contents of the directory without extraneous header and footer information::
+This example uses the :program:`CMD` processor with a :command:`DIR` command to
+list the contents of a directory. The ``/B`` option instructs Windows to only
+list the contents of the directory without extraneous header and footer
+information. ::
 
-   <?lasso
-      local(proc) = sys_process('cmd', (: '/C DIR /B .'))
-      local(_) = #proc->wait
-      #proc->readString->encodeHTML
-      #proc->close
-   ?>
+   local(proc) = sys_process('cmd', (: '/C DIR /B .'))
+   local(_) = #proc->wait
+   #proc->readString->encodeHTML
+   #proc->close
+
    // =>
    // JDBCDrivers
    // JavaLibraries
@@ -326,17 +317,16 @@ contents of the directory without extraneous header and footer information::
 Help
 ----
 
-This example uses the ``CMD`` processor with a ``HELP`` command to show the help
-information for a command. The start of the help file for ``CMD`` itself is
-shown. Running ``HELP`` without a parameter will return a list of all the
-built-in commands which the command processor supports::
+This example uses the :program:`CMD` processor with a :command:`HELP` command to
+show the help information for a command. The start of the help file for
+:program:`CMD` itself is shown. Running :command:`HELP` without a parameter will
+return a list of all the built-in commands supported by the command processor.
+::
 
-   <?lasso
-      local(proc) = sys_process('cmd', (: '/C HELP cmd'))
-      local(_) = #proc->wait
-      #proc->readString->encodeHTML
-      #proc->close
-   ?>
+   local(proc) = sys_process('cmd', (: '/C HELP cmd'))
+   local(_) = #proc->wait
+   #proc->readString->encodeHTML
+   #proc->close
 
    // =>
    // Starts a new instance of the Windows XP command interpreter
@@ -351,21 +341,19 @@ built-in commands which the command processor supports::
 Multiple Commands
 -----------------
 
-This example uses the ``CMD`` processor interactively to run several commands.
-The processor is started with a parameter of ``/Q`` which suppresses the echoing
-of commands back to the output. The result is exactly the same as what would be
-provided if these commands were entered directly into the command line shell. In
-order to process the results, it would be necessary to strip off the header and
-the directory prefix from each line::
+This example uses the :program:`CMD` processor interactively to run several
+commands. The processor is started with a parameter of ``/Q`` which suppresses
+the echoing of commands back to the output. The result is exactly the same as
+what would be provided if these commands were entered directly into the command
+line shell. In order to process the results, it would be necessary to strip off
+the header and the directory prefix from each line. ::
 
-   <?lasso
-      local(proc) = sys_process('cmd', (: '/Q')
-      #proc->write('ECHO Line One\r\n')
-      #proc->write('ECHO Line Two\r\n')
-      local(_) = #proc->wait
-      #proc->read->encodeHTML
-      #proc->close
-   ?>
+   local(proc) = sys_process('cmd', (: '/Q')
+   #proc->write('ECHO Line One\r\n')
+   #proc->write('ECHO Line Two\r\n')
+   local(_) = #proc->wait
+   #proc->read->encodeHTML
+   #proc->close
 
    // =>
    // Microsoft Windows XP [Version 5.1.2600]
@@ -377,25 +365,26 @@ the directory prefix from each line::
 Batch File
 ----------
 
-This example uses the ``CMD`` processor to process a batch file. The contents of
-batch file ``batch.bat`` are shown below. The file is assumed to be located in
-the folder for the current site in the Lasso 9 Server application folder::
+This example uses the :program:`CMD` processor to process a batch file. The
+contents of batch file "batch.bat" is shown below. The file is assumed to be
+located in the folder for the current site in the Lasso 9 Server application
+folder.
+
+.. code-block:: bat
 
    @ECHO OFF
    CLS
    ECHO This file demonstrates how to use a batch file.
 
 The batch file is executed by simply calling its name as a command. The results
-of the batch file are then outputted. Using a batch file makes executing a
-sequence of commands easy since all the code can be perfected using local
-testing before it is run through Lasso::
+of the batch file are then output. Using a batch file makes executing a sequence
+of commands easy since all the code can be perfected using local testing before
+it is run through Lasso. ::
 
-   <?lasso
-      local(proc) = sys_process('cmd', (: '/C batch.bat'))
-      local(_) = #proc->wait
-      #proc->readString->encodeHTML
-      #proc->close
-   ?>
+   local(proc) = sys_process('cmd', (: '/C batch.bat'))
+   local(_) = #proc->wait
+   #proc->readString->encodeHTML
+   #proc->close
 
    // =>
    // This file demonstrates how to use a batch file.
