@@ -18,8 +18,6 @@
    date-duration
    regular-expressions
    images-multimedia
-   xml
-   pdf
    containers
    encryption
    serialization
@@ -35,12 +33,14 @@
    sessions
    lassoapps
 
-.. rubric:: System Operations
+.. rubric:: System Input & Output
 
 .. toctree::
    :maxdepth: 2
 
    files
+   pdf
+   xml
    os-process
    sys-process
    logging

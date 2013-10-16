@@ -90,6 +90,7 @@ for that line. For example::
 
    // Multi-line value produced
    "Line one." + "\n" + "Line two."
+
    // =>
    // Line one.
    // Line two.
@@ -107,20 +108,22 @@ Additional Resources
 
 Here are some additional resources you may find handy:
 
-`Lasso Reference <http://www.lassosoft.com/lassoDocs/languageReference>`_   
+`Lasso Reference <http://www.lassosoft.com/lassoDocs/languageReference>`_
    Reference to the built-in types, methods, and traits.
 
-`LassoTalk <http://www.lassosoft.com/LassoTalk/>`_   
+`LassoTalk <http://www.lassosoft.com/LassoTalk/>`_
    The online Lasso community / email list is a great place to ask questions and
    get answers.
 
-`Tag Swap <http://www.lassosoft.com/tagswap>`_   
+`Tag Swap <http://www.lassosoft.com/tagswap>`_
    Methods, types, and traits created by members of the Lasso community to solve
    common problems.
 
-`LassoSoft Website <http://www.lassosoft.com>`_   
+`LassoSoft Website <http://www.lassosoft.com>`_
    The latest information about Lasso.
 
+`LassoGuide source <http://source.lassosoft.com/svn/guide/>`_
+   The SVN repository containing the full LassoGuide source.
 
 .. only:: html
 
