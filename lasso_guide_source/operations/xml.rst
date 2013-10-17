@@ -89,7 +89,7 @@ scratch. A document created from scratch will initially contain only the root
 document node which can then have children or attributes added to it. A document
 created from existing XML character data will be parsed and validated and the
 resulting document object tree will be created. When attempting to create an XML
-document from existing data, if the data is not valid then a failure will be
+document from existing data, if the data is not valid, then a failure will be
 generated during parsing. The current `error_msg` will indicate the error that
 was encountered.
 
@@ -257,8 +257,8 @@ Inspecting XML Objects
 
 Lasso's XML interface permits all the various pieces of an XML document to be
 inspected. This includes accessing attributes, node content, node children etc.
-The methods listed in this section are not meant to be exhaustive but instead to
-show the methods most commonly used when working with an XML document.
+The methods listed in this section are not meant to be exhaustive, but instead
+to show the methods most commonly used when working with an XML document.
 
 .. type:: xml_node
 

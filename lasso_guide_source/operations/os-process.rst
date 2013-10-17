@@ -22,7 +22,7 @@ run many of the same commands and shell scripts. Windows presents a very
 different environment including DOS commands and batch files.
 
 The `os_process` type is implemented in an LCAPI module which is loaded by
-default for Lasso 9 Server but not loaded when executing Lasso 9 scripts from
+default for Lasso 9 Server, but not loaded when executing Lasso 9 scripts from
 the command line. To load the LCAPI module for use in Lasso 9 shell scripts,
 place the following line of code in your script::
 

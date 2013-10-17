@@ -95,7 +95,7 @@ for that line. For example::
    // Line one.
    // Line two.
 
-For examples involving running commands from the command-line, a prompt of "$> "
+For examples involving running commands from the command line, a prompt of "$> "
 will be used. Any output to standard out that is generated from the command will
 be shown below the command as you would see it in your terminal. For examples of
 issuing Lasso commands from the interactive interpreter, a prompt of ">: " will

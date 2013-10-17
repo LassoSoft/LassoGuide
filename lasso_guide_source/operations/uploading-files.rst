@@ -107,12 +107,16 @@ element is the amount of data uploaded, the second is the total size of all the
 files being uploaded, and the third is the name of the current file being
 uploaded.
 
-The following basic example has a form set up properly in index.lasso. When the
-submit button is pressed it opens another window to display progress.lasso
-before submitting the form. This page calls `upload_tracker->check` with the
-unique ID that gets passed to it. It also uses ``<meta http-equiv="refresh"
-content="1">`` to refresh itself every second. The result is that we get a
-progress bar which is updated every second.
+
+Monitoring Uploads Demo
+-----------------------
+
+The following basic example has a form set up properly in ``index.lasso``. When
+the submit button is pressed it opens another window to display
+``progress.lasso`` before submitting the form. This page calls
+`upload_tracker->check` with the unique ID that gets passed to it. It also uses
+``<meta http-equiv="refresh" content="1">`` to refresh itself every second. The
+result is that we get a progress bar which is updated every second.
 
 .. rubric:: index.lasso
 
