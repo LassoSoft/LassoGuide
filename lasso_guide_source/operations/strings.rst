@@ -130,7 +130,7 @@ complex data type and is not intended to be displayed to site visitors. ::
    pair('name'='value')
    // => (name = value)
 
-The parameters sent to the ``string_…`` methods are automatically cast to
+The parameters sent to the ``string_…`` methods are automatically converted to
 strings. The following example shows the result of calling `string_length` on
 an integer::
 

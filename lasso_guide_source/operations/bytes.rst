@@ -11,7 +11,8 @@ manipulate binary data.
 .. note::
    The bytes type is often used in conjunction with the string type to convert
    binary data between different character encodings (UTF-8, ISO-8859-1). See
-   the :ref:`strings <strings>` chapter for more information about the string type.
+   the :ref:`strings <strings>` chapter for more information about the
+   :type:`string` data type.
 
 
 Creating Bytes Objects
@@ -24,7 +25,7 @@ All string data in Lasso is processed as double-byte Unicode characters. The
 Lasso methods return data in the ``bytes`` type in the following situations:
 
 -  The `field` method returns a byte stream from MySQL "BLOB" fields.
--  The ``bytes`` creator method can be used to allocate a new byte stream.
+-  The `bytes` creator method can be used to allocate a new byte stream.
 -  The `web_request->param` methods return a bytes stream
 -  Other methods that return or require binary data as outlined in their
    documentation in the Lasso Reference guide.
@@ -38,12 +39,13 @@ Lasso methods return data in the ``bytes`` type in the following situations:
 .. method:: bytes(import::string, encoding::string)
 .. method:: bytes(doc::pdf_doc)
 
-   Allocates a byte stream. Can be used to cast a :type:`string` or
-   :type:`pdf_doc` data type as a ``bytes`` type, or to instantiate a new
-   ``bytes`` object. Accepts one optional parameter that can specify the initial
-   size in bytes for the stream or the ``string``, ``pdf_doc``, or ``bytes``
-   object to cast as a new bytes object. If casting a ``string`` object, it can
-   accept a second optional parameter to specify the encoding of the string.
+   Allocates a byte stream. Can be used to convert a :type:`string` or
+   :type:`pdf_doc` data type to a :type:`bytes` type, or to instantiate a new
+   :type:`bytes` object. Accepts one optional parameter that can specify the
+   initial size in bytes for the stream; or specify the :type:`string`,
+   :type:`pdf_doc`, or :type:`bytes` object to convert to a new bytes object. If
+   converting a :type:`string` object, it can accept a second optional parameter
+   to specify the encoding of the string.
 
 
 Inspecting and Manipulating Bytes Objects
@@ -80,7 +82,7 @@ to deal with binary data. These methods are outlined below.
       whatLen::integer= ?\
    )
 
-   Sets a range of characters within a byte stream. Requires one parameters: the
+   Sets a range of characters within a byte stream. Requires one parameter: the
    binary data to be inserted. Optional second, third, and fourth parameters
    specify the integer offset into the bytes stream to insert the new data, the
    offset and length of the new data to be inserted, respectively.
@@ -100,7 +102,7 @@ to deal with binary data. These methods are outlined below.
       patLength::integer= ?\
    )
 
-   Requires either a ``bytes`` or ``string`` sequence as the first parameter.
+   Requires either a byte stream or string sequence as the first parameter.
    Returns the position of the beginning of the sequence being searched for
    within the ``bytes`` object, or "0" if the sequence is not contained within
    the object. Four optional integer parameters (position, length, parameter
@@ -130,16 +132,16 @@ to deal with binary data. These methods are outlined below.
 .. member:: bytes->split(find::string)
 .. member:: bytes->split(find::bytes)
 
-   Returns an array of bytes instances using the specified sequence as the
+   Returns an array of :type:`bytes` objects using the specified sequence as the
    delimiter to split the byte stream. If the delimiter provided is an empty
-   ``bytes`` or ``string`` object, the byte stream is split on each byte, so the
-   returned array will have each byte as one of its elements.
+   byte stream or string, the byte stream is split on each byte, so the returned
+   array will have each byte as one of its elements.
 
 .. member:: bytes->remove()
 .. member:: bytes->remove(p0::integer, p1::integer)
 
    Removes bytes form a byte stream. When passed without a parameter, it removes
-   all bytes, setting the object to an empty ``bytes`` object. In its second
+   all bytes, setting the object to an empty :type:`bytes` object. In its second
    form, it requires an offset into the byte stream and the number of bytes to
    remove starting from there.
 
@@ -235,11 +237,11 @@ Examples
 ========
 
 
-Cast String Data as a Bytes Object
-----------------------------------
+Convert String Data to a Bytes Object
+-------------------------------------
 
-Use the ``bytes`` creator method. The following example converts a string to a
-``bytes`` object::
+Use the `bytes` creator method. The following example converts a string to a
+:type:`bytes` object::
 
    local(obj) = bytes('This is some text')
 
@@ -247,8 +249,8 @@ Use the ``bytes`` creator method. The following example converts a string to a
 Instantiate a New Bytes Object
 ------------------------------
 
-Use the ``bytes`` creator method. The example below creates an empty ``bytes``
-object with a size of 1024 bytes::
+Use the `bytes` creator method. The example below creates an empty byte stream
+with a size of 1024 bytes::
 
    local(obj) = bytes(1024)
 
@@ -256,8 +258,8 @@ object with a size of 1024 bytes::
 Return the Size of a Byte Stream
 --------------------------------
 
-Use the `bytes->size` method. The example below returns the size of a ``bytes``
-object::
+Use the `bytes->size` method. The example below returns the size of a
+:type:`bytes` object::
 
    local(obj) = bytes('ect…')
    #obj->size
