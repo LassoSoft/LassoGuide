@@ -11,7 +11,7 @@ manipulate binary data.
 .. note::
    The bytes type is often used in conjunction with the string type to convert
    binary data between different character encodings (UTF-8, ISO-8859-1). See
-   the :ref:`strings` chapter for more information about the string type.
+   the :ref:`strings <strings>` chapter for more information about the string type.
 
 
 Creating Bytes Objects

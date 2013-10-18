@@ -88,6 +88,8 @@ See the chapter on :ref:`methods` for information on methods and method
 parameters.
 
 
+.. _thread-variables:
+
 Thread Variables
 ================
 
