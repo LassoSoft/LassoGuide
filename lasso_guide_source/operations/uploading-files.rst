@@ -23,8 +23,8 @@ your server::
 The ``"file"`` input tells the browser to show controls for selecting a file to
 be uploaded to the web server. Once a user selects the file and then clicks
 "Upload", the form will upload the data to your web server and the files can be
-processed by ``upload_file.lasso``; the lasso file specified as the action of
-the form submission.
+processed by "upload_file.lasso"; the Lasso file specified as the action of the
+form submission.
 
 Uploaded files processed by Lasso are initially stored in a temporary location.
 If you do nothing with them, they will be deleted. If you wish to keep them, you
@@ -111,12 +111,12 @@ uploaded.
 Monitoring Uploads Demo
 -----------------------
 
-The following basic example has a form set up properly in ``index.lasso``. When
-the submit button is pressed it opens another window to display
-``progress.lasso`` before submitting the form. This page calls
-`upload_tracker->check` with the unique ID that gets passed to it. It also uses
-``<meta http-equiv="refresh" content="1">`` to refresh itself every second. The
-result is that we get a progress bar which is updated every second.
+The following basic example has a form set up properly in "index.lasso". When
+the submit button is pressed it opens another window to display "progress.lasso"
+before submitting the form. This page calls `upload_tracker->check` with the
+unique ID that gets passed to it. It also uses ``<meta http-equiv="refresh"
+content="1">`` to refresh itself every second. The result is that we get a
+progress bar which is updated every second.
 
 .. rubric:: index.lasso
 

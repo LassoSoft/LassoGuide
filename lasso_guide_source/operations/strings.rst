@@ -525,8 +525,8 @@ of lowercase letters it contains::
 Check the Beginning of a String
 -------------------------------
 
-The following example checks to see if a string begins with 'https:'. If so, it
-displays "secure", otherwise it displays "insecure"::
+The following example checks to see if a string begins with ``https:``. If so,
+it displays "secure", otherwise it displays "insecure"::
 
    local(url) = "https://secure.example.com"
    #url->beginsWith("https:") ? "secure" | "insecure"

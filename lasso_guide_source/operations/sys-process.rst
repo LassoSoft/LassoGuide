@@ -195,8 +195,8 @@ Create File
 -----------
 
 This example uses the :command:`/usr/bin/tee` command to create a file
-``test.txt`` in the site folder. The code does not generate any output, it
-just creates the file::
+"test.txt" in the site folder. The code does not generate any output, it just
+creates the file::
 
    local(proc) = sys_process
    handle => {
