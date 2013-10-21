@@ -199,7 +199,7 @@ plain text alternative, embedded HTML images, and attachments.
    :param -simpleform:
       If specified then the message is sent without a body.
    :param -date:
-      A date object specifiying a time in the future to send the message.
+      A date object specifying a time in the future to send the message.
 
 
 Sending a Plain Text Message
@@ -218,7 +218,7 @@ within the `email_send` method. The following example shows an email sent to
 
 The body of an email message can be assembled in a variable in the current Lasso
 page and then sent using the `email_send` method. The following example shows a
-variable ``#email_body`` which has several items added to it before the message
+variable ``email_body`` which has several items added to it before the message
 is finally sent::
 
    local(email_body) = 'This is the body of the email'
@@ -438,7 +438,7 @@ The generated PDF file is sent as an attachment without it ever being written to
 disk. ::
 
    local(my_file) = pdf_doc(-size='A4', -margin=(: 144.0, 144.0, 72.0, 72.0))
-   #my_file->Add(
+   #my_file->add(
       PDF_Text("I'm a PDF document", -font=pdf_font(-face='Helvetica', -size=36))
    )
 
@@ -829,7 +829,7 @@ Compose an Email Message
 ------------------------
 
 The `email_compose` method can be used to compose an email message. In this
-example a simple email message is created in a variable ``#message``::
+example a simple email message is created in a variable ``message``::
 
    local(message) = email_compose(
       -to      = 'example@example.com',
@@ -847,7 +847,7 @@ the email message. ::
    <pre>[#message->asString->encodeHtml]</pre>
 
 Additional text or HTML parts or attachments can be added using the appropriate
-member methods on the object in the ``#message`` variable. For example, an
+member methods on the object in the ``message`` variable. For example, an
 attachment can be added using the `email_compose->addAttachment` method as
 follows::
 
