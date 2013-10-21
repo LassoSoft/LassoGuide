@@ -540,7 +540,7 @@ Extract all child elements of the a node::
 
    // => staticarray(<b at="val"/>, <c at="val2">C Content</c>)
 
-Utilizing namespaces, extract all child elements of the a node::
+Using namespaces, extract all child elements of the a node::
 
    local(doc = xml(
    '<a xmlns="my_uri">

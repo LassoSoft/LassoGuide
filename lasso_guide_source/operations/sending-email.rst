@@ -140,12 +140,12 @@ plain text alternative, embedded HTML images, and attachments.
    :param -bcc:
       Blind carbon copy recipients of the message.
    :param -body:
-      The body of the message. Either a -body or -html part (or both) is
+      The body of the message. Either a ``-body`` or ``-html`` part (or both) is
       required. See the section on sending HTML Messages for details about how
       to create HTML and mixed messages.
    :param -html:
-      The HTML part of the message. Either a -body or -html part (or both) is
-      required.
+      The HTML part of the message. Either a ``-body`` or ``-html`` part (or
+      both) is required.
    :param -htmlImages:
       Specifies a list of files which will be used as images for the HTML part
       of an outgoing message. Accepts either an array of file paths or an array
