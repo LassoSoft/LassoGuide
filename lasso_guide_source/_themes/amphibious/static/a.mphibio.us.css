@@ -77,7 +77,7 @@ sub { bottom: -0.25em; }
 pre { text-wrap: wrap; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; background: #e6f6fb; }
 code { display: block; padding: 0.5em 1em; border: 1px solid #81aed1; font-family: "Courier New", Courier, Monaco, monospace; }
 
-code,pre,tt.literal{padding:0 3px 2px;font-family:Menlo,Monaco,Consolas,"Courier New",monospace;font-size:12px;color:#333;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
+code,pre,tt.literal{padding:0 3px 2px;font-size:12px;color:#333;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
 code{padding:2px 4px;color:#d14;background-color:#f7f7f9;border:1px solid #e1e1e8}
 
 pre{display:block;padding:1px 8px;margin:0 0 9px;font-size:12.025px;line-height:1.6;word-break:break-all;word-wrap:break-word;white-space:pre;white-space:pre-wrap;background:#f4fbfd url(highlight_bg.png) left top repeat; ;border:1px solid #e6f6fb;border:1px solid rgba(0,204,255,0.625);}
@@ -97,7 +97,7 @@ blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color:
 
 hr { border: solid #ececec; border-width: 1px 0 0; clear: both; margin: 1em 0 2em; height: 0; }
 
-tt { font-family: "Courier New", Courier, Monaco, monospace;}
+code,pre,tt { font-family: Menlo, Consolas, Monaco, "Courier New", Courier, monospace;}
 /*	#c-c-reference fixes  */
 #c-c-reference blockquote, #c-c-reference blockquote p { font-size: 1em; font-style: normal; color: #666; }
 #c-c-reference blockquote {padding: 0 0 0 0; margin: 0 0 10px 14px;}
@@ -167,6 +167,7 @@ dl dt {
 	font-weight: bold;
 	line-height: 1.2;
 	}
+tt.descname~em { white-space: nowrap; }
 dl dd {
 	margin: 0 0 10px 1em;
 	font-size: 14px;
