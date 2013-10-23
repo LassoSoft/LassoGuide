@@ -167,8 +167,8 @@ cancels all of the marked deletes. ::
    #myPOP->close
 
 
-Examples
---------
+email_pop Examples
+------------------
 
 This section includes examples of the most common tasks that are performed using
 the `email_pop` type. See the :ref:`Email Parsing <email-parsing>` section
@@ -459,8 +459,8 @@ Method Name                              Email Header
    instead.
 
 
-Examples
---------
+email_parse Examples
+--------------------
 
 This section includes examples of the most common tasks that are performed using
 the `email_parse` type. See the preceding :ref:`POP Type <email-pop-type>`

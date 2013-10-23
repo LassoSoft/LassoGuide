@@ -936,9 +936,9 @@ servers, but this is not generally necessary.
 
 .. method:: email_mxlookup(domain, -refresh= ?, -hostname= ?)
 
-   This method takes a domain as a parameter and returns a map that describes
-   the MX server for the domain. The map includes the domain, host, username,
-   password, timeout, and SSL preference for the MX server.
+   Takes a domain as a parameter and returns a map that describes the MX server
+   for the domain. The map includes the 'domain', 'host', 'username',
+   'password', 'timeout', and 'SSL' preference for the MX server.
 
 
 Lookup an SMTP Server

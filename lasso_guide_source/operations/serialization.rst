@@ -24,8 +24,8 @@ provided through `trait_serializable`, which is described here.
 
 .. provide:: trait_serializable->serialize()::string
 
-   This method serializes the object and returns the resulting data. That data
-   can then be used to deserialize the object.
+   Serializes the object and returns the resulting data. That data can then be
+   used to deserialize the object.
 
 
 Deserializing Objects

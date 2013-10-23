@@ -41,7 +41,8 @@ stored, and an ID string that identifies a particular site visitor.
 -  **Name** - The session name is defined when the session is created by the
    `session_start` method. The same session name must be used for each request
    that wants to load the session. The name usually represents the type of data
-   being stored in the session, e.g. ``Shopping_Cart`` or ``Site_Preferences``.
+   being stored in the session, e.g. ``'Shopping_Cart'`` or
+   ``'Site_Preferences'``.
 
 -  **Variables** - Each session maintains a list of variables which are being
    stored. Variables can be added to the session using `session_addVar`. The
@@ -143,7 +144,7 @@ Below is a description of each of the session methods:
    Adds a variable to a specified session. Accepts two parameters: the name of
    the session and the name of the variable.
 
-.. method:: session_removeVar(sessionName::string, varName::string)
+.. method:: session_removeVar(sessionName::string, varName::string)
 
    Removes a variable from a specified session. Accepts two parameters: the name
    of the session and the name of the variable.

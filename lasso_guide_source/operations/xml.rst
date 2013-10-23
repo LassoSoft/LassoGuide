@@ -422,8 +422,8 @@ removing items from node maps.
 
 .. member:: xml_node->normalize()
 
-   This method modifies the document such that no two text nodes are adjacent.
-   All adjacent text nodes are merged into one text node.
+   Modifies the document such that no two text nodes are adjacent. All adjacent
+   text nodes are merged into one text node.
 
 .. type:: xml_element
 
@@ -564,7 +564,7 @@ Extract the first child element of the a node::
 
    // => <b at="val"/>
 
-Extract the 'at' attribute from the second child element of the a node::
+Extract the ``"at"`` attribute from the second child element of the a node::
 
    local(doc = xml(
    '<a xmlns="my_uri">

@@ -130,8 +130,8 @@ Using sys_process
 
 .. member:: sys_process->testExitCode()
 
-   This method returns the exit code of the process if it has terminated,
-   otherwise it returns "void".
+   Returns the exit code of the process if it has terminated, otherwise it
+   returns "void".
 
 .. note::
    If you wish to run a command that you expect to run briefly and you want to

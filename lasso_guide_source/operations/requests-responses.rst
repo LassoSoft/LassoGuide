@@ -72,12 +72,12 @@ Request Headers
 
 The incoming HTTP request headers are pre-processed by the web server and then
 further processed by Lasso. All header names are normalized to upper case by
-the web server and prepended with ``HTTP_`` and all dashes '-' replaced with
-underscores '_'.
+the web server and prepended with ``HTTP_`` and all dashes (``-``) replaced with
+underscores (``_``).
 
 Once received by Lasso, any leading ``HTTP_`` which was prepended by the web
-server to each variable is stripped. All underscores '_' are then converted to
-dashes '-'.
+server to each variable is stripped. All underscores (``_``) are then converted
+to dashes (``-``).
 
 The `web_request` object makes header data available through the following
 methods. All header names and values are treated as strings.
@@ -278,8 +278,8 @@ Any of the following methods can be used to include file content.
 
 .. member:: web_response->includeBytes(path::string)::bytes
 
-   This method will locate the file and include the raw file data as bytes. The
-   method will fail if the file does not exist.
+   Locates the file and includes the raw file data as bytes. The method will
+   fail if the file does not exist.
 
 .. member:: web_response->includes()::trait_forEach
 
@@ -292,8 +292,8 @@ Any of the following methods can be used to include file content.
 
 .. member:: web_response->getInclude(path::string)
 
-   This method will locate the file and will return an object which can be
-   invoked to execute the file. The method will fail if the file does not exist.
+   Locates the file and will return an object which can be invoked to execute
+   the file. The method will fail if the file does not exist.
 
 For compatibility and simplicity, Lasso supports the following unbound methods
 which function in the same manner as the `web_response` bound methods:
@@ -353,9 +353,9 @@ processing is completed and the response is to be sent to the client.
 
 .. member:: web_response->setCookie(nv::pair, -domain=void, -expires=void, -path=void, -secure=false)
 
-   This method sets the indicated cookie. Any duplicate cookie would be
-   replaced. The first parameter must be the cookie name=value pair. If used,
-   the ``-domain`` and ``-path`` keyword parameters must have string values.
+   Sets the indicated cookie. Any duplicate cookie would be replaced. The first
+   parameter must be the cookie name=value pair. If used, the ``-domain`` and
+   ``-path`` keyword parameters must have string values.
 
    The ``-expires`` parameter can be either a date object, a duration object, an
    integer, a string or any object which will produce a suitable value when
@@ -367,11 +367,10 @@ processing is completed and the response is to be sent to the client.
 
 .. member:: web_response->cookies()::trait_forEach
 
-   This method returns a list of all the cookies set for this response. The
-   individual cookies are represented by map objects containing keys for:
-   ``'name'``, ``'value'``, ``'domain'``, ``'expiration'``, ``'path'`` and
-   ``'secure'``. Manipulating a cookie value in the list will alter its
-   resulting cookie header.
+   Returns a list of all the cookies set for this response. The individual
+   cookies are represented by map objects containing keys for 'name', 'value',
+   'domain', 'expiration', 'path' and 'secure'. Manipulating a cookie value in
+   the list will alter its resulting cookie header.
 
 
 Bytes Response Data
@@ -403,9 +402,9 @@ inline or downloaded as an attachment.
                      -noAbort = false, -chunkSize = fcgi_bodyChunkSize, \
                      -monitor = null)
 
-   This method sets the raw content and headers for the response. It then
-   optionally aborts, ending the request and delivering the data to the client.
-   This method replaces all existing headers with new
+   Sets the raw content and headers for the response. It then optionally aborts,
+   ending the request and delivering the data to the client. This method
+   replaces all existing headers with new
    :mailheader:`MIME-Version`, :mailheader:`Content-Type`,
    :mailheader:`Content-Disposition` and :mailheader:`Content-Length` headers.
 
@@ -442,7 +441,7 @@ inline or downloaded as an attachment.
       This parameter sets the size of the buffer with which the data is read and
       sent to the client. This mainly has a benefit when sending physical file
       data as it controls the memory usage. This value defaults to ``65535``,
-      the result of the fcgi_bodyChunkSize method.
+      the result of the `fcgi_bodyChunkSize` method.
    ``-monitor``
       An object can be given to monitor the send process. Whatever object is
       given here will have its invoke method called for each chunk sent. The
@@ -491,10 +490,10 @@ used. These methods are described below.
 
 .. method:: define_atBegin(code)
 
-   This method installs code to be invoked at the beginning of each request. The
-   code will have access to the `web_request` and `web_response` objects that
-   will be available during the request's duration. At-begin code can set
-   response headers and data and complete the request if it chooses, thus fully
+   Installs code to be invoked at the beginning of each request. The code will
+   have access to the `web_request` and `web_response` objects that will be
+   available during the request's duration. At-begin code can set response
+   headers and data and complete the request if it chooses, thus fully
    intercepting the normal request URI file request and processing routines.
    This is the recommended route for applications wanting to provide virtual
    URLs. Once an at-begin is in place it cannot be removed. Multiple at-begins
