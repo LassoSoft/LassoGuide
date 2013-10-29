@@ -283,8 +283,8 @@ Explicit Decimal Conversion
 Strings which contain numeric data can be converted to the :type:`decimal` data
 type using the `decimal` creator method. The string must start with a numeric
 value. In the following examples the number "123.0" is the result of each
-explicit casting. Only the first decimal value found in the string "123 and then
-456" is recognized::
+explicit conversion. Only the first decimal value found in the string "123 and
+then 456" is recognized::
 
    decimal('123')
    // => 123.0
