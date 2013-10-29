@@ -17,25 +17,26 @@ Integer Type
 
 The integer type represents whole number values. Basically, 0 and any positive
 or negative number which does not contain a decimal point is an integer value in
-Lasso. Examples include "-123" or "456". Integer objects may also contain
-hexadecimal values such as "0x1A" or "0xff".
+Lasso. Examples include "-123" or "456". Integer objects may also be expressed
+in hexadecimal notation such as "0x1A" or "0xff".
 
 .. type:: integer
 .. method:: integer()
 .. method:: integer(obj::any)
 
-   The creator method for integer casts any object as an integer. If the type
-   for the object being cast does not easily represent an integer, then the
-   integer zero will be returned.
+   The creator method for integer convertss any object to an integer. If the
+   type for the object being converted does not easily represent an integer,
+   then the integer zero will be returned.
 
 
-Explicit Integer Casting
-------------------------
+Explicit Integer Conversion
+---------------------------
 
-Strings that contain numeric data can be cast to the integer data type using
-the ``integer`` creator method. The string must start with a numeric value. In
-the following examples the number "123" is the result of each explicit casting.
-Only the first integer found in the string "123 and then 456" is recognized::
+Strings that contain numeric data can be converted to the :type:`integer` data
+type using the `integer` creator method. The string must start with a numeric
+value. In the following examples the number "123" is the result of each explicit
+conversion. Only the first integer found in the string "123 and then 456" is
+recognized::
 
    integer('123')
    // => 123
@@ -43,7 +44,7 @@ Only the first integer found in the string "123 and then 456" is recognized::
    integer('123 and then 456')
    // => 123
 
-Decimals that are cast as an integer type are rounded to the nearest integer::
+Decimals that are converted to an integer are rounded to the nearest integer::
 
    integer(123.0)
    // => 123
@@ -55,12 +56,12 @@ Decimals that are cast as an integer type are rounded to the nearest integer::
 Formatting Integer Objects
 ==========================
 
-Integer objects can be formated for display using the ``integer->asString``
+Integer objects can be formated for display using the `integer->asString`
 method detailed below.
 
 .. note::
    In Lasso 9, integers and decimals have no state, so they cannot carry around
-   their formatting information. The ``integer->asString`` method in Lasso 9 is
+   their formatting information. The `integer->asString` method in Lasso 9 is
    used to replace the functionality of Lasso 8's ``integer->setFormat`` method.
 
 
@@ -75,7 +76,7 @@ method detailed below.
 
    Returns a string representation of the integer value formated as specified by
    the parameters passed to the method. If no parameters are passed to the
-   method, the string will return the integer value outputed in base 10.
+   method, the string will be the integer value outputed in base 10.
 
    :param boolean -hexadecimal:
       If set to "True", the integer will output in hexadecimal notation.
@@ -172,7 +173,7 @@ example, "0xff" is the integer literal "255".
 
 .. member:: integer->bitFlip(p0::integer)
 
-   Returns the result of Flipping the bit specified in the integer parameter.
+   Returns the result of flipping the bit specified in the integer parameter.
 
 .. member:: integer->bitSet(p0::integer)
 
@@ -180,7 +181,7 @@ example, "0xff" is the integer literal "255".
 
 .. member:: integer->bitTest(p0::integer)
 
-   Returns "true" if the bit specified in the integer parameter is true,
+   Returns "true" if the bit specified in the integer parameter is 1,
    otherwise "false".
 
 .. note::
@@ -217,7 +218,7 @@ hexadecimal notation::
 Setting and Testing a Specified Bit
 -----------------------------------
 
-In the following example, the second bit an integer is set and then tested::
+In the following example, the second bit of an integer is set and then tested::
 
    local(bit_set) = 0
    #bit_set = #bit_set->bitSet(2)
@@ -229,11 +230,11 @@ In the following example, the second bit an integer is set and then tested::
 Decimal Type
 ============
 
-The decimal data type represents real or floating point numbers. Basically, 0.0
-or any positive or negative number that contains a decimal point is a decimal
-object in Lasso. Examples include "-123.0" and "456.789". Decimal values can
-also be written in exponential notation such as "1.23e2" which is equivalent to
-"1.23" times "10^2" or "123.0".
+The :type:`decimal` data type represents real or floating point numbers.
+Basically, 0.0 or any positive or negative number that contains a decimal point
+is a decimal object in Lasso. Examples include "-123.0" and "456.789". Decimal
+values can also be written in exponential notation such as "1.23e2" which is
+equivalent to "1.23" times "10^2" or "123.0".
 
 .. type:: decimal
 .. method:: decimal()
@@ -244,31 +245,31 @@ also be written in exponential notation such as "1.23e2" which is equivalent to
 .. method:: decimal(n::null)
 .. method:: decimal(n::void)
 
-   The creator methods for the decimal type casts ``integer``, ``string``,
-   ``bytes``, ``null``, and ``void`` objects as a decimal object.
+   The creator methods for the decimal type converts ``integer``, ``string``,
+   ``bytes``, ``null``, and ``void`` objects to a decimal object.
 
-   The precision of decimal numbers when converted to strings is always
+   The precision of decimal numbers when converted to a string is always
    displayed as six decimal places even though the actual precision of the
    number may vary based on the size of the number and its internal
    representation. The output precision of decimal numbers can be controlled
-   using the ``decimal->format`` method described later in this chapter.
+   using the `decimal->asString` method described later in this chapter.
 
 
-Implicit Decimal Casting
-------------------------
+Implicit Decimal Conversion
+---------------------------
 
-Integer values are cast to decimal values automatically if they are used as a
-parameter to a mathematical operator in conjunction with a decimal value. The
-following example shows how the integer "123" is automatically cast to a decimal
-value because the other parameter of the "+" operator is the decimal value
-"456.0"::
+Integer values are converted to decimal values automatically if they are used as
+a parameter to a mathematical operator in conjunction with a decimal value. The
+following example shows how the integer "123" is automatically converted to a
+decimal value because the other parameter of the "+" operator is the decimal
+value "456.0"::
 
    456.0 + 123
 
    // => 579.0
 
 The following example shows how a variable with a value of "123" is
-automatically cast to a decimal value::
+automatically converted to a decimal value::
 
    local(number)=123
    456.0 + #number
@@ -276,14 +277,14 @@ automatically cast to a decimal value::
    // => 579.0
 
 
-Explicit Decimal Casting
-------------------------
+Explicit Decimal Conversion
+---------------------------
 
-Strings which contain numeric data can be cast to the decimal data type using
-the ``decimal`` creator method. The string must start with a numeric value. In
-the following examples the number "123.0" is the result of each explicit
-casting. Only the first decimal value found in the string "123 and then 456" is
-recognized::
+Strings which contain numeric data can be converted to the :type:`decimal` data
+type using the `decimal` creator method. The string must start with a numeric
+value. In the following examples the number "123.0" is the result of each
+explicit casting. Only the first decimal value found in the string "123 and then
+456" is recognized::
 
    decimal('123')
    // => 123.0
@@ -294,8 +295,8 @@ recognized::
    decimal('123 and then 456')
    // => 123.0
 
-Integers which are cast to the decimal type simply have a decimal point
-appended. The value of the number does not change::
+Integers which are converted to decimals simply have a decimal point appended.
+The value of the number does not change::
 
    decimal(123)
    // => 123.0
@@ -304,12 +305,12 @@ appended. The value of the number does not change::
 Formatting Decimal Objects
 ==========================
 
-Decimal objects can be formated for display using the ``decimal->asString``
+Decimal objects can be formated for display using the `decimal->asString`
 method detailed below.
 
 .. note::
    In Lasso 9, integers and decimals have no state, so they cannot carry around
-   their formatting information. The ``decimal->asString`` method in Lasso 9 is
+   their formatting information. The `decimal->asString` method in Lasso 9 is
    used to replace the functionality of Lasso 8's ``decimal->setFormat`` method.
 
 .. member:: decimal->asString(p0::string, p1::string, p2::string)
@@ -325,38 +326,62 @@ method detailed below.
 
    Returns a string representation of the decimal value formated as specified by
    the parameters passed to the method. If no parameters are passed to the
-   method, the string will return the decimal value outputed with 6 places of
-   precision. The parameters are outlined in the table below.
+   method, the string will be the decimal value with 6 places of precision.
 
-   .. tabularcolumns:: |l|L|
 
-   +----------------+----------------------------------------------------------+
-   |Keyword         |Description                                               |
-   +================+==========================================================+
-   |``-decimalChar``|The character which should be used for the decimal point. |
-   |                |Defaults to a period.                                     |
-   +----------------+----------------------------------------------------------+
-   |``-groupChar``  |The character which should be used for thousands grouping.|
-   |                |Defaults to empty.                                        |
-   +----------------+----------------------------------------------------------+
-   |``-precision``  |The number of decimal points of precision that should be  |
-   |                |output. Defaults to 6.                                    |
-   +----------------+----------------------------------------------------------+
-   |``-scientific`` |Set to "true" to force output in exponential notation.    |
-   |                |Defaults to "false" so decimals are only output in        |
-   |                |exponential notation if required.                         |
-   +----------------+----------------------------------------------------------+
-   |``-padding``    |Specifies the desired length for the output. If the       |
-   |                |formatted number is less than this length then the number |
-   |                |is padded.                                                |
-   +----------------+----------------------------------------------------------+
-   |``-padChar``    |Specifies the character that will be inserted if padding  |
-   |                |is required. Defaults to a space.                         |
-   +----------------+----------------------------------------------------------+
-   |``-padRight``   |Set to "true" to pad the right side of the output. By     |
-   |                |default, padding is appended to the left side of the      |
-   |                |output.                                                   |
-   +----------------+----------------------------------------------------------+
+
+   :param string -decimalChar:
+      The character which should be used for the decimal point. It defaults to a
+      period.
+   :param string -groupChar:
+      The character which should be used for thousands grouping. Defaults to an
+      empty string.
+   :param integer -precision:
+      The number of places after the decimal point that should be output. The
+      default is 6.
+   :param boolean -scientific:
+      Set to "true" to force output in exponential notation. The default is
+      "false", so decimals are only output in exponential notation if required.
+   :param integer -padding:
+      Specifies the desired length for the output. If the formatted number is
+      less than this length then the number is padded.
+   :param string -padChar:
+      Specifies the character that will be inserted if padding is required.
+      Defaults to a space.
+   :param boolean -padRight:
+      Set to "true" to pad the right side of the output. By default, padding is
+      prepended to the left side of the output.
+
+   .. original table
+      .. tabularcolumns:: |l|L|
+
+      +----------------+----------------------------------------------------------+
+      |Keyword         |Description                                               |
+      +================+==========================================================+
+      |``-decimalChar``|The character which should be used for the decimal point. |
+      |                |Defaults to a period.                                     |
+      +----------------+----------------------------------------------------------+
+      |``-groupChar``  |The character which should be used for thousands grouping.|
+      |                |Defaults to empty.                                        |
+      +----------------+----------------------------------------------------------+
+      |``-precision``  |The number of decimal points of precision that should be  |
+      |                |output. Defaults to 6.                                    |
+      +----------------+----------------------------------------------------------+
+      |``-scientific`` |Set to "true" to force output in exponential notation.    |
+      |                |Defaults to "false" so decimals are only output in        |
+      |                |exponential notation if required.                         |
+      +----------------+----------------------------------------------------------+
+      |``-padding``    |Specifies the desired length for the output. If the       |
+      |                |formatted number is less than this length then the number |
+      |                |is padded.                                                |
+      +----------------+----------------------------------------------------------+
+      |``-padChar``    |Specifies the character that will be inserted if padding  |
+      |                |is required. Defaults to a space.                         |
+      +----------------+----------------------------------------------------------+
+      |``-padRight``   |Set to "true" to pad the right side of the output. By     |
+      |                |default, padding is appended to the left side of the      |
+      |                |output.                                                   |
+      +----------------+----------------------------------------------------------+
 
 
 Format a Decimal Number as US Currency
@@ -376,10 +401,22 @@ Mathematical Operators
 ======================
 
 The easiest way to manipulate integer and decimal objects is to use mathematical
-operators. The table :ref:`Table: Mathematical Operators <math-operators>`
-details all the operators that can be used with integer and decimal values.
+operators. The sections below detail all the operators that can be used with
+integer and decimal values.
+
+Basic Mathematical Operators
+-----------------------------
+
+Each of the mathematical operators takes two parameters - one to its left and
+the other to its right. If either of the parameters is a decimal then the result
+will be a decimal value. Some of the operators can also be used to perform
+string operations. If either of the parameters is a string value then the string
+operation defined by the operator will be performed rather than the mathematical
+operation.
 
 .. _math-operators:
+
+.. tabularcolumns:: |l|L|
 
 .. table:: Table: Mathematical Operators
 
@@ -397,16 +434,9 @@ details all the operators that can be used with integer and decimal values.
    |   %    |Modulus. Calculates the left parameter modulo the right number.   |
    +--------+------------------------------------------------------------------+
 
-Each of the mathematical operators takes two parameters - one to its left and
-the other to its right. If either of the parameters is a decimal then the result
-will be a decimal value. Many of the operators can also be used to perform
-string operations. If either of the parameters is a string value then the string
-operation defined by the operator will be performed rather than the mathematical
-operation.
-
 
 Using the Mathematical Operators
---------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Two numbers can be added using the ``+`` operator. The output will be a decimal
 value if either of the parameters are a decimal value::
@@ -417,17 +447,17 @@ value if either of the parameters are a decimal value::
    100 + -12.5
    // => 87.500000
 
-The difference between numbers can be calculated using the ``-`` operator. The
-output will be a decimal value if either of the parameters are a decimal value.
-Note that in the second instance, when subtracting a negative number, the two
-``-`` must be separated by a space so as not to be confused with the ``--``
+The difference between two numbers can be calculated using the ``-`` operator.
+The output will be a decimal value if either of the parameters are a decimal
+value. Note that in the second instance, when subtracting a negative number, the
+two ``-`` must be separated by a space so as not to be confused with the ``--``
 operator::
 
    100 - 50
    // => 50
 
    100 - -12.5
-   // => 12.500000
+   // => 112.500000
 
 Two numbers can be multiplied using the ``*`` operator. The output will be a
 decimal value if either of the parameters are a decimal value::
@@ -439,44 +469,50 @@ decimal value if either of the parameters are a decimal value::
    // => -1250.000000
 
 
-.. _math-assignment-operators:
+Mathematical Assignment Operators
+---------------------------------
 
-.. table:: Table: Mathematical Assignment Operators
-
-   +------+--------------------------------------------------------------------+
-   |Symbol|Description                                                         |
-   +======+====================================================================+
-   |  =   |Assigns the right parameter to the variable designated by the left  |
-   |      |parameter.                                                          |
-   +------+--------------------------------------------------------------------+
-   |  +=  |Adds the right parameter to the value of the left parameter and     |
-   |      |assigns the result to the variable designated by the left parameter.|
-   +------+--------------------------------------------------------------------+
-   |  -=  |Subtracts the right parameter from the value of the left parameter  |
-   |      |and assigns the result to the variable designated by the left       |
-   |      |parameter.                                                          |
-   +------+--------------------------------------------------------------------+
-   | \*=  |Multiplies the value of the left parameter by the value of the right|
-   |      |parameter and assigns the result to the variable designated by the  |
-   |      |left parameter.                                                     |
-   +------+--------------------------------------------------------------------+
-   |  /=  |Divides the value of the left parameter by the value of the right   |
-   |      |parameter and assigns the result to the variable designated by the  |
-   |      |left parameter.                                                     |
-   +------+--------------------------------------------------------------------+
-   |  %=  |Modulus. Assigns the value of the left parameter modulo the right   |
-   |      |parameter to the left parameter.                                    |
-   +------+--------------------------------------------------------------------+
-
-Each of the opertors takes two parameters - one toits left and the other to its
+Each of the opertors takes two parameters - one to its left and the other to its
 right. The first parameter must be a variable that holds an integer, decimal, or
 string. The second parameter can be an integer, decimal, or string. The result
 of the operation is calculated and then stored back in the variable specified as
 the left-hand parameter.
 
+.. _math-assignment-operators:
+
+.. tabularcolumns:: |l|L|
+
+.. table:: Table: Mathematical Assignment Operators
+
+   +--------+------------------------------------------------------------------+
+   |Operator|Description                                                       |
+   +========+==================================================================+
+   |   =    |Assigns the right parameter to the variable designated by the left|
+   |        |parameter.                                                        |
+   +--------+------------------------------------------------------------------+
+   |   +=   |Adds the right parameter to the value of the left parameter and   |
+   |        |assigns the result to the variable designated by the left         |
+   |        |parameter.                                                        |
+   +--------+------------------------------------------------------------------+
+   |   -=   |Subtracts the right parameter from the value of the left parameter|
+   |        |and assigns the result to the variable designated by the left     |
+   |        |parameter.                                                        |
+   +--------+------------------------------------------------------------------+
+   |  \*=   |Multiplies the value of the left parameter by the value of the    |
+   |        |right parameter and assigns the result to the variable designated |
+   |        |by the left parameter.                                            |
+   +--------+------------------------------------------------------------------+
+   |   /=   |Divides the value of the left parameter by the value of the right |
+   |        |parameter and assigns the result to the variable designated by the|
+   |        |left parameter.                                                   |
+   +--------+------------------------------------------------------------------+
+   |   %=   |Modulus. Assigns the value of the left parameter modulo the right |
+   |        |parameter to the left parameter.                                  |
+   +--------+------------------------------------------------------------------+
+
 
 Using the Mathematical Assignment Operators
--------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A variable can be assigned a new value using the assignment operator: ``=``. The
 following example shows how to define an integer variable and then set it to a
@@ -499,40 +535,44 @@ add several values to it. The final value is output::
 
    // => -233
 
-.. _math-comparison-operators:
 
-.. table:: Table: Mathematical Comparison Operators
-
-   +------+--------------------------------------------------------------------+
-   |Symbol|Description                                                         |
-   +======+====================================================================+
-   |  ==  |Returns "true" if the parameters are equal.                         |
-   +------+--------------------------------------------------------------------+
-   |  !=  |Returns "true" if the parameters are not equal.                     |
-   +------+--------------------------------------------------------------------+
-   |  <   |Returns "true" if the left parameter is less than the right         |
-   |      |parameter.                                                          |
-   +------+--------------------------------------------------------------------+
-   |  <=  |Returns "true" if the left parameter is less than or equal to the   |
-   |      |right parameter.                                                    |
-   +------+--------------------------------------------------------------------+
-   |  >   |Returns "true" if the left parameter is greater than the right      |
-   |      |parameter.                                                          |
-   +------+--------------------------------------------------------------------+
-   |  >=  |Returns "true" if the left parameter is greater than or equal to the|
-   |      |right parameter.                                                    |
-   +------+--------------------------------------------------------------------+
+Mathematical Comparison Operators
+---------------------------------
 
 Each of the mathematical camparison operaters takes two parameters - one on its
 left and one on its right.
 
+.. _math-comparison-operators:
+
+.. table:: Table: Mathematical Comparison Operators
+
+   +--------+------------------------------------------------------------------+
+   |Operator|Description                                                       |
+   +========+==================================================================+
+   |   ==   |Returns "true" if the parameters are equal.                       |
+   +--------+------------------------------------------------------------------+
+   |   !=   |Returns "true" if the parameters are not equal.                   |
+   +--------+------------------------------------------------------------------+
+   |   <    |Returns "true" if the left parameter is less than the right       |
+   |        |parameter.                                                        |
+   +--------+------------------------------------------------------------------+
+   |   <=   |Returns "true" if the left parameter is less than or equal to the |
+   |        |right parameter.                                                  |
+   +--------+------------------------------------------------------------------+
+   |   >    |Returns "true" if the left parameter is greater than the right    |
+   |        |parameter.                                                        |
+   +--------+------------------------------------------------------------------+
+   |   >=   |Returns "true" if the left parameter is greater than or equal to  |
+   |        |the right parameter.                                              |
+   +--------+------------------------------------------------------------------+
+
 
 Using the Mathematical Comparison Operators
--------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Two numbers can be compared for equality using the ``==`` operator and ``!=``
 operator. The result is a boolean "true" or "false". Integers are automatically
-cast to decimal values when compared with decimals::
+converted to decimal values when compared with decimals::
 
    100 == 123
    // => false
@@ -540,7 +580,7 @@ cast to decimal values when compared with decimals::
    100.0 != -123.0
    // => true
 
-   100 ==100.0
+   100 == 100.0
    // => true
 
    100.0 != -123
@@ -626,7 +666,7 @@ when one is available.
 
 .. method:: math_rint(value)
 
-   Returns the value rounded to the nearest integer.
+   Returns a decimal value rounded to the nearest integer.
 
 .. method:: math_roman(value)
 
@@ -663,14 +703,14 @@ results of various mathematical operations::
    // => 200
 
 
-Rounding to Nearest Integer
----------------------------
+Rounding to an Integer
+----------------------
 
-Numbers can be rounded to an integer using the ``math_rint`` method to round to
-the nearest integer, the ``math_floor`` method to round to the next lowest
-integer, or the ``math_ceil`` method to found to the next highest integer::
+Decimals can be rounded to an integer using the `integer` creator method, the
+`math_floor` method to round to the next lowest integer, or the `math_ceil`
+method to found to the next highest integer::
 
-   math_rint(37.6)
+   integer(37.6)
    // => 38
 
    math_floor(37.6)
@@ -680,11 +720,21 @@ integer, or the ``math_ceil`` method to found to the next highest integer::
    // => 38
 
 
+Rounding to Nearest Integer
+---------------------------
+
+Decimals can be rounded to the nearest integer using the `math_rint` method.
+This method rounds the decimal, but does not convert it to an integer::
+
+   math_rint(37.6)
+   // => 38.000000
+
+
 Rounding to Specified Precision
 -------------------------------
 
-Numbers can be rounded to arbitrary precision using the ``math_round`` method
-with a decimal parameter. The second parameter should be of the form "0.01",
+Numbers can be rounded to arbitrary precision using the `math_round` method with
+a decimal parameter. The second parameter should be of the form "0.01",
 "0.0001", "0.000001," etc::
 
    math_round(3.1415926, 0.0001)
@@ -701,8 +751,8 @@ with a decimal parameter. The second parameter should be of the form "0.01",
 
 
 Numbers can be rounded to an even multiple of another number using the
-``math_round`` method with an integer parameter. The integer parameter should be
-a power of "10"::
+`math_round` method with an integer parameter. The integer parameter should be a
+power of 10::
 
    math_round(1463, 1000)
    // => 1000.000000
@@ -714,12 +764,11 @@ a power of "10"::
    // => 1460.000000
 
 .. note::
-
    If a rounded result needs to be shown to the user, but the actual value
    stored in a variable does not need to be rounded then either the
-   ``integer->asString`` or ``decimal->asString`` method can be used to alter
-   how the number is displayed. See the documentation of these methods earlier
-   in the chapter for more information.
+   `integer->asString` or `decimal->asString` method can be used to alter how
+   the number is displayed. See the documentation of these methods earlier in
+   the chapter for more information.
 
 
 Return a Random Integer Value
@@ -830,8 +879,8 @@ square roots, logarighthms, and calculating exponents.
 Examples of Using Advanced Math Methods
 ---------------------------------------
 
-The following are all examples of using math substitution tags to calculate the
-results of various mathematical operations::
+The following are all examples of using some of these advanced math methods to
+calculate the results of various mathematical operations::
 
    math_pow(3, 3)
    // => 27
