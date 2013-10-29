@@ -7,22 +7,22 @@ Date & Duration
 This chapter introduces the date and the duration data types in Lasso 9. Dates
 are a data type that represent a calendar date and/or clock time. Durations are
 a data type that represents a length of time in hours, minutes, and seconds.
-Date and duration objects can be manipulated in a similar manner as integer
-objects, and methods can be used to determine date differences, time
-differences, and more. Date objects may also be formatted and converted to a
-number of predefined or custom formats, and specific information may be
-extrapolated from a date object (day of week, name of month, etc.).
+Date and duration objects can be manipulated using operators, and methods can be
+used to determine date differences, time differences, and more. Date objects may
+also be formatted and converted to a number of predefined or custom formats, and
+specific information may be extrapolated from a date object (day of week, name
+of month, etc.).
 
 Since dates and durations can take many forms, values that represent a date or a
-duration must be explicitly cast as date or duration types using the ``date``
-and ``duration`` creator methods. For example, a value of "01/01/2002 12:30:00"
-will be treated as a string data type until it is cast as a date type using the
-``date`` method::
+duration must be explicitly converted to a date or duration types using the
+`date` and `duration` creator methods. For example, a value of "01/01/2002
+12:30:00" will be treated as a string data type until it is converted to a date
+type using the `date` method::
 
    date('01/01/2002 12:30:00')
 
-Once a value is cast as a date or duration data type, special member methods,
-accessors, conversion operations, and math operations may then be used.
+Once a value is converted to a date or duration data type, special member
+methods, accessors, conversion operations, and math operations may then be used.
 
 
 Internal Date Libraries
@@ -31,8 +31,8 @@ Internal Date Libraries
 When performing date operations, Lasso uses internal date libraries to
 automatically adjust for leap years and daylight saving time for the local time
 zone in all applicable regions of the world (not all regions recognize daylight
-saving time). The current time and time zone are based on that of the Web
-server.
+saving time). The current time and time zone are based on that of the computer
+or Web server Lasso is running on.
 
 .. note::
    Lasso extracts daylight saving time information from the operating system.
@@ -43,17 +43,17 @@ server.
 Date Type
 =========
 
-For Lasso to recognize a string as a date data type, the string must be
-explicitly cast as a date data type using the ``date`` creator method::
+For Lasso to recognize a string as a :type:`date` data type, the string must be
+explicitly converted to a date data type using the `date` creator method::
 
    date('5/22/2002 12:30:00')
 
-When casting as a date type using the ``date`` creator method, the following
-date formats are automatically recognized as valid date strings by Lasso: These
-automatically recognized date formats are U.S. or MySQL dates with a four digit
-year followed by an optional 24-hour time with seconds. The  "/" ,  "-" , and
-":"  characters are the only punctuation marks recognized in valid date strings
-by Lasso when used in the formats shown below:
+When converting to a :type:`date` type using the `date` creator method, the date
+formats shown below are automatically recognized as valid date strings by Lasso.
+These automatically recognized date formats are U.S. or MySQL dates with a four
+digit year followed by an optional 24-hour time with seconds. The  "/" , "-" ,
+and ":"  characters are the only punctuation marks recognized in valid date
+strings by Lasso when used in the formats shown below.
 
 .. code-block:: none
 
@@ -81,13 +81,13 @@ will be recognized as GMT dates. The time zone will be used to automatically
 adjust the date/time to the equivalent GMT date/time.
 
 If using a date format not listed above, custom date formats can be defined
-using the ``-format`` parameter of the ``date`` creator method.
+using the ``-format`` parameter of the `date` creator method.
 
 The following variations of the automatically recognized date formats are valid
 without using the ``-format`` parameter:
 
--  If the ``date`` creator method is used without a parameter then the current
-   date and time are returned. Milliseconds are rounded to the nearest second.
+-  If the `date` creator method is used without a parameter then the current
+   date and time is returned. Milliseconds are rounded to the nearest second.
 
 -  If the time is not specified then it is set to be the current hour when the
    object is created. For example, "22:00:00" if the object was created at
@@ -135,26 +135,34 @@ without using the ``-format`` parameter:
       GMT 01/01/2002 12:35:45 GMT
 
 
-Cast a Value as a Date Type
----------------------------
+Convert a Value as a Date Type
+------------------------------
 
 If the value is in a recognized string format described previously, simply use
-the ``date`` creator method::
+the `date` creator method::
 
-   date('05/22/2002')          // => 05/22/2002
-   date('05/22/2002 12:30:00') // => 05/22/2002 12:30:00
-   date('2002-05-22')          // => 2002-05-22
+   date('05/22/2002')
+   // => 05/22/2002
+   
+   date('05/22/2002 12:30:00')
+   // => 05/22/2002 12:30:00
+   
+   date('2002-05-22')
+   // => 2002-05-22
 
-If the value is not in a string format described previously, use the ``date``
+If the value is not in a string format described previously, use the `date`
 creator method with the ``-format`` parameter. For information on how to use the
 ``-format`` parameter, see the :ref:`date-duration-formatting-dates` section
 later in this chapter::
 
-   date('5.22.02 12:30', -format='%m.%d.%y %H:%M') // => 5.22.02 12:30
-   date('20020522123000', -format='%Y%m%d%H%M')    // => 200205221230
+   date('5.22.02 12:30', -format='%m.%d.%y %H:%M')
+   // => 5.22.02 12:30
+   
+   date('20020522123000', -format='%Y%m%d%H%M')
+   // => 200205221230
 
-Date values which are stored in database fields or variables can be cast as a
-date type using the ``date`` creator method. The format of the date stored in
+Date values which are stored in database fields or variables can be converted to
+a date type using the `date` creator method. The format of the date stored in
 the field or variable should be in one of the format described above or the
 ``-format`` parameter must be used to explicitly specify the format::
 
@@ -182,19 +190,19 @@ the field or variable should be in one of the format described above or the
    valid values to keyword parameters named ``-second``, ``-minute``, ``-hour``,
    ``-day``, ``-month``, ``-year``, and ``-dateGMT``. Each creator method also
    allows for specifying a locale object to use with the ``-locale`` keyword
-   parameter. (By default this is set to what the ``locale_default`` method
+   parameter. (By default this is set to what the `locale_default` method
    returns.)
 
 .. method:: date_format(value, format::string)
 .. method:: date_format(value, -format::string)
 
    Returns the passed-in date parameter in the specified format. Requires a date
-   object or any valid objects that can be cast as a date (it auto-recognizes
-   the same formats as the ``date`` creator methods). The format can be
+   object or any valid objects that can be converted to a date (it auto-
+   recognizes the same formats as the `date` creator methods). The format can be
    specified as the second parameter or as the value part of a ``-format``
-   keyword parameter and defines the format for the return value. See the
-   :ref:`date-duration-formatting-dates` section below for more details on
-   format strings.
+   keyword parameter and defines the format for the return value. See the :ref
+   :`date-duration-formatting-dates` section below for more details on format
+   strings.
 
 .. method:: date_setFormat(format::string)
 
@@ -203,13 +211,13 @@ the field or variable should be in one of the format described above or the
 
 .. method:: date_gmtToLocal(value)
 
-   Converts the date/time of any object that can be cast as a date object from
-   Greenwich Mean Time to the local time of the machine running Lasso 9.
+   Converts the date/time of any object that can be converted to a date object
+   from Greenwich Mean Time to the local time of the machine running Lasso 9.
 
 .. method:: date_localToGMT(value)
 
-   Converts the date/time of any object that can be cast as a date object from
-   local time to Greenwich Mean Time.
+   Converts the date/time of any object that can be converted to a date object
+   from local time to Greenwich Mean Time.
 
 .. method:: date_getLocalTimeZone()
 
@@ -228,13 +236,13 @@ the field or variable should be in one of the format described above or the
 .. method:: date_msec()
 
    Returns an integer representing the number of milliseconds recorded on the
-   machine's internal clock. Can be used for precise timing of code execution.
+   machine's internal clock. Can be used for general timing of code execution.
 
 
 Display Date Values
 ^^^^^^^^^^^^^^^^^^^
 
-The current date/time can be displayed with ``date``. The example below assumes
+The current date/time can be displayed with `date`. The example below assumes
 a current date and time of "5/22/2002 14:02:05"::
 
    date
@@ -244,7 +252,7 @@ The :type:`date` type can be used to assemble a date from individual parameters.
 The following method assembles a valid Lasso date by specifying each part of the
 date separately. Since the time is not specified it is assumed to be the current
 time the date object is created in the example below assumes the current date
-and time of 5/7/2013 15:45:04::
+and time of "5/7/2013 15:45:04"::
 
    date(-year=2002, -month=5, -day=22)
    // => 2002-05-22 15:45:04
@@ -254,12 +262,13 @@ Convert Date Values To and From GMT
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Any date object can be converted to and from Greenwich Mean Time using the
-``date_gmtToLocal`` and ``date_localToGMT`` methods. These methods will only
-convert to and from the current time zone of the machine running Lasso. The
-following example uses Pacific Time (PDT) as the current time zone::
+`date_gmtToLocal` and `date_localToGMT` methods. These methods will only convert
+to and from the current time zone of the machine running Lasso. The following
+example uses Pacific Time (PDT) as the current time zone::
 
    date_gmtToLocal(date('5/22/2002 14:02:05'))
    // => 05/22/2002 14:02:05
+
    date_localToGMT(date('5/22/2002 14:02:05'))
    // => 05/22/2002 14:02:05
 
@@ -267,12 +276,13 @@ following example uses Pacific Time (PDT) as the current time zone::
 Show the Current Time Zone for the Server Running Lasso 9
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``date_getLocalTimeZone`` method displays the current time zone of the
-machine running Lasso. The following example uses Eastern Standard Time (EST) as
-the current time zone::
+The `date_getLocalTimeZone` method displays the current time zone of the machine
+running Lasso. The following example uses Eastern Standard Time (EST) as the
+current time zone::
 
    date_getLocalTimeZone
    // -> -0500
+
    date_getLocalTimeZone(-long)
    // => America/New_York
 
@@ -280,9 +290,9 @@ the current time zone::
 Time a Section of Lasso Code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Call the ``date_msec`` method to get a clock value before and after the code has
+Call the `date_msec` method to get a clock value before and after the code has
 executed. The difference in times represents the number of milliseconds which
-have elapsed. Note that the ``date_msec`` value may occasionally roll back
+have elapsed. Note that the `date_msec` value may occasionally roll back
 around to zero so any negative times reported by this code should be
 disregarded::
 
@@ -292,6 +302,8 @@ disregarded::
       'The code took ' + (date_msec - #start) + ' milliseconds to process.'
    ?>
 
+   // => The code took 5 milliseconds to process
+
 
 .. _date-duration-formatting-dates:
 
@@ -300,10 +312,11 @@ Formatting Dates
 
 Various methods take a format string for one of their parameters. A format
 string is a compilation of symbols that define the format of the string to be
-outputted or parsed. The symbols which can be used in a format string are
-detailed in the following table:
+outputted or parsed. There are two different sets of formatting strings. The
+first is the classic formatting symbols, used in earlier versions of Lasso,
+supported in Lasso 9, and detailed in the following table:
 
-.. table:: Table: Date Formatting Symbols
+.. table:: Table: Classic Date Formatting Symbols
 
    ====== ======================================================================
    Symbol Description
@@ -368,13 +381,14 @@ website: http://userguide.icu-project.org/formatparse/datetime#TOC-Date-Time-For
    format string. For example, if the current date was "2013-03-09 20:15:30",
    the following code: ``date->format("day: %A")`` would produce
    "9PM2013: Saturday" as the "day" portion of the format string would be
-   treated as part of ICU formatting.
+   treated as part of ICU formatting. Wrapping in single quotes mitigates this:
+   ``date->format("'day: '%A")``
 
 
-Convert Lasso Date Objects to Various Formats
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Output Lasso Date Objects to Various Formats
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following examples show how to convert either Lasso date objects or valid
+The following examples show how to output either Lasso date objects or valid
 Lasso date strings to alternate formats::
 
    date_format('06/14/2001', -format='%A, %B %d')
@@ -424,9 +438,9 @@ Set a Custom Date Format For a Thread
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `date_setFormat` method. This allows all date objects in a thread to be
-outputted in a custom format without the use of the `date_format` or
-`date->format` methods. The format specified is only valid for the currently
-executing thread after the `date_setFormat` method has been called::
+output in a custom format without the use of the `date_format` or `date->format`
+methods. The format specified is only valid for the currently executing thread
+after the `date_setFormat` method has been called::
 
    date_setFormat('%m%d%y')
 
@@ -442,7 +456,7 @@ Date Format Member Methods
 
 In addition to `date_format` and `date_setFormat`, Lasso 9 also offers the
 `date->format` and `date->setFormat` member methods for performing format
-conversions on date objects.
+adjustments on date objects.
 
 .. member:: date->format()
 .. member:: date->format(format::string, -locale::locale= ?)
@@ -450,8 +464,8 @@ conversions on date objects.
 
    Outputs the date object in the specified format. If no format is passed, the
    current format stored with the object will be used. Otherwise, it requires a
-   format string to specify the format. Optionally takes a ``locale`` object to
-   set its locale.
+   format string to specify the format. Optionally takes a :type:`locale` object
+   to set its locale.
 
 .. member:: date->setFormat(format::string)
 
@@ -460,7 +474,8 @@ conversions on date objects.
 
 .. member:: date->getformat()
 
-   Returns the current format string set for the current date object.
+   Returns the current format string set for the current date object. This will
+   always return an ICU format string.
 
 .. member:: date->clear()
 
@@ -473,13 +488,12 @@ conversions on date objects.
 
    Sets one or more elements of the date to a new value. If a field overflows
    then other fields may be modified as well. For example, if you have the date
-   "3/31/2008" and you set the month to "2" then the day will be
-   adjusted to "29" automatically resulting in "2/29/2008".
+   "3/31/2008" and you set the month to "2" then the day will be adjusted to
+   "29" automatically resulting in "2/29/2008".
 
-   Elements must be specified as keyword=value parameters.See table
-   :ref:`List of Field Elements for Get and Set
-   <table-date-field-elements-for-get-set>` for the full list of parameters that
-   this method can set.
+   Elements must be specified as keyword=value parameters. See table :ref:`List
+   of Field Elements for Get and Set <table-date-field-elements-for-get-set>`
+   for the full list of parameters that this method can set.
 
 .. member:: date->get(...)
 
@@ -498,33 +512,33 @@ conversions on date objects.
    ================== ==========================================================
    Parameter          Description
    ================== ==========================================================
-   -year              Sets the year field for the date.
-   -month             Sets the month field for the date.
-   -week              Sets the week field for the date.
-   -day               Sets the day field for the date.
-   -hour              Sets the hour field for the date.
-   -minute            Sets the minute field for the date.
-   -second            Sets the second field for the date.
-   -weekofyear        Sets the week of year field for the date.
-   -weekofmonth       Sets the week of month field for the date.
-   -dayofmonth        Sets the day of month field for the date.
-   -dayofyear         Sets the day of year field for the date.
-   -dayofweek         Sets the day of week field for the date.
-   -dayofweekinmonth  Sets the day of week in month field for the date.
-   -ampm              Sets the am/pm field for the date.
-   -hourofday         Sets the hour of day field for the date.
-   -zoneoffset        Sets the time zone offset field for the date.
-   -dstoffset         Sets the DST offset field for the date.
-   -yearwoy           Sets the year week of year field for the date.
-   -dowlocal          Sets the local day of week field for the date.
-   -extendedyear      Sets the extended year field for the date.
-   -julianday         Sets the julian day field for the date.
-   -millisecondsinday Sets the milliseconds in day field for the date.
+   -year              Specifies the year field for the date.
+   -month             Specifies the month field for the date.
+   -week              Specifies the week field for the date.
+   -day               Specifies the day field for the date.
+   -hour              Specifies the hour field for the date.
+   -minute            Specifies the minute field for the date.
+   -second            Specifies the second field for the date.
+   -weekofyear        Specifies the week of year field for the date.
+   -weekofmonth       Specifies the week of month field for the date.
+   -dayofmonth        Specifies the day of month field for the date.
+   -dayofyear         Specifies the day of year field for the date.
+   -dayofweek         Specifies the day of week field for the date.
+   -dayofweekinmonth  Specifies the day of week in month field for the date.
+   -ampm              Specifies the am/pm field for the date.
+   -hourofday         Specifies the hour of day field for the date.
+   -zoneoffset        Specifies the time zone offset field for the date.
+   -dstoffset         Specifies the DST offset field for the date.
+   -yearwoy           Specifies the year week of year field for the date.
+   -dowlocal          Specifies the local day of week field for the date.
+   -extendedyear      Specifies the extended year field for the date.
+   -julianday         Specifies the julian day field for the date.
+   -millisecondsinday Specifies the milliseconds in day field for the date.
    ================== ==========================================================
 
 
-Convert Date Objects to Various Formats
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Output Date Objects to Various Formats
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following examples show how to output date objects in alternate formats
 using the `date->format` method::
@@ -581,8 +595,8 @@ formats.
 Using Locales to Display Dates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following example creates two ``locale`` objects (one for the US and one for
-Canada) and uses them to output the date in the format for each locale::
+The following example creates two :type:`locale` objects (one for the US and one
+for Canada) and uses them to output the date in the format for each locale::
 
    local(my_date) = date('01/01/2005 08:40:33 AM')
    local(en_us)   = locale('en', 'US')
@@ -761,8 +775,8 @@ A duration is a special data type that represents a length of time. A duration
 is not a 24-hour clock time, and may represent any number of hours, minutes, or
 seconds.
 
-Similar to dates, durations must be created using duration creator methods
-before they can be manipulated. Durations may be cast from an
+Similar to dates, durations must be created using `duration` creator methods
+before they can be manipulated. Durations may be converted from a
 "hours:minutes:seconds" formatted string, or just as seconds::
 
    duration('1:00:00')
@@ -771,13 +785,13 @@ before they can be manipulated. Durations may be cast from an
    duration(3600)
    // => 1:00:00
 
-Once an object has been created as a duration type, duration calculations and
-accessors may then be used. Durations are especially useful for calculating
-lengths of time under 24 hours, although they can be utilized for any lengths of
-time. Durations are based on start and end date/time objects. These start and
-end date/times are either specified when creating the duration or the current
-date/time is used as the start date/time while the end date/time is calculated
-based on the specified length for the duration.
+Once an object has been created as a :type:`duration` type, duration
+calculations and accessors may then be used. Durations are especially useful for
+calculating lengths of time under 24 hours, although they can be utilized for
+any lengths of time. Durations are based on start and end date/time objects.
+These start and end date/times are either specified when creating the duration
+or the current date/time is used as the start date/time while the end date/time
+is calculated based on the specified length for the duration.
 
 .. type:: duration
 .. method:: duration(time::string)
@@ -786,12 +800,12 @@ based on the specified length for the duration.
 .. method:: duration(start::string, end::string)
 .. method:: duration(-year= ?, -week= ?, -day= ?, -hour= ?, -minute= ?, -second= ?)
 
-   Creates a duration object. Accepts a duration string for
-   "hours:minutes:seconds". Or an integer number of seconds. Or a start and end
-   date specified as either dates or strings that can be cast as dates. Or by
-   specifying one or more of the following keyword parameters to add the amount
-   of time indicated by the name of the keyword parameter: ``-year``, ``-week``,
-   ``-day``, ``-hour``, ``-minute``, ``-second``
+   Creates a :type:`duration` object. Accepts a duration string for
+   "hours:minutes:seconds", an integer number of seconds, or a start and end
+   date specified as either dates or strings that can be converted to dates. Or
+   by specifying one or more of the following keyword parameters to add the
+   amount of time indicated by the name of the keyword parameter: ``-year``,
+   ``-week``, ``-day``, ``-hour``, ``-minute``, ``-second``
 
 .. member:: duration->year()
 
@@ -829,9 +843,10 @@ based on the specified length for the duration.
 Create and Display Durations
 ----------------------------
 
-Durations can be created using the ``duration`` creator method with the
-``-week``, ``-day``, ``-hour``, ``-minute``, and ``-second`` parameters. This
-always returns a duration string in "hours:minutes:seconds" format::
+Durations can be created using the `duration` creator method with the ``-week``,
+``-day``, ``-hour``, ``-minute``, and ``-second`` parameters. This always
+returns a duration object whose ``duration->asString`` method returns a string
+in "hours:minutes:seconds" format::
 
    duration(-week=5, -day=3, -hour=12)
    // => 924:00:00
@@ -883,9 +898,9 @@ Date and Duration Math
 ======================
 
 Date calculations in Lasso 9 can be performed by using special date methods,
-durations methods, and math symbols in Lasso 9. Date calculations that can be
-performed include adding or subtracting year, month, week, day, and time
-increments to and from dates, and calculations with durations.
+durations methods, and operators. Date calculations that can be performed
+include adding or subtracting year, month, week, day, and time increments to and
+from dates, and calculations with durations.
 
 .. note::
    **Daylight Saving Time**
@@ -915,9 +930,10 @@ These methods are summarized below.
       -year::integer= ?\
    )
 
-   Adds a specified amount of time to a date object or valid date string. First
-   parameter is a date object or valid value that can be cast as a date.
-   Keyword/value parameters define what should be added to the first parameter.
+   Returns a date value generated by adding a specified amount of time to a
+   specified date object or valid date string. First parameter is a date object
+   or valid value that can be converted to a date. Keyword/value parameters
+   define what should be added to the first parameter.
 
 .. method:: date_subtract(\
       value, \
@@ -931,27 +947,26 @@ These methods are summarized below.
       -year::integer= ?\
    )
 
-   Subtracts a specified amount of time from a specified date value. The first
-   parameter is a Lasso date object or valid value that can be cast as a date.
-   Keyword/value parameters define what should be subtracted from the first
-   parameter.
+   Returns a date value generated by subtracting a specified amount of time from
+   a specified date value. The first parameter is a Lasso date object or valid
+   value that can be converted to a date. Keyword/value parameters define what
+   should be subtracted from the first parameter.
 
 .. method:: date_difference(value, when, ...)
 
-   Returns the time difference between two specified dates. A duration is
-   the default return value. Optional parameters may be used to output a
-   specific integer time value instead of a duration: ``-millisecond``,
-   ``-second``, ``-minute``, ``-hour``, ``-day``, ``-week``, ``-month``, or
-   ``-year``.
+   Returns the time difference between two specified dates. A duration is the
+   default return value. Optional parameters may be used to output a specific
+   integer time value instead of a duration: ``-millisecond``, ``-second``,
+   ``-minute``, ``-hour``, ``-day``, ``-week``, ``-month``, or ``-year``.
 
 
 Add Time to a Date
 ^^^^^^^^^^^^^^^^^^
 
 Using the `date_add` method, a specified number of hours, minutes, seconds,
-days, or weeks can be added to a date object or valid value that can be cast as
-a date. The following examples show the result of adding different values to the
-current date of "5/22/2002 14:02:05"::
+days, or weeks can be added to a date object or valid value that can be
+converted to a date. The following examples show the result of adding different
+values to the current date of "5/22/2002 14:02:05"::
 
    date_add(date, -second=15)
    // => 2002-05-22 14:02:20
@@ -979,9 +994,9 @@ Subtract Time From a Date
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using the `date_subtract` method, a specified number of hours, minutes, seconds,
-days, or weeks can be subtracted a date object or valid value that can be cast
-as a date. The following examples show the result of subtracting different
-values from the date ``5/22/2001 14:02:05``::
+days, or weeks can be subtracted a date object or valid value that can be
+converted to a date. The following examples show the result of subtracting
+different values from the date "5/22/2001 14:02:05"::
 
    date_subtract(date('5/22/2001 14:02:05'), -second=15)
    // => 05/22/2001 14:01:50
@@ -1003,8 +1018,8 @@ Determine the Time Difference Between Two Dates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `date_difference` method. The following examples show how to calculate
-the time difference between two date object or valid values that can be cast as
-a date::
+the time difference between two date object or valid values that can be
+converted to a date::
 
    date_difference(date('5/23/2002'), date('5/22/2002'))
    // => 24:00:00
@@ -1041,7 +1056,7 @@ methods are summarized below.
 
 .. member:: date->add(...)
 
-   Adds a specified amount of time to a data object. Can pass a duration object
+   Adds a specified amount of time to a date object. Can pass a duration object
    or specify the amount of time by passing keyword/value parameters to define
    what should be added to the object: ``-second``, ``-minute``, ``-hour``,
    ``-day``, ``-week``, ``-month``, or ``-year``.
@@ -1065,46 +1080,46 @@ methods are summarized below.
 .. member:: date->difference(when, ...)
 
    Calculates the duration between two date objects. The first parameter must be
-   a valid value that can be cast as a date. By default, this method returns a
-   duration object, but will return an integer time value if one of the
-   following optional parameter is specified: ``-millisecond``, ``-second``,
+   a valid value that can be converted to a date. By default, this method
+   returns a duration object, but will return an integer time value if one of
+   the following optional parameter is specified: ``-millisecond``, ``-second``,
    ``-minute``, ``-hour``, ``-day``, ``-week``, ``-month``, or ``-year``.
 
 .. member:: date->minutesBetween(other::date)
 
-   Requires one parameter---another date object---and returns the number of
+   Requires one parameter --- another date object --- and returns the number of
    minutes between the current date object and the specified date object.
 
 .. member:: date->hoursBetween(other::date)
 
-   Requires one parameter---another date object---and returns the number of
+   Requires one parameter --- another date object --- and returns the number of
    hours between the current date object and the specified date object.
 
 .. member:: date->secondsBetween(other::date)
 
-   Requires one parameter---another date object---and returns the number of
+   Requires one parameter --- another date object --- and returns the number of
    seconds between the current date object and the specified date object.
 
 .. member:: date->daysBetween(other::date)
 
-   Requires one parameter---another date object---and returns the number of days
-   between the current date object and the specified date object.
+   Requires one parameter --- another date object --- and returns the number of
+   days between the current date object and the specified date object.
 
 .. member:: date->businessDaysBetween(other::date)
 
-   Requires one parameter---another date object---and returns the number of
+   Requires one parameter --- another date object --- and returns the number of
    business days between the current date object and the specified date object.
 
 .. note::
    The `date->add`, `date->roll`, and `date->subtract` methods do not return any
-   values, but are used to change the values of the object calling them.
+   values, but are used to change the value of the object calling them.
 
 
 Add a Duration to a Date
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `date->add` method. The following examples show how to add a duration to
-a date and return a date::
+a date and display that date::
 
    local(my_date) = date('5/22/2002')
    #my_date->add(duration('24:00:00'))
@@ -1130,7 +1145,7 @@ Subtract a Duration From a Date
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `date->subtract` method. The following examples show how to subtract a
-duration from a date object and return a date::
+duration from a date object and display that date::
 
    local(my_date) = date('5/22/2002')
    #my_date->subtract(duration('24:00:00'))
@@ -1156,7 +1171,7 @@ Determine the Duration Between Two Dates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `date->difference` method. The following examples show how to calculate
-the time difference between two dates and return a duration::
+the time difference between two dates and display a duration::
 
    local(my_date) = date('5/15/2002 00:00:00')
    #my_date->difference(date('5/22/2002 01:30:00'))
@@ -1172,7 +1187,7 @@ the time difference between two dates and return a duration::
 Using Math Symbols
 ------------------
 
-In Lasso 9, one has the ability to perform date and duration calculations using
+In Lasso 9, you have the ability to perform date and duration calculations using
 math symbols (similar to integer objects). If a date or duration appears to the
 left of a math symbol then the appropriate math operation will be performed and
 the result will be a date or duration as appropriate.
@@ -1215,6 +1230,7 @@ Add One Day to the Current Date
 The following example adds one day to the current date::
 
    date + duration(-day=1)
+   // => 2007-10-30 18:03:27
 
 
 Return the Duration Between the Current Date and a Day in the Future
@@ -1224,3 +1240,4 @@ The following example returns the duration between the current date and
 12/31/2250::
 
    date('12/31/2250') - date
+   // => 2079000:56:08
