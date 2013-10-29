@@ -245,8 +245,9 @@ equivalent to "1.23" times "10^2" or "123.0".
 .. method:: decimal(n::null)
 .. method:: decimal(n::void)
 
-   The creator methods for the decimal type converts ``integer``, ``string``,
-   ``bytes``, ``null``, and ``void`` objects to a decimal object.
+   The creator methods for the decimal type converts :type:`integer`,
+   :type:`string`, :type:`bytes`, :type:`null`, and :type:`void` objects to a
+   :type:`decimal` object.
 
    The precision of decimal numbers when converted to a string is always
    displayed as six decimal places even though the actual precision of the
