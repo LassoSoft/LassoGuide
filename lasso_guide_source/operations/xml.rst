@@ -120,7 +120,7 @@ documents and three for creating new from-scratch documents.
 .. method:: xml(namespaceUri::string, rootNodeName::string, dtd::xml_documentType)
 .. method:: xml()
 
-   The subsequent three methods create a new document consisting of only the
+   These subsequent three methods create a new document consisting of only the
    root `xml_document` node and no children. These methods return the top-level
    `xml_document` node object. The first two methods create the document given a
    namespace and a root element name, along with an optional document type node
@@ -130,9 +130,9 @@ documents and three for creating new from-scratch documents.
    name set to "none".
 
 In all cases, the resulting value from the `xml` method will be the root element
-of the document. This will be an object of type `xml_element`. It's important to
-note that this is not the `xml_document` object, which differs from the root
-element node. This behavior is a departure from that of the
+of the document. This will be an object of type :type:`xml_element`. It's
+important to note that this is not the `xml_document` object, which differs from
+the root element node. This behavior is a departure from that of the
 `xml_DOMImplementation` object which does return the `xml_document` object
 itself. The owning `xml_document` object can be obtained from any node within
 that document by calling the `xml_node->ownerDocument` method.
@@ -141,20 +141,20 @@ that document by calling the `xml_node->ownerDocument` method.
 xml Examples
 ------------
 
-Create XML document from existing data::
+Create an XML document from existing data::
 
-   local(myDocumentText = '<a><b>b content</b><c/></a>')
-   local(myDocumentObj = xml(#myDocumentText))
+   local(myDocumentText) = '<a><b>b content</b><c/></a>'
+   local(myDocumentObj)  = xml(#myDocumentText)
 
 Create XML document from scratch::
 
-   local(myDocumentObj = xml('my_namespace', 'a'))
+   local(myDocumentObj) = xml('my_namespace', 'a')
 
 
 Using xml_DOMImplementation
 ---------------------------
 
-The `xml_DOMImplementation` object provides comparable functionality to the
+The :type:`xml_DOMImplementation` type provides comparable functionality to the
 `xml` method, but follows the DOM Level 2 specification. The
 `xml_DOMImplementation` object itself is stateless and can be created with zero
 parameters. Once an `xml_DOMImplementation` object is obtained it can be used to
@@ -171,8 +171,8 @@ This functionality is presented in the following four methods.
 
 In contrast to the `xml` method, when creating or parsing an XML document the
 `xml_DOMImplementation` returns the document node. This will be an object of
-type `xml_document`. It's important to note that this is not the root element
-node. The root element node can be obtained through the
+type :type:`xml_document`. It's important to note that this is not the root
+element node. The root element node can be obtained through the
 `xml_document->documentElement` method.
 
 
@@ -181,25 +181,29 @@ xml_DOMImplementation Examples
 
 Create XML document from existing data::
 
-   local(myDocumentText = '<a><b>b content</b><c/></a>')
-   local(myDocumentObj =
-   xml_DOMImplementation->parseDocument(
-      bytes(#myDocumentText)))
+   local(myDocumentText) = '<a><b>b content</b><c/></a>'
+   local(myDocumentObj)  =
+      xml_DOMImplementation->parseDocument(
+         bytes(#myDocumentText)
+      )
 
 Create XML document from scratch::
 
-   local(domImpl = xml_DOMImplementation,
-   docType = #domImpl->createDocumentType(
+   local(domImpl) = xml_DOMImplementation
+   local(docType) = #domImpl->createDocumentType(
       'svg:svg',
       '-//W3C//DTD SVG 1.1//EN',
-      'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'))
-   local(myDocumentObj =
-   #domImpl->createDocument(
+      'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'
+   )
+   local(myDocumentObj) = #domImpl->createDocument(
       'http://www.w3.org/2000/svg',
       'svg:svg',
-      #docType))
+      #docType
+   )
 
-The resulting document would have the following format::
+The resulting document would have the following format:
+
+.. code-block:: none
 
    <?xml version="1.0" encoding="UTF-8"?>
    <!DOCTYPE svg:svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -224,13 +228,13 @@ The following methods are use for creating new nodes:
 .. member:: xml_document->createElement(tagName::string)::xml_element
 .. member:: xml_document->createElementNS(namespaceURI::string, qualifiedName::string)::xml_element
 
-   The first version of creates a new element node without a namespace. The
-   second version permits a namespace to be specified.
+   The first version creates a new element node without a namespace. The second
+   version permits a namespace to be specified.
 
 .. member:: xml_document->createAttribute(name::string)::xml_attr
 .. member:: xml_document->createAttributeNS(namespaceURI::string, qualifiedName::string)::xml_attr
 
-   The first version of creates a new attribute without a namespace. The second
+   The first version creates a new attribute without a namespace. The second
    version permits a namespace to be specified.
 
 .. member:: xml_document->createDocumentFragment()::xml_documentFragment
@@ -240,15 +244,13 @@ The following methods are use for creating new nodes:
 .. member:: xml_document->createProcessingInstruction(target::string, data::string)::xml_processingInstruction
 .. member:: xml_document->createEntityReference(name::string)::xml_entityReference
 
-.. type:: xml_node
-
 .. member:: xml_node->importNode(importedNode::xml_node, deep::boolean)::xml_node
 
    Imports a node from another document into the document of the target object
    and returns the new node. The new node is not yet placed within the current
-   document and so it has no parent. If ``false`` is given for the second
+   document and so it has no parent. If "false" is given for the second
    parameter, then the node's children and attributes are not copied. If
-   ``true`` is given, then all attributes and child nodes are copied into the
+   "true" is given, then all attributes and child nodes are copied into the
    current document.
 
 
@@ -292,7 +294,7 @@ to show the methods most commonly used when working with an XML document.
    the node type. For example an attribute node will return the attribute value.
    A text node will return the text content for the node. Many node types, such
    as element nodes, will return "null". This value is read/write for nodes that
-   have values.
+   have values (see `xml_node->nodeValue=` method).
 
 .. member:: xml_node->parentNode()
 
@@ -393,8 +395,6 @@ Various parts of an XML document can be modified. This includes setting node
 values, adding or removing child nodes, adding or removing attributes, or
 removing items from node maps.
 
-.. type:: xml_node
-
 .. member:: xml_node->nodeValue=(value::string)
 
    Sets the value of the node to the indicated string. Only the following node
@@ -425,8 +425,6 @@ removing items from node maps.
    Modifies the document such that no two text nodes are adjacent. All adjacent
    text nodes are merged into one text node.
 
-.. type:: xml_element
-
 .. member:: xml_element->setAttribute(name::string, value::string)
 
    Adds an attribute with the given name and value. If the attribute already
@@ -441,7 +439,7 @@ removing items from node maps.
 
    Adds the new attribute node. If an attribute with the same name already
    exists it is replaced. To add a namespace-aware attribute, use
-   `setAttributeNodeNS` instead.
+   `xml_element->setAttributeNodeNS` instead.
 
 .. member:: xml_element->setAttributeNodeNS(node::xml_attr)
 
@@ -460,13 +458,11 @@ removing items from node maps.
 
    Removes the indicated attribute node. Returns the removed node.
 
-.. type:: xml_nodeMap
-
-   Note that some node maps are read-only and cannot be modified.
+Note that some node maps are read-only and cannot be modified.
 
 .. member:: xml_nodeMap->setNamedItem(node::xml_node)::xml_node
 
-   Adds the node to the node map based on the ``nodeName`` value of the node.
+   Adds the node to the node map based on the "nodeName" value of the node.
    Replaces any duplicate node within the map. Returns the added node.
 
 .. member:: xml_nodeMap->setNamedItemNS(node::xml_node)::xml_node
@@ -488,14 +484,13 @@ XPath
 =====
 
 Lasso's XML API supports the XPath 1.0 specification. This support is available
-on any `xml_node` type through the `extract` and `extractOne` methods. Consult
-the `XPath specification`_ for the specifics of XPath syntax.
+on any :type:`xml_node` type through the `xml_node->extract` and
+`xml_node->extractOne` methods. Consult the `XPath specification`_ for the
+specifics of XPath syntax.
 
 XPath is used to address a specific set of nodes within an XML document. For
 example, child nodes matching a node name pattern can be located, or nodes with
 specific attributes can be easily found within the document.
-
-.. type:: xml_node
 
 .. member:: xml_node->extract(xpath::string)
 
@@ -512,14 +507,14 @@ specific attributes can be easily found within the document.
 
 .. member:: xml_node->extractOne(xpath::string)
 
-   Executes the XPath in the node and returns the first matching node or null if
-   there are no matches.
+   Executes the XPath in the node and returns the first matching node or "null"
+   if there are no matches.
 
 .. member:: xml_node->extractOne(xpath::string, namespaces::staticarray)
 
-   Executes the XPath in the node and returns the first matching node or null if
-   there are no matches. This method should be used for XML documents which use
-   namespaces. The second parameter is a staticarray containing the relevant
+   Executes the XPath in the node and returns the first matching node or "null"
+   if there are no matches. This method should be used for XML documents which
+   use namespaces. The second parameter is a staticarray containing the relevant
    namespace prefixes and URI pairs which are used within the XPath expression.
    Note that the namespace prefixes used in the XPath expression do not have to
    match those used within the document itself.
@@ -530,11 +525,11 @@ XPath Examples
 
 Extract all child elements of the a node::
 
-   local(doc = xml(
-   '<a>
-      <b at="val"/>
-      <c at="val2">C Content</c>
-   </a>'))
+   local(doc) = xml(
+      '<a>
+         <b at="val"/>
+         <c at="val2">C Content</c>
+      </a>')
 
    #doc->extract('//a/*')
 
@@ -542,11 +537,11 @@ Extract all child elements of the a node::
 
 Using namespaces, extract all child elements of the a node::
 
-   local(doc = xml(
-   '<a xmlns="my_uri">
-      <b at="val"/>
-      <c at="val2">C Content</c>
-   </a>'))
+   local(doc) = xml(
+      '<a xmlns="my_uri">
+         <b at="val"/>
+         <c at="val2">C Content</c>
+      </a>')
 
    #doc->extract('//n:a/*', (:'n'='my_uri'))
 
@@ -554,11 +549,11 @@ Using namespaces, extract all child elements of the a node::
 
 Extract the first child element of the a node::
 
-   local(doc = xml(
-   '<a>
-      <b at="val"/>
-      <c at="val2">C Content</c>
-   </a>'))
+   local(doc) = xml(
+      '<a>
+         <b at="val"/>
+         <c at="val2">C Content</c>
+      </a>')
 
    #doc->extractOne('//a/*')
 
@@ -566,11 +561,11 @@ Extract the first child element of the a node::
 
 Extract the ``"at"`` attribute from the second child element of the a node::
 
-   local(doc = xml(
-   '<a xmlns="my_uri">
-      <b at="val"/>
-      <c at="val2">C Content</c>
-   </a>'))
+   local(doc) = xml(
+      '<a xmlns="my_uri">
+         <b at="val"/>
+         <c at="val2">C Content</c>
+      </a>')
 
    #doc->extractOne('//n:a/*[2]/@at', (:'n'='my_uri'))
 
@@ -587,8 +582,6 @@ XSLT support is provided on any `xml_node` type through the `transform` method.
 This method accepts an XSLT template as a string as well as a list of all
 variables to be made available during the transformation. The transformation is
 performed and a new XML document is returned.
-
-.. type:: xml_node
 
 .. member:: xml_node->transform(sheet::string, variables::staticarray)::xml_document
 
