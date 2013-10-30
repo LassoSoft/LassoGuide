@@ -39,7 +39,7 @@ file is manipulated, it can either be served directly to the client browser, or
 it can be saved to disk on the server.
 
 
-Dynamically Manipulate An Image On The Server
+Dynamically Manipulate an Image on The Server
 ---------------------------------------------
 
 The following shows an example of initializing, manipulating, saving, and
@@ -208,7 +208,7 @@ methods in Lasso 9 are defined below.
    Returns the image file path and name, or ``null`` for in-memory images.
 
 
-Return the height and Width of an Image
+Return the Height and Width of an Image
 ---------------------------------------
 
 Use the `image->height` and `image-width` methods on an image object. This
@@ -257,7 +257,7 @@ representing the file format of the image::
    // => GIF
 
 
-Return pixel Information About an Image
+Return Pixel Information About an Image
 ---------------------------------------
 
 Use the `image->pixel` method on an image object. This returns a string value
