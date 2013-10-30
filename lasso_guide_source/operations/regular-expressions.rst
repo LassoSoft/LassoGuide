@@ -29,7 +29,7 @@ the ICU library for its support of regular expressions.
 Basic Matchers
 --------------
 
-The simplest regular expression is just a word containing letters or numbers.
+The simplest regular expression is just a pattern containing letters or numbers.
 The regular expression "bird" is said to match the string "bird". The regular
 expression "123" matches the string "123". The regular expression is matched
 against an input string by comparing each character in the regular expression to
@@ -70,25 +70,25 @@ white space character including tabs, spaces, returns, or new lines. The wild
 card "\\S" matches any non-white space character. The wild card "\\w" matches
 any alphanumeric character or underscore. The "w" is said to stand for "word"
 since these are all characters that may appear within a word. The wild card
-"\\W" matches non-word characters. The wild card "\\d" matches any number and
-the wild card "\\D" matches any non-number. For example, the regular expression
-``\w\w\w`` would match any three character word such as "cat" or "dog". The
-regular expression ``\d\d\d-\d\d\d\d-\d\d\d\d`` would match a standard United
-States phone number "360-555-1212".
+"\\W" matches non-word characters. The wild card "\\d" matches any numeric digit
+and the wild card "\\D" matches any non-numeral digit. For example, the regular
+expression "\\w\\w\\w" would match any three character word such as "cat" or
+"dog". The regular expression "\\d\\d\\d-\\d\\d\\d\\d-\\d\\d\\d\\d" would match
+a standard United States phone number in the form "360-555-1212".
 
 The predefined wild cards only work on standard ASCII strings. There is a
 special pair of wildcards "\\p" and "\\P" which allow different characters in a
 Unicode string to be matched. The wild card is specified as "\\p{Property}". A
 list of properties can be found in the table below. For example the wild card
 "\\p{L}" matches any Unicode letter character, the wild card "\\p{N}" matches
-any Unicode number, and the wild card "\\p{P}" matches any Unicode punctuation
+any Unicode numeral, and the wild card "\\p{P}" matches any Unicode punctuation
 characters. The "\\P{Property}" wild card is the opposite. "\\P{L}" matches any
-Unicode character which is not a letter.
+Unicode character that is not a letter.
 
 Many characters have special meanings in regular expressions including "[ ] ( )
-{ } . * + ? ^ $ | / \\". In order to match one of these character literally it is
-necessary to use a backslash in front of it. For example "\\[" matches a literal
-opening square bracket rather than starting a character range.
+{ } . * + ? ^ $ | / \\". In order to match one of these character literally it
+is necessary to use a backslash in front of it. For example "\\[" matches a
+literal opening square bracket rather than starting a character range.
 
 It is important to remember that double or single-quoted string literals use a
 backslash for escape sequences, so you must use a double backslash to use the
@@ -243,34 +243,35 @@ letter word "[a-z][a-z][a-z]". Instead, the combining symbol "{3}" can be used
 to specify that the preceding wild card should be repeated three times
 "[a-z]{3}".
 
-The combining symbol "+" matches one or more repetitions of the preceding wild
-card. The expression "[a-z]+" matches any string of lowercase letters. This
+The combining symbol "+" matches one or more repetitions of the preceding
+matcher. The expression "[a-z]+" matches any string of lowercase letters. This
 expression matches the strings "a", "green", or "international". It does not
-match "my dog spot" because that string contains characters other than lowercase
-letters (namely spaces).
+match "$1,544,897.00" because that string does not contain any lowercase
+letters.
 
 The combining symbol "+" can be used with the "." wild card to match any string
-of one or more characters ".+", with the wild card "\\w" to match any word
-"\\w+", or with the wild card "\\s" to match one or more whitespace characters
-"\\s+". The "+" symbol can also be used with a simple letter to match one or
+of one or more characters (".+"), with the wild card "\\w" to match any word
+("\\w+"), or with the wild card "\\s" to match one or more whitespace characters
+("\\s+"). The "+" symbol can also be used with a simple letter to match one or
 more repetitions of the letter. The regular expression "Me+t" matches both the
 string "Met" and the string "Meet", not to mention "Meeeeeet".
 
-The combining symbol "*" matches zero or more repetitions of the preceding wild
-card. The "*" symbol can be used with the generic wild card "." to match any
-string of characters ".*". The "*" symbol can be used with the whitespace
+The combining symbol "*" matches zero or more repetitions of the preceding
+matcher. The "*" symbol can be used with the generic wild card "." to match any
+string of characters (".*"). The "*" symbol can be used with the whitespace
 wildcard "\\s" to match a string of whitespace characters. For example, the
 expression "\\s*cat\\s*" will match the string "cat", but also the string " cat
 ".
 
 Braces are used to designate a specific number of repetitions of the preceding
 wild card. When the braces contain a single number they designate that the
-preceding wild card should be matched exactly that number of times. "[a-z]{3}"
-matches any three lowercase letters. When the braces contain two numbers they
-allow for any number of repetitions from the lower number to the upper number.
-"[a-z]{3,5}" matches any three to five lowercase letters. If the second number
-is omitted then the braces function similarly to a "+". "[a-z]{3,}" matches any
-string of lowercase letters with a length of 3 or longer.
+preceding wild card should be matched exactly that number of times. For example,
+"[a-z]{3}" matches any three lowercase letters. When the braces contain two
+numbers they allow for any number of repetitions from the lower number to the
+upper number. The pattern "[a-z]{3,5}" matches any three to five lowercase
+letters. If the second number is omitted then the braces function similarly to a
+"+". "[a-z]{3,}" matches any string of lowercase letters with a length of 3 or
+longer.
 
 The symbol "?" on its own makes the preceding matcher optional. For example, the
 expression "mee?t" will match either the string "met" or "meet" since the second
@@ -279,10 +280,10 @@ expression "mee?t" will match either the string "met" or "meet" since the second
 When used after a "+", "*", or braces the "?" makes the match non-greedy.
 Normally, a sub-expression will match as much of the input string as possible.
 The expression "<.*>" will match a string which begins and ends with angle
-brackets. It will match the entire string "<b>Bold Text</b>". With the non-
-greedy option the expression "<.*?>" will match the shortest string possible. It
-will now match just the first part of the string "<b>" and a second application
-of the expression will match the last part of the string "</b>".
+brackets. It will match the entire string "<b>Bold Text</b>". With the
+non-greedy option the expression "<.*?>" will match the shortest string
+possible. It will now match just the first part of the string "<b>" and a second
+application of the expression will match the last part of the string "</b>".
 
 ``+``
    Matches 1 or more repetitions of the preceding symbol.
@@ -318,8 +319,8 @@ Groupings
 
 Groupings are used for two purposes in regular expression. They allow portions
 of a regular expression to be designated as groups which can be used in a
-replacement pattern. And, they allow more complex regular expressions to be
-built up from simple regular expressions.
+replacement pattern, and they allow more complex regular expressions to be built
+up from simple regular expressions.
 
 Parentheses are used to designate a portion of a regular expression as a
 replacement group. Most regular expressions are used to perform find/replace
@@ -351,7 +352,7 @@ with sub-expressions. The expression \`(?:blue)|(?:red)\` will match either the
 word "blue" or the word "red".
 
 ``( )``
-   Grouping for output. Defines a named group for output. Nine groups can be
+   Grouping for output. Defines a numbered group for output. Nine groups can be
    defined.
 
 ``(?: )``
@@ -455,12 +456,12 @@ these symbols and other advanced concepts.
 The RegExp Type
 ===============
 
-The ``regexp`` type allows a regular expression to be defined once and then
-re-used many times. It facilitates simple search operations, splitting strings,
+The :type:`regexp` type allows a regular expression to be defined once and then
+reused many times. It facilitates simple search operations, splitting strings,
 and interactive find/replace operations.
 
-The ``regExp`` type has some advantages over the string methods which perform
-regular expression operations. Performance can be increased by compiling a
+The :type:`regExp` type has some advantages over the string methods that perform
+regular expression operations. Performance can be increased by creating a
 regular expression once and then reusing it multiple times.
 
 The regular expression type has a number of member methods which allow access to
@@ -487,8 +488,8 @@ Creating a Regular Expression
       -ignorecase::boolean= ?\
    )
 
-   The ``regExp`` creator method creates a reusable regular expression. The
-   regular expression type must be initialized with a string regulare expression
+   The `regExp` creator method creates a reusable regular expression. The
+   regular expression type must be initialized with a string regular expression
    pattern as either the first parameter or as the argument of a ``-find``
    keyword parameter.  The type will also store a replacement pattern, and input
    string pased as either the second and third parameters or specified with the
@@ -546,16 +547,20 @@ For example, the regular expression above can be inspected by the following
 code. The group count is "0" since the find expression does not contain any
 groups (designated by parentheses)::
 
+   <pre>
    FindPattern: [#my_regex->findPattern]
    ReplacePattern: [#my_regex->replacePattern]
    IgnoreCase: [#my_regex->ignoreCase]
    GroupCount: [#my_regex->groupCount]
+   </pre>
 
    // =>
+   // <pre>
    // FindPattern: [aeiou]
    // ReplacePattern: x
    // IgnoreCase: true
    // GroupCount: 0
+   // </pre>
 
 
 .. _regular-expressions-simple:
@@ -565,9 +570,9 @@ Simple Find/Replace and Split Operations
 
 The regular expression type provides two member methods which perform a
 find/replace on an input string and one method which splits an input string into
-an array. These methods are documented with examples below. These methods are
-short cuts for longer operations which can be performed using the interactive
-methods described in the next section.
+an array. These methods are documented with examples below, and are short cuts
+for longer operations which can be performed using the interactive methods
+described in the next section.
 
 .. member:: regExp->replaceAll(replace::string)
 .. member:: regExp->replaceAll(-input= ?, -find= ?, -replace= ?, -ignoreCase= ?)
@@ -608,10 +613,10 @@ Use the Same Regular Expression on Multiple Inputs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The same regular expression can be used on multiple inputs by first creating the
-regular expression using one of the ``regExp`` creator methods and then calling
-``regExp->replaceAll`` with a new ``-input`` as many times as necessary. Since
+regular expression using one of the `regExp` creator methods and then calling
+`regExp->replaceAll` with a new ``-input`` as many times as necessary. Since
 the regular expression is only created once this technique can be considerably
-faster than using the ``string_replaceRegExp`` method repeatedly::
+faster than using the `string_replaceRegExp` method repeatedly::
 
    local(my_regex) = regExp(-find=`[aeiou]`, -replace='x', -ignoreCase)
    #my_regex->replaceAll(-input='The quick brown fox jumped over the lazy dog.')
@@ -648,7 +653,7 @@ numbers. The regular expression is run on a couple of different phone numbers::
 Split a String Using a Regular Expression
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``regExp->split`` method can be used to split a string using a regular
+The `regExp->split` method can be used to split a string using a regular
 expression as the delimiter. This allows strings to be split into parts using
 sophisticated criteria. For example, rather than splitting a string on a comma,
 the "and" before the last item can be taken into account. Or, rather than
@@ -665,7 +670,7 @@ staticarray with elements which contain only consonants or spaces::
    // =>
    // staticarray(Th,  q, , ck br, wn f, x j, mp, d , v, r th,  l, zy d, g.)
 
-The ``-find`` pattern can be modified within the ``regExp->split`` method to
+The ``-find`` pattern can be modified within the `regExp->split` method to
 split the string on a different regular expression. In this example the string
 is split on any one of one or more non-word characters. This splits the string
 into words not including any whitespace or punctuation::
@@ -709,7 +714,7 @@ The order of operations of an interactive find/replace operation is as follows:
       )
 
 #. A ``while`` loop is used to advance the regular expression match with
-   ``regExp->find``. Each time through the loop the pattern is advanced one
+   `regExp->find`. Each time through the loop the pattern is advanced one
    match forward. If there are no further matches then the method returns
    "false" and the loop is exited::
 
@@ -717,26 +722,26 @@ The order of operations of an interactive find/replace operation is as follows:
          // ... your code here ...
       }
 
-#. Within the ``while`` loop the ``regExp->matchString`` method is used to
+#. Within the ``while`` loop the `regExp->matchString` method is used to
    inspect the current match. If the find pattern had groups then they could be
-   inspected here by passing an integer parameter to ``regExp->matchString``::
+   inspected here by passing an integer parameter to `regExp->matchString`::
 
       local(match) = #my_regex->matchString
 
 #. The match is manipulated. For this example the match string will be reversed
-   using the ``string->reverse`` method. This will reverse the word "lazy" to be
+   using the `string->reverse` method. This will reverse the word "lazy" to be
    "yzal"::
 
       #match->reverse
 
 #. The modified match string is now appended to the output string using the
-   ``regExp->appendReplacement`` method. This method will automatically append
+   `regExp->appendReplacement` method. This method will automatically append
    any parts of the input string which weren't matched (the spaces between the
    words)::
 
       #my_regex->appendReplacement(#match)
 
-#. After the ``while`` loop the ``regExp->appendTail`` method is used to append
+#. After the ``while`` loop the `regExp->appendTail` method is used to append
    the unmatched end of the input string to the output (the period at the end of
    the example input)::
 
@@ -786,8 +791,8 @@ needing to be a simple replacement pattern.
 
 .. member:: regExp->appendTail()
 
-   The final step in an interactive find/replace operation. This tag appends the
-   final unmatched run from the input string onto the output string.
+   The final step in an interactive find/replace operation. This method appends
+   the final unmatched run from the input string into the output string.
 
 .. member:: regExp->reset(-input= ?, -find= ?, -replace= ?, -ignoreCase= ?)
 
@@ -830,14 +835,14 @@ replacement is defined with a replacement word in a map::
 
 A regular expression is initialized with the input string and a pattern that
 looks for words which begin with a dollar sign. The word itself is defined as a
-group within the find pattern. A ``while`` loop uses ``regExp->find`` to advance
-through all the matches in the input string. The method ``regExp->matchString``
+group within the find pattern. A ``while`` loop uses `regExp->find` to advance
+through all the matches in the input string. The method `regExp->matchString`
 with a parameter of "1" returns the map key for each match. If this key exists
 then its value is substituted back into output string using
-``regExp->appendReplacement``, otherwise, the full match is substituted back
+`regExp->appendReplacement`, otherwise, the full match is substituted back
 into the output string with the replacement pattern "$0". Finally, any remaining
 unmatched input string is appended to the end of the output string using
-``regExp->appendTail``::
+`regExp->appendTail`::
 
    local(my_regex) = regExp(-find=`\$(\w+)`, -input=#my_string, -ignoreCase)
    while(#my_regex->find) => {
@@ -858,7 +863,7 @@ After the operation has completed the output string is displayed::
 String Methods Taking Regular Expressions
 =========================================
 
-The ``string_findRegExp`` and ``string_replaceRegExp`` methods can be used to
+The `string_findRegExp` and `string_replaceRegExp` methods can be used to
 perform regular expression find and replace routines on text strings.
 
 .. method:: string_findRegExp(input, -find::string, -ignoreCase= ?)
@@ -905,9 +910,9 @@ the output::
 
 In the following example, every email address is replaced by an HTML anchor tag
 that links to the same email address. The "\\w" symbol is used to match any
-alphanumeric characters or underscores. The at sign "@" matches itself. The
-period must be escaped "\\." in order to match an actual period and not just any
-character. This pattern matches any email address of the type
+alphanumeric characters or underscores. The at sign ("@") matches itself. The
+period must be escaped ("\\.") in order to match an actual period and not just
+any character. This pattern matches any email address of the type
 "name@example.com"::
 
    string_replaceRegExp(
@@ -923,7 +928,7 @@ character. This pattern matches any email address of the type
 Matching Patterns Using String_FindRegExp
 -----------------------------------------
 
-The ``string_findRegExp`` method returns an array of items which match the
+The `string_findRegExp` method returns an array of items which match the
 specified regular expression within the string. The array contains the full
 matched string in the first element, followed by each of the matched
 subexpressions in subsequent elements.
