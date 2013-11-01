@@ -1,8 +1,8 @@
 .. _command-line-tools:
 
-++++++++++++++++++++++++
+************************
 Lasso Command-Line Tools
-++++++++++++++++++++++++
+************************
 
 The Lasso platform comes with various command-line tools to assist you. Lasso
 uses some of these tools to create and run the instances of Lasso that talk with
@@ -13,94 +13,95 @@ describe how you can run them yourself.
 lassoserver
 ===========
 
-The lassoserver executable is installed at "/usr/sbin/lassoserver" on OS X and
-Linux operating systems and at "C:\\Program Files\\LassoSoft\\Lasso Instance
-Manager\\home\\LassoExecutables\\lassoserver" on Windows. This program creates a
-FastCGI server that interfaces with web servers to process Lasso files in
-response to web requests. Each instance of Lasso has its own lassoserver process
-running a FastCGI server. Additionally, the lassoserver executable can start up
-an HTTP server instead of a FastCGI server. As an HTTP server, it can serve both
-static files and Lasso files. This is great for local development, but you
-should run a production web server (such as Apache) for your production servers.
+The lassoserver executable is installed at :file:`/usr/sbin/lassoserver` on OS X
+and Linux operating systems and at :file:`C:\\Program Files\\LassoSoft\\Lasso
+Instance Manager\\home\\LassoExecutables\\lassoserver` on Windows. This program
+creates a FastCGI server that interfaces with web servers to process Lasso files
+in response to web requests. Each instance of Lasso has its own lassoserver
+process running a FastCGI server. Additionally, the lassoserver executable can
+start up an HTTP server instead of a FastCGI server. As an HTTP server, it can
+serve both static files and Lasso files. This is great for local development,
+but you should run a production web server (such as Apache) for your production
+servers.
 
 The following is the list of options for running lassoserver:
 
-================================ ===============================================
-Option                           Description
-================================ ===============================================
--p tcp_listen_port               Set the port that either the FastCGI or HTTP
-                                 server binds on. This option is ignored if you
-                                 choose an option to create a FastCGI socket.
-                                 
-                                 Default is 8999.
-                                 
--addr tcp_bind_address           Set the IP address to bind to when running as
-                                 either a FastCGI or HTTP server. This option is
-                                 ignored if you choose an option to create a
-                                 FastCGI socket.
-                                 
-                                 Default is 0.0.0.0 which will bind to all IPs
-                                 associated with your machine.
-                                 
--fproxy fcgi_proxy_socket        Specify the path to create a socket for FastCGI
-                                 proxy requests to be sent. This path will be
-                                 relative to :term:`LASSO9_HOME` unless you
-                                 start the path with two slashes.
-                                 
-                                 Default is to not create this socket.
-                                 
--flisten fcgi_listen_socket      Specify the path to create a socket for FastCGI
-                                 requests to be sent. This path is always
-                                 relative to :term:`LASSO9_HOME`. 
-                                 
-                                 Default is to not create this socket.
-                                 
--user user                       Specifies the OS user to run lassoserver as. In
-                                 order for this to be successful, you must be
-                                 running lassoserver with root privileges.
+.. program:: lassoserver
 
-                                 Default is to run as the user invoking
-                                 lassoserver.
-                                 
--group group                     Specify the OS group to run lassoserver as. In
-                                 order for this to be effective, you must run
-                                 lassoserver with root privileges.
-                                 
-                                 Default is to run as the primary group of the
-                                 user invoking lassoserver.
-                                 
--httproot path                   This option tells lassoserver to start an HTTP
-                                 server instead of a FastCGI server and to use
-                                 the path specified as the webroot. This option
-                                 will be ignored if either "-fproxy" or
-                                 "-flisten" is specified.
-                                 
-                                 Default is to not start up as an HTTP server.
-                                 
--scriptextensions ext1;ext2;ext3 Identify which file extensions should be
-                                 considered Lasso files. This option is used in
-                                 conjuction with "-httproot" to tell the HTTP
-                                 server which files should be processed as Lasso
-                                 code. Note that multiple extensions are
-                                 delineated by semicolons.
-                                 
-                                 Default is not to treat any files as Lasso code
-                                 
--addapp path                     This option specifies a path to a LassoApp to
-                                 be installed when lassoserver starts up. This
-                                 allows you to include LassoApps that are
-                                 outside the LassoApp directory in your instance
-                                 home directory. This option can be specified
-                                 multiple times with different paths and all
-                                 specified LassoApps will be installed.
-                                 
-                                 Default is to not install any additional
-                                 LassoApps.
-================================ ===============================================
+.. option:: -p <tcp_listen_port>
+
+   Set the port that either the FastCGI or HTTP server binds on. This option is
+   ignored if you choose an option to create a FastCGI socket.
+
+   Default is 8999.
+
+.. option:: -addr <tcp_bind_address>
+
+   Set the IP address to bind to when running as either a FastCGI or HTTP
+   server. This option is ignored if you choose an option to create a FastCGI
+   socket.
+
+   Default is 0.0.0.0, which will bind to all IPs associated with your machine.
+
+.. option:: -fproxy <fcgi_proxy_socket>
+
+   Specify the path to create a socket for FastCGI proxy requests to be sent.
+   This path will be relative to :term:`LASSO9_HOME` unless you start the path
+   with two slashes.
+
+   Default is to not create this socket.
+
+.. option:: -flisten <fcgi_listen_socket>
+
+   Specify the path to create a socket for FastCGI requests to be sent. This
+   path is always relative to :term:`LASSO9_HOME`.
+
+   Default is to not create this socket.
+
+.. option:: -user <user>
+
+   Specifies the OS user to run lassoserver as. In order for this to be
+   successful, you must be running lassoserver with root privileges.
+
+   Default is to run as the user invoking lassoserver.
+
+.. option:: -group <group>
+
+   Specify the OS group to run lassoserver as. In order for this to be
+   effective, you must run lassoserver with root privileges.
+
+   Default is to run as the primary group of the user invoking lassoserver.
+
+.. option:: -httproot <path>
+
+   This option tells lassoserver to start an HTTP server instead of a FastCGI
+   server and to use the path specified as the web root. This option will be
+   ignored if either :option:`-fproxy` or :option:`-flisten` is specified.
+
+   Default is to not start up as an HTTP server.
+
+.. option:: -scriptextensions <ext1[;ext2] ... >
+
+   Identify which file extensions should be considered Lasso files. This option
+   is used in conjuction with :option:`-httproot` to tell the HTTP server which
+   files should be processed as Lasso code. Note that multiple extensions are
+   delimited by semicolons.
+
+   Default is not to treat any files as Lasso code.
+
+.. option:: -addapp <path>
+
+   This option specifies a path to a LassoApp to be installed when lassoserver
+   starts up. This allows you to include LassoApps that are outside the LassoApp
+   directory in your instance home directory. This option can be specified
+   multiple times with different paths and all specified LassoApps will be
+   installed.
+
+   Default is to not install any additional LassoApps.
 
 
-Examples
---------
+lassoserver Examples
+--------------------
 
 To start lassoserver as a FastCGI server listening on port 9000::
 
@@ -132,7 +133,7 @@ Windows. This program creates the FastCGI server that runs Lasso's Instance
 Manager web application. It also makes sure that all enabled instances are
 running.
 
-To manually start lassoim(d) just call it from the command-line. (It ignores any
+To manually start lassoim(d) just call it from the command line. (It ignores any
 arguments passed to it.)::
 
    $> lassoim
@@ -148,10 +149,10 @@ lasso9
 
 The lasso9 executable is installed at "/usr/bin/lasso9" on OS X and Linux
 operating systems and at "C:\\Program Files\\LassoSoft\\Lasso Instance
-Manager\\home\\LassoExecutables\\lasso9" on Windows. This program can execute Lasso
-code in a file, from stdin, passed to it as a string, or in an interactive
+Manager\\home\\LassoExecutables\\lasso9" on Windows. This program can execute
+Lasso code in a file, from STDIN, passed to it as a string, or in an interactive
 interpreter. This executable doesn't load and startup everything that
-lassoserver does. See the discussion on :ref:`the libararies available to shell
+lassoserver does. See the discussion on the :ref:`libararies available to shell
 scripts <libaries-available-shell-scripts>` for what doesn't get loaded and how
 to load the extra pieces if you need them.
 
@@ -160,7 +161,7 @@ lasso9. For example::
 
    $> lasso9 /path/to/code.lasso
 
-To execute Lasso code from stdin, pass "--" as the first argument to lasso9::
+To execute Lasso code from STDIN, pass "--" as the first argument to lasso9::
 
    $> echo 'lasso_version' | lasso9 --
 
@@ -174,9 +175,9 @@ For more details, see the section on :ref:`Calling Lasso on the CLI
 
 
 To execute Lasso code interactively, call lasso9 with the "-i" flag as the first
-argument. When you do this a new prompt will appear (">:"), and what you type
+argument. When you do this a new prompt will appear (``>:``), and what you type
 there will be processed as Lasso code when you hit return. You can also paste
-small amounts of multi-line code into the prompt - just be sure to hit return
+small amounts of multi-line code into the prompt; just be sure to hit return
 right after you paste so that the last line of code will be included. (One thing
 to note: each chunk of code is processed as if it were a separate file, so local
 variables processed in one chunk are unavailable to future chunks. You'll either
@@ -199,8 +200,8 @@ lassoc
 The lassoc executable is installed at "/usr/bin/lassoc" on OS X and Linux
 operating systems and at "C:\\Program Files\\LassoSoft\\Lasso Instance
 Manager\\home\\LassoExecutables\\lassoc" on Windows. This program is used to
-compile LassoApps, Lasso libraries, and Lasso executables. See :ref:`the section
-on compiling Lasso code<compiling-lasso>` for more information.
+compile LassoApps, Lasso libraries, and Lasso executables. See the section on
+:ref:`compiling Lasso code <compiling-lasso>` for more information.
 
 
 .. _special-environment-variables:
@@ -209,10 +210,11 @@ Special Environment Variables
 =============================
 
 There are four shell environment variables that have various effects on running
-lasso9, lassoserver or custom Lasso executables. The following lists the
-variables and a description of their function.
+lasso9, lassoserver, or custom Lasso executables. The following lists the
+variables and a description of their function:
 
-LASSO9_HOME
+.. envvar:: LASSO9_HOME
+
    This variable is set to the path of a directory containing either the
    instance-specific libraries and startup items, or to a path containing all of
    the Lasso 9 built-in libraries. If set to an instance-specific home
@@ -220,31 +222,35 @@ LASSO9_HOME
 
    Default is "/var/lasso/home" for OS X and Linux.
 
-LASSO9_MASTER_HOME
+.. envvar:: LASSO9_MASTER_HOME
+
    This variable must be set to a directory containing all the built-in Lasso
    libraries if the LASSO9_HOME variable is set to an instance-specific home
    directory.
 
    Default is not set.
 
-LASSO9_PRINT_FAILURES
+.. envvar:: LASSO9_PRINT_FAILURES
+
    This variable can be set to an integer that specifies how verbose a Lasso
    executable should be in its error reporting. Setting it to 1 outputs the most
    information with larger integer values making it less verbose.
 
    Default is not set (which is the least verbose).
 
-LASSO9_RETAIN_COMMENTS
+.. envvar:: LASSO9_RETAIN_COMMENTS
+
    If this variable is set to 1, then Lasso will retain the documentation
    comments in the code it loads allowing you to programmatically view and
    process these comments.
 
    Default is not set.
 
-LASSO9_PRINT_LIB_LOADS
-   If this variable is set to 1, Lasso will print to stdout diagnostic
-   information regarding the on-demand libraries that it loads. This can be
-   useful when debugging your own on-demand Lasso Libraries.
+.. envvar:: LASSO9_PRINT_LIB_LOADS
+
+   If this variable is set to 1, Lasso will print diagnostic information to
+   STDOUT regarding the on-demand libraries that it loads. This can be useful
+   when debugging your own on-demand Lasso Libraries.
 
    Default is not set.
 
@@ -253,7 +259,7 @@ Writing Shell Scripts in Lasso on OS X and Linux
 ================================================
 
 While most developers use Lasso to create dynamic websites, you can also create
-Lasso code that can be run from the command-line to assist you in administrative
+Lasso code that can be run from the command line to assist you in administrative
 or repetitive tasks. These files that run from the command line are often called
 shell scripts since you run them from your terminal's shell.
 
@@ -261,7 +267,7 @@ shell scripts since you run them from your terminal's shell.
 Running Scripts
 ---------------
 
-There are two ways to run a file containing Lasso code from the command-line:
+There are two ways to run a file containing Lasso code from the command line:
 
 #. Pass the path of the file to the lasso9 executable::
 
@@ -296,7 +302,7 @@ When running Lasso command-line scripts, Lasso provides two special thread
 variables to inspect the command that was run and the arguments that were passed
 to it: ``$argc`` and ``$argv``. The ``$argc`` variable returns the number of
 arguments, including the command. The ``$argv`` variable returns a staticarray -
-the first element of which is the command and the remaining elements are the
+the first element which is the command and the remaining elements which are the
 arguments passed to the command.
 
 
@@ -315,7 +321,7 @@ Here's what happens when you run the code::
 
 The following example shows the values of ``$argc`` and ``$argv`` when the
 script is run directly. The contents of the file "/path/to/code.lasso" are::
-   
+
    #! /usr/bin/lasso9
    stdoutnl($argc)
    stdoutnl($argv)
@@ -332,9 +338,9 @@ element in ``$argv`` being "lasso9".
 
 Using these two thread variables, you can create scripts whose behavior changes
 when different arguments are passed to them. In fact, the lasso9 executable
-itself is a Lasso shell script - written in Lasso and compiled into a binary.
+itself is a Lasso shell script, written in Lasso and compiled into a binary.
 (You can view its source here:
-`<http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/lasso9.lasso>`_.)
+http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/lasso9.lasso.)
 
 
 .. _libaries-available-shell-scripts:
@@ -357,8 +363,8 @@ Loading All Database and LCAPI Modules
 --------------------------------------
 
 If you want to have access to all database connectors and to all the LCAPI
-modules such as the ImageMagick methods or the ``os_process`` type you can load
-them all with the ``database_initialize`` method::
+modules such as the ImageMagick methods or the :type:`os_process` type you can
+load them all with the `database_initialize` method::
 
    #! /usr/bin/lasso9
    database_initialize
@@ -402,15 +408,15 @@ Load a LassoApp
 LassoApps have the ability to run / load code when they are initialized. Often
 this code adds methods / types / traits that you may want available in your
 Lasso shell scripts. The code below contains three examples of loading up
-LassoApps - one for compiled LassoApps, one for zipped LassoApps, and one for a
-LassoApp directory::
+LassoApps: one for compiled LassoApps, one for zipped LassoApps, and one for a
+LassoApp directory. ::
 
    #! /usr/bin/lasso9
    // Load a compiled LassoApp from LASSO9_MASTER_HOME if specified
    // Else load it from LASSO9_HOME
    lassoapp_installer->install(
        lassoapp_compiledsrc_appsource(
-           (sys_masterHomePath || sys_homePath) + 
+           (sys_masterHomePath || sys_homePath) +
            '/LassoApps/example.lassoapp'
        )
    )
@@ -455,20 +461,20 @@ Include Another File Relative to the Path of the Running Script
 
 Sometimes it would be nice to have the script you are running be able to include
 a file that is relative to the script. If you pass a relative path to the
-``file`` type, it will expect the file you are trying to reference to be
+:type:`file` type, it will expect the file you are trying to reference to be
 included relative from your shell's current working directory. To get around
 this, you must have the current script figure out the absolute path to its
 parent directory and then you can append the relative path. The following code
 does just that::
 
-   // Contents of /path/to/project/sub1/code.lasso
    #! /usr/bin/lasso9
+   // Contents of /path/to/project/sub1/code.lasso
 
    // This should let us run this file anywhere and still properly import relative files
    local(path_here) = currentCapture->callsite_file->stripLastComponent
    not #path_here->beginsWith('/')
        ? #path_here = io_file_getcwd + '/' + #path_here
-   not #path_here->endsWith('/') 
+   not #path_here->endsWith('/')
        ? #path_here->append('/')
    local(f) = file(#path_here + '../sub2/code.lasso')
 
@@ -482,7 +488,7 @@ does just that::
    stdoutnl('I am a relative include.')
 
 Here's what happens when you run "/path/to/project/sub1/code.lasso"::
-   
+
    $> /path/to/project/sub1/code.lasso
    Loading ../sub2/code.lasso
    I am a relative include.
@@ -495,14 +501,14 @@ Change the Working Directory
 Occasionally you may find it helpful to change the directory context your script
 is running in. You can use the ``dir->setcwd`` method to do just that::
 
-   // Contents of /path/to/code.lasso
    #! /usr/bin/lasso9
+   // Contents of /path/to/code.lasso
    stdoutnl('We are here: ' + io_file_getcwd)
    dir('/etc/')->setcwd
    stdoutnl('Now we are here: ' + io_file_getcwd)
 
 Here's what happens when you run this file::
-   
+
    $> cd /path/to/
    $> lasso9 ./code.lasso
    We are here: /path/to
@@ -516,8 +522,8 @@ Lasso can read and set shell environment variables using ``sys_getEnv`` and
 ``sys_setEnv`` respectively. The following example adds a directory to the
 "PATH" environment variable for the script::
 
-   // Contents of /path/to/code.lasso
    #! /usr/bin/lasso9
+   // Contents of /path/to/code.lasso
    // Ignore the return value of sys_setEnv
    local(_) = sys_setEnv(`PATH`, `/var/lasso/home/bin:` + sys_getEnv(`PATH`))
    stdoutnl(sys_getEnv(`PATH`))
@@ -536,7 +542,7 @@ Compiling Lasso Code
 All Lasso code is compiled before it is executed. Whether the code is a
 :term:`Lasso page` being served by Lasso server or a script being run by the
 lasso9 command-line tool, behind the scenes Lasso compiles the code and then
-executes the compiled code. (Lasso does cache the copiled code for reuse, but
+executes the compiled code. (Lasso does cache the compiled code for re-use, but
 that is beyond the scope of this section.)
 
 There are certain cases where it is advantageous to compile the lasso code ahead
@@ -545,22 +551,17 @@ in compiling LassoApps, Lasso libraries, and Lasso executables. Compilation can
 result in faster startup times, lower memory usage, and obfuscation of the
 source code.
 
+Libraries help keep memory usage down because only objects that are actually
+used are loaded. They also improve startup time. Lasso can start up by only
+loading the very basic built-in functions and objects and then let the rest of
+the system load in over time.
 
-
-
-
-
-Libraries help keep memory usage down because only objects that are actually used are loaded
-They also improve startup time
-Lasso can startup by only loading the very basic builtin functions and objects
-and then let the rest of the system load in over time
-
-A special type of library can be produced: a .bc bitcode file. Bitcode is a LLVM
-specific format that Lasso knows how to load. bitcode files can be shared across
-platforms on the same processor For example the same .bc file could be used on
-OS X x86 and CentOS x86 .bc files don't load as fast, have about 80% larger file
-size and consume more memory than library files compiled into a shared library
-but don't require GCC
+A special type of library can be produced: a .bc bitcode file. Bitcode is a
+LLVM-specific format that Lasso knows how to load. bitcode files can be shared
+across platforms on the same processor. For example, the same .bc file could be
+used on OS X x86 and CentOS x86 .bc files don't load as fast, have about 80%
+larger file size and consume more memory than library files compiled into a
+shared library, but don't require GCC.
 
 
 Prerequisites
@@ -568,12 +569,10 @@ Prerequisites
 
 The following must be installed to compile Lasso code:
 
-*  Lasso 9
-
-*  Your operating systems's developer command-line tools. (Consult the
+-  Lasso 9
+-  Your operating systems's developer command-line tools. (Consult the
    documentation for your OS on how to install a compiler, linker, etc.)
-
-*  For OS X, you will also need Xcode 3 installed for the 10.5 SDK libraries in
+-  For OS X, you will also need Xcode 3 installed for the 10.5 SDK libraries in
    order to create binaries that are compatible with all supported versions of
    OS X.
 
@@ -590,19 +589,22 @@ distribute your own command-line tools without distributing the source code. The
 examples below take a shell script named "myscript.lasso" and compile it into
 the executable "myscript".
 
-**OS X**
+.. rubric:: OS X
+
 ::
 
    $> lassoc -O -app -n -obj -o myscript.a.o myscript.lasso
    $> gcc -o myscript myscript.a.o -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -macosx_version_min=10.5 -F/Library/Frameworks -framework Lasso9
 
-**Linux**
+.. rubric:: Linux
+
 ::
 
    $> lassoc -O -app -n -obj -o myscript.a.o myscript.lasso
    $> gcc -o myscript myscript.a.o -llasso9_runtime
 
-**Windows**
+.. rubric:: Windows
+
 ::
 
    $> lassoc -O -app -n -obj -o myscript.obj myscript.lasso
@@ -613,7 +615,7 @@ Compiling Libraries
 -------------------
 
 You can create your own library of methods and types and then compile it into
-one a library file for distribution. Libraries compiled this way go into the
+one library file for distribution. Libraries compiled this way go into the
 LassoLibraries folder of an instance's :term:`LASSO9_HOME` or
 :term:`LASSO9_MASTER_HOME` folder. The advantages of doing this instead of
 sticking the source code in the LassoStartup folder are that Lasso starts faster
@@ -623,22 +625,25 @@ an instance of Lasso Server faster as the code will be loaded when first needed,
 and it helps keep memory down as only those methods and types that are actually
 used by the instance get loaded.
 
-The examples below take a file named "mylibs.inc" and compiles it into a
+The examples below take a file named "mylibs.inc" and compile it into a
 dynamically loaded Lasso library.
 
-**OS X**
+.. rubric:: OS X
+
 ::
 
    $> lassoc -O -dll -n -obj -o mylibs.d.o mylibs.inc
    $> gcc -dynamiclib -o mylibs.dylib mylibs.d.o -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -macosx_version_min=10.5 -F/Library/Frameworks -framework Lasso9
 
-**Linux**
+.. rubric:: Linux
+
 ::
 
    $> lassoc -O -dll -n -obj -o mylibs.d.o mylibs.inc
    $> gcc -shared -o mylibs.so mylibs.d.o -llasso9_runtime
 
-**Windows**
+.. rubric:: Windows
+
 ::
 
    $> lassoc -O -dll -n -obj -o mylibs.obj mylibs.inc
@@ -650,33 +655,34 @@ Compiling LassoApps
 
 :term:`LassoApps` allow you to create an easily deployable and distributable web
 application. They are installed into the LassoApps folder of an instance's
-:term:`LASSO9_HOME` or :term:`LASSO9_MASTER_HOME` folder. (See the :ref:`the
-chapter on LassoApps<lassoapps>` for more information.) Compiling them allows
-for Lasso to startup faster and allows for distributing closed-sourced
+:term:`LASSO9_HOME` or :term:`LASSO9_MASTER_HOME` folder. (See the
+:ref:`LassoApps <lassoapps>` chapter for more information.) Compiling them
+allows for Lasso to start up faster and allows for distributing closed-sourced
 solutions.
 
-The examples below take a folder named "myapp" and compiles it into a
+The examples below take a folder named "myapp" and compile it into a
 :term:`LassoApp` named "myapp.lassoapp".
 
-**OS X**
+.. rubric:: OS X
+
 ::
 
    $> lassoc -O -dll -n -obj -lassoapp -o myapp.ap.o myapp/
    $> gcc -dynamiclib -o myapp.lassoapp myapp.ap.o -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -macosx_version_min=10.5 -F/Library/Frameworks -framework Lasso9
 
-**Linux**
+.. rubric:: Linux
+
 ::
 
    $> lassoc -O -dll -n -obj -lassoapp -o myapp.ap.o myapp/
    $> gcc -shared -o myapp.lassoapp myapp.ap.o -llasso9_runtime
 
-**Windows**
+.. rubric:: Windows
+
 ::
 
    $> lassoc -O -dll -n -obj -lassoapp -o myapp.lassoapp.obj myapp
    $> link /DLL myapp.lassoapp.obj /OUT:myapp.lassoapp /LIBPATH:"C:\Program Files\LassoSoft\Lasso Instance Manager\home\LassoExecutables" lasso9_runtime.lib -defaultlib:libcmt
-
-
 
 
 Using Build Utilities
@@ -686,7 +692,8 @@ Instead of manually executing those commands each time you want to compile your
 code, it is recommended you use a build utility like "make" for OS X and Linux
 or "nmake" for Windows. Both of these utilities are very powerful and you should
 explore their documentation. The Lasso source tree has an exmaple of both a
-`make file <http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/makefile>`_
-and an
-`nmake file <http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/makefile.nmake>`_
+`make file
+<http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/makefile>`_ and an
+`nmake file
+<http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/makefile.nmake>`_
 which you can download and modify to fit your solutions.
