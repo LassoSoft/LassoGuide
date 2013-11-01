@@ -244,7 +244,7 @@ The following methods are use for creating new nodes:
 .. member:: xml_document->createProcessingInstruction(target::string, data::string)::xml_processingInstruction
 .. member:: xml_document->createEntityReference(name::string)::xml_entityReference
 
-.. member:: xml_node->importNode(importedNode::xml_node, deep::boolean)::xml_node
+.. member:: xml_document->importNode(importedNode::xml_node, deep::boolean)::xml_node
 
    Imports a node from another document into the document of the target object
    and returns the new node. The new node is not yet placed within the current
