@@ -49,7 +49,7 @@ power of the integer.
       lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/LJAPI9.bundle')
       ljapi_initialize
 
- 
+
 Static Method Code
 ------------------
 
@@ -59,6 +59,7 @@ Static Method Code
    local(mID)   = java_jvm_getenv->GetStaticMethodId(#class, 'scalb', '(FI)F')
 
    java_jvm_getenv->CallStaticFloatMethod(#class, #mID, jfloat(4.0), jint(3))
+
    // => 32.000000
 
 
@@ -74,7 +75,7 @@ Java Virtual Machine (JVM).
 #. The first line of code finds the Java class we want to work with and returns
    a Lasso ``jobject`` which gets stored into the local variable "class". The
    string value that gets passed to ``FindClass`` is the fully qualified class
-   name signature (or array type signature). For more information, see 
+   name signature (or array type signature). For more information, see
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16027>`_
    ::
 
@@ -93,7 +94,7 @@ Java Virtual Machine (JVM).
 
 #. The method signature "(FI)F" specifies that it takes a ``float`` and an
    ``int`` parameter and returns a ``float``. The easiest way to find the
-   signature for a method is to use the ``javap`` command on the command-line.
+   signature for a method is to use the ``javap`` command on the command line.
    In the example below, we run ``javap -s -p java.lang.Math`` to get all the
    method signatures found in the "java.lang.Math" class, and we use grep to
    filter and find the "scalb" method. You'll notice in the result that there
@@ -140,11 +141,12 @@ Java Object Member Method Code
    local(class) = java_jvm_getenv->FindClass('java/util/zip/ZipFile')
    local(mID)   = java_jvm_getenv->GetMethodID(#class, '<init>', '(Ljava/lang/String;)V')
    local(obj)   = java_jvm_getenv->NewObject(#class, #mID, '/path/to/zipfile.zip')
-   
+
    local(class) = java_jvm_getenv->GetObjectClass(#obj)
    local(mID)   = java_jvm_getenv->GetMethodID(#class, 'size', '()I')
-   
+
    java_jvm_getenv->CallIntMethod(#obj, #mID)
+
    // => 92
 
 
@@ -171,7 +173,7 @@ that wraps the Lasso instance's ``java_jnienv`` object.
 
 #. The method signature "(Ljava/lang/String;)V" specifies that it takes a string
    parameter and returns "void". The easiest way to find the signature for a
-   method is to use the ``javap`` command on the command-line. In the example
+   method is to use the ``javap`` command on the command line. In the example
    below, we run ``javap -s -p java.util.zip.ZipFile`` to get all the method
    signatures found in the "java.util.zip.ZipFile" class, and we use grep to
    filter and find the constructor methods. You'll notice in the result that

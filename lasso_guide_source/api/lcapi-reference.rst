@@ -1,3 +1,5 @@
+.. default-domain:: c
+
 .. _lcapi-c-reference:
 
 ***************

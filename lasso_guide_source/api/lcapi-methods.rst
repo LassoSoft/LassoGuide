@@ -1,3 +1,6 @@
+.. default-domain:: c
+.. default-role:: func
+
 .. _lcapi-methods:
 
 **********************
@@ -67,7 +70,7 @@ Custom Method Tutorial
 
 This section provides a walk-through of building an example method to show how
 LCAPI features are used. This code can be found in the "SampleMethod" folder in
-the LCAPI examples which can be :download:`downloaded here
+the LCAPI examples, which can be :download:`downloaded here
 <../_downloads/lcapi_examples.zip>`.
 
 The method will simply display its parameters, and it will look like the example
@@ -157,7 +160,7 @@ method module.
 #. Implement ``myTagFunc``, which gets called when ``sample_method`` is
    encountered. All method functions have this prototype. When the method
    function is called, it's passed an opaque "token" data structure.
-   
+
    .. code-block:: c++
 
       osError myTagFunc( lasso_request_t token, tag_action_t action )
@@ -167,14 +170,14 @@ method module.
    the ``myTagFunc`` function.
 
 #. Allocate a string which will be this method's return value.
-   
+
    .. code-block:: c++
 
       std::basic_string<char> retValue;
 
-#. The ``lasso_type_t`` variable named "opt2" and the ``auto_lasso_value_t``
-   variable named "v" will be temporary variables for holding parameter values.
-   Start off by initializing them:
+#. The ``lasso_type_t`` variable named ``opt2`` and the ``auto_lasso_value_t``
+   variable named ``v`` will be temporary variables for holding parameter
+   values. Start off by initializing them:
 
    .. code-block:: c++
 
@@ -182,10 +185,10 @@ method module.
       auto_lasso_value_t v;
       INITVAL(&v);
 
-#. Call ``lasso_FindTagParam()`` in order to get the value of the "-option1"
+#. Call `lasso_findTagParam` in order to get the value of the ``-option1``
    parameter. If it is found (no error while finding the named parameter),
    append some information about it to our return value string.
-   
+
    .. code-block:: c++
 
       if( lasso_findTagParam(token, "-option1", &v) == osErrNoErr ) {
@@ -195,10 +198,10 @@ method module.
 
 #. Look for the other named parameter, "-option2" and store its value into
    variable "opt2". Because "-option2" should be a decimal value, use
-   ``lasso_findTagParam2``, which will preserve the original data type of the
-   value as opposed to converting it into a string like ``lasso_findTagParam``
+   `lasso_findTagParam2`, which will preserve the original data type of the
+   value as opposed to converting it into a string like `lasso_findTagParam`
    will.
-   
+
    .. code-block:: c++
 
       if( lasso_findTagParam2(token, "-option2", &opt2) == osErrNoErr ) {
@@ -207,7 +210,7 @@ method module.
    in and then declare a temporary string to hold the converted number for
    display. Get the value of "op2" as a decimal then print it to the
    "tempValueFmtd" variable.
-   
+
    .. code-block:: c++
 
       double tempValue;
@@ -217,7 +220,7 @@ method module.
       sprintf(tempValueFmtd, "%.15lg", tempValue);
 
 #. Append the parameter's information to the return string.
-   
+
    .. code-block:: c++
 
       retValue.append(" The value of -option2 is ");
@@ -226,10 +229,10 @@ method module.
 #. Now, we're going to look for the unnamed parameter. Because there's no way to
    ask for unnamed parameters, we're going to enumerate through all the
    parameters looking for one without a name. The integer ``count`` will hold
-   the number of parameters found. Use ``lasso_getTagParamCount()`` to find out
-   how many parameters were passed into our method. The variable ``count`` now
+   the number of parameters found. Use `lasso_getTagParamCount` to find out how
+   many parameters were passed into our method. The variable ``count`` now
    contains the number "3", if we were indeed passed three parameters.
-   
+
    .. code-block:: c++
 
       int count = 0;
@@ -238,22 +241,22 @@ method module.
       for( int i = 0; i < count; ++i )
       {
 
-#. Use ``lasso_getTagParam()`` to retrieve a parameter by its index. If you
+#. Use `lasso_getTagParam` to retrieve a parameter by its index. If you
    design methods that require parameters to be in a particular order, then use
    this function to retrieve parameters by index, starting at index 0. If the
    parameter is unnamed, that means it's the one needed. Note that if the user
    passes in more than one unnamed parameter, this loop will find all of them,
    and will ignore any named parameters. (A parameter is unnamed if both the
    name and data of the struct point to the same value.)
-   
+
    .. code-block:: c++
 
       lasso_getTagParam(token, i, &v);
       if ( v.name == v.data ) {
 
-#. Again, append a descriptive line of text about the unnamed parameter and it's
+#. Again, append a descriptive line of text about the unnamed parameter and its
    value.
-   
+
    .. code-block:: c++
 
       if ( v.name == v.data ) {
@@ -264,9 +267,9 @@ method module.
 #. Returning an error code is very important. If you return a non-zero error
    code, then the interpreter will throw an exception indicating that this
    method failed fatally and Lasso's standard page error routines will display
-   an error message. In our example, ``lasso_returnTagValueString`` will return
+   an error message. In our example, `lasso_returnTagValueString` will return
    an error if it has a problem setting the return value.
-   
+
    .. code-block:: c++
-   
+
       return lasso_returnTagValueString(token, retValue.c_str(), (int)retValue.length());

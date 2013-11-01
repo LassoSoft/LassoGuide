@@ -1,3 +1,6 @@
+.. default-domain:: c
+.. default-role:: func
+
 .. _lcapi-types:
 
 ********************
@@ -10,7 +13,7 @@ Lasso Server starts up, it scans the LassoModules folder for module files
 executes the ``registerLassoModule()`` function for that module. The developer
 registers the LCAPI data types or methods implemented by the module inside this
 function. Registering data type initializers differs from registering normal
-methods in that the third parameter in ``lasso_registerTagMode`` is the value
+methods in that the third parameter in `lasso_registerTagModule` is the value
 ``REG_FLAGS_TYPE_DEFAULT``:
 
 .. code-block:: c++
@@ -30,8 +33,8 @@ of the type is created:
    osError myTypeInitFunc( lasso_request_t token, tag_action_t action );
 
 When the type initializer function is called, a new instance of the type is
-created using ``lasso_typeAllocCustom``. This new instance will be created
-without data members or member methods:
+created using `lasso_typeAllocCustom`. This new instance will be created without
+data members or member methods:
 
 .. code-block:: c++
 
@@ -41,9 +44,9 @@ without data members or member methods:
       lasso_typeAllocCustom( token, &theNewInstance, "test_type" );
 
 Once the type is created, new data members and member methods can be added to it
-using ``lasso_typeAddMember``. Data members can be of any type and should be
+using `lasso_typeAddMember`. Data members can be of any type and should be
 allocated using any of the LCAPI type allocation calls. Member methods are
-allocated using ``lasso_typeAllocTag``. LCAPI member method functions are
+allocated using `lasso_typeAllocTag`. LCAPI member method functions are
 implemented just like any other LCAPI method. In the example below,
 ``myTagMemberFunction`` is a function with the standard LCAPI tag prototype:
 
@@ -81,7 +84,7 @@ methods: ``example_file->open``, ``example_file->close``,
 
 The example project is the "LCAPIFile" project in the LCAPI examples found
 :download:`here <../_downloads/lcapi_examples.zip>`. Due to the length of
-the code in that file, the entire code is not reproduced here. Instead this
+the code in that file, the entire code is not reproduced here. Instead, this
 section provides a conceptual overview of the ``example_file`` type and
 describes the basic LCAPI functions used to implement it.
 
@@ -90,7 +93,8 @@ describes the basic LCAPI functions used to implement it.
    method functions are registered. The only difference being that
    ``REG_FLAGS_TYPE_DEFAULT`` should be passed for the fourth (flags) parameter.
 
-   This concept is illustrated in lines 247-282 of the CAPIFile.cpp file:
+   This concept is illustrated in lines 247-282 of the :file:`CAPIFile.cpp`
+   file:
 
    .. code-block:: c++
 
@@ -104,7 +108,7 @@ describes the basic LCAPI functions used to implement it.
 #. The registered type initializer will be called when the module is loaded. In
    the above case, the LCAPI function ``file_init`` was registered as being the
    initializer. The prototype for ``file_init`` should look like any other LCAPI
-   function, as shown on line 285 of the CAPIFile.cpp file:
+   function, as shown on line 285 of the :file:`CAPIFile.cpp` file:
 
    .. code-block:: c++
 
@@ -113,12 +117,12 @@ describes the basic LCAPI functions used to implement it.
 #. The ``file_init`` function will now be called whenever the library is loaded.
    Within the type initializer, the type's member methods are added. Each member
    method is implemented by its own LCAPI function. However, before members can
-   be added, the new blank type must be created using ``lasso_typeAllocCustom``.
+   be added, the new blank type must be created using `lasso_typeAllocCustom`.
 
-   ``lasso_typeAllocCustom`` can only be used within a properly registered type
+   `lasso_typeAllocCustom` can only be used within a properly registered type
    initializer. The value it produces should always be the return value of the
-   method as set by the ``lasso_returnTagValue`` function. See lines 289-290 of
-   the CAPIFile.cpp file:
+   method as set by the `lasso_returnTagValue` function. See lines 289-290 of
+   the :file:`CAPIFile.cpp` file:
 
    .. code-block:: c++
 
@@ -127,8 +131,8 @@ describes the basic LCAPI functions used to implement it.
 
 #. Once the blank type has been created, members can be added to it. LCAPI data
    types often need to store pointers to allocated structures or memory. LCAPI
-   provides a means to accomplish this by using the ``lasso_setPtrMember`` and
-   ``lasso_getPtrMember`` functions. These functions allow the developer to
+   provides a means to accomplish this by using the `lasso_setPtrMember` and
+   `lasso_getPtrMember` functions. These functions allow the developer to
    store a pointer with a specific name. The pointer is stored as a regular
    integer data member. The names of all pointer members should begin with an
    underscore. Naming a pointer as such will indicate to Lasso that it should
@@ -143,9 +147,9 @@ describes the basic LCAPI functions used to implement it.
       lasso_typeAddDataMember(token, file, kPrivateMember, i);
 
    This LCAPI ``example_file`` type stores its private data in a structure
-   called ``file_desc_t``. The actual call to ``lasso_setPtrMember`` is in the
-   method's "onCreate" method as shown on lines 344-345 of the CAPIFile.cpp
-   file:
+   called ``file_desc_t``. The actual call to `lasso_setPtrMember` is in the
+   method's "onCreate" method as shown on lines 344-345 of the
+   :file:`CAPIFile.cpp` file:
 
    .. code-block:: c++
 
@@ -153,7 +157,7 @@ describes the basic LCAPI functions used to implement it.
       lasso_setPtrMember(token, self, kPrivateMember, desc, &cleanUp);
 
 #. Member methods for open, close, read, and write could be written like this:
-   
+
    .. code-block:: c++
 
       lasso_type_t mem;
@@ -169,8 +173,8 @@ describes the basic LCAPI functions used to implement it.
       lasso_typeAllocTag(token, &mem, file_write);
       lasso_typeAddMember(token, file, "write", mem);
 
-   But to avoid the repative nature of this, the LCAPIFile.cpp file defines a
-   macro named ``ADD_TAG`` to do the work as seen on lines 300-309:
+   But to avoid the repetitive nature of this, the :file:`LCAPIFile.cpp` file
+   defines a macro named ``ADD_TAG`` to do the work as seen on lines 300-309:
 
    .. code-block:: c++
 
@@ -179,7 +183,7 @@ describes the basic LCAPI functions used to implement it.
          lasso_typeAllocTag(token, &mem, FUNC);\
          lasso_typeAddMember(token, file, NAME, mem);\
       }
-      
+
       // add the type's member tags
       ADD_TAG(kMemOpen, file_open);
       ADD_TAG(kMemClose, file_close);
@@ -187,10 +191,10 @@ describes the basic LCAPI functions used to implement it.
       ADD_TAG(kMemWrite, file_write);
 
 #. At this point, the return value should be set. Keep in mind that the new
-   example_file type is completely blank except for the members that were added
-   above. No inherited members are available at this point. Inherited members
-   are only added after the LCAPI type initializer returns. Line 324 of the
-   CAPIFile.cpp file sets the return value:
+   ``example_file`` type is completely blank except for the members that were
+   added above. No inherited members are available at this point. Inherited
+   members are only added after the LCAPI type initializer returns. Line 324 of
+   the :file:`CAPIFile.cpp` file sets the return value:
 
    .. code-block:: c++
 
@@ -198,7 +202,7 @@ describes the basic LCAPI functions used to implement it.
 
 #. There were no errors in the type initialization process, so return a "no
    error" code to Lasso, completing the type's initialization. See line 325 of
-   the CAPIFile.cpp file:
+   the :file:`CAPIFile.cpp` file:
 
    .. code-block:: c++
 
@@ -213,7 +217,7 @@ describes the basic LCAPI functions used to implement it.
 #. The new file type has now been initialized and made available to the caller
    in the script. The first member method of the file type is
    ``example_file->open``, which is implemented as the LCAPI function
-   ``file_open`` which begins on line 385 of the CAPIFile.cpp file:
+   ``file_open`` which begins on line 385 of the :file:`CAPIFile.cpp` file:
 
    .. code-block:: c++
 
@@ -222,7 +226,7 @@ describes the basic LCAPI functions used to implement it.
 
 #. The first step in implementing a member method is to acquire the "self"
    instance. The "self" is the instance upon which the member call was made.
-   This is illustrated on lines 387-390 of the CAPIFile.cpp file:
+   This is illustrated on lines 387-390 of the :file:`CAPIFile.cpp` file:
 
    .. code-block:: c++
 
@@ -234,10 +238,10 @@ describes the basic LCAPI functions used to implement it.
 #. Once the "self" is successfully acquired and is not null, the rest of the
    member method can proceed. This member method accepts one parameter, which is
    the path to the file that will be opened. Since the path is a string value,
-   it can be acquired using ``lasso_getTagParam``. If the path parameter was not
+   it can be acquired using `lasso_getTagParam`. If the path parameter was not
    passed to the open member method, an error should be returned and indicated
-   to the user. All of this can be seen on lines 400-418 of the CAPIFile.cpp
-   file:
+   to the user. All of this can be seen on lines 400-418 of the
+   :file:`CAPIFile.cpp` file:
 
    .. code-block:: c++
 
@@ -263,16 +267,16 @@ describes the basic LCAPI functions used to implement it.
 
 #. Once the path is properly converted, the actual file can be opened using the
    file system calls supplied by the operating system. This concept is
-   illustrated on line 225 of the CAPIFile.cpp file:
+   illustrated on line 225 of the :file:`CAPIFile.cpp` file:
 
    .. code-block:: c++
 
       FILE * f = fopen(xformPath, openMode);
 
 #. The ``FILE`` pointer can now be retrieved using the
-   ``lasso_typeGetCustomPtr`` LCAPI function. No error has occurred while
+   `lasso_typeGetCustomPtr` LCAPI function. No error has occurred while
    opening the file, so complete the function call and return "no error". See
-   line 449 of the CAPIFile.cpp file:
+   line 449 of the :file:`CAPIFile.cpp` file:
 
    .. code-block:: c++
 

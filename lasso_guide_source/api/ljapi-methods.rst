@@ -10,8 +10,8 @@ Methods
 
 .. method:: ljapi_initialize()
 
-   This method creates a Java Virtual Machine for the running Lasso thread. A
-   Lasso Server instance calls this method when it starts up.
+   Creates a Java Virtual Machine for the running Lasso thread. A Lasso Server
+   instance calls this method when it starts up.
 
 .. method:: java_jvm_getenv(...)
 
@@ -99,8 +99,8 @@ Exceptions
 
 .. member:: java_jnienv->ExceptionCheck(...)
 
-   Returns true if a Java exception has been thrown, otherwise returns false.
-   See the documentation for more information:
+   Returns "true" if a Java exception has been thrown, otherwise returns
+   "false". See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16270>`_
 
 
@@ -149,21 +149,22 @@ Object Operations
 
 .. member:: java_jnienv->GetObjectClass(...)
 
-   This method returns a class reference for the specified object. It takes a
-   ``jobject`` object reference. See the documentation for more information:
-   `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16454>`_
+   Returns a class reference for the specified object. It takes a ``jobject``
+   object reference. See the documentation for more information:
+   `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.
+   html#wp16454>`_
 
 .. member:: java_jnienv->IsInstanceOf(...)
 
-   Returns true if the specified object is an instance of the specified class,
-   otherwise returns false. It takes a ``jobject`` object reference and a
+   Returns "true" if the specified object is an instance of the specified class,
+   otherwise returns "false". It takes a ``jobject`` object reference and a
    ``jobject`` class reference. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16472>`_
 
 .. member:: java_jnienv->IsSameObject(...)
 
-   Returns true if both specified objects refer to the same Java object,
-   otherwise false. It takes two ``jobject`` object references. See the
+   Returns "true" if both specified objects refer to the same Java object,
+   otherwise returns "false". It takes two ``jobject`` object references. See the
    documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16514>`_
 
@@ -336,7 +337,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallVoidMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the method doesn't return a value. It takes a
    ``jobject`` object reference, a ``jmethodid``, and any parameters to be
@@ -345,7 +346,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallObjectMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java object returned as
    a Lasso ``jobject`` object referece. It takes a ``jobject`` object reference,
@@ -355,7 +356,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallBooleanMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a boolean value. It takes
    a ``jobject`` object reference, a ``jmethodid``, and any parameters to be
@@ -364,7 +365,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallByteMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java byte primitive. It
    takes a ``jobject`` object reference, a ``jmethodid``, and any parameters to
@@ -373,7 +374,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallCharMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java char primitve. It
    takes a ``jobject`` object reference, a ``jmethodid``, and any parameters to
@@ -382,7 +383,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallShortMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java short primitive.
    It takes a ``jobject`` object reference, a ``jmethodid``, and any parameters
@@ -392,7 +393,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallIntMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java int primitive. It
    takes a ``jobject`` object reference, a ``jmethodid``, and any parameters to
@@ -401,7 +402,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallLongMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java long primitive. It
    takes a ``jobject`` object reference, a ``jmethodid``, and any parameters to
@@ -410,7 +411,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallFloatMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java float primitive.
    It takes a ``jobject`` object reference, a ``jmethodid``, and any parameters
@@ -420,7 +421,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallDoubleMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java double primitive.
    It takes a ``jobject`` object reference, a ``jmethodid``, and any parameters
@@ -430,7 +431,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallNonvirtualVoidMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when there will be no return value. It takes a
    ``jobject`` object reference, a ``jobject`` class reference, a ``jmethodid``,
@@ -440,7 +441,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallNonvirtualObjectMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java object. It takes a
    ``jobject`` object reference, a ``jobject`` class reference, a ``jmethodid``,
@@ -450,7 +451,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallNonvirtualBooleanMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a boolean. It takes a
    ``jobject`` object reference, a ``jobject`` class reference, a ``jmethodid``,
@@ -460,7 +461,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallNonvirtualByteMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java byte primitive. It
    takes a ``jobject`` object reference, a ``jobject`` class reference, a
@@ -470,7 +471,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallNonvirtualCharMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java char primitive. It
    takes a ``jobject`` object reference, a ``jobject`` class reference, a
@@ -480,7 +481,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallNonvirtualShortMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java short primitive.
    It takes a ``jobject`` object reference, a ``jobject`` class reference, a
@@ -490,7 +491,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallNonvirtualIntMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java int primitive. It
    takes a ``jobject`` object reference, a ``jobject`` class reference, a
@@ -500,7 +501,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallNonvirtualLongMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java long primitive. It
    takes a ``jobject`` object reference, a ``jobject`` class reference, a
@@ -510,7 +511,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallNonvirtualFloatMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java float primitive.
    It takes a ``jobject`` object reference, a ``jobject`` class reference, a
@@ -520,7 +521,7 @@ Calling Instance Methods
 
 .. member:: java_jnienv->CallNonvirtualDoubleMethod(...)
 
-   This method calls the specified Java instance method with the expected
+   Calls the specified Java instance method with the expected
    parameters passed as the remaining Lasso parameters to this method. This
    method should be used when the return value will be a Java double primitive.
    It takes a ``jobject`` object reference, a ``jobject`` class reference, a
@@ -988,23 +989,23 @@ Array Operations
 
    Returns the specified region of elements from a Java double array in a Lasso
    staticarray. It takes a ``jobject`` of the array, an integer for the start
-   index of the array region, and an integer specifying the number of elements. 
+   index of the array region, and an integer specifying the number of elements.
    See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
 
 .. member:: java_jnienv->SetBooleanArrayRegion(...)
 
    Replaces the specified portion of a Java boolean array with the values
-   specified in a Lasso static array. It takes a ``jobject`` of the array, an
+   specified in a Lasso staticarray. It takes a ``jobject`` of the array, an
    integer for the start index of the array region, an integer specifying the
    numer of elements to replace, and a staticarray containing the values to use.
-   See the documentation for more information:   
+   See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
 
 .. member:: java_jnienv->SetByteArrayRegion(...)
 
    Replaces the specified portion of a Java byte array with the values specified
-   in a Lasso static array. It takes a ``jobject`` of the array, an integer for
+   in a Lasso staticarray. It takes a ``jobject`` of the array, an integer for
    the start index of the array region, an integer specifying the numer of
    elements to replace, and a staticarray containing the values to use. See the
    documentation for more information:
@@ -1013,7 +1014,7 @@ Array Operations
 .. member:: java_jnienv->SetCharArrayRegion(...)
 
    Replaces the specified portion of a Java char array with the values specified
-   in a Lasso static array. It takes a ``jobject`` of the array, an integer for
+   in a Lasso staticarray. It takes a ``jobject`` of the array, an integer for
    the start index of the array region, an integer specifying the numer of
    elements to replace, and a staticarray containing the values to use. See the
    documentation for more information:
@@ -1022,7 +1023,7 @@ Array Operations
 .. member:: java_jnienv->SetShortArrayRegion(...)
 
    Replaces the specified portion of a Java short array with the values
-   specified in a Lasso static array. It takes a ``jobject`` of the array, an
+   specified in a Lasso staticarray. It takes a ``jobject`` of the array, an
    integer for the start index of the array region, an integer specifying the
    numer of elements to replace, and a staticarray containing the values to use.
    See the documentation for more information:
@@ -1031,7 +1032,7 @@ Array Operations
 .. member:: java_jnienv->SetIntArrayRegion(...)
 
    Replaces the specified portion of a Java int array with the values specified
-   in a Lasso static array. It takes a ``jobject`` of the array, an integer for
+   in a Lasso staticarray. It takes a ``jobject`` of the array, an integer for
    the start index of the array region, an integer specifying the numer of
    elements to replace, and a staticarray containing the values to use. See the
    documentation for more information:
@@ -1040,7 +1041,7 @@ Array Operations
 .. member:: java_jnienv->SetLongArrayRegion(...)
 
    Replaces the specified portion of a Java long array with the values
-   specified in a Lasso static array. It takes a ``jobject`` of the array, an
+   specified in a Lasso staticarray. It takes a ``jobject`` of the array, an
    integer for the start index of the array region, an integer specifying the
    numer of elements to replace, and a staticarray containing the values to use.
    See the documentation for more information:
@@ -1049,7 +1050,7 @@ Array Operations
 .. member:: java_jnienv->SetFloatArrayRegion(...)
 
    Replaces the specified portion of a Java float array with the values
-   specified in a Lasso static array. It takes a ``jobject`` of the array, an
+   specified in a Lasso staticarray. It takes a ``jobject`` of the array, an
    integer for the start index of the array region, an integer specifying the
    numer of elements to replace, and a staticarray containing the values to use.
    See the documentation for more information:
@@ -1058,7 +1059,7 @@ Array Operations
 .. member:: java_jnienv->SetDoubleArrayRegion(...)
 
    Replaces the specified portion of a Java double array with the values
-   specified in a Lasso static array. It takes a ``jobject`` of the array, an
+   specified in a Lasso staticarray. It takes a ``jobject`` of the array, an
    integer for the start index of the array region, an integer specifying the
    numer of elements to replace, and a staticarray containing the values to use.
    See the documentation for more information:
@@ -1115,7 +1116,7 @@ Return Types
 
 .. type:: jobject
 .. method:: jobject()
-   
+
    Stores a reference to either a Java class, instantiated object, or thrown
    error. See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/types.html#wp15954>`_
@@ -1127,7 +1128,7 @@ Return Types
    methods). See the documentation for more information:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/types.html#wp1064>`_
 
-.. type:: jfieldid 
+.. type:: jfieldid
 .. method:: jfieldid()
 
    Stores the JNI ID for data field members of a class (both an object's and the
