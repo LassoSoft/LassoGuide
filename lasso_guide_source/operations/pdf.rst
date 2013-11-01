@@ -277,11 +277,20 @@ types and methods described in this chapter.
    |                      |each page in the PDF. Requires a text string as a |
    |                      |value. Optional.                                  |
    +----------------------+--------------------------------------------------+
-   |``'Header'='Content'``|Adds defined file headers to the PDF              |
-   |                      |document. 'Header' is replaced with the name      |
-   |                      |of the file header (e.g. "Title", "Author"),      |
-   |                      |and 'Content' is replaced with the header         |
-   |                      |value. Optional.                                  |
+   |``-author``           |Takes a string value allowing you to specify the  |
+   |                      |Author file header.                               |
+   +----------------------+--------------------------------------------------+
+   |``-title``            |Takes a string value allowing you to specify the  |
+   |                      |Title file header.                                |
+   +----------------------+--------------------------------------------------+
+   |``-subject``          |Takes a string value allowing you to specify the  |
+   |                      |Subject file header.                              |
+   +----------------------+--------------------------------------------------+
+   |``-keywords``         |Takes a string value allowing you to specify the  |
+   |                      |Keywords file header.                             |
+   +----------------------+--------------------------------------------------+
+   |``-creator``          |Takes a string value allowing you to specify the  |
+   |                      |Creator file header.                              |
    +----------------------+--------------------------------------------------+
    |``-userPassword``     |Specifies a password that will be required to     |
    |                      |open the resulting PDF in a reader application    |
@@ -365,15 +374,14 @@ Use the :type:`pdf_doc` type with the ``-noCompress`` parameter::
 Start a PDF File With Custom File Headers
 -----------------------------------------
 
-Use the :type:`pdf_doc` type with appropriate ``'Header'='Content'``
-parameters::
+Use the :type:`pdf_doc` type with appropriate header::
 
-   local(my_file'= PDF_Doc(
+   local(my_file) = PDF_Doc(
       -file='MyFile.pdf',
       -size='A4',
-      'Title'='My PDF File',
-      'Subject'='How to create PDF files',
-      'Author'='John Doe'
+      -title='My PDF File',
+      -subject='How to create PDF files',
+      -author='John Doe'
    )
 
 
@@ -468,7 +476,7 @@ where pages start and stop within the flow of the Lasso PDF creation methods.
    The following example adds a page with the text "30. Important Chapter" to
    the pdf_doc object with a defined chapter number of 30::
 
-      #my_file->addChapter('Important Chapter', -number=30)
+      #my_file->addChapter(pdf_text('Important Chapter'), -number=30)
 
 
 .. member:: pdf_doc->setPageNumber(page::integer)
@@ -878,7 +886,7 @@ Use the `pdf_font->getEncoding` method. The following example returns the
 encoding of the current font face of a defined pdf_font object::
 
    #my_font->GetEncoding
-   // => CP1252
+   // => Cp1252
 
 
 Adding Text
