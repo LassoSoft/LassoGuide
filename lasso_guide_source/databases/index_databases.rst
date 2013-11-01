@@ -1,4 +1,5 @@
 .. http://www.lassosoft.com/Language-Guide-Database-Interaction
+.. _lasso-databases-guide-index:
 
 #######################
  Lasso Databases Guide
@@ -15,4 +16,3 @@
    sql-data-sources
    odbc-data-sources
    filemaker-data-sources
-   

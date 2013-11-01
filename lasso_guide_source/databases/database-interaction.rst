@@ -157,8 +157,8 @@ perform database actions that are available in Lasso.
    |``-nothing``   |The default action which performs no database interaction, |
    |               |but simply passes the parameters of the action.            |
    +---------------+-----------------------------------------------------------+
-   
-.. note:: 
+
+.. note::
    Table *Inline Database Action Parameters* lists all of the database actions
    that Lasso supports. Individual data source connectors may only support a
    subset of these parameters. The Lasso Connector for FileMaker Server does not
@@ -170,14 +170,14 @@ execute the action properly. These parameters are specified using additional
 keyword parameters. For example, a ``-database`` parameter specifies the
 database in which the action should take place and a ``-table`` parameter
 specifies the specific table from that database in which the action should take
-place. Keyword parameters specify the query for a ``-Search`` action, the
+place. Keyword parameters specify the query for a ``-search`` action, the
 initial values for the new record created by an ``-add`` action, or the updated
 values for an ``-update`` action.
 
 Full documentation of which ``inline`` parameters are required for each action
 are detailed in the section specific to that action in this chapter, the
-:ref:`Searching and Displaying Data<searching-displaying>` chapter, or
-the :ref:`Adding and Updating Records<adding-updating>` chapter.
+:ref:`Searching and Displaying Data <searching-displaying>` chapter, or
+the :ref:`Adding and Updating Records <adding-updating>` chapter.
 
 
 Specifying a FindAll Action Within an Inline
@@ -204,7 +204,7 @@ listing of the names of all the people stored in the "contacts" database::
    )]
       There are [found_count] record(s) in the People table.
       [records]
-          <br>[field('first_name')] [field('last_name')]
+          <br />[field('first_name')] [field('last_name')]
       [/records]
    [/inline]
 
@@ -244,10 +244,10 @@ record creating a listing of all the records for ``John Doe`` stored in the
    )]
       There were [found_count] record(s) found in the People table.
       [records]
-         <br>[Field('first_name')] [Field('last_name')]
+         <br />[Field('first_name')] [Field('last_name')]
       [/records]
    [/inline]
-    
+
    // =>
    // There were 1 record(s) found in the People table.
    // John Doe
@@ -278,8 +278,8 @@ to trigger the page containing the ``inline`` method.
 The following HTML form provides two inputs into which the visitor can type
 information. An input is provided for "first_name" and one for "last_name".
 These correspond to the names of fields in the "contacts" database. The action
-of the form is set to response.lasso which will contain the ``inline`` method
-that performs the actual database action::
+of the form is set to ``"/response.lasso"`` which will contain the ``inline``
+method that performs the actual database action::
 
    <form action="/response.lasso" method="POST">
       <br />First Name: <input type="text" name="first_name" value="" />
@@ -304,7 +304,7 @@ shown above. The ``inline`` contains a similar pair parameter for
    )]
       There were [found_count] record(s) found in the People table.
       [records]
-         <br>[field('first_name')] [field('last_name')]
+         <br />[field('first_name')] [field('last_name')]
       [/records]
    [/inline]
 
@@ -337,13 +337,13 @@ at the location of the ``web_request->params`` parameter.
 The following HTML form provides two inputs into which the visitor can type
 information. An input is provided for "first_name" and one for "last_name".
 These correspond to the names of fields in the "people" table. The action of the
-form is set to response.lasso which will contain the ``inline`` method that
-performs the actual database action::
+form is set to ``"/response.lasso"`` which will contain the ``inline`` method
+that performs the actual database action::
 
    <form action="/response.lasso" method="POST">
-      <br>First Name: <input type="text" name="first_name" value="">
-      <br>Last Name: <input type="text" name="last_name" value="">
-      <br><input type="submit" value="Search">
+      <br />First Name: <input type="text" name="first_name" value="">
+      <br />Last Name: <input type="text" name="last_name" value="">
+      <br /><input type="submit" value="Search">
    </form>
 
 The ``inline`` method in ``response.lasso`` contains the parameter
@@ -362,7 +362,7 @@ them in the ``inline`` as if they had been typed at the location of
    )]
       There were [found_count] record(s) found in the People table.
       [records]
-         <br>[field('first_name')] [field('last_name')]
+         <br />[field('first_name')] [field('last_name')]
       [/records]
    [/inline]
 
@@ -389,18 +389,19 @@ If the Lasso page containing an HTML form is the action to an HTML form or the
 URL has query parameters, then the values of the HTML form inputs can be set to
 values passed from the previous Lasso page using ``web_request->param``.
 
-For example, if a form is on default.lasso and the action of the form is
-"default.lasso" then the same page will be reloaded with the visitor-specified
-form values each time the form is submitted. The following HTML form uses
-``web_request->param`` methods to automatically restore the values the user
-specified in the form previously, each time the page is reloaded::
+For example, if a form is on "default.lasso" and the action of the form is
+``"default.lasso"`` then the same page will be reloaded with the
+visitor-specified form values each time the form is submitted. The following
+HTML form uses ``web_request->param`` methods to automatically restore the
+values the user specified in the form previously, each time the page is
+reloaded::
 
    <form action="default.lasso" method="POST">
-      <br>First Name:
+      <br />First Name:
          <input type="text" name="first_name" value="[web_request->param('first_name')]">
-      <br>Last Name:
+      <br />Last Name:
          <input type="text" name="last_name" value="[web_request->param('last_name')]">
-      <br><input type="submit" value="Submit">
+      <br /><input type="submit" value="Submit">
    </form>
 
 
@@ -414,14 +415,14 @@ Or, the results of searches from several databases could be merged and used to
 search another database.
 
 Database actions are combined by nesting ``inline`` methods. For example, if
-``inline`` methods are placed inside a ``records`` method within another 
+``inline`` methods are placed inside a ``records`` method within another
 ``inline`` method then the inner ``inline`` methods will execute once for each
 record found in the outer ``inline`` method.
 
 All database results methods function for only the innermost ``inline`` method.
 Variables can pass through into nested ``inline`` methods.
 
-.. note:: 
+.. note::
    SQL nested inlines can also be used to perform reversible SQL transactions in
    transaction-compliant data sources. See the :ref:`SQL-Transactions` section
    at the end of this chapter for more information.
@@ -435,8 +436,8 @@ people whose last name is currently "Doe" in a database to "Person". The outer
 ``inline`` method performs a hard-coded search for all records with "last_name"
 equal to "Doe". The inner ``inline`` method updates each record so "last_name"
 is now equal to "Person". The output confirms that the conversion went as
-xexpected by outputting the new values::
-     
+expected by outputting the new values::
+
    [inline(
       -search,
       -database='contacts',
@@ -458,6 +459,7 @@ xexpected by outputting the new values::
          [/inline]
       [/records]
    [/inline]
+
    // =>
    // Name is now Jane Person
    // Name is now John Person
@@ -502,9 +504,9 @@ are returned::
       inline(#params, -maxRecords=100) => {^
          'There are ' + found_count + 'record(s) in the People table.'
       ^}
-   ?>
 
    // => There are 2 record(s) in the People table.
+   ?>
 
 
 Inline Introspection
@@ -512,7 +514,7 @@ Inline Introspection
 
 Lasso has a set of methods that allow for information about the current
 ``inline`` action to be inspected. The parameters of the action itself can be
-returned or information about the action’s results can be returned.
+returned or information about the action's results can be returned.
 
 The following methods should be used within an ``inline`` method's associated
 block to return information about the action specified by the ``inline`` method.
@@ -520,7 +522,7 @@ block to return information about the action specified by the ``inline`` method.
 .. method:: action_param(name::string, join::string='\r\n')
 .. method:: action_param(name::string, -count)
 .. method:: action_param(name::string, position::integer)
-   
+
    Requires a parameter specifying the name of a keyword or pair parameter
    passed to the inline method. If no other parameter is specified, then it
    returns all values it finds for the specified name joined together with a
@@ -572,7 +574,7 @@ block to return information about the action specified by the ``inline`` method.
 .. method:: skipRecords_value()
 
    Returns the current offset into a found set.
-   
+
 .. method:: table_name()
 .. method:: layout_name()
 
@@ -580,7 +582,7 @@ block to return information about the action specified by the ``inline`` method.
 
 .. method:: search_arguments()
 
-   This method executes an associated block once for each pair parameter in the
+   Executes an associated block once for each pair parameter in the
    current action.
 
 .. method:: search_fieldItem()
@@ -597,11 +599,11 @@ block to return information about the action specified by the ``inline`` method.
 
    Used in the associated block of a ``search_arguments`` method. This method
    returns the operator associated with the current pair parameter.
-   
-   
+
+
 .. method:: sort_arguments()
 
-   This method executes an associated block once for each sort parameter in the
+   Executes an associated block once for each sort parameter in the
    current action.
 
 .. method:: sort_fieldItem()
@@ -660,10 +662,11 @@ of the "contacts" database for a person named "John Doe"::
          where not #param->first->beginsWith('-')
          select '<br />' + #param->asString->encodeHtml
       ^}
-   ?>
+
    // =>
    // <br />(first_name = John)
    // <br />(last_name = Doe)
+   ?>
 
 
 Display Action Parameters to a Site Visitor
@@ -683,7 +686,7 @@ The ``sort_arguments`` method can be used in conjunction with the
 parameters associated in a database action::
 
    [sort_arguments]
-      <br>[sort_fieldItem] [sort_orderItem]
+      <br />[sort_fieldItem] [sort_orderItem]
    [/sort_arguments]
 
 .. _inline-results-methods:
@@ -723,11 +726,11 @@ database or providing information about what database action was performed.
 .. method:: rows_array()
 
    Returns the complete found set in a staticarray of staticarrays. The outer
-   staticarray contains one staticarray for every row in the found set. The 
+   staticarray contains one staticarray for every row in the found set. The
    inner staticarrays contain one item for each field in the result set.
 
 .. method:: records_map(...)
-   
+
    Returns the complete found set in a map of maps. See the table below for
    details about the parameters and output of ``records_map``.
 
@@ -735,7 +738,7 @@ database or providing information about what database action was performed.
    |Parameter         |Description                                             |
    +==================+========================================================+
    |``-keyField``     |The name of the field to use as the key for the outer   |
-   |                  |map. Defaults to the current ``keyField_name``, “ID”, or|
+   |                  |map. Defaults to the current ``keyField_name``, "ID", or|
    |                  |the first field of the database results.                |
    +------------------+--------------------------------------------------------+
    |``-returnField``  |Specifies a field name that should be included in       |
@@ -767,7 +770,7 @@ database or providing information about what database action was performed.
 
 .. method:: resultSet(-inlinename= ?)
 .. method:: resultSet(num::integer, -inlinename= ?)
-.. method:: resultset(num::integer, inlinename::string)
+.. method:: resultSet(num::integer, inlinename::string)
 
    Returns a single result set from an inline. The method takes an integer for
    its parameter which specifies which result set to return. This defaults to
@@ -776,7 +779,7 @@ database or providing information about what database action was performed.
    set from a named inline.
 
 .. method:: shown_count()
-   
+
    Returns the number of records shown in the current found set. Less than or
    equal to ``maxRecords_value``.
 
@@ -800,7 +803,7 @@ set. For example, the following code generates a status message that can be
 displayed under a database listing::
 
     Found [found_count] records.
-    <br>Displaying [shown_count] records from [shown_first] to [shown_last].
+    <br />Displaying [shown_count] records from [shown_first] to [shown_last].
 
    // =>
    // Found 100 records of 1500 Total.
@@ -930,15 +933,15 @@ display the records from each result set::
 The same example can be rewritten using a named inline. An ``-inlineName``
 parameter with the name ``MyResults`` is added to the ``inline`` method, the
 ``resultSet_count`` method, and the ``resultSet`` method. This way the result
-sets can be outputted from any where after the ``inline`` method. The results of
-the following example will be the same as those shown above::
+sets can be output from anywhere after the ``inline`` method. The results of the
+following example will be the same as those shown above::
 
    [inline(
       -inlineName='MyResults',
       -database='contacts',
       -sql='SELECT * FROM people; SELECT * From companies'
    ) => {}]
-    
+
    [resultSet_count: -inlineName='MyResults'] Result Sets
    <hr />
    [loop(resultSet_count(-inlineName='MyResults'))]
@@ -948,7 +951,7 @@ the following example will be the same as those shown above::
          [/records]
          <hr />
       [/resultSet]
-   [/loop] 
+   [/loop]
 
 
 Showing Database Schema
@@ -975,7 +978,7 @@ database action that returns results including ``-search``, ``-add``,
 
 .. method:: database_names()
 
-   This method executes the associated block for every database specified in
+   Executes the associated block for every database specified in
    Lasso Admin. Requires using ``database_nameItem`` to show results.
 
 .. method:: database_nameItem()
@@ -990,7 +993,7 @@ database action that returns results including ``-search``, ``-add``,
 
 .. method:: database_tableNames(dbname::string)
 
-   This method executes the associated block for every table in the specified
+   Executes the associated block for every table in the specified
    database. Requires using ``database_tableNameItem`` to show results.
 
 .. method:: database_tableNameItem()
@@ -1045,7 +1048,7 @@ methods. The tables within the "Site" database are listed::
    [database_tableNames('Site')]
       <br />[loop_count]: [database_tableNameItem]
    [/database_tablenames]
-    
+
    // =>
    // <br />1: _outgoingemail
    // <br />2: _outgoingemailprefs
@@ -1071,6 +1074,7 @@ each field is returned. The fields within the "contacts" table are shown::
          <br />[loop_count]: [field_name(loop_count)] ([field_name(loop_count, -type)])
       [/loop]
    [/inline]
+
    // =>
    // <br />1: creation_date (Date)
    // <br />2: id (Number)
@@ -1124,8 +1128,8 @@ Advantages
 Disadvantages
    Setting up a new data source when using the database method requires visiting
    Lasso Admin. This helps promote good security practices, but can be an
-   impediment when working on simple Web sites or when quickly mocking up
-   solutions. In addition, having part of the set up for a Web site in Lasso
+   impediment when working on simple web sites or when quickly mocking up
+   solutions. In addition, having part of the set up for a website in Lasso
    Admin means that Lasso must be configured properly in order to deploy a
    solution. It is sometimes desirable to have all of the configuration of a
    solution contained within the code files of the solution itself.
@@ -1228,10 +1232,10 @@ source host. The primary differences are explained here:
    such as ``-search``, ``-findAll``, ``-add``, ``-update``, ``-delete``, etc.
    require that the database, table, and key field be specified just as they
    would need to be in any inline.
--  Some SQL statements may also require that a ``-Database`` be specified. For
-   example, in MySQL, a host-level SQL statement like "SHOW DATABASES" doesn’t
+-  Some SQL statements may also require that a ``-database`` be specified. For
+   example, in MySQL, a host-level SQL statement like "SHOW DATABASES" doesn't
    require that a ``-database`` be specified. A table-level SQL statement like
-   "SELECT * FROM `people`" won’t work unless the ``-database`` is specified in
+   "SELECT * FROM `people`" won't work unless the ``-database`` is specified in
    the inline. (A fully qualified SQL statement like "SELECT * FROM
    `contacts`.`people`" will also work without a ``-database``.)
 
@@ -1255,12 +1259,12 @@ result sets. The ``resultSet_count`` method returns the number of result sets
 which Lasso found. The ``resultSet`` method can then be used with an integer
 parameter to return the results from one of the result sets.
 
-.. note:: 
+.. note::
    Visitor supplied values must be sanitized when they are concatenated into SQL
    statements. Sanitizing these values ensures that no invalid characters are
    passed to the data source and helps to prevent SQL injection attacks.
-   The ``string->encodesql`` method should be used to encode values for MySQL
-   strings. The ``string->encodesql92`` method should be used to encode values
+   The ``string->encodeSql`` method should be used to encode values for MySQL
+   strings. The ``string->encodeSql92`` method should be used to encode values
    for strings for other SQL-compliant data sources including JDBC data sources
    and SQLite. The ``-search``, ``-add``, ``-update``, etc. database actions
    automatically perform sanitation on values passed as pairs into an inline.
@@ -1270,7 +1274,7 @@ parameter to return the results from one of the result sets.
    consult the documentation included with your data source for information on
    what SQL statements are supported by it.
 
-.. note:: 
+.. note::
    The ``-sql`` inline parameter is not supported for FileMaker data sources.
 
 .. tabularcolumns:: |l|L|
@@ -1302,15 +1306,15 @@ parameter to return the results from one of the result sets.
 The ``-database`` parameter can be any database within the data source in which
 the SQL statement should be executed. The ``-database`` parameter will be used
 to determine the data source, table references within the statement can include
-both a database name and a table name, e.g. "contacts.people" in order to fetch
+both a database name and a table name (e.g. "contacts.people") in order to fetch
 results from multiple tables. For example, to create a new database in MySQL, a
 "CREATE DATABASE" statement can be executed with "-Database" set to "Site".
 
-When referencing the name of a database and table in a SQL statement (e.g. 
+When referencing the name of a database and table in a SQL statement (e.g.
 "contacts.people"), only the true names of a database can be used as MySQL does
 not recognize Lasso aliases in a SQL command.
 
-.. member:: string->encodesql()
+.. member:: string->encodeSql()
    :noindex:
 
    Encodes illegal characters in MySQL string literals by escaping them with a
@@ -1318,7 +1322,7 @@ not recognize Lasso aliases in a SQL command.
    statements only contain valid characters. This method must be used to encode
    visitor supplied values within SQL statements for MySQL strings.
 
-.. member:: string->encodesql92
+.. member:: string->encodeSql92()
    :noindex:
 
    Encodes illegal characters in SQL string literals by escaping a single quote
@@ -1404,9 +1408,9 @@ All visitor supplied values must be sanitized before they are concatenated into
 a SQL statement in order to ensure the validity of the SQL statement and to
 prevent SQL injection. Values from the ``action_param``, ``cookie``, and
 ``field`` methods should be encoded as well as values from any calculations
-which rely on these methods. The ``string->encodesql`` method should be used to
+which rely on these methods. The ``string->encodeSql`` method should be used to
 encode values within SQL statements for MySQL data sources. The
-``string->encodesql92`` method should be used to encode values for other
+``string->encodeSql92`` method should be used to encode values for other
 SQL-compliant data sources including JDBC data sources and SQLite.
 
 The following example encodes the action parameter for ``first_name`` for a
@@ -1414,7 +1418,7 @@ MySQL data source::
 
    [inline(
       -database='example',
-      -sql="SELECT * FROM phone_book WHERE first_name = '" + string(web_request->param('first_name')->encodesql + "'"
+      -sql="SELECT * FROM phone_book WHERE first_name = '" + string(web_request->param('first_name')->encodeSql + "'"
    )]
       …
    [/inline]
@@ -1424,7 +1428,7 @@ SQLite (or other SQL-compliant) data source::
 
    [Inline(
       -database='example',
-      -sql="SELECT * FROM phone_book WHERE first_name = '" + string(web_request->param('first_name')->encodesql92 + "'"
+      -sql="SELECT * FROM phone_book WHERE first_name = '" + string(web_request->param('first_name')->encodeSql92 + "'"
    )]
       …
    [/inline]
@@ -1554,6 +1558,7 @@ inline::
          [field('last_insert_id()')]
       [/inline]
    [/inline]
+
    // =>
    // 23
 
@@ -1597,22 +1602,22 @@ The particular values are specified as an array. Each element of the array
 corresponds with one question mark from the prepared statement. To insert "John
 Doe" into the "people" table the following array would be used::
 
-    array("John", "Doe") 
+    array("John", "Doe")
 
 One new database action is used to prepare statement and execute them.
 ``-prepare`` is similar to ``-sql``, but informs Lasso that you want to create a
-prepared statement. Nested inlines are then issued with an array and the -sql
-parameter. The array should contain values which should be plugged into the
-prepared statement.
+prepared statement. Nested inlines are then issued with an array and the
+``-sql`` parameter. The array should contain values which should be plugged into
+the prepared statement.
 
 The prepared statement and values shown above would be issued by the following
 inlines. The outer inline prepares the statement and the inner inline executes
 it with specific values. Note that the inner inline does not contain any
 ``-database`` or ``-table`` parameters. These are inherited from the outer
-inline so they don’t need to be specified again::
+inline so they don't need to be specified again::
 
    inline(
-      -database='contacts', 
+      -database='contacts',
       -prepare='INSERT INTO people (`first_name`, `last_name`) VALUES (?, ?)'
    ) => {
       inline((: "John", "Doe"), -sql) => {}

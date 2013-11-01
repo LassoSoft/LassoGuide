@@ -6,7 +6,7 @@ Adding and Updating Records
 
 Lasso provides action parameters for using the ``inline`` method for adding,
 updating, and deleting records within Lasso compatible databases. These action
-parameters are used in conjunction with additional kewyord and pair parameters
+parameters are used in conjunction with additional keyword and pair parameters
 in order to perform the desired database action in a specific database and table
 or within a specific record.
 
@@ -46,8 +46,8 @@ MySQL
 
 FileMaker Server
    By default all communication is in the MacRoman character set when Lasso
-   Server is hosted on Mac OS X or in the Latin-1 (ISO 8859-1) character set
-   when Lasso Server is hosted on Windows.
+   Server is hosted on OS X or in the Latin-1 (ISO 8859-1) character set when
+   Lasso Server is hosted on Windows.
 
 JDBC
    All communication with JDBC data sources is in the UTF-8 character set.
@@ -86,10 +86,10 @@ structure to check the current error message and see if it is equal to
 
    [if(error_currentError == error_databaseTimeout)]
       Connection to database lost!
-   [/if] 
+   [/if]
 
 Full documentation about error methods and error codes can be found in the
-:ref:`Error Handling<error-handling>` chapter.
+:ref:`Error Handling <error-handling>` chapter.
 
 
 Adding Records
@@ -121,7 +121,7 @@ action. The required parameters are detailed in the following table.
    +---------------+-----------------------------------------------------------+
    |``-host``      |Optional inline host array. See the :ref:`Inline Hosts     |
    |               |<inline-hosts>` section in the :ref:`Database Interaction  |
-   |               |Fundamentals<database-interaction>` chapter for more       |
+   |               |Fundamentals <database-interaction>` chapter for more      |
    |               |information.                                               |
    +---------------+-----------------------------------------------------------+
 
@@ -339,14 +339,14 @@ The required parameters are detailed in the following table.
    +---------------+-----------------------------------------------------------+
    |``-host``      |Optional inline host array. See the :ref:`Inline Hosts     |
    |               |<inline-hosts>` section in the :ref:`Database Interaction  |
-   |               |Fundamentals<database-interaction>` chapter for more       |
+   |               |Fundamentals <database-interaction>` chapter for more      |
    |               |information.                                               |
    +---------------+-----------------------------------------------------------+
 
 
 Lasso has two methods to find which records are to be updated.
 
-``-KeyField`` and ``-KeyValue``
+``-keyField`` and ``-keyValue``
    Lasso can identify the record which is to be updated using the values for the
    parameters ``-keyField`` and ``-keyValue``. ``-keyField`` must be set to the
    name of a field in the table. Usually, this is the primary key field for the
@@ -356,7 +356,7 @@ Lasso has two methods to find which records are to be updated.
 
    The following inline would update the record with an "id" of "1" so it has a
    last name of "Doe"::
-  
+
       inline(
          -update,
          -database='contacts',
@@ -372,16 +372,16 @@ Lasso has two methods to find which records are to be updated.
    has a unique value for every record in the table) then the inline will only
    update one record.
 
-``-Key``
+``-key``
    Lasso can identify the records that are to be updated using a search that is
    specified in an array. The search can use any of the fields in the current
    database table and any of the operators and logical operators which are
-   described in the :ref:`Searching and Displaying Data<searching-displaying>`
+   described in the :ref:`Searching and Displaying Data <searching-displaying>`
    chapter.
 
    The following inline would update all records in the people database that
    have a first name of "John". to have a last name of "Doe"::
-  
+
       Inline(
          -update,
          -database='contacts',
@@ -399,7 +399,7 @@ Lasso has two methods to find which records are to be updated.
    field values for the record which is updated. All pair parameters must
    reference a writable field within the database. Any fields which are not
    referenced will maintain the values they had before the update.
-  
+
 
 Lasso returns a reference to the record which was updated within the database.
 The reference is different depending on what type of database is being used.
@@ -409,7 +409,7 @@ SQL Data Sources
    used to identify the record to be updated. The ``-keyField`` should always be
    set to the primary key or auto-increment field of the table. The results when
    using other fields are undefined.
-  
+
    If the ``-keyField`` is not set to the primary key field or auto-increment
    field of the table or if ``-maxRecords`` is set to "0" then no record will be
    returned as a result of the ``-update`` action. This is useful if a large
@@ -625,7 +625,7 @@ values match those from the outer ``inline`` method exactly. The pair parameter
          [/inline]
       [/records]
    [/inline]
-  
+
 This particular search only finds one record to update. If the update action is
 successful then the following will be returned for each updated record::
 
@@ -671,13 +671,13 @@ are detailed in the following table.
    +----------------+----------------------------------------------------------+
    |``-host``       |Optional inline host array. See the :ref:`Inline Hosts    |
    |                |<inline-hosts>` section in the :ref:`Database Interaction |
-   |                |Fundamentals<database-interaction>` chapter for more      |
+   |                |Fundamentals <database-interaction>` chapter for more     |
    |                |information.                                              |
    +----------------+----------------------------------------------------------+
-  
+
 Lasso has two methods to find which records are to be deleted.
 
-``-KeyField`` and ``-KeyValue``
+``-keyField`` and ``-keyValue``
    Lasso can identify the record which is to be deleted using the values for the
    ``-keyField`` and ``-keyValue`` parameters. ``-keyField`` must be set to the
    name of a field in the table. Usually, this is the primary key field for the
@@ -701,11 +701,11 @@ Lasso has two methods to find which records are to be deleted.
    has a unique value for every record in the table) then the inline will only
    delete one record.
 
-``-Key``
+``-key``
    Lasso can identify the records that are to be deleted using a search which is
    specified in an array. The search can use any of the fields in the current
    database table and any of the operators and logical operators which are
-   described in the :ref:`Searching and Displaying Data<searching-displaying>`
+   described in the :ref:`Searching and Displaying Data <searching-displaying>`
    chapter.
 
    The following inline would delete all records in the people database which
@@ -767,7 +767,7 @@ record in the database with the last name of "Peoples".
 .. warning::
    These techniques can be used to remove all records from a database table. It
    should be used with extreme caution and tested thoroughly before being added
-   to a public Web site.
+   to a public website.
 
 There are two methods to accomplish this. The first method is to use the
 ``-key`` parameter to find the records that need to be deleted within a single

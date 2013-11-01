@@ -11,11 +11,11 @@ methods and options which are unique to FileMaker Server connections including
 ``-layoutResponse`` and ``-noValueLists``.
 
 Lasso is a predominantly datasource-independent language. It does include
-many FileMaker specific tags which are documented in this chapter. However, all
+many FileMaker-specific tags which are documented in this chapter. However, all
 of the common procedures outlined in the
-:ref:`Database Interaction Fundamentals<database-interaction>`,
-:ref:`Searching and Displaying Data<searching-displaying>`, and
-:ref:`Adding and Updating Records<adding-updating>` chapters can be used with
+:ref:`Database Interaction Fundamentals <database-interaction>`,
+:ref:`Searching and Displaying Data <searching-displaying>`, and
+:ref:`Adding and Updating Records <adding-updating>` chapters can be used with
 FileMaker data sources.
 
 .. note::
@@ -70,7 +70,7 @@ Performance Tips
 This section contains a number of tips which will help get the best performance
 from a FileMaker database. Since queries must be performed sequentially within
 FileMaker, even small optimizations can yield significant increases in the speed
-of Web serving under heavy load.
+of web serving under heavy load.
 
 Dedicated FileMaker Machine
    For best performance, place the FileMaker Server on a different machine from
@@ -78,13 +78,13 @@ Dedicated FileMaker Machine
 
 FileMaker Server
    If a FileMaker database must be accessed by a mix of FileMaker clients and
-   Web visitors through Lasso, it should be hosted on FileMaker Server. Lasso
+   web visitors through Lasso, it should be hosted on FileMaker Server. Lasso
    can access the database directly through FileMaker Server 7-12 Advanced,
    FileMaker Server 9-12.
 
 Index Fields
    Any fields which will be searched through Lasso should have indexing turned
-   on. Avoid searching on unstored calculation fields, related fields, and
+   on. Avoid searching on non-stored calculation fields, related fields, and
    summary fields.
 
 Custom Layouts
@@ -183,7 +183,7 @@ data sources.
 Search Operators
 ----------------
 
-By default FileMaker performs a “begins with” search for each field in a query.
+By default FileMaker performs a "begins with" search for each field in a query.
 In FileMaker Server each field can only be specified one time within each search
 query. See the information about FileMaker search symbols below for strategies
 to perform complex queries in FileMaker Server.
@@ -226,11 +226,12 @@ Operator  Description
          symbols.
 ======== =======================================================================
 
-Note that there is no ``-neq`` operator or other negated operators. It is necessary
-to use a ``-not`` query to omit records from the found set instead. For example, to
-find records where the field "first_name" is not "Joe" the following search terms
-must be used: ``-not, -op='eq', 'first_name'='Joe'``
+Note that there is no ``-neq`` operator or other negated operators. It is
+necessary to use a ``-not`` query to omit records from the found set instead.
+For example, to find records where the field "first_name" is not "Joe" the
+following search terms must be used: ``-not, -op='eq', 'first_name'='Joe'``
 
+.. is this paragraph still accurate?
 
 The ``-rx`` operator can be used to pass a raw FileMaker search expression as a
 query. This allows the use of any of the FileMaker search symbols. See the
@@ -267,7 +268,7 @@ Symbol    Description
           returned.
 ========= ======================================================================
 
-The range symbol ("..") is most useful for performing searches within a date
+The range symbol (``..``) is most useful for performing searches within a date
 range. For example a date in 2006 can be found by searching for ``-rx,
 'date_field'='1/1/2006 .. 12/31/2006'``.
 
@@ -275,9 +276,9 @@ range. For example a date in 2006 can be found by searching for ``-rx,
 Logical Operators
 -----------------
 
-FileMaker data sources default to performing an “and” search. The records that
+FileMaker data sources default to performing an "and" search. The records that
 are returned from the data source must match all of the criteria that are
-specified. It is also possible to specify ``-opLogical`` to switch to an “or”
+specified. It is also possible to specify ``-opLogical`` to switch to an "or"
 search where the records that are returned from the data source may match any of
 the criteria that are specified.
 
@@ -296,14 +297,14 @@ FileMaker 9 Complex Queries
 
 A FileMaker Server 9 search request is made up of one or more queries. By
 default a single query is generated and all of the search terms within it are
-combined using an “and” operator. Additional queries can be added to either
-extend the found set using an “or” operator or to omit records from the found
-set using a “not” operator. These queries correspond precisely to find requests
+combined using an ``and`` operator. Additional queries can be added to either
+extend the found set using an ``or`` operator or to omit records from the found
+set using a ``not`` operator. These queries correspond precisely to find requests
 within the FileMaker Server user interface.
 
 Each field can only be listed once per query. The standard Lasso operators can
 be used for most common search parameters like equals, begins with, ends with,
-contains, less than, greater than, etc. FileMaker’s standard find symbols can be
+contains, less than, greater than, etc. FileMaker's standard find symbols can be
 used for more complex criteria. It may also be necessary to use multiple queries
 for more complex search criteria.
 
@@ -323,11 +324,11 @@ Keyword Description
         the result set.
 ======= ========================================================================
 
-A search with a single query uses an “and” operator to combine each of the
-search terms. Records where the field "first_name" begins with the letter "J" and the
-field "last_name" begins with the letter "D" can be found using the following search
-terms in Lasso. Each record in the result set will match every search term in
-the query: ``-bw, 'first_name'='J', -bw, 'last_name='D'``
+A search with a single query uses an ``and`` operator to combine each of the
+search terms. Records where the field "first_name" begins with the letter "J"
+and the field "last_name" begins with the letter "D" can be found using the
+following search terms in Lasso. Each record in the result set will match every
+search term in the query: ``-bw, 'first_name'='J', -bw, 'last_name='D'``
 
 We start an additional query using an ``-or`` parameter. FileMaker runs the
 first and second queries independently and then combines the search results. The
@@ -355,9 +356,9 @@ parameter. FileMaker will run the first query and any ``-or`` queries first
 generating a complete result set. Then, the ``-not`` queries will be run and any
 records which match those queries will be omitted from the found set. The result
 of the following search terms will be to find every record where the field
-"first_name" begins with the letter "J" and the field "last_name" begins withthe
-letter "D" except for the record for "John Doe". Each records in the result set
-will match the first query and will not match the second query::
+"first_name" begins with the letter "J" and the field "last_name" begins with
+the letter "D" except for the record for "John Doe". Each records in the result
+set will match the first query and will not match the second query::
 
    -bw, 'first_name'='J',
    -bw, 'last_name'='D'
@@ -375,9 +376,9 @@ Additional Commands
 
 FileMaker Server 9 supports a number of additional unique commands which are
 summarized in the following table. Most of these commands are passed through to
-FileMaker without modification by Lasso. The FileMaker Server 9 Custom Web
-Publishing with XML and XSLT documentation should be consulted for full details
-about these commands.
+FileMaker without modification by Lasso. The :title-reference:`FileMaker Server
+9 Custom Web Publishing with XML and XSLT documentation` should be consulted for
+full details about these commands.
 
 +---------------------+--------------------------------------------------------+
 |Keyword              |Description                                             |
@@ -470,7 +471,7 @@ record is changed to "John Surname"::
 
    // =>
    // 126: John Surname
- 
+
 The following example shows a record in "contacts" being deleted with
 "-keyValue=127". The ``-keyField`` keyword parameter is included, but its value
 is set to the empty string::
@@ -499,9 +500,9 @@ Return Custom Sorted Results
 
 Specify ``-sortField`` and ``-sortOrder`` keyword parameters within the search
 inline. The records are first sorted by "title" in custom order, then by
-"last_name" and "first_name" in ascending order. The "title" field will be sorted in
-the order of the elements within the value list associated with the field in the
-database. In this case, it will be sorted as "Mr., Mrs., Ms."::
+"last_name" and "first_name" in ascending order. The "title" field will be
+sorted in the order of the elements within the value list associated with the
+field in the database. In this case, it will be sorted as "Mr., Mrs., Ms."::
 
    inline(
       -findAll,
@@ -547,17 +548,17 @@ examples are included in the sections that follow.
 
 .. method:: repeating(name::string)
 
-   This method executes an associated block once for each defined repetition of
+   Executes an associated block once for each defined repetition of
    a repeating field. Requires a single parameter, the name of the repeating
-   field from the current layout. 
+   field from the current layout.
 
 .. method:: repeating_valueItem()
 
-   Returns the value for each repetition of a repeating field. 
+   Returns the value for each repetition of a repeating field.
 
 .. method:: portal(name::string)
 
-   This method executes an associated block once for each record in a portal.
+   Executes an associated block once for each record in a portal.
    Requires a single parameter, the name of the portal relationship from the
    current layout. Fields from the portal can be found using the same method as
    for related records (e.g. ``field('Calls::Approved')`` within a portal showing
@@ -696,7 +697,7 @@ call is displayed::
             'for ' + field('calls::duration') + ' minutes.'
          ^}// Close portal
          '</p>'
-      ^} // Close records   
+      ^} // Close records
    ^} // Close inline
 
    // =>
@@ -750,7 +751,7 @@ formatted field in the current layout.
 .. method:: value_list(colName::string)
    :noindex:
 
-   This method executes an associated block for each value in the named value
+   Executes an associated block for each value in the named value
    list. Requires a single parameter, the name of a field from the current
    layout which has a value list assigned to it.
 

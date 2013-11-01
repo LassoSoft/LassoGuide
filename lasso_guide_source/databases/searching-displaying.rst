@@ -75,8 +75,8 @@ MySQL
 
 FileMaker Server
    By default all communication is in the MacRoman character set when Lasso
-   Server is hosted on Mac OS X or in the Latin-1 (ISO 8859-1) character set
-   when Lasso Server is hosted on Windows.
+   Server is hosted on OS X or in the Latin-1 (ISO 8859-1) character set when
+   Lasso Server is hosted on Windows.
 
 JDBC
    All communication with JDBC data sources is in the UTF-8 character set.
@@ -85,8 +85,9 @@ Error Reporting
 ===============
 
 After a database action has been performed, Lasso reports any errors which
-occurred via the ``[error_currentError]`` method. The value of this method
-should be checked to ensure that the database action was successfully performed.
+occurred via the `error_currentError` method. The value of this method should be
+checked to ensure that the database action was successfully performed.
+
 
 Display the Current Error Code and Message
 ------------------------------------------
@@ -114,10 +115,10 @@ structure to check the current error message and see if it is equal to
 
    [if(error_currentError == error_databaseTimeout)]
       Connection to database lost!
-   [/if] 
+   [/if]
 
 Full documentation about error methods and error codes can be found in the
-:ref:`Error Handling<error-handling>` chapter.
+:ref:`Error Handling <error-handling>` chapter.
 
 
 Searching Records
@@ -132,7 +133,7 @@ description of other recommended or optional parameters specific to the
 ``-search`` action.
 
 Additional optional parameters are described in
-:ref:`Table: Operator Parameters<inline-operator-parameters>` and
+:ref:`Table: Operator Parameters <inline-operator-parameters>` and
 :ref:`Table: Results Parameters <inline-results-parameters>` in the sections
 that follow.
 
@@ -172,7 +173,7 @@ that follow.
    +------------------------+--------------------------------------------------+
    |``-host``               |Optional inline host array. See the section on    |
    |                        |:ref:`Inline Hosts in the Database Interaction    |
-   |                        |Fundamentals<inline-hosts>` chapter for more      |
+   |                        |Fundamentals <inline-hosts>` chapter for more     |
    |                        |information.                                      |
    +------------------------+--------------------------------------------------+
 
@@ -203,14 +204,14 @@ current record being shown::
    [/inline]
 
 If the search was successful then the following results will be returned::
-     
+
    // =>
    // <br />John Person
    // <br />John Doe
 
 Additional pair parameters and keyword parameters can be used to generate more
 complex searches. These techniques are documented in the following section on
-:ref:`Operators<inline-search-operators>`.
+:ref:`Operators <inline-search-operators>`.
 
 
 Search a Database Using Visitor-Defined Values
@@ -265,7 +266,7 @@ Operators
 
 Lasso inlines include a set of parameters that allow operators to be used to
 create complex database queries. These parameters are summarized in
-:ref:`Table: Operator Parameters<inline-operator-parameters>`.
+:ref:`Table: Operator Parameters <inline-operator-parameters>`.
 
 .. _inline-operator-parameters:
 
@@ -301,7 +302,7 @@ Field Operators
    pair parameter. The field operator changes the way that the named field is
    searched for the value. If no field operator is specified then the default
    begins with ("bw") operator is used. See
-   :ref:`Table: Field Operators<inline-field-operators>` for a list of the
+   :ref:`Table: Field Operators <inline-field-operators>` for a list of the
    possible values. Field operators can also be abbreviated as ``-bw``, ``-ew``,
    ``-cn``, etc.
 
@@ -316,7 +317,7 @@ Field Operators
 ---------------
 
 The possible values for the ``-operator`` parameter are listed in
-:ref:`Table: Field Operators<inline-field-operators>`. The default operator is
+:ref:`Table: Field Operators <inline-field-operators>`. The default operator is
 begins with ("bw"). Case is unimportant when specifying operators.
 
 Field operators are interpreted differently depending on which data source is
@@ -339,13 +340,21 @@ regular expression operators.
    +=========================+=================================================+
    |``-op='bw'`` Or ``-bw``  |Begins With. Default if no operator is set.      |
    +-------------------------+-------------------------------------------------+
+   |``-op='nbw'`` Or ``-nbw``|Not Begins With.                                 |
+   +-------------------------+-------------------------------------------------+
    |``-op='cn'`` Or ``-cn``  |Contains.                                        |
+   +-------------------------+-------------------------------------------------+
+   |``-op='ncn'`` Or ``-ncn``|Not Contains.                                    |
    +-------------------------+-------------------------------------------------+
    |``-op='ew'`` Or ``-ew``  |Ends With.                                       |
    +-------------------------+-------------------------------------------------+
+   |``-op='new'`` Or ``-new``|Not Ends With.                                   |
+   +-------------------------+-------------------------------------------------+
    |``-op='eq'`` Or ``-eq``  |Equals.                                          |
    +-------------------------+-------------------------------------------------+
-   |``-op='ft'or -ft``       |Full Text. MySQL databases only.                 |
+   |``-op='neq'`` Or ``-neq``|Not Equals.                                      |
+   +-------------------------+-------------------------------------------------+
+   |``-op='ft'`` Or ``-ft``  |Full Text. MySQL databases only.                 |
    +-------------------------+-------------------------------------------------+
    |``-op='gt'`` Or ``-gt``  |Greater Than.                                    |
    +-------------------------+-------------------------------------------------+
@@ -354,8 +363,6 @@ regular expression operators.
    |``-op='lt'`` Or ``-lt``  |Less Than.                                       |
    +-------------------------+-------------------------------------------------+
    |``-op='lte'`` Or ``-lte``|Less Than or Equals.                             |
-   +-------------------------+-------------------------------------------------+
-   |``-op='neq'`` Or ``-neq``|Not Equals.                                      |
    +-------------------------+-------------------------------------------------+
    |``-op='rx'`` Or ``-rx``  |RegExp. Regular expression search. SQL databases |
    |                         |only.                                            |
@@ -539,7 +546,7 @@ Lasso inlines include a set of parameters that allow the results of a search to
 be customized. These parameters do not change the found set of records that are
 returned from the search, but they do change the data that is returned for
 formatting and display to the visitor. The results parameters are summarized in
-:ref:`Table: Results Parameters<inline-results-parameters>`.
+:ref:`Table: Results Parameters <inline-results-parameters>`.
 
 .. _inline-results-parameters:
 
@@ -588,13 +595,13 @@ The results parameters are divided into three categories:
    ``-skipRecords`` parameter sets the offset into the found set which is shown.
    These two methods define the window of records which are shown and can be
    used to navigate through a found set.
-   
+
 #. The **Fields** which are available are specified using the ``-returnField``
    method. Normally, all fields in the table that was searched are returned. If
    any ``-returnField`` parameters are specified then only those fields will be
    available to be returned to the visitor using the ``field`` method.
    Specifying ``-returnField`` parameters can improve the performance of Lasso
-   by not sending unnecessary data between the database and the Web server.
+   by not sending unnecessary data between the database and the web server.
 
    .. note::
       In order to use the ``keyField_value`` method within an ``inline``, the
@@ -725,7 +732,7 @@ Parameters that sort and limit the found set work the same as they do for
    |             |for the specified table. Recommended.                        |
    +-------------+-------------------------------------------------------------+
    |``-host``    |Optional inline host array. See the section on               |
-   |             |:ref:`Inline Hosts<inline-hosts>` in the Database            |
+   |             |:ref:`Inline Hosts <inline-hosts>` in the Database           |
    |             |Interaction Fundamentals chapter for more                    |
    |             |information.                                                 |
    +-------------+-------------------------------------------------------------+
@@ -806,7 +813,7 @@ parameters are required.
    |              |for the specified table. Recommended.                       |
    +--------------+------------------------------------------------------------+
    |``-host``     |Optional inline host array. See the section on              |
-   |              |:ref:`Inline Hosts<inline-hosts>` in the Database           |
+   |              |:ref:`Inline Hosts <inline-hosts>` in the Database          |
    |              |Interaction Fundamentals chapter for more                   |
    |              |information.                                                |
    +--------------+------------------------------------------------------------+
@@ -863,20 +870,20 @@ Displaying Data
 The examples in this chapter have all relied on the ``records`` tags and
 ``field`` methods to display the results of the search that have been performed.
 This section describes the use of these methods in more detail. (See the section
-on :ref:`Working with Inline Action Results<inline-results-methods>` in the
-:ref:`Database Interaction Fundamentals<database-interaction>` chaapter for
+on :ref:`Working with Inline Action Results <inline-results-methods>` in the
+:ref:`Database Interaction Fundamentals <database-interaction>` chapter for
 method documentation and more description.)
 
 The ``field`` method always returns the value for a field from the current
 record when it is used within an associated block of a ``records`` method. If
 the ``field`` method is used outside of ``records`` block but inside an
-``inline`` associated block then it returns the value for the field from the
+``inline`` associated block, then it returns the value for the field from the
 first record in the found set. If the found set is only one record then the
 ``records`` method is optional.
 
 .. note::
    **FileMaker** - Lasso Connector for FileMaker Server includes a collection of
-   FileMaker Server specific methods which return database results. See the
+   FileMaker Server-specific methods which return database results. See the
    :ref:`FileMaker Data Sources <FileMaker-Data-Sources>` chapter for more
    information.
 
@@ -927,7 +934,7 @@ primary key "id" equals "1". The ``keyField_value`` is shown along with the
       <br />[keyField_value]: [field('first_name')] [field('last_name')]
    [/inline]
 
-   // ->
+   // =>
    // <br />1: Jane Doe
 
 
@@ -950,7 +957,7 @@ results formatted later::
       ) => {}
    ?>
 
-   // ... Page Contents ...
+   <!-- ... Page Contents ... -->
 
    [records(-inlineName='FindAll Results')]
       <br />[loop_count]: [field('first_name')] [field('last_name')]
