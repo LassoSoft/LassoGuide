@@ -48,24 +48,24 @@ SHA1
    parameters, a string to be encrypted and a ``-seed`` keyword with the key or
    password for the encryption. It returns an encrypted bytes object.
 
-   The BlowFish methods are not binary-safe. The output of the tag will be
+   The BlowFish methods are not binary-safe. The output of the method will be
    truncated after the first null character. It is necessary to use
    `encode_base64`, `encode_hex`, or `encode_utf8` prior to encrypting data that
-   might contain binary characters using these methods.
+   might contain binary characters using this method.
 
 .. method:: decrypt_blowfish(ciphertext, -seed::string)
 
-   Decrypts a string encrypted using the industry standard BlowFish algorithm.
-   Accepts two parameters, a string to be decrypted and a ``-seed`` keyword
-   parameter with the key or password for the decryption. Returns a decrypted
-   bytes object.
+   Decrypts a byte stream encrypted using the industry standard BlowFish
+   algorithm. Accepts two parameters, a byte stream to be decrypted and a
+   ``-seed`` keyword parameter with the key or password for the decryption.
+   Returns a decrypted bytes object.
 
 .. method:: encrypt_md5(data::bytes)::string
 .. method:: encrypt_md5(data::any)::string
 
    Encrypts a string using the one-way MD5 hash algorithm. Accepts one
    parameter, the data to be encrypted. Returns a fixed-size hash value in
-   hexadecimal.
+   hexadecimal as a string.
 
 .. method:: encrypt_hmac(\
       -password, \
@@ -112,8 +112,8 @@ level of security possible. You should consult a security expert if security is
 very important for your web site.
 
 
-Store Data Securely in a Database
----------------------------------
+Store Encrypted Data in a Database
+----------------------------------
 
 Use the `encrypt_blowfish` and `decrypt_blowfish` methods to encrypt data which
 will be stored in a database and then to decrypt the data when it is retrieved
@@ -165,8 +165,8 @@ a site visitor. On every subsequent visit, the password given by the visitor is
 encrypted using the same method and compared to the stored value. If they match,
 then the visitor has supplied the same password they initially supplied.
 
-The following example takes a visitor-supplied password from a form and stores it
-into the "people" table in the "contacts" database::
+The following example takes a visitor-supplied password from a form and stores
+it encrypted using MD5 into the "people" table in the "contacts" database::
 
    local(visitor_password) = web_request->param('password')
    inline(
@@ -206,9 +206,7 @@ following example shows how you can verify the credentials they pass in a form::
 
 .. note::
    For more security, most log-in solutions require both a username and a
-   password. The password is not checked unless the username matches first. This
-   prevents site visitors from guessing passwords unless they know a valid
-   username. Also, many login solutions restrict the number of login attempts
+   password. Also, many login solutions restrict the number of login attempts
    that they will accept from a client s IP address, use salts, and iterate over
    the encryption algorithm thousands of times. To reiterate: You should consult
    a security expert if security is very important for your web site.
@@ -220,12 +218,9 @@ Cipher Methods
 Lasso includes a set of methods that allow access to a wide variety of
 encryption algorithms. These cipher methods provide implementations of many
 industry standard encryption methods and can be very useful when communicating
-using Internet protocols or communicating with legacy systems.
-
-The table below lists the ``cipher_…`` tags in Lasso. The following tables
-list several of the cipher algorithms and digest algorithms that can be used
-with the ``cipher_…`` tags. The `cipher_list` tag can be used to list what
-algorithms are supported in a particular Lasso installation.
+using Internet protocols or communicating with legacy systems. The `cipher_list`
+method can be used to list what algorithms are supported in a particular Lasso
+installation.
 
 .. note::
    The actual list of supported algorithms may vary from Lasso installation to
@@ -294,7 +289,7 @@ SHA1
 MD5
    Message Digest. A hash function that generates a 128-bit message digest.
    Replaces the MD4 and MD2 algorithms (which are also supported). Also
-   implemented in Lasso as ``encrypt_md5``.
+   implemented in Lasso as `encrypt_md5`.
 
 
 List All Supported Algorithms
@@ -304,7 +299,8 @@ Use the `cipher_list` method. The following example will return a list of all
 the cipher algorithms supported by this installation of Lasso::
 
    cipher_list
-   // => staticarray(DES-ECB, DES-EDE, DES-CFB, DES-OFB, DES-CBC, DES-EDE3-CBC, RC4, RC2-CBC, BF-CBC, CAST5-CBC, RC5-CBC)
+   // => staticarray(DES-ECB, DES-EDE, DES-CFB, DES-OFB, DES-CBC, DES-EDE3-CBC,\
+   //                RC4, RC2-CBC, BF-CBC, CAST5-CBC, RC5-CBC)
 
 With a ``-digest`` parameter the method will limit the returned list to all of
 the digest algorithms supported by this installation of Lasso::
@@ -328,7 +324,7 @@ Encrypt a Value Using 3DES
 Use the `cipher_encrypt` method. The following example will return the 3DES
 encryption for the value of a database field "message"::
 
-   cipher_encrypt(field('message'), -cipher='3DES', -key='My Secret Key')
+   cipher_encrypt(field('message'), -cipher='DES-EDE3-CBC', -key='My Very Secret Key For 3DES')
 
 
 Compression Methods
