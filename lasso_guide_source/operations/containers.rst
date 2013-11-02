@@ -26,7 +26,7 @@ Pair
 .. type:: pair
 
    Pairs are one of the most basic of containers. A pair always contains two
-   elements. These are referred to as the 'first' and 'second' elements and are
+   elements. These are referred to as the "first" and "second" elements and are
    accessed through methods of the same name.
 
 
@@ -40,9 +40,9 @@ Creating Pair Objects
    A pair is created in one of three ways. First, a zero parameter call to the
    pair method will generate a pair with the first and second values set to
    null. Second, a pair can be created by passing it another pair. This will set
-   the first and second values to the values from the parameter pair. Third, a
-   pair can be created by specifying the first and second values as parameters
-   when calling the pair method.
+   the first and second values to the first and second values from the passed
+   pair. Third, a pair can be created by specifying the first and second values
+   as parameters when calling the pair method.
 
 
 Using Pair Objects
@@ -54,8 +54,8 @@ Using Pair Objects
    These methods are used to access the elements of a pair. They return the
    value stored within.
 
-.. member:: pair->first = (f)
-.. member:: pair->second = (s)
+.. member:: pair->first=(f)
+.. member:: pair->second=(s)
 
    These methods permit the elements of a pair to be set.
 
@@ -92,7 +92,7 @@ Using Array Objects
 .. member:: array->insert(v, position::integer)
 
    These methods add new elements to the array. The first method adds the
-   element at the end of the array. The second method permits the position of
+   element to the end of the array. The second method permits the position of
    the insert to be specified. Position 1 is at the beginning of the array.
    Positions zero and negative positions will cause the method to fail. A
    position larger than the size of the array will insert the element at the
@@ -116,12 +116,13 @@ Using Array Objects
    array to which the parameter compares equally will be removed.
 
 .. member:: array->get(position::integer)
-.. member:: array->get(position::integer) = value
+.. member:: array->get=(value, position::integer)
 .. member:: array->sub(position::integer, count::integer=(self->size - #pos) + 1)
 
    The get method returns the element located at the indicated position. The
-   method will fail if the position is out of range. This method also permits
-   the element at the position to be set using assignment.
+   method will fail if the position is out of range. There is also a setter
+   version of this method which permits the position to be set to a new element
+   using assignment.
 
    The sub method returns a range of elements from the array. The first
    parameter indicates the starting position and the second parameter indicates
@@ -133,7 +134,7 @@ Using Array Objects
 
    These methods return the first, second and last elements from the array,
    respectively. If the array does not have an element for that position, null
-   is returned.
+   will be returned.
 
 .. member:: array->contains(matching)::boolean
 .. member:: array->count(matching)::integer
@@ -144,9 +145,9 @@ Using Array Objects
    contains method returns true if the matching parameter compares equally to
    any contained elements. The count method returns the number of matching
    elements. The findPosition method returns the position at which the next
-   matching element can be found. The optional second parameter indicates where
-   the search should begin. The find method returns a new array containing all
-   of the matched objects.
+   matching element can be found with an optional second parameter indicating
+   where the search should begin. The find method returns a new array containing
+   all of the matched objects.
 
 .. member:: array->size()::integer
 
@@ -178,9 +179,7 @@ Using Array Objects
 
    Example of combining an array and a staticarray and a pair into a new array::
 
-      array(1, 2, 3, 4, 5)
-      + (:'6','7','8')
-      + pair('nine', 'ten')
+      array(1, 2, 3, 4, 5) + (:'6','7','8') + pair('nine', 'ten')
       // => array(1, 2, 3, 4, 5, 6, 7, 8, nine, ten)
 
 
@@ -190,16 +189,16 @@ Staticarray
 .. type:: staticarray
 
    A staticarray is a container object that is not resizable. Staticarrays are
-   created with a fixed size. Objects can be reassigned within the staticarray,
-   but new positions cannot be added or removed. Staticarrays are designed to
-   be as efficient as possible both in the time used to create a new object and
-   in the memory used for the object itself. The elements of a staticarray are
-   accessed randomly, like an array, with 1-based positions.
+   created with a fixed size. Positions within the staticarray can be reassigned
+   different objects, but new positions cannot be added or removed. Staticarrays
+   are designed to be as efficient as possible both in the time used to create a
+   new object and in the memory used for the object itself. The elements of a
+   staticarray are accessed randomly, like an array, with 1-based positions.
 
    Lasso provides a shortcut for creating staticarray objects through the
    ``(:)`` syntax. This syntax begins with an open parenthesis immediately
-   followed by a colon. Then follows zero or more elements, finalized by a close
-   parenthesis.
+   followed by a colon. Then follows zero or more elements, finalized by a
+   closing parenthesis.
 
 
 Creating Staticarray Objects
@@ -207,10 +206,14 @@ Creating Staticarray Objects
 
 Example of creating a few staticarrays::
 
-   (:)
    // empty staticarray
-   (:1, 2, 8, 'Hi!', pair(1, 2))
+   (:)
+
    // staticarray with variety of elements
+   (:1, 2, 8, 'Hi!', pair(1, 2))
+   
+   // staticarray with 12 elements set to void
+   staticarray_join(12, void)
 
 .. method:: staticarray(...)
 .. method:: staticarray_join(count::integer, e)
@@ -224,11 +227,11 @@ Using Staticarray Objects
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. member:: staticarray->get(position::integer)
-.. member:: staticarray->get(position::integer) = value
+.. member:: staticarray->get=(value, position::integer)
 
    The get method returns the element at the indicated position. This method
    will fail if the position is out of range. The get method also permits the
-   element to be reassigned.
+   position to be reassigned with an assignment statement.
 
 .. member:: staticarray->first()
 .. member:: staticarray->second()
@@ -244,36 +247,41 @@ Using Staticarray Objects
    These methods search the staticarray for elements matching the parameter. The
    contains method returns true if the matching parameter compares equally to
    any contained elements. The findPosition method returns the position at which
-   the next matching element can be found. The optional second parameter
-   indicates where the search should begin. The find method returns a new array
+   the next matching element can be found with an optional second parameter
+   indicating where the search should begin. The find method returns a new array
    containing all of the matched objects.
 
 .. member:: staticarray->join(count::integer, o)::staticarray
 .. member:: staticarray->join(s::staticarray)::staticarray
 
    These methods combine the staticarray with other elements to create a new
-   staticarray. The first method adds the number indicated by the first
-   parameter of the second parameter into the new staticarray. The second method
-   combines the staticarray with the parameter to produce a new staticarray
-   containing the elements from both.
+   staticarray. The first method adds the number of posiitons indicated by the
+   first parameter and fills them with the value specified by the second
+   parameter. The second method combines the staticarray with the passed
+   staticarray to produce a new staticarray containing the elements from both.
 
-Example of joining new elements into a new staticarray::
+   Example of joining new elements into a new staticarray::
 
-   (:1, 2, 3)->join(5, 'Hi')
-   // => staticarray(1, 2, 3, Hi, Hi, Hi, Hi, Hi)
+      (:1, 2, 3)->join(5, 'Hi')
+      // => staticarray(1, 2, 3, Hi, Hi, Hi, Hi, Hi)
+
+      (:1, 2, 3)->join((:4, 5, 6))
+      // => staticarray(1, 2, 3, 4, 5, 6)
 
 .. member:: staticarray->sub(position::integer, count::integer=(self->size - #pos) + 1)::staticarray
 
    The sub method returns a range of elements. The first parameter indicates the
-   starting position and the second parameter indicates how many of the elements
-   to return. The elements are returned as a new staticarray object.
+   starting position and the optional second parameter indicates how many of the
+   elements to return. The elements are returned as a new staticarray object.
 
 .. member:: staticarray->+(s::staticarray)::staticarray
 .. member:: staticarray->+(o)::staticarray
 
-   The + operator can be used with staticarrays to either add one new element or
-   all the elements from another staticarray. Either variant will return the
-   elements in a new staticarray object.
+   The + operator can be used with staticarrays to create a new static array
+   with the additional elements. The fist variant returns a new staticarray with
+   all the elements from the two staticarrays, and the second returns a
+   staticarray with all the elements of the first and the additional element on
+   the right-hand side of the operator.
 
 
 List
@@ -285,8 +293,7 @@ List
    be efficiently added or removed from a list at the end or the beginning but
    cannot be added into the middle. Lists do not support random access, so the
    only way to get particular elements from a list is through one of the
-   iteration-related methods such as :ref:`query expressions
-   <query-expressions>`.
+   iterative methods such as :ref:`query expressions <query-expressions>`.
 
 
 Creating List Objects
@@ -313,9 +320,9 @@ Using List Objects
 .. member:: list->removeLast()
 .. member:: list->remove()
 
-   These methods remove elements from the list. Either the first element or the
-   last element can be removed. The remove method with no parameters removes the
-   last element.
+   These methods remove an element from the list. Either the first or the last
+   element can be removed. The remove method with no parameters removes the last
+   element.
 
 .. member:: list->removeAll()
 .. member:: list->removeAll(matching)
@@ -344,7 +351,7 @@ Queue
    can efficiently be inserted into the end of the queue (called pushing) and
    removed from the front of the queue (called popping). Queues do not support
    random access, so the only way to get particular elements from a queue is
-   through one of the iteration-related methods such as :ref:`query expressions
+   through one of the iterative methods such as :ref:`query expressions
    <query-expressions>`.
 
 
@@ -386,7 +393,7 @@ Using Queue Objects
 
 .. member:: queue->unspool(n::integer= ?)
 
-   This method returns a staticarray of the elements in the queue and removing
+   This method returns a staticarray of the elements in the queue and removes
    them from the queue. The number of elements to return and remove can be
    specified as an integer parameter to this method.
 
@@ -400,7 +407,7 @@ Stack
    can efficiently be inserted onto the beginning of the stack (called pushing)
    and removed from the top of the queue (called popping). Stacks do not support
    random access, so the only way to get particular elements from a stack is
-   through one of the iteration-related methods such as :ref:`query expressions
+   through one of the iterative methods such as :ref:`query expressions
    <query-expressions>`.
 
 
@@ -475,14 +482,15 @@ Creating Map Objects
    A map is created with zero or more key/value pair parameters. Any non-pair
    parameters given are inserted as a key with a null value.
 
-Example of creating a map with a series of parameters using string based keys::
+   Example of creating a map with a series of parameters using string based
+   keys::
 
-   local(myMap = map(
-      'C' = 247,
-      'L' = 'Hi!',
-      'G' = 97.401,
-      'N' = array(4, 5, 6)
-   )
+      local(myMap = map(
+         'C' = 247,
+         'L' = 'Hi!',
+         'G' = 97.401,
+         'N' = array(4, 5, 6)
+      )
 
 
 Using Map Objects
@@ -524,7 +532,7 @@ Set
 .. type:: set
 
    A set contains within it only unique elements. Each element is itself a key.
-   Sets support quickly determining if an object is contained within in.
+   Sets support quickly determining if an object is contained within it.
    Elements within a set must be able to onCompare themselves just as described
    for map keys.
 
@@ -546,7 +554,7 @@ Using Set Objects
 .. member:: set->contains(k)::boolean
 
    These methods find the given key within the set. The find method will return
-   the key if it is found. It returns void if the key is not within the set. The
+   the key if it is found; it returns void if the key is not within the set. The
    get method will return the key, but will fail if the key is not contained
    within the set. The contains method returns true if the key is in the set.
 
