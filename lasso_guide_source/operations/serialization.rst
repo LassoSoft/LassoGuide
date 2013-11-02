@@ -6,9 +6,9 @@ Serialization
 
 Serializing an object converts the object into a format which can be transmitted
 over the network or written to a file. The serialized object data can then later
-be used to de-serialize---or recreate---the object.
+be used to de-serialize --- or recreate --- the object.
 
-Lasso uses XML for object serialization. An object which supports serialization
+Lasso uses XML for object serialization. An object that supports serialization
 can be converted to and from XML. The object is given control over which of its
 data members will be written to the output.
 
@@ -25,23 +25,23 @@ provided through `trait_serializable`, which is described here.
 .. provide:: trait_serializable->serialize()::string
 
    Serializes the object and returns the resulting data. That data can then be
-   used to deserialize the object.
+   deserialized --- recreating an object with the correct data.
 
 
-Deserializing Objects
-=====================
+Deserializing Data
+==================
 
 Serialized object data is converted back into an object by using a
 `serialization_reader` object. This object is created with the serialized data
 and then its `read` method is called. If the read is successful, then a new
-object is returned of the same type as the original serialized object.
+object is returned of the same type and data as the original serialized object.
 
 This example code serializes an array of objects, then deserializes it back into
 a new array::
 
-   local(a = array(1, 2, 'three', pair(4='five')))
-   local(data = #a->serialize)
-   local(a2 = serialization_reader(#data)->read)
+   local(a) = array(1, 2, 'three', pair(4='five'))
+   local(data) = #a->serialize
+   local(a2) = serialization_reader(#data)->read
    #a == #a2
 
    // => true
@@ -86,7 +86,7 @@ Serializable objects must implement the following methods:
    the original object state.
 
 In addition to implementing the proper methods, the object must have
-`trait_serializable`. This trait should be added when the type is defined.
+:trait:`trait_serializable`. This trait should be added when the type is defined.
 
 
 serialization_element Objects
