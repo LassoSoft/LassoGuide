@@ -16,9 +16,9 @@ data members will be written to the output.
 Serializing Objects
 ===================
 
-An object is serialized by calling its `serialize` method. This method
-serializes the object and returns the resulting data as a string. This method is
-provided through `trait_serializable`, which is described here.
+An object is serialized by calling its `~trait_serializable->serialize` method,
+which serializes the object and returns the resulting data as a string. This
+method is provided through `trait_serializable`, which is described here.
 
 .. trait:: trait_serializable
 
@@ -33,8 +33,9 @@ Deserializing Data
 
 Serialized object data is converted back into an object by using a
 `serialization_reader` object. This object is created with the serialized data
-and then its `read` method is called. If the read is successful, then a new
-object is returned of the same type and data as the original serialized object.
+after which its `~serialization_reader->read` method is called. If the read is
+successful, then a new object is returned of the same type and data as the
+original serialized object.
 
 This example code serializes an array of objects, then deserializes it back into
 a new array::
@@ -86,7 +87,7 @@ Serializable objects must implement the following methods:
    the original object state.
 
 In addition to implementing the proper methods, the object must have
-:trait:`trait_serializable`. This trait should be added when the type is defined.
+`trait_serializable`. This trait should be added when the type is defined.
 
 
 serialization_element Objects

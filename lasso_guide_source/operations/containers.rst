@@ -375,7 +375,7 @@ Using Queue Objects
    These methods insert new elements into the queue. Elements will always be
    inserted at the end of the queue. The `insertFrom` method allows for multiple
    elements to be inserted into the queue by taking an object that implements
-   :trait:`trait_forEach`.
+   `trait_forEach`.
 
 .. member:: queue->first()
 .. member:: queue->get()
@@ -512,7 +512,7 @@ Using Map Objects
    `removeAll`, removes all of the keys/values from the map.
 
 .. member:: map->get(key)
-.. member:: map->get(value, key)
+.. member:: map->get=(value, key)
 .. member:: map->find(key)
 .. member:: map->contains(key)::boolean
 

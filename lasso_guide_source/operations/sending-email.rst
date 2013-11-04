@@ -839,10 +839,10 @@ example a simple email message is created in a variable ``message``::
    )
 
 The text of the composed email message can be viewed by outputting the variable
-``#message`` to the page. Note that `encode_html` should always be used since
-certain headers of the email message use angle brackets to surround values.
-Also, HTML ``<pre>…</pre>`` tags make it much easier to see the formatting of
-the email message. ::
+``#message`` to the page. Note that `string->encodeHtml` should always be used
+since certain headers of the email message use angle brackets to surround
+values. Also, HTML ``<pre>…</pre>`` tags make it much easier to see the
+formatting of the email message. ::
 
    <pre>[#message->asString->encodeHtml]</pre>
 

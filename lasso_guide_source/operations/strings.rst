@@ -71,8 +71,8 @@ Traditional Chinese character |4E26|.
 .. |4E26| unicode:: U+4E26
 
 Lasso also supports common escape sequences including ``\\r`` for a return
-character, ``\\n`` for a new-line character, ``\\r\\n`` for a Windows
-return/new- line, ``\\f`` for a form-feed character, ``\\t`` for a tab, and
+character, ``\\n`` for a newline character, ``\\r\\n`` for a Windows
+return/newline, ``\\f`` for a form-feed character, ``\\t`` for a tab, and
 ``\\v`` for a vertical-tab. See the table of :ref:`supported escape sequences
 <literals-table-1>` for the full list.
 
@@ -82,7 +82,7 @@ Converting Values to Strings
 
 Expressions that produce a value will convert that value to the `string` data
 type automatically, or they can be explicitly converted using the `string`
-creator method as well as the `null->asString` member method every object has.
+creator method as well as the `~null->asString` member method every object has.
 
 .. method:: string(obj::any)
 .. method:: string(obj::bytes, enc::string= ?)
@@ -142,7 +142,7 @@ Explicitly Convert a Value to a String Object
 
 Integer and decimal values can be converted to string objects using the `string`
 creator method. The value of the new string is the same as the value of the
-integer or decimal value when it is output using the `null->toString` method.
+integer or decimal value when it is output using the `~null->toString` method.
 
 The following example shows a math calculation and the integer result "579". The
 next line shows the same calculation with string parameters and the result of
@@ -163,8 +163,8 @@ creator method. The value will always either be the string "true" or the string
    // => false
 
 String member methods can be used on any value by first converting that value to
-a string using either the `string` creator method or the `null->asString` member
-method every object has. The following example shows how to use the
+a string using either the `string` creator method or the `~null->asString`
+member method every object has. The following example shows how to use the
 `string->size` member method on an integer by first converting it to a string
 object::
 

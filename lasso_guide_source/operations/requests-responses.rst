@@ -55,9 +55,9 @@ The `web_request` object has the following purposes:
 
 A `web_request` object will process the incoming data to make access to the
 various components of a web request more convenient. For example, all HTTP
-cookies are found and separated to be made available through the `cookies` or
-`cookie(name)` methods. Standard HTTP headers are made available through
-accessors such as `requestURI` or `httpHost`.
+cookies are found and separated to be made available through the
+`web_request->cookies` or `web_request->cookie(name)` methods. Standard HTTP
+headers are made available through accessors such as `requestURI` or `httpHost`.
 
 The incoming GET arguments are tokenized and can be retrieved by name or
 iterated over in their entirety. The request's POST body is processed depending
@@ -91,9 +91,9 @@ methods. All header names and values are treated as strings.
    The `headers` method returns all of the headers as an object which can be
    iterated or used in a query expression. Each header element is presented as a
    pair object containing the header name and value as the pair's first and
-   second elements, respectively. The next method returns the first header pair,
-   which matches the name parameter. It returns "void" if the header is not
-   found. The `rawHeader` method works the same, but fetches the raw
+   second elements, respectively. The `header` method returns the first header
+   pair, which matches the name parameter. It returns "void" if the header is
+   not found. The `rawHeader` method works the same, but fetches the raw
    unnormalized header name/value as sent by the web server.
 
 The next set of methods is presented in a table matching the method name to its
@@ -233,9 +233,9 @@ formulate the response data.
 The request is completed when the initial code has run to the end, when the
 `abort` method is called, or when an unhandled failure occurs. Outgoing data is
 buffered for as long as possible, but can be forced out at any point using the
-`sendChunk` method. Calling `abort` (either the `web_response` version or the
-unbound method; both have the same behavior) will complete the request by
-halting all processing and sending the existing response data as-is.
+`web_response->sendChunk` method. Calling `abort` (either the `web_response`
+version or the unbound method; both have the same behavior) will complete the
+request by halting all processing and sending the existing response data as-is.
 
 The `web_response` object automatically routes requests for LassoApps. Request
 paths that begin with ``/lasso9/`` are reserved for LassoApp usage and will be
@@ -380,21 +380,21 @@ By default, the result of a request will have a :mimetype:`text/html` content
 type with a UTF-8 character set and the body data will be generated from a Lasso
 string object which always consists of Unicode character data. In order to
 output binary data, the bytes need to be set directly and the response's
-:mailheader:`Content-Type` header adjusted accordingly. The `web_response`
-method `rawContent` can be used to get or set the outgoing content data.
+:mailheader:`Content-Type` header adjusted accordingly. The method
+`web_response->rawContent` can be used to get or set the outgoing content data.
 
-It is advised to call `abort` soon after setting binary response data or at
-least to ensure that no stray character data is inadvertently added into the
-outgoing data buffer as it will corrupt the output.
+It is advised to call `web_response->abort` soon after setting binary response
+data or at least to ensure that no stray character data is inadvertently added
+into the outgoing data buffer as it will corrupt the output.
 
 When manually setting the raw content, the :mailheader:`Content-Type` header
 should usually be adjusted to accommodate the change. Use the
 `web_response->replaceHeader` method to replace the existing header with the
 new value.
 
-The `web_response` object provides the `sendFile` method which packages together
-many of the steps required to send binary data to the client to be viewed either
-inline or downloaded as an attachment.
+The `web_response` object provides the `~web_response->sendFile` method which
+packages together many of the steps required to send binary data to the client
+to be viewed either inline or downloaded as an attachment.
 
 .. member:: web_response->sendFile(data::trait_each_sub, name = null, \
                      -type = null, -disposition = 'attachment', \
@@ -408,41 +408,42 @@ inline or downloaded as an attachment.
    :mailheader:`MIME-Version`, :mailheader:`Content-Type`,
    :mailheader:`Content-Disposition` and :mailheader:`Content-Length` headers.
 
-   The first parameter can be any object which supports :trait:`trait_each_sub`.
-   This includes objects such as string, bytes and file. The second parameter is
-   optional, but if given it will trigger a ``"filename="`` element to be added
-   to the :mailheader:`Content-Disposition` header. This controls the file name
-   that the user agent will use to save a downloaded file.
+   The first parameter ``data`` can be any object which supports
+   `trait_each_sub`. This includes objects such as string, bytes and file. The
+   second parameter ``name`` is optional, but if given it will trigger the
+   addition of a ``"filename="`` element to the
+   :mailheader:`Content-Disposition` header. This controls the file name that
+   the user agent will use to save a downloaded file.
 
    The subsequent keyword parameters control the following:
 
-   ``-type``
-      This string indicates the value for the :mailheader:`Content-Type` header.
-      If this is not specified and ``-skipProbe`` is not set to ``false``, then
-      the incoming data will be lightly probed to determine what type of data it
-      is. The following data types are automatically recognized: GIF, PDF, PNG,
+   :param string -type:
+      Indicates the value for the :mailheader:`Content-Type` header. If this is
+      not specified and ``-skipProbe`` is not set to ``false``, then the
+      incoming data will be lightly probed to determine what type of data it is.
+      The following data types are automatically recognized: GIF, PDF, PNG,
       JPEG. Unrecognized data types are set to have the
       :mimetype:`application/octet-stream` content type.
-   ``-disposition``
-      This string indicates the value for the :mailheader:`Content-Disposition`
-      header. This value defaults to ``'attachment'``. The other possible value is
+   :param string -disposition:
+      Indicates the value for the :mailheader:`Content-Disposition` header. This
+      value defaults to ``'attachment'``. The other possible value is
       ``'inline'``.
-   ``-charset``
+   :param string -charset:
       If given, this string will be appended to the :mailheader:`Content-Type`
       header as a ``";charset="`` component.
-   ``-skipProbe``
-      This boolean parameter defaults to ``false``. If set to ``true``, no
-      content type probe will occur.
-   ``-noAbort``
-      This boolean parameter defaults to ``false``. This means that `sendFile`
-      will abort by default after the data is delivered to the client. Set this
-      parameter to ``true`` in order to prevent the abort.
-   ``-chunkSize``
-      This parameter sets the size of the buffer with which the data is read and
-      sent to the client. This mainly has a benefit when sending physical file
-      data as it controls the memory usage. This value defaults to ``65535``,
-      the result of the `fcgi_bodyChunkSize` method.
-   ``-monitor``
+   :param boolean -skipProbe:
+      Defaults to ``false``. If set to ``true``, no content type probe will
+      occur.
+   :param boolean -noAbort:
+      Defaults to ``false``. This means that `sendFile` will abort by default
+      after the data is delivered to the client. Set this parameter to ``true``
+      in order to prevent the abort.
+   :param integer -chunkSize:
+      Sets the size of the buffer with which the data is read and sent to the
+      client. This mainly has a benefit when sending physical file data as it
+      controls the memory usage. This value defaults to ``65535``, the result of
+      the `fcgi_bodyChunkSize` method.
+   :param -monitor:
       An object can be given to monitor the send process. Whatever object is
       given here will have its invoke method called for each chunk sent. The
       invoke will be passed the bytes object for the current chunk as well as an
@@ -508,14 +509,14 @@ used. These methods are described below.
    be invoked for each request and use the `web_request` and `web_response`
    within it.
 
-.. method:: addAtEnd(code)
+.. member:: web_response->addAtEnd(code)
 
    This `web_response` method sets the parameter to be run at the request's end.
    At-end code is normally run before data is sent to the client, but this may
-   not be the case if data has been manually pushed using the `sendChunk`
-   method. At-begins are executed before the session link-rewriter is run.
-   Multiple at-ends are supported and each are run in the order in which they
-   were installed.
+   not be the case if data has been manually pushed using the
+   `web_response->sendChunk` method. At-begins are executed before the session
+   link-rewriter is run. Multiple at-ends are supported and each are run in the
+   order in which they were installed.
 
    At-ends are added on a per-request basis, as opposed to at-begins which are
    added globally. At-end code is not copied in any way. A capture passed to

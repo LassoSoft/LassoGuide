@@ -101,11 +101,11 @@ with a unique value in your form. You can use `lasso_uniqueId` to generate a
 UUID which is essentially guaranteed to be unique each time you call it. With
 that in place, while the thread that processes the form submission is working on
 uploading the files, you can check the status of that process in another thread.
-This is done by passing the unique ID to the `check` method of the
-`upload_tracker` thread object. That method returns a staticarray whose first
-element is the amount of data uploaded, the second is the total size of all the
-files being uploaded, and the third is the name of the current file being
-uploaded.
+This is done by passing the unique ID to the `~upload_tracker->check` method of
+the :thread:`upload_tracker` thread object. That method returns a staticarray
+whose first element is the amount of data uploaded, the second is the total size
+of all the files being uploaded, and the third is the name of the current file
+being uploaded.
 
 
 Monitoring Uploads Demo

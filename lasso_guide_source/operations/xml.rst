@@ -399,7 +399,7 @@ removing items from node maps.
 
    Sets the value of the node to the indicated string. Only the following node
    types can have their values set:  `xml_attr`, `xml_cdataSection`,
-   `xml_comment`, `xml_processingInstruction`, `xml_text`
+   `xml_comment`, `xml_processingInstruction`, `xml_text`.
 
 .. member:: xml_node->insertBefore(new::xml_node, ref::xml_node)::xml_node
 
@@ -458,7 +458,7 @@ removing items from node maps.
 
    Removes the indicated attribute node. Returns the removed node.
 
-Note that some node maps are read-only and cannot be modified.
+.. note:: Some node maps are read-only and cannot be modified.
 
 .. member:: xml_nodeMap->setNamedItem(node::xml_node)::xml_node
 
@@ -578,10 +578,11 @@ XSLT
 Lasso's XML API supports XSL Transformations (XSLT) 1.0. For the specifics of
 XSLT, consult the `XSLT specification`_.
 
-XSLT support is provided on any `xml_node` type through the `transform` method.
-This method accepts an XSLT template as a string as well as a list of all
-variables to be made available during the transformation. The transformation is
-performed and a new XML document is returned.
+XSLT support is provided on any `xml_node` type through the
+`~xml_node->transform` method. This method accepts an XSLT template as a string
+as well as a list of all variables to be made available during the
+transformation. The transformation is performed and a new XML document is
+returned.
 
 .. member:: xml_node->transform(sheet::string, variables::staticarray)::xml_document
 
