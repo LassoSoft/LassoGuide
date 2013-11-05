@@ -208,9 +208,7 @@ listing of the names of all the people stored in the "contacts" database::
 
    // =>
    // There are 2 record(s) in the People table.
-   //    
    //     <br />John Doe
-   //
    //     <br />Jane Doe
 
 
@@ -248,7 +246,6 @@ record creating a listing of all the records for "John Doe" stored in the
 
    // =>
    // There were 1 record(s) found in the People table.
-   //
    //    <br />John Doe
 
 
@@ -312,7 +309,6 @@ then the following results would be returned::
 
    // =>
    // There were 1 record(s) found in the People table.
-   //    
    //    <br />Jane Doe
 
 As many parameters as needed can be named in the HTML form and then retrieved in
@@ -370,8 +366,7 @@ If the visitor entered "Jane" for the first name and "Doe" for the last name
 then the following results would be returned::
 
    // =>
-   // There were 1 record(s) found in the People table.
-   //    
+   // There were 1 record(s) found in the People table.    
    //    <br />Jane Doe
 
 As many parameters as needed can be named in the HTML form. They will all be
@@ -856,8 +851,7 @@ methods)::
        records_array
    /inline
 
-   // =>
-   // staticarray(staticarray(1, John, Doe), staticarray(1, Jane, Doe), ...)
+   // => staticarray(staticarray(1, John, Doe), staticarray(1, Jane, Doe), ...)
 
 The output can be made easier to read on a Web page using the `iterate` method
 and the `array->join` method::
@@ -897,19 +891,14 @@ same number of elements as the elements of the `records_array` method::
 
    // =>
    // <table>
-   // 
    //    <tr><td>id</td><td>first_name</td><td>last_name</td></tr>
-   //    
    //    <tr>
    //       <td>1</td><td>John</td><td>Doe</td>
    //    </tr>
-   //    
    //    <tr>
    //       <td>2</td><td>Jane</td><td>Doe</td>
    //    </tr>
-   //    
    //    ...
-   //
    // </table>
 
 Together the `field_names` and `records_array` methods provide a programmatic
@@ -930,8 +919,7 @@ for the inner map are the field names for each record in the found set::
       records_map
    /inline
 
-   // =>
-   // map(1 = map(first = John, last = Doe), 2 = map(first = Jane, last = Doe), ...)
+   // => map(1 = map(first = John, last = Doe), 2 = map(first = Jane, last = Doe), ...)
 
 
 Result Sets
@@ -1401,8 +1389,7 @@ required so Lasso knows to which data source to send the statement::
       `The result is: ` + field('result')
    /inline
 
-   // =>
-   // The result is 3
+   // => The result is 3
 
 The following example calculates the results of several mathematical expressions
 and returns them as field values "one", "two", and "three"::
@@ -1414,8 +1401,7 @@ and returns them as field values "one", "two", and "three"::
       `The results are: ` + field('one') + `, ` + field('two') + `, and ` + field('three')
    /inline
 
-   // =>
-   // The results are 3, 0.579426, and 1
+   // => The results are 3, 0.579426, and 1
 
 The following example calculates the results of several mathematical expressions
 using Lasso and returns them as field values "one", "two", and "three". It
@@ -1429,8 +1415,7 @@ SQL statement::
       `The results are: ` + field('one') + `, ` + field('two') + `, and ` + field('three')
    /inline
 
-   // =>
-   // The results are 3, 0.579426, and 1
+   // => The results are 3, 0.579426, and 1
 
 The following example returns records from the "phone_book" table where
 "first_name" is equal to "John". This is equivalent to a ``-search`` action::
@@ -1624,8 +1609,7 @@ inline::
       /inline
    /inline
 
-   // =>
-   // 23
+   // => 23
 
 Prepared Statements
 -------------------
