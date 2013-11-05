@@ -4,15 +4,15 @@
 Searching and Displaying Data
 *****************************
 
-Lasso provides several parameters for the ``inline`` method for searching
-records within Lasso compatible databases. These parameters are used in
-conjunction with name/value pair parameters in order to perform the desired
-database action in a specific database and table or within a specific record.
+Lasso provides several parameters for the `inline` method for searching records
+within Lasso compatible databases. These parameters are used in conjunction with
+name/value pair parameters in order to perform the desired database action in a
+specific database and table or within a specific record.
 
-The ``inline`` parameters documented in this chapter are listed in
-:ref:`Search Parameters <inline-search-parameters>`. The sections that follow
-describe the additional keyword parameters and pair parameters required for each
-database action.
+The inline parameters documented in this chapter are listed in :ref:`Search
+Parameters <inline-search-parameters>`. The sections that follow describe the
+additional keyword parameters and pair parameters required for each database
+action.
 
 .. _inline-search-parameters:
 
@@ -70,6 +70,10 @@ Inline Host
    The character encoding can be specified explicitly using a ``-tableEncoding``
    parameter within the ``-host`` array.
 
+Inline Table
+   The charcter encoding of the specified table using the ``-table`` parameter
+   if not specified using ``-tableEncoding`` in a ``-host`` array.
+
 MySQL
    By default all communication is in the UTF-8 character set.
 
@@ -94,9 +98,9 @@ Display the Current Error Code and Message
 
 The following code can be used to display the current error message. This code
 should be placed in a Lasso page which is a response to a database action or
-within the associated block of an ``inline`` method::
+within the associated block of an `inline` method::
 
-   [error_code]: [error_msg]
+   error_code + `: ` + error_msg
 
 If the database action was performed successfully then the following result will
 be returned::
@@ -111,11 +115,11 @@ Check for a Specific Error Code and Message
 The following example shows how to perform code to correct or report a specific
 error if one occurs. The following example uses a conditional ``if`` control
 structure to check the current error message and see if it is equal to
-``error_databaseTimeout``::
+`error_databaseTimeout`::
 
-   [if(error_currentError == error_databaseTimeout)]
-      Connection to database lost!
-   [/if]
+   if(error_currentError == error_databaseTimeout)
+      `Connection to database lost!`
+   /if
 
 Full documentation about error methods and error codes can be found in the
 :ref:`Error Handling <error-handling>` chapter.
@@ -125,17 +129,15 @@ Searching Records
 =================
 
 Searches can be performed within any Lasso compatible database using the
-``-search`` parameter in an ``inline`` method. The ``-search`` parameter
-requires that a number of additional parameters be defined in order to perform
-the search. The additional required parameters are detailed in :ref:`Table:
--Search Action Requirements <inline-search-action_required>` along with a
-description of other recommended or optional parameters specific to the
-``-search`` action.
+``-search`` parameter in an `inline` method. The ``-search`` parameter requires
+that a number of additional parameters be defined in order to perform the
+search. The additional required parameters are detailed in :ref:`Table: -Search
+Action Requirements <inline-search-action_required>` along with a description of
+other recommended or optional parameters specific to the ``-search`` action.
 
-Additional optional parameters are described in
-:ref:`Table: Operator Parameters <inline-operator-parameters>` and
-:ref:`Table: Results Parameters <inline-results-parameters>` in the sections
-that follow.
+Additional optional parameters are described in :ref:`Table: Operator Parameters
+<inline-operator-parameters>` and :ref:`Table: Results Parameters
+<inline-results-parameters>` in the sections that follow.
 
 .. _inline-search-action_required:
 
@@ -182,14 +184,14 @@ Search a Database Using the Inline Method
 -----------------------------------------
 
 The following example shows how to search a database by specifying the required
-parameters within an ``inline`` method. ``-database`` is set to "contacts",
+parameters within an `inline` method. The ``-database`` is set to "contacts",
 ``-table`` is set to "people", and ``-keyField`` is set to id. The search
 returns records which contain "John" with the field "first_name".
 
-The results of the search are displayed to the visitor inside the ``inline``
-method. The ``records`` method will repeat for each record in the found set. The
-``field`` methods will display the value for the specified field from the
-current record being shown::
+The results of the search are displayed to the visitor inside the `inline`
+method. The `records` method will repeat for each record in the found set. The
+`field` methods will display the value for the specified field from the current
+record being shown::
 
    [inline(
       -search,
@@ -218,11 +220,11 @@ Search a Database Using Visitor-Defined Values
 ----------------------------------------------
 
 The following example shows how to search a database by specifying the required
-parameters within an ``inline`` method, but allow a site visitor to specify the
+parameters within an `inline` method, but allow a site visitor to specify the
 search criteria in an HTML form. The visitor is presented with an HTML form in
 the Lasso page "default.lasso". The HTML form contains two text inputs for
 "first_name" and "last_name" and a submit button. The action of the form is the
-response page "response.lasso" which contains the ``inline`` method that will
+response page "response.lasso" which contains the `inline` method that will
 perform the search. The contents of the "default.lasso" file include the
 following::
 
@@ -233,12 +235,12 @@ following::
    </form>
 
 The search is performed and the results of the search are displayed to the
-visitor inside the ``inline`` method in "response.lasso". The values entered by
-the visitor in the HTML form in "default.lasso" are inserted into the ``inline``
-method using the ``web_request->param`` method. The ``records`` method will
-execute the associated block for each record in the found set. The ``field``
-methods will display the value for the specified field from the current record
-being shown. The contents of the "response.lasso" file include the following::
+visitor inside the `inline` method in "response.lasso". The values entered by
+the visitor in the HTML form in "default.lasso" are inserted into the `inline`
+method using the `web_request->param` method. The `records` method will execute
+the associated block for each record in the found set. The `field` methods will
+display the value for the specified field from the current record being shown.
+The contents of the "response.lasso" file include the following::
 
    [inline(
       -search,
@@ -265,8 +267,8 @@ Operators
 =========
 
 Lasso inlines include a set of parameters that allow operators to be used to
-create complex database queries. These parameters are summarized in
-:ref:`Table: Operator Parameters <inline-operator-parameters>`.
+create complex database queries. These parameters are summarized in :ref:`Table:
+Operator Parameters <inline-operator-parameters>`.
 
 .. _inline-operator-parameters:
 
@@ -277,7 +279,7 @@ create complex database queries. These parameters are summarized in
    +--------------------+------------------------------------------------------+
    |Parameters          |Description                                           |
    +====================+======================================================+
-   |``-operatorLogical``|Specifies the logical operator for thesearch.         |
+   |``-operatorLogical``|Specifies the logical operator for the search.        |
    |``-opLogical``      |Abbreviation is ``-opLogical``. Defaults to "and".    |
    +--------------------+------------------------------------------------------+
    |``-operator``       |When specified before a pair parameter, establishes   |
@@ -301,24 +303,24 @@ Field Operators
    These are specified using the ``-operator`` parameter before a name/value
    pair parameter. The field operator changes the way that the named field is
    searched for the value. If no field operator is specified then the default
-   begins with ("bw") operator is used. See
-   :ref:`Table: Field Operators <inline-field-operators>` for a list of the
-   possible values. Field operators can also be abbreviated as ``-bw``, ``-ew``,
-   ``-cn``, etc.
+   begins with ("bw") operator is used. See :ref:`Table: Field Operators
+   <inline-field-operators>` for a list of the possible values. Field operators
+   can also be abbreviated as ``-bw``, ``-ew``, ``-cn``, etc.
 
 Logical Operators
    These are specified using the ``-operatorLogical``, ``-operatorBegin``, and
    ``-operatorEnd`` parameters. These parameters specify how the results of
    different pair parameters are combined to form the full results of the
-   search.
+   search. You can not mix ``-operatorLogical`` with ``-operatorBegin`` /
+   ``-operatorEnd``.
 
 
 Field Operators
 ---------------
 
-The possible values for the ``-operator`` parameter are listed in
-:ref:`Table: Field Operators <inline-field-operators>`. The default operator is
-begins with ("bw"). Case is unimportant when specifying operators.
+The possible values for the ``-operator`` parameter are listed in :ref:`Table:
+Field Operators <inline-field-operators>`. The default operator is begins with
+("bw"). Case is unimportant when specifying operators.
 
 Field operators are interpreted differently depending on which data source is
 being accessed. For example, FileMaker Server interprets "bw" to mean that any
@@ -376,7 +378,7 @@ Specify a Field Operator in an Inline Method
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Specify the field operator before the name/value pair parameter which it will
-affect. The following ``inline`` method searches for records where the
+affect. The following `inline` method searches for records where the
 "first_name" begins with "J" and the "last_name" ends with "son"::
 
    [inline(
@@ -402,15 +404,16 @@ Logical Operators
 
 The logical operator parameter ``-operatorLogical`` can be used with a value of
 either "AND" or "OR". The parameters ``-operatorBegin``, and ``-operatorEnd``
-can be used with values of "AND", "OR", or "NOT". ``-operatorLogical`` applies
-to all search parameters specified with an action while ``-operatorBegin``
-applies to all search parameters until the matching ``-operatorEnd`` parameter
-is reached. The case of the value is unimportant when specifying a logical
+can be used with values of "AND", "OR", or "NOT". An ``-operatorLogical``
+applies to all search parameters specified with an action while
+``-operatorBegin`` applies to all search parameters until the matching
+``-operatorEnd`` parameter is reached. (Thus the two can not be mixed into the
+same inline.) The case of the value is unimportant when specifying a logical
 operator.
 
--  "AND" specifies that records which are returned should fulfil all of the
+-  "AND" specifies that records which are returned should fulfill all of the
    search parameters listed.
--  "OR" specifies that records which are returned should fulfil one or more of
+-  "OR" specifies that records which are returned should fulfill one or more of
    the search parameters listed.
 -  "NOT" specifies that records which match the search criteria contained
    between the ``-operatorBegin`` and ``-operatorEnd`` parameters should be
@@ -424,17 +427,19 @@ operator.
    "neq", "lt" and "gte", and "gt" and "lte".
 
 .. note::
-   **FileMaker** - The ``-operatorBegin`` and ``-operatorEnd`` parameters do
-   not work with Lasso Connector for FileMaker Server.
+   **FileMaker**
+
+   The ``-operatorBegin`` and ``-operatorEnd`` parameters do not work with Lasso
+   Connector for FileMaker Server.
 
 
 Perform a Search Using an "AND" Operator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``-operatorLogical`` command tag with an "AND" value. The following
-``inline`` method returns records for which the "first_name" field begins with
+`inline` method returns records for which the "first_name" field begins with
 "John" and the "last_name" field begins with "Doe". The position of the
-``-operatorLogical`` parameter within the ``inline`` method is unimportant since
+``-operatorLogical`` parameter within the `inline` method is unimportant since
 it applies to the entire action::
 
    [inline(
@@ -449,14 +454,16 @@ it applies to the entire action::
       [records]<br />[field('first_name')] [field('last_name')][/records]
    [/inline]
 
+   // =>  <br />John Doe
+
 
 Perform a Search Using an OR Operator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``-operatorLogical`` parameter with an "OR" value. The following
-``inline`` method returns records for which the "first_name" field begins with
+`inline` method returns records for which the "first_name" field begins with
 either "John" or "Jane". The position of the ``-operatorLogical`` parameter
-within the ``inline`` method is unimportant since it applies to the entire
+within the `inline` method is unimportant since it applies to the entire
 action::
 
    [inline(
@@ -471,12 +478,17 @@ action::
       [records]<br />[field('first_name')] [field('last_name')][/records]
    [/inline]
 
+   // =>
+   // <br />John Doe
+   // <br />Jane Doe
+   // <br />John Person
+
 
 Perform a Search Using a "NOT" Operator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``-operatorBegin`` and ``-operatorEnd`` parameters with a "NOT" value.
-The following ``inline`` method returns records for which the "first_name" field
+The following `inline` method returns records for which the "first_name" field
 begins with "John" and the "last_name" field is not "Doe". The operator
 parameters must surround the parameters of the search which is to be negated::
 
@@ -493,26 +505,29 @@ parameters must surround the parameters of the search which is to be negated::
       [records]<br />[field('first_name')] [field('last_name')][/records]
    [/inline]
 
+   // => <br />John Person
+
 
 Perform a Search With a Complex Query
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``-operatorBegin`` and ``-operatorEnd`` parameters to build up a complex
 query. As an example, a query can be constructed to find records in a database
-whose "First_name" And "last_name" both begin with the same letter "J" or "M".
+whose "first_name" And "last_name" both begin with the same letter "J" or "M".
 The desired query could be written in pseudo-code as follows::
 
    ( (first_name begins with J) AND (last_name begins with J) ) OR
    ( (first_name begins with M) AND (last_name begins with M) )
 
 The pseudo code is translated into Lasso code as follows. Each line of the query
-becomes a pair of ``-opBegin=AND`` and ``-opEnd=AND`` parameters with a pair
+becomes a pair of ``-opBegin='AND'`` and ``-opEnd='AND'`` parameters with a pair
 parameter for "first_name" and "last_name" contained inside. The two lines are
-then combined using a pair of ``-opBegin=OR`` and ``-opEnd=OR`` parameters. The
-nesting of the parameters works like the nesting of parentheses in the pseudo
-code above to clarify how Lasso should combine the results of different
+then combined using a pair of ``-opBegin='OR'`` and ``-opEnd='OR'`` parameters.
+The nesting of the parameters works like the nesting of parentheses in the
+pseudo code above to clarify how Lasso should combine the results of different
 name/value pair parameters::
 
-   inline(
+   [inline(
       -search,
       -database='contacts',
       -table='people',
@@ -581,6 +596,9 @@ formatting and display to the visitor. The results parameters are summarized in
    |                  |"descending" or custom. Optional, defaults to           |
    |                  |"ascending" for each ``-sortField``.                    |
    +------------------+--------------------------------------------------------+
+   |``-sortRandom``   |Specifies that a MySQL database should randomly sort the|
+   |                  |returned data set.                                      |
+   +------------------+--------------------------------------------------------+
 
 The results parameters are divided into three categories:
 
@@ -591,7 +609,7 @@ The results parameters are divided into three categories:
 
 #. The portion of the **Found Set** being shown is specified using the
    ``-maxRecords`` and ``-skipRecords`` parameters. ``-maxRecords`` sets the
-   number of records which will be iterated over in the ``records`` method. The
+   number of records which will be iterated over in the `records` method. The
    ``-skipRecords`` parameter sets the offset into the found set which is shown.
    These two methods define the window of records which are shown and can be
    used to navigate through a found set.
@@ -599,12 +617,12 @@ The results parameters are divided into three categories:
 #. The **Fields** which are available are specified using the ``-returnField``
    method. Normally, all fields in the table that was searched are returned. If
    any ``-returnField`` parameters are specified then only those fields will be
-   available to be returned to the visitor using the ``field`` method.
+   available to be returned to the visitor using the `field` method.
    Specifying ``-returnField`` parameters can improve the performance of Lasso
    by not sending unnecessary data between the database and the web server.
 
    .. note::
-      In order to use the ``keyField_value`` method within an ``inline``, the
+      In order to use the `keyField_value` method within an `inline`, the
       ``-keyField`` must be specified as one of the ``-returnField`` values.
 
 #. The "-distinct" parameter instructs MySQL data sources to return only records
@@ -621,7 +639,7 @@ Specify ``-sortField`` and ``-sortOrder`` parameters within an inline search.
 The following inline includes sort parameters. The records are first sorted by
 "last_name" in ascending order, then sorted by "first_name" in ascending order::
 
-   inline(
+   [inline(
       -search,
       -database='contacts',
       -table='people',
@@ -642,6 +660,31 @@ are equal then those records are sorted in order of "first_name"::
    // <br />John Doe
    // <br />Jane Person
    // <br />John Person
+
+
+Return Multiple Records Sorted in Random Order
+----------------------------------------------
+
+The ``-sortRandom`` parameter can be used with the ``-search`` or ``-findAll``
+actions to return many records from a MySQL database sorted in random order. In
+the following example, all records from the "people" table of the "contacts"
+database are returned in random order::
+
+   [inline(
+      -findAll,
+      -database='contacts',
+      -table='people',
+      -keyField='id',
+      -sortRandom
+   )]
+      [records]<br />[field('first_name')] [field('last_name')][/records]
+   [/inline]
+
+   // =>
+   // <br />John Person
+   // <br />Jane Doe
+   // <br />Jane Person
+   // <br />John Doe
 
 
 Return a Portion of a Found Set
@@ -699,10 +742,14 @@ specified in a``-returnField`` parameter. The above code would result in
 something like the following::
 
    // =>
-   // <br />Jane
    // <br />John
    // <br />Jane
+   // <br />Jane
    // <br />John
+
+If the datasource is a MySQL datasource, the ``-distinct`` parameter could have
+been added to just return two records instead of four --- one with the first
+name of "John" and the other with "Jane".
 
 
 Finding All Records
@@ -733,14 +780,13 @@ Parameters that sort and limit the found set work the same as they do for
    +-------------+-------------------------------------------------------------+
    |``-host``    |Optional inline host array. See the section on               |
    |             |:ref:`Inline Hosts <inline-hosts>` in the Database           |
-   |             |Interaction Fundamentals chapter for more                    |
-   |             |information.                                                 |
+   |             |Interaction Fundamentals chapter for more information.       |
    +-------------+-------------------------------------------------------------+
 
 Find All Records Within a Database
 ----------------------------------
 
-The following ``inline`` method find all records within a table named "people"
+The following `inline` method find all records within a table named "people"
 in the "contacts" database and displays them. The results are shown below::
 
    [inline(
@@ -753,10 +799,10 @@ in the "contacts" database and displays them. The results are shown below::
    [/inline]
 
    // =>
+   // <br />John Doe
    // <br />Jane Doe
    // <br />John Person
    // <br />Jane Person
-   // <br />John Doe
 
 
 Return All Unique Field Values
@@ -773,27 +819,27 @@ on the "people" table of the "contacts" database. Only distinct values from the
       -database='contacts',
       -table='people',
       -distinct,
-      -sortField='first_name',
-      -returnField='first_name'
+      -sortField='last_name',
+      -returnField='last_name'
    )]
-      [records]<br />[field('first_name')][/records]
+      [records]<br />[field('last_name')][/records]
    [/inline]
 
 The following results are returned. Even though there are multiple instances of
-"John" and "Jane" in the database, only one record for each name is returned::
+"Doe" and "Person" in the database, only one record for each name is returned::
 
    // =>
-   // <br />Jane
-   // <br />John
+   // <br />Doe
+   // <br />Person
 
 
 Finding Random Records
 ======================
 
-A random record can be returned from a database using the ``-random``
-parameter. The ``-random`` parameter functions exactly like the
-``-search`` parameter except that no name/value pair parameters or operator
-parameters are required.
+A random record can be returned from a FileMaker database using the ``-random``
+parameter. The ``-random`` parameter functions exactly like the ``-search``
+parameter except that no name/value pair parameters or operator parameters are
+required.
 
 .. tabularcolumns:: |l|L|
 
@@ -814,8 +860,7 @@ parameters are required.
    +--------------+------------------------------------------------------------+
    |``-host``     |Optional inline host array. See the section on              |
    |              |:ref:`Inline Hosts <inline-hosts>` in the Database          |
-   |              |Interaction Fundamentals chapter for more                   |
-   |              |information.                                                |
+   |              |Interaction Fundamentals chapter for more information.      |
    +--------------+------------------------------------------------------------+
 
 
@@ -823,7 +868,7 @@ Find a Single Random Record From a Database
 -------------------------------------------
 
 The following inline finds a single random record from a FileMaker Server
-database "contacts" and displays it. ``-maxRecords`` is set to "1" to ensure
+database "contacts" and displays it. The ``-maxRecords`` is set to "1" to ensure
 that only a single record is shown. One potential result is shown below. Each
 time this inline is run a different record will be returned::
 
@@ -839,50 +884,28 @@ time this inline is run a different record will be returned::
 
    // => <br />Jane Person
 
-Return Multiple Records Sorted in Random Order
-----------------------------------------------
-
-The ``-sortRandom`` parameter can be used with the ``-search`` or ``-findAll``
-actions to return many records from a MySQL database sorted in random order. In
-the following example, all records from the "people" table of the "contacts"
-database are returned in random order::
-
-   [inline(
-      -findAll,
-      -database='contacts',
-      -table='people',
-      -keyField='id',
-      -sortRandom
-   )]
-      [records]<br />[field('first_name')] [field('last_name')][/records]
-   [/inline]
-
-   // =>
-   // <br />John Doe
-   // <br />Jane Doe
-   // <br />Jane Person
-   // <br />John Person
-
 
 Displaying Data
 ===============
 
-The examples in this chapter have all relied on the ``records`` tags and
-``field`` methods to display the results of the search that have been performed.
-This section describes the use of these methods in more detail. (See the section
-on :ref:`Working with Inline Action Results <inline-results-methods>` in the
+The examples in this chapter have all relied on the `records` method and `field`
+method to display the results of the search that have been performed. This
+section describes the use of these methods in more detail. (See the section on
+:ref:`Working with Inline Action Results <inline-results-methods>` in the
 :ref:`Database Interaction Fundamentals <database-interaction>` chapter for
 method documentation and more description.)
 
-The ``field`` method always returns the value for a field from the current
-record when it is used within an associated block of a ``records`` method. If
-the ``field`` method is used outside of ``records`` block but inside an
-``inline`` associated block, then it returns the value for the field from the
-first record in the found set. If the found set is only one record then the
-``records`` method is optional.
+The `field` method always returns the value for a field from the current record
+when it is used within an associated block of a `records` method. If the `field`
+method is used outside of `records` block but inside an `inline` associated
+block, then it returns the value for the field from the first record in the
+found set. If the found set has only one record then the `records` method is
+optional.
 
 .. note::
-   **FileMaker** - Lasso Connector for FileMaker Server includes a collection of
+   **FileMaker**
+
+   Lasso Connector for FileMaker Server includes a collection of
    FileMaker Server-specific methods which return database results. See the
    :ref:`FileMaker Data Sources <FileMaker-Data-Sources>` chapter for more
    information.
@@ -891,11 +914,10 @@ first record in the found set. If the found set is only one record then the
 Display the Results From a Search
 ---------------------------------
 
-Use the ``records`` method and ``field`` method to display the results of a
-search. The following ``inline`` method perform a ``-findAll`` action in a
-database "contacts". The results are returned each formatted on a line by
-itself. The ``loop_count`` method is used to indicate the order within the found
-set::
+Use the `records` method and `field` method to display the results of a search.
+The following `inline` method perform a ``-findAll`` action in a database
+"contacts". The results are returned each formatted on a line by itself. The
+`loop_count` method is used to indicate the order within the found set::
 
    [inline(
       -findAll,
@@ -909,20 +931,20 @@ set::
    [/inline]
 
    // =>
-   // <br />1: Jane Doe
-   // <br />2: John Person
-   // <br />3: Jane Person
-   // <br />4: John Doe
+   // <br />1: John Doe
+   // <br />2: Jane Doe
+   // <br />3: John Person
+   // <br />4: Jane Person
 
 
 Display the Results for a Single Record
 ---------------------------------------
 
-Use ``field`` methods within the associated block of an ``inline`` method. The
-``records`` methods are unnecessary if only a single record is returned. The
-following ``inline`` method perform a ``-search`` for a single record whose
-primary key "id" equals "1". The ``keyField_value`` is shown along with the
-``field`` values for the record::
+Use `field` methods within the associated block of an `inline` method. The
+`records` methods are unnecessary if only a single record is returned. The
+following `inline` method perform a ``-search`` for a single record whose
+primary key "id" equals "1". The `keyField_value` is shown along with the
+`field` values for the record::
 
    [inline(
       -search,
@@ -938,12 +960,12 @@ primary key "id" equals "1". The ``keyField_value`` is shown along with the
    // <br />1: Jane Doe
 
 
-Display the Results From a Named Inline:
-----------------------------------------
+Display the Results From a Named Inline
+---------------------------------------
 
-Use the ``-inlineName`` parameter in both the ``inline`` method and in the
-``records`` method. The ``records`` method can be located anywhere in the code
-after the ``inline`` method that define the database action. The following
+Use the ``-inlineName`` parameter in both the `inline` method and in the
+`records` method. The `records` method can be located anywhere in the code
+after the `inline` method that define the database action. The following
 example shows a ``-findAll`` action at the top of a page of code with the
 results formatted later::
 
@@ -964,7 +986,7 @@ results formatted later::
    [/records]
 
    // =>
-   // <br />1: Jane Doe
-   // <br />2: John Person
-   // <br />3: Jane Person
-   // <br />4: John Doe
+   // <br />1: John Doe
+   // <br />2: Jane Doe
+   // <br />3: John Person
+   // <br />4: Jane Person
