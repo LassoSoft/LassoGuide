@@ -72,7 +72,7 @@ Inline Host
 
 Inline Table
    The charcter encoding of the specified table using the ``-table`` parameter
-   if not specified using ``-tableEncoding`` in a ``-host`` array.
+   if not specified using ``-tableEncoding`` in a ``-host`` array is used.
 
 MySQL
    By default all communication is in the UTF-8 character set.
@@ -105,8 +105,7 @@ within the associated block of an `inline` method::
 If the database action was performed successfully then the following result will
 be returned::
 
-   // =>
-   // 0: No Error
+   // => 0: No Error
 
 
 Check for a Specific Error Code and Message
