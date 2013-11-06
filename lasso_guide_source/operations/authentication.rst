@@ -6,7 +6,7 @@ Authentication
 
 Lasso Server provides a built-in users and groups system. Initially, this system
 is only used to secure access to the Lasso Admin application. It can be used to
-provide authentication for your own web apps, however, Lasso is also flexible
+provide authentication for your own web apps; however, Lasso is also flexible
 enough to support custom security & authentication mechanisms.
 
 Lasso's security system data is stored in a SQLite database located in the
@@ -37,7 +37,7 @@ Authenticating Users
 The ``auth_…`` methods are used by web apps to execute simple security checks.
 The checks acquire the username, password and realm information from the current
 web request and, therefore, require that a request be active. In all cases, if
-the check fails or if no username and password was provided, then the auth
+the check fails or if no username and password are provided, then the auth
 methods will generate a HTTP 401 Unauthorized response with a
 :mailheader:`WWW-Authenticate: Digest` header. The request is then aborted, by
 default. If the security checks succeed, then the methods return nothing. If
@@ -79,19 +79,25 @@ Managing Users
 
 The :type:`security_registry` object provides a more complete interface to
 Lasso's security system. It does not rely on an ongoing web request and can be
-used freely once the system is initialized. The ``security_registry`` methods
+used freely once the system is initialized. The `security_registry` methods
 permit a realm to be specified, but the object otherwise defaults to using the
 'Lasso Security' realm.
 
 Before the security system can be used, it must be initialized by calling the
-`security_initialize()` method. Lasso Server calls this method as it starts up
-and so this can be safely ignored by web applications. Command line or other
-tools that want to use the security system should call this method as early as
+`security_initialize` method. Lasso Server calls this method as it starts up and
+so this can be safely ignored by web applications. Command line or other tools
+that want to use the security system should call this method as early as
 possible when starting up.
 
-A ``security_registry`` object can be created with zero parameters. When
+A :type:`security_registry` object can be created with zero parameters. When
 created, it will open a connection to the security database. A
-``security_registry`` object must be closed once it is no longer required.
+:type:`security_registry` object must be closed once it is no longer required.
+
+.. method:: security_initialize()
+
+   Initializes Lasso's ability to connect to the security SQLite database. Lasso
+   Server calls this automatically, but you will need to call it if you wish to
+   use the :type:`security_registry` type.
 
 .. type:: security_registry
 
@@ -99,19 +105,20 @@ created, it will open a connection to the security database. A
 
    Creates a new security_registry object.
 
+   Once created, a security_registry can be used to:
+
+   -  Add/remove groups
+   -  Alter group meta-data (name, enabled)
+   -  Add/remove users
+   -  Alter user meta-data (password, comment, enabled)
+   -  Assign/unassign users to groups
+   -  Validate username/password/realm combinations
+
+
 .. member:: security_registry->close()
 
-   This method closes the ``security_registry`` object's connection to the
+   This method closes the :type:`security_registry` object's connection to the
    security information database.
-
-Once created, a security_registry can be used to:
-
--  Add/remove groups
--  Alter group meta-data (name, enabled)
--  Add/remove users
--  Alter user meta-data (password, comment, enabled)
--  Assign/unassign users to groups
--  Validate username/password/realm combinations
 
 .. member:: security_registry->addGroup(name::string, \
    enabled::boolean = true, \
@@ -132,8 +139,8 @@ Once created, a security_registry can be used to:
 
    These methods list groups in a variety of ways. The first method will list
    all groups. A ``-name`` parameter can be specified to perform wild card
-   searches. The wildcard character is ``%``. The second and third methods
-   return a list of group that the indicated user belongs to.
+   searches. The wildcard character is "%". The second and third methods
+   return a list of groups that the indicated user belongs to.
 
    Each group is represented by a map object containing the following keys: id,
    name, enabled, comment.
@@ -161,9 +168,9 @@ Once created, a security_registry can be used to:
    This method adds a new user to the system. A username and password must be
    supplied. An optional enabled and comment parameter can be provided. The
    ``-realm`` keyword controls which realm the user is placed in. The default is
-   'Lasso Security'. The user's information record is returned. This is a map
-   object containing the user's: id, name, enabled, comment, email, real_name
-   and realm. Note: the ``email`` and ``real_name`` fields are not utilized at
+   "Lasso Security". The user's information record is returned. This is a map
+   object containing the user's id, name, enabled, comment, email, real_name
+   and realm. Note: the "email" and "real_name" fields are not utilized at
    this time.
 
 .. member:: security_registry->addUserToGroup(userid::integer, groupid::integer)
@@ -175,7 +182,7 @@ Once created, a security_registry can be used to:
 
    This method will authenticate the given username and password and will return
    user's record if it succeeds. The return value will be a map containing keys
-   for: id, name, enabled, comment, email, real_name and realm. If the check
+   for id, name, enabled, comment, email, real_name and realm. If the check
    fails, this method will return ``void``. The check will fail if the user
    account is not enabled.
 
@@ -211,4 +218,4 @@ Once created, a security_registry can be used to:
 .. member:: security_registry->userComment(userid::integer) = comment::string
 
    Given a user id, these methods will assign that user's password, enabled
-   state or associated comment.
+   state or associated comment, respectively.
