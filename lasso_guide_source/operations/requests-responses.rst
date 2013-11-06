@@ -13,7 +13,7 @@ root directory and other metadata. The request data is parsed and made available
 for the code that is run to handle the request. Handling a request entails
 creating the resulting headers and body data for the reply. This data is sent to
 the web server, which is then sent to the connected user agent. The request is
-complete after the data is sent.
+complete after the response data is sent.
 
 The code that is chosen to handle a request is based on the path in the
 :envvar:`PATH_INFO` or, if that is not present, the :envvar:`SCRIPT_NAME`
@@ -33,7 +33,7 @@ situation, then a standard error message and stack trace is printed.
 
 Finally, Lasso provides a means for running code before or after a request. This
 enables interception of the standard request processing flow at either point.
-This can be useful when using virtual URLs and serving dynamic database-driven
+This can be useful when using virtual URLs and serving dynamic, database-driven
 content or when rewriting outgoing response data.
 
 
@@ -55,29 +55,28 @@ The `web_request` object has the following purposes:
 
 A `web_request` object will process the incoming data to make access to the
 various components of a web request more convenient. For example, all HTTP
-cookies are found and separated to be made available through the
+cookies are found and separated made available through the
 `web_request->cookies` or `web_request->cookie(name)` methods. Standard HTTP
-headers are made available through accessors such as `requestURI` or `httpHost`.
+headers are made available through accessors such as `web_request->requestURI`
+or `web_request->httpHost`.
 
 The incoming GET arguments are tokenized and can be retrieved by name or
 iterated over in their entirety. The request's POST body is processed depending
 on the incoming :mailheader:`Content-Type`. Both :mimetype:`multipart/form-data`
 and :mimetype:`application/x-www-form-urlencoded` content types are
 automatically handled. This includes the processing of file uploads, the results
-of which are made available through the `fileUploads` method.
+of which are made available through the `web_request->fileUploads` method.
 
 
 Request Headers
 ---------------
 
 The incoming HTTP request headers are pre-processed by the web server and then
-further processed by Lasso. All header names are normalized to upper case by
-the web server and prepended with ``HTTP_`` and all dashes (``-``) replaced with
-underscores (``_``).
-
-Once received by Lasso, any leading ``HTTP_`` which was prepended by the web
-server to each variable is stripped. All underscores (``_``) are then converted
-to dashes (``-``).
+further processed by Lasso. All header names are normalized to upper case by the
+web server and prepended with ``HTTP_`` and all dashes (``-``) replaced with
+underscores (``_``). Once received by Lasso, any leading ``HTTP_`` prepended by
+the web server to each variable is stripped. All underscores (``_``) are then
+converted to dashes (``-``).
 
 The `web_request` object makes header data available through the following
 methods. All header names and values are treated as strings.
@@ -101,42 +100,42 @@ corresponding raw web request variable name. For headers that return a string
 value, an empty string is returned if the header has no value or is not present.
 A zero or "false" is returned for other non-existent value types.
 
-==================== ==================== ===========
-Method Name          Web Request Variable Return Type
-==================== ==================== ===========
-`contentLength`      CONTENT_LENGTH       integer
-`contentType`        CONTENT_TYPE         string
-`gatewayInterface`   GATEWAY_INTERFACE    string
-`httpAccept`         HTTP_ACCEPT          string
-`httpAcceptEncoding` HTTP_ACCEPT_ENCODING string
-`httpAcceptLanguage` HTTP_ACCEPT_LANGUAGE string
-`httpCacheControl`   HTTP_CACHE_CONTROL   string
-`httpConnection`     HTTP_CONNECTION      string
-`httpCookie`         HTTP_COOKIE          string
-`httpHost`           HTTP_HOST            string
-`httpReferer`        HTTP_REFERER         string
-`httpReferrer`       HTTP_REFERER         string
-`httpUserAgent`      HTTP_USER_AGENT      string
-`isHttps`            HTTPS                boolean
-`path`               PATH                 string
-`pathInfo`           SCRIPT_NAME          string
-`pathTranslated`     PATH_TRANSLATED      string
-`remoteAddr`         REMOTE_ADDR          string
-`remotePort`         REMOTE_PORT          integer
-`requestMethod`      REQUEST_METHOD       string
-`requestURI`         REQUEST_URI          string
-`scriptFilename`     SCRIPT_FILENAME      string
-`scriptName`         SCRIPT_NAME          string
-`scriptURI`          SCRIPT_URI           string
-`scriptURL`          SCRIPT_URL           string
-`serverAddr`         SERVER_ADDR          string
-`serverAdmin`        SERVER_ADMIN         string
-`serverName`         SERVER_NAME          string
-`serverPort`         SERVER_PORT          integer
-`serverProtocol`     SERVER_PROTOCOL      string
-`serverSignature`    SERVER_SIGNATURE     string
-`serverSoftware`     SERVER_SOFTWARE      string
-==================== ==================== ===========
+=================================== ==================== ===========
+Method Name                         Web Request Variable Return Type
+=================================== ==================== ===========
+``web_request->contentLength``      CONTENT_LENGTH       integer
+``web_request->contentType``        CONTENT_TYPE         string
+``web_request->gatewayInterface``   GATEWAY_INTERFACE    string
+``web_request->httpAccept``         HTTP_ACCEPT          string
+``web_request->httpAcceptEncoding`` HTTP_ACCEPT_ENCODING string
+``web_request->httpAcceptLanguage`` HTTP_ACCEPT_LANGUAGE string
+``web_request->httpCacheControl``   HTTP_CACHE_CONTROL   string
+``web_request->httpConnection``     HTTP_CONNECTION      string
+``web_request->httpCookie``         HTTP_COOKIE          string
+``web_request->httpHost``           HTTP_HOST            string
+``web_request->httpReferer``        HTTP_REFERER         string
+``web_request->httpReferrer``       HTTP_REFERER         string
+``web_request->httpUserAgent``      HTTP_USER_AGENT      string
+``web_request->isHttps``            HTTPS                boolean
+``web_request->path``               PATH                 string
+``web_request->pathInfo``           SCRIPT_NAME          string
+``web_request->pathTranslated``     PATH_TRANSLATED      string
+``web_request->remoteAddr``         REMOTE_ADDR          string
+``web_request->remotePort``         REMOTE_PORT          integer
+``web_request->requestMethod``      REQUEST_METHOD       string
+``web_request->requestURI``         REQUEST_URI          string
+``web_request->scriptFilename``     SCRIPT_FILENAME      string
+``web_request->scriptName``         SCRIPT_NAME          string
+``web_request->scriptURI``          SCRIPT_URI           string
+``web_request->scriptURL``          SCRIPT_URL           string
+``web_request->serverAddr``         SERVER_ADDR          string
+``web_request->serverAdmin``        SERVER_ADMIN         string
+``web_request->serverName``         SERVER_NAME          string
+``web_request->serverPort``         SERVER_PORT          integer
+``web_request->serverProtocol``     SERVER_PROTOCOL      string
+``web_request->serverSignature``    SERVER_SIGNATURE     string
+``web_request->serverSoftware``     SERVER_SOFTWARE      string
+=================================== ==================== ===========
 
 
 GET and POST Arguments
@@ -159,23 +158,23 @@ always a string.
 .. member:: web_request->postParams()
 .. member:: web_request->params()
 
-   This set of methods refers to the GET arguments as the "``query``" params and
-   any POST arguments as the "``post``" params. Both sets together are just the
-   "``params``". For the methods which accept a name parameter, they return the
+   This set of methods refers to the GET arguments as the "query" params and
+   any POST arguments as the "post" params. Both sets together are just the
+   "params". For the methods which accept a name parameter, they return the
    first matching argument's string value. If no argument matches, then a "void"
    value is returned.
 
    The `param` method treats both argument sources as a single source with
    the POST arguments occurring first. The `param(name::string, joiner)`
    method presents an interface for accessing arguments which occur more than
-   once. The ``joiner`` parameter is used to determine the result of the method.
+   once. The "joiner" parameter is used to determine the result of the method.
    If ``void`` is passed, then the resulting argument values are returned in a
    staticarray. If a string value is passed, then the argument values are joined
    with that string in between each value. The result of passing any other
-   object type will depend on the behavior of its ``+`` operator.
+   object type will depend on the behavior of its "+" operator.
 
    The methods which accept zero parameters return all of the GET, POST, or both
-   argument pairs as an object which may be iterated or used in a query
+   argument pairs as an object which may be iterated over or used in a query
    expression.
 
 .. member:: web_request->postString()
@@ -184,8 +183,8 @@ always a string.
    These methods return the respective arguments in a format similar to how they
    were received. In the case of `queryString` the GET arguments are returned
    verbatim. The POST string is created by concatenating each POST argument
-   together with ``&`` in between each name/value, each of which are separated
-   by ``=``. This will vary from the exact given POST only in the case of
+   together with "&" in between each name/value, each of which are separated
+   by "=". This will vary from the exact given POST only in the case of
    :mimetype:`multipart/form-data` input.
 
 
@@ -201,7 +200,7 @@ object provides methods to directly access the pre-parsed cookie data.
 
    The first method searches for the named cookie and returns its value if
    found. If the cookie is not found then "void" is returned. The second method
-   returns all the cookies as an object, which can be iterated or used in a
+   returns all the cookies as an object, which can be iterated over or used in a
    query expression. The cookie elements are presented as pair objects
    containing the cookie names and values as the pairs' first and second
    members.
@@ -219,28 +218,29 @@ following text delimiters::
    <?= … ?>
    [ … ]
 
-Because supporting the ``[ … ]`` delimiters can be problematic for some data
-types (i.e. JavaScript), they can be disabled for the remainder of the file by
-having the literal ``[no_square_brackets]`` as the first tag.
+Because supporting the ``[ … ]`` delimiters can be problematic for embedding
+with other technologies (i.e. JavaScript and CSS), they can be disabled for the
+remainder of the file by having the literal ``[no_square_brackets]`` as the
+first line.
 
 Any code within the delimiters will have the results of the expressions within
 its body converted to string objects and included in the response output string.
-Code within auto-collecting captures is included as well. For example, the code
-or text within ``inline(...) … /inline`` or ``inline(...) => {^ … ^}`` would be
-included in the output. Such code is free to call any methods or types to
-formulate the response data.
+Code within auto-collecting captures is included as well. For example, values
+produced by code within ``inline(...) … /inline`` or ``inline(...) => {^ … ^}``
+would be included in the output. Such code is free to call any methods or types
+to formulate the response data.
 
 The request is completed when the initial code has run to the end, when the
 `abort` method is called, or when an unhandled failure occurs. Outgoing data is
 buffered for as long as possible, but can be forced out at any point using the
-`web_response->sendChunk` method. Calling `abort` (either the `web_response`
-version or the unbound method; both have the same behavior) will complete the
-request by halting all processing and sending the existing response data as-is.
+`web_response->sendChunk` method. Calling `abort` (either `web_response->abort`
+or the unbound method; both have the same behavior) will complete the request by
+halting all processing and sending the existing response data as-is.
 
 The `web_response` object automatically routes requests for LassoApps. Request
-paths that begin with ``/lasso9/`` are reserved for LassoApp usage and will be
+paths that begin with "/lasso9/" are reserved for LassoApp usage and will be
 routed there. Physical file paths beginning with :file:`/lasso9/` are ignored by
-Lasso Server during processing of a web request.
+Lasso Server during the processing of a web request.
 
 
 Include
@@ -256,7 +256,7 @@ Lasso code must be included within delimiters.
 The path to an include file can be full or relative. Complete paths from the
 file system root are accepted as well. Consult the chapter on :ref:`files` for
 more details on how file paths are treated in Lasso. Components of LassoApps can
-be included as well by beginning the path with ``/lasso9/``, then the app name
+be included as well by beginning the path with "/lasso9/", then the app name
 and then the path to the component.
 
 Any of the following methods can be used to include file content.
@@ -269,10 +269,10 @@ Any of the following methods can be used to include file content.
 .. member:: web_response->includeLibraryOnce(path::string)
 
    These methods locate and run the file indicated by the path. The
-   `includeLibrary` and `includeLibraryOnce` methods run the file but do not
-   insert the result into the response. The `includeOnce` and
-   `includeLibraryOnce` methods will only include the file if it has not already
-   been included during the course of that request.
+   "includeLibrary" and "includeLibraryOnce" member methods run the file but do
+   not insert the result into the response. The "includeOnce" and
+   "includeLibraryOnce" member methods will only include the file if it has not
+   already been included during the course of that request.
 
    These methods will fail if the indicated file does not exist.
 
@@ -322,9 +322,9 @@ manipulated through these methods.
 
    These methods return existing outgoing headers. The first method finds the
    first occurrence of the indicated header and returns its value. The second
-   method returns all the current headers as an object which can be iterated or
-   used in a query expression. Each element is a pair object containing the
-   header name/value and the pair's first/second.
+   method returns all the current headers as an object which can be iterated
+   over or used in a query expression. Each element is a pair object containing
+   the header name/value in the pair's first/second.
 
 .. member:: web_response->setHeaders(headers::trait_forEach)
 .. member:: web_response->replaceHeader(header::pair)
@@ -336,7 +336,7 @@ manipulated through these methods.
    name/value pair and replaces matching header with the new value. If the
    existing header isn't found, the new header is simply added. The third method
    accepts a new header name/value pair and adds it to the list of outgoing
-   headers. This method ignores any duplicate matching headers.
+   headers. This method does not check for duplicate headers.
 
 
 Set Cookies
@@ -344,7 +344,7 @@ Set Cookies
 
 Outgoing cookies are added to the response HTTP headers by the `web_response`
 object. It provides a method for setting a cookie and a method for enumerating
-all cookies which are being set.
+all cookies being set.
 
 Setting a cookie requires specifying a name and a value and optionally a domain,
 expiration, path, and SSL secure flag. These values are supplied as parameters
@@ -354,7 +354,7 @@ processing is completed and the response is to be sent to the client.
 .. member:: web_response->setCookie(nv::pair, -domain=void, -expires=void, -path=void, -secure=false)
 
    Sets the indicated cookie. Any duplicate cookie would be replaced. The first
-   parameter must be the cookie name=value pair. If used, the ``-domain`` and
+   parameter must be the cookie "name=value" pair. If used, the ``-domain`` and
    ``-path`` keyword parameters must have string values.
 
    The ``-expires`` parameter can be either a date object, a duration object, an
@@ -404,44 +404,42 @@ to be viewed either inline or downloaded as an attachment.
 
    Sets the raw content and headers for the response. It then optionally aborts,
    ending the request and delivering the data to the client. This method
-   replaces all existing headers with new
-   :mailheader:`MIME-Version`, :mailheader:`Content-Type`,
-   :mailheader:`Content-Disposition` and :mailheader:`Content-Length` headers.
+   replaces all existing headers with new :mailheader:`MIME-Version`,
+   :mailheader:`Content-Type`, :mailheader:`Content-Disposition` and
+   :mailheader:`Content-Length` headers.
 
-   The first parameter ``data`` can be any object which supports
+   The first parameter ("data") can be any object which supports
    `trait_each_sub`. This includes objects such as string, bytes and file. The
-   second parameter ``name`` is optional, but if given it will trigger the
-   addition of a ``"filename="`` element to the
-   :mailheader:`Content-Disposition` header. This controls the file name that
-   the user agent will use to save a downloaded file.
+   second parameter ("name") is optional, but if given it will trigger the
+   addition of a "filename=" element to the :mailheader:`Content-Disposition`
+   header. This controls the file name that the user agent will use to save a
+   downloaded file.
 
    The subsequent keyword parameters control the following:
 
    :param string -type:
       Indicates the value for the :mailheader:`Content-Type` header. If this is
-      not specified and ``-skipProbe`` is not set to ``false``, then the
-      incoming data will be lightly probed to determine what type of data it is.
-      The following data types are automatically recognized: GIF, PDF, PNG,
-      JPEG. Unrecognized data types are set to have the
+      not specified and ``-skipProbe`` is not set to "false", then the incoming
+      data will be lightly probed to determine what type of data it is. The
+      following data types are automatically recognized: GIF, PDF, PNG, JPEG.
+      Unrecognized data types are set to have the
       :mimetype:`application/octet-stream` content type.
    :param string -disposition:
       Indicates the value for the :mailheader:`Content-Disposition` header. This
-      value defaults to ``'attachment'``. The other possible value is
-      ``'inline'``.
+      value defaults to "attachment". The other possible value is "inline".
    :param string -charset:
       If given, this string will be appended to the :mailheader:`Content-Type`
-      header as a ``";charset="`` component.
+      header as a ";charset=" component.
    :param boolean -skipProbe:
-      Defaults to ``false``. If set to ``true``, no content type probe will
-      occur.
+      Defaults to "false". If set to "true", no content type probe will occur.
    :param boolean -noAbort:
-      Defaults to ``false``. This means that `sendFile` will abort by default
-      after the data is delivered to the client. Set this parameter to ``true``
+      Defaults to "false". This means that `sendFile` will abort by default
+      after the data is delivered to the client. Set this parameter to "true"
       in order to prevent the abort.
    :param integer -chunkSize:
       Sets the size of the buffer with which the data is read and sent to the
       client. This mainly has a benefit when sending physical file data as it
-      controls the memory usage. This value defaults to ``65535``, the result of
+      controls the memory usage. This value defaults to "65535", the result of
       the `fcgi_bodyChunkSize` method.
    :param -monitor:
       An object can be given to monitor the send process. Whatever object is
@@ -457,8 +455,8 @@ HTTP Response Status
 
 The HTTP response status line consists of a numeric code and a short textual
 message. When a request is first started it is given a "200 OK" status line. If
-a file is requested that does not exist, Lasso will respond with a "404 NOT
-FOUND" status. An unhandled failure will generate a "500 Unhandled Failure"
+a file is requested that does not exist, Lasso will respond with a "404 Not
+Found" status. An unhandled failure will generate a "500 Unhandled Failure"
 status.
 
 The status can be set or reset multiple times. Its value is not used until the
@@ -479,7 +477,7 @@ At Begin and End
 
 Lasso permits arbitrary code to be run immediately before and immediately after
 a request with full access to the `web_request` and `web_response` objects. Code
-run before a request can manipulate the request data which will be use by the
+run before a request can manipulate the request data that will be used by the
 request handler code. Code run after a request can manipulate the outgoing
 headers and content body, doing things such as rewriting HTML links or
 compressing data for efficiency.
@@ -498,7 +496,8 @@ used. These methods are described below.
    intercepting the normal request URI file request and processing routines.
    This is the recommended route for applications wanting to provide virtual
    URLs. Once an at-begin is in place it cannot be removed. Multiple at-begins
-   are supported and are run in the order in which they are installed.
+   are supported and are run in the order in which they are installed. (The
+   easiest way to install an atBegin is to stick it in the LassoStartup folder.)
 
    The object installed as the at-begin code is copied to each request's thread
    each time. This means that a capture's local variables or any object's data
