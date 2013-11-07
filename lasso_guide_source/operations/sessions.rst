@@ -255,8 +255,8 @@ programming beyond specifying the ``-useLink`` parameter is required.
 By default, links contained in the "href" parameter of anchor tags will be
 modified. Links are only modified if they reference a file on the same machine
 as the current website. Any links which start with any of the following strings
-are not modified: "file://", "ftp://", "http://", "https://",
-"javascript:", "mailto:", "telnet://", "#"
+are not modified: "file\://", "ftp\://", "http\://", "https\://", "javascript:",
+"mailto:", "telnet\://", "#"
 
 Links are modified by adding a "-lassosession:SessionName" parameter to the
 end of the link. The value of the parameter is the session ID, as returned by
