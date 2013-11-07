@@ -4,13 +4,13 @@
 Logging
 *******
 
-Lasso 9 server has a built-in error logging system which allows warning messages
+Lasso 9 server has a built-in error logging system that allows warning messages
 to be logged at several different levels. Each log level can be routed to one or
 more destinations, allowing for a great deal of flexibility in handling.
 
 The built-in log levels include:
 
-Error
+Critical
    Critical errors that affect the operation of Lasso 9 Server. Critical errors
    are logged to all destinations by default. Typically, the server or site
    administrator will need to fix whatever is causing the critical error.
@@ -101,7 +101,7 @@ Lasso throws a "Divide By Zero" error. The displayed result is the log message
 that gets sent to the console; note that it contains a timestamp in brackets::
 
    handle(error_code == error_code_divideByZero) => {
-      error_warning('A mathematical error occurred while processing this page')
+      log_warning('A mathematical error occurred while processing this page')
    }
 
    // => [2013-03-23 16:59:41] A mathematical error occurred while processing this page
@@ -116,12 +116,12 @@ method can be used to write text messages out to a log file.
 
 .. method:: log(path)
 
-   When executed, the contents of the `log` method's associated block's auto-
-   collection is appended to a specified text file. The `log` method can write
-   to any text file that is accessible from Lasso. The associated block must be
-   an auto-collect block as the collected data from the associated block will be
-   included in the appended data. If you don't use an auto-collect block then no
-   data will be appended to the log file.
+   When executed, the contents of the `log` method's associated block's
+   auto-collection is appended to a specified text file. The `log` method can
+   write to any text file that is accessible from Lasso. The associated block
+   must be an auto-collect block as the collected data from the associated block
+   will be included in the appended data. If you don't use an auto-collect block
+   then no data will be appended to the log file.
 
    The following example outputs a single line containing the date and time with
    a return at the end to the file specified. The methods are shown first with a
@@ -129,7 +129,7 @@ method can be used to write text messages out to a log file.
 
       log('C://Logs/LassoLog.txt') => {^
          date->format('%Q %T')
-         '\n'
+         '\r\n'
       ^}
 
       log('//Logs/LassoLog.txt') => {^
@@ -140,14 +140,14 @@ method can be used to write text messages out to a log file.
    The path to the directory where the log will be stored should be specified
    according to the same rules as those for the file methods. See the
    :ref:`Paths <files-path>` section in the Files chapter for full details about
-   relative, absolute, and fully-qualified paths on OS X, Linux and Windows.
+   relative, absolute, and fully-qualified paths on OS X, Linux, and Windows.
 
 
 Log Site Visits to a File
 -------------------------
 
 The following code will log the current date and time, the visitor's IP address,
-the name of the server and the page they were loading, and the GET and POST
+the name of the server, the page they were loading, and the GET and POST
 parameters that were specified::
 
    log('//tmp/foo.bar') => {^
