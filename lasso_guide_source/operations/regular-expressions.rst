@@ -121,7 +121,7 @@ attention to whether or not ticked string literals are being used.
    match the specified character. Case-sensitive.
 
 ```.```
-    Period matches any single visible character.
+   Period matches any single visible character.
 
 ```[ ]```
    Character class. Matches any character contained within the square brackets.
@@ -814,8 +814,8 @@ needing to be a simple replacement pattern.
 .. member:: regexp->appendReplacement(p0::string)
 
    Performs a replace operation on the current pattern match and appends the
-   result onto the output string. Requires a single parameter which specifies
-   the replacement pattern including group placeholders ``$0`` … ``$9``.
+   result onto the output string. Requires a single parameter specifying the
+   replacement pattern including group placeholders ``$0`` … ``$9``.
    Automatically appends any unmatched runs from the input string.
 
 .. member:: regexp->appendTail()

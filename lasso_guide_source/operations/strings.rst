@@ -192,6 +192,7 @@ The `string` type has many member methods that return information about the
 value of the string object. Many of these methods are documented below.
 
 .. type:: string
+
 .. member:: string->length()
 
    .. deprecated:: 9.0

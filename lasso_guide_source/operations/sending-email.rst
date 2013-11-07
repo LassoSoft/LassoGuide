@@ -601,7 +601,7 @@ However, it is often desirable to get information about a message that was sent
 programatically without examining the queue table. The following documented
 methods allow the status of a recently sent message to be examined.
 
-.. method:: email_result
+.. method:: email_result()
 
    Can be called immediately after calling `email_send` to get a unique ID
    string for the message that was queued.

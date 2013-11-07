@@ -51,7 +51,7 @@ stored, and an ID string that identifies a particular site visitor.
 
 -  **ID** - Lasso automatically creates an ID string for each site visitor when
    a session is created. The ID string is either stored in a cookie or passed
-   from page to page using the "-lassosession" GET/POST parameter. When a
+   from page to page using the "-lassosession" GET or POST parameter. When a
    session is loaded, the ID of the current visitor is combined with the name of
    the session to locate and load the particular set of variables for that
    session and the current visitor.
@@ -189,7 +189,7 @@ Starting a Session
 ==================
 
 The `session_start` method is used to start a new session or to load an existing
-session. When the `session_start` method is called with a given "name"
+session. When the `session_start` method is called with a given ``name``
 parameter it first checks to see whether an ID is defined for the current
 visitor. The ID is searched for in the following three locations:
 
@@ -256,7 +256,7 @@ By default, links contained in the "href" parameter of anchor tags will be
 modified. Links are only modified if they reference a file on the same machine
 as the current website. Any links which start with any of the following strings
 are not modified: "file\://", "ftp\://", "http\://", "https\://", "javascript:",
-"mailto:", "telnet\://", "#"
+"mailto:", "telnet\://", "#".
 
 Links are modified by adding a "-lassosession:SessionName" parameter to the
 end of the link. The value of the parameter is the session ID, as returned by
@@ -303,8 +303,8 @@ Add Variables to a Session
 
 Use the `session_addVar` method to add a variable to a session. Once a variable
 has been added to a session its value will be restored when `session_start` is
-next called. In the following example, a variable named "real_name" is added to
-a session named "Site_Preferences". ::
+next called. In the following example, a variable named ``real_name`` is added
+to a session named "Site_Preferences". ::
 
    session_addVar('Site_Preferences', 'real_name')
 
@@ -316,7 +316,7 @@ Use the `session_removeVar` method to remove a variable from a session. The
 variable will no longer be stored with the session, and its value will not be
 restored in subsequent requests. The value of the variable in the current
 request will not be affected. In the following example, a variable named
-"real_name" is removed from a session named "Site_Preferences". ::
+``real_name`` is removed from a session named "Site_Preferences". ::
 
    session_removeVar('Site_Preferences', 'real_name')
 
@@ -362,7 +362,7 @@ subsequent page loads, it will be used and the links on the page will not be
 decorated. If the cookie cannot be found, then links will be used to propagate
 the session. ::
 
-    session_start('Site_Preferences', -useAuto)
+   session_start('Site_Preferences', -useAuto)
 
 
 Session Demo

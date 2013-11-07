@@ -180,6 +180,10 @@ Loading SSL Certificates
 ------------------------
 
 .. type:: net_tcp_ssl
+
+   .. versionchanged:: 9.2.6
+      Renamed from `net_tcpssl`.
+
 .. method:: net_tcp_ssl()
 .. method:: net_tcp_ssl(fd::filedesc)
 
