@@ -467,9 +467,10 @@ Map
 .. type:: map
 
    Maps are used to store values along with associated keys. An element can
-   later be found given the key value it was inserted with. New elements can be
-   inserted or removed freely from a map. Only one element can be stored for any
-   given key and inserting a duplicate key will replace any existing element.
+   later be found given the key value with which it was inserted. New elements
+   can be inserted or removed freely from a map. Only one element can be stored
+   for any given key and inserting a duplicate key will replace any existing
+   element.
 
    The keys used in a map can be of any type, provided that type has a suitable
    ``onCompare`` method. Keys must compare themselves consistently such that if

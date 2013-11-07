@@ -83,12 +83,12 @@ Using os_process
 .. member:: os_process->readLine()::string
 
    Reads data up until a carriage return or line feed. Returns a string object
-   created by utilizing the current encoding set for the instance.
+   created by using the current encoding set for the instance.
 
 .. member:: os_process->readString(length::integer= ?)::string
 
    Reads the specified number of bytes from the process. Returns a string object
-   created by utilizing the current encoding set for the instance. Calling this
+   created by using the current encoding set for the instance. Calling this
    method without a byte count will read all bytes as they become available
    until the peer process terminates.
 
@@ -175,8 +175,8 @@ Create File
 -----------
 
 This example uses the :command:`/usr/bin/tee` command to create a file
-``test.txt`` in the site folder. The code does not generate any output, it
-just creates the file::
+"test.txt" in the site folder. The code does not generate any output, it just
+creates the file::
 
    local(os) = os_process
    handle => {

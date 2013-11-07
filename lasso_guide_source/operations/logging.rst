@@ -37,20 +37,21 @@ The destinations which the log levels can be routed to include:
 
 Database
    The "logbook" table in the "lasso_logbook" SQLite database, viewable via the
-   "Log Book" in Lasso Server Admin (http://example.com/lasso9/Admin/logbook).
+   "Log Book" section in Lasso Server Admin
+   (http://example.com/lasso9/Admin/logbook).
 
 Console
    The Lasso 9 Server instance's console which is viewable from the instance
-   manager. It is stored in a file named "lasso.out.txt" in the instance's
+   manager. It is stored in a file named :file:`lasso.out.txt` in the instance's
    :envvar:`LASSO9_HOME` directory and has a max file size of 10MB by default.
 
 File
-   The "lasso_logbook.txt" file, located in the instance's :envvar:`LASSO9_HOME`
-   folder. This file is also capped at 10MB by default.
+   The :file:`lasso_logbook.txt` file, located in the instance's
+   :envvar:`LASSO9_HOME` folder. This file is also capped at 10MB by default.
 
 The routing of Lasso's internal log levels can be modified in the "Log Book"
 section of Lasso Server Admin (http://example.com/lasso9/Admin/logbook). For
-details about how to change the log level routing programmatically see the
+details on how to change the log level routing programmatically see the
 subsequent :ref:`log-routing` section.
 
 
@@ -110,8 +111,8 @@ Log Files
 =========
 
 In addition to using the built-in log level routing system, it is sometimes
-desirable to create a separate log file specific to a custom solution. The
-`log` method can be used to write text messages out to a log file.
+desirable to create a separate log file specific to a custom solution. The `log`
+method can be used to write text messages out to a log file.
 
 .. method:: log(path)
 
@@ -124,7 +125,7 @@ desirable to create a separate log file specific to a custom solution. The
 
    The following example outputs a single line containing the date and time with
    a return at the end to the file specified. The methods are shown first with a
-   Windows path, then with an OS X or Linux path::
+   Windows path, then with an OS X or Linux path. ::
 
       log('C://Logs/LassoLog.txt') => {^
          date->format('%Q %T')
@@ -138,15 +139,15 @@ desirable to create a separate log file specific to a custom solution. The
 
    The path to the directory where the log will be stored should be specified
    according to the same rules as those for the file methods. See the
-   :ref:`Paths<files-path>` section in the Files chapter for full details about
-   relative, absolute, and fully qualified paths on OS X, Linux and Windows.
+   :ref:`Paths <files-path>` section in the Files chapter for full details about
+   relative, absolute, and fully-qualified paths on OS X, Linux and Windows.
 
 
 Log Site Visits to a File
 -------------------------
 
 The following code will log the current date and time, the visitor's IP address,
-the name of the server and the page they were loading, and the "GET" and "POST"
+the name of the server and the page they were loading, and the GET and POST
 parameters that were specified::
 
    log('//tmp/foo.bar') => {^
@@ -163,8 +164,9 @@ Automatically Roll Log Files by Date
 ------------------------------------
 
 Include a date component in the name of the log file. Since the date component
-will change every day, a new log file will be created the first time an item is
-logged each day. The following example logs to a file named "2001-05-31.txt"::
+will change every day, a new log file will be created daily the first time an
+item is logged. The following example logs to a file named with the current
+date, e.g. "2013-05-31.txt"::
 
    local(cur_date) = date->format('%Q')
    log('//Logs/' + #cur_date + '.txt') => {^
@@ -198,43 +200,43 @@ change the log settings programmatically.
 .. method:: log_level_critical()
 
    Returns the integer value for specifying the "Critical" message level in the
-   ``log_setDestination`` method. Using this method will help future-proof your
+   `log_setDestination` method. Using this method will help future-proof your
    code.
 
 .. method:: log_level_warning()
 
    Returns the integer value for specifying the "Warning" message level in the
-   ``log_setDestination`` method. Using this method will help future-proof your
+   `log_setDestination` method. Using this method will help future-proof your
    code.
 
 .. method:: log_level_detail()
 
    Returns the integer value for specifying the "Detail" message level in the
-   ``log_setDestination`` method. Using this method will help future-proof your
+   `log_setDestination` method. Using this method will help future-proof your
    code.
 
 .. method:: log_level_deprecated()
 
    Returns the integer value for specifying the "Deprecated" message level in
-   the ``log_setDestination`` method. Using this method will help future-proof
+   the `log_setDestination` method. Using this method will help future-proof
    your code.
 
 .. method:: log_destination_console()
 
    Returns the integer value for specifying the "Console" destination in the
-   ``log_setDestination`` method. Using this method will help future-proof your
+   `log_setDestination` method. Using this method will help future-proof your
    code.
 
 .. method:: log_destination_file()
 
    Returns the integer value for specifying the "File" destination in the
-   ``log_setDestination`` method. Using this method will help future-proof your
+   `log_setDestination` method. Using this method will help future-proof your
    code.
 
 .. method:: log_destination_database()
 
    Returns the integer value for specifying the "Database" destination in the
-   ``log_setDestination`` method. Using this method will help future-proof your
+   `log_setDestination` method. Using this method will help future-proof your
    code.
 
 
@@ -243,7 +245,7 @@ Change the Log Preferences
 
 Use the `log_setDestination` method to change the destination of a given log
 message level. In the following example, detail messages are sent to the console
-and to the errors table of the instance database::
+and the errors table of the instance's database::
 
    log_setDestination(
       log_level_detail,
@@ -256,7 +258,7 @@ Reset the Log Preferences
 -------------------------
 
 The following four commands reset the log preferences to their default values.
-Critical errors are sent to all three destinations. Warnings, detail, and
+Critical errors are sent to all three destinations; warnings, detail, and
 deprecation messages are sent only to the console. ::
 
    log_setDestination(

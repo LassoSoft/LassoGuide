@@ -167,7 +167,7 @@ always a string.
    The `param` method treats both argument sources as a single source with
    the POST arguments occurring first. The `param(name::string, joiner)`
    method presents an interface for accessing arguments which occur more than
-   once. The "joiner" parameter is used to determine the result of the method.
+   once. The ``joiner`` parameter is used to determine the result of the method.
    If ``void`` is passed, then the resulting argument values are returned in a
    staticarray. If a string value is passed, then the argument values are joined
    with that string in between each value. The result of passing any other
