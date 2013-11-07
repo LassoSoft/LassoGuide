@@ -17,16 +17,16 @@ Integer Type
 
 The integer type represents whole number values. Basically, 0 and any positive
 or negative number which does not contain a decimal point is an integer value in
-Lasso. Examples include "-123" or "456". Integer objects may also be expressed
-in hexadecimal notation such as "0x1A" or "0xff".
+Lasso. Examples include ``-123`` or ``456``. Integer objects may also be
+expressed in hexadecimal notation such as ``0x1A`` or ``0xff``.
 
 .. type:: integer
 .. method:: integer()
 .. method:: integer(obj::any)
 
-   The creator method for integer convertss any object to an integer. If the
-   type for the object being converted does not easily represent an integer,
-   then the integer zero will be returned.
+   The creator method for integer converts any object to an integer. If the type
+   for the object being converted does not easily represent an integer, then the
+   integer zero will be returned.
 
 
 Explicit Integer Conversion
@@ -34,9 +34,9 @@ Explicit Integer Conversion
 
 Strings that contain numeric data can be converted to the :type:`integer` data
 type using the `integer` creator method. The string must start with a numeric
-value. In the following examples the number "123" is the result of each explicit
-conversion. Only the first integer found in the string "123 and then 456" is
-recognized::
+value. In the following examples the number ``123`` is the result of each
+explicit conversion. Only the first integer found in the string ``'123 and then
+456'`` is recognized::
 
    integer('123')
    // => 123
@@ -56,14 +56,13 @@ Decimals that are converted to an integer are rounded to the nearest integer::
 Formatting Integer Objects
 ==========================
 
-Integer objects can be formated for display using the `integer->asString`
+Integer objects can be formatted for display using the `integer->asString`
 method detailed below.
 
 .. note::
    In Lasso 9, integers and decimals have no state, so they cannot carry around
    their formatting information. The `integer->asString` method in Lasso 9 is
    used to replace the functionality of Lasso 8's ``integer->setFormat`` method.
-
 
 .. member:: integer->asString(p0::string, p1::string, p2::string)
 .. member:: integer->asString(\
@@ -74,44 +73,23 @@ method detailed below.
       -groupChar::string= ?\
    )
 
-   Returns a string representation of the integer value formated as specified by
-   the parameters passed to the method. If no parameters are passed to the
-   method, the string will be the integer value outputed in base 10.
+   Returns a string representation of the integer value formatted as specified
+   by the parameters passed to the method. If no parameters are passed to the
+   method, the string will be the integer value output in base 10.
 
    :param boolean -hexadecimal:
-      If set to "True", the integer will output in hexadecimal notation.
+      If set to "true", the integer will output in hexadecimal notation.
    :param integer -padding:
       Specifies the desired length for the output. If the formatted number is
       less than this length then the number is padded.
    :param string -padChar:
-      Specifies the character that will be inserted if padding is required.
-      Defaults to a space.
+      Specifies the character to insert if padding is required. Defaults to a
+      space.
    :param boolean -padRight:
-      Set to "True" to pad the right side of the output. By default, padding is
+      Set to "true" to pad the right side of the output. By default, padding is
       appended to the left side of the output.
    :param string -groupChar:
-      The character which should be used for thousands grouping. Defaults to
-      empty.
-
-   .. original table
-      .. tabularcolumns:: |l|L|
-
-      ================ ==========================================================
-      Keyword          Description
-      ================ ==========================================================
-      ``-hexadecimal`` If set to "True", the integer will output in hexadecimal
-                       notation.
-      ``-padding``     Specifies the desired length for the output. If the
-                       formatted number is less than this length then the number
-                       is padded.
-      ``-padChar``     Specifies the character that will be inserted if padding
-                       is required. Defaults to a space.
-      ``-padRight``    Set to "True" to pad the right side of the output. By
-                       default, padding is appended to the left side of the
-                       output.
-      ``-groupChar``   The character which should be used for thousands grouping.
-                       Defaults to empty.
-      ================ ==========================================================
+      Specifies the character to use for thousands grouping. Defaults to empty.
 
 
 Format an Integer as a Hexadecimal Value
@@ -129,35 +107,34 @@ output that value in base 16::
 Integer Bit Operations
 ======================
 
-Bit operations can be performed with Lasso’s integer objects. These operations
+Bit operations can be performed with Lasso's integer objects. These operations
 can be used to examine and manipulate binary data. They can also be used for
 general purpose binary set operations.
 
 Integer literals in Lasso can be specified using hexadecimal notation. This can
 greatly aid in constructing literals for use with the bit operation. For
-example, "0xff" is the integer literal "255".
-
+example, ``0xff`` is the integer literal ``255``.
 
 .. member:: integer->bitAnd(p0::integer)
 
-   Performs a bitwise "And" operation between each bit in the base integer and
-   the integer parameter and returns the result.
+   Performs a bitwise "and" operation between each bit in the base integer and
+   the integer parameter, returning the result.
 
 .. member:: integer->bitOr(p0::integer)
 
-   Performs a bitwise "Or" operation between each bit in the base integer and
-   the integer parameter returning the result.
+   Performs a bitwise "or" operation between each bit in the base integer and
+   the integer parameter, returning the result.
 
 .. member:: integer->bitXOr(p0::integer)
 
-   Performs a bitwise "Exclusive-Or" operation between each bit in the base
-   integer and the integer parameter returning the result.
+   Performs a bitwise "exclusive or" operation between each bit in the base
+   integer and the integer parameter, returning the result.
 
 .. member:: integer->bitNot()
 
    Returns the result of flipping every bit in the base integer.
 
-.. member:: integer->bitShfitLeft(p0::integer)
+.. member:: integer->bitShiftLeft(p0::integer)
 
    Returns the result of shifting the bits in the base integer left by the
    number specified in the integer parameter.
@@ -181,20 +158,20 @@ example, "0xff" is the integer literal "255".
 
 .. member:: integer->bitTest(p0::integer)
 
-   Returns "true" if the bit specified in the integer parameter is 1,
-   otherwise "false".
+   Returns "true" if the bit specified in the integer parameter is 1, otherwise
+   returns "false".
 
 .. note::
-   In previous versions of Lasso, these bit methods modified the integer in
-   place. In Lasso 9, integers are by-value objects and are immutable, so it is
-   not possible to change their value in place.
+   In previous versions of Lasso, these bit methods modified the integer
+   in-place. In Lasso 9, integers are by-value objects and are immutable, so it
+   is not possible to change their value in-place.
 
 
 Performing a Bitwise Or
 -----------------------
 
-In the following example the boolean "Or" of "0x02" and "0x04" is calculated and
-returned in hexadecimal notation::
+In the following example the boolean "Or" of ``0x02`` and ``0x04`` is calculated
+and returned in hexadecimal notation::
 
    local(bit_set) = 0x02
    #bit_set->bitOr(0x04)->asString(-hexadecimal)
@@ -205,7 +182,7 @@ returned in hexadecimal notation::
 Shifting Bits to the Left
 -------------------------
 
-In the following example, "0x02" is shifted left by three places and output in
+In the following example, ``0x02`` is shifted left by three places and output in
 hexadecimal notation::
 
    local(bit_set) = 0x02
@@ -232,9 +209,9 @@ Decimal Type
 
 The :type:`decimal` data type represents real or floating point numbers.
 Basically, 0.0 or any positive or negative number that contains a decimal point
-is a decimal object in Lasso. Examples include "-123.0" and "456.789". Decimal
-values can also be written in exponential notation such as "1.23e2" which is
-equivalent to "1.23" times "10^2" or "123.0".
+is a decimal object in Lasso. Examples include ``-123.0`` and ``456.789``.
+Decimal values can also be written in exponential notation such as ``1.23e2``
+which is equivalent to ``1.23`` times ``10^2`` or ``123.0``.
 
 .. type:: decimal
 .. method:: decimal()
@@ -249,7 +226,7 @@ equivalent to "1.23" times "10^2" or "123.0".
    :type:`string`, :type:`bytes`, :type:`null`, and :type:`void` objects to a
    :type:`decimal` object.
 
-   The precision of decimal numbers when converted to a string is always
+   The precision of a decimal value when converted to a string is always
    displayed as six decimal places even though the actual precision of the
    number may vary based on the size of the number and its internal
    representation. The output precision of decimal numbers can be controlled
@@ -261,18 +238,17 @@ Implicit Decimal Conversion
 
 Integer values are converted to decimal values automatically if they are used as
 a parameter to a mathematical operator in conjunction with a decimal value. The
-following example shows how the integer "123" is automatically converted to a
-decimal value because the other parameter of the "+" operator is the decimal
-value "456.0"::
+following example shows how the integer ``123`` is automatically converted to a
+decimal value because the other parameter of the ``+`` operator is the decimal
+value ``456.0``::
 
    456.0 + 123
-
    // => 579.0
 
-The following example shows how a variable with a value of "123" is
+The following example shows how a variable with a value of ``123`` is
 automatically converted to a decimal value::
 
-   local(number)=123
+   local(number) = 123
    456.0 + #number
 
    // => 579.0
@@ -283,9 +259,9 @@ Explicit Decimal Conversion
 
 Strings which contain numeric data can be converted to the :type:`decimal` data
 type using the `decimal` creator method. The string must start with a numeric
-value. In the following examples the number "123.0" is the result of each
-explicit conversion. Only the first decimal value found in the string "123 and
-then 456" is recognized::
+value. In the following examples the number ``123.0`` is the result of each
+explicit conversion. Only the first decimal value found in the string ``'123 and
+then 456'`` is recognized::
 
    decimal('123')
    // => 123.0
@@ -297,7 +273,7 @@ then 456" is recognized::
    // => 123.0
 
 Integers which are converted to decimals simply have a decimal point appended.
-The value of the number does not change::
+The value of the number does not change. ::
 
    decimal(123)
    // => 123.0
@@ -306,7 +282,7 @@ The value of the number does not change::
 Formatting Decimal Objects
 ==========================
 
-Decimal objects can be formated for display using the `decimal->asString`
+Decimal objects can be formatted for display using the `decimal->asString`
 method detailed below.
 
 .. note::
@@ -325,11 +301,9 @@ method detailed below.
       -padRight::boolean= ?\
    )
 
-   Returns a string representation of the decimal value formated as specified by
-   the parameters passed to the method. If no parameters are passed to the
+   Returns a string representation of the decimal value formatted as specified
+   by the parameters passed to the method. If no parameters are passed to the
    method, the string will be the decimal value with 6 places of precision.
-
-
 
    :param string -decimalChar:
       The character which should be used for the decimal point. It defaults to a
@@ -353,44 +327,13 @@ method detailed below.
       Set to "true" to pad the right side of the output. By default, padding is
       prepended to the left side of the output.
 
-   .. original table
-      .. tabularcolumns:: |l|L|
-
-      +----------------+----------------------------------------------------------+
-      |Keyword         |Description                                               |
-      +================+==========================================================+
-      |``-decimalChar``|The character which should be used for the decimal point. |
-      |                |Defaults to a period.                                     |
-      +----------------+----------------------------------------------------------+
-      |``-groupChar``  |The character which should be used for thousands grouping.|
-      |                |Defaults to empty.                                        |
-      +----------------+----------------------------------------------------------+
-      |``-precision``  |The number of decimal points of precision that should be  |
-      |                |output. Defaults to 6.                                    |
-      +----------------+----------------------------------------------------------+
-      |``-scientific`` |Set to "true" to force output in exponential notation.    |
-      |                |Defaults to "false" so decimals are only output in        |
-      |                |exponential notation if required.                         |
-      +----------------+----------------------------------------------------------+
-      |``-padding``    |Specifies the desired length for the output. If the       |
-      |                |formatted number is less than this length then the number |
-      |                |is padded.                                                |
-      +----------------+----------------------------------------------------------+
-      |``-padChar``    |Specifies the character that will be inserted if padding  |
-      |                |is required. Defaults to a space.                         |
-      +----------------+----------------------------------------------------------+
-      |``-padRight``   |Set to "true" to pad the right side of the output. By     |
-      |                |default, padding is appended to the left side of the      |
-      |                |output.                                                   |
-      +----------------+----------------------------------------------------------+
-
 
 Format a Decimal Number as US Currency
 --------------------------------------
 
-The folloing example outputs a decimal value as if it were US currency by
-setting the precision to "2". For readability, it also sets a comma as the
-grouping character::
+The following example outputs a decimal value as if it were US currency by
+setting the precision to ``2``. For readability, it also sets a comma as the
+grouping character. ::
 
    local(dollar_amt) = 1234.56
    #dollar_amt->asString(-precision=2, -groupChar=',')
@@ -405,42 +348,41 @@ The easiest way to manipulate integer and decimal objects is to use mathematical
 operators. The sections below detail all the operators that can be used with
 integer and decimal values.
 
+
 Basic Mathematical Operators
 -----------------------------
 
-Each of the mathematical operators takes two parameters - one to its left and
-the other to its right. If either of the parameters is a decimal then the result
-will be a decimal value. Some of the operators can also be used to perform
-string operations. If either of the parameters is a string value then the string
+Each mathematical operator takes two parameters, one to its left and the other
+to its right. If either of the parameters is a decimal then the result will be a
+decimal value. Some of the operators can also be used to perform string
+operations. If either of the parameters is a string value then the string
 operation defined by the operator will be performed rather than the mathematical
 operation.
 
 .. _math-operators:
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: |l|l|L|
 
 .. table:: Table: Mathematical Operators
 
-   +--------+------------------------------------------------------------------+
-   |Operator|Description                                                       |
-   +========+==================================================================+
-   |   \+   |Adds two numbers.                                                 |
-   +--------+------------------------------------------------------------------+
-   |   \-   |Subtracts the right parameter from the left parameter.            |
-   +--------+------------------------------------------------------------------+
-   |   \*   |Multiplies two numbers.                                           |
-   +--------+------------------------------------------------------------------+
-   |   /    |Divides the left parameter by the right parameter.                |
-   +--------+------------------------------------------------------------------+
-   |   %    |Modulus. Calculates the left parameter modulo the right number.   |
-   +--------+------------------------------------------------------------------+
+   ======== ============== =====================================================
+   Operator Name           Description
+   ======== ============== =====================================================
+   ``+``    Addition       Adds two parameters.
+   ``-``    Subtraction    Subtracts the right parameter from the left
+                           parameter.
+   ``*``    Multiplication Multiplies two parameters.
+   ``/``    Division       Divides the left parameter by the right parameter.
+   ``%``    Modulus        Divides the left parameter by the right parameter and
+                           returns the remainder (modulo operation).
+   ======== ============== =====================================================
 
 
 Using the Mathematical Operators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Two numbers can be added using the ``+`` operator. The output will be a decimal
-value if either of the parameters are a decimal value::
+value if either of the parameters are a decimal value. ::
 
    100 + 50
    // => 150
@@ -451,8 +393,8 @@ value if either of the parameters are a decimal value::
 The difference between two numbers can be calculated using the ``-`` operator.
 The output will be a decimal value if either of the parameters are a decimal
 value. Note that in the second instance, when subtracting a negative number, the
-two ``-`` must be separated by a space so as not to be confused with the ``--``
-operator::
+two ``-`` operators must be separated by a space so as not to be confused with
+the ``--`` operator. ::
 
    100 - 50
    // => 50
@@ -461,7 +403,7 @@ operator::
    // => 112.500000
 
 Two numbers can be multiplied using the ``*`` operator. The output will be a
-decimal value if either of the parameters are a decimal value::
+decimal value if either of the parameters are a decimal value. ::
 
    100 * 50
    // => 5000
@@ -473,51 +415,46 @@ decimal value if either of the parameters are a decimal value::
 Mathematical Assignment Operators
 ---------------------------------
 
-Each of the opertors takes two parameters - one to its left and the other to its
+Each of the operators takes two parameters, one to its left and the other to its
 right. The first parameter must be a variable that holds an integer, decimal, or
-string. The second parameter can be an integer, decimal, or string. The result
-of the operation is calculated and then stored back in the variable specified as
-the left-hand parameter.
+string. The second parameter can be an integer, decimal, or string literal. The
+result of the operation is calculated and then stored back in the variable
+specified as the left-hand parameter.
 
 .. _math-assignment-operators:
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: |l|l|L|
 
 .. table:: Table: Mathematical Assignment Operators
 
-   +--------+------------------------------------------------------------------+
-   |Operator|Description                                                       |
-   +========+==================================================================+
-   |   =    |Assigns the right parameter to the variable designated by the left|
-   |        |parameter.                                                        |
-   +--------+------------------------------------------------------------------+
-   |   +=   |Adds the right parameter to the value of the left parameter and   |
-   |        |assigns the result to the variable designated by the left         |
-   |        |parameter.                                                        |
-   +--------+------------------------------------------------------------------+
-   |   -=   |Subtracts the right parameter from the value of the left parameter|
-   |        |and assigns the result to the variable designated by the left     |
-   |        |parameter.                                                        |
-   +--------+------------------------------------------------------------------+
-   |  \*=   |Multiplies the value of the left parameter by the value of the    |
-   |        |right parameter and assigns the result to the variable designated |
-   |        |by the left parameter.                                            |
-   +--------+------------------------------------------------------------------+
-   |   /=   |Divides the value of the left parameter by the value of the right |
-   |        |parameter and assigns the result to the variable designated by the|
-   |        |left parameter.                                                   |
-   +--------+------------------------------------------------------------------+
-   |   %=   |Modulus. Assigns the value of the left parameter modulo the right |
-   |        |parameter to the left parameter.                                  |
-   +--------+------------------------------------------------------------------+
+   ======== =============== ====================================================
+   Operator Name            Description
+   ======== =============== ====================================================
+   ``=``    Assign          Assigns the right parameter to the variable
+                            designated by the left parameter.
+   ``+=``   Add-assign      Adds the right parameter to the value of the left
+                            parameter and assigns the result to the variable
+                            designated by the left parameter.
+   ``-=``   Subtract-assign Subtracts the right parameter from the value of the
+                            left parameter and assigns the result to the
+                            variable designated by the left parameter.
+   ``*=``   Multiply-assign Multiplies the value of the left parameter by the
+                            value of the right parameter and assigns the result
+                            to the variable designated by the left parameter.
+   ``/=``   Divide-assign   Divides the value of the left parameter by the value
+                            of the right parameter and assigns the result to the
+                            variable designated by the left parameter.
+   ``%=``   Modulus-assign  Assigns the value of the left parameter modulo the
+                            right parameter to the left parameter.
+   ======== =============== ====================================================
 
 
 Using the Mathematical Assignment Operators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A variable can be assigned a new value using the assignment operator: ``=``. The
-following example shows how to define an integer variable and then set it to a
-new value. The new value is then output::
+A variable can be assigned a new value using the assignment operator (``=``).
+The following example shows how to define an integer variable and then set it to
+a new value, which is then output::
 
    local(my_variable) = 100
    #my_variable = 123456
@@ -527,7 +464,7 @@ new value. The new value is then output::
 
 A variable can be used as a collector by adding new values using the ``+=``
 operator. The following example shows how to define an integer variable and then
-add several values to it. The final value is output::
+add several values to it, then output the final value::
 
    local(my_variable) = 100
    #my_variable += 123
@@ -540,32 +477,29 @@ add several values to it. The final value is output::
 Mathematical Comparison Operators
 ---------------------------------
 
-Each of the mathematical camparison operaters takes two parameters - one on its
+Each of the mathematical comparison operators takes two parameters, one on its
 left and one on its right.
 
 .. _math-comparison-operators:
 
+.. tabularcolumns:: |l|l|L|
+
 .. table:: Table: Mathematical Comparison Operators
 
-   +--------+------------------------------------------------------------------+
-   |Operator|Description                                                       |
-   +========+==================================================================+
-   |   ==   |Returns "true" if the parameters are equal.                       |
-   +--------+------------------------------------------------------------------+
-   |   !=   |Returns "true" if the parameters are not equal.                   |
-   +--------+------------------------------------------------------------------+
-   |   <    |Returns "true" if the left parameter is less than the right       |
-   |        |parameter.                                                        |
-   +--------+------------------------------------------------------------------+
-   |   <=   |Returns "true" if the left parameter is less than or equal to the |
-   |        |right parameter.                                                  |
-   +--------+------------------------------------------------------------------+
-   |   >    |Returns "true" if the left parameter is greater than the right    |
-   |        |parameter.                                                        |
-   +--------+------------------------------------------------------------------+
-   |   >=   |Returns "true" if the left parameter is greater than or equal to  |
-   |        |the right parameter.                                              |
-   +--------+------------------------------------------------------------------+
+   ======== ================ ===================================================
+   Operator Name             Description
+   ======== ================ ===================================================
+   ``==``   Equal            Returns "true" if the parameters are equal.
+   ``!=``   Not equal        Returns "true" if the parameters are not equal.
+   ``<``    Less             Returns "true" if the left parameter is less than
+                             the right parameter.
+   ``<=``   Less or equal    Returns "true" if the left parameter is less than
+                             or equal to the right parameter.
+   ``>``    Greater          Returns "true" if the left parameter is greater
+                             than the right parameter.
+   ``>=``   Greater or equal Returns "true" if the left parameter is greater
+                             than or equal to the right parameter.
+   ======== ================ ===================================================
 
 
 Using the Mathematical Comparison Operators
@@ -573,7 +507,7 @@ Using the Mathematical Comparison Operators
 
 Two numbers can be compared for equality using the ``==`` operator and ``!=``
 operator. The result is a boolean "true" or "false". Integers are automatically
-converted to decimal values when compared with decimals::
+converted to decimal values when compared with decimals. ::
 
    100 == 123
    // => false
@@ -587,8 +521,8 @@ converted to decimal values when compared with decimals::
    100.0 != -123
    // => true
 
-Numbers can be compared using the ``<``, ``<=``, ``>``, and ``<=`` operators.
-The result is a boolean "true" or "false"::
+Numbers can be compared using the ``<``, ``<=``, ``>``, and ``>=`` operators.
+The result is a boolean "true" or "false". ::
 
    -37 > 0
    // => false
@@ -607,17 +541,17 @@ when one is available.
 
 .. method:: math_abs(value)
 
-   Returns the absolute value of the value passed to it.
+   Returns the absolute value of the parameter.
 
 .. method:: math_add(value, ...)
 
-   Returns the sum of all the parameters passed to it.
+   Returns the sum of all parameters.
 
 .. method:: math_ceil(value)
 
-   Returns the next highest integer.
+   Returns the next integer greater than the parameter.
 
-.. method:: math_convertEuro(value, euroto::string)
+.. method:: math_convertEuro(value, euroTo::string)
 
    Converts between the Euro and other European Union currencies.
 
@@ -627,7 +561,7 @@ when one is available.
 
 .. method:: math_floor(value)
 
-   Returns the next lower integer.
+   Returns the next integer less than the parameter.
 
 .. method:: math_max(value, ...)
 
@@ -639,31 +573,30 @@ when one is available.
 
 .. method:: math_mod(value, factor)
 
-   Returns the value of the the first parameter module the second parameter.
+   Returns the value of the first parameter modulo the second parameter.
 
 .. method:: math_mult(value, ...)
 
-   Returns the value of multiplying each of the parameters together.
+   Returns the product of multiplying each of the parameters together.
 
 .. method:: math_random()::decimal
 .. method:: math_random(upper::integer, lower=0)::integer
 .. method:: math_random(upper::decimal, lower=0.0)::decimal
 .. method:: math_random(-upper, -lower)::integer
 
-   If called with no parameters, it returns a random number between 0.0 and 1.0.
-   This method can also take two parameters: the first is the upper bound for
-   the random number, and the second is the lower bound. If the first parameter
-   is an integer, an integer will be returned, and if it is a decimal, then a
-   decimal will be returned.
+   If called with no parameters, returns a random number between 0.0 and 1.0.
+   This method can also take two parameters, with the first as the upper bound
+   for the random number, and the second as the lower bound. If the first
+   parameter is an integer, an integer will be returned, and if it is a decimal,
+   then a decimal will be returned.
 
    This method can also be called with ``-upper`` and ``-lower`` keyword
    parameters and will then return an integer value regardless of the types of
    the objects passed as parameters.
 
    When returning integer values ``math_random`` will return a maximum 32-bit
-   value. The range of returned integers is approximately between "+/-
-   2,000,000,000".
-
+   value. The range of returned integers is approximately between +/-
+   2,000,000,000.
 
 .. method:: math_rint(value)
 
@@ -679,8 +612,8 @@ when one is available.
    parameter.
 
 
-Examples of Using Basic Math Methods
-------------------------------------
+Basic Math Operations Examples
+------------------------------
 
 The following are all examples of using basic math methods to calculate the
 results of various mathematical operations::
@@ -709,7 +642,7 @@ Rounding to an Integer
 
 Decimals can be rounded to an integer using the `integer` creator method, the
 `math_floor` method to round to the next lowest integer, or the `math_ceil`
-method to found to the next highest integer::
+method to round to the next highest integer::
 
    integer(37.6)
    // => 38
@@ -735,8 +668,8 @@ Rounding to Specified Precision
 -------------------------------
 
 Numbers can be rounded to arbitrary precision using the `math_round` method with
-a decimal parameter. The second parameter should be of the form "0.01",
-"0.0001", "0.000001," etc::
+a decimal parameter. The second parameter should be of the form ``0.01``,
+``0.0001``, ``0.000001``, etc. ::
 
    math_round(3.1415926, 0.0001)
    // => 3.141600
@@ -753,7 +686,7 @@ a decimal parameter. The second parameter should be of the form "0.01",
 
 Numbers can be rounded to an even multiple of another number using the
 `math_round` method with an integer parameter. The integer parameter should be a
-power of 10::
+power of 10. ::
 
    math_round(1463, 1000)
    // => 1000.000000
@@ -765,8 +698,8 @@ power of 10::
    // => 1460.000000
 
 .. note::
-   If a rounded result needs to be shown to the user, but the actual value
-   stored in a variable does not need to be rounded then either the
+   If a rounded result needs to be shown to the user but the actual value stored
+   in a variable does not need to be rounded, then either the
    `integer->asString` or `decimal->asString` method can be used to alter how
    the number is displayed. See the documentation of these methods earlier in
    the chapter for more information.
@@ -775,31 +708,29 @@ power of 10::
 Return a Random Integer Value
 -----------------------------
 
-In the following example a random number between "1" and "100" is returned. The
-random number will be different each time the page is loaded::
+In the following example a random number between ``1`` and ``100`` is returned.
+The random number will be different each time the page is loaded. ::
 
    math_random(100, 1)
-
    // => 55
 
 
 Return a Random Decimal Value
 -----------------------------
 
-In the following example a random decimal number between "0.0" and "1.0" is
-returned. The random number will be different each time the page is loaded::
+In the following example a random decimal number between ``0.0`` and ``1.0`` is
+returned. The random number will be different each time the page is loaded. ::
 
    math_random(1.0, 0.0)
-
-   // -> 0.532773
+   // => 0.532773
 
 
 Return a Random Color Value
 ---------------------------
 
 In the following example a random hexadecimal color code is returned. The random
-number will be different each time the page is loaded. The range is from "0" to
-"255" to return two-digit hexadecimal values between "00" and "FF"::
+number will be different each time the page is loaded. The range is from ``0``
+to ``255`` to return two-digit hexadecimal values between ``00`` and ``FF``. ::
 
    [local(color) = "#" +
       math_random(255,0)->asString(-hexadecimal, -padding=2, -padChar="0") +
@@ -808,14 +739,15 @@ number will be different each time the page is loaded. The range is from "0" to
    ]
    <span style="color: [#color];">Color</span>
 
-   // => <span style="color: #e64b32;">Color</span>
+   [// =>
+   ]<span style="color: #e64b32;">Color</span>
 
 
 Trigonometry and Advanced Math Methods
 ======================================
 
 Lasso provides a number of methods for performing trigonometric functions,
-square roots, logarighthms, and calculating exponents.
+square roots, logarithms, and calculating exponents.
 
 .. method:: math_acos(value)
 
@@ -835,7 +767,7 @@ square roots, logarighthms, and calculating exponents.
 .. method:: math_atan2(value, factor)
 
    Arc Tangent of a Quotient. Returns the value of taking the angle in radians
-   between the x-axis and coordinants passed to it. The return value is in
+   between the x-axis and coordinates passed to it. The return value is in
    radians between "-π" and "π".
 
 .. method:: math_cos(value)
@@ -852,7 +784,7 @@ square roots, logarighthms, and calculating exponents.
 
 .. method:: math_exp(value)
 
-   Natural Exponent. Returns the value of taking "e" raised to the specified
+   Natural Exponent. Returns the value of taking *e* raised to the specified
    power.
 
 .. method:: math_ln(value)
@@ -863,7 +795,7 @@ square roots, logarighthms, and calculating exponents.
 
 .. method:: math_log10(value)
 
-   Base 10 Logarithm. Returns the value of taking the base-10 log of the passed
+   Base 10 Logarithm. Returns the value of taking the base 10 log of the passed
    parameter.
 
 .. method:: math_pow(value, factor)
@@ -877,10 +809,10 @@ square roots, logarighthms, and calculating exponents.
    parameter passed to this method must be positive.
 
 
-Examples of Using Advanced Math Methods
----------------------------------------
+Advanced Math Methods Operations Examples
+-----------------------------------------
 
-The following are all examples of using some of these advanced math methods to
+The following are examples of using some of these advanced math methods to
 calculate the results of various mathematical operations::
 
    math_pow(3, 3)
@@ -888,3 +820,9 @@ calculate the results of various mathematical operations::
 
    math_sqrt(100.0)
    // => 10.000000
+
+   math_acos(-1.0)
+   // => 3.141593
+
+   math_exp(math_log(5))
+   // => 5.000000
