@@ -185,6 +185,8 @@ default value be provided. ::
    // FAILURE: #lname requires default value
 
 
+.. _decompositional-assignment:
+
 Decompositional Assignment
 ==========================
 

@@ -40,7 +40,7 @@ with one or more resources. Resources are generally either Lasso pages, CSS,
 JavaScript, HTML/XML, XHR, image or other raw or binary data type.
 
 This node/resource/content representation system permits the logic for producing
-a particular application object, such as "user" or a set of database result
+a particular application object, such as a "user" or a set of database result
 rows, to be divorced from its display. It also allows application objects to be
 represented in a variety of manners, and for those representations to be
 modified, without having to extend the application objects themselves.
@@ -55,9 +55,9 @@ Nodes
 
 :dfn:`Nodes` represent the object structure behind a live LassoApp. This object
 structure is hierarchical, like a directory structure. The node tree begins with
-the ``root`` node. That root node has a series of sub-nodes and those sub-nodes
-have zero or more sub-nodes beneath them. In the case of the ``root`` node, each
-of its sub-nodes represent the currently installed and running LassoApps.
+the "root" node. That root node has a series of sub-nodes and those sub-nodes
+have zero or more sub-nodes beneath them. In the case of the root node, each of
+its sub-nodes represent the currently installed and running LassoApps.
 
 Each node has a name and this name is used when locating a particular node
 within the tree. Nodes are addressed using standard forward-slash path syntax.
@@ -106,12 +106,12 @@ added and existing representations can be tailored for specific application
 objects.
 
 If there exists a content representation object for a given node resource and
-content type, then that resource can invoked and the resulting object is given
+content type, then that resource can be invoked and the resulting object given
 to the content representation object for transformation or special handling.
 
-To illustrate, consider a resource such as a PNG image file, which comes from a
-static unchanging .png file within a LassoApp. After the LassoApp is bundled for
-deployment, that image file may not actually exist on disk, being instead
+To illustrate, consider a resource such as a PNG image which comes from a
+static, unchanging PNG file within a LassoApp. After the LassoApp is bundled for
+deployment, that image file may not actually exist on disk --- instead it is
 contained within the LassoApp in a specialized format. Given the resource's PNG
 content type, the system chooses the appropriate content representation object.
 In turn, that object sets an :mailheader:`Expires` header for that web request,
@@ -120,7 +120,7 @@ The content representation object does not have to modify the object data, and
 in this case with PNGs, sets a HTTP header but returns back the unaltered binary
 image data.
 
-Another example would be a node resource which produces a "user" object,
+Another example would be a node resource that produces a "user" object
 containing a first name, last name, etc. A content representation can be added
 which handles that particular object type and formats it for display as HTML.
 Another content representation can be added which formats it for sending back as
@@ -137,11 +137,11 @@ Lasso home. See :ref:`the section on Lasso instance home directories
 
 LassoApps begin as a directory named according to the application. This
 directory contains all of the files for the application. Before deployment, this
-directory is processed into the desired format. However, Lasso Server will
-happily serve a plain LassoApp directory as long as it is placed in the proper
-location. This means that an application can be deployed as a regular directory
-of files and also that a developer needn't take any special steps transitioning
-between developing and testing an application.
+directory can be precompiled into the LassoApp format. However, Lasso Server
+will happily serve a plain LassoApp directory as long as it is placed in the
+proper location. This means that an application can be deployed as a regular
+directory of files and also that a developer needn't take any special steps
+transitioning between developing and testing an application.
 
 .. warning::
    While the above is generally true, it is currently required to restart
@@ -154,8 +154,8 @@ The Layout of a LassoApp
 ------------------------
 
 By utilizing the "Nodes, Resources and Content Representation" concepts a
-LassoApp can be logically organized and provide clean, natural language
-hierarchy URLs.
+LassoApp can be logically organized and provide clean, hierarchical, natural
+language URLs.
 
 For example a simple "Contacts" LassoApp might have a structure similar to the
 following:
@@ -176,7 +176,7 @@ following:
             header.lasso
 
 This layout would provide the "root" of the LassoApp as
-``http://www.example.com/lasso9/mycontacts`` and will serve the ``index.lasso``
+"http://www.example.com/lasso9/mycontacts" which will serve the "index.lasso"
 file.
 
 
@@ -189,8 +189,8 @@ Serving Simple Content
 
 Serving simple content such as images, or raw text and HTML is as simple as
 putting the file into the LassoApp root directory. As long as the file has the
-appropriate file suffix (e.g. .jpg, .txt, .html) then it will be served as
-expected. Files with a suffix other than ``.lasso``, ``.lasso9`` or ``.inc``
+appropriate file suffix (e.g. ".jpg", ".txt", ".html") then it will be served as
+expected. Files with a suffix other than ".lasso", ".lasso9" or ".inc"
 will be served as plain data, meaning they will not be parsed, compiled and
 executed by Lasso Server.
 
@@ -198,19 +198,19 @@ executed by Lasso Server.
 Serving Processed Content
 -------------------------
 
-Processed content is any data produced programmatically by executing ``.lasso``
+Processed content is any data produced programmatically by executing lasso
 source code files. Such data can be generated wholly by Lasso code, or
 partially, by embedding Lasso code in HTML or other types of templates. This
-type of content must reside in a file with a suffix of ``.lasso``, ``.lasso9``
-or ``.inc``.
+type of content must reside in a file with a suffix of ".lasso", ".lasso9" or
+".inc".
 
 The outgoing content type of processed content is very important. The content
 type determines any modifications or special handling that the data will receive
-before it is ultimately converted into a string of bytes and sent to the client.
-By default, the content type for a ``.lasso`` file is :mimetype:`text/html`.
+before it is ultimately converted into a stream of bytes and sent to the client.
+By default, the content type for a ".lasso" file is :mimetype:`text/html`.
 Lasso Server will automatically set the outgoing content type accordingly. A
 file using the default content type can be accessed given a matching url with
-either no suffix, a ``.html`` suffix or a ``.lasso`` suffix. For example, a file
+either no suffix, a ".html" suffix or a ".lasso" suffix. For example, a file
 in an address book type application might be named as follows:
 
 .. code-block:: none
@@ -257,7 +257,7 @@ Primary & Secondary Processing
 ------------------------------
 
 Explicit content types can be used in concert with a similarly named regular
-``.lasso`` file. In this situation, first the *primary* file is executed and
+".lasso" file. In this situation, first the *primary* file is executed and
 then its value is made available to the *secondary* file as it is executed.
 The primary file is always executed. Only the secondary file, which corresponds
 to the requested content type, is executed.
@@ -271,21 +271,22 @@ to the requested content type, is executed.
    /AddressBook/users[xhr].lasso - secondary
 
 Given the files shown above, if the url
-``http://localhost/lasso9/AddressBook/users.html`` was accessed, first the file
-``users.lasso`` would be executed, then the file ``users[html].lasso`` would be
+"http://localhost/lasso9/AddressBook/users.html" was accessed, first the file
+"users.lasso" would be executed, and then the file "users[html].lasso" would be
 executed. The value produced by the first would be made available to the second.
 This technique is used to separate the object produced by the primary file from
 its display, which is handled by the secondary file.
 
-In this scenario, the file ``users.lasso`` might return an array of all the
+In this scenario, the file "users.lasso" might return an array of all the
 users in the address book. That list of users might need to be presented to the
 client in a variety of formats: HTML, XML or RSS. The primary file
-``users.lasso`` is concerned only with producing the array of users. The
+"users.lasso" is concerned only with producing the array of users. The
 secondary files each handle converting that array into the desired format.
 
 Since primary files usually return structured data, it is generally required to
 return the value using a ``return`` statement. However, primary files which
-simply need to return string data can do so.
+simply need to return string data can do so without a return statement --- the
+auto-collected value generated by executing that file will be returned.
 
 The following examples show a series of files that produce and format a list of
 users for both HTML and XML display. The list is generated first by the
@@ -299,6 +300,7 @@ Example File users.lasso
 ::
 
    /** contents of users.lasso **/
+   // Note: Usually the type definition would be in an _init file
    define user => type {
       data
          public firstname::string,
@@ -327,25 +329,28 @@ Example File users[html].lasso
 
 ::
 
-    <!-- content of users[html].lasso -->
-    <html>
-    <title>Users List</title>
-    <body>
-    <table>
+   <!-- content of users[html].lasso -->
+   <html>
+   <title>Users List</title>
+   <body>
+   <table>
       <tr><th>First Name</th><th>Middle Name</th><th>Last Name</th></tr>
-      [
-
+   <?lasso
       // the primary value is given to us as the first parameter
       local(usersAry = #1)
 
       // start outputting HTML for each user
       with user in #usersAry
       do {^
-        '<tr><td>' + #user->firstName + '</td>
-          <td>' + #user->middleName + '</td>
-          <td>' + #user->lastName + '</td>
-        </tr>'
+         '<tr><td>' + #user->firstName + '</td>
+            <td>' + #user->middleName + '</td>
+            <td>' + #user->lastName + '</td>
+         </tr>'
       ^}
+   ?>
+   </table>
+   </body>
+   </html>
 
 
 Example File users[xml].lasso
@@ -353,9 +358,9 @@ Example File users[xml].lasso
 
 ::
 
-    <!-- content of users[xml].lasso -->
-    <userslist>
-    [
+   <!-- content of users[xml].lasso -->
+   <userslist>
+   <?lasso
       // the primary value is given to us as the first parameter
       local(usersAry = #1)
 
@@ -363,31 +368,37 @@ Example File users[xml].lasso
       with user in #usersAry
       do {^
         '<user><firstname>' + #user->firstName + '</firstname>
-          <middlename>' + #user->middleName + '</middlename>
-          <lastname>' + #user->lastName + '</lastname>
-        </user>'
+            <middlename>' + #user->middleName + '</middlename>
+            <lastname>' + #user->lastName + '</lastname>
+         </user>'
       ^}
+   ?>
+   </userslist>
 
-      ]
-    </userslist>
 
-
-To pass multiple values from primary to secondary
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Pass Multiple Values from Primary to Secondary
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To pass multiple values from primary to secondary processors, use a staticarray
 (shortcut ":") as a return from the primary::
 
    // Return from primary processor
-   return (:array(user('Stephen', 'J', 'Gould'),
-     user('Francis', 'Crick'),
-     user('Massimo', 'Pigliucci')),'hello world')
+   return (:
+      'hello world',
+      array(
+         user('Stephen', 'J', 'Gould'),
+         user('Francis', 'Crick'),
+         user('Massimo', 'Pigliucci')
+      )
+   )
 
 The following sets local variables to the returned values from the primary
 processor, in the order they are specified. The number of local variables being
-set must match the number of elements in the returned staticarray. ::
+set must match the number of elements in the returned staticarray. (See the
+documentation on :ref:`Decompositional Assignment<decompositional-assignment>`.)
+::
 
-   local(usersAry,txt) = #1
+   local(txt, usersAry) = #1
 
 
 Special Files in LassoApps
@@ -398,16 +409,16 @@ Customizing Installation
 ------------------------
 
 One or more specially named files can be placed in the root level of a LassoApp
-directory that will be executed the first time a LassoApp is loaded into Lasso
-Server. These files are named beginning with ``_install.`` followed by any
-additional naming characters and ending with a ``.lasso`` suffix. The simplest
-install file could be named ``_install.lasso``. For example, an install file
-that performed a specific task, such as creating database required by the app,
-could be named ``_install.create_dbs.lasso``.
+directory to be executed the first time a LassoApp is loaded into Lasso Server.
+These files are named beginning with "_install." followed by any additional
+naming characters and ending with a ".lasso" suffix. The simplest install file
+could be named "_install.lasso". For example, an install file that performed a
+specific task, such as creating database required by the app, could be named
+"_install.create_dbs.lasso".
 
 Lasso Server will record the first time a particular install file is run. That
-file will not be executed again. Only install files at the root of the LassoApp
-are executed.
+file will not be executed again, even when the instance restarts. Only install
+files at the root of the LassoApp are executed.
 
 
 Customizing Initialization
@@ -415,13 +426,13 @@ Customizing Initialization
 
 LassoApps can contain a special set of files that are executed every time the
 LassoApp is loaded. This loading occurs whenever Lasso Server starts up. These
-files are named beginning with ``_init.`` followed by any additional naming
-characters and ending with ``.lasso``. ``_init.lasso`` is the simplest valid
-init file name. Only initialization files at the root of the LassoApp are
+files are named beginning with "_init." followed by any additional naming
+characters and ending with ".lasso". The file "_init.lasso" is the simplest
+valid init file name. Only initialization files at the root of the LassoApp are
 executed.
 
 Initialization files are used to define types, traits and methods used within
-the application. This includes the definition of thread types, which can be used
+the application. This includes the definition of thread object that can be used
 to synchronize aspects of the application, hold globally shared data, or perform
 periodic tasks.
 
@@ -431,7 +442,7 @@ potentially leading to bottlenecks in your application. However, during
 application development re-defining a method is a common occurrence while source
 code is frequently modified. In this case, definitions can be placed in non-init
 files (i.e. a regular file) and included in the \_init files using
-``lassoapp_include``. This lets the definition be loaded at startup while also
+`lassoapp_include`. This allows the definition be loaded at startup while also
 letting the developer execute the file "manually" as it is updated during
 development.
 
@@ -465,9 +476,9 @@ The `lassoapp_link` method must be used for all intra-app file links.
 To illustrate, consider a LassoApp which contained an image file called
 "icon.png" within an "images" sub-directory. In order to display the image, the
 `lassoapp_link` method would be used to alter the path, at runtime, to point to
-the true location of the file data. The following shows how `lassoapp_link` would
-be used to display the image. This example assumes that the link is being
-embedded in an HTML img tag::
+the true location of the file data. The following shows how `lassoapp_link`
+would be used to display the image. This example assumes that the link is being
+embedded in an HTML ``<img>`` tag::
 
    <img src="<?= lassoapp_link('/images/icon.png') ?>" />
 
@@ -475,14 +486,15 @@ The path which gets inserted into the HTML document will vary depending on the
 system's configuration, but the end result would be the same: the image would be
 displayed.
 
-In the context of our "AddressBook" LassoApp from earlier in the chapter, the
-link above would be "/lasso9/AddressBook/images/icon.png".
+In the context of our "AddressBook" LassoApp from earlier in the chapter, using
+a default server configuration, the link above would be
+"/lasso9/AddressBook/images/icon.png".
 
-`lassoapp_link` must be used anytime a path to a file within the app is needed.
-Behind the scenes, Lasso Server will alter the path so that it points to the
-right location. `lassoapp_link` only operates on paths to files within the
-current LassoApp. That is, `lassoapp_link` does not work with paths to files in
-other LassoApps running on the same system.
+The `lassoapp_link` method must be used anytime a path to a file within the app
+is needed. Behind the scenes, Lasso Server will alter the path so that it points
+to the right location. However, `lassoapp_link` only operates on paths to files
+within the current LassoApp. That is, `lassoapp_link` does not work with paths
+to files in other LassoApps running on the same system.
 
 
 LassoApp Includes
@@ -497,8 +509,8 @@ To include a LassoApp file from a lasso file external to the LassoApp, the
 `lassoapp_include` method is used. This method accepts one string parameter,
 which is the path to the file to include. This path does not need to be altered
 via the `lassoapp_link` method. However, the path should be a full path to the
-file and should include the name of the LassoApp which contains the file.
-Additionally, `lassoapp_link` takes content representations into account.
+file starting with the name of the LassoApp that contains the file.
+Additionally, `lassoapp_include` takes content representations into account.
 Therefore, if the HTML representation of a file is desired, the file path should
 include the ".html" extension.
 
@@ -508,30 +520,30 @@ representing a users list. These files represented the users list in several
 formats, particularly XML and HTML. Combined with a groups list, an opening page
 from the hypothetical AddressBook LassoApp might look as follows::
 
-    <html>
-        <title>Title</title>
-        <body>
-          Users list:
-          <?= lassoapp_include('/AddressBook/users.html') ?>
-          Groups list:
-          <?= lassoapp_include('/AddressBook/groups.html') ?>
-        </body>
-    </html>
+   <html>
+      <head><title>Title</title></head>
+      <body>
+         Users list:
+         <?= lassoapp_include('/AddressBook/users.html') ?>
+         Groups list:
+         <?= lassoapp_include('/AddressBook/groups.html') ?>
+      </body>
+   </html>
 
-`lassoapp_include` can be used to pull in any of the content representations for
-a file, including the primary content. If the raw user list (as shown earlier in
-this chapter) were desired, the `lassoapp_include` method would be used, but the
-.lasso extension would be given in the file path instead of the ".html"
-extension, as in the example above. Because of this, the return type of the
-`lassoapp_include` method may vary. It may be plain string data, bytes data from
-such as an image, or any other type of object.
+A `lassoapp_include` can be used to pull in any of the content representations
+for a file, including the primary content. If the raw user list (as shown
+earlier in this chapter) were desired, the `lassoapp_include` method would be
+used, but the ".lasso" extension would be given in the file path instead of the
+".html" extension. Because of this, the return type of the `lassoapp_include`
+method may vary. It may be plain string data, bytes data from such as an image,
+or any other type of object.
 
 The following example includes the users list and assigns it to a variable. It
 then prints a message pertaining to how many users exist. This illustrates how
-the result of `lassoapp_include` is not just character data, but is whatever type
-of data the LassoApp file represents. In this case, it is an array. ::
+the result of `lassoapp_include` is not just character data, but is whatever
+type of data the LassoApp file represents. In this case, it is an array. ::
 
-   local(usersList = lassoapp_include('/AddressBook/users.lasso'))
+   local(usersList) = lassoapp_include('/AddressBook/users.lasso')
    'There are: ' + #usersList->size + ' users'
 
 
@@ -539,8 +551,8 @@ Packaging, Distributing and Deploying LassoApps
 ===============================================
 
 A LassoApp can be packaged in one of three ways: as a directory of files, as a
-zipped directory and as a compiled platform-specific binary. Each method has its
-own benefits. Developers can choose the packaging mechanism most suitable to
+zipped directory, and as a compiled platform-specific binary. Each method has
+its own benefits. Developers can choose the packaging mechanism most suitable to
 their needs.
 
 
@@ -560,12 +572,12 @@ directory.
 A Zip File
 ----------
 
-The second method is to zip the LassoApp directory. This produces a single .zip
+The second method is to zip the LassoApp directory. This produces a single zip
 file that can be installed on a Lasso server. Lasso Server will handle
 unzipping the file in-memory and serving its contents. LassoApps zipped in this
-manner provide easy download and distribution while still making the source-code
-for the application accessible. Zipped LassoApps must have a ".zip" file
-extension.
+manner provide easy downloading and distribution while still making the
+source-code for the application accessible. Zipped LassoApps must have a ".zip"
+file extension.
 
 Developers should ensure that a LassoApp directory is zipped properly.
 Specifically, Lasso requires that all of the files & folders inside the LassoApp
@@ -589,11 +601,12 @@ job quietly (by default, zip outputs verbose information on its activities).
 A Compiled Binary
 -----------------
 
-Using the :program:`lassoc` tool, included with Lasso Server, a developer can compile a
-LassoApp directory into a single distributable file. LassoApps packaged in this
-manner will have the file extension ".lassoapp". Packaging in this manner
-provides the greatest security for one's source code because the source code is
-not included in the package and is not recoverable by the end user.
+Using the :program:`lassoc` tool, included with Lasso Server, a developer can
+compile a LassoApp directory into a single distributable file. LassoApps
+packaged in this manner will have the file extension ".lassoapp". Packaging in
+this manner provides the greatest security for one's source code because the
+source code is not included in the package and is not recoverable by the end
+user.
 
 Compiled binary LassoApps are platform-specific. Because these LassoApps are
 compiled to native OS-specific executable code, a binary compiled for OS X, for
@@ -601,7 +614,7 @@ example, will not run on CentOS.
 
 Both the :program:`lassoc` tool and the freely available :program:`gcc` compiler
 tools are required to compile a binary LassoApp. Several steps are involved in
-this task. However, Lasso Server ships with a "makefile" which simplifies this
+this task. However, LassoSoft makes available a "makefile" which simplifies this
 process. To use this makefile, copy the file into the same location as the
 LassoApp directory. Then, on the command line, type:
 
@@ -614,6 +627,11 @@ command. The resulting file will have a ".lassoapp" extension and can be placed
 in the LassoApps directory. Lasso Server will load the LassoApp once it is
 restarted.
 
+.. note::
+   For information on compiling without using a make file, see :ref:`the
+   documentaiton on compiling lasso code<compiling-lasso>`. (It also has
+   instructions for compiling on Windows.)
+
 
 Installing the GCC compiler
 ---------------------------
@@ -622,7 +640,7 @@ On OS X, either:
 
 -  Install then open Xcode, go to :menuselection:`Preferences --> Downloads -->
    Components --> Command Line Tools`, and click :guilabel:`Install`.
--  Install the command line tools package directly from
+-  Or install the command line tools package directly from
    https://developer.apple.com/downloads/index.action (Apple ID required).
 
 On CentOS:
@@ -642,7 +660,7 @@ Platform-Specific Considerations
 It is important to note that the target for each compiled LassoApp is specific
 to that which it is compiled on. If your development platform is OS X and you
 wish to deploy your compiled LassoApp on 64-bit CentOS, you must compile the
-LassoApp on a 64-bit CentOS. The same issue exists for 32- vs. 64-bit
+LassoApp on a 64-bit CentOS. The same issue exists for 32 vs. 64-bit
 architectures on the same distribution. A LassoApp compiled for 32-bit Ubuntu
 will not run on 64-bit Ubuntu.
 
@@ -654,7 +672,8 @@ In order to compile a LassoApp the Lasso 9 makefile must be present in the same
 parent directory as the source. The makefile is not distributed with the Lasso 9
 installer, but is available from the LassoSoft source repository at
 http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/makefile. This
-makefile is the same for each platform and architecture Lasso 9 supports.
+makefile is the same for every non-Windows platform and architecture Lasso 9
+supports.
 
 
 Server Configuration
@@ -667,8 +686,8 @@ indicate which LassoApp the web site is serving. The environment variable is
 named :envvar:`LASSOSERVER_APP_PREFIX`. Its value should be the path to the root
 of the LassoApp. For example, if a site were dedicated to serving the Lasso
 Server Administration app, the value for the :envvar:`LASSOSERVER_APP_PREFIX`
-variable would be: ``/lasso9/admin``. Having the variable set in this manner
-would cause all `lassoapp_link` paths to be prefixed with ``/lasso9/admin``.
+variable would be: "/lasso9/admin". Having the variable set in this manner
+would cause all `lassoapp_link` paths to be prefixed with "/lasso9/admin".
 
 The :envvar:`LASSOSERVER_APP_PREFIX` variable is used in concert with other web
 server configuration directives to provide transparent serving of a LassoApp.
@@ -693,8 +712,8 @@ Tips & Tricks
 =============
 
 
-Loading all required types, traits and methods at initialization
-----------------------------------------------------------------
+Loading Required Types, Traits and Methods at Initialization
+------------------------------------------------------------
 
 It is a good habit to load all types and methods required by the LassoApp at the
 time it is loaded by Lasso Server. This can be achieved by utilizing
@@ -713,7 +732,7 @@ time it is loaded by Lasso Server. This can be achieved by utilizing
    /* =====================================================
    types
    ===================================================== */
-   local(coretypes = array('my_usertype','my_addresstype','my_companytype'))
+   local(coretypes) = array('my_usertype','my_addresstype','my_companytype')
    with i in #coretypes do => { lassoapp_include('core/types_methods/'+#i+'.lasso') }
 
 This will load the specified traits and types at the time the LassoApp is
@@ -727,7 +746,7 @@ directly:
    http:://www.myserver.com/lasso9/myLassoApp/core/types_methods/my_usertype.lasso
 
 
-Creating required SQLite database(s) on installation
+Creating Required SQLite Database(s) on Installation
 ----------------------------------------------------
 
 It is often desirable to keep configuration data for your LassoApp in a database
@@ -744,10 +763,13 @@ whenever the LassoApp is installed on a new instance::
    define myLassoApp_sqlite_db      => sys_databasesPath + myLassoApp_sqlite_dbname
    define myLassoApp_config_table   => 'config'
 
-   local(sql = sqlite_db(myLassoApp_sqlite_db))
+   local(sql) = sqlite_db(myLassoApp_sqlite_db)
 
    #sql->doWithClose => {
-      #sql->executeNow('CREATE TABLE IF NOT EXISTS '+myLassoApp_config_table+' (host PRIMARY KEY,dbname,username,pwd,status INTEGER,registerkey)')
+      #sql->executeNow(
+         'CREATE TABLE IF NOT EXISTS ' + myLassoApp_config_table +
+         ' (host PRIMARY KEY,dbname,username,pwd,status INTEGER,registerkey)'
+      )
    }
 
 The code within _install.lasso will only ever be executed when this LassoApp is
@@ -792,13 +814,16 @@ type::
    /* =====================================================
    contents of userdata[xhr].lasso
    ===================================================== */
-   local(id = integer(web_request->param('id')->asString))
-   local(mydata = map)
-   inline(-database='db',-SQL='SELECT firstname,lastname FROM mytable WHERE id = '+#id+' LIMIT 1') => {
+   local(id)     = integer(web_request->param('id')->asString)
+   local(mydata) = map
+   inline(
+      -database='db',
+      -sql="SELECT firstname,lastname FROM mytable WHERE id = " + #id + " LIMIT 1"
+   ) => {
       records => {
          #mydata->insert('firstname' = field('firstname')->asString)
-         #mydata->insert('lastname' = field('lastname')->asString)
+         #mydata->insert('lastname'  = field('lastname')->asString)
       }
    }
-   local(xout = json_serialize(#mydata))
+   local(xout) = json_serialize(#mydata)
    #xout
