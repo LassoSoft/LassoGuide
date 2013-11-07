@@ -185,7 +185,7 @@ plain text alternative, embedded HTML images, and attachments.
    :param -host:
       SMTP host through which to send messages.
    :param -port:
-      SMTP port. Defaults to ``25``.
+      SMTP port. Defaults to "25".
    :param -username:
       Specifies the username for SMTP AUTH if required by the SMTP server. If
       specified a ``-password`` is also required.

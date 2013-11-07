@@ -5,32 +5,32 @@ LDAP
 ****
 
 LDAP is an industry-standard method of publishing directory information within
-an organization. LDAP servers are used for many different tasks. They can be
-used to publish the contact information for employees. They can be used to
-publish publicly accessible information. LDAP servers are also used to publish
-authentication information so all servers within an organization can use the
-same usernames and passwords.
+an organization. LDAP servers are used for many different tasks, such as
+publishing the contact information for employees or other publicly accessible
+information. LDAP servers are also used to publish authentication information so
+all servers within an organization can use the same usernames and passwords.
 
-An LDAP server provides access to a directory information tree (DIT). Each
-element in the tree is called an entry and has several attributes. Any element
-in the tree can be found using its distinguished name (DN). The distinguished
+An LDAP server provides access to a "directory information tree" (DIT). Each
+element in the tree is called an "entry" and has several attributes. Any element
+in the tree can be found using its "distinguished name" (DN). The distinguished
 name is like the path to a file in an operating system. For example, the DN of
 the record for John Doe in the directory might be "cn=John Doe, ou=People,
 o=LassoSoft".
 
 The DN is made up of three parts separated by commas. Each part of the DN is
-called a relative distinguished name (RDN) and must be unique for all entries at
-that level. The RDN functions much like a primary key and includes one or more
-name/value pairs which uniquely identify the element from all of its siblings.
+called a "relative distinguished name" (RDN) and must be unique for all entries
+at that level. The RDN functions much like a primary key and includes one or
+more name/value pairs which uniquely identify the element from all of its
+siblings.
 
 The attributes of each entry make up the data of the entry. Every entry will
 have an "objectClass" which tells what kind of entry it is. The remainder of the
 attributes will be determined by the type of directory that is being searched,
 but may include first name, last name, email address, phone number, etc. The
-attributes are often named with one or two character abbreviations like "cn" for
-combined name, "ln" for last name, "fn" for first name, or "ou" for operational
-unit. Attributes might also have longer names like "email", "telephonenumber",
-etc.
+attributes are often named with one- or two-character abbreviations like "cn"
+for combined name, "ln" for last name, "fn" for first name, or "ou" for
+operational unit. Attributes might also have longer names like "email",
+"telephonenumber", etc.
 
 
 LDAP Searches
@@ -47,7 +47,7 @@ possible DNs are shown below:
    dc=omnipilot, dc=com
    ou=People, o=LassoSoft
 
-The filter actually defines the search query. It is a series of query terms
+The search query is defined by the filter, which is a series of query terms
 (attributes and values) joined by logical operators. The most basic filter
 specifies that all objects in the tree should be returned:
 
@@ -55,7 +55,7 @@ specifies that all objects in the tree should be returned:
 
    (objectClass=*)
 
-This is actually a special case of the exists filter. This filter returns any
+This is actually a special case of the "exists" filter. This filter returns any
 entries which have a defined objectClass. Similarly, all entries which have a
 full name attribute "cn" could be found with this filter:
 
@@ -65,12 +65,13 @@ full name attribute "cn" could be found with this filter:
 
 A filter can specify an attribute name, operator, and value. Any of the
 attributes of the entries in the directory tree can be used in the filter. The
-operators include "=" equals, "~=" sounds like, ">=" greater than, and "<=" less
-than. The equals operator supports "*" asterisk as a wildcard character allowing
-for contains, begins with, and ends with searches. Greater than and less than
-operators may only be supported on numeric fields. For example, the following
-simple filters would find all entries whose full name started with "John", ended
-with "Doe", or were exactly "John Doe":
+operators include "equals" (``=``), "sounds like" (``~=``), "greater than"
+(``>=``), and "less than" (``<=``). The equals operator supports the asterisk
+``*`` as a wildcard character allowing for "contains", "begins with", and
+"ends with" searches. Operators for "greater than" (``>``) and "less than"
+(``<``) may only be supported on numeric fields. For example, the following
+simple filters would find all entries whose full name starts with "John", ends
+with "Doe", or are exactly "John Doe":
 
 .. code-block:: none
 
@@ -78,11 +79,11 @@ with "Doe", or were exactly "John Doe":
    (cn=*Doe)
    (cn=John Doe)
 
-Two or more filters can be combined using a logical operator "&" for and, "|"
-for or, or a filter can be negated using "!" for not. The following three
-filters would find all entries who have a first name of "John" and a last name
-of "Doe", a first name of "John" or a last name of "Doe", and a first name which
-is not "John" and a last name which is not "Doe":
+Two or more filters can be combined using the logical operators "and" (``&``) or
+"or" (``|``), or a filter can be negated using "not" (``!``). The following
+three filters would find all entries who have a first name of "John" and a last
+name of "Doe", a first name of "John" or a last name of "Doe", and a first name
+which is not "John" and a last name which is not "Doe":
 
 .. code-block:: none
 
@@ -92,19 +93,19 @@ is not "John" and a last name which is not "Doe":
 
 Note that there are no quotes around the values in the filters. The parentheses
 are used to delimit the values. In order to find a value which contains
-parentheses "()", an asterisk "*", a backslash "\", or a null character the
-following escape sequences can be used. "\\2a" for "(", "\\28" for ")", "\\29"
-for "*", "\\5c" for "\\", and "\\00" for null.
+parentheses ``()``, an asterisk ``*``, a backslash ``\``, or a null character,
+the following escape sequences can be used: "\\2a" for ``(``, "\\28" for ``)``,
+"\\29" for ``*``, "\\5c" for ``\``, and "\\00" for null.
 
 
 LDAP Results
 ============
 
 The results of an LDAP search will be an array of pairs. The first element of
-each pair will be the distinguished name (DN) of the entry. The second element
-of each pair will be an array of pairs including the attribute names and values
-for the entry. For example, a search which found entries for "John Doe" and
-"Jane Doe" might contain the following elements::
+each pair will be the DN of the entry. The second element of each pair will be
+an array of pairs including the attribute names and values for the entry. For
+example, a search which found entries for "John Doe" and "Jane Doe" might
+contain the following elements::
 
    (:
       pair('cn=John Doe, ou=People, o=LassoSoft' = (:
@@ -119,8 +120,8 @@ for the entry. For example, a search which found entries for "John Doe" and
 
 LDAP allows the results to be customized in two ways. A list of desired
 attributes can be passed with the search. The results will only include those
-attributes. A wild card of asterisk "*" specifies that all attributes should be
-returned (the default). A wild card of plus sign "+" specifies that only
+attributes. An asterisk wildcard (``*``) specifies that all attributes should be
+returned (the default). A plus sign wildcard (``+``) specifies that only
 operational attributes should be returned (these are attributes that are
 generally used internally by the LDAP directory). Finally, a flag allows only
 attribute names to be returned without any values. By default both attribute
@@ -130,8 +131,8 @@ names and values are returned.
 LDAP Type
 =========
 
-The :type:`ldap` data type can be used to create a connection to an LDAP server and
-then to send queries to the server.
+The :type:`ldap` data type can be used to create a connection to an LDAP server
+and then to send queries to the server.
 
 .. type:: ldap
 .. method:: ldap(...)
@@ -156,8 +157,7 @@ then to send queries to the server.
    for details about these parameters. Returns no value.
 
    :param base:
-      The distinguished name (DN) of the entry at which to start the search.
-      Required.
+      The DN of the entry at which to start the search. Required.
    :param scope:
       The scope of the search. Optional. This parameter should be one of the
       following values:
@@ -172,25 +172,24 @@ then to send queries to the server.
       An array of strings specifying the attribute types to return in the search
       results. Optional.
 
-      -  "*" (asterisk) may be specified in the array to indicate that all
+      -  ``'*'`` (asterisk) may be specified in the array to indicate that all
          attributes are to be returned.
-      -  "+" (plus sign) may be specified in the array to indicate that all
+      -  ``'+'`` (plus sign) may be specified in the array to indicate that all
          operational attributes should be returned.
-      -  "1.1" may be specified in the array to indicate that no attributes
+      -  ``'1.1'`` may be specified in the array to indicate that no attributes
          should be returned.
 
    :param attribute-only:
       A boolean indicating that only attributes and no values should be
-      returned. Defaults to "False". Optional.
+      returned. Defaults to "false". Optional.
 
 .. member:: ldap->results()
 
    Returns results from the last search operation as an array containing a
    series of nested array and pair values. Each element in the top level array
    is a pair representing an entry found in the search. The first element of the
-   pair is the distinguished name (DN) of the found entry. The second element of
-   the pair is an array of pairs containing the entry s attribute names and
-   values.
+   pair is the DN of the found entry. The second element of the pair is an array
+   of pairs containing the entry's attribute names and values.
 
 .. member:: ldap->referrals()
 
@@ -199,21 +198,22 @@ then to send queries to the server.
 .. member:: ldap->code()
 
    Returns the code generated by the previous operation. A code of "0" means
-   success. The most common codes are included in a chart below.
+   success. The most common codes are listed in the table below.
 
 .. member:: ldap->close(...)
 
    Closes the connection to the LDAP server.
 
 For example, the following code performs an LDAP query against a server
-"ldap.example.com". The base of the query is "dc=example,dc=com". The scope is
-``ldap_scope_subtree`` indicating that the object and all of its descendants
-should be searched. The filter is "(objectClass=*)" indicating that all object
-classes are to be returned. The filter is "*" indicating that all attributes are
-to be returned. And, attribute-only is set to "False" indicating that both
-attributes and values should be returned. After each line is executed the return
-code is checked to make sure that it is "0" indicating success. If the result
-code is greater than "0" then an error is reported::
+"ldap.example.com". The base of the query is ``'dc=example,dc=com'``. The scope
+is ``ldap_scope_subtree`` indicating that the object and all of its descendants
+should be searched. The filter is ``'(objectClass=*)'`` indicating that all
+object classes are to be returned. The filter attribute is ``*`` indicating that
+all attributes are to be returned. And, the ``attribute-only`` parameter is
+automatically set to "false" indicating that both attributes and values should
+be returned. After each line is executed the return code is verified to be "0"
+indicating success. If the result code is greater than "0" then an error is
+reported. ::
 
    local(my_ldap) = ldap
 
@@ -230,10 +230,9 @@ code is greater than "0" then an error is reported::
 
    #my_ldap->close
 
-The results of this operation will be a staticarray of pairs. The first element
-of each pair is the distinguished name (DN) of the entry. The second element of
-each pair is a pair staticarray containing the names and attributes of the
-element.
+The result of this operation will be a staticarray of pairs. The first element
+of each pair is the DN of the entry. The second element of each pair is a
+staticarray of pairs containing the names and attributes of the element.
 
 .. table:: Common LDAP Status Codes
 
