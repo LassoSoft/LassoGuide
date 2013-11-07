@@ -10,8 +10,8 @@ provide authentication for your own web apps; however, Lasso is also flexible
 enough to support custom security & authentication mechanisms.
 
 Lasso's security system data is stored in a SQLite database located in the
-instance's SQLiteDBs directory. Passwords are not stored in plain text, although
-other information such as user names and group names are not encrypted.
+instance's :file:`SQLiteDBs` directory. Passwords are not stored in plain text,
+although other information such as user names and group names are unencrypted.
 
 Within the system, users are grouped into particular realms. Realms completely
 separate their users such that the same username/password combination could
@@ -38,7 +38,7 @@ The ``auth_…`` methods are used by web apps to execute simple security checks.
 The checks acquire the username, password and realm information from the current
 web request and, therefore, require that a request be active. In all cases, if
 the check fails or if no username and password are provided, then the auth
-methods will generate a HTTP 401 Unauthorized response with a
+methods will generate an "HTTP 401 Unauthorized" response with a
 :mailheader:`WWW-Authenticate: Digest` header. The request is then aborted, by
 default. If the security checks succeed, then the methods return nothing. If
 electing not to abort when the check fails, a caller can check
@@ -49,11 +49,11 @@ electing not to abort when the check fails, a caller can check
    -errorResponse = '', \
    -noResponse = false)
 
-   This method checks that the current authenticated HTTP client user is in the
+   Checks that the current authenticated HTTP client user is in the
    "ADMINISTRATORS" group. An alternate realm can be given and the default abort
    behavior can be altered. By default, a simple "Not authorized" content body
-   is generated, which body can be specified with the ``-errorResponse``
-   parameter or the body can be left empty by passing ``-noResponse``.
+   is generated; this can be specified with the ``-errorResponse`` parameter or
+   the body can be left empty by passing ``-noResponse``.
 
 .. method:: auth_user(name::string, \
    -realm::string = 'Lasso Security', \
@@ -61,8 +61,8 @@ electing not to abort when the check fails, a caller can check
    -errorResponse = '', \
    -noResponse = false)
 
-   This method checks that the current authenticated HTTP client user matches
-   the given name.
+   Checks that the current authenticated HTTP client user matches the given
+   name.
 
 .. method:: auth_group(group::string, \
    -realm::string = 'Lasso Security', \
@@ -70,8 +70,8 @@ electing not to abort when the check fails, a caller can check
    -errorResponse = '', \
    -noResponse = false)
 
-   This method checks that the current authenticated HTTP client user is in the
-   specified group.
+   Checks that the current authenticated HTTP client user is in the specified
+   group.
 
 
 Managing Users
@@ -81,12 +81,12 @@ The :type:`security_registry` object provides a more complete interface to
 Lasso's security system. It does not rely on an ongoing web request and can be
 used freely once the system is initialized. The `security_registry` methods
 permit a realm to be specified, but the object otherwise defaults to using the
-'Lasso Security' realm.
+"Lasso Security" realm.
 
 Before the security system can be used, it must be initialized by calling the
 `security_initialize` method. Lasso Server calls this method as it starts up and
-so this can be safely ignored by web applications. Command line or other tools
-that want to use the security system should call this method as early as
+so this step can be safely skipped by web applications. Command-line or other
+tools that want to use the security system should call this method as early as
 possible when starting up.
 
 A :type:`security_registry` object can be created with zero parameters. When
@@ -100,50 +100,46 @@ created, it will open a connection to the security database. A
    use the :type:`security_registry` type.
 
 .. type:: security_registry
-
 .. method:: security_registry()
 
-   Creates a new security_registry object.
-
-   Once created, a security_registry can be used to:
+   Creates a new `security_registry` object. Once created, it can be used to:
 
    -  Add/remove groups
-   -  Alter group meta-data (name, enabled)
+   -  Alter group metadata (name, enabled)
    -  Add/remove users
-   -  Alter user meta-data (password, comment, enabled)
+   -  Alter user metadata (password, comment, enabled)
    -  Assign/unassign users to groups
    -  Validate username/password/realm combinations
 
-
 .. member:: security_registry->close()
 
-   This method closes the :type:`security_registry` object's connection to the
-   security information database.
+   Closes the :type:`security_registry` object's connection to the security
+   information database.
 
 .. member:: security_registry->addGroup(name::string, \
    enabled::boolean = true, \
    comment::string = '')
 
-   This method attempts to add the specified group. A group is enabled by
-   default, but it can be explicitly disabled. A comment can be provided when
-   the group is created and will be stored in the database for reference.
+   Attempts to add the specified group. A group is enabled by default, but it
+   can be explicitly disabled. A comment can be provided when the group is
+   created and will be stored in the database for reference.
 
 .. member:: security_registry->getGroupID(name::string)
 
-   This method returns the integer id for the indicated group. This id can be
-   passed to subsequent methods to identify the group.
+   Returns the integer ID for the indicated group. This ID can be passed to
+   subsequent methods to identify the group.
 
 .. member:: security_registry->listGroups(-name::string)
 .. member:: security_registry->listGroupsByUser(userid::integer)
 .. member:: security_registry->listGroupsByUser(username::string)
 
    These methods list groups in a variety of ways. The first method will list
-   all groups. A ``-name`` parameter can be specified to perform wild card
-   searches. The wildcard character is "%". The second and third methods
-   return a list of groups that the indicated user belongs to.
+   all groups. A ``-name`` parameter can be specified to perform wildcard
+   searches. The wildcard character is "%". The second and third methods return
+   a list of groups that the indicated user belongs to.
 
-   Each group is represented by a map object containing the following keys: id,
-   name, enabled, comment.
+   Each group is represented by a map object containing the keys 'id', 'name',
+   'enabled', and 'comment'.
 
 .. member:: security_registry->removeGroup(groupid::integer)
 .. member:: security_registry->removeGroup(name::string)
@@ -156,55 +152,54 @@ created, it will open a connection to the security database. A
    -enabled = null, \
    -comment = null)
 
-   This method will modify the information for the group. Passing any of the
-   ``-name``, ``-enabled`` or ``-comment`` parameters will set the appropriate
-   data.
+   Modifies the information for the group. Passing any of the ``-name``,
+   ``-enabled`` or ``-comment`` parameters will set the appropriate data.
 
 .. member:: security_registry->addUser(username::string, password::string, \
    enabled::boolean = true, \
    comment::string = '', \
    -realm = 'Lasso Security')
 
-   This method adds a new user to the system. A username and password must be
-   supplied. An optional enabled and comment parameter can be provided. The
-   ``-realm`` keyword controls which realm the user is placed in. The default is
-   "Lasso Security". The user's information record is returned. This is a map
-   object containing the user's id, name, enabled, comment, email, real_name
-   and realm. Note: the "email" and "real_name" fields are not utilized at
-   this time.
+   Adds a new user to the system. A username and password must be supplied. An
+   optional ``enabled`` and ``comment`` parameter can be provided. The
+   ``-realm`` keyword controls which realm the user is placed in. The default
+   realm is "Lasso Security". The user's information record is then returned as
+   a map object containing the keys 'id', 'name', 'enabled', 'comment', 'email',
+   'real_name' and 'realm'.
+
+   .. note:: The 'email' and 'real_name' fields are not used at this time.
 
 .. member:: security_registry->addUserToGroup(userid::integer, groupid::integer)
 
-   This method is utilized to add a user to a group. Both user and group must be
-   indicated by their integer ids.
+   Adds a user to a group. Both user and group must be indicated by their
+   integer IDs.
 
 .. member:: security_registry->checkUser(username::string, password::string, -realm::string = 'Lasso Security')
 
-   This method will authenticate the given username and password and will return
-   user's record if it succeeds. The return value will be a map containing keys
-   for id, name, enabled, comment, email, real_name and realm. If the check
-   fails, this method will return ``void``. The check will fail if the user
+   Authenticates the given username and password and will return user's record
+   if it succeeds. The return value will be a map object containing the keys
+   'id', 'name', 'enabled', 'comment', 'email', 'real_name' and 'realm'. If the
+   check fails, this method will return "void". The check will fail if the user
    account is not enabled.
 
 .. member:: security_registry->countUsersByGroup(groupid::integer)
 
-   This method returns the number of users in the indicated group.
+   Returns the number of users in the indicated group.
 
 .. member:: security_registry->getUser(userid::integer)
 .. member:: security_registry->getUser(name::string, -realm::string = 'Lasso Security')
 .. member:: security_registry->getUserID(name::string, -realm::string = 'Lasso Security')
 
    The first two methods return the user record for the indicated user. The
-   second method returns the id of the indicated user.
+   second method returns the ID of the indicated user.
 
 .. member:: security_registry->listUsers(-name::string = '', -realm = null)
 .. member:: security_registry->listUsersByGroup(name::string)
 
    These methods list users and return their user records. The first method
-   permits a ``-name`` pattern to be specified as well as a realm. Not passing a
-   ``-realm`` will result in all realms being searched.
-
-   The second method lists all of the users in the indicated group.
+   permits a ``-name`` pattern to be specified as well as a realm. Not
+   specifying ``-realm`` will result in all realms being searched. The second
+   method lists all of the users in the indicated group.
 
 .. member:: security_registry->removeUser(userid::integer)
 .. member:: security_registry->removeUserFromGroup(userid::integer, groupid::integer)
@@ -217,5 +212,5 @@ created, it will open a connection to the security database. A
 .. member:: security_registry->userEnabled(userid::integer) = enabled::boolean
 .. member:: security_registry->userComment(userid::integer) = comment::string
 
-   Given a user id, these methods will assign that user's password, enabled
+   Given a user ID, these methods will assign that user's password, enabled
    state or associated comment, respectively.
