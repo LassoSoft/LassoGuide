@@ -4,9 +4,9 @@
 Sessions
 ********
 
-Sessions allow variables to be created which are persistent from request to
-request within a website. Rather than passing data using HTML forms or URLs,
-visitor-specific data can be stored in Lasso variables which are automatically
+Sessions allow variables to be created that persist from request to request
+within a website. Rather than passing data using HTML forms or URLs,
+visitor-specific data can be stored in Lasso variables that are automatically
 saved and retrieved by Lasso for each page a visitor loads.
 
 Sessions can be used for a variety of purposes, including:
@@ -41,18 +41,17 @@ stored, and an ID string that identifies a particular site visitor.
 -  **Name** - The session name is defined when the session is created by the
    `session_start` method. The same session name must be used for each request
    that wants to load the session. The name usually represents the type of data
-   being stored in the session, e.g. ``'Shopping_Cart'`` or
-   ``'Site_Preferences'``.
+   being stored in the session, e.g. "Shopping_Cart" or "Site_Preferences".
 
--  **Variables** - Each session maintains a list of variables which are being
+-  **Variables** - Each session maintains a list of variables that are being
    stored. Variables can be added to the session using `session_addVar`. The
    values for all variables in the session are remembered at the end of each
-   request which loads the session. The value for each saved variable is
+   request that loads the session. The value for each saved variable is
    restored when that session is next loaded.
 
 -  **ID** - Lasso automatically creates an ID string for each site visitor when
    a session is created. The ID string is either stored in a cookie or passed
-   from page to page using the ``-lassosession`` GET/POST parameter. When a
+   from page to page using the "-lassosession" GET/POST parameter. When a
    session is loaded, the ID of the current visitor is combined with the name of
    the session to locate and load the particular set of variables for that
    session and the current visitor.
@@ -77,7 +76,7 @@ variable does not need to be added to the session on each request, though it is
 safe to do so. A variable can be removed from a session using the
 `session_removeVar` method. This method does not alter a variable's current
 value, but does prevent the value of the variable from being saved for the
-session.
+session. This means the variable will not be available on future session loads.
 
 
 Session Methods
@@ -91,7 +90,7 @@ Below is a description of each of the session methods:
 
    :param string name:
       The name of the session. This is the only required parameter. All other
-      parameters are optional and have default values which cover the majority
+      parameters are optional and have default values that cover the majority
       of usages.
    :param integer=15 -expires:
       The idle expiration time for the session in minutes.
@@ -100,11 +99,11 @@ Below is a description of each of the session methods:
       supplied explicitly by the developer. If no ID is specified, then Lasso
       will automatically create an ID.
    :param boolean=true -useCookie:
-      If ``true``, then sessions will be tracked by cookie. ``-useCookie``
-      defaults to ``true`` unless ``-useLink``, ``-useAuto``, or ``-useNone``
-      are specified.
+      If "true", then sessions will be tracked by cookie. ``-useCookie``
+      defaults to "true" unless ``-useLink``, ``-useAuto``, or ``-useNone``
+      is specified.
    :param boolean=false -useLink:
-      If ``true``, then sessions will be tracked by modifying all the absolute
+      If "true", then sessions will be tracked by modifying all the absolute
       and relative links in the outgoing response data.
    :param boolean=false -useNone:
       If specified, no links on the current page will be modified and a cookie
@@ -114,9 +113,9 @@ Below is a description of each of the session methods:
       This option automatically uses ``-useCookie`` if cookies are available on
       the visitor's browser or ``-useLink`` if they are not. Since Lasso has no
       way of knowing if cookies are enabled when a session is first started,
-      ``-useLink`` is implicitly ``true`` on that first request and links will
+      ``-useLink`` is implicitly "true" on that first request and links will
       be adjusted to carry the session. If the session cookie is present on
-      subsequent requests, ``-useLink`` will be implicitly ``false`` and links
+      subsequent requests, ``-useLink`` will be implicitly "false" and links
       will not be adjusted.
    :param integer=null -cookieExpires:
       Optionally sets the expiration in minutes for the session cookie. This
@@ -127,11 +126,11 @@ Below is a description of each of the session methods:
    :param string='/' -path:
       Optionally sets the path for the session cookie.
    :param boolean=false -secure:
-      If ``true``, the session cookie will only be sent back to the web server
-      on requests for HTTPS secure web pages. `session_end` should also be
+      If "true", the session cookie will only be sent back to the web server
+      on requests for HTTPS secure web pages. The `session_end` should also be
       specified with ``-secure`` if this option is desired.
    :param boolean=false -rotate:
-      If ``true``, the session will have a new ID generated for it on each
+      If "true", the session will have a new ID generated for it on each
       request.
 
 .. method:: session_id(sessionName::string)
@@ -154,7 +153,7 @@ Below is a description of each of the session methods:
    Deletes the stored information about a named session for the current visitor.
    Accepts a required parameter: the name of the session to be deleted, and an
    optional keyword parameter: ``-secure``. The ``-secure`` keyword should be
-   ``true`` if the ``-secure`` keyword was ``true`` when `session_start` was
+   "true" if the ``-secure`` keyword was "true" when `session_start` was
    called.
 
 .. method:: session_abort(sessionName::string)
@@ -176,11 +175,11 @@ Below is a description of each of the session methods:
 .. method:: session_deleteExpired()
 
    This method is used internally by the session manager and does not normally
-   need to be called directly. It trigers a cleanup routine which deletes
-   expired sessions from the current session storage location.
+   need to be called directly. It trigers a cleanup routine that deletes expired
+   sessions from the current session storage location.
 
 .. note::
-   ``-useCookie`` is the default for `session_start` unless ``-useLink`` or
+   The ``-useCookie`` is the default for `session_start` unless ``-useLink`` or
    ``-useNone`` are specified. Use ``-useLink`` to track a session using only
    links. Use both ``-useLink`` and ``-useCookie`` to track a session using both
    links and a cookie.
@@ -190,7 +189,7 @@ Starting a Session
 ==================
 
 The `session_start` method is used to start a new session or to load an existing
-session. When the `session_start` method is called with a given ``name``
+session. When the `session_start` method is called with a given "name"
 parameter it first checks to see whether an ID is defined for the current
 visitor. The ID is searched for in the following three locations:
 
@@ -200,7 +199,7 @@ visitor. The ID is searched for in the following three locations:
 -  **Cookie** - If a session tracker cookie is found for the name of the session
    then the ID stored in the cookie is used.
 
--  **-lassosession** - If a ``-lassosession`` parameter for the name of the
+-  **-lassosession** - If a "-lassosession" parameter for the name of the
    session was specified as a GET or POST parameter then that value is used as
    the session ID.
 
@@ -253,17 +252,17 @@ If the ``-useLink`` parameter is specified in the `session_start` method, Lasso
 will automatically modify links contained on the current page. No additional
 programming beyond specifying the ``-useLink`` parameter is required.
 
-By default, links contained in the ``href`` parameter of anchor tags will be
+By default, links contained in the "href" parameter of anchor tags will be
 modified. Links are only modified if they reference a file on the same machine
 as the current website. Any links which start with any of the following strings
-are not modified: ``file://``, ``ftp://``, ``http://``, ``https://``,
-``javascript:``, ``mailto:``, ``telnet://``, ``#``
+are not modified: "file://", "ftp://", "http://", "https://",
+"javascript:", "mailto:", "telnet://", "#"
 
-Links are modified by adding a ``-lassosession:SessionName`` parameter to the
+Links are modified by adding a "-lassosession:SessionName" parameter to the
 end of the link. The value of the parameter is the session ID, as returned by
 the `session_id` method. For example, an anchor tag referencing the current file
-with a session named "Cart" would have ``?-lassosession:Cart=`` followed by the
-session ID tacked on after the file name.
+with a session named "Cart" would have "?-lassosession:Cart=" followed by the
+session ID tacked on after the URL path.
 
 
 Use Cookies with a Link Fallback
@@ -292,7 +291,7 @@ Session Examples
 Start a Session
 ---------------
 
-The following example starts a session named ``Site_Preferences`` with an idle
+The following example starts a session named "Site_Preferences" with an idle
 expiration of 24 hours (1440 minutes). The session will be tracked using both
 cookies and links. ::
 
@@ -304,10 +303,10 @@ Add Variables to a Session
 
 Use the `session_addVar` method to add a variable to a session. Once a variable
 has been added to a session its value will be restored when `session_start` is
-next called. In the following example, a variable named ``RealName`` is added to
-a session named ``Site_Preferences``. ::
+next called. In the following example, a variable named "real_name" is added to
+a session named "Site_Preferences". ::
 
-   session_addVar('Site_Preferences', 'Real_Name')
+   session_addVar('Site_Preferences', 'real_name')
 
 
 Remove Variables From a Session
@@ -317,9 +316,9 @@ Use the `session_removeVar` method to remove a variable from a session. The
 variable will no longer be stored with the session, and its value will not be
 restored in subsequent requests. The value of the variable in the current
 request will not be affected. In the following example, a variable named
-``RealName`` is removed from a session named ``Site_Preferences``. ::
+"real_name" is removed from a session named "Site_Preferences". ::
 
-   session_removeVar('Site_Preferences', 'Real_Name')
+   session_removeVar('Site_Preferences', 'real_name')
 
 
 Delete a Session
@@ -328,10 +327,13 @@ Delete a Session
 A session can be deleted using the `session_end` method with the name of the
 session. The session will be ended immediately. None of the variables in the
 session will be affected in the current request, but their values will not be
-restored in subsequent requests. Sessions can also end automatically if the
-timeout specified by the ``-expires`` keyword is reached. In the following
-example the session ``Site_Preferences`` is ended. ::
+restored in subsequent requests. Before a session can be ended, it has to be
+loaded, so you must call `session_start` before you can call `session_end`
+Sessions can also end automatically if the timeout specified by the ``-expires``
+keyword is reached. In the following example the session "Site_Preferences" is
+ended. ::
 
+   session_start('Site_Preferences')
    session_end('Site_Preferences')
 
 
@@ -341,8 +343,8 @@ Pass a Session in an HTML Form
 Sessions can be added to URLs automatically using the ``-useLink`` keyword in
 the `session_start` method. In order to pass a session using a form, a hidden
 input must be added explicitly. The hidden input should have the name
-``-lassosession:SessionName`` and a value of `session_id`. In the following
-example, the ID for a session ``Site_Preferences`` is returned using
+"-lassosession:SessionName" and a value of `session_id`. In the following
+example, the ID for a session "Site_Preferences" is returned using
 `session_id` and passed explicitly in an HTML form. ::
 
    <form action="save.lasso" method="post">
