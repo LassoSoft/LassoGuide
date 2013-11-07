@@ -4,9 +4,10 @@
 Files
 *****
 
-Lasso provides access to the local file system through the file and dir objects.
-File objects are used to create, delete, read and write file data. Dir objects
-are use to create and delete directories and to iterate directory contents.
+Lasso provides access to the local file system through the :type:`file` and
+:type:`dir` types. File objects are used to create, delete, read and write
+file data. Dir objects are use to create and delete directories and to iterate
+through directory contents.
 
 
 .. _files-path:
@@ -15,7 +16,7 @@ Paths
 =====
 
 Individual files and directories are identified by their paths. Paths may
-include ``..`` or ``.`` components to indicate "parent" or "current" locations,
+include ".." or "." components to indicate "parent" or "current" locations,
 respectively. Path components are generally separated by forward slashes
 although backward slashes are acceptable as well and may be more natural on
 Windows operating systems. Regardless of which slash type is used, Lasso will
@@ -24,7 +25,7 @@ using the path in any system function.
 
 Paths can be either relative or full. Full paths always start with at least one
 slash, or in the case of Windows, may start with a drive letter designation
-(i.e. ``C:``). Full file paths are based from the file system root. When serving
+(i.e. "C:"). Full file paths are based from the file system root. When serving
 web requests under Lasso Server, the file system root defaults to the web
 document root as indicated by the web server for that request (IIS, Apache,
 etc.) or as set by the :envvar:`LASSOSERVER_DOCUMENT_ROOT` web request variable.
@@ -35,22 +36,22 @@ It is possible to escape the web document root and target the real file system
 root by using a full path with either a drive letter designation in the case of
 Windows, or by prefixing the path with two additional forward slashes. For
 example, :file:`//foo/bar` and :file:`C:\\foo\\bar` would both reference the
-same file on Windows, provided ``C:`` is the system drive.
+same file on Windows, provided "C:" is the system drive.
 
 When not serving a web request, such as when running LassoStartup items or when
 running scripts through the :program:`lasso9` command line tool, the file system
-root is set to the system's natural root which is ``/`` for UNIX-based systems
-or ``C:`` (for example) on Windows-based systems.
+root is set to the system's natural root which is "/" for UNIX-based systems
+or "C:" (for example) on Windows-based systems.
 
 Relative paths do not begin with a slash or drive designation and indicate a
 file or directory which is located based on the current working directory.
-During a web request, the current working directory is equal to the directory
-location of the currently active source file. For example, when processing a
-request for the file :file:`/foo/bar.lasso`, :file:`/foo/` is the current
-working directory and a file with a relative path of :file:`baz.lasso` will be
-looked for as :file:`/foo/baz.lasso`. To illustrate, consider the following
-three example files. Within the first two are tests checking for the existence
-of the next file.
+During a web request, the current working directory is the directory location of
+the currently active source file. For example, when processing a request for the
+file :file:`/foo/bar.lasso`, :file:`/foo/` is the current working directory and
+a file with a relative path of :file:`baz.lasso` will be looked for as
+:file:`/foo/baz.lasso`. To illustrate, consider the following three example
+files. Within the first two are tests checking for the existence of the next
+file.
 
 .. code-block:: none
 
@@ -62,20 +63,21 @@ When not serving a web request or when running scripts via the :program:`lasso9`
 command line tool, the current working directory is as set by the operating
 system or shell. In this situation, the current working directory path can be
 retrieved with the `io_file_getcwd` method. The current working directory can be
-set with `io_file_chdir(s::path)` method. Manipulating the working directory in
-this way changes it globally for all threads in the current process.
+set with `io_file_chdir` method. Manipulating the working directory in this way
+changes it globally for all threads in the current process.
 
 
 Working with File Objects
 =========================
 
-File objects can be instantiated with or without an initial path. Creating a
-file object does not open the file. If created without a path, a path must be
-specified when later opening the file.
-
 .. type:: file
 .. method:: file()
 .. method:: file(path::string)
+
+   File objects can be instantiated with or without an initial path. Creating a
+   file object does not open the file. If created without a path, a path must be
+   specified when later opening the file.
+
 
 
 Opening Files
@@ -85,7 +87,7 @@ A file must be opened before it can be read from or written to. Once a file is
 opened, it should be closed when it is no longer needed. While Lasso will close
 all files which become garbage collected, it is recommended to immediately close
 files once their tasks are completed. Many operating systems have limitations on
-the number of simultaneously opened files and ensuring that they are closed
+the number of simultaneously opened files, and ensuring that they are closed
 promptly will improve system performance.
 
 .. member:: file->openRead()
@@ -96,19 +98,19 @@ promptly will improve system performance.
 
    These methods open the file using the open mode indicated in the method name.
 
-   -  `openRead` will open the file in read-only mode.
-   -  `openWrite` will open the file in read/write mode.
-   -  `openAppend` will open the file in read/write mode and will set the
+   -  `file->openRead` will open the file in read-only mode.
+   -  `file->openWrite` will open the file in read/write mode.
+   -  `file->openAppend` will open the file in read/write mode and will set the
       current write position to the end of the file.
-   -  `openTruncate` will open the file in read/write mode and will set the
-      file's size to zero.
+   -  `file->openTruncate` will open the file in read/write mode and will set
+      the file's size to zero.
 
    Write, append and truncate modes will create the file if it does not exists.
    Read-only mode will fail if the file does not exist.
 
-   All the methods will fail if the process does not have access to the files in
-   question. In this case the error_code and error_msg will be set to the values
-   generated by the operating system.
+   All the methods will fail if the process does not have access to the file in
+   question. In this case the `error_code` and `error_msg` will be set to the
+   values generated by the operating system.
 
 .. member:: file->openRead(path::string)
 .. member:: file->openWrite(path::string)
@@ -127,16 +129,16 @@ promptly will improve system performance.
 
    These methods will open the file in the same manner as the preceding methods,
    however these methods accept a second parameter. This parameter is a boolean
-   value indicating if the file should be created if it does not exist. If false
-   is given for this parameter then the file will not be created and a failure
-   will be generated using the operating system error code and message.
+   value indicating if the file should be created if it does not exist. If
+   "false" is given for this parameter then the file will not be created and a
+   failure will be generated using the operating system error code and message.
 
 
 Closing Files
 -------------
 
 Once a file is opened, it must later be closed. Once a file is closed it can no
-longer be read from or written to unless it is re-opened.
+longer be read from or written to until it is re-opened.
 
 .. member:: file->doWithClose()
 
@@ -145,13 +147,13 @@ longer be read from or written to unless it is re-opened.
    when working with files as it will ensure the file is closed even if a
    failure occurs within the givenBlock.
 
-Example::
+   Example::
 
-   local(f = file('n.txt'))
-   #f->openWrite
-   #f->doWithClose => {
-     // ... work with file ...
-   }
+      local(f) = file('n.txt')
+      #f->doWithClose => {
+         #f->openWrite
+         // ... work with file ...
+      }
 
 .. member:: file->close()
 
@@ -161,11 +163,11 @@ Example::
 Reading File Data
 -----------------
 
-File data can be read as either ``bytes`` or ``string`` objects. By default,
-string objects, which are always Unicode, are created with the assumption that
-the file contains UTF-8 encoded data. This assumption can be changed by settings
-the file objects's character encoding value. When reading the data as a bytes
-object, the unaltered file data is returned.
+File data can be read as either bytes or string objects. By default, string
+objects, which are always Unicode, are created with the assumption that the file
+contains UTF-8 encoded data. This assumption can be changed by settings the file
+objects's character encoding value. When reading the data as a bytes object, the
+unaltered file data is returned.
 
 Data can be read line by line or as individual bytes or in chunks of bytes. Each
 read will return the bytes immediately following the previously read bytes
@@ -210,12 +212,12 @@ the file will return a zero-sized bytes object.
    These methods provide iteration over the file's bytes either one at a time or
    line by line.
 
-Example::
+   Example::
 
-   #f->forEachLine => {
-     local(theLine = #1)
-     // ...
-   }
+      #f->forEachLine => {
+         local(theLine) = #1
+         // ...
+      }
 
 
 Writing File Data
@@ -230,7 +232,7 @@ Manipulating the file's marker will adjust where the next write takes place.
 .. member:: file->writeString(s::string)::integer
 
    These methods write bytes or string data to the file and return the number of
-   bytes which were written.
+   bytes that were written.
 
 .. member:: file->delete()
 
@@ -241,7 +243,8 @@ Manipulating the file's marker will adjust where the next write takes place.
 
    These two methods attempt to move or copy the file to a new location or fail
    trying. The overwrite parameter indicates that if the destination file
-   already exists the method should fail.
+   already exists the method should fail. Setting overwrite to "true" will have
+   it replace the existing file with the file referenced by the file object.
 
 
 Other File Operations
@@ -249,7 +252,7 @@ Other File Operations
 
 .. member:: file->exists()::boolean
 
-   This method returns true if the file exists on the system.
+   This method returns "true" if the file exists on the system.
 
 .. member:: file->path()::string
 
@@ -290,7 +293,7 @@ Other File Operations
 .. member:: file->perms()::integer
 
    These methods are used to set and get the permissions of the file. These
-   operations are currently supported on UNIX based systems only.
+   operations are currently supported on UNIX-based systems only.
 
 
 Standard File Objects
@@ -309,14 +312,14 @@ are garbage collected.
 Working with Dir Objects
 ========================
 
-:type:`Dir` objects are instantiated with a path and an optional -resolveLinks
-keyword parameter. This parameter defaults to false. If set to true, then the
-:type:`dir` object will resolve symbolic links when iterating over its contents,
-when returning its own `perms` and when determining if it is indeed a directory
-through the `isDir` method.
-
 .. type:: dir
 .. method:: dir(path::string, -resolveLinks = false)
+
+   Dir objects are instantiated with a path and an optional ``-resolveLinks``
+   keyword parameter. This parameter defaults to false. If set to true, then the
+   dir object will resolve symbolic links when iterating over its contents, when
+   returning its own `perms` and when determining if it is indeed a directory
+   through the `dir->isDir` method.
 
 
 Creating Directories
@@ -330,7 +333,7 @@ Creating Directories
 
    Attempts to create the directory at the path indicated when the dir object
    was created. The perms parameter indicates the permissions that the directory
-   should be given. This defaults to the equivalent of rwxrwxrwx.
+   should be given. This defaults to the equivalent of "rwxrwxrwx".
 
    This method will attempt to create any non-existent intermediate directories
    along the path with the same permissions. It does not alter the permissions
@@ -349,34 +352,35 @@ forward slash. A dir object never returns a path or object representing the ".."
 or "." directory entries.
 
 Each of the values returned by these methods can be used in query expressions or
-in ``iterate(...)``. A dir object itself can be utilized in a query expression
-or iterate. In this case, the behavior will be the same as with the `eachPath`
+in `iterate`. A dir object itself can be utilized in a query expression or
+iterate. In this case, the behavior will be the same as with the `dir->eachPath`
 method, described below.
 
 .. member:: dir->eachPath()
 .. member:: dir->eachFilePath()
 .. member:: dir->eachDirPath()
 
-   These methods are used to list the relative paths of the contents of the
-   directory. `eachPath` will return both files and sub-directories.
-   `eachFilePath` and `eachDirPath` return only the file or sub-directory paths,
-   respectively.
+   These methods are used to operate on the relative paths of the contents of
+   the directory. The `dir->eachPath` method will return both files and
+   sub-directories. The `dir->eachFilePath` and `dir->eachDirPath` return only
+   the file or sub-directory paths, respectively.
 
 .. member:: dir->eachPathRecursive()
 .. member:: dir->eachFilePathRecursive()
 .. member:: dir->eachDirPathRecursive()
 
-   These methods are used to list the relative paths or the contents of the
-   directory. When a sub-directory is encountered, its contents are also listed,
-   and so on as deep as the directory tree goes.
+   These methods are used to operate on the relative paths or the contents of
+   the directory. When a sub-directory is encountered, its contents are also
+   included, and so on as deep as the directory tree goes.
 
 .. member:: dir->each()
 .. member:: dir->eachFile()
 .. member:: dir->eachDir()
 
    This set of methods returns the directory contents as file or dir objects.
-   The `each` method returns both the files and dirs within the directory.
-   `eachFile` and `eachDir` return only the files or dirs, respectively.
+   The `dir->each` method returns both the files and dirs within the directory.
+   The `dir->eachFile` and `dir->eachDir` methods return only the files or dirs,
+   respectively.
 
 
 Examples
@@ -386,14 +390,26 @@ Use a :type:`dir` object in a query expression to list the contents of the
 current working directory::
 
    with path in dir('.')
-   select #path // is a string such as 'foo/'
+   sum #path + "\n"
+
+   // => 
+   // A Folder/
+   // My_File.txt
+   // Sub_Directory/
 
 Use a :type:`dir` object to list a directory's contents as :type:`file`
 objects::
 
-   iterate(dir('foo/')->eachFile, local(f))
-     #f // is a file object
-   /iterate
+   with f in dir('foo/')->eachFile
+   // f is a file object
+   sum #f->size->asString(-padding=10) + " " + #f->name + "\n"
+
+   // =>
+   //     12779 An Example File.pdf
+   //         0 empty_file
+   //      1063 Rhino Habitats.txt
+   //    109572 Rhino Running.jpg
+   //      3270 Summary.txt
 
 
 Other Dir Operations
