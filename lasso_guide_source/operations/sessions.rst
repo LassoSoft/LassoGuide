@@ -303,7 +303,7 @@ Add Variables to a Session
 
 Use the `session_addVar` method to add a variable to a session. Once a variable
 has been added to a session its value will be restored when `session_start` is
-next called. In the following example, a variable named ``real_name`` is added
+next called. In the following example, a variable named "real_name" is added
 to a session named "Site_Preferences". ::
 
    session_addVar('Site_Preferences', 'real_name')
@@ -316,7 +316,7 @@ Use the `session_removeVar` method to remove a variable from a session. The
 variable will no longer be stored with the session, and its value will not be
 restored in subsequent requests. The value of the variable in the current
 request will not be affected. In the following example, a variable named
-``real_name`` is removed from a session named "Site_Preferences". ::
+"real_name" is removed from a session named "Site_Preferences". ::
 
    session_removeVar('Site_Preferences', 'real_name')
 
