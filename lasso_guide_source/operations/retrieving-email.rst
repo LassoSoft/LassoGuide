@@ -314,7 +314,7 @@ information like a picture of the sender.
 
 A more complex email message is shown below. This message has a
 :mailheader:`Content-Type` of :mimetype:`multipart/alternative`. The body of the
-message is divided into two parts: one text part and one HTML part. The parts
+message is divided into two parts, one text part and one HTML part. The parts
 are divided using the boundary specified in the :mailheader:`Content-Type`
 header (``---=_NEXT_fda4fcaab6``).
 

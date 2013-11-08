@@ -4,19 +4,19 @@
 DNS
 ***
 
-The Domain Name System (DNS) is an essential part of the Internet infrastructure
-which maps people-friendly domain names like "`www.lassosoft.com
+The Domain Name System (DNS) is an essential part of the Internet's
+infrastructure which maps people-friendly domain names like "`www.lassosoft.com
 <http://www.lassosoft.com/>`_" to machine-friendly IP addresses like
-"127.0.0.1". Every URL entered into a Web browser or email address entered into
-an email client requires a look up through the DNS system to determine which
-actual server to submit the request or route the message to.
+"127.0.0.1". Every URL entered into a web browser or email address entered into
+an email client requires consulting the DNS system to determine which actual
+server to submit the request or route the message to.
 
 DNS servers can handle many different types of requests. Some of the most common
 are listed here:
 
 \*
    Returns all available information about the domain name. The results of this
-   type are returned in human readable form.
+   type are returned in human-readable form.
 
 A
    This is the most common type of request and simply returns the IP address
@@ -58,7 +58,7 @@ left to right the domain name gets progressively more general. In a typical
 three word domain name like "www.lassosoft.com" the first word represents a
 particular machine or a particular service, the second word represents the
 domain in which the machine or service resides, and the third word represents
-the top-level domain which has authorized use of that domain name.
+the top-level domain which has authorized the use of that domain name.
 
 Top-level domains are controlled by an organization which has been designated by
 the IANA (Internet Assigned Name Authority). ".com" and ".net" are two common
@@ -67,12 +67,12 @@ educational institutions, ".gov" is a top-level domain reserved for U.S.
 government institutions, ".org" is a top-level domain reserved for non-profit
 organizations.
 
-Each country has its own top level domain defined by its standard two letter
-abbreviation. ".us" is the top-level domain for the United States, ".uk" is the
-top-level domain for the United Kingdom, ".cn" is the top-level domain for
-China. The domain ".to" is actually the country domain for Tonga. Each country
-decides how it wants to assign domain names within their own top-level domain.
-Some have created virtual top-level domains like ".com.uk", ".org.uk",
+Each country has its own top-level domain defined by its standard two letter
+abbreviation, e.g. ".us" is the top-level domain for the United States, ".uk" is
+the top-level domain for the United Kingdom, and ".cn" is the top-level domain
+for China. The domain ".to" is actually the country domain for Tonga. Each
+country decides how it wants to assign domain names within their own top-level
+domain. Some have created virtual top-level domains like ".com.uk", ".org.uk",
 ".edu.uk", etc.
 
 
@@ -80,8 +80,8 @@ IPv4 Addresses
 ==============
 
 IPv4 addresses consist of four numbers from 0 to 255 separated by periods. Each
-number represents a single 8 bit integer and the entire IP address represents a
-32 bit integer. There are thus effectively about 4 billion IPv4 addresses. A
+number represents a single 8-bit integer and the entire IP address represents a
+32-bit integer, so there are effectively about 4 billion IPv4 addresses. A
 typical IP address appears as follows:
 
 .. code-block:: none
@@ -95,10 +95,9 @@ IPv6 Addresses
 In order to expand the range of IP addresses which are available, a new Internet
 Protocol has been implemented and is in the process of being adopted. This is
 version 6 of the Internet Protocol and is abbreviated IPv6. The most recent
-versions of Windows, Mac OS X, and Linux all support IPv6 addresses. The DNS
-lookup methods in Lasso do not support IPv6 addresses at this time. IPv6
-addresses are essentially 128-bit integers. A typical IPv6 address may appear as
-follows:
+versions of Windows, OS X, and Linux all support IPv6 addresses. The DNS lookup
+methods in Lasso do not support IPv6 addresses at this time. IPv6 addresses are
+essentially 128-bit integers. A typical IPv6 address may appear as follows:
 
 .. code-block:: none
 
@@ -127,7 +126,7 @@ DNS Lookup
    )
 
    This method is used to query a DNS server for information about a specified
-   domain name. It requires one parameter: the domain name being queried. The
+   domain name. It requires one parameter, the domain name being queried. The
    optional parameters are described in the table below. This method will return
    either a string, array, or :type:`dns_response` object.
 
@@ -184,12 +183,11 @@ IP Lookup Example
 -----------------
 
 The following example looks up the associated IP address(es) for a specified
-domain name. Using a ``-type`` of "A" will always return an array, even if there
-is only one IP address. An empty array will be returned if no information about
-the specified domain name can be found::
+domain name. Using a ``-type`` of ``'A'`` will always return an array, even if
+there is only one IP address. An empty array will be returned if no information
+about the specified domain name can be found. ::
 
    dns_lookup('www.lassosoft.com', -type='A')
-
    // => array(64.34.221.14)
 
 
@@ -199,10 +197,9 @@ Reverse Lookup Example
 Reverse lookups which are performed when an IP address is passed to the
 ``dns_lookup`` method or when the "PTR" type is specified return an array of
 domain names. An empty array will be returned if no domain name could be found
-for the specified IP address::
+for the specified IP address. ::
 
    dns_lookup('64.34.221.14')
-
    // => array(www.lassosoft.com)
 
 
@@ -212,17 +209,16 @@ MX Records Lookup
 "MX" lookups return an array of pairs. The first element of each pair is a
 priority and the second element of each pair is an IP address. The mail servers
 should be used in order of priority to provide fallback if the preferred mail
-servers cannot be reached::
+servers cannot be reached. ::
 
    dns_lookup('lassosoft.com', -Type='MX')
-
    // => array((10 = smtp1.lassosoft.com), (15 = smtp2.lassosoft.com))
 
 
 Using Different Formats
 -----------------------
 
-The following output shows the human readable response to a DNS request::
+The following output shows the human-readable response to a DNS request::
 
    dns_lookup('www.lassosoft.com', -format)
 
@@ -239,7 +235,6 @@ The following output shows the low-level bit formatting of a DNS response. The
 actual response is fairly long and not shown here::
 
    dns_lookup('www.lassosoft.com', -bitFormat)
-
    // => // Long response here // <= //
 
 
@@ -247,24 +242,24 @@ DNS Response Type
 =================
 
 .. type:: dns_response
-.. method:: dns_response
+.. method:: dns_response()
 
    An object of this data type can be returned in response to a
    :type:`dns_lookup` depending on its parameters. The member methods of this
    type are described below.
 
-.. member:: dns_response->format
+.. member:: dns_response->format()
 
    Returns a formatted display of the entire response from the DNS server.
 
-.. member:: dns_response->bitFormat
+.. member:: dns_response->bitFormat()
 
    Returns a formatted display of the raw bits returned by the DNS server.
 
-.. member:: dns_response->answer
+.. member:: dns_response->answer()
 
    Returns the answer from the DNS server. This differs based on the type.
 
-.. member:: dns_response->data
+.. member:: dns_response->data()
 
-   Returns the raw byte stream.
+   Returns the response as a raw byte stream.
