@@ -13,18 +13,18 @@ describe how you can run them yourself.
 lassoserver
 ===========
 
-The lassoserver executable is installed at :file:`/usr/sbin/lassoserver` on OS X
-and Linux operating systems and at :file:`C:\\Program Files\\LassoSoft\\Lasso
-Instance Manager\\home\\LassoExecutables\\lassoserver` on Windows. This program
-creates a FastCGI server that interfaces with web servers to process Lasso files
-in response to web requests. Each instance of Lasso has its own lassoserver
-process running a FastCGI server. Additionally, the lassoserver executable can
-start up an HTTP server instead of a FastCGI server. As an HTTP server, it can
-serve both static files and Lasso files. This is great for local development,
-but you should run a production web server (such as Apache) for your production
-servers.
+The :program:`lassoserver` executable is installed at
+:file:`/usr/sbin/lassoserver` on OS X and Linux operating systems and at
+:file:`C:\\Program Files\\LassoSoft\\Lasso Instance
+Manager\\home\\LassoExecutables\\lassoserver` on Windows. This program creates a
+FastCGI server that interfaces with web servers to process Lasso files in
+response to web requests. Each instance of Lasso has its own lassoserver process
+running a FastCGI server. Additionally, the lassoserver executable can start up
+an HTTP server instead of a FastCGI server. As an HTTP server, it can serve both
+static files and Lasso files. This is great for local development, but you
+should run a production web server (such as Apache) for your production servers.
 
-The following is the list of options for running lassoserver:
+The following is the list of options for running :program:`lassoserver`:
 
 .. program:: lassoserver
 
@@ -126,8 +126,8 @@ as Lasso code::
 lassoim(d)
 ==========
 
-The lassoim(d) executable is installed at "/usr/sbin/lassoim" on OS X,
-"/usr/sbin/lassoimd" on Linux operating systems, and "C:\\Program
+The :program:`lassoim(d)` executable is installed at "/usr/sbin/lassoim" on OS
+X, "/usr/sbin/lassoimd" on Linux operating systems, and "C:\\Program
 Files\\LassoSoft\\Lasso Instance Manager\\home\\LassoExecutables\\lassoim" on
 Windows. This program creates the FastCGI server that runs Lasso's Instance
 Manager web application. It also makes sure that all enabled instances are
@@ -147,41 +147,39 @@ operating systems.
 lasso9
 ======
 
-The lasso9 executable is installed at "/usr/bin/lasso9" on OS X and Linux
-operating systems and at "C:\\Program Files\\LassoSoft\\Lasso Instance
+The :program:`lasso9` executable is installed at "/usr/bin/lasso9" on OS X and
+Linux operating systems and at "C:\\Program Files\\LassoSoft\\Lasso Instance
 Manager\\home\\LassoExecutables\\lasso9" on Windows. This program can execute
 Lasso code in a file, from STDIN, passed to it as a string, or in an interactive
 interpreter. This executable doesn't load and startup everything that
-lassoserver does. See the discussion on the :ref:`libararies available to shell
-scripts <libaries-available-shell-scripts>` for what doesn't get loaded and how
-to load the extra pieces if you need them.
+:program:`lassoserver` does. See the discussion on :ref:`the libararies
+available to shell scripts <libaries-available-shell-scripts>` for what doesn't
+get loaded and how to load the extra pieces if you need them.
 
 To execute a file of Lasso code, pass the path to the file as the argument to
-lasso9. For example::
+:program:`lasso9`. For example::
 
    $> lasso9 /path/to/code.lasso
 
-To execute Lasso code from STDIN, pass "--" as the first argument to lasso9::
+To execute Lasso code from STDIN, pass "--" as the first argument to
+:program:`lasso9`::
 
    $> echo 'lasso_version' | lasso9 --
 
-To execute Lasso code passed to lasso9 as a string, pass the "-s" flag as the
-first argument to lasso9::
+To execute Lasso code passed to :program:`lasso9` as a string, pass the "-s"
+flag as the first argument::
 
    $> lasso9 -s "lasso_version"
 
-For more details, see the section on :ref:`Calling Lasso on the CLI
-<calling-lasso-cli>`.
-
-
-To execute Lasso code interactively, call lasso9 with the "-i" flag as the first
-argument. When you do this a new prompt will appear (``>:``), and what you type
-there will be processed as Lasso code when you hit return. You can also paste
-small amounts of multi-line code into the prompt; just be sure to hit return
-right after you paste so that the last line of code will be included. (One thing
-to note: each chunk of code is processed as if it were a separate file, so local
-variables processed in one chunk are unavailable to future chunks. You'll either
-need to copy and paste multi-line code, or use thread variables.)
+To execute Lasso code interactively, call :program:`lasso9` with the "-i" flag
+as the first argument. When you do this a new prompt will appear ("``>:``"), and
+what you type there will be processed as Lasso code when you hit return. You can
+also paste small amounts of multi-line code into the prompt; just be sure to hit
+return right after you paste so that the last line of code will be included.
+(One thing to note: each chunk of code is processed as if it were a separate
+file, so local variables processed in one chunk are unavailable to future
+chunks. You'll either need to copy and paste multi-line code, or use thread
+variables.)
 
 ::
 
@@ -193,12 +191,15 @@ need to copy and paste multi-line code, or use thread variables.)
    2
    3
 
+For more details, see the section on :ref:`Calling Lasso on the CLI
+<calling-lasso-cli>`.
+
 
 lassoc
 ======
 
-The lassoc executable is installed at "/usr/bin/lassoc" on OS X and Linux
-operating systems and at "C:\\Program Files\\LassoSoft\\Lasso Instance
+The :program:`lassoc` executable is installed at "/usr/bin/lassoc" on OS X and
+Linux operating systems and at "C:\\Program Files\\LassoSoft\\Lasso Instance
 Manager\\home\\LassoExecutables\\lassoc" on Windows. This program is used to
 compile LassoApps, Lasso libraries, and Lasso executables. See the section on
 :ref:`compiling Lasso code <compiling-lasso>` for more information.
@@ -209,7 +210,7 @@ compile LassoApps, Lasso libraries, and Lasso executables. See the section on
 Special Environment Variables
 =============================
 
-There are four shell environment variables that have various effects on running
+There are several environment variables that have various effects on running
 lasso9, lassoserver, or custom Lasso executables. The following lists the
 variables and a description of their function:
 
@@ -218,15 +219,16 @@ variables and a description of their function:
    This variable is set to the path of a directory containing either the
    instance-specific libraries and startup items, or to a path containing all of
    the Lasso 9 built-in libraries. If set to an instance-specific home
-   directory, then be sure to also set the LASSO9_MASTER_HOME variable.
+   directory, then be sure to also set the :envvar:`LASSO9_MASTER_HOME`
+   variable.
 
    Default is "/var/lasso/home" for OS X and Linux.
 
 .. envvar:: LASSO9_MASTER_HOME
 
    This variable must be set to a directory containing all the built-in Lasso
-   libraries if the LASSO9_HOME variable is set to an instance-specific home
-   directory.
+   libraries if the :envvar:`LASSO9_HOME` variable is set to an
+   instance-specific home directory.
 
    Default is not set.
 
@@ -279,7 +281,7 @@ There are two ways to run a file containing Lasso code from the command line:
       $> /path/to/code.lasso
 
 This second option requires having the OS executable permissions set. You can do
-this in OS X or Linux with the chmod command::
+this in OS X or Linux with the :command:`chmod` command::
 
    $> chmod +x /path/to/code.lasso
 
@@ -300,14 +302,14 @@ Dealing with Command-Line Arguments
 
 When running Lasso command-line scripts, Lasso provides two special thread
 variables to inspect the command that was run and the arguments that were passed
-to it: ``$argc`` and ``$argv``. The ``$argc`` variable returns the number of
-arguments, including the command. The ``$argv`` variable returns a staticarray -
-the first element which is the command and the remaining elements which are the
-arguments passed to the command.
+to it: "argc" and "argv". The "argc" variable returns the number of arguments,
+including the command. The "argv" variable returns a staticarray --- the first
+element is the command and the remaining elements are the arguments passed to
+the command.
 
 
 The following example outputs the values of ``$argc`` and ``$argv`` when the
-script is run using the lasso9 executable. The contents of the file
+script is run using the :program:`lasso9` executable. The contents of the file
 "/path/to/code.lasso" are::
 
    stdoutnl($argc)
@@ -348,15 +350,15 @@ http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/lasso9.lasso.)
 What Libraries are Available in a Shell Script
 ==============================================
 
-Lasso shell scripts are not run in the lassoserver context. This means that
-various libraries and tools that lassosever loads are not loaded or available by
-default when your script runs. While all the core libraries are available, the
-LCAPI modules, LJAPI modules, logging system, email queue, security registry,
-web request and response environment, LassoApps, and files in LassoStartup are
-not loaded. This is actually beneficial since your script would otherwise take
-as long as lassoserver to startup before it got to running your code. If you
-find you need something that isn't loaded, you can load it yourself. The
-sections below will show you how.
+Lasso shell scripts are not run in the :program:`lassoserver` context. This
+means that various libraries and tools that :program:`lassosever` loads are not
+loaded or available by default when your script runs. While all the core
+libraries are available, the LCAPI modules, LJAPI modules, logging system, email
+queue, security registry, web request and response environment, LassoApps, and
+files in LassoStartup are not loaded. This is actually beneficial since your
+script would otherwise take as long as :program:`lassoserver` to startup before
+it got to running your code. If you find you need something that isn't loaded,
+you can load it yourself. The sections below will show you how.
 
 
 Loading All Database and LCAPI Modules
@@ -386,7 +388,7 @@ Setup LJAPI Environment
 -----------------------
 
 To create the JVM and setup the LJAPI environment, you must first load the
-LJAPI9 LCAPI module and then call the ``ljapi_initialize`` method::
+LJAPI9 LCAPI module and then call the `ljapi_initialize` method::
 
    #! /usr/bin/lasso9
 
@@ -436,7 +438,7 @@ Include Another File with Lasso Code
 ------------------------------------
 
 If you would like to run Lasso code in another file from your script, you can
-include that file using the ``sourcefile`` method. The following example will
+include that file using the `sourcefile` method. The following example will
 have "/path/to/code.lasso" running the code from "/path/to/doc.lasso"::
 
    // Contents of /path/to/code.lasso
@@ -499,7 +501,7 @@ Change the Working Directory
 ----------------------------
 
 Occasionally you may find it helpful to change the directory context your script
-is running in. You can use the ``dir->setcwd`` method to do just that::
+is running in. You can use the `dir->setcwd` method to do just that::
 
    #! /usr/bin/lasso9
    // Contents of /path/to/code.lasso
@@ -518,8 +520,8 @@ Here's what happens when you run this file::
 Reading and Setting Environment Variables
 -----------------------------------------
 
-Lasso can read and set shell environment variables using ``sys_getEnv`` and
-``sys_setEnv`` respectively. The following example adds a directory to the
+Lasso can read and set shell environment variables using `sys_getEnv` and
+`sys_setEnv` respectively. The following example adds a directory to the
 "PATH" environment variable for the script::
 
    #! /usr/bin/lasso9
@@ -541,27 +543,28 @@ Compiling Lasso Code
 
 All Lasso code is compiled before it is executed. Whether the code is a
 :term:`Lasso page` being served by Lasso server or a script being run by the
-lasso9 command-line tool, behind the scenes Lasso compiles the code and then
-executes the compiled code. (Lasso does cache the compiled code for re-use, but
-that is beyond the scope of this section.)
+:program:`lasso9` command-line tool, behind the scenes Lasso compiles the code
+and then executes the compiled code. (Lasso does cache the compiled code for
+re-use, but that is beyond the scope of this section.)
 
-There are certain cases where it is advantageous to compile the lasso code ahead
-of time. The Lasso platform comes with the lassoc command-line tool which aids
-in compiling LassoApps, Lasso libraries, and Lasso executables. Compilation can
-result in faster startup times, lower memory usage, and obfuscation of the
-source code.
+There are certain cases where it is advantageous to compile the Lasso code ahead
+of time. The Lasso platform comes with the :program:`lassoc` command-line tool
+which aids in compiling LassoApps, Lasso libraries, and Lasso executables.
+Compilation can result in faster startup times, lower memory usage, and
+obfuscation of the source code.
 
 Libraries help keep memory usage down because only objects that are actually
 used are loaded. They also improve startup time. Lasso can start up by only
 loading the very basic built-in functions and objects and then let the rest of
 the system load in over time.
 
-A special type of library can be produced: a .bc bitcode file. Bitcode is a
-LLVM-specific format that Lasso knows how to load. bitcode files can be shared
-across platforms on the same processor. For example, the same .bc file could be
-used on OS X x86 and CentOS x86 .bc files don't load as fast, have about 80%
-larger file size and consume more memory than library files compiled into a
-shared library, but don't require GCC.
+A special type of library can be produced: a bitcode file (has a ".bc" file
+extension). Bitcode is a LLVM-specific format that Lasso knows how to load.
+bitcode files can be shared across platforms on the same processor. For example,
+the same bitcode file could be used on OS X x86 and CentOS x86. Bitcode files
+don't load as fast, have about 80% larger file size and consume more memory than
+library files compiled into a shared library, but they don't require GCC and are
+cross-platform.
 
 
 Prerequisites
@@ -594,7 +597,9 @@ the executable "myscript".
 ::
 
    $> lassoc -O -app -n -obj -o myscript.a.o myscript.lasso
-   $> gcc -o myscript myscript.a.o -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -macosx_version_min=10.5 -F/Library/Frameworks -framework Lasso9
+   $> gcc -o myscript myscript.a.o -isysroot /Developer/SDKs/MacOSX10.5.sdk \
+   -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 \
+   -macosx_version_min=10.5 -F/Library/Frameworks -framework Lasso9
 
 .. rubric:: Linux
 
@@ -608,7 +613,8 @@ the executable "myscript".
 ::
 
    $> lassoc -O -app -n -obj -o myscript.obj myscript.lasso
-   $> link myscript.obj /LIBPATH:"C:\Program Files\LassoSoft\Lasso Instance Manager\home\LassoExecutables" lasso9_runtime.lib -defaultlib:libcmt
+   $> link myscript.obj /LIBPATH:"C:\Program Files\LassoSoft\Lasso Instance Manager\home\LassoExecutables" \
+   lasso9_runtime.lib -defaultlib:libcmt
 
 
 Compiling Libraries
@@ -633,7 +639,9 @@ dynamically loaded Lasso library.
 ::
 
    $> lassoc -O -dll -n -obj -o mylibs.d.o mylibs.inc
-   $> gcc -dynamiclib -o mylibs.dylib mylibs.d.o -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -macosx_version_min=10.5 -F/Library/Frameworks -framework Lasso9
+   $> gcc -dynamiclib -o mylibs.dylib mylibs.d.o -isysroot /Developer/SDKs/MacOSX10.5.sdk \
+   -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 \
+   -macosx_version_min=10.5 -F/Library/Frameworks -framework Lasso9
 
 .. rubric:: Linux
 
@@ -647,7 +655,9 @@ dynamically loaded Lasso library.
 ::
 
    $> lassoc -O -dll -n -obj -o mylibs.obj mylibs.inc
-   $> link /DLL mylibs.obj /OUT:mylibs.dll /LIBPATH:"C:\Program Files\LassoSoft\Lasso Instance Manager\home\LassoExecutables" lasso9_runtime.lib -defaultlib:libcmt
+   $> link /DLL mylibs.obj /OUT:mylibs.dll \
+   /LIBPATH:"C:\Program Files\LassoSoft\Lasso Instance Manager\home\LassoExecutables" \
+   lasso9_runtime.lib -defaultlib:libcmt
 
 
 Compiling LassoApps
@@ -668,7 +678,9 @@ The examples below take a folder named "myapp" and compile it into a
 ::
 
    $> lassoc -O -dll -n -obj -lassoapp -o myapp.ap.o myapp/
-   $> gcc -dynamiclib -o myapp.lassoapp myapp.ap.o -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 -macosx_version_min=10.5 -F/Library/Frameworks -framework Lasso9
+   $> gcc -dynamiclib -o myapp.lassoapp myapp.ap.o -isysroot /Developer/SDKs/MacOSX10.5.sdk \
+   -Wl,-syslibroot,/Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5 \
+   -macosx_version_min=10.5 -F/Library/Frameworks -framework Lasso9
 
 .. rubric:: Linux
 
@@ -682,7 +694,9 @@ The examples below take a folder named "myapp" and compile it into a
 ::
 
    $> lassoc -O -dll -n -obj -lassoapp -o myapp.lassoapp.obj myapp
-   $> link /DLL myapp.lassoapp.obj /OUT:myapp.lassoapp /LIBPATH:"C:\Program Files\LassoSoft\Lasso Instance Manager\home\LassoExecutables" lasso9_runtime.lib -defaultlib:libcmt
+   $> link /DLL myapp.lassoapp.obj /OUT:myapp.lassoapp \
+   /LIBPATH:"C:\Program Files\LassoSoft\Lasso Instance Manager\home\LassoExecutables" \
+   lasso9_runtime.lib -defaultlib:libcmt
 
 
 Using Build Utilities
@@ -691,7 +705,7 @@ Using Build Utilities
 Instead of manually executing those commands each time you want to compile your
 code, it is recommended you use a build utility like "make" for OS X and Linux
 or "nmake" for Windows. Both of these utilities are very powerful and you should
-explore their documentation. The Lasso source tree has an exmaple of both a
+explore their documentation. The Lasso source tree has an example of both a
 `make file
 <http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/makefile>`_ and an
 `nmake file
