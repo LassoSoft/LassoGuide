@@ -5,17 +5,17 @@ Shell Commands with sys_process
 *******************************
 
 Lasso provides the ability to execute local processes or shell commands through
-the `sys_process` type. This type allows local processes to be launched with an
-array of parameters and shell variables. Some processes will execute and return
-a result immediately. Other processes can be left open for interactive
-read/write operations. The `sys_process` type enables Lasso users to do things
-such as execute AppleScripts, print PDF files, and filter data through external
-applications.
+the :type:`sys_process` type. This type allows local processes to be launched
+with an array of parameters and shell variables. Some processes will execute and
+return a result immediately. Other processes can be left open for interactive
+read/write operations. The :type:`sys_process` type enables Lasso users to do
+things such as execute AppleScripts, print PDF files, and filter data through
+external applications.
 
-The `sys_process` type works across all three platforms which Lasso supports.
-The UNIX underpinnings of OS X and Linux mean that those two operating systems
-can run many of the same commands and shell scripts. Windows presents a very
-different environment including DOS commands and batch files.
+The :type:`sys_process` type works across all three platforms that Lasso
+supports. The UNIX underpinnings of OS X and Linux mean that those two operating
+systems can run many of the same commands and shell scripts. Windows presents a
+very different environment including DOS commands and batch files.
 
 For more information on writing shell scripts, see the chapter on
 :ref:`command-line-tools`.
@@ -159,13 +159,12 @@ Echo
 This example uses the :command:`/bin/echo` command to simply echo the input back
 to STDOUT, which is then read by Lasso::
 
-   local(proc) = sys_process('/bin/echo', array( 'Hello World!'))
+   local(proc) = sys_process('/bin/echo', array('Hello World!'))
    local(_) = #proc->wait
    #proc->read->encodeHTML
    #proc->close
 
-   // =>
-   // Hello World!
+   // => Hello World!
 
 
 List
@@ -238,18 +237,17 @@ current date and time::
    #proc->readString->encodeHTML
    #proc->close
 
-   // =>
-   // Tuesday, March 21, 2006 11:52:34 AM
+   // => Tuesday, March 21, 2006 11:52:34 AM
 
 
 Web Request
 -----------
 
 This example uses the :command:`/usr/bin/curl` command to fetch a web page and
-return the results. The `curl` type or `include_url` method can be used for the
-same purpose. You'll notice that we don't just wait and then do a read; this is
-to show how to deal with not knowing how large of a response you will get from
-STDOUT. Only the first part of the output is shown. ::
+return the results. The :type:`curl` type or `include_url` method can be used
+for the same purpose. You'll notice that we don't just wait and then do a read;
+this is to show how to deal with not knowing how large of a response you will
+get from STDOUT. Only the first part of the output is shown. ::
 
    local(proc) = sys_process('/usr/bin/curl', (: 'http://www.apple.com/'))
    local(data)
@@ -259,7 +257,7 @@ STDOUT. Only the first part of the output is shown. ::
    #proc->close
 
    // =>
-   // <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+   // <!DOCTYPE html>
    //    <html>
    //    <head>
    //    <title>Apple</title>
@@ -271,7 +269,7 @@ Windows Examples
 
 This section includes several examples of using `sys_process` on Windows. Each
 of the examples uses the command-line processor :program:`CMD` with the option
-``/C`` to interpret an individual command.
+"/C" to interpret an individual command.
 
 
 Echo
@@ -285,15 +283,14 @@ to simply echo the input back to Lasso::
    #proc->readString->encodeHTML
    #proc->close
 
-   // =>
-   // Hello World!
+   // => Hello World!
 
 
 List
 ----
 
 This example uses the :program:`CMD` processor with a :command:`DIR` command to
-list the contents of a directory. The ``/B`` option instructs Windows to only
+list the contents of a directory. The "/B" option instructs Windows to only
 list the contents of the directory without extraneous header and footer
 information. ::
 
@@ -342,7 +339,7 @@ Multiple Commands
 -----------------
 
 This example uses the :program:`CMD` processor interactively to run several
-commands. The processor is started with a parameter of ``/Q`` which suppresses
+commands. The processor is started with a parameter of "/Q" which suppresses
 the echoing of commands back to the output. The result is exactly the same as
 what would be provided if these commands were entered directly into the command
 line shell. In order to process the results, it would be necessary to strip off
@@ -386,5 +383,4 @@ it is run through Lasso. ::
    #proc->readString->encodeHTML
    #proc->close
 
-   // =>
-   // This file demonstrates how to use a batch file.
+   // => This file demonstrates how to use a batch file.
