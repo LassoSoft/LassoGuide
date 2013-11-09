@@ -1,10 +1,10 @@
 .. _curl:
 
 **************************
-Network Requests with cURL
+Network Requests with Curl
 **************************
 
-Lasso provides a complete interface to the open source cURL library. Curl
+Lasso provides a complete interface to the open source `cURL library`_. Curl
 transfers data with URL syntax, supporting a wide variety of protocols such as
 "DICT", "FILE", "FTP", "FTPS", "Gopher", "HTTP", "HTTPS", "IMAP", "IMAPS",
 "LDAP", "LDAPS", "POP3", POP3S, "RTMP", "RTSP", "SCP", "SFTP", "SMTP", "SMTPS",
@@ -22,10 +22,9 @@ Lasso Curl API
 .. method:: curl()
 .. method:: curl(url::string, -username::string= ?, -password::string= ?)
 
-   There are two `curl` creator methods. The first creates an empty curl
-   object. The second takes a string representing the URL to be eventually
-   called, and it optionally takes a username and password to be used for
-   authentication.
+   There are two `curl` creator methods. The first creates an empty curl object.
+   The second takes a string representing the URL to be eventually called, and
+   it optionally takes a username and password to be used for authentication.
 
 .. member:: curl->url()
 
@@ -41,7 +40,7 @@ Lasso Curl API
    Sets the full data to post in an HTTP POST operation. You must make sure that
    the data is formatted the way you want the server to receive it. The curl
    object will not convert or encode it. Most web servers will assume this data
-   will be url-encoded.
+   will be URL encoded.
 
    Use the method taking a bytes object in order to have control over the
    encoding of the data to be sent to the destination server. An example of this
@@ -79,8 +78,7 @@ Lasso Curl API
 
    Used to set specific curl option behavior. The key should be one of the
    ``CURLOPT_…`` methods. These options and appropriate values can be reviewed
-   in the curl documentation at
-   `<http://curl.haxx.se/libcurl/c/curl_easy_setopt.html>`_
+   in the `curl documentation`_.
 
 .. member:: curl->header()
 
@@ -114,7 +112,7 @@ Lasso Curl API
 
 .. member:: curl->readSomeBytes()
 
-   This is a low level function and is not recommended to be for casual use. If
+   This is a low-level function and is not recommended to be for casual use. If
    a request is still in progress, it returns the current response as a bytes
    object and clears the internal mechanism that is buffering those bytes.
 
@@ -122,8 +120,8 @@ Lasso Curl API
 
    Triggers the download of the file specified by the URL. The default is to
    download the file to the path specified in the first optional parameter. If
-   the ``-asBytes`` option is passed or set to true, then it will just return a
-   bytes object representing the file's data. Refer to the detailed
+   the ``-asBytes`` option is passed or set to "true", then it will just return
+   a bytes object representing the file's data. Refer to the detailed
    documentation later in this chapter for example usage.
 
 .. member:: curl->upload(f::string)
@@ -156,14 +154,13 @@ Lasso Curl API
 Curl Options
 ============
 
-A myriad of curl options can be set for the current curl object to customize
-its behavior. This can be done by using the `curl->set` method, passing it the
+A myriad of curl options can be set for the current curl object to customize its
+behavior. This can be done by using the `curl->set` method, passing it the
 ``CURLOPT_…`` macro methods representing the option you wish to set and the
 value you wish to set it to as the second param. What follows is a list of
-options that can be set on Lasso's curl object. It has been adapted from
-`the curl documentation <http://curl.haxx.se/libcurl/c/curl_easy_setopt.html>`_,
-with the options grouped in a similar manner as you find there. This should
-allow you to easily find the option if you need more detail.
+options that can be set on Lasso's curl object. It has been adapted from the
+`curl documentation`_, with the options grouped in a similar manner as you find
+there. This should allow you to easily find the option if you need more detail.
 
 
 Behavior Options
@@ -174,15 +171,15 @@ Behavior Options
    Used with `curl->set`. If set to "1", it directs curl to output a lot of
    verbose information about its operations. This is very useful for debugging.
    The verbose information will be sent to STDERR which gets logged to
-   "lasso.err.txt" in your instances home directory for Lasso Server. You will
-   almost never want to set this in production, but you will want to use it to
-   help you debug and report problems.
+   :file:`lasso.err.txt` in your instances home directory for Lasso Server. You
+   will almost never want to set this in production, but you will want to use it
+   to help you debug and report problems.
 
 .. method:: CURLOPT_HEADER()
 
-   Used with `curl->set`. Instruct curl to include the header in the body
-   output. This is only relevant for protocols that actually have headers
-   preceding the data (like HTTP). A value of "1" will enable the output.
+   Used with `curl->set`. If set to "1", it directs the library to include the
+   header in the body output. This is only relevant for protocols that actually
+   have headers preceding the data (like HTTP).
 
 .. method:: CURLOPT_NOPROGRESS()
 
@@ -235,7 +232,8 @@ Network Options
 .. method:: CURLOPT_PROXYPORT()
 
    Used with `curl->set`. Sets the proxy port to connect to unless it is
-   specified in the proxy string CURLOPT_PROXY. This value should be an integer.
+   specified in the proxy string `CURLOPT_PROXY`. This value should be an
+   integer.
 
 .. method:: CURLOPT_PROXYTYPE()
 
@@ -281,32 +279,33 @@ Authentication Options
 .. method:: CURLOPT_NETRC()
 
    Used with `curl->set`. This option controls the preference of curl between
-   using user names and passwords from your "~/.netrc" file, relative to user
-   names and passwords in the URL. The value passed should be one of the
+   using user names and passwords from your :file:`~/.netrc` file, relative to
+   user names and passwords in the URL. The value passed should be one of the
    following methods:
 
    .. method:: CURL_NETRC_OPTIONAL()
 
-      The use of your "~/.netrc" file is optional, and information in the URL is
-      to be preferred.
+      The use of your :file:`~/.netrc` file is optional, and information in the
+      URL is to be preferred.
 
    .. method:: CURL_NETRC_IGNORED()
 
-      The library will ignore the "~/.netrc"  file and use only the information
-      in the URL.
+      The library will ignore the :file:`~/.netrc` file and use only the
+      information in the URL.
 
    .. method:: CURL_NETRC_REQUIRED()
 
-      The use of your "~/.netrc" file is required, and the library should ignore
-      the information in the URL.
+      The use of your :file:`~/.netrc` file is required, and the library should
+      ignore the information in the URL.
 
 
 .. method:: CURLOPT_NETRC_FILE()
 
    Used with `curl->set`. Set to a string containing the full path name to the
-   file you want libcurl to use as the ".netrc" file. If this option is omitted
-   and `CURLOPT_NETRC` is set to use a ".netrc" file then curl will attempt to
-   find a ".netrc" file in the current user's home directory.
+   file you want libcurl to use as the :file:`.netrc` file. If this option is
+   omitted and `CURLOPT_NETRC` is set to use a :file:`.netrc` file then curl
+   will attempt to find a :file:`.netrc` file in the current user's home
+   directory.
 
 .. method:: CURLOPT_USERPWD()
 
@@ -385,11 +384,12 @@ HTTP Options
 
 .. method:: CURLOPT_PUT()
 
+   .. deprecated:: 7.12.1
+      This option is deprecated in curl in favor of using `CURLOPT_UPLOAD`.
+
    Used with `curl->set`. If set to "1", then curl will use the HTTP PUT method
    to transfer data. The data should be set with `CURLOPT_READDATA` and
    `CURLOPT_INFILESIZE`.
-
-   This option is deprecated in curl in favor of using `CURLOPT_UPLOAD`.
 
 .. method:: CURLOPT_POST()
 
@@ -409,7 +409,7 @@ HTTP Options
    specify the data to post in an HTTP POST operation. The value can be either
    bytes or a string. You must make sure that the data is formatted the way you
    want the server to receive it; curl will not convert or encode it for you.
-   Most web servers will assume this data will be url-encoded.
+   Most web servers will assume this data will be URL encoded.
 
    Using `CURLOPT_POSTFIELDS` implies `CURLOPT_POST`; that option will be
    automatically set along with all of its other side effects.
@@ -467,11 +467,11 @@ HTTP Options
 
    Used with `curl->set`. This option expects a string value that sets the
    cookie value for the HTTP header. The format of the string should be
-   NAME=CONTENTS, where NAME is the cookie name and CONTENTS is what the cookie
-   should contain. To send multiple cookies, separate each cookie in the string
-   with a semi-colon and a space like this: "name1=content1; name2=content2;".
-   Using this option multiple times will only make the latest string override
-   the previous ones.
+   :samp:`{NAME}={CONTENTS}`, where *NAME* is the cookie name and *CONTENTS* is
+   what the cookie should contain. To send multiple cookies, separate each
+   cookie in the string with a semi-colon and a space like this:
+   ``"name1=content1; name2=content2;"``. Using this option multiple times will
+   only make the latest string override the previous ones.
 
 .. method:: CURLOPT_COOKIEFILE()
 
@@ -526,9 +526,10 @@ FTP Options
 
    Used with `curl->set`. This option expects a string value specifying the
    address to use for the FTP PORT instruction. The string may be an IP address,
-   a host name, a network interface name (under Unix) or just a '-' symbol to
-   let the library use your system's default IP address. The address can then be
-   followed by a colon and a port number or port range separated by a dash.
+   a host name, a network interface name (under Unix) or just adash character
+   (``-``) to let the library use your system's default IP address. The address
+   can then be followed by a colon and a port number or port range separated by
+   a dash.
 
 .. method:: CURLOPT_QUOTE()
 
@@ -623,9 +624,9 @@ Protocol Options
 .. method:: CURLOPT_RANGE()
 
    Used with `curl->set`. This option takes a string for its value specifying
-   the range you want in the form of "X-Y" where either "X" or "Y" may be
-   omitted. Ranges work for HTTP, FTP, and FILE. transfers only. HTTP transfers
-   also support intervals separated by commas, such as "X-Y,N-M".
+   the range you want in the form of :samp:`{X}-{Y}` where either "X" or "Y" may
+   be omitted. Ranges work for HTTP, FTP, and FILE. transfers only. HTTP
+   transfers also support intervals separated by commas, such as "X-Y,N-M".
 
 .. method:: CURLOPT_RESUME_FROM()
 
@@ -635,7 +636,7 @@ Protocol Options
 .. method:: CURLOPT_RESUME_FROM_LARGE()
 
    Used with `curl->set`. This is the large file version of
-   `CURLOPT_RESUME_FROM` and takes an integer for its value too.
+   `CURLOPT_RESUME_FROM` and also takes an integer for its value.
 
 .. method:: CURLOPT_CUSTOMREQUEST()
 
@@ -782,7 +783,7 @@ SSL & Security Options
    Used with `curl->set`. This option expects a string value that specifies the
    path and file name to your certificate, or, with NSS, the nickname of the
    certificate you want to use. (If you want to use a file from the current
-   directory, please precede it with a "./" prefix in order to avoid confusion
+   directory, precede it with a "./" prefix in order to avoid confusion
    with a nickname.)
 
 .. method:: CURLOPT_SSLCERTTYPE()
@@ -874,9 +875,9 @@ SSL & Security Options
 .. method:: CURLOPT_SSL_CIPHER_LIST()
 
    Used with `curl->set`. This option expects a string value specifying the list
-   of ciphers that can be used in the SSL connection. See `the documentation
-   <http://curl.haxx.se/libcurl/c/curl_easy_setopt.html#CURLOPTSSLCIPHERLIST>`_
-   for a discussion of the proper syntax needed.
+   of ciphers that can be used in the SSL connection. See the `curl
+   documentation for CURLOPT_SSL_CIPHER_LIST`_ for a discussion of the proper
+   syntax needed.
 
 .. method:: CURLOPT_KRB4LEVEL()
 
@@ -898,8 +899,8 @@ understanding of how to use the :type:`curl` type in case you find yourself
 needing more control.
 
 
-Making an HTTP Request with curl
---------------------------------
+Making an HTTP Request
+----------------------
 
 The following example uses the :type:`curl` type to make a HEAD request to an
 HTTP server::
@@ -930,8 +931,8 @@ HTTP server::
    // , )
 
 
-Listing an FTP Directory with curl
-----------------------------------
+Listing an FTP Directory
+------------------------
 
 The following example lists the file and folder names at the specified FTP
 location::
@@ -948,11 +949,11 @@ location::
    #req->result
 
    // =>
-   // => .
-   // => ..
-   // => file1
-   // => file2
-   // => folder1
+   // .
+   // ..
+   // file1
+   // file2
+   // folder1
 
 
 The include_url Method
@@ -1027,7 +1028,7 @@ needs if possible.
    
    :param -verifyPeer:
       Use this option to specify whether or not Lasso should verify the SSL
-      certificate of the HTTP peer being connected to. The default is true.
+      certificate of the HTTP peer being connected to. The default is "true".
    
    :param -sslCert:
       This parameter is used to set the `CURLOPT_SSLCERT` option.
@@ -1092,7 +1093,7 @@ Sending Data with an HTTP PUT Request
 -------------------------------------
 
 The following example issues an HTTP PUT request, passing data in the body of
-the request. The example result is a JSON formatted string, but would be the
+the request. The example result is a JSON-formatted string, but would be the
 body of the HTTP response given by your server. ::
 
    include_url(
@@ -1120,7 +1121,7 @@ request::
    // <html>
    // <head>
    //     <title>Example Domain</title>
-   // (... You get the idea ...)
+   // (... rest of response ...)
 
 
 Reading Response Headers
@@ -1358,3 +1359,7 @@ Delete a Remote File
          -username = `MyUsername`,
          -password = `Shh...Secret`
       )
+
+.. _curl library: http://curl.haxx.se/
+.. _curl documentation: http://curl.haxx.se/libcurl/c/curl_easy_setopt.html
+.. _curl documentation for CURLOPT_SSL_CIPHER_LIST: http://curl.haxx.se/libcurl/c/curl_easy_setopt.html#CURLOPTSSLCIPHERLIST
