@@ -25,7 +25,7 @@ are waiting. If the email system encounters an error when sending an email then
 it stores the error in the database and re-queues the message. If too many
 errors are encountered then the message send will be cancelled.
 
-By default, Lasso sends queued messages directly to the SMTP server which
+By default, Lasso sends queued messages directly to the SMTP server that
 corresponds to each recipient address. This means that a single message may end
 up being sent to multiple SMTP servers in order to deliver it to each recipient.
 It is also possible to specify SMTP hosts directly within the `email_send`
@@ -42,7 +42,7 @@ By default Lasso will send up to 100 messages to each SMTP server with every
 connection. Lasso will open up to 5 outgoing SMTP connections at a time. Lasso
 selects messages to send in order of priority, but once it connects to an SMTP
 server it delivers as many messages as possible. This means that a batch send to
-an SMTP server will contain high-priority messages as well as medium- and
+an SMTP server will contain high-priority messages as well as medium and
 low-priority messages.
 
 .. note::
@@ -87,8 +87,8 @@ See each of the following sections for details about how other `email_send` and
 `email_compose` parameters affect the composition of each part.
 
 
-email_send Method
-=================
+The email_send Method
+=====================
 
 The `email_send` method is used to send email messages from Lasso. This method
 supports the most common types of email including plain text, HTML, HTML with a
@@ -126,7 +126,8 @@ plain text alternative, embedded HTML images, and attachments.
 
    Adds a message to the email queue. The method requires a ``-subject``
    parameter, a ``-from`` parameter, and one of either ``-to``, ``-cc``, or
-   ``-bcc`` parameters. Below is a description of each of the parameters.
+   ``-bcc`` parameters. Also required is one of either ``-body`` or ``-html``
+   parameters. Below is a description of each of the parameters.
 
    :param -subject:
       The subject of the message. Required.
@@ -147,7 +148,7 @@ plain text alternative, embedded HTML images, and attachments.
       The HTML part of the message. Either a ``-body`` or ``-html`` part (or
       both) is required.
    :param -htmlImages:
-      Specifies a list of files which will be used as images for the HTML part
+      Specifies a list of files that will be used as images for the HTML part
       of an outgoing message. Accepts either an array of file paths or an array
       of pairs which include a file name as the first part and the data for the
       file as the second part.
@@ -163,8 +164,8 @@ plain text alternative, embedded HTML images, and attachments.
       value a map of token names and values. The values in this merge map will
       override those in the tokens map if both are specified.
    :param -priority:
-      Specifies the priority of the message. Valid values include ``'High'`` or
-      ``'Low'``. Default is ``'Medium'``.
+      Specifies the priority of the message. Valid values include "High" or
+      "Low". Default is "Medium".
    :param -replyTo:
       The email address that should be used for replies to this message.
    :param -sender:
@@ -180,7 +181,7 @@ plain text alternative, embedded HTML images, and attachments.
       email message.
    :param -immediate:
       If specified then the email is sent immediately without using the outgoing
-      message queue. This option can be used for messages which have very large
+      message queue. This option can be used for messages that have very large
       attachments.
    :param -host:
       SMTP host through which to send messages.
@@ -218,7 +219,7 @@ within the `email_send` method. The following example shows an email sent to
 
 The body of an email message can be assembled in a variable in the current Lasso
 page and then sent using the `email_send` method. The following example shows a
-variable ``email_body`` which has several items added to it before the message
+variable "email_body" which has several items added to it before the message
 is finally sent::
 
    local(email_body) = 'This is the body of the email'
@@ -341,9 +342,9 @@ same folder could contain the following code to email it out::
 An HTML/plain text alternative email can be sent by specifying both a ``-body``
 parameter and an ``-html`` parameter. The message of both parts should be
 equivalent. (If equivalent text and HTML parts can't be generated then it is
-preferable to send just an HTML part. Email clients which don't render HTML will
+preferable to send just an HTML part. Email clients that don't render HTML will
 display the raw HTML to the user, but this is preferable to seeing a message
-which simply says that the message was sent as HTML.) Recipients with text-based
+that simply says that the message was sent as HTML.) Recipients with text-based
 email clients will see the text part while recipients with HTML-based email
 clients will see the HTML part. ::
 
@@ -360,8 +361,8 @@ This parameter can be specified with either a single file name or an array of
 file names. Within the email message the images can be referenced in two ways.
 
 #. If the `email_send` method contains the parameter
-   ``-htmlImages=Array('/apache_pb.gif')`` then Lasso will automatically update
-   any HTML ``<img>`` tags that have that same image referenced in their ``src``
+   ``-htmlImages=array('/apache_pb.gif')`` then Lasso will automatically update
+   any HTML ``<img>`` tags that have that same image referenced in their "src"
    parameter. Note that the path must be exactly the same for Lasso to be able
    to make this replacement. ::
 
@@ -370,12 +371,12 @@ file names. Within the email message the images can be referenced in two ways.
          -from       = 'example@example.com',
          -subject    = 'An HTML Email With Embedded Image',
          -html       = '<h2>Embedded Image</h2><br /><img src="/apache_pb.gif" />',
-         -htmlImages = Array('/apache_pb.gif')
+         -htmlImages = array('/apache_pb.gif')
       )
 
-#. Alternatively, the ``Content-ID`` of the embedded image could be referenced
-   in the ``<img>`` tag following a ``cid:`` prefix. Lasso automatically uses
-   the image file name as the ``Content-ID`` without any path information so the
+#. Alternatively, the "Content-ID" of the embedded image could be referenced
+   in the ``<img>`` tag following a "cid:" prefix. Lasso automatically uses
+   the image file name as the "Content-ID" without any path information so the
    same image referenced above can also be referenced like this: ``<img
    src="cid:apache_pb.gif" />`` ::
 
@@ -384,14 +385,14 @@ file names. Within the email message the images can be referenced in two ways.
          -from       = 'example@example.com',
          -subject    = 'An HTML Email With Embedded Image',
          -html       = '<h2>Embedded Image</h2><br /><img src="cid:apache_pb.gif" />',
-         -htmlImages = Array('/apache_pb.gif')
+         -htmlImages = array('/apache_pb.gif')
       )
 
-Images which are generated programatically can be embedded in an HTML message by
+Images that are generated programatically can be embedded in an HTML message by
 specifying a pair consisting of the name and data of the image. In the example
 below the image data comes from the `include_raw` method, but it could also be
 generated using the `image` methods or retrieved from a database field. Note
-that the name of the image does not have to match, but the name which is
+that the name of the image does not have to match, but the name that is
 specified in the first part of the pair should be used within the HTML body. ::
 
    email_send(
@@ -399,7 +400,7 @@ specified in the first part of the pair should be used within the HTML body. ::
       -from       = 'example@example.com',
       -subject    = 'An HTML Email With Embedded Image',
       -html       = '<h2>Embedded Image</h2><br /><img src="myimage.jpg" />',
-      -htmlImages = Array('myimage.jpg'=include_raw('/apache_pb.jpg'))
+      -htmlImages = array('myimage.jpg'=include_raw('/apache_pb.jpg'))
    )
 
 
@@ -433,13 +434,13 @@ text files will not be processed by Lasso before they are sent. ::
 
 Files can be generated programmatically and attached to an email message by
 specifying a pair with the name and contents of the file. For example, the
-following `email_send` example uses the `pdf_doc` type to to create a PDF file.
-The generated PDF file is sent as an attachment without it ever being written to
-disk. ::
+following `email_send` example uses the :type:`pdf_doc` type to to create a PDF
+file. The generated PDF file is sent as an attachment without it ever being
+written to disk. ::
 
    local(my_file) = pdf_doc(-size='A4', -margin=(: 144.0, 144.0, 72.0, 72.0))
    #my_file->add(
-      PDF_Text("I'm a PDF document", -font=pdf_font(-face='Helvetica', -size=36))
+      pdf_text("I'm a PDF document", -font=pdf_font(-face='Helvetica', -size=36))
    )
 
    email_send(
@@ -504,7 +505,7 @@ Each of the pairs will be inserted into the email as an additional header. ::
       -from             = 'example@example.com',
       -subject          = 'An Email',
       -body             = include('format.lasso'),
-      -extraMIMEHeaders = Array( 'Header' = 'Value', 'Header' = 'Value')
+      -extraMIMEHeaders = array('Header' = 'Value', 'Header' = 'Value')
    )
 
 
@@ -592,7 +593,7 @@ The message to John Doe would contain this text::
 Email Status
 ============
 
-Email messages which are sent using the `email_send` method are stored in an
+Email messages that are sent using the `email_send` method are stored in an
 outgoing email queue temporarily and then sent by a background process. Any
 errors encountered when sending a message can be viewed in the :ref:`Email Queue
 <instance-administration-email>` section of Lasso Administration.
@@ -646,19 +647,19 @@ The `email_send` method handles all of the most common types of email that can
 be sent through Lasso including plain text messages, HTML messages, HTML
 messages with a plain text alternative messages, and messages with attachments.
 
-For more complex messages structures the `email_compose` type can be used
+For more complex messages structures the :type:`email_compose` type can be used
 directly to create the MIME text of the message. The message can then be sent
 with the `email_queue` method. Both of these methods are used internally by
 `email_send`.
 
-The `email_compose` type accepts the same parameters as `email_send` except
-those which specify the SMTP server and priority of the outgoing message. After
-creating an object with `email_compose`, member methods can be used to add
+The :type:`email_compose` type accepts the same parameters as `email_send`
+except those which specify the SMTP server and priority of the outgoing message.
+After creating an object with `email_compose`, member methods can be used to add
 additional text parts, HTML parts, attachments, or generic MIME parts. This
 allows very complex email structures to be created with much more control than
 `email_send` provides.
 
-The `email_compose` type can also be used to create email parts. When the
+The :type:`email_compose` type can also be used to create email parts. When the
 creator method is called without a ``-to``, ``-from``, or ``-subject``
 parameter, then a MIME part is created rather than a complete email message.
 This part can then be fed into the `email_compose->addPart` method or into the
@@ -673,9 +674,10 @@ Queued emails must be less than 8MB in size including all encoded attachments.
 
 The `email_immediate` method takes the same parameters as the `email_queue`
 method, but sends the message immediately rather than adding it to the email
-queue. This tag can be used to send messages larger than 8MB if required. Use of
-the `email_immediate` method is not recommended since it bypasses the priority,
-error-handling, and connection-handling features of the email sending system.
+queue. This method can be used to send messages larger than 8MB if required. Use
+of the `email_immediate` method is not recommended since it bypasses the
+priority, error-handling, and connection-handling features of the email sending
+system.
 
 .. type:: email_compose
 .. method:: email_compose(\
@@ -750,8 +752,8 @@ error-handling, and connection-handling features of the email sending system.
 
    Takes a block of code, and within this code it temporarily suspends some
    back-end operations of the email queue so that a batch of email messages can
-   be queued quickly. Any messages which are already queued will continue to
-   send while the code in the specified block is running.
+   be queued quickly. Any messages that are already queued will continue to send
+   while the code in the specified block is running.
 
 .. method:: email_queue(\
          -data= ?, \
@@ -795,9 +797,8 @@ error-handling, and connection-handling features of the email sending system.
 
    Allows the email merge operation to be performed on any text. Requires two
    parameters: the text which is to be modified and a map of tokens to be
-   replaced in the text. Optional ``charset`` and ``transferEncoding``
-   parameters can specify what type of encoding should be applied to the merged
-   tokens.
+   replaced in the text. Optional charset and transferEncoding parameters can
+   specify what type of encoding should be applied to the merged tokens.
 
 
 Send a Batch of Messages
@@ -829,7 +830,7 @@ Compose an Email Message
 ------------------------
 
 The `email_compose` method can be used to compose an email message. In this
-example a simple email message is created in a variable ``message``::
+example a simple email message is created in a variable "message"::
 
    local(message) = email_compose(
       -to      = 'example@example.com',
@@ -847,7 +848,7 @@ formatting of the email message. ::
    <pre>[#message->asString->encodeHtml]</pre>
 
 Additional text or HTML parts or attachments can be added using the appropriate
-member methods on the object in the ``message`` variable. For example, an
+member methods on the object in the "message" variable. For example, an
 attachment can be added using the `email_compose->addAttachment` method as
 follows::
 
@@ -958,7 +959,7 @@ Communicate with an SMTP Server
 
 The `email_smtp` type can be used to send one or more messages directly to an
 SMTP server. In the following example a message is created using the
-`email_compose` type. That message is then sent to an example SMTP server
+:type:`email_compose` type. That message is then sent to an example SMTP server
 "smtp.example.com" using an SMTP AUTH username and password. Once the message is
 sent the connection is closed.
 
