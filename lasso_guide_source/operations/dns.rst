@@ -5,18 +5,18 @@ DNS
 ***
 
 The Domain Name System (DNS) is an essential part of the Internet's
-infrastructure which maps people-friendly domain names like "`www.lassosoft.com
-<http://www.lassosoft.com/>`_" to machine-friendly IP addresses like
-"127.0.0.1". Every URL entered into a web browser or email address entered into
-an email client requires consulting the DNS system to determine which actual
-server to submit the request or route the message to.
+infrastructure which maps people-friendly domain names like "www.lassosoft.com"
+to machine-friendly IP addresses like "127.0.0.1". Every URL entered into a web
+browser or email address entered into an email client requires consulting the
+DNS system to determine which server to submit the request or route the message
+to.
 
 DNS servers can handle many different types of requests. Some of the most common
 are listed here:
 
 \*
    Returns all available information about the domain name. The results of this
-   type are returned in human-readable form.
+   type of request are returned in human-readable form.
 
 A
    This is the most common type of request and simply returns the IP address
@@ -30,17 +30,17 @@ MX
    A prioritized list of mail servers are returned.
 
 NS
-   This is a request for the name servers which are responsible for providing
-   definitive information about the domain name.
+   This is a request for the name servers responsible for providing definitive
+   information about the domain name.
 
 PTR
-   This type allows a reverse lookup to be performed which returns the domain
-   name associated with an IP address.
+   This type of request allows a reverse lookup to be performed --- returning
+   the domain name associated with an IP address.
 
 TXT
    Domain name servers can store additional information about a domain name.
    Specially formatted domain names are sometimes used as keys which will return
-   useful information when queried with this type.
+   useful information when queried with this option.
 
 Any query can return either a single value or an array of values. For example, a
 single domain name may be served by a collection of web servers. When the A
@@ -58,12 +58,12 @@ left to right the domain name gets progressively more general. In a typical
 three word domain name like "www.lassosoft.com" the first word represents a
 particular machine or a particular service, the second word represents the
 domain in which the machine or service resides, and the third word represents
-the top-level domain which has authorized the use of that domain name.
+the top-level domain that has authorized the use of the domain name.
 
-Top-level domains are controlled by an organization which has been designated by
-the IANA (Internet Assigned Name Authority). ".com" and ".net" are two common
-general purpose top-level domains, ".edu" is a top-level domain reserved for
-educational institutions, ".gov" is a top-level domain reserved for U.S.
+Top-level domains are controlled by an organization that has been designated by
+the IANA (Internet Assigned Name Authority). Two common, general-purpose
+top-level domains are ".com" and ".net", ".edu" is a top-level domain reserved
+for educational institutions, ".gov" is a top-level domain reserved for U.S.
 government institutions, ".org" is a top-level domain reserved for non-profit
 organizations.
 
@@ -92,8 +92,8 @@ typical IP address appears as follows:
 IPv6 Addresses
 ==============
 
-In order to expand the range of IP addresses which are available, a new Internet
-Protocol has been implemented and is in the process of being adopted. This is
+In order to expand the range of IP addresses that are available, a new Internet
+Protocol has been designed and is in the process of being adopted. This is
 version 6 of the Internet Protocol and is abbreviated IPv6. The most recent
 versions of Windows, OS X, and Linux all support IPv6 addresses. The DNS lookup
 methods in Lasso do not support IPv6 addresses at this time. IPv6 addresses are
@@ -127,8 +127,8 @@ DNS Lookup
 
    This method is used to query a DNS server for information about a specified
    domain name. It requires one parameter, the domain name being queried. The
-   optional parameters are described in the table below. This method will return
-   either a string, array, or :type:`dns_response` object.
+   optional parameters are described in below. This method will return either a
+   string, array, or :type:`dns_response` object.
 
    :param string name:
       The domain name being queried.
@@ -154,25 +154,25 @@ DNS Lookup
       If specified the query is not actually performed, but a
       :type:`dns_response` object representing the query is returned.
    :param boolean -formatQuery:
-      If specified the query is not actually performed, but a string is returned
-      which describes the query that was constructed.
+      If specified the query is not actually performed, but a string describing
+      the query that was constructed is returned.
    :param boolean -bitQuery:
       If specified the query is not actually performed, but a string is returned
       which shows the low-level bit representation of the query that was
       constructed.
    :param boolean -showResponse:
-      If specified the response is returned as :type:`dns_response` object which
+      If specified the response is returned as :type:`dns_response` object that
       can be inspected using the member methods described in the documentation
       below.
    :param boolean -format:
-      If specified a string is returned which describes the response from the
+      If specified a string is returned that describes the response from the
       DNS server.
    :param boolean -bitFormat:
       If specified a string is returned which shows the low-level bit
       representation of the response from the DNS server.
    :param -hostname:
-      The name of a specific DNS server to query. Defaults to the DNS server set
-      up in the OS.
+      Allows you to specify the name of a specific DNS server to query. Defaults
+      to the DNS server set up in the OS.
    :param integer -port:
       The port of the DNS server to connect to when doing a DNS lookup.
    :param integer -timeout:
@@ -183,9 +183,9 @@ IP Lookup Example
 -----------------
 
 The following example looks up the associated IP address(es) for a specified
-domain name. Using a ``-type`` of ``'A'`` will always return an array, even if
-there is only one IP address. An empty array will be returned if no information
-about the specified domain name can be found. ::
+domain name. Using a ``-type`` of "A" will always return an array, even if there
+is only one IP address. An empty array will be returned if no information about
+the specified domain name can be found. ::
 
    dns_lookup('www.lassosoft.com', -type='A')
    // => array(64.34.221.14)
@@ -194,8 +194,8 @@ about the specified domain name can be found. ::
 Reverse Lookup Example
 ----------------------
 
-Reverse lookups which are performed when an IP address is passed to the
-``dns_lookup`` method or when the "PTR" type is specified return an array of
+Reverse lookups are performed when an IP address is passed to the
+`dns_lookup` method, or when the "PTR" type is specified, and return an array of
 domain names. An empty array will be returned if no domain name could be found
 for the specified IP address. ::
 
@@ -244,9 +244,9 @@ DNS Response Type
 .. type:: dns_response
 .. method:: dns_response()
 
-   An object of this data type can be returned in response to a
-   :type:`dns_lookup` depending on its parameters. The member methods of this
-   type are described below.
+   An object of this data type can be returned in response to a `dns_lookup`
+   depending on its parameters. The member methods of this type are described
+   below.
 
 .. member:: dns_response->format()
 
