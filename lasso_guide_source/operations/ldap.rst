@@ -20,14 +20,14 @@ o=LassoSoft".
 The DN is made up of three parts separated by commas. Each part of the DN is
 called a "relative distinguished name" (RDN) and must be unique for all entries
 at that level. The RDN functions much like a primary key and includes one or
-more name/value pairs which uniquely identify the element from all of its
+more name/value pairs that uniquely identify the element from all of its
 siblings.
 
 The attributes of each entry make up the data of the entry. Every entry will
-have an "objectClass" which tells what kind of entry it is. The remainder of the
+have an "objectClass" that tells what kind of entry it is. The remainder of the
 attributes will be determined by the type of directory that is being searched,
 but may include first name, last name, email address, phone number, etc. The
-attributes are often named with one- or two-character abbreviations like "cn"
+attributes are often named with one or two-character abbreviations like "cn"
 for combined name, "ln" for last name, "fn" for first name, or "ou" for
 operational unit. Attributes might also have longer names like "email",
 "telephonenumber", etc.
@@ -57,7 +57,7 @@ specifies that all objects in the tree should be returned:
 
 This is actually a special case of the "exists" filter. This filter returns any
 entries which have a defined objectClass. Similarly, all entries which have a
-full name attribute "cn" could be found with this filter:
+full name attribute ("cn") could be found with this filter:
 
 .. code-block:: none
 
@@ -92,9 +92,9 @@ which is not "John" and a last name which is not "Doe":
    (& (! (cn=John*)) (! (cn=*Doe)))
 
 Note that there are no quotes around the values in the filters. The parentheses
-are used to delimit the values. In order to find a value which contains
-parentheses ``()``, an asterisk ``*``, a backslash ``\``, or a null character,
-the following escape sequences can be used: "\\2a" for ``(``, "\\28" for ``)``,
+are used to delimit the values. In order to find a value that contains
+parentheses, an asterisk ("*"), a backslash ("\"), or a null character, the
+following escape sequences can be used: "\\2a" for ``(``, "\\28" for ``)``,
 "\\29" for ``*``, "\\5c" for ``\``, and "\\00" for null.
 
 
@@ -120,8 +120,8 @@ contain the following elements::
 
 LDAP allows the results to be customized in two ways. A list of desired
 attributes can be passed with the search. The results will only include those
-attributes. An asterisk wildcard (``*``) specifies that all attributes should be
-returned (the default). A plus sign wildcard (``+``) specifies that only
+attributes. An asterisk wildcard ("*") specifies that all attributes should be
+returned (the default). A plus sign wildcard ("+") specifies that only
 operational attributes should be returned (these are attributes that are
 generally used internally by the LDAP directory). Finally, a flag allows only
 attribute names to be returned without any values. By default both attribute
@@ -160,11 +160,11 @@ and then to send queries to the server.
       The DN of the entry at which to start the search. Required.
    :param scope:
       The scope of the search. Optional. This parameter should be one of the
-      following values:
+      following methods:
 
-      -  ``ldap_scope_base`` - Search the object itself.
-      -  ``ldap_scope_onelevel`` - Search the object's immediate children.
-      -  ``ldap_scope_subtree`` - Search the object and all its descendants.
+      -  `ldap_scope_base` - Search the object itself.
+      -  `ldap_scope_onelevel` - Search the object's immediate children.
+      -  `ldap_scope_subtree` - Search the object and all its descendants.
 
    :param filter:
       The filter to apply to the search. Optional.
@@ -172,11 +172,11 @@ and then to send queries to the server.
       An array of strings specifying the attribute types to return in the search
       results. Optional.
 
-      -  ``'*'`` (asterisk) may be specified in the array to indicate that all
+      -  ``"*"`` (asterisk) may be specified in the array to indicate that all
          attributes are to be returned.
-      -  ``'+'`` (plus sign) may be specified in the array to indicate that all
+      -  ``"+"`` (plus sign) may be specified in the array to indicate that all
          operational attributes should be returned.
-      -  ``'1.1'`` may be specified in the array to indicate that no attributes
+      -  ``"1.1"`` may be specified in the array to indicate that no attributes
          should be returned.
 
    :param attribute-only:
@@ -206,10 +206,10 @@ and then to send queries to the server.
 
 For example, the following code performs an LDAP query against a server
 "ldap.example.com". The base of the query is ``'dc=example,dc=com'``. The scope
-is ``ldap_scope_subtree`` indicating that the object and all of its descendants
+is `ldap_scope_subtree` indicating that the object and all of its descendants
 should be searched. The filter is ``'(objectClass=*)'`` indicating that all
-object classes are to be returned. The filter attribute is ``*`` indicating that
-all attributes are to be returned. And, the ``attribute-only`` parameter is
+object classes are to be returned. The filter attribute is ``"*"`` indicating
+that all attributes are to be returned. And, the "attribute-only" parameter is
 automatically set to "false" indicating that both attributes and values should
 be returned. After each line is executed the return code is verified to be "0"
 indicating success. If the result code is greater than "0" then an error is
