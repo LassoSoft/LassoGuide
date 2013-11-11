@@ -23,9 +23,9 @@ following with image files in the supported image formats:
 .. note::
    The image type and features in Lasso 9 are implemented using ImageMagick
    6.6.6-10 (July 7, 2011 build), which is installed as part of Lasso 9 Server
-   on Mac OS X. Windows and Linux require ImageMagick to be installed
-   separately, which is covered in the installation guide. For more information
-   on ImageMagick, visit http://www.imagemagick.com.
+   on OS X. Windows and Linux require ImageMagick to be installed separately,
+   which is covered in the installation guide. For more information on
+   ImageMagick, visit http://www.imagemagick.com.
 
 
 Introduction to Manipulating Image Files
@@ -56,7 +56,7 @@ In the example above, an image file named "image.tif" is referenced as a Lasso
 image object using the :type:`image` type, then resized to 35 x 35 pixels using
 the `image->scale` method. (The optional ``-thumbnail`` parameter optimizes the
 image for the Web.) Then the image is converted to JPEG format and saved to disk
-using the `image->save` method. Finally, the new image will be displayed on the
+using the `image->save` method. Finally, the new image is displayed on the
 current page using an HTML ``<img>`` tag.
 
 This chapter explains in detail how these and other methods are used to
@@ -111,7 +111,7 @@ In order to successfully create, manipulate, and save image files using the
 operating system to write and execute files inside the folder. To check folder
 permissions in Windows, right-click on the folder and select
 :menuselection:`Properties --> Security`. For OS X or Linux, use :command:`ls
--al` from the command-line to check permissions and use the :command:`chmod` and
+-al` from the command line to check permissions and use the :command:`chmod` and
 :command:`chown` commands to adjust the permissions. (Refer to the
 :manpage:`ls`, :manpage:`chmod`, and :manpage:`chown` man pages for more
 information on their use).
@@ -121,7 +121,7 @@ Referencing Images as Lasso Objects
 ===================================
 
 For Lasso to be able to edit an image, an image file or image data must first be
-modeled as a Lasso image object using the :type:`image` type. Once a variable
+modelled as a Lasso image object using the :type:`image` type. Once a variable
 has been set to an image data type, various member methods can be used to
 manipulate the image. Once the image data is manipulated, it can either be
 served directly to the client browser, or it can be saved to disk on the server.
@@ -133,8 +133,8 @@ served directly to the client browser, or it can be saved to disk on the server.
 
    Creates an image object. Requires either the path to an image file or a bytes
    object with an image's binary data to initialize the object. Once an image
-   object is initialized, it may be edited and saved using the ``image`` member
-   methods which are described throughout this chapter.
+   object is initialized, it may be edited and saved using the :type:`image`
+   member methods which are described throughout this chapter.
 
    The optional ``-info`` parameter retrieves all the attributes of an image
    without reading the pixel data. This allows for better performance and less
@@ -157,9 +157,9 @@ served directly to the client browser, or it can be saved to disk on the server.
 Getting Image Information
 =========================
 
-Information about an image can be returned using special ``image`` member
-methods. These methods return specific values representing the attributes of an
-image such as size, resolution, format, and file comments. All image information
+Information about an image can be returned using special `image` member methods.
+These methods return specific values representing the attributes of an image
+such as size, resolution, format, and file comments. All image information
 methods in Lasso 9 are defined below.
 
 .. member:: image->width()::integer
@@ -170,11 +170,11 @@ methods in Lasso 9 are defined below.
 
    Returns the image height in pixels.
 
-.. member:: image->resolutionh()::integer
+.. member:: image->resolutionH()::integer
 
    Returns the horizontal resolution of the image in dpi.
 
-.. member:: image->resolutionv()::integer
+.. member:: image->resolutionV()::integer
 
    Returns the vertical resolution of the image in dpi.
 
@@ -205,7 +205,7 @@ methods in Lasso 9 are defined below.
 
 .. member:: image->file()
 
-   Returns the image file path and name, or ``null`` for in-memory images.
+   Returns the image file path and name, or "null" for in-memory images.
 
 
 Return the Height and Width of an Image
@@ -224,12 +224,12 @@ pixels::
 Return the Resolution of an Image
 ---------------------------------
 
-Use the `image->resolutionh` and `image->resolutionv` methods on an image
+Use the `image->resolutionH` and `image->resolutionV` methods on an image
 object. This returns a decimal value representing the horizontal and vertical
-DPI (Dots Per inch) of the image::
+:abbr:`DPI (Dots Per inch)` of the image::
 
    local(myImage) = image('/images/image.jpg')
-   #myImage->resolutionv + ' x ' + #myImage->resolutionh
+   #myImage->resolutionV + ' x ' + #myImage->resolutionH
 
    // => 600 x 600
 
@@ -281,7 +281,7 @@ method, which is described below.
 
    Converts an image object to a new format. Requires a file extension as a
    string parameter which represents the new format the image is being converted
-   to (e.g. 'jpg', 'gif'). A ``-quality`` parameter specifies the image
+   to (e.g. ``'jpg'``, ``'gif'``). A ``-quality`` parameter specifies the image
    compression ratio (integer value of 1-100) used when saving to JPEG or GIF
    format.
 
@@ -329,8 +329,8 @@ Save an Image Object to a File
 Use the `image->save` method on an image object, specifying the desired image
 name, path, and format::
 
-   local(myImage) = image('/folder/asdf1.jpg')
-   #myImage->save('/images/image.jpg')
+   local(myImage) = image('/folder/image.jpg')
+   #myImage->save('/images/image_copy.jpg')
 
 
 Add a Comment to an Image File Header
@@ -353,20 +353,20 @@ comments from an image object before it is saved to file. The following code
 adds a comment and then removes all comments. The result is an image with no
 comments::
 
-    local(myImage) = image('/images/image.gif')
-    #myImage->addComment('This is a comment')
-    #myImage->addComment(null)
-    #myImage->save('/images/image.gif')
+   local(myImage) = image('/images/image.gif')
+   #myImage->addComment('This is a comment')
+   #myImage->addComment(null)
+   #myImage->save('/images/image.gif')
 
 
 Manipulating Images
 ===================
 
-Images can be transformed and manipulated using special ``image`` member
-methods. These methods change the appearance of the image as it served to the
-client browser. This includes methods for changing image size and orientation,
-applying image effects, adding text to images, and merging images, which are
-described in the following sub-sections.
+Images can be transformed and manipulated using special `image` member methods.
+These methods change the appearance of the image as it served to the client
+browser. This includes methods for changing image size and orientation, applying
+image effects, adding text to images, and merging images, which are described in
+the following sub-sections.
 
 
 Changing Image Size and Orientation
@@ -379,12 +379,12 @@ These methods are defined below.
 
    Scales an image to a specified size. Requires either a ``-width`` or
    ``-height`` parameter, which specify the new size of the image using either
-   integer pixel values (e.g. "50") or string percentage values (e.g.
-   "'50%'"). An optional ``-sample`` parameter indicates pixel sampling should
-   be used so no additional colors will be added to the image. An optional
-   ``-thumbnail`` parameter optimizes the image for display on the Web. If only
-   one of the ``-width`` or ``-height`` is specified then the other value is
-   calculated proportionally.
+   integer pixel values (e.g. "50") or string percentage values (e.g. "50%"). An
+   optional ``-sample`` parameter indicates pixel sampling should be used so no
+   additional colors will be added to the image. An optional ``-thumbnail``
+   parameter optimizes the image for display on the web. If only one of the
+   ``-width`` or ``-height`` is specified then the other value is calculated
+   proportionally.
 
 .. member:: image->rotate(deg::integer)
 .. member:: image->rotate(deg::integer, -bgColor=::string)
@@ -401,12 +401,12 @@ These methods are defined below.
    ``-right`` parameters specify the offset of the resulting image within the
    initial image.
 
-.. member:: image->flipv
+.. member:: image->flipV()
 
    Creates a vertical mirror image by reflecting the pixels around the central
    X-axis.
 
-.. member:: image->fliph
+.. member:: image->flipH()
 
    Creates a horizontal mirror image by reflecting the pixels around the central
    Y-axis.
@@ -429,7 +429,7 @@ Shrink an Image
 
 Use the `image->scale` method on an image object. The following example shrinks
 "image.jpg" to 25 x 25 pixels. The optional ``-thumbnail`` parameter optimizes
-the image for the Web::
+the image for the web::
 
    local(myImage) = image('/images/image.jpg')
    #myImage->scale(-height=25, -width=25, -thumbnail)
@@ -461,11 +461,11 @@ pixels off of each side of a 70 x 70 image::
 Mirror an Image
 ^^^^^^^^^^^^^^^
 
-Use the `image->flipv` method on an image object. The following example mirrors
+Use the `image->flipV` method on an image object. The following example mirrors
 the image vertically::
 
    local(myImage) = image('/images/image.jpg')
-   #myImage->flipv
+   #myImage->flipV
    #myImage->save('/images/image.jpg')
 
 
@@ -518,7 +518,7 @@ merging. These methods are described below.
    added back into the original, and ``-threshold`` specifies the threshold in
    decimal pixels needed to apply the difference amount.
 
-.. member:: image->enhance
+.. member:: image->enhance()
 
    Applies a filter that improves the quality of a noisy, lower-quality image.
 
@@ -563,11 +563,11 @@ Adjust the Contrast of an Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `image->contrast` method on an image object. The first example increases
-the contrast. The second example uses a "false" parameter, which reduces the
-contrast instead::
+the contrast. The second example uses a "false" parameter value, which reduces
+the contrast instead::
 
    local(myImage) = image('/images/image.jpg')
-   #myImage->Contrast
+   #myImage->contrast
    #myImage->save('/images/image.jpg')
 
    local(myImage) = image('/images/image.jpg')
@@ -589,7 +589,7 @@ motion blur at 20 degrees::
 Apply a Gaussian Blur to an Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the `image->blur` method with the ``-Gaussian`` parameter on an image
+Use the `image->blur` method with the ``-gaussian`` parameter on an image
 object. The following example applies a Gaussian blur with a radius of 15 pixels
 and a standard deviation of 10 pixels::
 
@@ -627,9 +627,9 @@ Enhance a Low-Quality Image
 
 Use the `image->enhance` method on an image object::
 
-    local(myImage) = image('/images/image.jpg')
-    #myImage->enhance
-    #myImage->save('/images/image.jpg')
+   local(myImage) = image('/images/image.jpg')
+   #myImage->enhance
+   #myImage->save('/images/image.jpg')
 
 
 Adding Text to Images
@@ -649,7 +649,7 @@ method as described below.
       )
 
    Overlays text on to an image. Requires a string value as a parameter, which
-   is the text to be overlaid. Required ``-Left`` and ``-Top`` parameters
+   is the text to be overlaid. Required ``-left`` and ``-top`` parameters
    specify the place of the text in pixel integers relative to the upper left
    corner of the image. An optional ``-font`` parameter specifies the name (with
    extension) and full path to a system font to be used for the text, and an
@@ -660,8 +660,8 @@ method as described below.
 
 .. note::
    When specifying a font, the full hard drive path to the font must be used
-   (e.g. ``-font='//Library/Fonts/Arial.ttf'``). True Type (.ttf), and Type One
-   (.pfa, .pfb) font types are officially supported.
+   (e.g. ``-font='//Library/Fonts/Arial.ttf'``). True Type (".ttf"), and Type
+   One (".pfa", ".pfb") font types are officially supported.
 
 
 Add Text to an Image
@@ -788,8 +788,8 @@ transparent version of "image2.jpg" to "image1.jpg"::
 Shade Image with a Second Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the `image->composite` method with the "Bumpmap" operator to shade an
-image object over a second image object::
+Use the `image->composite` method with the "Bumpmap" operator to shade an image
+object over a second image object::
 
    local(myImage1) = image('/images/image1.jpg')
    local(myImage2) = image('/images/image2.jpg')
@@ -812,16 +812,16 @@ pixel difference between two defined image variables::
 Extended ImageMagick Commands
 =============================
 
-For users who have experience using the ImageMagick command line utility, Lasso
+For users who have experience using the ImageMagick command-line utility, Lasso
 provides the `image->execute` method to allow advanced users to take advantage
 of additional ImageMagick commands and functionality.
 
-.. member:: image->execute
+.. member:: image->execute()
 
    Execute ImageMagick commands. Provides direct access to the ImageMagick
-   command-line interface. Supports the "composite", "mogrify", and
-   "montage" commands. For detailed descriptions of these commands and their
-   corresponding parameters, see the following URL:
+   command-line interface. Supports the "composite", "mogrify", and "montage"
+   commands. For detailed descriptions of these commands and their corresponding
+   parameters, see the following URL:
    `<http://www.imagemagick.com/www/utilities.html>`_
 
 
@@ -848,10 +848,10 @@ Referencing Within HTML Files
 -----------------------------
 
 The easiest way to serve images and multimedia files is simply by referencing
-files stored within the Web server root using standard HTML tags such as
+files stored within the web server root using standard HTML tags such as
 ``<img>`` or ``<embed>``. The path to the image file can be calculated in the
 Lasso page or stored within a database field. Since the specified file is
-ultimately served by the Web server application which is optimized for serving
+ultimately served by the web server application which is optimized for serving
 images and multimedia files, this is the most efficient way to serve images and
 multimedia files.
 
@@ -859,22 +859,21 @@ multimedia files.
 Generate the Path to an Image or Multimedia File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following example shows a variable "company_name" that contains
-"blueworld". This variable is used to construct a path to an image file stored
-within the "images" folder named with the company name and "_logo.gif" to
-form the full file path "/images/blueworld_logo.gif"::
+The following example shows a variable "company_name" that contains "blueworld".
+This variable is used to construct a path to an image file stored within the
+"images" folder named with the company name and "_logo.gif" to form the full
+file path "/images/blueworld_logo.gif"::
 
    [local(company_name) = 'blueworld']
    <img src="/images/[#company_name]_logo.gif" />
 
    // => <img src="/images/blueworld_logo.gif" />
 
-The following example shows a variable "company_name" that contains
-"blueworld". This variable is used to construct a path to an image file stored
-within the "images" folder named with the company name and "_logo.gif" to
-form the full file path "/images/blueworld_logo.gif". The path to the image
-file is stored within the variable "image_path" and then referenced in the
-HTML ``<img>`` tag::
+The following example shows a variable "company_name" that contains "blueworld".
+This variable is used to construct a path to an image file stored within the
+"images" folder named with the company name and "_logo.gif" to form the full
+file path "/images/blueworld_logo.gif". The path to the image file is stored
+within the variable "image_path" and then referenced in the HTML ``<img>`` tag::
 
    [local(company_name) = 'blueworld']
    [local(image_path) = '/images/' + #company_name + '_logo.gif']
@@ -882,11 +881,11 @@ HTML ``<img>`` tag::
 
    // => <img src="/images/blueworld_logo.gif" />
 
-The following example shows a variable "band_name" that contains
-"ArtOfNoise". This variable is used to construct a path to sound files stored
-within the "sounds" folder named with the band name and ".mp3" to form the
-full file path "/sounds/ArtOfNoise.mp3". The path to the sound file is stored
-within the variable "sound_path" and then referenced in the HTML ``<a>`` tag::
+The following example shows a variable "band_name" that contains "ArtOfNoise".
+This variable is used to construct a path to sound files stored within the
+"sounds" folder named with the band name and ".mp3" to form the full file path
+"/sounds/ArtOfNoise.mp3". The path to the sound file is stored within the
+variable "sound_path" and then referenced in the HTML ``<a>`` tag::
 
    [local(band_name)  = 'ArtOfNoise']
    [local(sound_path) = '/images/' + #band_name + '.mp3']
@@ -908,17 +907,17 @@ using `web_response->sendFile` without it first being written to disk.
 
 In order to serve an image or multimedia file through Lasso the MIME type of the
 file must first be determined. Often, this can be discovered by looking at the
-configuration of the Web server or Web browser. The MIME type for a GIF is
+configuration of the web server or web browser. The MIME type for a GIF is
 :mimetype:`image/gif` and the MIME type for a JPEG is :mimetype:`image/jpeg`.
 
 .. note::
-   It is not recommended that you configure your Web server application to
+   It is not recommended that you configure your web server application to
    process all ".gif" and ".jpg" files through Lasso. Lasso will attempt to
    interpret the binary data of the image file as Lasso code. Instead, use one
    of the procedures below to serve an image file from a path with a ".lasso"
    extension.
 
-.. member:: image->data
+.. member:: image->data()
 
    Converts an image object to a binary bytes object. This is useful for serving
    images to a browser without writing the image to file.
@@ -928,10 +927,10 @@ Serve an Image File
 ^^^^^^^^^^^^^^^^^^^
 
 Use the `web_response->sendFile` method to set the MIME type of the image to be
-served, and use the `image->data` method to get the binary data from an
-image object. The `web_response->sendFile` method aborts the current response,
-so it will be the last line of code to be processed. The following example shows
-a GIF named "picture.gif" being served from an "images" folder::
+served, and use the `image->data` method to get the binary data from an image
+object. The `web_response->sendFile` method aborts the current response, so it
+will be the last line of code to be processed. The following example shows a GIF
+named "picture.gif" being served from an "images" folder::
 
    local(image) = image('/images/picture.gif')
    web_response->sendFile(#image->data, -type='image/gif')
@@ -953,7 +952,7 @@ and calls abort to avoid any data corruption::
 
 .. note::
    If either of the code examples above is stored in a file named "image.lasso"
-   at the root of the Web serving folder then the image could be accessed with
+   at the root of the web serving folder then the image could be accessed with
    the following ``<img>`` tag::
 
       <img src="/image.lasso" />
@@ -973,7 +972,7 @@ served from a "sounds" folder::
       -type='audio/mp3')
 
 If the code above is stored in a file named "ArtOfNoise.lasso" at the root of
-the Web serving folder then the sound file could be accessed with the following
+the web serving folder then the sound file could be accessed with the following
 ``<a>`` tag::
 
     <a href="/ArtOfNoise.lasso">Art of Noise Song</a>
@@ -990,10 +989,10 @@ Since the Lasso page can process any Lasso code before serving the image it is
 easy to create a file that generates an error if an unauthorized person tries to
 access a file. The following code checks the `client_username` for the name
 "John". If the current user is not named "John" then a file "error.gif" is
-served instead of the desired "picture.gif" file. To really limit access to
-the files, they are being served from outside the web root of the web server so
-that the files couldn't be loaded directly by a URL. In this example, the files
-are being served from the "secret" folder which is at the root level of the file
+served instead of the desired "picture.gif" file. To really limit access to the
+files, they are being served from outside the web root of the web server so that
+the files couldn't be loaded directly by a URL. In this example, the files are
+being served from the "secret" folder which is at the root level of the file
 system::
 
    if('John' == client_username) {
