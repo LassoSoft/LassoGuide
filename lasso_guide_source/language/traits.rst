@@ -5,18 +5,14 @@
 Traits
 ******
 
-This chapter provides details about how traits are defined and used in Lasso 9.
-Topics include an introduction to traits, defining traits, trait arithmetic, and
-applying traits.
-
-
-Introduction
-============
-
 Traits provide a way to define data type functionality in a modular fashion.
 Each trait includes a set of reusable method implementations along with a set of
 requirements that must be satisfied in order for the included methods to
 function properly.
+
+
+Trait Logic
+===========
 
 Traits allow a hierarchy of data types which share common functionality to be
 created without relying on single or multiple inheritance. Traits are similar to
@@ -29,13 +25,15 @@ if they had been implemented directly in the type. Traits can only define public
 member methods.
 
 Lasso includes many types which have common member methods. For example, the
-``pair``, ``array``, ``string``, and other data types implement ``first``,
-``second``, and ``last`` methods which return the named element. ::
+:type:`pair`, :type:`array`, :type:`string`, and other data types implement
+``first``, ``second``, and ``last`` methods which return the named element. ::
 
    array(1, 2, 3, 4)->last
    // => 4
+
    'Quick brown fox'->second
    // => u
+
    pair('name'='John')->first
    // => name
 
@@ -172,8 +170,8 @@ Import
 ------
 
 The import section allows the characteristics of other traits to be imported
-into this trait definition. Using import, a hierarchy of traits can be defined.
-As many import sections as are necessary can be specified.
+into this trait definition. Using "import", a hierarchy of traits can be
+defined. As many import sections as are necessary can be specified.
 
 The section begins with the reserved word "import" followed by a comma-separated
 list of trait names. The following trait simply imports the characteristics of
@@ -202,15 +200,9 @@ This is called "composing" a new trait. The result of this expression will be a
 trait that has all the requirements and provides all the member methods of the
 traits that have been combined.
 
-The same rules that are used for importing traits apply to composed traits. The
-requirements of one trait may be satisfied by a member method provided by
-another trait in the composition.
-
-However, if two traits provide the same member method, then there is a conflict.
-The conflict is resolved by eliminating both implementations of that member
-method and adding a requirement for it to the trait. The type which the trait is
-ultimately applied to must implement that member method in order for the trait
-to be applied.
+The same rules that are used for importing traits apply to composed traits, such
+as traits satisfying each others' requirements and resolving conflicting method
+names.
 
 An alternate method of defining the trait example from the start of this chapter
 would be to define three sub-traits and then use the composition operator
@@ -292,7 +284,7 @@ Trait Manipulation Methods
 .. member:: null->trait(t::trait)
    :noindex:
 
-   Returns the trait for the target object. Returns ``null`` if the object does
+   Returns the trait for the target object. Returns "null" if the object does
    not have a trait.
 
 .. member:: null->setTrait(t::trait)

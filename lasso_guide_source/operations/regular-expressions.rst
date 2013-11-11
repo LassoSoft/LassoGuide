@@ -91,7 +91,7 @@ characters. The ``\\P{Property}`` wildcard is the opposite. ``\\P{L}`` matches
 any Unicode character that is not a letter.
 
 Many characters have special meanings in regular expressions including ``[ ] ( )
-{ } . * + ? ^ $ | \ /``. In order to match one of these characters literally it
+{ } . * + ? ^ $ \ |``. In order to match one of these characters literally it
 is necessary to use a backslash in front of it. For example ``\\[`` matches a
 literal opening square bracket rather than starting a character range.
 
@@ -194,7 +194,7 @@ attention to whether or not ticked string literals are being used.
 ```\```
    Escapes the next character. This allows any symbol to be specified as a
    matching character including the reserved characters ``[ ] ( ) { } . * + ? ^
-   $ | \ /``.
+   $ \ |``.
 
 
 Unicode Properties
