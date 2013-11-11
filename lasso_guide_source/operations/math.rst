@@ -328,10 +328,10 @@ method detailed below.
       prepended to the left side of the output.
 
 
-Format a Decimal Number as US Currency
---------------------------------------
+Format a Decimal Number as U.S. Currency
+----------------------------------------
 
-The following example outputs a decimal value as if it were US currency by
+The following example outputs a decimal value as if it were U.S. currency by
 setting the precision to ``2``. For readability, it also sets a comma as the
 grouping character. ::
 
