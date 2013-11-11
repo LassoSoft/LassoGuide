@@ -18,7 +18,7 @@ setters, callbacks, implementable operators, inheritance, and traits.
 Defining Types
 ==============
 
-Before a type can be utilized, it must first be defined. Defining a type is done
+Before a type can be used, it must first be defined. Defining a type is done
 in the same manner as other entities (traits, methods). The word "define" is
 used, followed by the name for the type, the association operator (``=>``), and
 a type expression which provides the description of the type's methods and data
@@ -40,8 +40,8 @@ section is optional. Sections can occur in any order. The sections "trait" and
 "parent" can occur only once.
 
 The most simple type definition is shown below. It defines a type named "person"
-and contains no sections. Thus, the ``person`` type contains no methods or data
-members of its own. It is a completely valid, if somewhat boring, type. ::
+and contains no sections. Therefore, the ``person`` type contains no methods or
+data members of its own. It is a completely valid, if somewhat boring, type. ::
 
    define person => type { }
 
@@ -79,15 +79,45 @@ other sections in the type expression if necessary. ::
    }
 
 
+Accessing Data Members
+^^^^^^^^^^^^^^^^^^^^^^
+
+Data members can be accessed from within the methods of a type by targeting the
+current type instance using the word "self" and the target operator (``->``)
+followed by the name of the data member within single quotes. The following
+expression would set the value of the data member "age" to "36"::
+
+   self->'age' = 36
+
+The following expression produces the value of the "age" data member::
+
+   self->'age'
+   // => 36
+
+Equivalently, Lasso 9 supports a shortcut to targeting "self" by using a single
+period. The examples above could be rewritten using a period in place of
+``self->``::
+
+   .'age' = 36
+   .'age'
+   // => 36
+
+All of the data members in a type are private. This means that a data member can
+*only* be directly accessed using either of the above syntaxes; only when
+"self" is the target object. Optionally, data members can be exposed to the
+outside world. The following section describes how getters and setters can be
+used to access data member values from outside of the owning type.
+
+
 Type Constraints
-^^^^^^^^^^^^^^^^
+----------------
 
 Data member values can be constrained to hold only particular types of objects.
 To do this, follow the data member name with two colons (``::``) and then a type
 or trait name. When a data member is constrained, it cannot be assigned any
 value which does not fit the constraint. The following type constrains
-"firstName" and "lastName" to be ``string`` objects and "age" to be an
-``integer`` value::
+"firstName" and "lastName" to be string objects and "age" to be an integer
+value::
 
    define person => type {
       data firstName::string, lastName::string
@@ -104,36 +134,6 @@ definition uses both type constraints and default values for "firstName" and
       data firstName::string = '', lastName::string = ''
       data age = 0
    }
-
-
-Accessing Data Members
-^^^^^^^^^^^^^^^^^^^^^^
-
-Data members can be accessed from within the methods of a type by targeting the
-current type instance using the word "self" and the target operator (``->``)
-followed by the name of the data member within single quotes. The following
-expression would set the value of the data member "age" to "36"::
-
-   self->'age' = 36
-
-The following expression produces the value of the "age" data member::
-
-   self->'age'
-   // => 36
-
-Equivalently, Lasso 9 supports a shortcut to targeting ``self`` by using a
-single period. The examples above could be rewritten using a period in place of
-"``self->``"::
-
-   .'age' = 36
-   .'age'
-   // => 36
-
-All of the data members in a type are private. This means that a data member can
-**only** be directly accessed using either of the above syntaxes; only when
-"self" is the target object. Optionally, data members can be exposed to the
-outside world. The following section describes how getters and setters can be
-used to access data member values from outside of the owning type.
 
 
 Getters and Setters
@@ -165,9 +165,9 @@ returned as follows::
    #person->lastName()
    // => // Produces the value stored in the "lastName" data member
 
-The automatically created setter permits the assignment operator (=) to assign a
-new value to the data member. As with the getter, parentheses are optional.
-Either the "=" or ":=" assignment operators can be used. ::
+The automatically created setter permits the assignment operator (``=``) to
+assign a new value to the data member. As with the getter, parentheses are
+optional. Either the "=" or ":=" assignment operators can be used. ::
 
    // Sets "firstName" to a new value
    #person->firstName = 'John'
@@ -222,10 +222,10 @@ the method may receive.
 
 Member methods are created in sections of a type expression beginning with the
 word "public", "private", or "protected", followed by a method signature, the
-association operator (``=>``), and the implementation of the method. Each section
-can define one or more methods separated by commas. The choice of word used to
-begin a member methods section influences how the methods are permitted to be
-accessed. There are three such access levels.
+association operator (``=>``), and the implementation of the method. Each
+section can define one or more methods separated by commas. The choice of word
+used to begin a member methods section influences how the methods are permitted
+to be accessed. There are three such access levels.
 
 ``public``
    Public member methods can be called without any restrictions. They represent
@@ -370,7 +370,7 @@ favor of the corresponding method from type ``one``. ::
 
 Equivalently, Lasso 9 supports a shortcut syntax of two periods for targeting
 "inherited" which can be used to access the methods of a parent type. The
-example above can be rewritten using ".." in place of "``inherited->``"::
+example above can be rewritten using ``..`` in place of ``inherited->``::
 
    define two => type {
       parent one
@@ -383,9 +383,9 @@ Type Creators
 -------------
 
 A type creator is a method that returns a new instance of a type. For example,
-calling the method named ``string()`` produces a new ``string`` object. By
-default each type has a creator method that corresponds to the name of the type
-and requires no parameters.
+calling the method named ``string()`` produces a new string object. By default
+each type has a creator method that corresponds to the name of the type and
+requires no parameters.
 
 The example type ``person`` would automatically have a creator method
 ``person()`` that returns a new instance of the type. ::
@@ -473,20 +473,20 @@ onCompare
 ^^^^^^^^^
 
 The ``onCompare`` method is called whenever an object is compared against
-another object. This includes when the equality (==), and inequality (!=)
-operators are used and when objects are compared for ordinality using any of the
-greater than or less than operators (< <= > >=).
+another object. This includes when the equality (``==``), and inequality
+(``!=``) operators are used and when objects are compared for ordinality using
+any of the greater than or less than operators (``< <= > >=``).
 
-An ``onCompare`` method must accept one parameter and must return an ``integer``
+An ``onCompare`` method must accept one parameter and must return an integer
 value. ::
 
    public onCompare(rhs)::integer
 
 If the parameter is equal to the current type instance then a value of "0"
 should be returned. If the current type instance is less than the parameter then
-an ``integer`` less than 0 should be returned (e.g. "-1"). If the current type
-instance is greater than the parameter then an ``integer`` greater than 0 should
-be returned (e.g. "1").
+an integer less than 0 should be returned (e.g. "-1"). If the current type
+instance is greater than the parameter then an integer greater than 0 should be
+returned (e.g. "1").
 
 For example, the following ``person`` type has an ``onCompare`` method that
 gives ``person`` objects the ability to compare themselves with each other::
@@ -507,7 +507,7 @@ gives ``person`` objects the ability to compare themselves with each other::
      }
    }
 
-Given the above type definition, the following examples utilize the
+Given the above type definition, the following examples use the
 ``onCompare`` method behind the scenes to provide the ability to compare
 persons::
 
@@ -521,10 +521,10 @@ Multiple ``onCompare`` methods can be provided, each specialized to compare
 against particular object types. For example, an ``integer`` type would want to
 permit itself to be compared against other ``integer`` objects, but it might
 also want to be comparable to ``decimal`` objects. Such an ``integer`` type
-would have one ``onCompare`` method for ``integer`` and another for ``decimal``
-objects. This example also shows how the ``onCompare`` method can be manually
-called on objects. In this case, the "value" data member is responsible for
-doing the actual comparisons, so its ``onCompare`` method is called and the
+would have one ``onCompare`` method for ``integer`` objects and another for
+``decimal`` objects. This example also shows how the ``onCompare`` method can be
+manually called on objects. In this case, the "value" data member is responsible
+for doing the actual comparisons, so its ``onCompare`` method is called and the
 value returned. ::
 
    define myint => type {
@@ -543,7 +543,7 @@ The ``contains`` method is called whenever the contains (``>>``) or not contains
 (``!>>``) operators are used.
 
 A ``contains`` method should have the following signature. The method accepts
-one parameter and must return a boolean value, "true" or "false". ::
+one parameter and must return a boolean value, either "true" or "false". ::
 
    public contains(rhs)::boolean
 
@@ -551,7 +551,7 @@ If the parameter is contained within the current type instance (using whatever
 logic makes sense for the type) then a value of "true" should be returned;
 otherwise, a value of "false" should be returned.
 
-For example, the type ``odds``, overrides the contains operators so that ``odds
+For example, the type ``odds`` overrides the contains operators so that ``odds
 >> 3`` will return "true" and ``odds >> 4`` will return "false". ::
 
    define odds => type {
@@ -599,7 +599,7 @@ calling the ``invoke`` method or by applying parentheses::
 \_unknowntag
 ^^^^^^^^^^^^
 
-The "\_unknowntag" callback can be utilized in order to let a type handle
+The "\_unknowntag" callback can be used in order to let a type handle
 requests for methods which it does not have. When a search for a member method
 fails, the system will call the ``_unknowntag`` method if it is defined. The
 method name that was originally sought is available by calling ``method_name``.
@@ -619,7 +619,7 @@ asString
 ^^^^^^^^
 
 The ``asString`` method can be called when a type should be converted into a
-``string``. By default, a type instance will simply output the name of the type.
+string. By default, a type instance will simply output the name of the type.
 Overriding this method allows a type to control how it is output. The following
 code defines a simple type which outputs a greeting when its ``asString`` method
 is called::
@@ -633,12 +633,12 @@ Operator Overloading
 --------------------
 
 Types can provide their own routines to be called when the standard arithmetic
-operators (+ - * / %) are used with an instance of the type on the left-hand
+operators (``+ - * / %``) are used with an instance of the type on the left-hand
 side of the expression.
 
 If the standard operators are overloaded they should be mapped as closely as
 possible to the standard arithmetic meanings of the operators. For example, the
-addition operator (+) is also used for ``string`` concatenation.
+addition operator (``+``) is also used for string concatenation.
 
 
 Overloading +, -, \*, /, %
@@ -676,14 +676,14 @@ The following example provides a full set of arithmetic operators for the
 Overloading ==, !=, <, <=, >, >=, ===, !==
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-See :ref:`the section on the onCompare method <types-callbacks-onCompare>`
+See the section on the :ref:`onCompare method <types-callbacks-onCompare>`
 for information about how to overload these operators.
 
 
 Overloading >>, !>>
 ^^^^^^^^^^^^^^^^^^^
 
-See :ref:`the section on the Contains method <types-callbacks-contains>` for
+See the section on the :ref:`Contains method <types-callbacks-contains>` for
 information about how to overload these operators.
 
 
@@ -692,10 +692,8 @@ Trait
 
 Every type has a single trait which may be composed of other sub-traits. A type
 inherits all of the methods which its trait defines provided that the type
-implements the requirements for the trait.
-
-See :ref:`the chapter on Traits <traits>` for a complete description of how
-traits are created.
+implements the requirements for the trait. See the :ref:`Traits <traits>`
+chapter for a complete description of how traits are created.
 
 The trait section of a type expression can import one or more other traits.
 These traits are combined to form the trait for the type. The following code
@@ -724,8 +722,8 @@ the rest of the method signature and body. The following example adds the method
    define person->speak() => 'Hello, world!'
 
 
-Introspection
-=============
+Introspection Methods
+=====================
 
 Lasso provides a number of methods which can be used to gain information about
 an object. These methods are summarized below.
@@ -741,7 +739,7 @@ an object. These methods are summarized below.
    integer greater than zero if the name of the type is specified or the name of
    any parent type other than ``null``. The method will also return a positive
    integer for any trait name which the type has applied to it. The method call
-   ``null->isA(::null)`` will only return true for the ``null`` type instance
+   ``null->isA(::null)`` will only return "true" for the ``null`` type instance
    itself.
 
 .. member:: null->isNotA(name::tag)
@@ -750,21 +748,21 @@ an object. These methods are summarized below.
 
 .. member:: null->listMethods()
 
-   Returns a ``staticarray`` containing the signatures for all of the methods
-   which are available for the type.
+   Returns a staticarray containing the signatures for all of the methods which
+   are available for the type.
 
 .. member:: null->hasMethod(name::tag)
 
-   Returns true if the type implements a method with the given name.
+   Returns "true" if the type implements a method with the given name.
 
 .. member:: null->parent()
 
    Returns the name of the parent of the target object. If the method returns
-   ``null`` then the final parent has been reached.
+   "null" then the final parent has been reached.
 
 .. member:: null->trait()
 
-   Returns the trait for the target object. Returns ``null`` if the object does
+   Returns the trait for the target object. Returns "null" if the object does
    not have a trait.
 
 .. member:: null->setTrait(trait::trait)
