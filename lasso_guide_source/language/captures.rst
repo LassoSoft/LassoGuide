@@ -14,8 +14,8 @@ powerful tool to use for solving some complex problems. This chapter provides
 in-depth information about captures and examples of their use.
 
 
-Overview
-========
+Capture Definition
+==================
 
 A :dfn:`capture` is a representation of the control state of a section of code.
 While methods are stateless (once they have had their code established),
@@ -26,18 +26,19 @@ This state consists of:
 -  The current "self" and "inherited"
 -  The current "params" staticarray
 -  The current set of local variables, and their values
--  The current program counter, or "PC". This value is the offset within that
-   capture's code at which execution is currently happening.
+-  The current :dfn:`program counter`, or "PC". This value is the offset within
+   that capture's code at which execution is currently happening.
 -  The name of the current method call
 -  The current :dfn:`continuation`, which is the element to be executed after
    the current capture completes
 -  The set of handlers that must be executed before the capture completes
--  A :dfn:`home` capture, which is the capture in which this capture was created
+-  A :dfn:`home capture`, which is the capture in which this capture was created
 
 When a capture is invoked, it will in turn execute its associated code which
-will execute within the context of that capture's state. The currently executing
+will execute within the context of that capture's state. The currently-executing
 capture is known as the :dfn:`current capture` and is made available through the
-``currentCapture`` method.
+`currentCapture` method. (See the :ref:`operators` chapter for more info about
+:ref:`operators-invoke`.)
 
 
 Creating Captures
@@ -45,15 +46,15 @@ Creating Captures
 
 As previously mentioned, captures are automatically created when a method is
 executed. Captures can also be manually created by using curly braces as an
-expression. This commonly occurs when a capture is used in a ``givenBlock``
-association::
+expression. This commonly occurs when a capture is used in a :dfn:`givenBlock
+association`::
 
    #ary->forEach => {
       // ... a capture of the surrounding code ...
    }
 
-In the code above, the block associated with `array->forEach` is a capture
-object which `array->forEach` receives as its ``givenBlock`` and may execute as
+In the code above, the block associated with `~array->forEach` is a capture
+object which `~array->forEach` receives as its givenBlock and may execute as
 needed.
 
 Captures can also be assigned to variables like any other object. The following
@@ -63,8 +64,8 @@ example creates a capture and assigns it to the variable "cap"::
 
 There are two types of captures supported in Lasso 9: regular captures, like the
 examples above, and auto-collect captures. An auto-collect capture concatenates
-together the result of calling the "asString" method on every value produced
-inside the capture when the capture is executed and produces that value. The
+the result of calling the `~null->asString` method on every value produced
+inside the capture when the capture is executed, and produces that value. The
 following example creates an auto-collect capture and assigns it to the variable
 "cap"::
 
@@ -72,16 +73,16 @@ following example creates an auto-collect capture and assigns it to the variable
 
 Because all executing code occurs within a capture, every capture that is
 manually created (as in the two examples above) is done so within the context of
-another capture. This surrounding capture is known as the new capture's "home
-capture". Not all captures will have a home. Captures which are automatically
-created based on the invocation of a method will not have a home. A capture that
-is created within a capture that does have a home will have its home set to its
-parent capture's home. This means that nested captures will all have the same
-home.
+another capture. This surrounding capture is known as the new capture's
+:dfn:`home capture`. Not all captures will have a home. Captures which are
+automatically created based on the invocation of a method will not have a home.
+A capture that is created within a capture that does have a home will have its
+home set to its parent capture's home. This means that nested captures will all
+have the same home.
 
-A capture with a home will always take the following environment values from
-that home: self, locals, params, current call name. A capture without a home
-will have state values based on the circumstances of the call. All other capture
+A capture with a home will always take the following environment values from its
+home: self, locals, params, and current call name. A capture without a home will
+have state values based on the circumstances of the call. All other capture
 state is unique to each capture. As described below, the home capture is
 important for determining the behavior of ``return`` and ``yield``.
 
@@ -89,7 +90,7 @@ important for determining the behavior of ``return`` and ``yield``.
 Executing Captures
 ==================
 
-Captures are executed by calling their `capture->invoke` method::
+Captures are executed by calling their `~capture->invoke` method::
 
    local(cap) = { /* ... the capture's code ... */ }
    #cap->invoke  // Invoke the capture
@@ -120,6 +121,7 @@ returned and can be accessed using `capture->autoCollectBuffer`::
    #distance(8,2,10,5)
    '\n'
    #distance->autoCollectBuffer
+
    // =>
    // 3.605551
    // 3.605551
@@ -145,11 +147,13 @@ updated by "method2"::
 
       return #my_local
    }
+
    define method2(cap::capture) => {
       #cap(', world.')
    }
 
    method1
+
    // => Hello, world.
 
 
@@ -160,11 +164,11 @@ Captures can produce values by using ``yield`` or ``return``. Both ``yield`` and
 ``return`` halt the execution of any of the capture's remaining code and produce
 the specified value. Yielding from a capture differs from returning in how it
 leaves the capture. A ``return`` will reset the capture's PC to the top while a
-``yield`` will not modify the PC. This has an effect on how the capture behaves
-if it is executed a second time. A capture that has been returned from will
-begin executing from the start of the capture. A capture that has been yielded
-from will begin executing immediately after the expression which caused it to
-yield in the first place. A capture may ``yield`` many times::
+``yield`` will not modify the PC. This affects how the capture behaves if it is
+executed a second time. A capture that has been returned from will begin
+executing from the start of the capture. A capture that has been yielded from
+will begin executing immediately after the expression which caused it to yield
+in the first place. A capture may yield many times::
 
    local(cap) = {
       yield 1
@@ -201,8 +205,8 @@ code, thus resetting itself::
 The current home capture is very important for determining the behavior of
 ``return`` and ``yield``. Because captures are intended to execute as if they
 had been invoked directly within their home, ``return`` and ``yield`` will both
-behave by exiting from the current home as well as itself. This type of return
-is known as "non-local", and is illustrated in the following example which
+behave by exiting from the current home as well as itself. This is known as a
+:dfn:`non-local return`, and is illustrated in the following example which
 implements a potential "contains" method::
 
    define contains(a::array, val) => {
@@ -221,7 +225,7 @@ including the capture's home.
 A capture can be detached from its home in order to escape from this behavior.
 The easiest way to accomplish this is to call the capture's `capture->detach`
 method. This method detaches the capture from its home and returns itself as the
-method's result. (This is what we did in the first yield example above.)
+method's result. (This is what we did in the first ``yield`` example above.)
 
 The following example creates a capture and detaches it from its home. Returning
 from within the capture no longer exits the surrounding capture::
@@ -236,11 +240,10 @@ its execution. It is not a non-local return.
 
 Captures provide two other forms of ``yield`` and ``return``: ``yieldHome`` and
 ``returnHome``. These are only valid when the capture has a home and can be used
-to return from a capture **to** its home, instead of returning **from** its
-home. These forms are special purpose and used for accomplishing some
-implementation details such as certain looping constructs or control structures.
-(For example, ``loop_continue`` and ``loop_abort`` both rely on using these
-forms.)
+to return from a capture *to* its home, instead of returning *from* its home.
+These special-purpose forms are used to accomplish some implementation details
+such as certain looping constructs or control structures. (For example,
+`loop_continue` and `loop_abort` both rely on using these forms.)
 
 
 Capture API
@@ -254,12 +257,12 @@ Capture API
 
 .. member:: capture->invoke(...)
 
-   This executes the capture object and the code that is associated with it.
+   Executes the capture object and the code that is associated with it.
 
 .. member:: capture->detach()
 
    Detaches the capture so that it no longer has a home capture and then returns
-   itself. After this, calling `capture->home` will return ``void``.
+   itself. After this, calling `capture->home` will return "void".
 
 .. member:: capture->restart()
 
@@ -298,8 +301,7 @@ Capture API
 
 .. member:: capture->givenBlock()
 
-   Returns the ``givenBlock`` associated with the current capture object, if
-   any.
+   Returns the givenBlock associated with the current capture object, if any.
 
 .. member:: capture->autoCollectBuffer()
 
@@ -309,7 +311,7 @@ Capture API
 .. member:: capture->autoCollectBuffer=(p0)
 
    If the capture is an auto-collect capture, this method allows for setting the
-   the auto-collect value.
+   auto-collect value.
 
 .. member:: capture->calledName()
 

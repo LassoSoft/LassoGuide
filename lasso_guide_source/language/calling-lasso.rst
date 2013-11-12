@@ -139,12 +139,12 @@ Files containing Lasso code can be directly associated with the
 very top of the file*, and by making the file executable (usually accomplished
 by running :command:`chmod +x thefile.lasso`).
 
-The :term:`hashbang` line for a standard installation looks like this::
+The hashbang line for a standard installation looks like this::
 
    #!/usr/bin/lasso9
 
-Using the same "test.lasso" file as before, but placing the :term:`hashbang`
-line at the top, the complete example would look as follows::
+Using the same "test.lasso" file as before, but placing the hashbang line at the
+top, the complete example would look as follows::
 
    #!/usr/bin/lasso9
    'The current date is ' + date
