@@ -138,7 +138,7 @@ custom error codes into the error recovery mechanisms for a site.
 
 .. method:: error_obj()
 
-   Returns the current error name from the Lasso variable ``$_err_obj`, or
+   Returns the current error name from the Lasso variable ``$_err_obj``, or
    "null" if no error object is present.
 
 .. method:: error_push()

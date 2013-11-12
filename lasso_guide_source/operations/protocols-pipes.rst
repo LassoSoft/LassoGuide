@@ -177,6 +177,7 @@ same machine and execute ``curl localhost:8080``, the following would be the
 result:
 
 .. code-block:: none
+
    $> curl localhost:8080
    GET / HTTP/1.1
    User-Agent: curl/7.30.0

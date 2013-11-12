@@ -67,7 +67,7 @@ A filter can specify an attribute name, operator, and value. Any of the
 attributes of the entries in the directory tree can be used in the filter. The
 operators include "equals" (``=``), "sounds like" (``~=``), "greater than"
 (``>=``), and "less than" (``<=``). The equals operator supports the asterisk
-``*`` as a wildcard character allowing for "contains", "begins with", and
+``*`` as a wildcard character, allowing for "contains", "begins with", and
 "ends with" searches. Operators for "greater than" (``>``) and "less than"
 (``<``) may only be supported on numeric fields. For example, the following
 simple filters would find all entries whose full name starts with "John", ends

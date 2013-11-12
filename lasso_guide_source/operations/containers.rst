@@ -370,7 +370,7 @@ Using Queue Objects
 
 .. member:: queue->insert(value)
 .. member:: queue->insertLast(value)
-.. member:: queue->insertFrom(value::trait_foreach)
+.. member:: queue->insertFrom(value::trait_forEach)
 
    These methods insert new elements into the queue. Elements will always be
    inserted at the end of the queue. The `insertFrom` method allows for multiple

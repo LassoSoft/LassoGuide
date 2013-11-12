@@ -38,9 +38,9 @@ Regular expressions are normally case-sensitive so the regular expression
 :regexp:`John` would not match the string "john".
 
 Unicode characters within a regular expression work the same as any other
-character. The escape sequence ``"\\u2FB0"`` with the four-digit hex value for a
+character. The escape sequence ``"\u2FB0"`` with the four-digit hex value for a
 Unicode character can also be used in place of any actual character (within
-regular expressions or any Lasso strings). The escape sequence ``"\\u2FB0"``
+regular expressions or any Lasso strings). The escape sequence ``"\u2FB0"``
 represents a Chinese character.
 
 Regular expressions can also match part of a string. The regular expression
@@ -55,7 +55,7 @@ lowercase vowel. The wildcard ``[a-z]`` matches any lowercase roman letter. The
 wildcard ``[0-9]`` matches any arabic digit. The wildcard ``[a-zA-Z]`` matches
 any uppercase or lowercase roman letter. If a Unicode character is used in a
 character range then any characters between the hex value for the two characters
-are matched. The wildcard ``[\\u2FB0-\\u2FBF]`` will match 16 different Chinese
+are matched. The wildcard ``[\u2FB0-\u2FBF]`` will match 16 different Chinese
 characters.
 
 The period (``.``) is a special wildcard that matches any single character. The
@@ -70,29 +70,29 @@ It will not match return or newline characters.
 A number of other predefined wildcards are available. The predefined wildcards
 are all preceded by a backslash (``\``).
 
-Many of the predefined wildcards come in pairs. The wildcard ``\\s`` matches any
+Many of the predefined wildcards come in pairs. The wildcard ``\s`` matches any
 whitespace character including tabs, spaces, returns, or newlines. The wildcard
-``\\S`` matches any non-whitespace character. The wildcard ``\\w`` matches any
+``\S`` matches any non-whitespace character. The wildcard ``\w`` matches any
 alphanumeric character or underscore. The "w" is said to stand for "word" since
-these are all characters that may appear within a word. The wildcard ``\\W``
-matches non-word characters. The wildcard ``\\d`` matches any arabic digit and
-the wildcard ``\\D`` matches any non-digit. For example, the regular expression
-:regexp:`\w\w\w` would match any three-character word such as "cat" or "dog".
-The regular expression :regexp:`\d\d\d-\d\d\d\d-\d\d\d\d` would match a standard
-North American phone number in the form "360-555-1212".
+these are all characters that may appear within a word. The wildcard ``\W``
+matches non-word characters. The wildcard ``\d`` matches any arabic digit and
+the wildcard ``\D`` matches any non-digit. For example, the regular expression
+:regexp:`\\w\\w\\w` would match any three-character word such as "cat" or "dog".
+The regular expression :regexp:`\\d\\d\\d-\\d\\d\\d\\d-\\d\\d\\d\\d` would match
+a standard North American phone number in the form "360-555-1212".
 
 The predefined wildcards only work on standard ASCII strings. There is a special
-pair of wildcards ``\\p`` and ``\\P`` which allow different characters in a
-Unicode string to be matched. The wildcard is specified as ``\\p{Property}``. A
+pair of wildcards ``\p`` and ``\P`` which allow different characters in a
+Unicode string to be matched. The wildcard is specified as ``\p{Property}``. A
 list of properties can be found in the table below. For example the wildcard
-``\\p{L}`` matches any Unicode letter character, the wildcard ``\\p{N}`` matches
-any Unicode digit, and the wildcard ``\\p{P}`` matches any Unicode punctuation
-characters. The ``\\P{Property}`` wildcard is the opposite. ``\\P{L}`` matches
-any Unicode character that is not a letter.
+``\p{L}`` matches any Unicode letter character, the wildcard ``\p{N}`` matches
+any Unicode digit, and the wildcard ``\p{P}`` matches any Unicode punctuation
+characters. The ``\P{Property}`` wildcard is the opposite. ``\P{L}`` matches any
+Unicode character that is not a letter.
 
 Many characters have special meanings in regular expressions including ``[ ] ( )
-{ } . * + ? ^ $ \ |``. In order to match one of these characters literally it
-is necessary to use a backslash in front of it. For example ``\\[`` matches a
+{ } . * + ? ^ $ \ |``. In order to match one of these characters literally it is
+necessary to use a backslash in front of it. For example ``\[`` matches a
 literal opening square bracket rather than starting a character range.
 
 It is important to remember that double- or single-quoted string literals use a
@@ -100,7 +100,7 @@ backslash for escape sequences, so you must use a double backslash to use the
 predefined wildcards and to escape special characters. You can avoid having to
 use a double backslash by specifying the regular expression using ticked string
 literals. However, the use of ticked string literals makes it difficult to match
-common escape sequences such as returns (``\\r``) or newlines (``\\n``). It is
+common escape sequences such as returns (``\r``) or newlines (``\n``). It is
 recommended that you use ticked string literals for all of your regular
 expressions until you need one of these escape sequences, and then that you
 concatenate in a non-ticked string literal for these sequences. For example, the
@@ -200,8 +200,8 @@ attention to whether or not ticked string literals are being used.
 Unicode Properties
 ^^^^^^^^^^^^^^^^^^
 
-The following is a listing of the properties which can be used with the ``\\p``
-and ``\\P`` wildcards. The main symbol (e.g. ``\\p{L}``) will match all of the
+The following is a listing of the properties which can be used with the ``\p``
+and ``\P`` wildcards. The main symbol (e.g. ``\p{L}``) will match all of the
 characters that are matched by each of the variations.
 
 ``L``
@@ -281,17 +281,17 @@ match "$1,544,897.00" because that string does not contain any lowercase
 letters.
 
 The combining symbol ``+`` can be used with the ``.`` wildcard to match any
-string of one or more characters (``.+``), with the wildcard ``\\w`` to match
-any word (``\\w+``), or with the wildcard ``\\s`` to match one or more
-whitespace characters (``\\s+``). The ``+`` symbol can also be used with a
-simple letter to match one or more repetitions of the letter. The regular
-expression :regexp:`Me+t` matches both the string "Met" and the string "Meet",
-not to mention "Meeeeeet".
+string of one or more characters (``.+``), with the wildcard ``\w`` to match any
+word (``\w+``), or with the wildcard ``\s`` to match one or more whitespace
+characters (``\s+``). The ``+`` symbol can also be used with a simple letter to
+match one or more repetitions of the letter. The regular expression
+:regexp:`Me+t` matches both the string "Met" and the string "Meet", not to
+mention "Meeeeeet".
 
 The combining symbol ``*`` matches zero or more repetitions of the preceding
 matcher. The ``*`` symbol can be used with the generic wildcard ``.`` to match
 any string of characters (``.*``). The ``*`` symbol can be used with the
-whitespace wildcard ``\\s`` to match a string of whitespace characters. For
+whitespace wildcard ``\s`` to match a string of whitespace characters. For
 example, the expression :regexp:`\\s*cat\\s*` will match the string "cat", but
 also the string "|nbsp| cat |nbsp|".
 
@@ -375,10 +375,10 @@ string "(360) 555-1212" then the pattern matches the entire string and generates
 the groups "360", "555", and "1212".
 
 Parentheses can also be used to create a sub-expression which does not generate
-a replacement group using ``(?:)``. This form can be used to create sub-
-expressions which function much like very complex wildcards. For example, the
-expression :regexp:`(?:blue)+` will match one or more repetitions of the sub-
-expression "blue". It will match the strings "blue", "blueblue" or
+a replacement group using ``(?:)``. This form can be used to create
+sub-expressions which function much like very complex wildcards. For example,
+the expression :regexp:`(?:blue)+` will match one or more repetitions of the
+sub-expression "blue". It will match the strings "blue", "blueblue" or
 "blueblueblueblue".
 
 The ``|`` symbol can be used to specify alternation. It is most useful when used
@@ -936,7 +936,7 @@ the output. ::
    // => <span style="color: blue;">Blue</span> Lake sure is <span style="color: blue;">blue</span> today.
 
 In the following example, every email address is replaced by an HTML anchor tag
-that links to the same email address. The ``\\w`` symbol is used to match any
+that links to the same email address. The ``\w`` symbol is used to match any
 alphanumeric characters or underscores. The at sign (``@``) matches itself. The
 period must be escaped (``\.``) in order to match an actual period and not just
 any character. This pattern matches any email address of the format
@@ -1022,7 +1022,7 @@ odd elements in the array ``word_array`` and the even elements in the array
    // array(T, q, b, f, j, o, a, l, d)
 
 In the following example, every phone number in a string is returned in an
-array. The ``\\d`` symbol is used to match individual digits and the ``{3}``
+array. The ``\d`` symbol is used to match individual digits and the ``{3}``
 symbol is used to specify that three repetitions must be present. The
 parentheses are escaped ``\(`` and ``\)`` so they aren't treated as grouping
 characters. ::

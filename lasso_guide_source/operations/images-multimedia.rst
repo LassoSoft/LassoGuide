@@ -648,7 +648,7 @@ method as described below.
          -aliased::boolean = ?\
       )
 
-   Overlays text on to an image. Requires a string value as a parameter, which
+   Overlays text onto an image. Requires a string value as a parameter, which
    is the text to be overlaid. Required ``-left`` and ``-top`` parameters
    specify the place of the text in pixel integers relative to the upper left
    corner of the image. An optional ``-font`` parameter specifies the name (with

@@ -210,9 +210,9 @@ Error Options
 
    Used with `curl->set`. If set to a value of "1", curl should fail silently if
    the HTTP status code is equal to or larger than 400. The default action would
-   be to return the page normally, ignoring that code. This method is not fail-
-   safe, and there are scenarios where unsuccessful response codes will slip
-   through.
+   be to return the page normally, ignoring that code. This method is not
+   fail-safe, and there are scenarios where unsuccessful response codes will
+   slip through.
 
 
 Network Options
