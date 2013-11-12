@@ -5,13 +5,11 @@
 Error Handling
 **************
 
-Responding to errors gracefully is the hallmark of good programming. Errors in
+Responding to errors gracefully is a hallmark of good programming. Errors in
 Lasso run the gamut from expected errors, such as a database search that returns
 no records, to syntax errors that require fixing before a page will even
 process. Lasso provides tools to manage errors at several different levels,
-which can act redundantly to ensure that no errors will be missed. This chapter
-provides details about how errors are reported and handled in Lasso 9. Topics
-include error reporting, custom error pages, error methods and error handling.
+which can act redundantly to ensure that no errors will be missed.
 
 
 Error Types
@@ -21,7 +19,7 @@ The following lists the types of errors that can occur in Lasso:
 
 Web Server Errors
    These include "file not found" errors and access violations in realms. These
-   will be reported with standard HTTP response codes(e.g. 404 for "File Not
+   will be reported with standard HTTP response codes (e.g. 404 for "File Not
    Found").
 
 Syntax Errors
@@ -57,12 +55,12 @@ Operating System Errors
 Some errors are more serious than others. Pages will not be processed at all if
 they contain syntax errors or if there are operational problems which prevent
 Lasso Server from being accessed. Other errors are commonly encountered in the
-normal use of a Web site. Most database errors and security violations are
+normal use of a website. Most database errors and security violations are
 handled by simply showing a "No Records Found" message or displaying a security
 dialog box to prompt the user for a username and password.
 
-There following mechanisms for handling errors can be used singly or in concert
-to provide comprehensive error handling:
+The following mechanisms for handling errors can be used individually or in
+concert to provide comprehensive error handling:
 
 -  Automatic error reporting is performed by Lasso in response to unhandled
    errors.
@@ -93,15 +91,16 @@ a site visitor rather than Lasso's built-in error report. The error message
 displayed on a custom error page will depend on the Lasso code used on the
 custom page.
 
-To define a custom error page, create a file named "error.lasso" and place it in
-the root of the Web serving folder. Each host that has a distinct web serving
-folder can have a custom error page.
+To define a custom error page, create a file named :file:`error.lasso` and place
+it in the root of the web serving folder. Each distinct web serving folder on a
+host can have a custom error page.
 
-Custom error pages can be further fine-tuned by placing the "error.lasso" file
-in the web serving folder's subdirectories. Lasso Server will process the first
-"error.lasso" it encounters on the file path, starting with the current
-directory and continuing upward until it reaches the root of the web serving
-folder. If none are found, Lasso Server will use the default error report.
+Custom error pages can be further fine-tuned by placing the :file:`error.lasso`
+file in the web serving folder's sub-directories. Lasso Server will process the
+first :file:`error.lasso` it encounters on the file path, starting with the
+current directory and continuing upward until it reaches the root of the web
+serving folder. If none are found, Lasso Server will use the default error
+report.
 
 
 Error Methods
@@ -118,16 +117,16 @@ immediately after a method that may report an error. If any intervening methods
 or expressions report errors, then the original error code and error message
 will be lost.
 
-Custom errors can be created using the ``error_setErrorMessage`` and
-``error_setErrorCode`` methods. Once set, the ``error_currentError`` method or
-``error_code`` and ``error_msg`` methods will return the custom error code and
-message. A developer can utilize these methods to incorporate both built-in and
+Custom errors can be created using the `error_setErrorMessage` and
+`error_setErrorCode` methods. Once set, the `error_currentError` method or
+`error_code` and `error_msg` methods will return the custom error code and
+message. A developer can use these methods to incorporate both built-in and
 custom error codes into the error recovery mechanisms for a site.
 
 .. method:: error_currentError(-errorCode= ?)
 
-   Returns the current error message. Optional "-errorCode" parameter causes the
-   current error code to be returned instead.
+   Returns the current error message. The optional ``-errorCode`` parameter
+   causes the current error code to be returned instead.
 
 .. method:: error_code()
 
@@ -137,13 +136,9 @@ custom error codes into the error recovery mechanisms for a site.
 
    Returns the current error message.
 
-.. method:: error_stack()
-
-   Returns the stack trace for the current error.
-
 .. method:: error_obj()
 
-   Returns the current error name from the Lasso variable "$\_err_obj", or
+   Returns the current error name from the Lasso variable ``$_err_obj`, or
    "null" if no error object is present.
 
 .. method:: error_push()
@@ -153,7 +148,7 @@ custom error codes into the error recovery mechanisms for a site.
 
 .. method:: error_pop()
 
-   Restores the most recent error condition stored using ``error_push``.
+   Restores the most recent error condition stored using `error_push`.
 
 .. method:: error_reset()
 
@@ -167,33 +162,37 @@ custom error codes into the error recovery mechanisms for a site.
 
    Sets the current error message to a custom value.
 
+.. method:: error_stack()
 
-Display the Current Error in a Lasso Page
------------------------------------------
+   Returns the stack trace for the current error.
 
-The following code will display a short error message using the ``error_msg``
-method and the ``error_code`` method. If the code on the page is executing
+
+Display the Current Error
+-------------------------
+
+The following code will display a short error message using the `error_msg`
+method and the `error_code` method. If the code on the page is executing
 normally and there is no current error to report then the code will return the
 result shown below::
 
    "The current error is " + error_code + ": " + error_msg
    // => The current error is 0: No Error
 
-Alternatively, the ``error_currentError`` method could be used to create the
-same message with the following code::
+Alternatively, the `error_currentError` method could be used to create the same
+message with the following code::
 
    "The current error is " + error_currentError(-errorCode) + ": " + error_currentError
    // => The current error is 0: No Error
 
 
-Set the Current Error in a Lasso Page
--------------------------------------
+Set the Current Error
+---------------------
 
-The current error code and message can be set using the ``error_setErrorCode``
-and ``error_setErrorMessage`` methods. These methods will not affect the
-execution of the current Lasso page, but will simply set the current error so it
-will be returned by the ``error_currentError`` method or ``error_code`` and
-``error_msg`` methods.
+The current error code and message can be set using the `error_setErrorCode` and
+`error_setErrorMessage` methods. These methods will not affect the execution of
+the current Lasso page, but will simply set the current error so it will be
+returned by the `error_currentError` method or `error_code` and `error_msg`
+methods.
 
 In the following example, the error message is set to "A custom error occurred"
 and the error code is set to "-1"::
@@ -201,72 +200,75 @@ and the error code is set to "-1"::
    error_setErrorMessage('A custom error occurred')
    error_setErrorCode(-1)
 
-The ``error_currentError`` method now reports this custom error when it is
-called later in the page, unless any intervening code changed the error message
-again::
+The `error_currentError` method now reports this custom error when it is called
+later in the page, unless any intervening code changed the error message again::
 
    "The current error is " + error_code + ": " + error_msg
    // => The current error is -1: A custom error occurred
 
-The current error code and message can also be set using the ``error_code`` and
-``error_msg`` methods::
+The current error code and message can also be set using the `error_code` and
+`error_msg` methods::
 
    error_msg = 'A custom error occurred'
    error_code = -1
 
 
-Store and Restore the Current Error in a Lasso Page
----------------------------------------------------
+Store and Restore the Current Error
+-----------------------------------
 
-The following code uses the ``error_push`` and ``error_pop`` methods to store
-the current error code and message before the ``protect`` block is executed.
-This allows the ``protect`` block to execute without any previous error on the
-page bleeding into it and mistakenly triggering the ``handle_failure`` block.
-Then the error code and message are restored at the end of the block::
+The following code uses the `error_push` and `error_pop` methods to store the
+current error code and message before the `protect` block is executed. This
+allows the `protect` block to execute without any previous error on the page
+bleeding into it and mistakenly triggering the `handle_failure` block. Then the
+error code and message are restored at the end of the block. ::
 
-   error_push  // Push error on to stack
+   error_push  // Push error onto stack
 
    protect => { // Protect from failure
       handle_failure => {
-         // Handle an error generated within the protect block.
+         // Handle any errors generated within the protect block
       }
+      // ...
    }
 
-   error_pop  // Retrieve error on stack
+   error_pop  // Retrieve error from stack
 
-The ``error_push`` and ``error_pop`` methods can also be used to prevent custom
-methods from modifying the current error condition, while still using error-
-handling code within the method. The following code stores the current error
-code and message at the beginning of the custom method definition. The error
-code and message are restored just before the custom method returns a value::
+The `error_push` and `error_pop` methods can also be used to prevent custom
+methods from modifying the current error condition, while still using
+error-handling code within the method. The following code stores the current
+error code and message at the beginning of the custom method definition. The
+error code and message are restored just before the custom method returns a
+value. ::
 
    define myMethod() => {
-      // Push current error on to stack.
+      // Push current error onto stack
       error_push
 
-      // Code that may generate error.
+      // Code that may generate an error
       // ...
 
-      // Retrieve error from stack.
+      // Retrieve error from stack
       error_pop
 
       return 'myValue'
    }
 
 
-Reset the Current Error in a Lasso Page
----------------------------------------
+Reset the Current Error
+-----------------------
 
-The following code demonstrates how to use the ``error_reset`` method to reset
-the error message to "No error" and the error code to 0::
+The following code demonstrates how to use the `error_reset` method to reset the
+error message to "No error" and the error code to "0"::
 
    error_code = -1
    error_msg  = 'Too slow'
    error_code + ': ' + error_msg
+
    // => -1: Too slow
 
    error_reset
    error_code + ': ' + error_msg
+
    // => 0: No error
 
 
@@ -291,7 +293,7 @@ with many conditionals and special cases.
 .. method:: fail_if(cond, code::integer, msg::string)
 
    Conditionally halts execution and generates the specified error if the
-   specified condition evaluates to true. Takes two or three parameters: a
+   specified condition evaluates to "true". Takes two or three parameters: a
    conditional expression, an integer error code, and a string error message or
    just the conditional expression and the error message.
 
@@ -299,104 +301,104 @@ with many conditionals and special cases.
 .. method:: handle(cond)
 
    Conditionally executes a given capture block after the code in the current
-   capture block or Lasso page has completed or a ``fail`` method is called. May
+   capture block or Lasso page has completed or a `fail` method is called. May
    take a conditional expression as a parameter that limits executing the
-   capture block to when the conditional statement evaluates to true. If an
+   capture block to when the conditional statement evaluates to "true". If an
    error occurs in the Lasso code before the handle block is defined, then the
    handle's capture block will not be executed.
 
 .. method:: handle_failure()
 .. method:: handle_failure(cond)
 
-   Functions the same as ``handle`` except that the contents are executed only
-   if an error was reported in the surrounding capture block or Lasso page.
+   Functions the same as `handle` except that the contents are executed only if
+   an error was reported in the surrounding capture block or Lasso page.
 
 .. method:: protect()
 
-   This method protects a portion of a page. If code inside the given capture
-   block throws an error or a ``fail`` method is executed inside the capture
-   block, then the error is not allowed to propagate outside the protected
-   capture block. This means that a ``fail`` will only halt the execution of the
-   rest of the code in the protect capture, and execution will resume starting
-   with the code following that capture.
+   Protects a portion of a page. If code inside the given capture block throws
+   an error or a `fail` method is executed inside the capture block, then the
+   error is not allowed to propagate outside the protected capture block. This
+   means that a `fail` will only halt the execution of the rest of the code in
+   the `protect` capture, and execution will resume starting with the code
+   following that capture.
 
 
 Handle Methods
 --------------
 
-The ``handle`` method is used to specify a block of code that will be executed
-after the current code segment is completed. The ``handle`` method can take a
+The `handle` method is used to specify a block of code that will be executed
+after the current code segment is completed. The `handle` method can take a
 single parameter which is a conditional expression (defaults to "true"). If the
-conditional expression evaluates as true, then the code in the given capture
+conditional expression evaluates as "true", then the code in the given capture
 block is executed.
 
-All ``handle`` and ``handle_failure`` methods are processed sequentially, giving
+All `handle` and `handle_failure` methods are processed sequentially, giving
 each a chance to be executed in the order they were specified and allowing for
-execution of multiple ``handle`` blocks. Therefore, it is necessary to define
-them before logic that could halt execution. The ``handle`` methods that are
-defined after a script failure will not be executed. It is generally good
-practice to place ``handle`` and ``handle_failure`` methods at the start of the
-parent capture block, most commonly a ``protect`` capture block. (This is a
-change from previous versions of Lasso and increases the reliability of
-executing fault-condition fallbacks.)
+execution of multiple `handle` blocks. Therefore, it is necessary to define them
+before logic that could halt execution. Any `handle` methods that are defined
+after a script failure will not be executed. It is generally good practice to
+place `handle` and `handle_failure` methods at the start of the parent capture
+block, most commonly a `protect` capture block. (This is a change from previous
+versions of Lasso and increases the reliability of executing fault-condition
+fallbacks.)
 
-The ``handle`` methods will not be executed if a syntax error occurs while Lasso
+The `handle` methods will not be executed if a syntax error occurs while Lasso
 is parsing a page. When Lasso encounters a syntax error it returns an error page
-instead of processing the code on a page.
+instead of processing the code on the page.
 
-The ``handle`` methods will be executed if a logical error occurs while Lasso is
-processing a page. However, the result of the page will be an error message
-rather than the output of the page. Code within the ``handle`` capture can
-redirect the user to another page using ``redirect_url`` or can replace the
-contents of the page being served.
+The `handle` methods will be executed if a logical error occurs while Lasso is
+processing a page. However, the returned result will be an error message rather
+than the output of the page. Code within the `handle` capture can redirect the
+user to another page using `redirect_url` or can replace the contents of the
+page being served.
 
-There are two ways to use ``handle`` methods within a Lasso page:
+There are two ways to use `handle` methods within a Lasso page:
 
-#. When used on their own in a Lasso page, the code inside the ``handle``
-   methods will be conditionally executed after all the rest of the code in the
-   Lasso page has completed. The ``handle`` methods can be used to provide post-
-   processing code for a Lasso page.
+#. When used on their own in a Lasso page, the code inside the `handle` methods
+   will be conditionally executed after all the rest of the code in the Lasso
+   page has completed. The `handle` methods can be used to provide
+   post-processing code for a Lasso page.
 
-#. When used within any Lasso capture block, the code inside the ``handle``
+#. When used within any Lasso capture block, the code inside the `handle`
    methods will be conditionally executed after the capture block is executed.
-   The ``handle`` methods will most commonly be used within a ``protect`` block
+   The `handle` methods will most commonly be used within a `protect` block
    to provide error handling.
 
 
 Fail Methods
 ------------
 
-The ``fail`` method allows an error to be triggered from within Lasso code. Use
-of the ``fail`` method immediately halts execution of the current page and
-starts execution of any registered ``handle`` method contained within.
+The `fail` method allows an error to be triggered from within Lasso code. Use of
+the `fail` method immediately halts execution of the current page and starts
+execution of any registered `handle` method contained within.
 
-The ``fail`` method can be used in the following ways:
+The `fail` method can be used in the following ways:
 
 -  To report an unrecoverable error. Just as Lasso automatically halts execution
    of a Lasso page when a syntax error or internal error is encountered, Lasso
-   code can use the ``fail`` method to report an error which cannot be recovered
+   code can use the `fail` method to report an error which cannot be recovered
    from::
 
       fail(-1, 'An unrecoverable error occurred')
 
--  To trigger immediate execution of the page's ``handle`` methods. If an error
-   is handled by one of the ``handle`` methods specified in the Lasso page
-   (outside of any other capture blocks), then the code within the ``handle``
-   capture block will be executed. The ``handle`` block can recover from the
-   error and allow execution to continue by using the ``error_reset`` method.
+-  To trigger immediate execution of the page's `handle` methods. If an error
+   is handled by one of the `handle` methods specified in the Lasso page
+   (outside of any other capture blocks), then the code within the `handle`
+   capture block will be executed. The `handle` block can recover from the error
+   and allow execution to continue by using the `error_reset` method.
 
--  To trigger immediate execution of a ``protect`` capture block's ``handle``
-   block. See the next section for details.
+-  To trigger immediate execution of a `protect` capture block's `handle` block.
+   See the next section for details.
 
 
-Conditionally Execute a ``fail`` Method
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Conditionally Execute a fail Method
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``fail_if`` method allows conditional execution of a ``fail`` without using
-a full ``if`` capture block. The first parameter to ``fail_if`` is a conditional
+The `fail_if` method allows conditional execution of a `fail` without using a
+full if/else conditional. The first parameter to `fail_if` is a conditional
 expression. The last two parameters are the same integer error code and string
-error message as in the ``fail`` method. In the following example the
-``fail_if`` method is only executed if the variable "#x" does not equal "0"::
+error message as in the `fail` method. In the following example the `fail_if`
+method is only executed if the variable "x" does not equal "0"::
 
    fail_if(#x != 0, 100, "Value does not equal 0.")
 
@@ -404,59 +406,59 @@ error message as in the ``fail`` method. In the following example the
 Protect Methods
 ---------------
 
-The ``protect`` method is used to catch any errors that occur within the code
+The `protect` method is used to catch any errors that occur within the code
 surrounded by the capture block. They create a protected environment from which
 errors cannot propagate to the page itself. Even if an internal error is
-reported by Lasso it will be caught by the ``protect`` method allowing the rest
+reported by Lasso it will be caught by the `protect` method, allowing the rest
 of the page to execute successfully.
 
-Any ``fail`` or ``fail_if`` methods called within ``protect`` capture blocks
-will halt execution only of the code contained within the ``protect`` capture
-block. Any ``handle`` capture blocks contained within the ``protect`` capture
-blocks will be conditionally executed. However, Lasso 9 requires these
-``handle`` capture blocks to be present before the error occurs, so put them at
-the top of the ``protect`` capture block. The Lasso page will continue executing
-normally after the closing of the ``protect`` capture block.
+Any `fail` or `fail_if` methods called within `protect` capture blocks will halt
+execution only of the code contained within the `protect` capture block. Any
+`handle` capture blocks contained within the `protect` capture blocks will be
+conditionally executed. However, Lasso 9 requires these `handle` capture blocks
+to be present before the error occurs, so put them at the top of the `protect`
+capture block. The Lasso page will continue executing normally after the closing
+of the `protect` capture block.
 
-The ``protect`` capture blocks can be used for the following purposes:
+The `protect` capture blocks can be used for the following purposes:
 
 -  To protect a portion of a page so that any errors that would normally result
    in an error message being displayed to the user are instead handled in the
-   internal ``handle`` code blocks.
+   internal `handle` code blocks.
 
--  To provide advanced flow control in a page. Code within the ``protect``
-   capture blocks is executed normally until a ``fail`` signal is encountered.
-   The code then jumps immediately to the internal ``handle`` block.
+-  To provide advanced flow control in a page. Code within the `protect` capture
+   blocks is executed normally until a `fail` signal is encountered. The code
+   then jumps immediately to the internal `handle` block.
 
 
 Protect a Portion of a Page from Errors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Wrap the portion of the page that needs to be protected in a ``protect`` capture
-block. Any internal errors that Lasso reports will be caught by the ``protect``
-code block and not reported to the end user. A ``handle`` code block should be
+Wrap the portion of the page that needs to be protected in a `protect` capture
+block. Any internal errors that Lasso reports will be caught by the `protect`
+code block and not reported to the end user. A `handle` code block should be
 included to handle the error if necessary.
 
-In the following Lasso code an attempt is made to set a variable "$myVar" to
+In the following Lasso code an attempt is made to set a variable "myVar" to
 "null". However, if the variable has not been previously declared, an error
 would be reported, and the page would not continue processing. Since the code is
-executed within a ``protect`` capture block, no error is reported, and the
-``protect`` capture block exits silently while the Lasso page resumes execution
-after the ``protect`` block::
+executed within a `protect` capture block, no error is reported, and the
+`protect` capture block exits silently while the Lasso page resumes execution
+after the `protect` block. ::
 
    protect => {
       $myVar = null
    }
 
 
-Use ``protect`` with Custom Errors
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Use protect with Custom Errors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following example shows a ``protect`` capture block which surrounds code
-that contains two ``fail_if`` statements with custom error codes -1 and -2. A
-``handle`` block at the start of the ``protect`` is set to intercept either of
-these custom error codes. This ``handle`` block will only execute if one of the
-``fail_if`` methods executes successfully::
+The following example shows a `protect` capture block which surrounds code that
+contains two `fail_if` statements with custom error codes "-1" and "-2". A
+`handle` block at the start of the `protect` is set to intercept either of these
+custom error codes. This `handle` block will only execute if one of the
+`fail_if` methods executes successfully. ::
 
    protect => {^
       handle => {^

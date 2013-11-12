@@ -186,7 +186,7 @@ in the first place. A capture may yield many times::
    #cap()
    // => 4
    #cap()
-   // => 1   // capture reached the end and reset
+   // => 1   // Capture reached the end and reset
 
 Note that once a capture reaches its end, the PC will automatically be reset
 back to the top. (Read on for a discussion of why we use `capture->detach`
@@ -198,8 +198,8 @@ code, thus resetting itself::
    #cap = {
       yield  1
       yield  2
-      return 3 // subsequent calls will start from beginning
-      yield  4 // this is unreachable
+      return 3 // Subsequent calls will start from beginning
+      yield  4 // This is unreachable
    }
 
 The current home capture is very important for determining the behavior of
@@ -212,7 +212,7 @@ implements a potential "contains" method::
    define contains(a::array, val) => {
       #a->forEach => {
          #val == #1?
-            return true // this return is non-local
+            return true // This return is non-local
       }
       return false
    }

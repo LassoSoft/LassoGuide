@@ -174,13 +174,13 @@ In the following example, the body will be executed 5 times::
 To specify the starting number, ending number, and increment, you can use one of
 the following two forms of the counting loop::
 
-   // loop to 5 starting from -10 incrementing by 10
+   // Loop to 5 starting from -10 incrementing by 10
    loop(5, -10, 10)
       // Code here executed each pass through the loop
       // ...
    /loop
 
-   // loop to 5 starting from -10 incrementing by 10
+   // Loop to 5 starting from -10 incrementing by 10
    loop(-to=5, -from= -10, -by=10)
       // Code here executed each pass through the loop
       // ...
@@ -207,7 +207,7 @@ The following example creates a staticarray and iterates its contents::
 
    // Form 1
    iterate(#lv)
-     loop_value   // the current value from #lv
+     loop_value   // The current value from #lv
    /iterate
 
    // => 246810
