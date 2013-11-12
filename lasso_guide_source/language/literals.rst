@@ -5,22 +5,13 @@
 Literals
 ********
 
-A **literal** is an object with its own special syntax that allows it to be
-directly inserted into code. Lasso supports ``string``, ``boolean``,
+A :dfn:`literal` is an object with its own special syntax that allows it to be
+inserted directly into code. Lasso supports ``string``, ``boolean``,
 ``integer``, ``decimal``, ``tag`` and ``staticarray`` literals.
 
-The method for using these literals is straightforward. For example, an integer
-literal is expressed, as one might expect, by simply using the numeral in the
-source text. `23` is an example of an integer literal.
-
--  `String Literals`_ describes the syntax used to represent string objects.
--  `Boolean Literals`_ describes the literals for true and false.
--  `Integer Literals`_ describes the syntax used to create integer objects.
--  `Decimal Literals`_ describes the syntax used to create decimal objects.
--  `Tag Literals`_ describes how type names are expressed.
--  `Staticarray Literals`_ describes the shortcut for "staticarray" object
-   creation.
--  `Comments`_ describes the various methods for adding comments to code.
+The method for expressing these literals is straightforward. For example, an
+integer literal is expressed, as one might expect, by simply using the numeral
+in the source text. `23` is an example of an integer literal.
 
 
 String Literals
@@ -30,22 +21,23 @@ All strings in Lasso are Unicode strings. This means that a string can contain
 any of the characters available in Unicode. Lasso supports two kinds of string
 literals: quoted and ticked. Quoted strings can contain escape sequences, while
 ticked strings cannot. Both quoted and ticked string literals can contain line
-breaks, and produce the same type of ``string`` objects. The differences between
-the two types of literals are handled entirely during parsing.
+breaks, and produce the same type of string objects. The differences between the
+two types of literals are handled entirely during parsing.
 
 
 Quoted Strings
 --------------
 
-The first kind of string literal is a series of zero or more characters
-surrounded by either single or double quotes. If a string literal begins with a
-single quote, then it must end with a single quote. The same holds for a string
-literal that begins with a double quote; it must end with a double quote. ::
+The first kind of string literal is a :dfn:`quoted string`, which is a series of
+zero or more characters surrounded by either single or double quotes. If a
+string literal begins with a single quote, then it must end with a single quote.
+The same holds for a string literal that begins with a double quote; it must end
+with a double quote. ::
 
    'This is a string literal'
    "This is also a string literal"
 
-Within this type of string literal, the **backslash** character  ``[\\0x5C]`` is
+Within this type of string literal, the backslash character  (``\x5C``) is
 interpreted as an escape character. This means that when a backslash is
 encountered in a string literal, it changes the meaning of the immediately
 following character(s). For example, a backslash is required in order to create
@@ -55,8 +47,10 @@ a string literal that contains the quote character that surrounds the string. ::
    "This is also a \"string literal\" with quotes"
 
 Note that a backslash is not required in order to insert the alternate quote
-type into a string literal. For example, a single quoted string can contain a
-double quote without having to escape it.
+type into a string literal. For example, a double-quoted string can contain a
+single quote without having to escape it. ::
+
+   "Escaping this single quote isn't required"
 
 A backslash is also required in order to insert a literal backslash into a
 string. In order to embed a backslash into a string, two backslashes must be
@@ -84,7 +78,6 @@ name.
 
 Also supported are a series of commonly used escape sequences. The following
 table shows all of the permissible escape sequences.
-
 
 .. _literals-table-1:
 
@@ -117,13 +110,13 @@ table shows all of the permissible escape sequences.
 Ticked Strings
 --------------
 
-A ticked string is a series of zero or more characters surrounded by a pair of
-**backticks** ``[\\0x60]``. Within a ticked string, the backslash character
+A :dfn:`ticked string` is a series of zero or more characters surrounded by a
+pair of backticks (``\x60``). Within a ticked string, the backslash character
 holds no special meaning. Ticked strings do not recognize any escape sequences,
 and this can make them particularly useful when using regular expressions which
 often require many backslashes. (Using regular quoted strings, the backslashes
-would themselves have to be.) The caveat for this is that a literal backtick
-character cannot appear within a ticked string. ::
+would themselves have to be doubled.) The caveat for this is that a literal
+backtick character cannot appear within a ticked string. ::
 
    `This is a ticked string`
    `A ticked string can contain 'single quotes', "double quotes",
@@ -133,9 +126,9 @@ character cannot appear within a ticked string. ::
 Boolean Literals
 ================
 
-A ``boolean`` is an object which is either "true" or "false". Lasso supports the
-creation of these objects by using the word **true** or **false** directly in
-the source code. ::
+A :dfn:`boolean` is an object which is either "true" or "false". Lasso supports
+the creation of these objects by using the word ``true`` or ``false`` directly
+in the source code. ::
 
    true
    false
@@ -144,8 +137,8 @@ the source code. ::
 Integer Literals
 ================
 
-An integer is a whole number. Integers can be positive or negative and Lasso
-puts no limit on the size of an integer. Integers consist of the digits 0
+An :dfn:`integer` is a whole number. Integers can be positive or negative and
+Lasso puts no limit on the size of an integer. Integers consist of the digits 0
 through 9 and can be written directly into the source code. ::
 
    1
@@ -154,8 +147,8 @@ through 9 and can be written directly into the source code. ::
    11801705635790
 
 Integers can also be written using hexadecimal notation. Hexadecimal integers
-begin with a zero followed by upper or lower case "x" followed by one or more
-hexadecimal digits (0-9 and A-F). Either upper or lower case letters are
+begin with a zero followed by an upper or lowercase "x" followed by one or more
+hexadecimal digits (0-9 and A-F). Either upper or lowercase letters are
 permitted. A hexadecimal integer literal is always interpreted as a positive
 integer. ::
 
@@ -171,13 +164,13 @@ type with the same set of member methods.
 Decimal Literals
 ================
 
-A decimal is a fractional number. Decimal numbers contain a decimal point and
-thus they are called "decimals". Lasso supports 64-bit decimals. This gives
+A :dfn:`decimal` is a fractional number. Decimal numbers contain a decimal point
+and therefore are called "decimals". Lasso supports 64-bit decimals. This gives
 Lasso's decimal numbers a range from approximately negative to positive 2x10^300
 and with precision down to 2x10^-300. A decimal literal begins with an optional
 "-" or "+" followed by zero or more digits, a decimal point, one or more
 additional digits, and ending with an optional exponent. A decimal exponent
-begins with an upper or lower case "E", followed by an optional "-" or "+"
+begins with an upper or lowercase "E", followed by an optional "-" or "+"
 followed by one or more digits. Lasso also supports decimal literals for "NaN"
 (not a number) as well and positive and negative "infinity". Note that case is
 irrelevant when using the "NaN" and "infinity" literals. Various examples of
@@ -198,16 +191,16 @@ decimal literals follow. ::
 Tag Literals
 ============
 
-A ``tag`` is an object that uniquely represents a particular string of
+A :dfn:`tag` is an object that uniquely represents a particular string of
 characters. Unlike strings, tags cannot be modified. Tags are used to represent
 type and method names as well as variable names. A tag can begin with an
 underscore or A-Z, followed by zero or more underscores, A-Z, 0-9 or period
 characters. Tags cannot contain spaces.
 
 Tags are commonly used when applying type constraints to methods, data members
-and variables, though they have other purposes as well.
+and variables; though they have other purposes as well.
 
-A tag literal consists of two colons followed by the tag characters. ::
+A tag literal consists of two colons followed by the tag's characters. ::
 
    // Creates a tag object representing "name"
    ::name
@@ -221,13 +214,13 @@ tags for equality is very fast.
 Staticarray Literals
 ====================
 
-Lasso's :type:`staticarray` type is an efficient, non-resizable container for
+Lasso's :dfn:`staticarray` type is an efficient, non-resizable container for
 holding any object types. This object is used in many places in Lasso and it's
-not unlikely that a Lasso programmer will come into contact with one.
-Staticarrays are created in the same way as any object, but Lasso supports a
-"shortcut" syntax to produce staticarrays. This expression begins with an open
-parenthesis immediately followed by a colon, then zero or more comma delimited
-expressions, ending with the closing parenthesis. ::
+likely that a Lasso programmer will come into contact with one. Staticarrays are
+created in the same way as any object, but Lasso supports a "shortcut" syntax to
+produce staticarrays. This expression begins with an open parenthesis
+immediately followed by a colon, then zero or more comma-delimited expressions,
+ending with the closing parenthesis. ::
 
    // Creates a staticarray containing 1, 2 and "hello"
    (: 1, 2, 'hello')
@@ -236,36 +229,32 @@ expressions, ending with the closing parenthesis. ::
 Comments
 ========
 
-Lasso supports three types of comments:
-
--  `single line comments`_
--  `block comments`_
--  `doc comments`_
-
-Single line and block comments are ignored, having no effect on the execution of
-any nearby code. Doc comments are saved with any associated methods, types or
-traits, as explained below.
+Lasso supports three types of comments: single line comments, block comments,
+and doc comments. Single line and block comments are ignored, having no effect
+on the execution of any nearby code. Doc comments are saved with any associated
+methods, types or traits, as explained below.
 
 
 Single Line Comments
 --------------------
 
-A single line comment begins with two forward slashes ("//"). The comment runs
+A single line comment begins with two forward slashes (``//``). The comment runs
 until the end of the line, which is either a carriage return, line feed or a
 carriage return/line feed pair. ::
 
-   local(n = 123) // this is the first comment
-   // this is another comment
+   local(n = 123) // This is the first comment
+   // This is another comment
    #n += 456
 
+Note that when embedding Lasso code within a set of delimiters, a closing
+delimiter following a single line comment will be skipped by the Lasso parser.
 
 Block Comments
 --------------
 
-A block comment permits a large section of code to be commented. Block comments
-begin with the characters "/\*" and end with "\*/". Any characters, as well as
-multiple lines, are permitted within the opening and closing. Block comments
-cannot be nested. ::
+A block comment permits a large section of code to be commented. Any characters,
+as well as multiple lines, are permitted within the opening delimiter (``/*``)
+and closing delimiter (``*/``). Block comments cannot be nested. ::
 
    local(n = 123)
    /* this is a block comment
@@ -276,11 +265,11 @@ cannot be nested. ::
 Doc Comments
 ------------
 
-A doc comment permits a bit of documentation to be associated with either a
+A doc comment permits a block of documentation to be associated with either a
 type, trait, or method. This comment is not processed by Lasso in any way, but
-is saved as-is. A doc comment begins with the characters "/\*\*!" and runs until
-a closing "\*/" sequence. Any characters can appear within a doc comment, and a
-doc comment can consist of multiple lines.
+is saved as-is with the object. A doc comment begins with the characters
+``/**!`` and runs until a closing ``*/`` sequence. Any characters can appear
+within a doc comment, and a doc comment can consist of multiple lines.
 
 Doc comments can only appear in the following locations:
 
@@ -315,3 +304,19 @@ Doc comments can only appear in the following locations:
      */
      provide doIt() => { ... }
    }
+
+Doc comments can be set and retrieved programatically using the `docComment`
+method, as long as Lasso is run with the :envvar:`LASSO9_RETAIN_COMMENTS`
+variable enabled.
+
+.. code-block:: none
+
+   $> env LASSO9_RETAIN_COMMENTS=1 lasso9 -s "::array->docComment"
+   /**!
+   An array is an object that can hold multiple values ...
+
+   $> env LASSO9_RETAIN_COMMENTS=1 lasso9 -s "
+   ::boolean->docComment = 'Boolean objects are either true or false.'
+   ::boolean->docComment
+   "
+   Boolean objects are either true or false.
