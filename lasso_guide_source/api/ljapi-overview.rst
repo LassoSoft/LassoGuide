@@ -67,39 +67,38 @@ Static Method Walk Through
 --------------------------
 
 One thing to notice is that all the communication is done using
-``java_jvm_getenv``. This method returns the ``java_jnienv`` object for the
-Lasso instance, and it is this object that allows Lasso to communicate with the
-Java Virtual Machine (JVM).
+`java_jvm_getenv`. This method returns the java_jnienv object for the Lasso
+instance, and it is this object that allows Lasso to communicate with the Java
+Virtual Machine (JVM).
 
 
 #. The first line of code finds the Java class we want to work with and returns
-   a Lasso ``jobject`` which gets stored into the local variable "class". The
-   string value that gets passed to ``FindClass`` is the fully qualified class
-   name signature (or array type signature). For more information, see
-   `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16027>`_
-   ::
+   a Lasso :type:`jobject`; storing it into the local variable "class". The
+   string value that gets passed to `~java_jvm_getenv->FindClass` is the fully
+   qualified class name signature (or array type signature). For more
+   information, see
+   `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16027>`_ ::
 
       local(class) = java_jvm_getenv->FindClass('java/lang/Math')
 
 #. The next line of code looks up the method ID for the method we want to
-   execute and returns it as a ``jmethodid`` type which gets stored into the
-   "mID" variable. ``GetStaticMethodId`` takes in the class (``jobject``) object
-   we found in the first line, the name of the method as the second parameter
-   and the signature for that method as the third parameter. For more
+   execute and returns it as a :type:`jmethodid` type; storing it into the "mID"
+   variable. `~java_jvm_getenv->GetStaticMethodId` takes in the class (jobject)
+   object we found in the first line, the name of the method as the second
+   parameter, and the signature for that method as the third parameter. For more
    information, see
-   `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20950>`_
-   ::
+   `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20950>`_ ::
 
       local(mID)   = java_jvm_getenv->GetStaticMethodId(#class, 'scalb', '(FI)F')
 
-#. The method signature "(FI)F" specifies that it takes a ``float`` and an
-   ``int`` parameter and returns a ``float``. The easiest way to find the
-   signature for a method is to use the ``javap`` command on the command line.
-   In the example below, we run ``javap -s -p java.lang.Math`` to get all the
-   method signatures found in the "java.lang.Math" class, and we use grep to
-   filter and find the "scalb" method. You'll notice in the result that there
-   are actually two methods with the same name, but with different signatures,
-   and we're using the second one:
+#. The method signature ("(FI)F") specifies that it takes a float and an int
+   parameter and returns a float. The easiest way to find the signature for a
+   method is to use the :command:`javap` command on the command line. In the
+   example below, we run ``javap -s -p java.lang.Math`` to get all the method
+   signatures found in the "java.lang.Math" class, and we use grep to filter and
+   find the "scalb" method. You'll notice in the result that there are actually
+   two methods with the same name but with different signatures, and we're
+   using the second one:
 
    .. code-block:: none
 
@@ -110,11 +109,11 @@ Java Virtual Machine (JVM).
       public static float scalb(float, int);
         Signature: (FI)F
 
-#. Finally, we execute the method using ``CallStaticFloatMethod`` which takes in
-   the class object from the first step and the method ID from the second step,
-   and then the parameters the method we are calling requires, if any. Note that
-   we must cast Lasso ``decimal`` types to ``jfloat`` and Lasso ``integer``
-   objects to ``jint``.
+#. Finally, we execute the method using
+   `~java_jvm_getenv->CallStaticFloatMethod` which takes in the class object
+   from the first step and the method ID from the second step and then the
+   parameters the method we are calling requires, if any. Note that we must
+   convert Lasso decimal objects to jfloat and Lasso integer objects to jint.
 
    ::
 
@@ -126,7 +125,7 @@ Instatiate a Java Object and Execute a Memeber Method
 
 Member methods are methods that are associated with a class and are run on an
 instantiated object of that class. This example will walk you through creating a
-``ZipFile`` object and running the ``size`` method on that object to find out
+ZipFile object and running the "size" method on that object to find out
 how many items are in the zip file.
 
 To run this example yourself, you'll need a zip file. Also, replace the path and
@@ -153,13 +152,13 @@ Java Object Member Method Code
 Java Object Member Method Walk Through
 --------------------------------------
 
-Once again all the communication is done using the ``java_jvm_getenv`` method
-that wraps the Lasso instance's ``java_jnienv`` object.
+Once again all the communication is done using the `java_jvm_getenv` method,
+which wraps the Lasso instance's java_jnienv object.
 
-#. The first line of code gets the specified Java class and stores Lasso
-   ``jobject`` into the local variable "class". The value that gets passed to
-   ``FindClass`` is the fully qualified class name signature (or array type
-   signature). For more information, see
+#. The first line of code gets the specified Java class and stores a Lasso
+   jobject into the local variable "class". The value that gets passed to
+   `~java_jvm_getenv->FindClass` is the fully qualified class name signature (or
+   array type signature). For more information, see
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16027>`_
    ::
 
@@ -173,12 +172,12 @@ that wraps the Lasso instance's ``java_jnienv`` object.
 
 #. The method signature "(Ljava/lang/String;)V" specifies that it takes a string
    parameter and returns "void". The easiest way to find the signature for a
-   method is to use the ``javap`` command on the command line. In the example
-   below, we run ``javap -s -p java.util.zip.ZipFile`` to get all the method
-   signatures found in the "java.util.zip.ZipFile" class, and we use grep to
-   filter and find the constructor methods. You'll notice in the result that
-   there are actually three constructor methods with different signatures, and
-   we're using the first one:
+   method is to use the :command:`javap` command on the command line. In the
+   example below, we run ``javap -s -p java.util.zip.ZipFile`` to get all the
+   method signatures found in the "java.util.zip.ZipFile" class, and we use grep
+   to filter and find the constructor methods. You'll notice in the result that
+   there are actually three constructor methods---each with different
+   signatures---and we are using the first one:
 
    .. code-block:: none
 
@@ -193,11 +192,11 @@ that wraps the Lasso instance's ``java_jnienv`` object.
         Signature: (Ljava/io/File;)V
 
 #. After finding the contructor method for our class, the code instantiates an
-   object by passing that information into ``NewObject``. The line of code below
-   stores a Java object into "obj" by calling ``NewObject`` with the class
-   information, method ID, and any additional parameters required by the
-   constructor (in this case the path to the ziped file). For more information
-   on ``NewObject``, see
+   object by passing that information into `~java_jvm_getenv->NewObject`. The
+   line of code below stores a Java object into "obj" by calling
+   `~java_jvm_getenv->NewObject` with the class information, method ID, and any
+   additional parameters required by the constructor (in this case the path to
+   the zipped file). For more information on `~java_jvm_getenv->NewObject`, see
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4517>`_
    ::
 
@@ -206,23 +205,24 @@ that wraps the Lasso instance's ``java_jnienv`` object.
 #. The next line isn't actually necessary since the "class" variable aleady has
    the class information for "java.util.zip.ZipFile", but we have it here to
    demonstrate how you might deal with wanting to call methods on Java objects
-   that were returned by other methods. So ``GetObjectClass`` returns the class
-   information for the specified object. For more information, see
+   that were returned by other methods. So `~java_jvm_getenv->GetObjectClass`
+   returns the class information for the specified object. For more information,
+   see
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16454>`_
    ::
 
       local(class) = java_jvm_getenv->GetObjectClass(#obj)
 
-#. The next line gets the method ID for the ``size`` member method and stores it
+#. The next line gets the method ID for the "size" member method and stores it
    in the local variable "mID"::
 
       local(mID)   = java_jvm_getenv->GetMethodID(#class, 'size', '()I')
 
-#. Finally, we execute the ``size`` member method by calling ``CallIntMethod``
-   with the Java object as the first parameter and the method ID for ``size`` as
-   the second parameter. Notice that the return type (int) is in the name of the
-   method. There are a number of these methods for various return types, and
-   they can be found here:
+#. Finally, we execute the "size" member method by calling
+   `~java_jvm_getenv->CallIntMethod` with the Java object as the first parameter
+   and the method ID for "size" as the second parameter. Notice that the return
+   type (int) is in the name of the method. There are a number of these methods
+   for various return types, and they can be found here:
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
    ::
 
