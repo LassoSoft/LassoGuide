@@ -9,10 +9,10 @@ Creating Lasso Data Sources
 
 When Lasso Server starts up, it looks for module files (Windows DLLs, OS X
 DYLIBs, or Linux SOs) in the LassoModules folder. As Lasso encounters each
-module, it executes the module's ``registerLassoModule()`` function once and
-only once. It is your job as an LCAPI developer to write code to register each
-of your new data source function entry points in this ``registerLassoModule()``
-function. Both custom methods and data sources may be registered at the same
+module, it executes the module's `registerLassoModule()` function once and only
+once. It is your job as an LCAPI developer to write code to register each of
+your new data source function entry points in this `registerLassoModule()`
+function. Custom methods, types, and data sources may be registered at the same
 time, and the code for them can reside in the same module. The only difference
 between registering a data source and a custom method is whether you call
 `lasso_registerTagModule` or `lasso_registerDSModule`.
@@ -29,23 +29,23 @@ Data Source Connectors and Lasso Server Administration
 ======================================================
 
 Once a custom data source connector module is registered by Lasso Server, it
-will appear in the Datasources area of Lasso Server Administration. If a
+will appear in the "Datasources" area of Lasso Server Administration. If a
 connector appears here, then it has been installed correctly.
 
-The administrator adds the data source connection information to the Hosts form,
-which sets the parameters by which Lasso connects to the data source via the
-connector. This information is stored in the site's :file:`database_registry`
+The administrator adds the data source connection information to the "Hosts"
+form, which sets the parameters used by Lasso to connect to the data source via
+the connector. The information is stored in the site's :file:`database_registry`
 SQLite database, where the connector can retrieve and use the data via function
 calls.
 
 The Hosts information includes the following:
 
 Name
-   The connection URL string to connect to a data source. This is typically the
-   IP address or hostname of the machine hosting the data source.
+   The connection URL string used to connect to a data source. This is typically
+   the IP address or hostname of the machine hosting the data source.
 
 Port
-   The TCP/IP port number of the data source.
+   The TCP/IP port number for the data source.
 
 Enabled
    Allows administrators to enable or disable the connection to the data
@@ -69,19 +69,28 @@ which is described later in this chapter:
 Data Source Connector Example
 =============================
 
-This section provides a walk-through of an example data source to show how some
-of the LCAPI features are used. This code can be found in the SampleConnector
-example project which can be downloaded with the other LCAPI examples
-:download:`here <../_downloads/lcapi_examples.zip>`.
+.. only:: html
+
+   This section provides a walk-through of an example data source to show how
+   some of the LCAPI features are used. This code can be found in the
+   SampleConnector example project which can be downloaded with the other LCAPI
+   examples :download:`here <../_downloads/lcapi_examples.zip>`.
+
+.. only:: latex
+
+   This section provides a walk-through of an example data source to show how
+   some of the LCAPI features are used. This code can be found in the
+   SampleConnector example project which can be downloaded with the other LCAPI
+   examples `here <http://lassoguide.com/_downloads/lcapi_examples.zip>`_.
 
 This example data source simply displays some simple text as each action is
 called from a Lasso inline. It is not an effective or useful data source; it's
 meant to just provide an overview of what functions must be implemented. The
-sample data source will simulate a data source which has two databases, an
+sample data source will simulate a data source that has two databases, an
 "Accounting" database and a "Customers" database. Each of those databases, in
 turn, will report that it has a few tables within it. For a more complete
-example of a data source that is useful, look at the SQLiteDS source code in the
-lasso source code repository.
+example of a data source that is useful, look at `the SQLiteDS source code`_ in
+the lasso source code repository.
 
 
 LCAPI Data Source Connector Code
@@ -210,7 +219,7 @@ Data Source Connector Walk Through
 This section provides a step-by-step walk through of the code for the custom
 data source connector.
 
-#. Register the new data source in the ``registerLassoModule()`` function:
+#. Register the new data source in the "registerLassoModule" function:
 
    .. code-block:: c++
 
@@ -220,7 +229,7 @@ data source connector.
          lasso_log(LOG_LEVEL_ALWAYS, "Loading Sample Data Source Connector");
       }
 
-#. Implement the ``sampleds_func`` function which gets called when any database
+#. Implement the "sampleds_func" function which gets called when any database
    operations for this data source are encountered:
 
    .. code-block:: c++
@@ -229,12 +238,12 @@ data source connector.
 
    All data source functions have this prototype. When your data source function
    is called, it's passed an opaque "token" data structure, an integer "action"
-   telling it what it should do, and an optional parameter which sometimes
+   telling it what it should do, and an optional parameter that sometimes
    contains extra information (like a database name) needed by the action being
    requested at the time.
 
 #. Set a default error return value to indicate no error. Returning a non-zero
-   value will cause Lasso to report a fatal error and stop processing code We
+   value will cause Lasso to report a fatal error and stop processing code. We
    are also declaring a few temporary variables to be used later to retrieve
    values such as database names and table names:
 
@@ -246,8 +255,9 @@ data source connector.
       const char * ret;
 
 #. This function is called with various different actions passed to it as Lasso
-   translates your data requests and updates to it. The ``switch`` statement is
-   used with various enumerated values to determine the requested action:
+   translates the `inline` requests to one of many actions. The ``switch``
+   statement is used with various enumerated values to determine the requested
+   action:
 
    .. code-block:: c++
 
@@ -259,7 +269,8 @@ data source connector.
    back-end, and do any inital setup if needed.
 
    The ``datasourceTerm`` action is called once when Lasso Server shuts down.
-   This allows for any graceful cleanup that may necessary for your datasource.
+   This allows for any graceful cleanup that may be necessary for your
+   datasource.
 
    The ``datasourceCloseConnection`` action is called to close the connection to
    a data source.
@@ -279,7 +290,7 @@ data source connector.
 
 #. The ``datasourceNames`` action is called whenever Lasso needs to get a list
    of databases that your data source provides access to. The developer must
-   write code that discovers the list of all databases your datasource host
+   write code that discovers the list of all databases your data source host
    "knows about" and call `lasso_addDataSourceResult` once for each found
    database, passing the name of the database. If the data source has five
    databases, then you would call `lasso_addDataSourceResult` five times. In
@@ -331,9 +342,9 @@ data source connector.
 #. In our example, only the "Payroll" table in the "Accounting" database has any
    data in it, so we have a conditional to check to see if the "Accounting"
    database was specified. We then use `lasso_getInputColumnCount` to get
-   the number of search fields passed to the ``inline``. We have a ``for`` loop
+   the number of search fields passed to the `inline`. We have a ``for`` loop
    to retrieve the name/value text for each search parameter. For example,
-   ``inline( -Database='Accounting', -Table='Payroll', 'Employee'='fred', 'Wages'='15000')``
+   ``inline(-database='Accounting', -table='Payroll', 'Employee'='fred', 'Wages'='15000')``
    will fill the ``columnItem`` variable with the values "Employee, fred" the
    first time through the loop, and "Wages, 15000" the second time through the
    loop:
@@ -350,7 +361,7 @@ data source connector.
 
 #. Next, set a conditional statement to ask if the "Payroll" table is being
    searched. If so, we'll set up some fake hard-coded data in the next few lines
-   of code. Declare an array of strings which represents the three fields we
+   of code. Declare an array of strings that represent the three fields we
    will return for this search. Declare an array of field sizes to match the
    lengths of the strings created on the previous line.
 
@@ -386,3 +397,6 @@ data source connector.
 #. The rest of the actions simply return the fact that they had been called. In
    a real data source connector, you would add code for those actions to add,
    update, delete, and query data from the data source.
+
+
+.. _the SQLiteDS source code: http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/SQLiteDS/

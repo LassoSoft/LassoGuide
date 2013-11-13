@@ -10,7 +10,7 @@ Creating Lasso Types
 Creating a new data type in LCAPI is similar to creating a custom method. When
 Lasso Server starts up, it scans the LassoModules folder for module files
 (Windows DLLs, OS X DYLIBs, or Linux SOs). As it encounters each module, it
-executes the ``registerLassoModule()`` function for that module. The developer
+executes the `registerLassoModule()` function for that module. The developer
 registers the LCAPI data types or methods implemented by the module inside this
 function. Registering data type initializers differs from registering normal
 methods in that the third parameter in `lasso_registerTagModule` is the value
@@ -48,7 +48,7 @@ using `lasso_typeAddMember`. Data members can be of any type and should be
 allocated using any of the LCAPI type allocation calls. Member methods are
 allocated using `lasso_typeAllocTag`. LCAPI member method functions are
 implemented just like any other LCAPI method. In the example below,
-``myTagMemberFunction`` is a function with the standard LCAPI tag prototype:
+"myTagMemberFunction" is a function with the standard LCAPI prototype:
 
 .. code-block:: c++
 
@@ -82,11 +82,21 @@ open, close, read and write to the file are implemented via the following member
 methods: ``example_file->open``, ``example_file->close``,
 ``example_file->read``, ``example_file->write``.
 
-The example project is the "LCAPIFile" project in the LCAPI examples found
-:download:`here <../_downloads/lcapi_examples.zip>`. Due to the length of
-the code in that file, the entire code is not reproduced here. Instead, this
-section provides a conceptual overview of the ``example_file`` type and
-describes the basic LCAPI functions used to implement it.
+.. only:: html
+
+   The example project is the "LCAPIFile" project in the LCAPI examples found
+   :download:`here <../_downloads/lcapi_examples.zip>`. Due to the length of the
+   code in that file, the entire code is not reproduced here. Instead, this
+   section provides a conceptual overview of the ``example_file`` type and
+   describes the basic LCAPI functions used to implement it.
+
+.. only:: latex
+
+   The example project is the "LCAPIFile" project in the LCAPI examples found
+   `here <http://lassoguide.com/_downloads/lcapi_examples.zip>`_. Due to the
+   length of the code in that file, the entire code is not reproduced here.
+   Instead, this section provides a conceptual overview of the ``example_file``
+   type and describes the basic LCAPI functions used to implement it.
 
 #. The first step in creating a custom type is to register the type's
    initializer. Type initializers are registered in the same way that regular
@@ -106,20 +116,20 @@ describes the basic LCAPI functions used to implement it.
       }
 
 #. The registered type initializer will be called when the module is loaded. In
-   the above case, the LCAPI function ``file_init`` was registered as being the
-   initializer. The prototype for ``file_init`` should look like any other LCAPI
+   the above case, the LCAPI function "file_init" was registered as being the
+   initializer. The prototype for "file_init" should look like any other LCAPI
    function, as shown on line 285 of the :file:`CAPIFile.cpp` file:
 
    .. code-block:: c++
 
       osError file_init(lasso_request_t token, tag_action_t action)
 
-#. The ``file_init`` function will now be called whenever the library is loaded.
+#. The "file_init" function will now be called whenever the library is loaded.
    Within the type initializer, the type's member methods are added. Each member
    method is implemented by its own LCAPI function. However, before members can
    be added, the new blank type must be created using `lasso_typeAllocCustom`.
 
-   `lasso_typeAllocCustom` can only be used within a properly registered type
+   You can only use `lasso_typeAllocCustom` within a properly registered type
    initializer. The value it produces should always be the return value of the
    method as set by the `lasso_returnTagValue` function. See lines 289-290 of
    the :file:`CAPIFile.cpp` file:
@@ -217,7 +227,7 @@ describes the basic LCAPI functions used to implement it.
 #. The new file type has now been initialized and made available to the caller
    in the script. The first member method of the file type is
    ``example_file->open``, which is implemented as the LCAPI function
-   ``file_open`` which begins on line 385 of the :file:`CAPIFile.cpp` file:
+   ``file_open`` beginning on line 385 of the :file:`CAPIFile.cpp` file:
 
    .. code-block:: c++
 

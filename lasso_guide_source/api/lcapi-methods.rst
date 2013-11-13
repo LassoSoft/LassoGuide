@@ -9,11 +9,11 @@ Creating Lasso Methods
 
 When Lasso first starts up, it looks for module files (Windows DLLs, OS X
 DYLIBs, or Linux SOs) in its LassoModules folder. As it encounters each module,
-it executes that module's ``registerLassoModule()`` function once and only once.
+it executes that module's `registerLassoModule()` function once and only once.
 LCAPI developers must write code to register each of the new custom method (or
-type or data source) function entry points in this ``registerLassoModule()``
-function. The following example function is required in every LCAPI module. It
-gets called once when Lasso starts up:
+type or data source) in this `registerLassoModule()` function. The following
+example function is required in every LCAPI module. It gets called once when
+Lasso starts up:
 
 .. code-block:: c++
 
@@ -22,21 +22,23 @@ gets called once when Lasso starts up:
          REG_FLAGS_TAG_DEFAULT, "simple test LCAPI tag" );
    }
 
-The preceding example registers a C function called ``myTagFunc`` to execute
-whenever the Lasso ``CAPITester_testtag`` is encountered in Lasso code. The
-first parameter "CAPITester" is the namespace in which "testtag" will be placed.
+The preceding example registers a C function called "myTagFunc" to execute
+whenever the Lasso `CAPITester_testtag` method call is encountered in Lasso
+code. The first parameter "CAPITester" is the namespace in which "testtag" will
+be placed.
 
 Once the method function is registered, Lasso will call it at appropriate times
 while parsing and executing Lasso code. The custom method functions will not be
 called if none of the custom methods are encountered while executing a script.
 When Lasso encounters one of your custom methods, it will be called with two
 parameters: an opaque data structure called a "token", and an integer "action"
-(which is currently unused). LCAPI provides many function calls which you can
-use to get information about the environment, variables, parameters, etc., when
+(which is currently unused). LCAPI provides many function calls that can be used
+to get information about the environment, variables, parameters, etc., when
 provided with a token.
 
 The passed-in token can also be used to acquire any parameters and to return a
 value from your custom method function.
+
 
 Basic Custom Method Function Example
 ====================================
@@ -68,21 +70,34 @@ This will produce:
 Custom Method Tutorial
 ======================
 
-This section provides a walk-through of building an example method to show how
-LCAPI features are used. This code can be found in the "SampleMethod" folder in
-the LCAPI examples, which can be :download:`downloaded here
-<../_downloads/lcapi_examples.zip>`.
+.. only:: html
+   
+   This section provides a walk-through of building an example method to show
+   how LCAPI features are used. This code can be found in the "SampleMethod"
+   folder in the LCAPI examples, which can be :download:`downloaded here
+   <../_downloads/lcapi_examples.zip>`.
+
+.. only:: latex
+
+   This section provides a walk-through of building an example method to show
+   how LCAPI features are used. This code can be found in the "SampleMethod"
+   folder in the LCAPI examples, which can be `downloaded here
+   <http://lassoguide.com/_downloads/lcapi_examples.zip>`_.
 
 The method will simply display its parameters, and it will look like the example
-below when called in Lasso code::
+below when called in Lasso code:
+
+.. code-block:: lasso
 
    sample_method('some text here', -option1='named param', -option2=12.5)
 
-Notice the method takes one unnamed parameter, one string parameter named
-"-option1", and a numeric parameter named "-option2". For named parameters,
-Lasso does not care about the order in which you pass parameters, so plan to
-make this method as flexible as possible by not assuming anything about their
-order. The following variations should work exactly the same::
+Notice the method takes one unnamed parameter, one keyword string parameter
+named "-option1", and a keyword numeric parameter named "-option2". For keyword
+parameters, Lasso does not care about the order in which you pass them, so plan
+to make this method as flexible as possible by not assuming anything about their
+order. The following variations should work exactly the same:
+
+.. code-block:: lasso
 
    sample_method('some text here', -option1='named param', -option2=12.5)
    sample_method('some text here', -option2=12.5, -option1='named param')
@@ -146,7 +161,7 @@ LCAPI Module Code Walk Through
 This section provides a step-by-step walk through of the code for the custom
 method module.
 
-#. First, the new method is registered in the required ``registerLassoModule()``
+#. First, the new method is registered in the required `registerLassoModule()`
    export function:
 
    .. code-block:: c++
@@ -157,7 +172,7 @@ method module.
             REG_FLAGS_TAG_DEFAULT, "sample test" );
       }
 
-#. Implement ``myTagFunc``, which gets called when ``sample_method`` is
+#. Implement "myTagFunc", which gets called when ``sample_method`` is
    encountered. All method functions have this prototype. When the method
    function is called, it's passed an opaque "token" data structure.
 
@@ -167,17 +182,17 @@ method module.
       {
 
    The remainder of the code in the walk through includes the implementation for
-   the ``myTagFunc`` function.
+   the "myTagFunc" function.
 
-#. Allocate a string which will be this method's return value.
+#. Allocate a string to be this method's return value.
 
    .. code-block:: c++
 
       std::basic_string<char> retValue;
 
-#. The ``lasso_type_t`` variable named ``opt2`` and the ``auto_lasso_value_t``
-   variable named ``v`` will be temporary variables for holding parameter
-   values. Start off by initializing them:
+#. The `lasso_type_t` variable named "opt2" and the `auto_lasso_value_t`
+   variable named "v" will be temporary variables for holding parameter values.
+   Start off by initializing them:
 
    .. code-block:: c++
 
@@ -208,7 +223,7 @@ method module.
 
 #. Declare a temporary floating-point (double) value to hold the number passed
    in and then declare a temporary string to hold the converted number for
-   display. Get the value of "op2" as a decimal then print it to the
+   display. Get the value of "opt2" as a decimal then print it to the
    "tempValueFmtd" variable.
 
    .. code-block:: c++
@@ -228,10 +243,10 @@ method module.
 
 #. Now, we're going to look for the unnamed parameter. Because there's no way to
    ask for unnamed parameters, we're going to enumerate through all the
-   parameters looking for one without a name. The integer ``count`` will hold
-   the number of parameters found. Use `lasso_getTagParamCount` to find out how
-   many parameters were passed into our method. The variable ``count`` now
-   contains the number "3", if we were indeed passed three parameters.
+   parameters looking for one without a name. The integer "count" will hold the
+   number of parameters found. Use `lasso_getTagParamCount` to find out how many
+   parameters were passed into our method. The variable "count" now contains the
+   number "3", if we were indeed passed three parameters.
 
    .. code-block:: c++
 
