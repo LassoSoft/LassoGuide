@@ -168,7 +168,7 @@ simply echos back the request data it received. ::
          local(response) = 'HTTP/1.1 200 OK\r\n\
                Content-Type: text/html; charset=UTF-8\r\n\r\n\
                ' + #request
-         #con->writeBytes(bytes(#request))
+         #con->writeBytes(bytes(#response))
       }
    }
 
