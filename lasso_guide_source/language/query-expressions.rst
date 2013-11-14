@@ -5,16 +5,16 @@
 Query Expressions
 *****************
 
-**Query expressions** allow the elements in arrays and other types of sequences
-to be easily iterated, filtered, and manipulated using a natural language syntax
-which is reminiscent of SQL.
+:dfn:`Query expressions` allow the elements in arrays and other types of
+sequences to be easily iterated, filtered, and manipulated using a natural
+language syntax which is reminiscent of SQL.
 
 A query expression can take each element in a sequence, manipulate it and
 produce a new sequence. Query expressions let a developer drill down into nested
 sequences. For example, a query expression could iterate over each line in a
 block of text, then each word, and then each character; all in one expression.
-Query expressions provide a variety of useful operations, such as *order by*,
-*sum*, *average* and *group by*.
+Query expressions provide a variety of useful operations, such as ``order by``,
+``sum``, ``average`` and ``group by``.
 
 
 Anatomy of a Query Expression
@@ -22,22 +22,22 @@ Anatomy of a Query Expression
 
 Every query expression consists of three parts.
 
--  The "with clause" specifies the variable name used to hold each element
+-  The :dfn:`with clause` specifies the variable name used to hold each element
    during evaluation, as well as the source of the data for the expression. One
-   or more with clauses are required for every query expression. Multiple with
-   clauses are utilized to dig down into nested sequences.
+   or more with clauses are required for every query expression. Multiple
+   with clauses are used to dig down into nested sequences.
 
 -  A series of optional operations allow the elements to be filtered, sorted,
    skipped, etc. Operators include ``where``, ``let``, ``skip``, ``take``,
    ``order by`` and ``group by``.
 
--  An action tells Lasso what to do with the elements selected by the
-   expression. Actions include ``do``, ``select``, ``sum``, ``average``,
+-  An :dfn:`action` tells Lasso what to do with the elements selected by the
+   expression. Actions include ``select``, ``do``, ``sum``, ``average``,
    ``min``, and ``max``.
 
 Whitespace, including line breaks, is insignificant within the clauses of a
 query expression. Syntactically, a query expression will begin with the word
-*with* and will end when terminated by an *action*.
+``with`` and will end when terminated by an action clause.
 
 Query expressions can be treated as objects. This means they can be assigned to
 variables and used repeatedly, and they can be passed as parameters. Unless
@@ -55,20 +55,20 @@ query expression that introduces them.
 The With Clause
 ---------------
 
-The ``with`` clause always begins with the word "with" followed by a variable
-name which is created as a local variable available only within the current
-query expression. Next follows the word "in" and then the source data element,
-which is any object whose type supports the :trait:`trait_queriable` trait, such
-as an :type:`array` or a :type:`list`. Note that when declaring the variable at
-the beginning of the with clause, the variable name is given by itself, without
-the "#" character, just as if the local were being defined using the standard
+The with clause always begins with the word ``with`` followed by a variable name
+which is created as a local variable available only within the current query
+expression. Next follows the word ``in`` and then the source data element, which
+is any object whose type supports the `trait_queriable` trait, such as an
+:type:`array` or a :type:`list`. Note that when declaring the variable at the
+beginning of the with clause, the variable name is given by itself, without the
+``#`` character, just as if the local were being defined using the standard
 local construct. ::
 
    with variable_name in source
 
 Multiple subsequent with clauses can follow the first. When this occurs, the
-second "with" word can optionally be replaced by a comma. Multiple with clauses
-indicate a nesting of iterations. The following two example snippets are
+second ``with`` word can optionally be replaced by a comma. Multiple with
+clauses indicate a nesting of iterations. The following two example snippets are
 equivalent::
 
    with variable_name in source
@@ -83,8 +83,8 @@ equivalent::
 Actions
 =======
 
-An action clause defines the result of a query expression. Actions permit a
-sequence to be transformed into a new sequence, or permit sequence elements to
+An :dfn:`action` clause defines the result of a query expression. Actions permit
+a sequence to be transformed into a new sequence, or permit sequence elements to
 be used to compute an aggregate, or permit an arbitrary block of code to be
 executed for each resulting element.
 
@@ -92,11 +92,11 @@ executed for each resulting element.
 Select
 ------
 
-A ``select`` clause permits a new sequence to be generated based upon the source
-sequence. A ``select`` clause consists of the word "select" followed by a single
-expression. The expression is evaluated once for each element from the source
-sequence that makes its way through the query expression. The result of the
-select's expression will be an element going into the new sequence.
+A :dfn:`select` clause permits a new sequence to be generated based upon the
+source sequence. A select clause consists of the word ``select`` followed by a
+single expression. The expression is evaluated once for each element from the
+source sequence that makes its way through the query expression. The result of
+the select's expression will be an element going into the new sequence.
 
 The following example computes the square of each element in the source array.
 The expression in the select clause performs the math to compute the square, the
@@ -104,11 +104,9 @@ result of which becomes an element in the resulting sequence. ::
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    select #n * #n
+   // => 1, 4, 9, 16, 25, 36, 49, 64, 81
 
-When the query expression above is evaluated, the result will be a sequence with
-the numbers: *1, 4, 9, 16, 25, 36, 49, 64, 81*.
-
-One query expression can be utilized in another. In the next example, the query
+One query expression can be used within another. In the next example, the query
 expression is assigned to a variable. That variable is used in a subsequent
 query expression. The first query expression is not evaluated until the second
 query expression is evaluated. ::
@@ -119,19 +117,17 @@ query expression is evaluated. ::
    )
    with newN in #qe
    select #newN * #newN
-
-The resulting sequence from the above would be the numbers: *1, 16, 81, 256,
-625, 1296, 2401, 4096, 6561*.
+   // => 1, 16, 81, 256, 625, 1296, 2401, 4096, 6561
 
 
 Do
 --
 
-A ``do`` clause permits a block of code to be executed for each element that
+A :dfn:`do` clause permits a block of code to be executed for each element that
 makes its way through the query expression. A do clause consists of the word
-"do" followed by either a single expression or a capture using either the
+``do`` followed by either a single expression or a capture using either the
 regular curly-brace form (``{ }``) or the auto-collect curly-brace form (``{^
-^}``). If the code associated with a ``do`` consists of more than one
+^}``). If the code associated with a do clause consists of more than one
 expression, the code must be contained in a capture.
 
 The following examples show how the query expression do clause can be used to
@@ -154,19 +150,19 @@ query expression actions are evaluated lazily, only as needed, and produce a
 result value dependent on the action in question.
 
 The block of code given to a ``do`` remains attached to the surrounding method
-context such that one could return or yield or access and create local
+context, such that one could ``return`` or ``yield`` or access and create local
 variables.
 
 
 Sum
 ---
 
-A ``sum`` clause is useful when adding all of the resulting query expression
-elements together. A sum clause consists of the word "sum" followed by a single
-expression. The result of the expression will be the value used in the
-summation. The sum is performed using the "+" operator, so each element in the
-sequence must support the addition operator for the sum to succeed. The result
-of a query expression using sum will be a single value.
+A :dfn:`sum` clause is useful when adding all of the resulting query expression
+elements together. A sum clause consists of the word ``sum`` followed by a
+single expression. The result of the expression will be the value used in the
+summation. The summation is performed using the ``+`` operator, so each element
+in the sequence must support the addition operator for the sum to succeed. The
+result of a query expression using a sum clause will be a single value.
 
 The following example uses a sum clause to add together each element from the
 initial sequence::
@@ -179,10 +175,10 @@ initial sequence::
 Average
 -------
 
-An ``average`` clause produces the average of each element that makes its way
-through the query expression. As expected, using average will take the sum of
-each element and then divide that value by the number of elements. As with sum,
-average produces a single result value. ::
+An :dfn:`average` clause produces the average of each element that makes its way
+through the query expression. As expected, using ``average`` will take the sum
+of each element and then divide that value by the number of elements. As with
+``sum``, ``average`` produces a single result value. ::
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    average #n
@@ -192,9 +188,9 @@ average produces a single result value. ::
 Min & Max
 ---------
 
-The ``min`` and ``max`` clauses produce the smallest or largest value from the
-sequence, respectively. The standard "<" and ">" operators are used to find the
-result value. ::
+The :dfn:`min` and :dfn:`max` clauses produce the smallest or largest value from
+the sequence, respectively. The standard ``<`` and ``>`` operators are used to
+find the result value. ::
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    min #n
@@ -208,7 +204,7 @@ result value. ::
 Operations
 ==========
 
-In a query expression, an operation is an optional clause that effects how the
+In a query expression, an operation is an optional clause that affects how the
 query expression behaves by removing elements from the sequence, ordering the
 elements in a certain manner, or introducing new variables.
 
@@ -216,14 +212,14 @@ elements in a certain manner, or introducing new variables.
 Where
 -----
 
-A ``where`` operation lets elements be included or excluded from further
+A :dfn:`where` operation lets elements be included or excluded from further
 consideration based upon a boolean expression. A where operation will generally
 run a test involving the current element. If the test expression results in
-false, the element is discarded and the next element is selected and operated
-upon. If the test expression results in true, the query expression proceeds with
-the next operation or action in the expression.
+"false", the element is discarded and the next element is selected and operated
+upon. If the test expression results in "true", the query expression proceeds
+with the next operation or action in the expression.
 
-A where operation is composed of the word "where" followed by a single
+A where operation is composed of the word ``where`` followed by a single
 expression. The result of the expression should be boolean "true" or "false".
 
 The following example performs a query expression using the numbers in an array.
@@ -236,10 +232,10 @@ turn as the expression is evaluated. ::
    select #n
    // => 1, 3, 5, 7, 9
 
-Multiple where operations can be utilized in a query expression. Using multiple
+Multiple where operations can be used in a query expression. Using multiple
 where operations is essentially the same as combining the expressions using the
-logical and operator ("&&" or "and"). The following two snippets are equivalent,
-though the third is not. ::
+logical "and" operator (``&&`` or ``and``). The following two snippets are
+equivalent, though the third is not. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
      where #n % 2 != 0 // ignore even numbers
@@ -265,23 +261,23 @@ though the third is not. ::
 Let
 ---
 
-A ``let`` operation introduces a new variable into the query expression.
+A :dfn:`let` operation introduces a new variable into the query expression.
 Usually, this is done when evaluating an expression whose value will be be used
-repeatedly further on throughout the query expression. For example, a ``let``
+repeatedly further on throughout the query expression. For example, a let
 operation may evaluate an expression based upon the current iteration variable,
 assigning the result to a new variable, and then using both further within the
 query.
 
-Variables introduced with a ``let`` operation have the same scope as those
+Variables introduced with a let operation have the same scope as those
 introduced in a with clause. That is, they only exist within the query
 expression.
 
-A let operation consists of the word "let" followed by a new variable name, the
-assignment operator ("="), and then an expression, the result of which will be
-assigned to the new variable.
+A let operation consists of the word ``let`` followed by a new variable name,
+the assignment operator (``=``), and then an expression, the result of which
+will be assigned to the new variable.
 
 The following example snippet assigns the square of the current iteration value
-to a new variable using a ``let`` operation::
+to a new variable using a let operation::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
      let n2 = #n * #n
@@ -300,14 +296,13 @@ The next example snippet uses both ``where`` and ``let`` together::
 Skip
 ----
 
-A ``skip`` operation permits a specified number of values from the source
-sequence to be skipped. A ``skip`` operation consists of the word *skip*
-followed by either a literal integer, or an expression which will evaluate to an
-integer.
+A :dfn:`skip` operation permits a specified number of values from the source
+sequence to be skipped. A skip operation consists of the word ``skip`` followed
+by either a literal integer, or an expression which will evaluate to an integer.
 
 The following example snippet skips the first 5 elements from the source
-container. Only the 6th element and beyond are sent to the remaining portion of
-the query expression. ::
+container. Only the 6\ :sup:`th` element and beyond are sent to the remaining
+portion of the query expression. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
      skip 5
@@ -318,11 +313,11 @@ the query expression. ::
 Take
 ----
 
-A ``take`` operation permits only a certain number of elements to be iterated
+A :dfn:`take` operation permits only a certain number of elements to be iterated
 upon. Elements beyond the specified value are ignored and not sent to the
-remainder of the query expression. A ``take`` operation consists of the word
-*take* followed by a literal integer or an expression which will evaluate to an
-integer.
+remainder of the query expression. A take operation consists of the word
+``take`` followed by a literal integer or an expression which will evaluate to
+an integer.
 
 The following example snippet takes only the first 5 elements from the data
 source. The remaining elements are ignored. ::
@@ -332,10 +327,10 @@ source. The remaining elements are ignored. ::
    select #n
    // => 0, 1, 2, 3, 4
 
-The ``skip`` and ``take`` can be utilized together to limit which elements a
-query expression will operate over to a specific range. The order in which
-``skip`` and ``take`` are specified is significant. (Generally, ``skip`` is
-specified before ``take``, though this is not a requirement.)
+The ``skip`` and ``take`` can be used together to limit which elements a query
+expression will operate over to a specific range. The order in which ``skip``
+and ``take`` are specified is significant. (Generally, ``skip`` is specified
+before ``take``, though this is not a requirement.)
 
 The following example snippet skips the first 3 elements, takes only the next 4
 and leaves the rest ignored. This results in only the numbers 3, 4, 5, and 6 for
@@ -371,16 +366,16 @@ Order By
 --------
 
 Query expressions permit the elements of a series to be ordered in an arbitrary
-manner by utilizing an ``order by`` operation. This is done by using the words
-"order by" and then an expression, the result of which is used as the value by
+manner by using an :dfn:`order by` operation. This is done by using the words
+``order by`` and then an expression, the result of which is used as the value by
 which the particular element will be ordered. This can be followed optionally by
-a direction indicator, which is the word "descending" or "ascending". When a
-direction is not indicated, "ascending" order is assumed. Further ordering
+a direction indicator, which is the word ``descending`` or ``ascending``. When a
+direction is not indicated, ascending order is assumed. Further ordering
 criteria can be specified by following the initial order by expression with a
 comma, and then the next ordering expression and optional direction indicator.
 
-The following example snippet orders the elements in the array using the default
-ascending order. The next, in descending order::
+The following example orders the elements in the array using the default
+ascending order, and the next, in descending order::
 
    with n in array(9, 2, 1, 3, 5, 4, 6, 7, 0, 8)
      order by #n
@@ -394,7 +389,7 @@ ascending order. The next, in descending order::
    select #n
    // => 9, 8, 7, 6, 5, 4, 3, 2, 1, 0
 
-The expression provided to order by can be any arbitrary expression. This
+The expression provided to an order by can be any arbitrary expression. This
 permits elements to be ordered in any manner as desired by the developer. For
 example, a series of string objects could be ordered based upon their lengths,
 or elements could be randomly ordered based upon a random number generated for
@@ -427,11 +422,11 @@ first and last names, could be ordered in an alphabetical manner::
 Group By
 --------
 
-A ``group by`` clause permits similar elements to be grouped together by a
+A :dfn:`group by` clause permits similar elements to be grouped together by a
 particular key expression and represented as a single object called a
-*queriable_grouping*. This new object can be further utilized throughout the
-query expression. A queriable_grouping object maintains a reference to each of
-the original elements within the group. It also possesses a ``key()`` method
+:dfn:`queriable_grouping`. This new object can be further used throughout the
+query expression. A ``queriable_grouping`` object maintains a reference to each
+of the original elements within the group. It also possesses a ``key`` method
 which produces the value by which the particular elements were mutually grouped.
 
 A group by consists of three elements: the object going into the group, the key
@@ -462,7 +457,7 @@ with their last and first name, and performs a query expression over them. ::
 
 The example above example breaks down into 6 steps:
 
-#. Begin the query expression using ``#n`` as the variable to hold each initial
+#. Begin the query expression using "n" as the variable to hold each initial
    element from the source array. There are 6 elements in the source array, so
    ``#n`` will start off pointing to the first element. Once the query
    expression completes its first iteration, ``#n`` will point to the second
@@ -474,7 +469,7 @@ The example above example breaks down into 6 steps:
           'Hammershaimb'='Hjörtur')
 
 #. Create a new pair containing the swapped last and first names. Name
-   this #swapped. ::
+   this "swapped". ::
 
       let swapped = pair(#n->second, #n->first)
 
@@ -482,7 +477,7 @@ The example above example breaks down into 6 steps:
    the key as it still contains the original last name. From this point forward,
    no previously introduced variables are available. Only ``#g`` exists now. It
    will contain each ``queriable_grouping`` object generated by the group by
-   clause at this step (3). ::
+   clause at this step. ::
 
       group #swapped by #n->first into g
 
@@ -491,23 +486,23 @@ The example above example breaks down into 6 steps:
 
       let key = #g->key
 
-#. Order/sort the resulting grouping objects by ``#key``, which contains the
-   last name. Thus, all of the resulting group objects will come out of the
-   query expression ordered alphabetically by last name. ::
+#. Sort the resulting grouping objects by ``#key``, which contains the last
+   name, using ``order by``. Therefore, all of the resulting group objects will
+   come out of the query expression ordered alphabetically by last name. ::
 
       order by #key
 
-#. Finally, create a new pair containing #key and the grouping object
-   and select that, making the new pair one of the new elements in the
-   result of the query expression. ::
+#. Finally, create a new pair containing ``#key`` and the grouping object
+   and select that, making the new pair one of the new elements in the result of
+   the query expression. ::
 
       select pair(#key, #g)
 
 The result of the example query expression looks as follows. Notice how the
-results for 'Hammershaimb' and 'Jones' each contain both of the users in those
-groups. ::
+results for ``'Hammershaimb'`` and ``'Jones'`` each contain both of the users in
+those groups. ::
 
-   // => // Breaking up the value for readability
+   // => // Line breaks added for readability
    // (Hammershaimb = (Ármarinn = Hammershaimb), (Hjörtur = Hammershaimb)),
    // (Jones = (Krinn = Jones), (Kjarni = Jones)),
    // (Riley = (Björg = Riley)),
@@ -517,12 +512,11 @@ groups. ::
 Making an Object Queriable
 ==========================
 
-An object can be utilized as the source of a with clause in a query expression
-if its type has implemented and imported the ``trait_queriable`` trait. For
-this, a type must implement the "forEach" member method. This method is always
-called with a ``givenBlock``. Within the "forEach" member method, the object
-being queried should invoke the ``givenBlock``, passing it each available
-element in turn.
+An object can be used as the source of a with clause in a query expression if
+its type has implemented and imported the `trait_queriable` trait. For this, a
+type must implement the ``forEach`` member method. This method is always called
+with a givenBlock. Within the ``forEach`` member method, the object being
+queried should invoke the givenBlock, passing it each available element in turn.
 
 The following example implements a user list type. Objects of this type can be
 used in query expressions. For the sake of this example, it permits iteration
