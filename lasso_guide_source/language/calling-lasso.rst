@@ -188,10 +188,10 @@ Executing Code from STDIN
 
 The :program:`lasso9` tool can also accept code to execute from STDIN. This is
 useful when piping results from one command to the :program:`lasso9` tool in
-order for it to execute the given code. In order to have :program:`lasso9` get
-its code from STDIN, the ``--`` argument is used. The following example uses the
-standard :command:`echo` command to produce code for the :program:`lasso9` tool
-to read from STDIN and then execute:
+order for it to execute the given code. In order to have :program:`lasso9`
+receive its code from STDIN, the :option:`--` argument is used. The following
+example uses the standard :command:`echo` command to produce code for the
+:program:`lasso9` tool to read from STDIN and then execute:
 
 .. code-block:: none
 

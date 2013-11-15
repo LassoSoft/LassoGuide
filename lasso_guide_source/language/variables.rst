@@ -118,7 +118,7 @@ object. That value is used as the variable's name. ::
    Because a literal variable name can resemble a method call with no parameters,
    if the variable name is intended to be the result of a method call, then that
    call should be given empty parentheses ``()`` to disambiguate. ::
-   
+
       // Defines var with the name of what nameCall() returns
       var(nameCall() = expression)
 

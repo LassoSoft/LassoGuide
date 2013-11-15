@@ -549,3 +549,20 @@ over a fixed list of users, which it provides to the query one by one. ::
    select #user->first
 
    // => Krinn, Ármarinn, Kjarni, Halbjörg, Björg, Hjörtur
+
+Types with one or more iterator methods can be used in a query expression by
+exposing each iterator with an :dfn:`eacher`, which is a method that takes an
+escaped iterator method and an optional set of initial parameters, and uses the
+`eacher` method to return a generator for the iterator.
+
+For example, while a string cannot be iterated upon directly, it has an iterator
+`string->forEachCharacter`, which is implemented as an eacher below::
+
+   define string->eachCharacter()::trait_forEach => eacher(self->\forEachCharacter)
+
+A string can then run a query expression on each character by using
+`string->eachCharacter`::
+
+   with i in 'Hammershaimb'->eachCharacter
+   select #i
+   // => H, a, m, m, e, r, s, h, a, i, m, b

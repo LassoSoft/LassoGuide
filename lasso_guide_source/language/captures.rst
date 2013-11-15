@@ -315,10 +315,6 @@ Capture Methods
    auto-collect value.
 
 .. member:: capture->calledName()
-
-   If the capture was created to run a method, this will return the method's
-   name.
-
 .. member:: capture->methodName()
 
    If the capture was created to run a method, this will return the method's
