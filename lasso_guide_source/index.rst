@@ -27,8 +27,8 @@ development goals.
 
    This book is meant to serve as both an introduction and comprehensive guide
    to Lasso. It covers version |version| and was created on |today|. The
-   material in this book will evolve and improve along with Lasso. The most up-
-   to-date version of this documentation containing all fixes can be found at
+   material in this book will evolve and improve along with Lasso. The most
+   up-to-date version of this documentation containing all fixes can be found at
    `<http://lassoguide.com>`_.
 
 .. only:: html

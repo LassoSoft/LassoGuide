@@ -16,9 +16,9 @@ Signatures
 ==========
 
 Before method definitions can be understood, it is important to understand
-signatures. A signature is a description of a method and includes its name,
-parameter names and types, and the method's return value type. Signatures are
-used when defining methods, and simplified signatures are used when defining
+signatures. A :dfn:`signature` is a description of a method and includes its
+name, parameter names and types, and the method's return value type. Signatures
+are used when defining methods, and simplified signatures are used when defining
 types and traits. This chapter will concentrate on signatures for defining
 methods only.
 
@@ -37,10 +37,10 @@ Some valid examples of method names are shown below::
    Encode_Base64
    String_ReplaceRegexp
 
-There are several other characters which are valid in specific circumstances.
-The mathematical operators ``+``, ``-``, ``*``, ``/``, and ``%`` are used in
-method names when supplying implementations for these operations for data types.
-See the :ref:`Types <types>` chapter for more information.
+There are several other characters that are valid in specific circumstances. The
+mathematical operators ``+``, ``-``, ``*``, ``/``, and ``%`` are used in method
+names when supplying implementations for these operations for types. See the
+:ref:`types` chapter for more information.
 
 Most signatures consist of a method name followed by parentheses which surround
 a list of parameters for the method, and an optional return type.
@@ -63,10 +63,10 @@ parameters, type constraints, keyword parameters, and rest parameters.
 Empty Signature
 ---------------
 
-A signature which is specified with an empty set of parentheses indicates that
-the method will not require or accept any parameters. Giving parameters to a
-method defined with an empty signature will result in a failure. The following
-is an example of a signature without any parameters::
+A signature specified with an empty set of parentheses indicates that the method
+will not require or accept any parameters. Giving parameters to a method defined
+with an empty signature will result in a failure. The following is an example of
+a signature without any parameters::
 
    method_name()
 
@@ -83,11 +83,11 @@ values and keyword parameters. ::
 
 Note that these are three periods rather than a Unicode ellipsis character.
 
-Within the method, the parameters which were passed in can be accessed through a
+Within the method, the parameters that were passed in can be accessed through a
 local variable named "rest". If any parameters were given, the rest variable
 will be a staticarray. If no parameters are given, it will remain "void". This
-signature can be useful for methods which have highly variable parameters that
-need special processing such as `inline`.
+signature can be useful for methods that have highly variable parameters needing
+special processing, such as `inline`.
 
 
 Required Parameters
@@ -116,7 +116,7 @@ The parameter names are only used within the method so the choice of parameter
 names need only make sense to the implementer of the method. However, the
 parameter names may be used in documentation or reported in error messages so
 they should be made descriptive when possible. Knowing a method requires the
-parameter "firstname" is more descriptive than a method which requires the
+parameter "firstname" is more descriptive than a method that requires the
 parameter "fn".
 
 
@@ -143,12 +143,12 @@ parameters must also be omitted.
 
 The parameters in the following signature are both optional. If the ``host``
 parameter is not specified the local variable "host" within the method will have
-the default value "localhost". If the ``port`` parameter is not specified, it
-will have the default value of "80". ::
+the default value ``'localhost'``. If the ``port`` parameter is not specified,
+it will have the default value of "80". ::
 
    connect(host='localhost', port=80)
 
-When the method is called the parameters which are passed to it will be assigned
+When the method is called the parameters that are passed to it will be assigned
 to each of the optional parameters in turn. The method called as
 ``connect('www.lassosoft.com')`` will have a default port value of "80". The
 method called as ``connect()`` will have both default values. And, the method
@@ -158,11 +158,11 @@ value for ``port``.
 
 
 Mixing Required and Optional Parameters
----------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When calling a method which accepts both required and optional parameters, all
+When calling a method that accepts both required and optional parameters, all
 required parameter values must be specified before any optional parameter
-values. The values which are passed will be assigned to the required parameters
+values. The values that are passed will be assigned to the required parameters
 first. While there are sufficient remaining values, the optional parameters will
 be assigned in order.
 
@@ -179,9 +179,9 @@ provided with a value.
 Keyword Parameters
 ------------------
 
-Keyword parameters are named parameters which can be specified in any order.
-When keyword parameter values are passed to a method, they are given with the
-associated parameter name, using the following syntax::
+:dfn:`Keyword parameters` are named parameters that can be specified in any
+order. When keyword parameter values are passed to a method, they are given with
+the associated parameter name, using the following syntax::
 
    -parameterName = expression
 
@@ -197,14 +197,15 @@ regular optional parameters, by following the parameter name with an equals
 (``=``) and a default value expression.
 
 For example, a hypothetical ``find_in_string`` method might have the following
-signature. The required input is followed by two keywords: the required
-``-find`` and the optional ``-ignoreCase``::
+signature. The required input is followed by two keyword parameters: the
+required ``-find`` and the optional ``-ignoreCase``::
 
    find_in_string(input, -find::string, -ignoreCase::boolean=false)
 
 When this method is called the input must always be given first. However, the
-two keywords can be given in either order, provided they follow all non-keyword
-parameters. It is valid to call the method in any of the following ways::
+two keyword parameters can be given in either order, provided they follow all
+non-keyword parameters. It is valid to call the method in any of the following
+ways::
 
    find_in_string('the fox', -find='x', -ignoreCase=true)
    find_in_string('the fox', -ignoreCase=true, -find='x')
@@ -217,20 +218,20 @@ Note that calling the method as ``find_in_string('the fox')`` will generate a
 failure because the ``-find`` keyword parameter is required (since it has no
 default value). Calling the method as ``find_in_string(-find='x', 'the fox')``
 will also generate a failure because the input is being specified after a
-keyword. All required parameters and any optional parameters being passed must
-be specified before the first keyword parameter.
+keyword parameter. All required parameters and any optional parameters being
+passed must be specified before the first keyword parameter.
 
 
-Boolean Keywords
-----------------
+Boolean Keyword Parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Often, keyword parameters will be used to indicate simple boolean values. For
 example, as a set of options or flags given to a method to control the details
 of its behavior. When calling a method, a keyword parameter can be passed
 without an associated value. Doing so is implicitly the same as passing a
-boolean "true" value for that parameter. Boolean keywords are normally specified
-with a default value of "false" so if the keyword is not specified the
-pre-defined variable will have a value of "false".
+boolean "true" value for that parameter. Boolean keyword parameters are normally
+specified with a default value of "false" so if the keyword parameter is not
+specified the pre-defined variable will have a value of "false".
 
 The following signature defines the method ``server_date`` as accepting either a
 ``-short`` keyword parameter, a ``-long`` keyword parameter, or neither::
@@ -258,7 +259,7 @@ The signature below specifies that the ``string_concatenate`` method requires
 one parameter named ``value``, but will accept any number of additional
 parameters. Within the method, the first parameter will be placed into the
 pre-defined local variable "value", and the remaining parameters, if any, will
-be placed into the pre-defined local variable "rest". ::
+be placed into the pre-defined local variable "rest"::
 
    string_concatenate(value, ...)
 
@@ -267,13 +268,13 @@ Note that these are three periods rather than a Unicode ellipsis character.
 By default, the rest parameter local variable is always named "rest", but an
 alternate variable name can be specified in the signature by placing the desired
 name immediately after the three periods. The following signature would rename
-the rest variable to "other". ::
+the rest variable to "other"::
 
    string_concatenate(value, ...other)
 
 
-Type Constraints
-----------------
+Parameter Type Constraints
+--------------------------
 
 In a signature, all parameter types, with the exception of the rest parameter,
 can be specified with an optional type constraint. While parameter count and
@@ -281,20 +282,20 @@ ordering ensure that the caller is passing the right number of parameters in the
 right order, type constraints ensure that the parameter values are of the right
 type. For example, if a method that expects to receive two string parameters is
 given two integers, it is being used incorrectly. If a caller passes a parameter
-value which does not fit the type constraint set for that parameter, then a
+value that does not fit the type constraint set for that parameter, then a
 failure will be generated. Any type or trait name can be used as a constraint,
 and all parameter values must pass the "isA" test for their constraint before
 the method body begins to execute. (The "isA" test involves calling the object's
 ``isA`` method with the constraint; if a non-zero value is returned, then it
 passes. See `~null->isA()` for details about this member method.) Additionally,
-all parameter default values must produce results of a type which fit the type
+all parameter default values must produce results of a type matching the type
 constraint set for their respective parameters.
 
-A type constraint is specified by following the parameter name with a double
-colon (``::``) and a type name. Whitespace is permitted on either side of the
-double colon (examples herein will not include whitespace). The signature below
-has both of its required parameters constrained to only accept values that are
-of type :type:`string`. ::
+A type constraint is specified by following the parameter name with two colons
+(``::``) and a type name. Whitespace is permitted on either side of the double
+colon (examples herein will not include whitespace). The signature below has
+both of its required parameters constrained to only accept values that are of
+type :type:`string`. ::
 
    method_name(firstname::string, lastname::string)
 
@@ -309,14 +310,14 @@ and unconstrained parameters can be mixed. ::
    method_name(firstname::string, lastname)
    method_name(firstname, lastname::string)
    method_name(firstname::string, lastname::string,
-        -age::decimal=0.0,
-        -dept='')
+         -age::decimal=0.0,
+         -dept='')
 
 Within a method body, parameters with type constraints translate into local
 variables with type constraints. A parameter that is constrained to accept a
 particular object type becomes a local variable that can hold only that type of
-object. See the :ref:`Variables <variables>` chapter for more information on
-type-constrained variables.
+object. See the :ref:`variables` chapter for more information on
+:ref:`type-constrained variables <variables-type-constraints>`.
 
 
 Return Type
@@ -324,7 +325,7 @@ Return Type
 
 Specifying a return type for a signature enforces that the value returned by the
 associated code block is of a specific type. If a method returns a value having
-a type which does not pass the "isA" test for the specified return type, then a
+a type that does not pass the "isA" test for the specified return type, then a
 failure is generated. (The "isA" test involves calling the object's ``isA``
 method with the constraint; if a non-zero value is returned, then it passes. See
 `~null->isA()` for details about this member method.) Specifying a return type
@@ -350,7 +351,7 @@ Type Binding
 
 Signatures are also used to denote that the method belongs to a particular data
 type. This is referred to as the :dfn:`type binding` for the signature. A
-signature with no bound type is referred to as being unbound. All example
+signature with no bound type is referred to as being :dfn:`unbound`. All example
 signatures given up to this point were unbound signatures. A type binding occurs
 at the beginning of the signature, before the signature's name. It consists of a
 type name followed by the target operator (``->``) followed by the rest of the
@@ -384,19 +385,19 @@ Before a method can be used, it must first be defined. Defining a method
 combines a signature with a method body, and allows it to be called by name from
 within other methods.
 
-The ``define`` reserved word is used to define new methods, data types, and
-traits. When defining a method, the word ``define`` is followed by a signature,
-the association operator (``=>``), and then an expression which provides the
-body for the new method. ::
+The ``define`` keyword is used to define new methods, types, and traits. When
+defining a method, the word ``define`` is followed by a signature, the
+association operator (``=>``), and then an expression that provides the body for
+the new method. ::
 
    define signature => expression
 
-If a method is defined which has a signature equivalent to an already defined
+If a method is defined that has a signature equivalent to an already defined
 method, the new definition will replace the old and the old definition will no
 longer be available. Keyword parameters cannot be used to uniquely identify a
-method. A method which takes, for example, two required parameters and a certain
-set of keyword parameters will be overwritten by a new method which requires the
-same two parameters and an entirely different set of keywords.
+method. A method taking, for example, two required parameters and a certain set
+of keyword parameters will be overwritten by a new method that requires the same
+two parameters and an entirely different set of keyword parameters.
 
 
 Methods Returning Simple Expressions
@@ -405,7 +406,7 @@ Methods Returning Simple Expressions
 A simple method definition is shown below. The signature ``hello()`` describes
 what and how the method will be called, in this case ``hello`` with no
 parameters. After the association operator, the expression ``'Hello, world!'``
-provides the method's return value. The method below simply returns a string. ::
+provides the method's return value. The method below simply returns a string::
 
    define hello() => 'Hello, world!'
 
@@ -423,7 +424,7 @@ value expression. ::
 Code Blocks
 -----------
 
-Many methods will need to do more than return a single easily calculated value.
+Many methods will need to do more than return a single easily-calculated value.
 A method body can be composed of multiple expressions enclosed by a pair of
 curly braces (``{ ... }``). This type of method body is referred to as a code
 block.
@@ -433,8 +434,7 @@ series of expressions to be encapsulated as the implementation of the method.
 One or more return statements may be used to end execution of the method body
 and to optionally return a value to the caller.
 
-The methods which are used as examples above may be written using code blocks as
-follows::
+The methods used as examples above may be written using code blocks as follows::
 
    define pi() => { return math_acos(-1) }
    define times_twenty(n) => { return #n * 20 }
@@ -474,13 +474,12 @@ What follows is the syntax diagram for ``define``.
 Multiple Dispatch
 =================
 
-:dfn:`Multiple dispatch` is a technique which permits more than one method body
+:dfn:`Multiple dispatch` is a technique that permits more than one method body
 and signature to be defined under a given method name. The various signatures
-will differ in the number or types of the parameters which they are stated to
-receive. When the method name is called, the parameters given by the caller (or
-the lack thereof) will determine which method body will actually be executed.
-The process of determining which method body to call is referred to as
-"dispatch".
+will differ in the number or types of parameters they are stated to receive.
+When the method name is called, the parameters given by the caller (or the lack
+thereof) will determine which method body will actually be executed. The process
+of determining which method body to call is referred to as "dispatch".
 
 
 The Dispatch Process
@@ -494,8 +493,8 @@ method's type constraint for that parameter. If the parameter value is
 acceptable according to this constraint (a lack of a type constraint on a
 parameter means that any type is valid for that position), then the method
 remains in the set of valid methods, otherwise it is removed. For each parameter
-position, methods which accept, at most, fewer than that number of parameters
-are also removed from the valid set.
+position, methods that accept, at most, fewer than that number of parameters are
+also removed from the valid set.
 
 In many cases, when the final parameter value is checked there will remain only
 one valid method. In cases where there are multiple remaining valid methods, the
@@ -506,11 +505,11 @@ parameter position, with each subsequent parameter having a lower priority than
 the previous.
 
 -  Methods with a type constraint for a parameter position will sort higher than
-   methods which do not have a type constraint.
+   methods that do not have a type constraint.
 -  Methods having a required parameter for a position will sort higher than
    methods with an optional parameter.
--  Methods which are valid only because they accept rest parameters will sort
-   lower than methods which accept an actual declared parameter.
+-  Methods that are valid only because they accept rest parameters will sort
+   lower than methods that accept an actual declared parameter.
 
 In the case where the result of the sorting leads to two or more equally valid
 methods, then the call is ambiguous and a failure will be generated. In
@@ -521,8 +520,8 @@ removes the first from future consideration during dispatch.
 Keyword parameters are never considered during the method selection process
 until the end where the single remaining method's keyword parameters (if any)
 are validated. Two methods cannot differentiate themselves based on accepting a
-different set of keywords. Methods must be distinguished based solely on their
-required or optional parameters.
+different set of keyword parameters. Methods must be distinguished based solely
+on their required or optional parameters.
 
 
 Using Multiple Dispatch
@@ -533,11 +532,11 @@ Constraints Example
 
 Multiple dispatch comes into play any time more than one method is defined under
 a single name. As example, consider the scenario where special diagnostic
-information needs to be created for a variety of possible types: `array`,
-`string`, `bytes` and a default ``any`` type. In the example below, the
-``log_object`` method is defined multiple times, each accepting a different
-possible type. Each of the four methods is written to handle only their input
-value types. ::
+information needs to be created for a variety of possible types: :type:`array`,
+:type:`string`, :type:`bytes` and a default :type:`any` type. In the example
+below, the ``log_object`` method is defined multiple times, each accepting a
+different possible type. Each of the four methods is written to handle only
+their input value types. ::
 
    define log_object(a::array) => {
       return '[log] array with ' + #a->size + ' elements'
@@ -574,8 +573,8 @@ If the above example was instead written to have a single ``log_object`` method
 that accepted any value type (we'll call it a mega-method), and within that
 mega-method, inspected the parameter value type to decide what action to take,
 then the method would need to be modified each time a new log object type was
-added. If a log implementation needed to be added for objects of type `pair`,
-then a new case would need to be placed within that mega-method.
+added. If a log implementation needed to be added for objects of type
+:type:`pair`, then a new case would need to be placed within that mega-method.
 
 Problems arise if a user wishes to add logging implementations for their own
 object types. If ``log_object`` were only this single mega-method, then the user

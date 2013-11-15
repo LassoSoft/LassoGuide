@@ -23,8 +23,8 @@ one parameter and returns the resulting value.
 
 .. _operators-assignment:
 
-Assignment
-==========
+Assignment Operators
+====================
 
 Assignment places the result of an expression into a destination. The
 destination must be a local or thread variable, or it must be an
@@ -36,7 +36,7 @@ that produces the assigned value (``:=``) and one that does not (``=``). ::
 
    // "dest" assigned value of expression, "dest" produced
    dest := expression
-   // => // produces a reference to "dest"
+   // => // Produces a reference to "dest"
 
 The second assignment type, which produces the left-hand operand, is
 right-associative so that multiple assignments can be lined up. The following
@@ -61,18 +61,18 @@ type. ::
    var(v) = expression
 
 Variables and data members are the only elements to which values can truly be
-assigned, but Lasso permits methods to be created which mimic the act of
-assignment. This is done by naming the method with a ``=`` character at the end.
+assigned, but Lasso permits methods to be created that mimic the act of
+assignment. This is done by naming the method with a "=" character at the end.
 For example, a method that wanted to accept assignment for ``foo`` would be
 named ``foo=``. Such a method must accept at least one parameter and must return
-the assigned value as if it were being called in the role of ``:=``. Methods
-that permit such assignment are useful as "setters" and let an object control
-how the assignment is ultimately made. See the :ref:`Types <types>` chapter for
-more detail on creating setter methods.
+the assigned value as if it were being called in the role of assign-produce
+(``:=``). Methods that permit such assignment are useful as "setters" and let an
+object control how the assignment is ultimately made. See the :ref:`types`
+chapter for more detail on creating setter methods.
 
 
-Arithmetic
-==========
+Arithmetic Operators
+====================
 
 Arithmetic usually refers to mathematical operations using integer or decimal
 numbers. However, an arithmetic operator can be applied to any object that
@@ -107,16 +107,16 @@ use of each operator::
    // => staticarray(13, 7, 30, 3, 1)
 
 
-Assignment Variants
--------------------
+Arithmetic Assignment
+---------------------
 
 While the standard arithmetic operators use their operands to produce a new
 value, Lasso supports syntax for applying the arithmetic operator *to* one of
 the operands. The following operators perform their operation and assign the
 result to the left-hand side operand. Only the left-hand operand can be assigned
-to and not every expression is capable of being assigned to, as described in
-:ref:`Assignment <operators-assignment>` above. These assignment expressions do
-not produce a value. ::
+to and not every expression is capable of being assigned to, as described in the
+section on :ref:`assignment operators <operators-assignment>`. These assignment
+expressions do not produce a value. ::
 
    // Equivalent to op1 = op1 + op2
    op1 += op2
@@ -154,24 +154,25 @@ from the original operand, then produces the copied object as a result. ::
 
    // Pre-increment "op"
    ++op
-   // => // produces the newly incremented "op"
+   // => // Produces the newly incremented "op"
 
    // Pre-Decrement "op"
    --op
-   // => // produces the newly decremented "op"
+   // => // Produces the newly decremented "op"
 
    // Post-Increment "op"
    op++
-   // => // produces a copy of "op" before incrementing
+   // => // Produces a copy of "op" before incrementing
 
    // Post-Decrement "op"
    op--
-   // => // produces a copy of "op" before decrementing
+   // => // Produces a copy of "op" before decrementing
 
 These increment/decrement operators are translated into regular arithmetic
 method calls with "1" as the method parameter. This means that if a type is
-intended to be used with the ``++`` and ``--`` operators, all that's necessary
-is to implement ``+`` and ``-`` which will be called with "1" as the parameter.
+intended to be used with the increment (``++``) and decrement (``--``)
+operators, all that's necessary is to implement ``+`` and ``-`` which will be
+called with "1" as the parameter.
 
 
 Positive and Negative
@@ -179,48 +180,48 @@ Positive and Negative
 
 Lasso supports the unary operators which are usually intended to change the sign
 of an integer or decimal number. These operators can be applied to any object
-which supports them. When applied, these operators will produce a new object,
+that supports them. When applied, these operators will produce a new object,
 leaving the single operand unchanged. ::
 
    +op1
-   // => // produces a new object whose value is positive op1
+   // => // Produces a new object whose value is positive op1
 
    -op1
-   // => // produces a new object whose value is negative op1
+   // => // Produces a new object whose value is negative op1
 
 Types can implement this operator by defining a method named ``+`` or ``-`` that
-accepts zero parameters. When unary ``+`` or ``-`` is applied to ``integer`` or
-``decimal`` literals, no method call is generated. Instead, the positive or
-negative number is created from the beginning.
+accepts zero parameters. When unary ``+`` or ``-`` is applied to :type:`integer`
+or :type:`decimal` literals, no method call is generated. Instead, the positive
+or negative number is created from the beginning.
 
 
-.. _logic-operators:
+.. _operators-boolean:
 
-Boolean and Logical
-===================
+Boolean Operators
+=================
 
 :dfn:`Boolean` describes the values "true" and "false". Lasso supports several
-operators which either treat their operands as boolean values and/or produce
+operators that either treat their operands as boolean values and/or produce
 boolean values. These operators are broken down into several categories.
 
 .. note::
    In Lasso, most objects will be treated as "true", but the following objects
-   and values will be treated as "false": the ``integer`` "0", the ``decimal``
-   "0.0", and the types ``null`` and ``void``. An empty ``string`` also
-   evaluates to "false", but this functionality is deprecated; change your code
-   to call `string->size` to check for empty strings. All other objects and
-   values are assumed to be "true".
+   and values will be treated as "false": the :type:`integer` "0", the
+   :type:`decimal` "0.0", and the types :type:`null` and :type:`void`. An empty
+   :type:`string` also evaluates to "false", but this functionality is
+   deprecated; change your code to call `string->size` to check for empty
+   strings. All other objects and values are assumed to be "true".
 
 
-Logical Operators
------------------
+Logical
+-------
 
-There are three logical operators. The first is the unary operator "not". This
-operator treats its single operand as a boolean value and produces the opposite
-of that value. The "not" operator turns a "true" into a "false" and a "false"
-into a "true". Though the operand can be of any type, this operator always
-produces a "true" or "false" value. The "not" operator can take one of two
-forms: an exclamation mark (``!``) or the ``not`` keyword. ::
+There are three :dfn:`logical operators`. The first is the unary operator "not".
+This operator treats its single operand as a boolean value and produces the
+opposite of that value. The "not" operator turns a "true" into a "false" and a
+"false" into a "true". Though the operand can be of any type, this operator
+always produces a "true" or "false" value. The "not" operator can take one of
+two forms: an exclamation mark (``!``) or the ``not`` keyword. ::
 
    !true
    // => false
@@ -253,17 +254,18 @@ operators cannot be defined by the operand objects.
 
 .. _operators-equality:
 
-Equality Operators
-------------------
+Equality
+--------
 
-Equality operators are used to determine if one object is logically equivalent
-to another. These operators are split into positive and negative equality tests
-as well as strict and non-strict equality tests. A positive equality test checks
-if one object *is equal to* another object while a negative equality test checks
-if an object *is not equal to* another. Strict equality testing further tests
-the types of the operand objects. If the right-hand operand is not an instance
-of the type of the left-hand operand, then the equality test fails. These
-operators all produce either a "true" or "false" value. ::
+The :dfn:`equality operators` are used to determine if one object is logically
+equivalent to another. These operators are split into positive and negative
+equality tests as well as strict and non-strict equality tests. A positive
+equality test checks if one object *is equal to* another object while a negative
+equality test checks if an object *is not equal to* another. Strict equality
+testing further tests the types of the operand objects. If the right-hand
+operand is not an instance of the type of the left-hand operand, then the
+equality test fails. These operators all produce either a "true" or "false"
+value. ::
 
    op1 == op2
    // => // Produces "true" if op1 is equal to op2 else false
@@ -281,23 +283,23 @@ operators all produce either a "true" or "false" value. ::
    // => staticarray(true, false, false, true)
 
 If an object is to be tested for equality against another, its type must
-implement the method named "onCompare". The "onCompare" method is automatically
-called at runtime to perform equality checks. It is only called on the left-hand
-operand, and this method must accept one parameter, which is the right-hand
-operand. The "onCompare" method indicates whether the left-hand operand is less
-than, equal to, or greater than the right-hand operand by returning either an
-integer less than zero, zero, or greater than zero, respectively. The act of
+implement a method named ``onCompare``. The ``onCompare`` method is
+automatically called at runtime to perform equality checks. It is only called on
+the left-hand operand, and this method must accept one parameter, which is the
+right-hand operand. When called, it indicates whether the left-hand operand is
+less than, equal to, or greater than the right-hand operand by returning either
+an integer less than zero, zero, or greater than zero, respectively. The act of
 checking the object types in the case of strict equality testing is
-automatically performed by the runtime, so a type need not bother with that
-scenario in its own implementation of "onCompare".
+automatically performed by the runtime, so a type need not account for that
+scenario in its own implementation of ``onCompare``.
 
 
-Relative Equality Operators
----------------------------
+Relative Equality
+-----------------
 
-Relative equality indicates if an object is less than, greater than, or possibly
-equal to another object. These operators all produce either a "true" or "false"
-value. ::
+The :dfn:`relative equality operators` indicate whether an object is less than,
+greater than, or possibly equal to another object. These operators all produce
+either a "true" or "false" value. ::
 
    op1 < op2
    // => // Produces "true" if op1 less than op2 else "false"
@@ -311,20 +313,20 @@ value. ::
    op1 >= op2
    // => // Produces "true" if op1 greater than or equal to op2 else "false"
 
-Types control how equality checks behave by implementing the "onCompare" method
-as described above in :ref:`Equality Operators <operators-equality>`. Because
-"onCompare" is required to return an integer value (either zero, less than zero,
-or greater than zero), that single method can handle all possible types of
-equality tests.
+Types control how equality checks behave by implementing the ``onCompare``
+method as described above in the section on :ref:`equality operators
+<operators-equality>`. Because ``onCompare`` is required to return an integer
+value (either zero, less than zero, or greater than zero), it can handle all
+possible types of equality tests.
 
 
-Containment Operators
----------------------
+Containment
+-----------
 
-There are two operators used to test if an object "contains" another object. One
-checks for positive containment (``>>``) and the other for negative containment
-(``!>>``). Both are binary operators and both produce either a "true" or "false"
-value. ::
+There are two :dfn:`containment operators` used to test if an object "contains"
+another object. One checks for positive containment (``>>``) and the other for
+negative containment (``!>>``). Both are binary operators and both produce
+either a "true" or "false" value. ::
 
    op1 >> op2
    // => // Produces "true" if op2 is contained within op1 else false
@@ -333,20 +335,20 @@ value. ::
    // => // Produces "true" if op2 is not contained within op1 else false
 
 In order to support containment testing, a type must implement a method named
-"contains". This method must accept one parameter, which is the right-hand
-operand. Only the left-hand operand will have its "contains" method called. The
-"contains" method must return a boolean "true" or "false".
+``contains``. This method must accept one parameter, which is the right-hand
+operand, and must return a boolean "true" or "false". Only the left-hand operand
+will have its ``contains`` method called.
 
 Containment testing only logically applies to certain types of objects. For
-example, it makes no sense to ask what an ``integer`` type contains, because it
-is scalar, consisting of only one value. Containment testing is primarily done
-on types such as an ``array`` or ``map``. Objects of those types can contain any
-number of other arbitrary objects, so it makes sense to query them for their
-contents.
+example, it makes no sense to ask what an integer object contains, because it is
+scalar, consisting of only one value. Containment testing is primarily done on
+container types such as :type:`array` or :type:`map`. Objects of those types can
+contain any number of other arbitrary objects, so it makes sense to query them
+for their contents.
 
 
-Conditional Operator
---------------------
+Conditional
+-----------
 
 The :dfn:`conditional operator` allows the construction of an if/then/else
 scenario in which an expression is tested and depending on its boolean value,
@@ -356,10 +358,9 @@ only one expression. The "else" portion of a conditional operator may be
 omitted. In such a case, if the condition is "false", a "void" object will be
 produced.
 
-The conditional operator uses the two ``?`` and ``|`` characters. The ``?``
-follows the test condition and the ``|`` delimits the "then" and "else"
-expressions. A conditional operator with no "else" will have no delimiting ``|``
-character. ::
+The conditional operator uses the two "?" and "|" characters. The "?" follows
+the test condition and the "|" delimits the "then" and "else" expressions. A
+conditional operator with no "else" will have no delimiting "|" character. ::
 
    test ? expression1 | expression2
    // => // Produces expression1 if test is "true" else expression2
@@ -385,10 +386,10 @@ precedence. ::
    // => 24
 
 
-.. _operators-invoke:
+.. _operators-invocation:
 
-Invoke
-======
+Invocation
+==========
 
 Parentheses can be applied to some expressions in order to :dfn:`invoke` the
 value. Invoking can have different results for different objects. By default,
@@ -411,29 +412,33 @@ three parameters::
    #lv(1, 'two', 3)
    // => // Produces the value of invoking the object stored in the local "lv" with those parameters
 
+See the :ref:`types` chapter for more information on the :ref:`invoke
+<types-invoke>` callback.
+
 It is also possible to dynamically generate parameters and programmatically pass
-them into an invocation. The following example results in the equivalent
-invocation as the previous one, but the parameters have first been added to an
-array named "my_params" and the invocation syntax includes a colon after the
-opening parenthesis. ::
+them into an invocation. By first adding the parameters to an array named
+"my_params" and including a colon after the opening parenthesis of the
+invocation statement, the following example results in an equivalent invocation
+as the previous. ::
 
    local(my_params) = array(1, 'two', 3)
    #lv(: #my_params )
    // => // Produces the value of invoking the object stored in the local "lv" with those parameters
 
-Invocation syntax can also be used to pass a set of values from an object of any
-type supporting `trait_forEach` to a method which accepts a rest parameter. ::
+This form is useful for passing a set of values from an object of any type
+supporting :trait:`trait_forEach` to a method that accepts a rest parameter. ::
 
    define printArgs(...) => with i in #rest do stdoutnl(#i)
    printArgs(: #my_params )
+
    // =>
    // 1
    // two
    // 3
 
-The concept behind "invoke" is somewhat abstract, but it permits objects and
+The concept behind invocation is somewhat abstract, but it permits objects and
 methods to operate as :dfn:`function objects`. This is an object that can be
-called upon to do "a thing" with zero or more parameters and produce a value.
+called upon to do an operation with zero or more parameters and produce a value.
 For example, a sorting routine might employ such an object to handle the actual
 comparisons between two objects, invoking the object each time it is required,
 while the routine handles only the shifting of the objects during the sort.
@@ -444,8 +449,8 @@ switching out the objects designated to handle each permutation while keeping
 the internal operations identical.
 
 
-Target and Re-target
-====================
+Target
+======
 
 To :dfn:`target` means to access a particular member method or data member from
 an object. The target operator (``->``) is a binary operator accepting the
@@ -454,33 +459,33 @@ operand. Targeting a member method always executes that method, passing along
 any given parameters. ::
 
    #lv->meth()
-   // => // Produces the value of calling "meth" on the object stored in #lv with no parameters
+   // => // Produces the value of calling meth() on the object stored in #lv with no parameters
 
    #lv->meth
    // => // Same as the first example, showing parentheses are optional
 
    #lv->meth(40)
-   // => // Produces the value of calling "meth" on the object stored in #lv with 1 parameter
+   // => // Produces the value of calling meth() on the object stored in #lv with 1 parameter
 
    #lv->meth(40, 'sample')
-   // => // Produces the value of calling "meth" on the object stored in #lv with 2 parameters
+   // => // Produces the value of calling meth() on the object stored in #lv with 2 parameters
 
 Accessing a data member is accomplished through a similar syntax, but by
 surrounding the name in single quotes. A data member can only be accessed from
 within the type in which the data member is defined. When accessing a data
-member, it is an error to have any value except for "self" as the left-hand
+member, it is an error to have any value except for ``self`` as the left-hand
 operand, and the right-hand operand must be single-quoted. ::
 
    self->'dMem'
    // => // Produces the value stored in the "dMem" data member
 
 As it is very common to access data and methods using the current "self", Lasso
-provides a shortcut syntax for accessing "self" or inherited members. Using a
-period (``.``) before the member name will target the current "self". Using two
-periods (``..``) before the member name will target inherited members, skipping
-the current "self" and searching for the member starting from the parent of the
-type which defined the currently executing member method. Two periods can only
-be used for methods, as only "self" can access data members. ::
+provides a shortcut syntax for accessing members within "self" or inherited
+members. Using a period (``.``) before the member name will target the current
+"self". Using two periods (``..``) before the member name will target inherited
+members, skipping the current "self" and searching for the member starting from
+the parent of the type that defined the currently executing member method. Two
+periods can only be used for methods, as only "self" can access data members. ::
 
    .'dMem'
    // => // Produces the value stored in the "dMem" data member (same as self->'dMem')
@@ -493,15 +498,15 @@ be used for methods, as only "self" can access data members. ::
 
 
 Re-target
----------
+=========
 
-The re-target operator (``&``) allows the same target object to be used for
-multiple method calls. The ``&`` character is placed between the individual
-method calls. Re-target is only ever used in the context of a member method call
-using the target operator (``->``). The target object of the last target
-operator is used as the object for the re-targeted member call. For each method
-call, the ``&`` is placed following the method name, parameters and givenBlock
-(if present).
+The :dfn:`re-target` operation allows the same target object to be used for
+multiple method calls. The re-target operator (``&``) is placed between the
+individual method calls. Re-target is only ever used in the context of a member
+method call using the target operator (``->``). The target object of the last
+target operator is used as the object for the re-targeted member call. For each
+method call, the ``&`` is placed following the method name, parameters and
+givenBlock (if present).
 
 The re-target operator can be used to string two or more methods together. The
 return value of the final method will be produced by this type of re-target. ::
@@ -526,7 +531,7 @@ Formatting Re-target
 When stringing several method calls together, formatting over multiple lines can
 help with readability. It is important, however, to keep the ``&`` on the same
 line as the *next* method call. This holds only for cases that have a next
-method and method call expressions which are not ultimately parenthesized.
+method and for method call expressions that are not ultimately parenthesized.
 
 The following example illustrates this formatting principle::
 
@@ -539,11 +544,12 @@ The following example illustrates this formatting principle::
 Escape Method
 =============
 
-Escaping a method allows a method to be searched for by name and returned to the
-caller. The caller can later use that method, executing it by applying
-parentheses as described in :ref:`operators-invoke`. This makes it easy for
-methods to be treated as regular values and to be used as callbacks. It is an
-error if the method that is being escaped is not defined.
+To :dfn:`escape` a method is to allow a method to be searched for by name and
+returned to the caller. The caller can later use that method, executing it by
+applying parentheses as described in the section on :ref:`invocation
+<operators-invocation>`. This makes it easy for methods to be treated as regular
+values and to be used as callbacks. It is an error if the method that is being
+escaped is not defined.
 
 Both member methods and unbound methods can be escaped. There are two escape
 method operators, one for member methods and one for unbound methods. Escaping a
@@ -588,4 +594,4 @@ situations or special contexts and so are beyond the scope of this chapter.
 
    -  **Association Operator** ``=>`` See :ref:`methods`, :ref:`types`
    -  **Keywords** ``return``, ``yield``, etc. See :ref:`methods`
-   -  **Captures/Codeblocks** ``{ }``, ``{^ ^}`` See :ref:`captures`, :ref:`methods`
+   -  **Captures/Code blocks** ``{ }``, ``{^ ^}`` See :ref:`captures`, :ref:`methods`
