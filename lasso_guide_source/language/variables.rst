@@ -13,16 +13,16 @@ There are two types of variables: local variables and thread variables. The type
 of the variable defines its scope and the rules about using it. Each variable is
 given a name, and that name is used to access the variable's value. An object
 which a variable points to can be changed, or reassigned, as described in the
-:ref:`Operators <operators>` chapter.
+:ref:`operators` chapter.
 
 
 Variable Names
 ==============
 
-Lasso variable names can begin with an underscore, or the characters "A-Z" and
-then can be followed by zero or more underscores, letters, numbers or period
-characters. Variable names are case-insensitive, so a variable named "rhino" can
-also be accessed with "RhINo" as well.
+Lasso variable names should begin with a letter or an underscore followed by a
+letter, then zero or more letters, numbers, underscores or period characters.
+Variable names are case-insensitive, so a variable named "rhino" can also be
+accessed with "RhINo" as well.
 
 
 Local Variables
@@ -56,7 +56,7 @@ one variable name is used and when it is not accompanied by an initial value. ::
    local(name)
    // => the value of "name", potentially creating "name"
 
-Local variables can also be accessed using the ``#`` character before the name.
+Local variables can also be accessed using the "#" character before the name.
 This is the preferred method for accessing local variables. ::
 
    #name
@@ -64,7 +64,7 @@ This is the preferred method for accessing local variables. ::
 
 When using this method, the local variable must have already been defined or it
 is considered an error. This error-checking is done at the time the code is
-parsed, meaning that the local definition must *physically* precede the ``#``
+parsed, meaning that the local definition must *physically* precede the "#"
 access point within the source code.
 
 The set of local variables for each capture is determined as the code is
@@ -76,16 +76,15 @@ Parameter Pseudo-locals
 -----------------------
 
 Lasso permits the parameter values given to a method to be accessed by position,
-using the local variable symbol ``#`` followed by an integer value. The integer
+using the local variable symbol "#" followed by an integer value. The integer
 value corresponds to the position of the desired parameter value, beginning with
 "1". For example, in a method given two parameters, the first would be available
 using ``#1`` and the second would be available using ``#2``.
 
-See the chapter on :ref:`methods` for information on methods and method
-parameters.
+See the :ref:`methods` chapter for information on methods and method parameters.
 
 
-.. _thread-variables:
+.. _variables-thread:
 
 Thread Variables
 ================
@@ -93,7 +92,7 @@ Thread Variables
 :dfn:`Thread variables`, or :dfn:`vars`, are variables that are shared and
 accessible outside of any particular capture, yet are restricted to the
 currently-executing thread. Each thread maintains its own set of vars. Vars are
-useful for maintaining program states which go beyond the operation of any one
+useful for maintaining program states that go beyond the operation of any one
 method.
 
 Vars are created in a manner similar to locals, but instead use the ``var``
@@ -116,12 +115,12 @@ object. That value is used as the variable's name. ::
    var(nameExpr = expression)
 
 .. note::
-  Because a literal variable name can resemble a method call with no parameters,
-  if the variable name is intended to be the result of a method call, then that
-  call should be given empty parentheses ``()`` to disambiguate. ::
-
-   // Defines var with the name of what nameCall() returns
-   var(nameCall() = expression)
+   Because a literal variable name can resemble a method call with no parameters,
+   if the variable name is intended to be the result of a method call, then that
+   call should be given empty parentheses ``()`` to disambiguate. ::
+   
+      // Defines var with the name of what nameCall() returns
+      var(nameCall() = expression)
 
 A var can be accessed using two methods, similar to that of local variables.
 First, the var may simply be referenced using the ``var`` construct along with
@@ -133,12 +132,14 @@ variable name is used and when it is not accompanied by an initial value. ::
    var(name)
    // => the value of "name", potentially creating "name"
 
-Vars can also be accessed using the ``$`` character before the name. When using
+Vars can also be accessed using the "$" character before the name. When using
 this method, an error is returned if the var has not been previously defined. ::
 
    $name
    // => the value of "name"
 
+
+.. _variables-type-constraints:
 
 Type Constraints
 ================
@@ -156,7 +157,7 @@ those variables is working with valid inputs.
 
 Type constraints are applied when a local or thread variable is first defined.
 This is done by supplying a :ref:`tag literal <literals-tag>`, which consists of
-two colons and then the name of the type to which the variable will be
+two colons (``::``) and then the name of the type to which the variable will be
 constrained, immediately following the variable name. The following example
 applies type constraints to a local and a var::
 
@@ -169,10 +170,13 @@ usage of the two variables::
 
    #lname = 400
    // Valid: 400 is an integer
+
    #lname = 'hello'
    // FAILURE: #lname can only hold integers
+
    $vname = 940
    // FAILURE: $vname can only hold strings
+
    local(lname = 'hello')
    // FAILURE: #lname can only hold integers
 
@@ -183,7 +187,7 @@ default value be provided. ::
    // FAILURE: #lname requires default value
 
 
-.. _decompositional-assignment:
+.. _variables-decompositional:
 
 Decompositional Assignment
 ==========================
@@ -191,46 +195,45 @@ Decompositional Assignment
 Lasso will "decompose" the right-hand value (RHS or rvalue) of an assignment
 when the left-hand side (LHS) is a local declaration containing just a list of
 variable names. This supports wildcards (the ``_`` character) as well as nested
-name lists. Any type which supports `trait_forEach` can be used like this on the
-RHS.
+name lists. Any type that supports :trait:`trait_forEach` can be used like this
+on the RHS.
 
 The following examples should help clarify::
 
    local(one, two, three, four) = (:1, 2, 3, 4, 5, 6)
+
    #one
    // => 1
-
    #two
    // => 2
-
    #three
    // => 3
-
    #four
    // => 4
 
    local(_, two, _, four) = (:1, 2, 3, 4, 5, 6)
+
    #two
    // => 2
-
    #four
    // => 4
 
    local(_, two, _, four) = 1 to 100 by 3
+
    #two
    // => 4
-
    #four
    // => 10
 
    local(one, _, three, (_, four)) = array('a', 'b', 'c', array('d', 'e'))
+
    #one #three #four
    // => ace
 
    local(wanted, _, w2) = 'ABCDEFGH'
+
    #wanted
    // => A
-
    #w2
    // => C
 
@@ -238,9 +241,11 @@ Note that the local must include more than one element, and none of the elements
 can be assigned values. ::
 
    local(x) = #foo
-   // unchanged, works as expected
+   // Unchanged, works as expected
+
    local(x, _) = #foo
-   // fine. grabs first #foo
+   // Fine, grabs first #foo
+
    local(x = 1, _) = #foo
    // FAILURE: x cannot have value
 

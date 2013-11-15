@@ -197,10 +197,10 @@ to be applied.
 Trait Composition
 =================
 
-Traits can be combined together into new traits using the addition operator.
-This is called "composing" a new trait. The result of this expression will be a
-trait that has all the requirements and provides all the member methods of the
-traits that have been combined.
+Traits can be combined together into new traits using the ``+`` operator. This
+is called "composing" a new trait. The result of this expression will be a trait
+that has all the requirements and provides all the member methods of the traits
+that have been combined.
 
 The same rules that are used for importing traits apply to composed traits, such
 as traits satisfying each others' requirements and resolving conflicting method
