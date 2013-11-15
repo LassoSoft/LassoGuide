@@ -46,8 +46,8 @@ Creating Captures
 
 As previously mentioned, captures are automatically created when a method is
 executed. Captures can also be manually created by using curly braces as an
-expression. This commonly occurs when a capture is used in a givenBlock
-association. ::
+expression. When using the association operator (``=>``) to invoke an object by
+passing it a capture, the capture is known as the object's :dfn:`givenBlock`. ::
 
    #ary->forEach => {
       // ... a capture of the surrounding code ...
@@ -235,9 +235,9 @@ from within the capture no longer exits the surrounding capture. ::
    #cap()
    // => Produces result of self->type
 
-Note that because the capture above is detached, the return operates as normal
-and simply produces its value to the caller and allows the caller to continue
-its execution. It is not a non-local return.
+Note that because the capture above is detached, it returns as normal and simply
+produces its value to the caller and allows the caller to continue its
+execution. It is not a non-local return.
 
 Captures provide two other forms of ``yield`` and ``return``: ``yieldHome`` and
 ``returnHome``. These are only valid when the capture has a home and can be used

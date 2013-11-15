@@ -592,6 +592,9 @@ situations or special contexts and so are beyond the scope of this chapter.
 
 .. seealso::
 
-   -  **Association Operator** ``=>`` See :ref:`methods`, :ref:`types`
-   -  **Keywords** ``return``, ``yield``, etc. See :ref:`methods`
-   -  **Captures/Code blocks** ``{ }``, ``{^ ^}`` See :ref:`captures`, :ref:`methods`
+   -  **Association Operator** ``=>``
+      See :ref:`methods`, :ref:`types`
+   -  **Keywords** ``return``, ``yield``, etc.
+      See :ref:`captures`, :ref:`methods`
+   -  **Captures/Code blocks** ``{ }``, ``{^ ^}``
+      See :ref:`conditional-logic`, :ref:`captures`, :ref:`methods`

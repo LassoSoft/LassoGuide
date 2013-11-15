@@ -431,8 +431,8 @@ block.
 
 Code blocks provide the most flexibility when defining methods. They allow a
 series of expressions to be encapsulated as the implementation of the method.
-One or more return statements may be used to end execution of the method body
-and to optionally return a value to the caller.
+One or more ``return`` statements may be used to end execution of the method
+body and to optionally return a value to the caller.
 
 The methods used as examples above may be written using code blocks as follows::
 
