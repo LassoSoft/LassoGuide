@@ -5,27 +5,27 @@
 Traits
 ******
 
-Traits provide a way to define data type functionality in a modular fashion.
-Each trait includes a set of reusable method implementations along with a set of
-requirements that must be satisfied in order for the included methods to
+Traits provide a way to define type functionality in a modular fashion. Each
+:dfn:`trait` includes a set of reusable method implementations along with a set
+of requirements that must be satisfied in order for the included methods to
 function properly.
 
 
 Trait Logic
 ===========
 
-Traits allow a hierarchy of data types which share common functionality to be
-created without relying on single or multiple inheritance. Traits are similar to
-mixins and abstract classes found in other languages.
+Traits allow a hierarchy of types that share common functionality to be created
+without relying on single or multiple inheritance. Traits are similar to mixins
+and abstract classes found in other languages.
 
 Each trait encapsulates a set of requirements and provides a set of member
-methods. When a trait is applied to a data type, the requirements are checked.
-If they are satisfied, then the provided member methods are added to the type as
-if they had been implemented directly in the type. Traits can only define public
+methods. When a trait is applied to a type, the requirements are checked. If
+they are satisfied, then the provided member methods are added to the type as if
+they had been implemented directly in the type. Traits can only define public
 member methods.
 
-Lasso includes many types which have common member methods. For example, the
-:type:`pair`, :type:`array`, :type:`string`, and other data types implement
+Lasso includes many types that have common member methods. For example, the
+:type:`pair`, :type:`array`, :type:`string`, and other types implement
 ``first``, ``second``, and ``last`` methods which return the named element. ::
 
    array(1, 2, 3, 4)->last
@@ -51,14 +51,13 @@ a trait this requirement would be specified as follows::
    require size()::integer
 
 The requirements take the form of a list of member method signatures. If all of
-the member method signatures are defined by the type which the trait is applied
-to, then the methods which are provided by the trait will work.
+the member method signatures are defined by the type that the trait is applied
+to, then the methods provided by the trait will work.
 
 The methods provided by the trait are specified similar to how methods are
-defined in custom types. (However, instead of using the "public" reserved word,
-the method definition starts with the "provide" reserved word.) The
-implementation for the ``first``, ``second``, and ``last`` methods would appear
-as follows::
+defined in custom types. (However, instead of using the ``public`` keyword, the
+method definition starts with the ``provide`` keyword.) The implementation for
+the ``first``, ``second``, and ``last`` methods would appear as follows::
 
    provide first() => .get(1)
    provide second() => .get(2)
@@ -84,37 +83,40 @@ then we can import this trait to automatically get an implementation of
 ``first``, ``second``, and ``last``. ::
 
    define month => type {
-     trait {
-       import trait_firstlast
-     }
-     data y, m
-     public onCreate(year::integer, month::integer) => {
-       .'y' = #year;
-       .'m' = #month;
-     }
-     public get(x::integer) => {
-       return date(-year=.'y', -month=.'m', -day=#x);
-     }
-     public size()::integer => {
-       local(temp = date(-year=.'y', -month=.'m'+1, -day=1));
-       #temp->subtract(-day=1);
-       return #temp->dayofmonth;
-     }
+      trait {
+         import trait_firstlast
+      }
+      data y, m
+
+      public onCreate(year::integer, month::integer) => {
+         .'y' = #year;
+         .'m' = #month;
+      }
+
+      public get(x::integer) => {
+         return date(-year=.'y', -month=.'m', -day=#x);
+      }
+
+      public size()::integer => {
+         local(temp = date(-year=.'y', -month=.'m'+1, -day=1));
+         #temp->subtract(-day=1);
+         return #temp->dayofmonth;
+      }
    }
 
 
 Defining Traits
 ===============
 
-A trait is defined using the "define" reserved word followed by the trait name,
-the association operator (``=>``), the reserved word "trait", and a code block
+A trait is defined using the ``define`` keyword followed by the trait name, the
+association operator (``=>``), the keyword ``trait``, and a code block
 containing the definition of the trait. ::
 
    define myTrait => trait {
-     // ...
+      // ...
    }
 
-The codeblock contains one or more sections which are each identified by a
+The code block contains one or more sections which are each identified by a
 label. Method implementations that are provided by the trait are specified in a
 provide section. Requirements for the trait are specified in a require section.
 Other traits can be imported in an import section.
@@ -124,8 +126,8 @@ Provide
 -------
 
 The member methods that a trait provides are specified similarly to the public
-section of a data type definition. The section begins with the reserved word
-"provide", which is followed by a comma-separated list of member method
+section of a type definition. The :dfn:`provide` section begins with the keyword
+``provide``, which is followed by a comma-separated list of member method
 definitions. The member list has the same form as custom method definitions.
 Each method is defined using a signature, the association operator (``=>``), and
 an expression or code block that defines the implementation of the method.
@@ -134,66 +136,66 @@ The following trait would provide two member methods for getting and setting a
 data member::
 
    define myTrait => trait {
-     provide getFirstName() => {
-       return .firstName;
-     }
-     provide setFirstName(value::string) => {
-       .firstName = #value;
-     }
+      provide getFirstName() => {
+         return .firstName;
+      }
+      provide setFirstName(value::string) => {
+         .firstName = #value;
+      }
    }
 
 
 Require
 -------
 
-The require section allows specifying a list of method signatures that are
-required for the trait to operate properly. The signatures may be simple method
-names, or they may be complete signatures with parameter specifications. As many
-require sections as are necessary can be specified.
+The :dfn:`require` section allows specifying a list of method signatures that
+are required for the trait to operate properly. The signatures may be simple
+method names, or they may be complete signatures with parameter specifications.
+As many require sections as are necessary can be specified.
 
-The section begins with the reserved word "require" followed by a
-comma-separated list of method signatures. The following trait requires a getter
-and setter for the "firstName" data member::
+The section begins with the keyword ``require`` followed by a comma-separated
+list of method signatures. The following trait requires a getter and setter for
+the "firstName" data member::
 
    define myTrait => trait {
-     require firstName, firstName=
-     provide getFirstName() => {
-       return .firstName;
-     }
-     provide setFirstName(value::string) => {
-       .firstName = #value;
-     }
+      require firstName, firstName=
+      provide getFirstName() => {
+         return .firstName;
+      }
+      provide setFirstName(value::string) => {
+         .firstName = #value;
+      }
    }
 
 
 Import
 ------
 
-The import section allows the characteristics of other traits to be imported
-into this trait definition. Using "import", a hierarchy of traits can be
+The :dfn:`import` section allows the characteristics of other traits to be
+imported into this trait definition, thus allowing a hierarchy of traits to be
 defined. As many import sections as are necessary can be specified.
 
-The section begins with the reserved word "import" followed by a comma-separated
+The section begins with the keyword ``import`` followed by a comma-separated
 list of trait names. The following trait simply imports the characteristics of
 the built-in ``trait_array`` trait::
 
    define myTrait => trait {
-     import trait_array
+      import trait_array
    }
 
 All of the requirements and provided member methods of the imported trait will
 be added to the trait being defined. The requirements of one of the traits may
 be satisfied by the methods provided by another trait.
 
-However, if two traits provide the same member method, then there is a conflict.
+However, if two traits provide the same member method, there will be a conflict.
 The conflict is resolved by eliminating both implementations of that member
-method and adding a requirement for it to the trait. The type which the trait is
+method and adding a requirement for it to the trait. The type that the trait is
 ultimately applied to must implement that member method in order for the trait
 to be applied.
 
 
-Trait Arithmetic
-================
+Trait Composition
+=================
 
 Traits can be combined together into new traits using the addition operator.
 This is called "composing" a new trait. The result of this expression will be a
@@ -209,16 +211,16 @@ would be to define three sub-traits and then use the composition operator
 (``+``) to compose them into a single trait. ::
 
    define trait_first => trait {
-     require get
-     provide first() => .get(1)
+      require get
+      provide first() => .get(1)
    }
    define trait_second => trait {
-     require get
-     provide second() => .get(2)
+      require get
+      provide second() => .get(2)
    }
    define trait_last => trait {
-     require get, size
-     provide last() => .get(.size)
+      require get, size
+      provide last() => .get(.size)
    }
    define trait_firstLast => trait_first + trait_second + trait_last
 
@@ -228,9 +230,9 @@ definitions, while the composition operator (``+``) is preferred for runtime
 changes. ::
 
    define trait_firstlast => trait {
-     import trait_first
-     import trait_second
-     import trait_last
+      import trait_first
+      import trait_second
+      import trait_last
    }
 
 
@@ -243,11 +245,11 @@ be used for this check. This member method can be used on any type instance and
 will return a positive integer if the instance has the provided trait name
 applied to it.
 
-In this code the `~null->isA()` method returns "2" since the ``month`` data type
-does have the ``trait_firstLast`` trait applied to it::
+In this code the `~null->isA()` method returns "2" since the ``month`` type does
+have the ``trait_firstLast`` trait applied to it::
 
    local(mymonth = month(2008, 12));
-   #mymonth->isa(::trait_firstlast)
+   #mymonth->isA(::trait_firstlast)
    // => 2
 
 
@@ -263,11 +265,11 @@ Each type definition can include a single trait section. The trait can import as
 many traits as are needed. ::
 
    define myType => type {
-     trait {
-       import ...
-     }
-     data ...
-     public ...
+      trait {
+         import ...
+      }
+      data ...
+      public ...
    }
 
 When an instance of the type is created, the instance has the specified trait
@@ -279,7 +281,7 @@ in the next section.
 
 
 Trait Manipulation Methods
---------------------------
+==========================
 
 .. member:: null->trait(t::trait)
    :noindex:
@@ -289,12 +291,12 @@ Trait Manipulation Methods
 
 .. member:: null->setTrait(t::trait)
 
-   Sets the trait of the target object to the parameter. The existing trait is
-   replaced.
+   Sets the trait of the target object to the parameter, replacing the existing
+   trait.
 
 .. member:: null->addTrait(t::trait)
 
-   Combines the target objects trait with the parameter.
+   Combines the target object's trait with the parameter.
 
 The `~null->setTrait` method should be used with care since resetting the trait
 of a type instance may result in many of its member methods becoming unavailable

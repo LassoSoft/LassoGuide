@@ -5,13 +5,13 @@
 Threading
 *********
 
-Threading refers to how a language manages the running of multiple tasks at the
-same time. Lasso has integrated support for running multiple threads, allowing
-it to handle many application requests at the same time. Threading in Lasso is
-designed to be easy to use and safe. Lasso does not feature global variables, so
-all data is local to individual threads. Threads can communicate with one
-another by sending object messages back and forth. These objects are copied as
-they are transmitted to ensure that data structures remain consistent.
+In computing, a :dfn:`thread` is a sequence of instructions being managed by an
+operating system. Lasso has integrated support for running multiple threads,
+allowing it to handle many application requests at the same time. Threading in
+Lasso is designed to be easy to use and safe. Lasso does not feature global
+variables, so all data is local to individual threads. Threads can communicate
+with one another by sending object messages back and forth. These objects are
+copied as they are transmitted to ensure that data structures remain consistent.
 
 Lasso supports creating or splitting a new thread given a block of code. It also
 supports creating thread objects which run in their own thread.
@@ -54,21 +54,21 @@ Thread Communication
 --------------------
 
 When a new thread is created by calling `split_thread`, the return value of that
-method call is a pair of `filedesc` objects. Similarly, the parameter given to
-the new thread is a pair of `filedesc` objects. (This can be accessed in the new
-thread by the pseudo-local variable ``#1``.) A `filedesc` object represents a
-file or pipe over which data can be sent or received. These objects provide the
-means for the new thread and the creator thread to communicate. Two `filedesc`
-objects are required for thread communication, one representing the *write* end
-of the pipe and the other representing the *read* end. Objects are written to
-the write `filedesc` and read from the read `filedesc`.
+method call is a pair of filedesc objects. Similarly, the parameter given to the
+new thread is a pair of filedesc objects. (This can be accessed in the new
+thread by the pseudo-local variable ``#1``.) The :type:`filedesc` type
+represents a file or pipe over which data can be sent or received. These objects
+provide the means for the new thread and the creator thread to communicate. Two
+filedesc objects are required for thread communication, one representing the
+*write* end of the pipe and the other representing the *read* end. Objects are
+written to the write filedesc and read from the read filedesc.
 
-Within this context of the given pair of `filedescs`, the write `filedesc` is
-always the first member of the pair while the read `filedesc` is always the
-second member. The creator thread writes objects to the new thread using the
-write `filedesc`, and reads objects from the new thread using the read. The
-newly created thread operates in the same manner, writing and reading objects to
-and from its creator thread.
+Within this context of the given pair of filedescs, the write filedesc is always
+the first member of the pair while the read filedesc is always the second
+member. The creator thread writes objects to the new thread using the write
+filedesc, and reads objects from the new thread using the read. The newly
+created thread operates in the same manner, writing and reading objects to and
+from its creator thread.
 
 
 Sending and Receiving Object Between Threads
@@ -77,27 +77,35 @@ Sending and Receiving Object Between Threads
 The next example creates a new thread and illustrates how objects can be sent
 and received::
 
-   // create the new thread
-   // save the filedesc pair in #creatorPipes
+   // Create the new thread
+   // Save the filedesc pair in #creatorPipes
    local(creatorPipes) = split_thread => {
-      // save the filedescs sent to this new thread
+
+      // Save the filedescs sent to this new thread
       local(writePipe = #1->first,
          readPipe = #1->second)
-      // loop forever, reading messages and sending replies
+
+      // Loop forever, reading messages and sending replies
       while(true) => {
-           // read an object
-           local(o = #readPipe->readObject)
-           // print a message
-           stdoutnl("I read an object: " + #o)
-           // write a reply object
-           #writePipe->writeObject("Reply from the new thread")
-        }
+
+         // Read an object
+         local(o = #readPipe->readObject)
+
+         // Print a message
+         stdoutnl("I read an object: " + #o)
+
+         // Write a reply object
+         #writePipe->writeObject("Reply from the new thread")
+      }
    }
-   // write an object to our new thread
+
+   // Write an object to our new thread
    #creatorPipes->first->writeObject("Sent from the creator!")
-   // read the reply from the new thread
+
+   // Read the reply from the new thread
    stdoutnl(#creatorPipes->second->readObject)
-   // do it again
+
+   // Do it again
    #creatorPipes->first->writeObject("Sent from the creator 2!")
    stdoutnl(#creatorPipes->second->readObject)
 
@@ -116,17 +124,17 @@ exit.
 Thread Objects
 ==============
 
-Thread objects represent a second way to create new threads in Lasso. Thread
-objects are objects that exist in their own thread. This means that any method
-calls to a thread object run serially in the object's thread. Thread objects
-exist as singletons, which means that only one instance of a particular thread
-type can exist. Thread objects permit data to be globally available, yet forces
-access to that data to be synchronized.
+Thread objects represent a second way to create new threads in Lasso. A
+:dfn:`thread object` is an object that exists in its own thread. This means that
+any method calls to a thread object run serially in the object's thread. Thread
+objects exist as singletons, which means that only one instance of a particular
+thread type can exist. Thread objects permit data to be globally available, yet
+forces access to that data to be synchronized.
 
 Thread objects are created and begin running at the point where they are
 defined. Thread types are defined similarly to how normal types are defined,
-except that in such a definition, the word "type" is replaced with the word
-"thread".
+except that in such a definition, the word ``type`` is replaced with the word
+``thread``.
 
 
 Simple Counter Thread
@@ -139,6 +147,7 @@ counter. ::
 
    define counter_thread => thread {
       data private val = 0
+
       public advanceBy(value::integer) => {
          .val += #value
          return .val
@@ -151,6 +160,7 @@ calling it by name; in this case by calling the ``counter_thread`` method::
 
    counter_thread->advanceBy(40)
    // => 40
+
    counter_thread->advanceBy(10)
    // => 50
 
@@ -166,14 +176,15 @@ type as a parent.
 Simple Map Thread
 -----------------
 
-This next example creates a thread type that inherits from type `map`. This
-results in creating a global map of values that can be safely accessed by other
-threads. ::
+This next example creates a thread type that inherits from type :type:`map`.
+This results in creating a global map of values that can be safely accessed by
+other threads. ::
 
    define map_thread => thread {
       parent map
       public onCreate() => ..onCreate
    }
+
    map_thread->insert('one'=1) & insert('two'=2)
    map_thread->get('two')
    // => 2
@@ -194,25 +205,30 @@ must have a zero parameter ``onCreate`` method, or no ``onCreate`` methods at
 all. If a thread object requires further configuration, as would normally be
 done at the point of object creation, it should be done immediately following
 the thread object's definition. For example, the ``counter_thread`` could be
-defined to permit its val data member to have an initial value set, as shown in
-the following code::
+defined to permit its "val" data member to have an initial value set, as shown
+in the following code::
 
    define counter_thread => thread {
       data private val = 0
-      // default zero-parameter onCreate
+
+      // Default zero-parameter onCreate
       public onCreate() => {}
-      // additional onCreate, letting val be initialized
+
+      // Additional onCreate, letting val be initialized
       public onCreate(initValue::integer) => {
          .val = #initValue
       }
+
       public advanceBy(value::integer) => {
          .val += #value
          return .val
       }
    }
-   // initialize the counter
+
+   // Initialize the counter
    counter_thread->onCreate(900)
-   // now it can be used
+
+   // Now it can be used
    counter_thread->advanceBy(20)
    // => 920
 

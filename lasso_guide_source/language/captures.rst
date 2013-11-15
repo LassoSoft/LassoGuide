@@ -47,7 +47,7 @@ Creating Captures
 As previously mentioned, captures are automatically created when a method is
 executed. Captures can also be manually created by using curly braces as an
 expression. This commonly occurs when a capture is used in a givenBlock
-association::
+association. ::
 
    #ary->forEach => {
       // ... a capture of the surrounding code ...
@@ -134,7 +134,7 @@ different scope. The example below illustrates this by creating a capture in the
 ``method1`` method whose code is set to update the local variable "my_local" in
 ``method1``. We then invoke that capture in "method2" which changes the value
 for "my_local" in ``method1``. Returning "my_local" confirms that the value has
-been updated by ``method2``::
+been updated by ``method2``. ::
 
    define method1 => {
       local(my_local)
@@ -168,7 +168,7 @@ leaves the capture. A ``return`` will reset the capture's PC to the top while a
 executed a second time. A capture that has been returned from will begin
 executing from the start of the capture. A capture that has been yielded from
 will begin executing immediately after the expression that caused it to yield in
-the first place. A capture may yield many times::
+the first place. A capture may yield many times. ::
 
    local(cap) = {
       yield 1
@@ -228,7 +228,7 @@ method. This method detaches the capture from its home and returns itself as the
 method's result. (This is what we did in the first ``yield`` example above.)
 
 The following example creates a capture and detaches it from its home. Returning
-from within the capture no longer exits the surrounding capture::
+from within the capture no longer exits the surrounding capture. ::
 
    local(cap) = { return self->type }->detach
 

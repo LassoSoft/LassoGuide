@@ -37,7 +37,7 @@ Every query expression consists of three parts.
 
 Whitespace, including line breaks, is insignificant within the clauses of a
 query expression. Syntactically, a query expression will begin with the word
-``with`` and will end when terminated by an action clause.
+``with`` and will end when terminated by an action.
 
 Query expressions can be treated as objects. This means they can be assigned to
 variables and used repeatedly, and they can be passed as parameters. Unless
@@ -58,11 +58,11 @@ The With Clause
 The with clause always begins with the word ``with`` followed by a variable name
 which is created as a local variable available only within the current query
 expression. Next follows the word ``in`` and then the source data element, which
-is any object whose type supports the `trait_queriable` trait, such as an
+is any object whose type supports the :trait:`trait_queriable` trait, such as an
 :type:`array` or a :type:`list`. Note that when declaring the variable at the
 beginning of the with clause, the variable name is given by itself, without the
-``#`` character, just as if the local were being defined using the standard
-local construct. ::
+"#" character, just as if the local were being defined using the standard local
+construct. ::
 
    with variable_name in source
 
@@ -83,8 +83,8 @@ equivalent::
 Actions
 =======
 
-An :dfn:`action` clause defines the result of a query expression. Actions permit
-a sequence to be transformed into a new sequence, or permit sequence elements to
+An :dfn:`action` defines the result of a query expression. Actions permit a
+sequence to be transformed into a new sequence, or permit sequence elements to
 be used to compute an aggregate, or permit an arbitrary block of code to be
 executed for each resulting element.
 
@@ -112,9 +112,10 @@ query expression. The first query expression is not evaluated until the second
 query expression is evaluated. ::
 
    local(qe =
-     with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
-     select #n * #n
+      with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
+      select #n * #n
    )
+
    with newN in #qe
    select #newN * #newN
    // => 1, 16, 81, 256, 625, 1296, 2401, 4096, 6561
@@ -141,7 +142,7 @@ identically. ::
 
    with n in #ary
    do {
-     #n->upperCase
+      #n->upperCase
    }
 
 It is important to note that when using ``do`` the query is immediately
@@ -185,12 +186,12 @@ of each element and then divide that value by the number of elements. As with
    // => 5
 
 
-Min & Max
+Min / Max
 ---------
 
 The :dfn:`min` and :dfn:`max` clauses produce the smallest or largest value from
-the sequence, respectively. The standard ``<`` and ``>`` operators are used to
-find the result value. ::
+the sequence, respectively. The standard less than (``<``) and greater than
+(``>``) operators are used to find the result value. ::
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    min #n
@@ -204,9 +205,9 @@ find the result value. ::
 Operations
 ==========
 
-In a query expression, an operation is an optional clause that affects how the
-query expression behaves by removing elements from the sequence, ordering the
-elements in a certain manner, or introducing new variables.
+In a query expression, an :dfn:`operation` is an optional clause that affects
+how the query expression behaves by removing elements from the sequence,
+ordering the elements in a certain manner, or introducing new variables.
 
 
 Where
@@ -228,32 +229,32 @@ the rest of the query expression. The local variable "n" holds each number in
 turn as the expression is evaluated. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-     where #n % 2 != 0 // ignore even numbers
+      where #n % 2 != 0 // Ignore even numbers
    select #n
    // => 1, 3, 5, 7, 9
 
 Multiple where operations can be used in a query expression. Using multiple
 where operations is essentially the same as combining the expressions using the
 logical "and" operator (``&&`` or ``and``). The following two snippets are
-equivalent, though the third is not. ::
+equivalent, while the third is not. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-     where #n % 2 != 0 // ignore even numbers
-     where #n % 3 != 0 // ignore numbers evenly divisible by 3
+      where #n % 2 != 0 // Ignore even numbers
+      where #n % 3 != 0 // Ignore numbers evenly divisible by 3
    select #n
    // => 1, 5, 7
 
 ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-     where #n % 2 != 0 && #n % 3 != 0
+      where #n % 2 != 0 && #n % 3 != 0
    select #n
    // => 1, 5, 7
 
 ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-     where #n % 2 != 0 || #n % 3 != 0
+      where #n % 2 != 0 || #n % 3 != 0
    select #n
    // => 1, 2, 3, 4, 5, 7, 8, 9
 
@@ -280,15 +281,15 @@ The following example snippet assigns the square of the current iteration value
 to a new variable using a let operation::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-     let n2 = #n * #n
+      let n2 = #n * #n
    select #n2
    // => 0, 1, 4, 9, 16, 25, 36, 49, 64, 81
 
 The next example snippet uses both ``where`` and ``let`` together::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-     let n2 = #n * #n // square the current value
-     where #n2 % 2 != 0 // discard even values using the new variable
+      let n2 = #n * #n    // Square the current value
+      where #n2 % 2 != 0  // Discard even values using the new variable
    select #n2
    // => 1, 9, 25, 49, 81
 
@@ -298,14 +299,14 @@ Skip
 
 A :dfn:`skip` operation permits a specified number of values from the source
 sequence to be skipped. A skip operation consists of the word ``skip`` followed
-by either a literal integer, or an expression which will evaluate to an integer.
+by either a literal integer, or an expression that will evaluate to an integer.
 
 The following example snippet skips the first 5 elements from the source
 container. Only the 6\ :sup:`th` element and beyond are sent to the remaining
 portion of the query expression. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-     skip 5
+      skip 5
    select #n
    // => 5, 6, 7, 8, 9
 
@@ -316,14 +317,14 @@ Take
 A :dfn:`take` operation permits only a certain number of elements to be iterated
 upon. Elements beyond the specified value are ignored and not sent to the
 remainder of the query expression. A take operation consists of the word
-``take`` followed by a literal integer or an expression which will evaluate to
-an integer.
+``take`` followed by a literal integer or an expression that will evaluate to an
+integer.
 
 The following example snippet takes only the first 5 elements from the data
 source. The remaining elements are ignored. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-     take 5
+      take 5
    select #n
    // => 0, 1, 2, 3, 4
 
@@ -337,8 +338,8 @@ and leaves the rest ignored. This results in only the numbers 3, 4, 5, and 6 for
 the rest of the query expression. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-     skip 3
-     take 4
+      skip 3
+      take 4
    select #n
    // => 3, 4, 5, 6
 
@@ -348,16 +349,16 @@ series, though the first 3 of them are skipped. The second query produces the
 same result, but uses ``skip`` and ``take`` in the reverse order. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-     take 4
-     skip 3
+      take 4
+      skip 3
    select #n
    // => 3
 
 ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-     skip 3
-     take 1
+      skip 3
+      take 1
    select #n
    // => 3
 
@@ -378,14 +379,14 @@ The following example orders the elements in the array using the default
 ascending order, and the next, in descending order::
 
    with n in array(9, 2, 1, 3, 5, 4, 6, 7, 0, 8)
-     order by #n
+      order by #n
    select #n
    // => 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 
 ::
 
    with n in array(9, 2, 1, 3, 5, 4, 6, 7, 0, 8)
-     order by #n descending
+      order by #n descending
    select #n
    // => 9, 8, 7, 6, 5, 4, 3, 2, 1, 0
 
@@ -396,14 +397,14 @@ or elements could be randomly ordered based upon a random number generated for
 this purpose. ::
 
    with n in array('the', 'quick', 'brown', 'fox', 'jumped', 'the', 'shark')
-     order by #n->size
+      order by #n->size
    select #n
    // => the, fox, the, quick, brown, shark, jumped
 
 ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-     order by integer_random(0, 99)
+      order by integer_random(0, 99)
    select #n
    // => 9, 8, 6, 5, 2, 1, 7, 0, 4, 3
 
@@ -411,9 +412,9 @@ In the next example snippet, a series of user objects, represented by their
 first and last names, could be ordered in an alphabetical manner::
 
    with n in array('Krinn'='Jones', 'Ármarinn'='Hammershaimb',
-       'Kjarni'='Jones', 'Halbjörg'='Skywalker',
-       'Björg'='Riley', 'Hjörtur'='Hammershaimb')
-     order by #n->second, #n->first
+         'Kjarni'='Jones', 'Halbjörg'='Skywalker',
+         'Björg'='Riley', 'Hjörtur'='Hammershaimb')
+      order by #n->second, #n->first
    select #n
    // => (Hjörtur = Hammershaimb), (Ármarinn = Hammershaimb), (Kjarni = Jones),\
    //    (Krinn = Jones), (Björg = Riley), (Halbjörg = Skywalker)
@@ -422,7 +423,7 @@ first and last names, could be ordered in an alphabetical manner::
 Group By
 --------
 
-A :dfn:`group by` clause permits similar elements to be grouped together by a
+A :dfn:`group by` operation permits similar elements to be grouped together by a
 particular key expression and represented as a single object called a
 :dfn:`queriable_grouping`. This new object can be further used throughout the
 query expression. A ``queriable_grouping`` object maintains a reference to each
@@ -441,12 +442,12 @@ actions. The following example takes a series of users, represented by a pair
 with their last and first name, and performs a query expression over them. ::
 
    with n in array('Jones'='Krinn', 'Hammershaimb'='Ármarinn',
-       'Jones'='Kjarni', 'Skywalker'='Halbjörg',
-       'Riley'='Björg', 'Hammershaimb'='Hjörtur')
-     let swapped = pair(#n->second, #n->first)
-     group #swapped by #n->first into g
-     let key = #g->key
-     order by #key
+         'Jones'='Kjarni', 'Skywalker'='Halbjörg',
+         'Riley'='Björg', 'Hammershaimb'='Hjörtur')
+      let swapped = pair(#n->second, #n->first)
+      group #swapped by #n->first into g
+      let key = #g->key
+      order by #key
    select pair(#key, #g)
 
    // => // Breaking up the return value for readability
@@ -465,19 +466,19 @@ The example above example breaks down into 6 steps:
    end of the array is reached. ::
 
       with n in array('Jones'='Krinn', 'Hammershaimb'='Ármarinn',
-          'Jones'='Kjarni', 'Skywalker'='Halbjörg', 'Riley'='Björg',
-          'Hammershaimb'='Hjörtur')
+            'Jones'='Kjarni', 'Skywalker'='Halbjörg', 'Riley'='Björg',
+            'Hammershaimb'='Hjörtur')
 
-#. Create a new pair containing the swapped last and first names. Name
-   this "swapped". ::
+#. Create a new pair containing the swapped last and first names. Name this
+   "swapped". ::
 
       let swapped = pair(#n->second, #n->first)
 
-#. Group each of the new user pairs by last name: ``#n->first`` is used as
-   the key as it still contains the original last name. From this point forward,
-   no previously introduced variables are available. Only ``#g`` exists now. It
+#. Group each of the new user pairs by last name: ``#n->first`` is used as the
+   key as it still contains the original last name. From this point forward, no
+   previously introduced variables are available. Only ``#g`` exists now. It
    will contain each ``queriable_grouping`` object generated by the group by
-   clause at this step. ::
+   operation at this step. ::
 
       group #swapped by #n->first into g
 
@@ -492,9 +493,9 @@ The example above example breaks down into 6 steps:
 
       order by #key
 
-#. Finally, create a new pair containing ``#key`` and the grouping object
-   and select that, making the new pair one of the new elements in the result of
-   the query expression. ::
+#. Finally, create a new pair containing ``#key`` and the grouping object and
+   select that, making the new pair one of the new elements in the result of the
+   query expression. ::
 
       select pair(#key, #g)
 
@@ -513,23 +514,23 @@ Making an Object Queriable
 ==========================
 
 An object can be used as the source of a with clause in a query expression if
-its type has implemented and imported the `trait_queriable` trait. For this, a
-type must implement the ``forEach`` member method. This method is always called
-with a givenBlock. Within the ``forEach`` member method, the object being
+its type has implemented and imported the :trait:`trait_queriable` trait. For
+this, a type must implement the ``forEach`` member method. This method is always
+called with a givenBlock. Within the ``forEach`` member method, the object being
 queried should invoke the givenBlock, passing it each available element in turn.
 
 The following example implements a user list type. Objects of this type can be
 used in query expressions. For the sake of this example, it permits iteration
 over a fixed list of users, which it provides to the query one by one. ::
 
-   // define the user_list type
+   // Define the user_list type
    define user_list => type {
       trait { import trait_queriable }
 
       public forEach() => {
          local(gb = givenBlock)
 
-         // provide the 6 users one at a time
+         // Provide the 6 users one at a time
          #gb->invoke('Krinn'='Jones')
          #gb->invoke('Ármarinn'='Hammershaimb')
          #gb->invoke('Kjarni'='Jones')
@@ -540,10 +541,10 @@ over a fixed list of users, which it provides to the query one by one. ::
       }
    }
 
-   // create a user_list object
+   // Create a user_list object
    local(ul = user_list)
 
-   // use it in a query
+   // Use it in a query
    with user in #ul
    select #user->first
 
