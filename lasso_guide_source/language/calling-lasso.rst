@@ -18,7 +18,7 @@ Calling Lasso Web Pages
 
 Lasso is most often used to serve web applications. Lasso code can be embedded
 in HTML pages and executed before they are served to web visitors. A page that
-includes Lasso code within it is referred to as a :term:`Lasso page`.
+includes Lasso code within it is referred to as a :dfn:`Lasso page`.
 
 Lasso code is embedded within a regular HTML file by inserting the code between
 a certain set of delimiters. These delimiters consist of an opening and a
@@ -49,7 +49,7 @@ contained within these delimiters. The result from each contained expression is
 converted to a string and then concatenated together along with any plain text
 existing outside of the delimiters.
 
-Although square brackets ("[ ... ]") are enabled by default, they can be
+Although square brackets (``[ ... ]``) are enabled by default, they can be
 disabled by placing ``[no_square_brackets]``, usually at the top of the page,
 outside the delimiters. Once ``[no_square_brackets]`` is encountered by the
 Lasso parser, square brackets will be turned "off" and any subsequently
@@ -60,7 +60,7 @@ once they are off.
 To illustrate how Lasso code is embedded within a Lasso page, the following code
 may be stored in a file named "test.lasso" contained within the web server root.
 
-.. _call-web-example:
+.. _calling-lasso-web-ex:
 
 ::
 
@@ -95,8 +95,7 @@ style of execution happens directly and does not require a web server or web
 browser. Additionally, since a web server or web request is not in effect during
 such execution, none of the web-serving-specific functionality is available in
 this context. (For more information on the command-line tools that come as part
-of the Lasso platform, see the chapter :ref:`Lasso Command-Line Tools
-<command-line-tools>`.)
+of the Lasso platform, see the :ref:`command-line-tools` chapter.)
 
 
 Using the lasso9 Tool
@@ -126,7 +125,7 @@ When running Lasso code on the command line, delimiters are not required, though
 they can be used. By default, text is assumed to consist of Lasso code only,
 unless the file's text begins with an open angle bracket (``<``), in which case
 it is assumed to start out as plain text. For example, the :ref:`test file shown
-in "Calling Lasso Web Pages" <call-web-example>` could be run on the command
+in "Calling Lasso Web Pages" <calling-lasso-web-ex>` could be run on the command
 line and would generate the expected HTML result, including the embedded
 message.
 
@@ -135,7 +134,7 @@ Associating Files with the lasso9 Tool
 --------------------------------------
 
 Files containing Lasso code can be directly associated with the
-:program:`lasso9` tool by inserting a standard :term:`hashbang` line *at the
+:program:`lasso9` tool by inserting a standard :dfn:`hashbang` line *at the
 very top of the file*, and by making the file executable (usually accomplished
 by running :command:`chmod +x thefile.lasso`).
 
@@ -163,13 +162,13 @@ code on the command line. The example file could just have easily been named
 "test", with no extension, and the results would have been the same.
 
 
-Directly Executing Code Text
-----------------------------
+Executing Code Directly
+-----------------------
 
-The :program:`lasso9` tool includes a "-s" option which indicates that the next
-argument given to the tool is the Lasso code to be executed. This method
-bypasses the need to first place the code in a file. Instead, the source code
-can be given directly to the :program:`lasso9` tool when it is invoked.
+The :program:`lasso9` tool includes a :option:`-s` option which indicates that
+the next argument given to the tool is the Lasso code to be executed. This
+method bypasses the need to first place the code in a file. Instead, the source
+code can be given directly to the :program:`lasso9` tool when it is invoked.
 
 .. code-block:: none
 

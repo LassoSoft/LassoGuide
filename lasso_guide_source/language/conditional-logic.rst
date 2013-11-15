@@ -7,9 +7,9 @@ Conditional Logic
 
 Conditional logic makes a program tick. With it, sections of code can be skipped
 or repeated multiple times. Code can be executed in every repetition of a loop
-or every several repetitions. Complex decision trees can be created which
-execute code only under very specific conditions. Lasso supports a variety of
-operations for performing conditional logic.
+or every several repetitions. Complex decision trees can be created that execute
+code only under very specific conditions. Lasso supports a variety of constructs
+for performing conditional logic.
 
 
 If/Else Conditional
@@ -28,38 +28,38 @@ first form. The "// ..." in the example shows where the body expressions for
 that particular condition would occur. ::
 
    if (expression1)
-     // Code here executed if expression1 evaluates true
-     // ...
+      // Code here executed if expression1 evaluates true
+      // ...
    else (expression2)
-     // Code here executed if expression2 evaluates true
-     // ...
+      // Code here executed if expression2 evaluates true
+      // ...
    else
-     // Code here executed if neither expression1 or expression2 evaluates true
-     // ...
+      // Code here executed if neither expression1 or expression2 evaluates true
+      // ...
    /if
 
-Each expression is evaluated in order and the first value which is "true" will
-have its corresponding conditional body executed. Once completed, no further
-conditions will be tested and execution will resume at the end of the if/else
-conditional.
+Each expression is evaluated in order, and the first value evaluating to "true"
+will have its corresponding conditional body executed. Once completed, no
+further conditions will be tested and execution will resume at the end of the
+if/else conditional.
 
 The second form operates like the first, but permits the if/else to be used with
 the association/givenBlock syntax. ::
 
    if (expression1) => {
-     // Code here executed if expression1 evaluates true
-     // ...
+      // Code here executed if expression1 evaluates true
+      // ...
    else (expression2)
-     // Code here executed if expression2 evaluates true
-     // ...
+      // Code here executed if expression2 evaluates true
+      // ...
    else
-     // Code here executed if neither expression1 or expression2 evaluates true
-     // ...
+      // Code here executed if neither expression1 or expression2 evaluates true
+      // ...
    }
 
-Either form is accepted. An if/else conditional produces no value, but the first
-form does auto-collection as will the second if associated with an auto-collect
-block (``=> {^ ... ^}``). See the :ref:`Captures <captures>` chapter for more
+Either form is accepted. Though an if/else conditional produces no value, the
+first form does auto-collection, as will the second if associated with an
+auto-collect block (``=> {^ ... ^}``). See the :ref:`captures` chapter for more
 information about these different types of code blocks.
 
 
@@ -70,7 +70,7 @@ A :dfn:`match conditional` allows code to be selectively executed based upon the
 logical equivalence of two or more objects. Match conditionals are given an
 initial test value and a series of case values and conditional bodies. The
 initial value is tested against each case value using the initial value's
-"onCompare" method. The first case value that matches the initial test value
+``onCompare`` method. The first case value that matches the initial test value
 will have its conditional body executed. Each case can have more than one value
 to test against. If no case values match, then the default case, if present, has
 its conditional body executed.
@@ -104,28 +104,28 @@ The second form uses the association/givenBlock syntax::
       // ...
    }
 
-Either form is accepted. A match conditional produces no value, but the first
-form does auto-collection as will the second if associated with an auto-collect
-block (``=> {^ ... ^}``). See the :ref:`Captures <captures>` chapter for more
-information about these different types of code blocks.
+Either form is accepted. Though a match conditional produces no value, the first
+form does auto-collection, as will the second if associated with an auto-collect
+block (``=> {^ ... ^}``). See the :ref:`captures` chapter for more information
+about these different types of code blocks.
 
 
-Looping
-=======
+Loop Constructs
+===============
 
-Lasso offers several operations which execute a body of code repeatedly, or
+Lasso offers several constructs that execute a body of code repeatedly, or
 :dfn:`loop`, based upon some criteria. This criteria can be a boolean
 expression, a number counting to a pre-defined point, or the count of the number
 of elements in a composite object. Each method of looping supports skipping to
 the top of the next iteration, aborting the loop process entirely, and
 retrieving the current count of the number of loops that have occurred.
 
-Each of these looping operations support the two forms shown for if/else and
-match. Most examples are shown in both forms. Also, like if/else and match
-conditionals, looping operations do not produce a value, but the first form does
-auto-collection as will the second if associated with an auto-collect block
-(``=> {^ ... ^}``). See the :ref:`Captures <captures>` chapter for more
-information about these different types of code blocks.
+Each of these loop constructs support the two forms shown for if/else and match.
+Most examples are shown in both forms. Also, like if/else and match
+conditionals, loop constructs do not produce a value, but the first form does
+auto-collection, as will the second if associated with an auto-collect block
+(``=> {^ ... ^}``). See the :ref:`captures` chapter for more information about
+these different types of code blocks.
 
 
 While Loop
@@ -187,19 +187,19 @@ the following two forms of the counting loop::
    /loop
 
 In the case of using unnamed parameters, the order of the integers is
-significant. In the case of using keywords, either the ``-from`` or ``-by`` may
-be omitted, and all keywords may be supplied in any order.
+significant. In the case of using keyword parameters, either the ``-from`` or
+``-by`` may be omitted, and all keyword parameters may be supplied in any order.
 
 
 Iterate
 -------
 
 An :dfn:`iterate loop` is applied to objects that contain other objects, such as
-arrays, maps, or any type that supports `trait_forEach`. Iterate will execute
-the body once for each element contained in such an object. Iterate makes the
-individual elements available through the `loop_value` method. When iterating
-objects that store their elements associatively as keys and values, the key is
-also made available through the `loop_key` method.
+arrays, maps, or any type that supports :trait:`trait_forEach`. Iterate will
+execute the body once for each element contained in such an object. Iterate
+makes the individual elements available through the `loop_value` method. When
+iterating objects that store their elements associatively as keys and values,
+the key is also made available through the `loop_key` method.
 
 The following example creates a staticarray and iterates its contents::
 
@@ -207,7 +207,7 @@ The following example creates a staticarray and iterates its contents::
 
    // Form 1
    iterate(#lv)
-     loop_value   // The current value from #lv
+      loop_value   // The current value from #lv
    /iterate
 
    // => 246810
@@ -218,25 +218,25 @@ The following example creates a staticarray and iterates its contents::
    }
 
 
-Loop Operations
----------------
+Loop Methods
+------------
 
 .. method:: loop_abort()
 
-   Can be used within the body of any of the looping operations mentioned in
-   this chapter. When called, the current looping construct will cease and
-   execution will continue at the code following it.
+   Can be used within the body of any of the loop constructs mentioned in this
+   chapter. When called, the current loop construct will cease and execution
+   will continue at the code following it.
 
 .. method:: loop_continue()
 
-   Can be used within the body of a looping operation to cause the current loop
+   Can be used within the body of a loop construct to cause the current loop
    to cease executing. Looping begins again at the top with the testing of the
    loop condition if present, and continues with the next iteration if
    applicable.
 
 .. method:: loop_count()
 
-   All of the loop operations keep track of the current loop number. The
+   All of the loop constructs keep track of the current loop number. The
    `loop_count` method can be called to retrieve this number. For while and
    iterate loops, the loop number always begins with "1" on the first loop and
    advances by "1" on each additional iteration. In a counting loop, the loop

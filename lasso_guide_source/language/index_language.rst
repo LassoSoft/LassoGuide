@@ -37,7 +37,7 @@
 
 .. only:: html
 
-   .. rubric:: Objects & Inheritance
+   .. rubric:: Objects and Inheritance
 
 .. toctree::
    :maxdepth: 2
