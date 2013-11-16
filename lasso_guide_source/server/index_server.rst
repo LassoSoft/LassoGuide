@@ -1,21 +1,30 @@
-.. _lasso-server-guide-index:
-
 .. http://www.lassosoft.com/Server-Guide
+.. _lasso-server-guide-index:
 
 ####################
  Lasso Server Guide
 ####################
 
-.. _lasso-installation:
+.. only:: html
+
+   .. rubric:: Getting Started
 
 .. toctree::
    :maxdepth: 2
 
-   overview
+   platform-overview
    osx-installation
    centos-installation
    ubuntu-installation
    windows-installation
+
+.. only:: html
+
+   .. rubric:: Server Management
+
+.. toctree::
+   :maxdepth: 2
+
    instance-manager
    instance-administration
    datasource-setup
