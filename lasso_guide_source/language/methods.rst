@@ -371,9 +371,9 @@ Syntax for Signatures
 
 What follows are the syntax diagrams for signatures and their related elements.
 
-.. figure:: /_static/syntax-diagram-signature.png
-   :alt: syntax diagram for signatures
+.. figure:: /_static/syntax_diagram_signature.png
    :align: center
+   :alt: syntax diagram for signatures
 
    Signature Syntax Diagrams
 
@@ -464,9 +464,9 @@ Syntax for define
 
 What follows is the syntax diagram for ``define``.
 
-.. figure:: /_static/syntax-diagram-definition.png
-   :alt: syntax diagram for define
+.. figure:: /_static/syntax_diagram_define.png
    :align: center
+   :alt: syntax diagram for define
 
    ``define`` Syntax Diagram
 

@@ -29,7 +29,7 @@ Local Variables
 ===============
 
 Each capture runs with its own set of variables. These are called :dfn:`local
-variables` or :dfn:`locals`, and they are the most commonly-used type of
+variables` or :dfn:`locals`, and they are the most commonly used type of
 variable. Locals begin and end within the capture in which they are defined,
 though the objects they point to may exist beyond that point. Nested captures
 also have access to any locals defined in their parent capture before their own
@@ -91,7 +91,7 @@ Thread Variables
 
 :dfn:`Thread variables`, or :dfn:`vars`, are variables that are shared and
 accessible outside of any particular capture, yet are restricted to the
-currently-executing thread. Each thread maintains its own set of vars. Vars are
+currently executing thread. Each thread maintains its own set of vars. Vars are
 useful for maintaining program states that go beyond the operation of any one
 method.
 

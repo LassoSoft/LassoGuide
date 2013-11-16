@@ -64,6 +64,7 @@ h6 { font-size: 1em;font-weight: bold; }
 p { margin: 0 0 1.3em 0; }
 p img, img { margin: 0; }
 p.lead { font-size: 1.5em; line-height: 1.6em; color: #777;  }
+p.caption { margin-top: .8em; }
 
 abbr[title] { border-bottom: 1px dotted;cursor: pointer; }
 dfn { font-style: italic; }

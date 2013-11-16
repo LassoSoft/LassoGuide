@@ -35,7 +35,7 @@ This state consists of:
 -  A :dfn:`home capture`, which is the capture in which this capture was created
 
 When a capture is invoked, it will in turn execute its associated code which
-will execute within the context of that capture's state. The currently-executing
+will execute within the context of that capture's state. The currently executing
 capture is known as the :dfn:`current capture` and is made available through the
 `currentCapture` method. (See the :ref:`operators` chapter for more info about
 :ref:`invocation <operators-invocation>`.)

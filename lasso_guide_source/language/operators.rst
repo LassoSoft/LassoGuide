@@ -28,7 +28,7 @@ Assignment Operators
 
 Assignment places the result of an expression into a destination. The
 destination must be a local or thread variable, or it must be an
-appropriately-named method call. Lasso supports two types of assignment, one
+appropriately named method call. Lasso supports two types of assignment, one
 that produces the assigned value (``:=``) and one that does not (``=``). ::
 
    // "dest" assigned value of expression
@@ -83,7 +83,7 @@ Addition, Subtraction, Multiplication, Division, Modulus
 --------------------------------------------------------
 
 These operators are all binary, requiring two operands. All of these operators
-can be implemented by a type containing the properly-named method. Only the
+can be implemented by a type containing the properly named method. Only the
 left-hand operand's method is called. None of these operators should modify
 either operand, but must return a new object. The examples that follow show the
 use of each operator::
@@ -566,7 +566,7 @@ When a member method is escaped, the resulting value is bound to that target
 object. This ensures that when the resulting value/method is invoked, that the
 current "self" will be the object from which the method was escaped.
 Additionally, if there is more than one method defined under the given name, all
-of the methods are retrieved. This permits multiple-dispatch to be used with an
+of the methods are retrieved. This permits multiple dispatch to be used with an
 escaped method.
 
 The right-hand method name operand can come from the result of any expression.

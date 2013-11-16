@@ -127,7 +127,7 @@ Do
 A :dfn:`do` clause permits a block of code to be executed for each element that
 makes its way through the query expression. A do clause consists of the word
 ``do`` followed by either a single expression or a capture using either the
-regular curly-brace form (``{ }``) or the auto-collect curly-brace form (``{^
+regular curly brace form (``{ }``) or the auto-collect curly brace form (``{^
 ^}``). If the code associated with a do clause consists of more than one
 expression, the code must be contained in a capture.
 

@@ -73,9 +73,9 @@ client. Each resource is associated with a content type. This association is
 done either explicitly using the resource file's name, or by relying on the
 default content type, which is :mimetype:`text/html`.
 
-.. figure:: /_static/LassoApps_Nodes.png
-   :alt: node hierarchy
+.. figure:: /_static/lassoapp_nodes.png
    :align: center
+   :alt: node hierarchy
 
    LassoApp Node Hierarchy
 
@@ -243,7 +243,7 @@ The files shown above will expose the following URLs.
 Primary & Secondary Processing
 ------------------------------
 
-Explicit content types can be used jointly with a similarly-named regular
+Explicit content types can be used jointly with a similarly named regular
 ".lasso" file. In this situation, first the *primary* file is executed and then
 its value is made available to the *secondary* file as it is executed. The
 primary file is always executed. Only then is the secondary file, which
@@ -376,8 +376,7 @@ as a return from the primary::
 The following sets local variables to the returned values from the primary
 processor, in the order they are specified. The number of local variables being
 set must match the number of elements in the returned staticarray. (See the
-documentation on :ref:`Decompositional Assignment
-<decompositional-assignment>`.) ::
+documentation on :ref:`variables-decompositional`.) ::
 
    local(txt, usersAry) = #1
 
@@ -389,7 +388,7 @@ Special Files in LassoApps
 Customizing Installation
 ------------------------
 
-One or more specially-named files can be placed in the root level of a LassoApp
+One or more specially named files can be placed in the root level of a LassoApp
 directory to be executed the first time a LassoApp is loaded into Lasso Server.
 These files are named beginning with "_install." followed by any additional
 naming characters and ending with a ".lasso" suffix. The simplest install file
@@ -414,7 +413,7 @@ executed.
 
 Initialization files are used to define types, traits and methods used within
 the application. This includes the definition of a thread object that can be
-used to synchronize aspects of the application, hold globally-shared data, or
+used to synchronize aspects of the application, hold globally shared data, or
 perform periodic tasks.
 
 During the normal operation of an application, definitions should be avoided.
@@ -437,7 +436,7 @@ process the files. The following files will be ignored:
 
 -  Files or directories whose names begin with a period (``.``)
 -  Files or directories whose names begin with a hyphen (``-``)
--  Files or directories whose names begin with two underscores  (``__``)
+-  Files or directories whose names begin with two underscores (``__``)
 
 All other file names are permitted without restriction.
 
