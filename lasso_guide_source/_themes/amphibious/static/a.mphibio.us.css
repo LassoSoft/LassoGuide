@@ -1095,51 +1095,89 @@ a.headerlink {padding: 0 5px;}
 /* Multicolumns - hide from small browsers
 ================================================== */
 
-@media only screen and (min-width: 768px) {
-	#maincontent .section {padding: 10px 15px 40px 10px;}
-	footer.footer .section {padding: 10px;}
+@media only screen and (min-width: 768px)
+{
+	#maincontent .section 
+	{
+		padding: 10px 15px 40px 10px;
+	}
+	
+	footer.footer .section 
+	{
+		padding: 10px;
+	}
 	
 	
-	#lasso-language-guide, #lasso-operations-guide, #lasso-databases-guide, #lasso-server-guide, #lasso-api-guide {
+	#lasso-language-guide,
+	#lasso-operations-guide,
+	#lasso-databases-guide,
+	#lasso-server-guide,
+	#lasso-api-guide 
+	{
+/*
 		-webkit-column-count: 2;
 		-webkit-column-gap: 20px; 
 		-webkit-column-rule: 0px dotted black;
+*/
+		-moz-column-count: 2;
+		-moz-column-gap: 20px; 
+		-moz-column-rule: 0px dotted black;
 		column-count: 2;
 		column-gap: 20px; 
 		column-rule: 0px dotted black;
 		padding-bottom: 40px;
 	}
 	
-	#lasso-operations-guide {
-		-webkit-column-count: 4;
+	#lasso-operations-guide 
+	{
+/* 		-webkit-column-count: 4; */
 		-moz-column-count: 4;
-		column-count: 4;}
-	#lasso-databases-guide {
+		column-count: 4;
+	}
+	
+	#lasso-databases-guide 
+	{
 		-webkit-column-count: 5;
 		-moz-column-count: 5;
-		column-count: 5;}
+		column-count: 5;
+	}
+	
 	#lasso-server-guide {}
 	#lasso-api-guide {}
 	
-	h1, #lasso-api-guide h1, #lasso-language-guide p {
-		-webkit-column-span:all;
+	#lasso-language-guide a,
+	#lasso-operations-guide a,
+	#lasso-databases-guide a,
+	#lasso-server-guide a,
+	#lasso-api-guide a
+	{
+		display: block;		
+	}
+	
+	h1, #lasso-api-guide h1,
+	#lasso-language-guide p 
+	{
+/* 		-webkit-column-span:all; */
 		   -moz-column-span:all;
 		    column-span:all;
 	}
-	#lasso-language-guide p.rubric {
-		-webkit-column-span:1;
+	
+	#lasso-language-guide p.rubric 
+	{
+/* 		-webkit-column-span:1; */
 		-moz-column-count: 1;
 	    column-span:1;
 	}
 	
-	#lasso-language-guide  .toctree-wrapper {
-		
+	#lasso-language-guide  .toctree-wrapper 
+	{	
 		-moz-column-count: 2;
 		-moz-column-gap: 20px;  
 		-moz-column-rule: 0px dotted black;
 	}
+	
 	#lasso-operations-guide h1 {
-	-webkit-column-span:all;
+/* 	-webkit-column-span:all; */
 	   -moz-column-span:2;
 	    column-span:all;}
 	
@@ -1147,14 +1185,25 @@ a.headerlink {padding: 0 5px;}
 	#lasso-operations-guide .toctree-wrapper,
 	#lasso-databases-guide .toctree-wrapper ul,
 	#lasso-server-guide .toctree-wrapper,
-	#lasso-api-guide .toctree-wrapper {
-		-webkit-column-break-after: always;
+	#lasso-api-guide .toctree-wrapper 
+	{
+/* 		-webkit-column-break-after: always; */
 		   -moz-column-break-after:always;
 		       column-break-after:always;
 		
 	}
-	#lasso-databases-guide .toctree-wrapper ul:first-child  {padding-top: 1em;}/* shimming height on first elements to offset column reflow */
-	#lasso-api-guide p + p {padding-top: 50px;}/* shimming height on last element */
+	
+	#lasso-databases-guide .toctree-wrapper ul:first-child
+	{
+		padding-top: 1em;
+	}
+	/* shimming height on first elements to offset column reflow */
+	
+	#lasso-api-guide p + p 
+	{
+		padding-top: 50px;
+	}
+	/* shimming height on last element */
   
 }  
 
@@ -1162,7 +1211,9 @@ a.headerlink {padding: 0 5px;}
 ================================================== */
 
 @media only screen and (min-width: 768px) and (max-width: 959px), only screen and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
-	#buttonlinks {position: absolute; top:45px;right:5px;margin-left: 0;}
+	#buttonlinks {position: absolute; top:45px;right:5px;margin-left: 0;width: 260px;}
+	#buttonlinks .source_link:first-child {display: none;}
+	#welcome-to-lassoguide .toctree-wrapper ul {width: auto;}
 }
 
 
@@ -1178,47 +1229,77 @@ a.headerlink {padding: 0 5px;}
 
 /* Note: Design for a width of 480px */
 
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-	.navbar .nav{position:absolute;left:0;right:0;top:26px;margin:0 10px 0 0}
+@media only screen and (min-width: 480px) and (max-width: 767px)
+{
+	.navbar .nav {position:absolute;left:0;right:0;top:26px;margin:0 10px 0 0;}
+
 	.navbar .brand {margin-left: 0;}
 	
 	#welcome-to-lassoguide h1, #welcome-to-lassoguide p, #appendices {padding-left: 0;}
 	
-	#welcome-to-lassoguide .toctree-wrapper {position: relative;top:0;}
+	#welcome-to-lassoguide .toctree-wrapper
+	{
+		position: relative;top:0;
+	}
 	
-
+	#appendices ul.simple,
+	#appendices ul.simple li,
+	#welcome-to-lassoguide .toctree-wrapper ul 
+	{
+		width: 100%;
+	}
 
 }
 
-@media only screen and (max-width: 767px), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {
-
-.container {width: 100%;}
-
-.container .col	{ display: inline; float: left;	margin-left: 1%; margin-right: 1%; }
-.container .col.first								{ margin-left: 0 !important;}
-.container .col.last								{ margin-right:  0 !important;}
-
-.container .col_1, .col.one {	width: 4.25%;}
-.container .col_2, .col.two{	width: 10.5%;}
-.container .col_3, .col.three{	width: 16.75%;}
-.container .col_4, .col.four{	width: 23%;}
-.container .col_5, .col.five{	width: 29.25%;}
-.container .col_6, .col.six{	width: 35.5%;}
-.container .col_7, .col.seven{	width: 41.75%;}
-.container .col_8, .col.eight{	width: 48%;}
-.container .col_9, .col.nine{	width: 54.25%;}
-.container .col_10, .col.ten{	width: 60.5%;}
-.container .col_11, .col.eleven{	width: 66.75%;}
-.container .col_12, .col.twelve	{	width: 73%;}
-.container .col_13, .col.thirteen	{	width: 79.25%;}
-.container .col_14, .col.fourteen {	width: 85.5%;}
-.container .col_15, .col.fifteen	{	width: 91.75%;}
-.container .col_16, .col.sixteen{	width: 98%;}
-
-input.col.one {width: 30px;text-indent: 8px;}
-
-	.navbar .brand {margin-left: 0;}
+@media
+only screen and (max-width: 767px),
+only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min-device-pixel-ratio: 1.5)
+{
+	
+	.container
+	{
+		width: 100%;
 	}
+
+	.container .col
+	{
+		display: inline;
+		float: left;
+		margin-left: 1%;
+		margin-right: 1%;
+	}
+	
+	
+	.container .col.first								{ margin-left: 0 !important;}
+	.container .col.last								{ margin-right:  0 !important;}
+	
+	.container .col_1, .col.one							{ width: 4.25%;}
+	.container .col_2, .col.two							{ width: 10.5%;}
+	.container .col_3, .col.three						{ width: 16.75%;}
+	.container .col_4, .col.four						{ width: 23%;}
+	.container .col_5, .col.five{	width: 29.25%;}
+	.container .col_6, .col.six{	width: 35.5%;}
+	.container .col_7, .col.seven{	width: 41.75%;}
+	.container .col_8, .col.eight{	width: 48%;}
+	.container .col_9, .col.nine{	width: 54.25%;}
+	.container .col_10, .col.ten{	width: 60.5%;}
+	.container .col_11, .col.eleven{	width: 66.75%;}
+	.container .col_12, .col.twelve	{	width: 73%;}
+	.container .col_13, .col.thirteen	{	width: 79.25%;}
+	.container .col_14, .col.fourteen {	width: 85.5%;}
+	.container .col_15, .col.fifteen	{	width: 91.75%;}
+	.container .col_16, .col.sixteen{	width: 98%;}
+	
+	input.col.one {width: 30px;text-indent: 8px;}
+
+	.navbar .brand
+	{
+		margin-left: 0;
+	}
+	
+}
 	
 
 /* iPhone */
@@ -1271,7 +1352,19 @@ h2 { font-size: 1.8em;}
 	
 	#welcome-to-lassoguide h1, #welcome-to-lassoguide p, #appendices {padding-left: 0;}
 	
-	#welcome-to-lassoguide .toctree-wrapper {position: relative;top:0;}
+	
+	#welcome-to-lassoguide .toctree-wrapper
+	{
+		position: relative;top:0;
+	}
+	
+	#appendices ul.simple,
+	#appendices ul.simple li,
+	#welcome-to-lassoguide .toctree-wrapper ul 
+	{
+		width: 100%;
+	}
+
 
 }
 
