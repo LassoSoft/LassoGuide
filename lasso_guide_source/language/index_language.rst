@@ -20,30 +20,34 @@
    clearer understanding of the abstractions required for creating optimized web
    applications using Lasso.
 
-.. only:: html
+.. container:: col two
 
-   .. rubric:: Basic Syntax
+   .. only:: html
 
-.. toctree::
-   :maxdepth: 2
+      .. rubric:: Basic Syntax
 
-   /language/calling-lasso
-   /language/literals
-   /language/variables
-   /language/operators
-   /language/conditional-logic
-   /language/captures
-   /language/query-expressions
+   .. toctree::
+      :maxdepth: 2
 
-.. only:: html
+      /language/calling-lasso
+      /language/literals
+      /language/variables
+      /language/operators
+      /language/conditional-logic
+      /language/captures
+      /language/query-expressions
 
-   .. rubric:: Objects and Inheritance
+.. container:: col two
 
-.. toctree::
-   :maxdepth: 2
+   .. only:: html
 
-   /language/methods
-   /language/types
-   /language/traits
-   /language/error-handling
-   /language/threading
+      .. rubric:: Objects and Inheritance
+
+   .. toctree::
+      :maxdepth: 2
+
+      /language/methods
+      /language/types
+      /language/traits
+      /language/error-handling
+      /language/threading

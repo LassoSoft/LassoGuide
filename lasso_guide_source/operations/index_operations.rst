@@ -5,54 +5,70 @@
  Lasso Operations Guide
 ########################
 
-.. insert summary
+.. insert summary for HTML version
 
-.. rubric:: Data Handling
+.. container:: col four
 
-.. toctree::
-   :maxdepth: 2
+   .. only:: html
 
-   strings
-   bytes
-   math
-   date-duration
-   regular-expressions
-   images-multimedia
-   containers
-   encryption
-   serialization
+      .. rubric:: Data Handling
 
-.. rubric:: Web Application Development
+   .. toctree::
+      :maxdepth: 2
 
-.. toctree::
-   :maxdepth: 2
+      strings
+      bytes
+      math
+      date-duration
+      regular-expressions
+      images-multimedia
+      containers
+      encryption
+      serialization
 
-   requests-responses
-   uploading-files
-   authentication
-   sessions
-   lassoapps
+.. container:: col four
 
-.. rubric:: System Input & Output
+   .. only:: html
 
-.. toctree::
-   :maxdepth: 2
+      .. rubric:: Web Application Development
 
-   files
-   pdf
-   xml
-   os-process
-   sys-process
-   logging
+   .. toctree::
+      :maxdepth: 2
 
-.. rubric:: Networking & Communications
+      requests-responses
+      uploading-files
+      authentication
+      sessions
+      lassoapps
 
-.. toctree::
-   :maxdepth: 2
+.. container:: col four
 
-   curl
-   sending-email
-   retrieving-email
-   dns
-   ldap
-   protocols-pipes
+   .. only:: html
+
+      .. rubric:: System Input and Output
+
+   .. toctree::
+      :maxdepth: 2
+
+      files
+      pdf
+      xml
+      os-process
+      sys-process
+      logging
+
+.. container:: col four
+
+   .. only:: html
+
+      .. rubric:: Networking and Communications
+
+   .. toctree::
+      :maxdepth: 2
+
+      curl
+      sending-email
+      retrieving-email
+      dns
+      ldap
+      protocols-pipes

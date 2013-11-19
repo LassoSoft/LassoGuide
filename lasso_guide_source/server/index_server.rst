@@ -5,27 +5,33 @@
  Lasso Server Guide
 ####################
 
-.. only:: html
+.. insert summary for HTML version
 
-   .. rubric:: Getting Started
+.. container:: col two
 
-.. toctree::
-   :maxdepth: 2
+   .. only:: html
 
-   platform-overview
-   osx-installation
-   centos-installation
-   ubuntu-installation
-   windows-installation
+      .. rubric:: Getting Started
 
-.. only:: html
+   .. toctree::
+      :maxdepth: 2
 
-   .. rubric:: Server Management
+      platform-overview
+      osx-installation
+      centos-installation
+      ubuntu-installation
+      windows-installation
 
-.. toctree::
-   :maxdepth: 2
+.. container:: col two
 
-   instance-manager
-   instance-administration
-   datasource-setup
-   command-line-tools
+   .. only:: html
+
+      .. rubric:: Server Management
+
+   .. toctree::
+      :maxdepth: 2
+
+      instance-manager
+      instance-administration
+      datasource-setup
+      command-line-tools

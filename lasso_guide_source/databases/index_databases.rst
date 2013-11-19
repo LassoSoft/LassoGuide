@@ -5,14 +5,30 @@
  Lasso Databases Guide
 #######################
 
-.. insert summary
+.. insert summary for HTML version
 
-.. toctree::
-   :maxdepth: 2
+.. container:: col two
 
-   database-interaction
-   searching-displaying
-   adding-updating
-   sql-data-sources
-   odbc-data-sources
-   filemaker-data-sources
+   .. only:: html
+   
+      .. rubric:: Database Actions
+   
+   .. toctree::
+      :maxdepth: 2
+   
+      database-interaction
+      searching-displaying
+      adding-updating
+   
+.. container:: col two
+
+   .. only:: html
+   
+      .. rubric:: Data Source Specifics
+   
+   .. toctree::
+      :maxdepth: 2
+   
+      sql-data-sources
+      odbc-data-sources
+      filemaker-data-sources

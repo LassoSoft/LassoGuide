@@ -5,23 +5,31 @@
  Lasso API Guide
 #################
 
-.. insert summary
+.. insert summary for HTML version
 
-.. rubric:: Lasso C API
+.. container:: col two
 
-.. toctree::
-   :maxdepth: 2
+   .. only:: html
+   
+      .. rubric:: Lasso C API
+   
+   .. toctree::
+      :maxdepth: 2
+   
+      lcapi-overview
+      lcapi-methods
+      lcapi-types
+      lcapi-sources
+      lcapi-reference
+   
+.. container:: col two
 
-   lcapi-overview
-   lcapi-methods
-   lcapi-types
-   lcapi-sources
-   lcapi-reference
-
-.. rubric:: Lasso Java API
-
-.. toctree::
-   :maxdepth: 2
-
-   ljapi-overview
-   ljapi-methods
+   .. only:: html
+   
+      .. rubric:: Lasso Java API
+   
+   .. toctree::
+      :maxdepth: 2
+   
+      ljapi-overview
+      ljapi-methods
