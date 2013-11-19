@@ -1,3 +1,5 @@
+.. http://www.lassosoft.com/Lasso-9-Server-Linux-Installation
+.. highlight:: none
 .. _centos-installation:
 
 ***********************
@@ -12,15 +14,13 @@ RPM Installation
 ================
 
 To install Lasso 9 Server from an RPM, download the appropriate `CentOS RPM`_
-for your system and run: 
-
-.. code-block:: none
+for your system and run::
 
    $> yum install httpd java-1.6.0-openjdk ImageMagick mysql
    $> rpm -ivh name-of-file.rpm
 
-When done, open ``http://your-server-domain.name/lasso9/instancemanager`` to
-load the initialization form and complete your Lasso installation.
+When done, open :samp:`http://{your-server-domain.name}/lasso9/instancemanager`
+to load the initialization form and complete your Lasso installation.
 
 From here on, you can read up on using the :ref:`instance-manager` and
 :ref:`instance-administration`.
@@ -31,9 +31,7 @@ CentOS 5 32-bit/64-bit Installation with yum
 
 To install Lasso 9 Server with :command:`yum`, the LassoSoft yum repository must
 be configured on the server. If the file does not exist, create
-:file:`/etc/yum.repos.d/CentOS5-Lasso9.repo` and enter the following:
-
-.. code-block:: none
+:file:`/etc/yum.repos.d/CentOS5-Lasso9.repo` and enter the following::
 
    [lassosoft]
    name=LassoServer
@@ -44,34 +42,27 @@ be configured on the server. If the file does not exist, create
    gpgkey=http://centosyum.lassosoft.com/RPM-GPG-KEY-lassosoft
    http_caching=packages
 
-To install Lasso 9 on a **32-bit CentOS 5 system**, as root run:
-
-.. code-block:: none
+To install Lasso 9 on a **32-bit CentOS 5 system**, as root run::
 
    $> yum install Lasso-Instance-Manager
 
-To install Lasso 9 on a **64-bit CentOS 5 system**, as root run:
-
-.. code-block:: none
+To install Lasso 9 on a **64-bit CentOS 5 system**, as root run::
 
    $> yum install Lasso-Instance-Manager.x86_64
 
-When done, open ``http://your-server-domain.name/lasso9/instancemanager`` to
-load the initialization form and complete your Lasso installation.
+When done, open :samp:`http://{your-server-domain.name}/lasso9/instancemanager`
+to load the initialization form and complete your Lasso installation.
 
-From here, you can read up on :ref:`using the Instance Manager
-<instance-manager>` and :ref:`Instance Administration
-<instance-administration>`.
+From here on, you can read up on using the :ref:`instance-manager` and
+:ref:`instance-administration`.
 
 
-CentOS 6 Installation with yum
-==============================
+CentOS 6 64-bit Installation with yum
+=====================================
 
 To install Lasso 9 Server with :command:`yum`, the LassoSoft yum repository must
 be configured on the server. If the file does not exist, create
-:file:`/etc/yum.repos.d/CentOS6-Lasso9.repo` and enter the following:
-
-.. code-block:: none
+:file:`/etc/yum.repos.d/CentOS6-Lasso9.repo` and enter the following::
 
    [lassosoft]
    name=LassoServer
@@ -82,17 +73,14 @@ be configured on the server. If the file does not exist, create
    gpgkey=http://centos6yum.lassosoft.com/RPM-GPG-KEY-lassosoft
    http_caching=packages
 
-To install Lasso 9 on a **64-bit CentOS 6 system**, as root run:
-
-.. code-block:: none
+To install Lasso 9 on a **64-bit CentOS 6 system**, as root run::
 
    $> yum install Lasso-Instance-Manager
 
-When done, open ``http://your-server-domain.name/lasso9/instancemanager`` to
-load the initialization form and complete your Lasso installation.
+When done, open :samp:`http://{your-server-domain.name}/lasso9/instancemanager`
+to load the initialization form and complete your Lasso installation.
 
-From here, you can read up on :ref:`using the Instance Manager
-<instance-manager>` and :ref:`Instance Administration
-<instance-administration>`.
+From here on, you can read up on using the :ref:`instance-manager` and
+:ref:`instance-administration`.
 
 .. _CentOS RPM: http://www.lassosoft.com/Lasso-9-Server-Download#CentOS

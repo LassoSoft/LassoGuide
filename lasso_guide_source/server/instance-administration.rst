@@ -50,7 +50,7 @@ User Interface
 
 .. figure:: /_static/server_admin_landing.png
    :align: center
-   :alt: Server Admin Landing Page
+   :alt: Lasso Server Admin Landing Page
    :width: 672
 
    Lasso Server Admin -- Landing Page
@@ -64,7 +64,7 @@ contains information regarding the Lasso Server instance.
 
 .. figure:: /_static/server_admin_system_status.png
    :align: center
-   :alt: Server Admin System Status
+   :alt: Lasso Server Admin System Status
 
    Lasso Server Admin -- System Status
 
@@ -86,7 +86,7 @@ arrow tab in the top center of the page.
 
 .. figure:: /_static/server_admin_quick_code.png
    :align: center
-   :alt: Server Admin Lasso Quick Code
+   :alt: Lasso Server Admin Lasso Quick Code
    :width: 672
 
    Lasso Server Admin -- Lasso Quick Code
@@ -108,7 +108,7 @@ following divisions and options:
 
 .. figure:: /_static/server_admin_main_menu.png
    :align: center
-   :alt: Server Admin Main Menu
+   :alt: Lasso Server Admin Main Menu
 
    Lasso Server Admin -- Main Menu
 

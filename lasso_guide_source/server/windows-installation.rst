@@ -86,8 +86,8 @@ Configuring Apache 2.2
 
 .. note::
    Only 32-bit installers of Apache 2.2 are officially available from
-   `<http://httpd.apache.org/>`_, but unofficial 64-bit installers can be found
-   elsewhere online.
+   `<http://httpd.apache.org/>`_, but `unofficial 64-bit installers`_ can be
+   found elsewhere online.
 
 -  Copy the file
    :file:`C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\home\\LassoExecutables\\mod_lasso9.dll`
@@ -105,13 +105,15 @@ Configuring Apache 2.2
 Configuring ImageMagick
 =======================
 
--  Download and install `ImageMagick-6.7.7-7-Q16-windows-x64-dll.exe`_.
--  Restart Lasso 9 Server.
+-  Download and install "ImageMagick-6.7.7-7-Q16-windows-x64-dll.exe" from an
+   `ImageMagick installers archive`_.
+-  :ref:`Restart Lasso <instance-manager-starting-stopping>`.
 
 .. note::
-   Older installers can be downloaded from this `ImageMagick installers
-   archive`_. However, downloads from this site are at your own risk. LassoSoft
-   Inc. cannot guarantee their contents nor their continued availability.
+   Links to third-party distributions and tools are provided for your
+   convenience and were accurate when this manual was written. LassoSoft cannot
+   guarantee the availability or suitability of software downloaded from
+   third-party web sites.
 
 
 Troubleshooting
@@ -207,5 +209,5 @@ Standard 500 error page is returned instead of Lasso's default error page.
 .. _Microsoft Visual C++ 2012 Redistributable: http://www.microsoft.com/en-us/download/details.aspx?id=30679
 .. _Lasso 9 Server for Windows: http://www.lassosoft.com/Lasso-9-Server-Download#Win
 .. _Open IIS Manager: http://technet.microsoft.com/en-us/library/cc770472(v=ws.10).aspx
-.. _ImageMagick-6.7.7-7-Q16-windows-x64-dll.exe: http://ftp.sunet.se/pub/multimedia/graphics/ImageMagick/binaries/ImageMagick-6.7.7-7-Q16-windows-x64-dll.exe
+.. _unofficial 64-bit installers: http://www.anindya.com/apache-http-server-2-4-4-and-2-2-24-x86-32-bit-and-x64-64-bit-windows-installers/
 .. _ImageMagick installers archive: http://ftp.sunet.se/pub/multimedia/graphics/ImageMagick/binaries/
