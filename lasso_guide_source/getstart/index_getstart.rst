@@ -14,7 +14,7 @@
    HTML, and that Lasso has been :ref:`installed and set up
    <lasso-server-guide-index>` correctly on the machine you are working with.
 
-.. container:: col two first
+.. container:: col eight first
 
    .. only:: html
 
@@ -32,7 +32,7 @@
       beginners/using-errors
       beginners/using-web-request
 
-.. container:: col two first
+.. container:: col eight first
 
    .. only:: html
 

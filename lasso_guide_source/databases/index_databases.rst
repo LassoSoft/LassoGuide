@@ -7,7 +7,7 @@
 
 .. insert summary for HTML version
 
-.. container:: col two first
+.. container:: col eight first
 
    .. only:: html
    
@@ -20,7 +20,7 @@
       searching-displaying
       adding-updating
    
-.. container:: col two first
+.. container:: col eight first
 
    .. only:: html
    
