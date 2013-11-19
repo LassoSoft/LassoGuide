@@ -4,12 +4,11 @@
 Embedding Lasso and Creating LassoApps
 **************************************
 
-There are lots of ways to create websites using Lasso. There are
-`a number of frameworks available <http://www.lassosoft.com/Lasso-frameworks>`_
-(including ones not listed on that page). You could even easily create your own
-framework. In this chapter, we will look at how easy it is to just have files
-that embed Lasso in HTML code, and we will look at a simple architecture that
-Lasso provides called LassoApps.
+There are lots of ways to create websites using Lasso. There are a number of
+`frameworks available`_, plus other ones not listed on that page, that can help.
+You could even easily create your own framework. In this chapter, we will look
+at how easy it is to use files that embed Lasso in HTML code, and examine a
+simple packaging architecture that Lasso provides called LassoApps.
 
 
 Embedding Lasso
@@ -17,8 +16,8 @@ Embedding Lasso
 
 Lasso is designed to make it easy to intermix HTML and Lasso code in a single
 file. Just create a normal HTML file with the ".lasso" suffix and you can
-intersperse Lasso code between the following dilimiters: "[ ... ]", "<?lasso ...
-?>", and "<?= ... ?>".
+intersperse Lasso code between the following delimiters: ``[ ... ]``, ``<?lasso
+... ?>``, and ``<?= ... ?>``.
 
 For example, you could place the following code in a file named "test.lasso" in
 the root of your web root::
@@ -35,7 +34,7 @@ the root of your web root::
       <p>
          This page was loaded on [#now->format(`E, MMMM d, YYYY`)] at <?= #now->format(`h:mm:ss a`) ?>.
       </p>
-      It is currently 
+      It is currently
       [if(date->hour >= 5 and date->hour < 12) => {^]
          morning!
       [else(date->hour >= 12 && date->hour < 17)]
@@ -46,11 +45,11 @@ the root of your web root::
    </body>
 
 Now all you need to do is use a web browser to request the URL from the server
-(ex http://www.example.com/test.lasso) and it will use Lasso to send you back an
+(e.g. ``http://www.example.com/test.lasso``) and it will use Lasso to return an
 HTML page with something like the following content:
 
 .. code-block:: none
-   
+
    This page was loaded on Wed, July 31, 2013 at 10:36:42 AM
    It is currently morning!
 
@@ -58,16 +57,16 @@ HTML page with something like the following content:
 Creating LassoApps
 ==================
 
-A LassoApp is a bundle of source files, HTML files, images and other media files
+A LassoApp is a bundle of Lasso source files, HTML files, images and other media
 into a single deployable unit. While developing, this deployable unit is a
-folder with the contents, but you can also choose to compile the bundle and have
-a binary file you distribute.
+folder with the above contents, but you can also choose to compile the bundle
+and have a binary file to distribute.
 
-To create a LassoApp, create a directory in the LassoApps directory of your
-instance's home folder. By default, URLs for the LassoApp will start with
-"/lasso9/AppName/". The discussion that follows is going to assume an app named
-"AddressBook" with URLs that will then look like
-"http://example.com/lasso9/AddressBook".
+To create a LassoApp, create a directory in the "LassoApps" directory of your
+instance's home directory. By default, URLs for the LassoApp will start with
+"/lasso9/AppName/". The discussion that follows will assume an app named
+"AddressBook" with URLs that look like
+``http://www.example.com/lasso9/AddressBook``.
 
 
 The _install Files
@@ -86,8 +85,8 @@ Another special file is the "_init" file. While the "_install" files will only
 ever execute once at installation, a file such as "_init.lasso" will be executed
 every time the instance starts. Initialization files are used to define all of
 the types, traits and methods used within the application, along with any
-``atBegin`` blocks. (Defining methods, types etc is best done at startup on a
-production system as re-defining a method can have an impact on system
+``atBegin`` blocks. (Defining methods, types, etc. is best done at startup on a
+production system, since re-defining a method can have an impact on system
 resources.)
 
 
@@ -110,9 +109,10 @@ AddressBook directory. It processes that file and then it checks for any
 secondary files to process. These secondary files are based on the content
 extension, so in the case of the above URLs, it will execute a file named
 "people[html].lasso". The primary file can return a value that can be used by
-the secondary file. This allows you to easily separate business logic from view
-code. (Note, if you use the URL ending in "people.lasso", Lasso won't look for a
-secondary file to run based on content, only that code file will be run.)
+the secondary file. This allows you to easily separate code for logic from code
+for display. (Note that if you use the URL ending in "people.lasso", Lasso won't
+look for a secondary file to run based on content; only that code file will be
+run.)
 
 For example, your "people.lasso" file might contain the code to create an array
 of people objects and then return that array at the end::
@@ -153,11 +153,11 @@ Your "people[html].lasso" file might look something like this::
    </body>
    </html>
 
-This seperation of logic and presentation allows for some pretty powerful
+This separation of logic and presentation allows for some rather powerful
 features. For example, let's say I wanted to return a JSON representation of the
 array of people when they accessed the URL
-"http://example.com/lasso9/AddressBook/people.json". I already have the logic
-that finds the people and creates the array, all I need to do is add a file
+``http://example.com/lasso9/AddressBook/people.json``. I already have the logic
+that finds the people and creates the array, so all I need to do is add a file
 named "people[xhr].lasso" to create and display the array of maps::
 
    <?lasso
@@ -166,11 +166,13 @@ named "people[xhr].lasso" to create and display the array of maps::
          with person in #people
          select map(
             "firstName"=#person->firstName,
-            "middletName"=#person->middleName,
+            "middleName"=#person->middleName,
             "lastName"=#person->lastName
          )
       )
    ?>
 
-For more information on creating and compiling LassoApps, be sure to read
-:ref:`the LassoApps chapter <lassoapps>` in the Operations Guide.
+For more information on creating and compiling LassoApps, be sure to read the
+:ref:`lassoapps` chapter in the Operations Guide.
+
+.. _frameworks available: http://www.lassosoft.com/Lasso-frameworks

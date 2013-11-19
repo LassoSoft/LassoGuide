@@ -17,12 +17,12 @@
 .. container:: col two
 
    .. only:: html
-   
+
       .. rubric:: Beginner's Guide to Lasso
-   
+
    .. toctree::
       :maxdepth: 2
-   
+
       beginners/whatis
       beginners/using-logic
       beginners/using-variables
@@ -31,17 +31,17 @@
       beginners/define-your-types
       beginners/using-errors
       beginners/using-web-request
-   
+
 .. container:: col two
 
    .. only:: html
-   
+
       .. rubric:: Overview Guide for Programmers
-   
+
    .. toctree::
       :maxdepth: 2
-   
+
       overview/basics
       overview/features
-      overview/embedded
+      overview/embedding
       overview/conclusion

@@ -5,10 +5,10 @@ Lasso Programming Features
 **************************
 
 The Lasso programming language has a number of great features that make coding
-in it enjoyable. This tutorial will scatch the surface of some of the best
+in it enjoyable. This tutorial will scratch the surface of some of the best
 features while also giving you an introduction to defining methods, types, and
-traits. (For more detailed information, read the appropriate section in
-:ref:`the Lasso Langauge Guide. <lasso-language-guide-index>`)
+traits. (For more detailed information, read the appropriate section in the
+:ref:`lasso-language-guide-index`.)
 
 
 Type Constraints
@@ -23,12 +23,12 @@ variable that can only store integer values::
    #myInt = '44'
    // => Throws an error since we are trying to assign a string.
 
-This syntax also works for constraining thread variables.
+This syntax also works for type-constraining thread variables.
 
 
 Methods
 =======
-   
+
 Defining your own methods in Lasso is extremely easy. The following example
 returns the time of day ("morning", "afternoon", or "evening") given a specified
 hour::
@@ -36,7 +36,7 @@ hour::
    define time_of_day(hour::integer) => {
       // Check to make sure the hour value is valid
       fail_if(#hour < 0 or #hour > 23,
-         error_code_invalidParameter, 
+         error_code_invalidParameter,
          error_msg_invalidParameter + ': hour must be between 0 and 23'
       )
 
@@ -49,28 +49,28 @@ hour::
       }
    }
 
-The first line contains the ``define`` keyword followed by the name for the
-method followed by the parameter list in parenthesis followed by the associate
-operator ("=>") and an open brace. All the code between that open brace and its
-matching closing brace is the capture associated with the method and is executed
-when the method is called.
+The first line contains the ``define`` keyword, followed by the name for the
+method and its the parameter list in parentheses (the method signature),
+followed by the associate operator (``=>``) and an open brace. All the code
+between that open brace and its matching closing brace is the capture associated
+with the method, which is executed when the method is called.
 
 The method starts by making sure that the hour passed to it is valid. If it is,
 then the code that determines the time of day will run and return the proper
 value.
 
-Notice the type constraint in the method definition's signature that constrains
-"hour" to be an ``integer`` object. This enables a really handy feature in Lasso
-called "multiple dispatch". Let's say we want a similar function that takes in a
-``date`` object. No need for a different method name, instead we can define that
+Notice that the type constraint in the method definition's signature constrains
+``hour`` to be an ``integer`` object. This enables a handy feature in Lasso
+called "multiple dispatch". Let's say we want a similar function that accepts a
+``date`` object. No need for a different method name; instead we can define that
 method like this::
 
    define time_of_day(datetime::date=date) => time_of_day(#datetime->hour)
 
-This defines a second method which also has the name "time_of_day", but it takes
-in a ``date`` object and returns the value of calling the ``time_of_day`` method
-that takes an integer, passing it the hour of the date object. This method
-definition doesn't have a capture associated with it. If you are going to just
+This defines a second method which also has the name "time_of_day", but accepts
+a date object and returns the value of calling the ``time_of_day`` method that
+takes an integer, passing it the hour of the date object. This method definition
+doesn't have a capture associated with it. If your method is going to just
 return the value of an expression, you can put that expression to the right of
 the associate operator. It's equivalent to this code::
 
@@ -80,15 +80,15 @@ the associate operator. It's equivalent to this code::
 
 Besides multiple dispatch, methods can also have optional parameters and named
 parameters. In the ``time_of_day`` example method that takes a date object, the
-"datetime" parameter is actually optional - the current date and time will be
-used if no value is passed. See :ref:`the chapter on Methods <methods>` for more
-information on their definition and use.
+``datetime`` parameter is actually optional: the current date and time will be
+used if no value is passed. See the :ref:`methods` chapter for more information
+on parameter definition and use.
 
 
 Types
 =====
 
-Lasso is an object-oriented language and comes with a bunch of core types
+Lasso is an object-oriented language that comes with a number of core types
 already defined, but you can also create your own types. Below is a simple type
 definition to demonstrate how::
 
@@ -108,31 +108,32 @@ definition to demonstrate how::
    }
 
 The type definition starts off with the ``define`` keyword followed by the type
-name, then the associate operator, next the ``type`` keyword and then the braces
-for the capture containing the definition code. The definition starts with two
+name, the associate operator, the ``type`` keyword, and finally the braces for
+the capture containing the type definition code. The definition starts with two
 data sections that define three data members for the type. Two member methods
 are then defined using the access level keyword ``public`` instead of the
-``define`` keyword. The "onCreate" methods are a special for types — they define
-type creator methods that are used to create instances of your type. The
-following code would use the ``person->onCreate`` method to create an object of
-type ``person`` and then output their first and last name::
+``define`` keyword. The ``onCreate`` methods are special for types: they define
+type creator methods that are automatically called when you create instances of
+your type. The following code would use the ``person->onCreate`` method to
+create an object of type "person" and then output their first and last name::
 
    local(cool_dude) = person('Sean', 'Stephens')  // "middle" is defined as an optional parameter
    #cool_dude->nameFirstLast
+
    // => Sean Stephens
 
-Types in Lasso also have single inheritance and can implement and import traits.
-For more information, read :ref:`the Types chapter <types>` of the Language
-Guide.
+Types in Lasso also have single inheritance and can implement and import traits,
+described next. For more information on types, read the :ref:`types` chapter of
+the Language Guide.
 
 
 Traits
 ======
 
 Traits are a great way to package up and make available reusable code for types.
-If there is functionality that needs to be shared between different types,
-package it up in a trait instead of creating a different implementation for each
-type or forcing a weird inheritance scheme.
+If there is functionality that needs to be shared between different types, it
+can be packaged up as a trait instead of creating a different implementation for
+each type or forcing a complex inheritance scheme.
 
 Defining traits is similar to defining types. The following example is a
 slightly modified version of the ``trait_positionallyKeyed`` definition::
@@ -141,7 +142,7 @@ slightly modified version of the ``trait_positionallyKeyed`` definition::
       import trait_doubleEnded
 
       require size()::integer, get(key::integer)
-      
+
       provide
          first()  => (.size > 0? .get(1) | null),
          second() => (.size > 1? .get(2) | null),
@@ -149,41 +150,42 @@ slightly modified version of the ``trait_positionallyKeyed`` definition::
    }
 
 The definition starts with the ``define`` keyword followed by the name of the
-trait followed by the associate operator and then the ``trait`` keyword and an
-open brace. There are then three sections that start with their own keyword:
+trait, the associate operator, the ``trait`` keyword, and then a set of braces
+enclosing the trait definition. There are then three sections which start with
+their own keyword:
 
 import
    This section can contain a comma-separated list of traits that the current
-   trait implements. In this case, because our trait implements a "first" and
-   "last" method, it can import ``trait_doubleEnded`` which allows for type that
-   implement this trait to also get the methods that ``trait_doubleEnded``
-   prvoides. (Alternatively, if trait A imports trait B but doesn't implement
+   trait implements. In this case, because our trait implements a ``first`` and
+   ``last`` method, it can import ``trait_doubleEnded`` which allows for types
+   that use this trait to also get the methods that ``trait_doubleEnded``
+   provides. (Alternatively, if trait A imports trait B but doesn't implement
    trait B's required traits, then any type that imports trait A must also meet
-   the requirements for Trait B by implementing the missing methods.)
+   the requirements for trait B by implementing the missing methods.)
 
 require
    This section can contain a comma-separated list of method signatures that
-   must be implemented by the type wanting to import this trait. In this case it
-   requires a "size" method that returns an integer and a "get" method that
+   must be implemented by any type wanting to import this trait. In this case it
+   requires a ``size`` method that returns an integer and a ``get`` method that
    takes a single integer parameter.
 
 provide
    This section can contain a comma-separated list of method definitions. This
-   is where the reusable code is defined that types that import this trait will
-   be able to access.
+   is where the reusable code is defined that types importing this trait will be
+   able to access.
 
-The upshot of this trait definition is that types that define a "size" method
-and a "get" method can import this trait and have the following methods
-available as member methods: "first", "second", "last". For more information on
-defining and using traits, read :ref:`the Traits chapter <traits>` in the Lasso
-Language Guide.
+The result of this trait definition is that types defining a ``size`` method and
+a ``get`` method can import this trait and have the following methods available
+as member methods: ``first``, ``second``, ``last``. For more information on
+defining and using traits, read the :ref:`traits` chapter of the Lasso Language
+Guide.
 
 
 Query Expressions
 =================
 
 Query expressions allow programmers to create highly readable code that can do
-some complex manipulation of data sets. Here is a quick example::
+complex manipulation of data sets. Here is a quick example::
 
    local(data_set) = (:42, 11, 72, 13, 14, 88, 92, 35)
 
@@ -195,27 +197,35 @@ some complex manipulation of data sets. Here is a quick example::
 
    // => 174
 
-Every query expression starts "with *newLocalName* in *trait_queriable*" — where
-"newLocalName" becomes the name of a local variable only accessible in the query
-expression, and "trait_queriable" is an object whose type implements and imports
-``trait_queriable`` like the ``staticarray`` in the example. After this initial
-with clause, a query expression can have 0 or more operator clauses that each
-start with their own keyword. (The example above uses three: "where", "skip",
-and "take". Order does matter.) Every query expression ends with one action
-clause that specifies what should be done for each iteration. (In this case,
-we're using the "sum" action to add each value in the iteration together.)
+Every query expression starts as :samp:`with {newLocalName} in
+{trait_queriable}`, where ``newLocalName`` becomes the name of a local variable
+only accessible in the query expression, and ``trait_queriable`` is an object
+whose type implements and imports ``trait_queriable``, such as the
+``staticarray`` in the example.
+
+After this initial ``with`` clause, a query expression can have 0 or more
+operation clauses that each start with their own keyword. The example above uses
+three: ``where`` which filters the input using an expression, ``skip`` which
+skips a set number of elements, and ``take`` which returns a set number of
+elements. Order does matter.
+
+Every query expression ends with one action clause that specifies what should be
+done for each iteration. In this case, we're using the ``sum`` action to add
+each value in the iteration together. Other actions are ``min``, ``max``,
+``average``, and ``select``, which returns a new set of values rather than a
+single value; and ``do``, which runs a block of code for each value.
 
 The example above iterates over each element in the staticarray and first tests
 to see if it is an even number. It then skips the first even number it finds and
-only executes the action on the next three. The end result is that it ends up
-summing 72, 14, and 88 together.
+only executes the ``sum`` action on the next three. The end result is that it
+adds 72, 14, and 88 together.
 
 The best part about query expressions is that most of the actions are lazily
 executed. This means you can store a query expression in a variable, and it will
 wait to be executed until the value for the variable is expected. For a better
-description, read :ref:`the chapter on Query Expressions <query-expressions>` in
-the Lasso Language Guide.
+description, read the :ref:`query-expressions` chapter of the Lasso Language
+Guide.
 
 .. only:: html
 
-   :ref:`Next Tutorial: Embedding Lasso and Creating LassoApps <overview-embedding-lassoapps>`
+   Next Topic: :ref:`Embedding Lasso and Creating LassoApps <overview-embedding-lassoapps>`

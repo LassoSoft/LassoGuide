@@ -13,9 +13,9 @@ Introduction and Installation
 .. toctree::
 
    /index
-   /server/overview
+   /server/platform-overview
 
-   
+
 ++++++++++++
 Installation
 ++++++++++++
@@ -47,7 +47,7 @@ A Taste of Lasso
 
    /getstart/overview/basics
    /getstart/overview/features
-   /getstart/overview/embedded
+   /getstart/overview/embedding
    /getstart/overview/conclusion
 
 
