@@ -1,152 +1,211 @@
+.. http://www.lassosoft.com/Lasso-Server-9-Windows-Installation-Guide
 .. _windows-installation:
 
 ********************
 Windows Installation
 ********************
 
+
 Supported Platforms
 ===================
 
-Lasso Server 9 has been tested on 64 bit Windows Server 2012, Windows Server
-2008 R2, Windows 8 and Windows 7. Supported web servers are IIS 7, IIS 8 and
+Lasso 9 Server has been tested on 64-bit Windows Server 2012, Windows Server
+2008 R2, Windows 8 and Windows 7. Supported web servers are IIS 8, IIS 7, and
 Apache 2.2.
 
 .. note::
-   Windows Vista is not an officially-supported operating system.
+   Windows Vista is not an officially supported operating system.
+
 
 Before Installing
 =================
 
 Lasso Server 9.2 requires the following Microsoft updates:
 
--  `Microsoft .NET Framework 3.5
-   <http://www.microsoft.com/en-us/download/details.aspx?id=25150>`_
--  `Microsoft .NET Framework 4
-   <http://www.microsoft.com/en-us/download/details.aspx?id=17718>`_
--  `Microsoft Visual C++ 2012 Redistributable Package (x64)
-   <http://www.microsoft.com/en-us/download/details.aspx?id=30679>`_ (bundled
-   with installer)
+-  `Microsoft .NET Framework 3.5`_ (for servers running Windows Server, use
+   Server Manager to add the Application Server role, which includes .NET
+   Framework 3.5.1)
+-  `Microsoft .NET Framework 4`_
+-  `Microsoft Visual C++ 2012 Redistributable`_ (bundled with installer)
 -  Servers running IIS 7 need ISAPI enabled:
 
    -  For Windows Server, use the Roles Wizard to add "ISAPI Extensions" and
-      "ISAPI Filters" under Web Server > Application Development.
-   -  For other Windows versions, open Control Panel > Programs and Features
-      and click "Turn Windows features on or off", then under "Internet
-      Information Services > World Wide Web Services > Application Development
-      Features", enable "ISAPI Extensions" and "ISAPI Filters".
+      "ISAPI Filters" under :menuselection:`Web Server --> Application
+      Development`.
+   -  For other Windows versions, open :menuselection:`Control Panel -->
+      Programs and Features` and click :guilabel:`Turn Windows features on or
+      off`, then under :menuselection:`Internet Information Services --> World
+      Wide Web Services --> Application Development Features`, enable
+      "ISAPI Extensions" and "ISAPI Filters".
+
 
 Installation
 ============
 
-Download the correct Lasso 9 Server installer for your OS and web server
-`from the LassoSoft website
-<http://www.lassosoft.com/Lasso-9-Server-Download>`_
-and run the installer package.
+Download and expand the correct `Lasso 9 Server for Windows`_ installer for your
+OS and web server from the LassoSoft website and run the installer package.
 
-Configuring IIS 7/8
-===================
 
-To configure IIS 7 or 8 manually :
+Configuring IIS 7 or 8
+======================
 
--  Open the IIS Manager.
--  Select your computer name from the nodes on the left.
--  Select a web site from the nodes on the left.
--  In the main window, scroll down to and select "Handler Mappings".
--  Select "Add Script Map".
+To configure IIS 7 or 8 manually:
 
-   -  In the "Add Script Map" dialog box, enter these values:
-   -  Request Path: \\*.lasso
-   -  Executable: C:\\Windows\\system32\\isapi_lasso9.dll
-   -  Name: Lasso9Handler
+-  `Open IIS Manager`_ and expand your computer name from the nodes on the left.
+-  Select a web site from the nodes on the left and double-click on
+   :guilabel:`Handler Mappings`.
+-  Click :guilabel:`Add Script Map...` to add a new script map:
 
-To configure access to the InstanceManger and Administration:
+   -  Request Path: ``*.lasso``
+   -  Executable: :file:`C:\\Windows\\system32\\isapi_lasso9.dll`
+   -  Name: ``Lasso9Handler``
 
--  Open the IIS Manager
--  Select your computer name from the nodes on the left.
--  Select a web site from nodes on the left. (Right-click)
--  Select "Add Application..."
+To configure access to Lasso Instance Manager and Lasso Server Admin:
 
-   -  Alias: lasso9
-   -  Application Pool: Select appropriate pool (Generally DefaultAppPool is
+-  `Open IIS Manager`_ and expand your computer name from the nodes on the left.
+-  Select a web site from the nodes on the left, then right-click.
+-  Select :guilabel:`Add Application...` to add a new application:
+
+   -  Alias: ``lasso9``
+   -  Application Pool: select an appropriate pool (generally DefaultAppPool is
       acceptable)
-   -  Physical Path: C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\www\\
+   -  Physical Path:
+      :file:`C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\www\\\ `
 
--  Select newly created application > Handler Mapping > Add Script Map
+-  Select the newly created application from the nodes on the left and
+   double-click on :guilabel:`Handler Mappings`.
+-  Click :guilabel:`Add Script Map...` to add a new script map:
 
-   -  Request Path: *
-   -  Executable: C:\\Windows\\System32\\isapi_lasso9.dll
-   -  Name: LassoAdmin
+   -  Request Path: ``*``
+   -  Executable: :file:`C:\\Windows\\System32\\isapi_lasso9.dll`
+   -  Name: ``LassoAdmin``
 
 
 Configuring Apache 2.2
 ======================
 
+.. note::
+   Only 32-bit installers of Apache 2.2 are officially available from
+   `<http://httpd.apache.org/>`_, but unofficial 64-bit installers can be found
+   elsewhere online.
+
 -  Copy the file
-   C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\home\\LassoExecutables\\mod_lasso9.dll
-   into the Apache modules\\ folder.
+   :file:`C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\home\\LassoExecutables\\mod_lasso9.dll`
+   into the Apache :file:`modules\\\ ` folder.
 -  Copy the file
-   C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\home\\LassoExecutables\\mod_lasso9.conf
-   into the Apache conf\\ folder.
--  Edit the Apache httpd.conf file. Add the following line:
+   :file:`C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\home\\LassoExecutables\\mod_lasso9.conf`
+   into the Apache :file:`conf\\\ ` folder.
+-  Edit the Apache :file:`httpd.conf` file and add the following line:
    ``Include conf/mod_lasso9.conf``
 -  Restart Apache.
 -  In a browser, open the configuration page at
-   http://localhost/lasso9/instancemanager.
+   ``http://localhost/lasso9/instancemanager``.
 
 
 Configuring ImageMagick
 =======================
 
--  Navigate to the `ImageMagick downloads page
-   <http://www.imagemagick.org/script/binary-releases.php?ImageMagick=8deuqrqm7sphej4ctpomkmbkg4#windows>`_.
--  Download and install ImageMagick-6.7.7-7-Q16-windows-x64-dll.exe.
-- Restart Lasso 9 Server
+-  Download and install `ImageMagick-6.7.7-7-Q16-windows-x64-dll.exe`_.
+-  Restart Lasso 9 Server.
 
 .. note::
-   Older version of ImageMagick can be `downloaded here
-   <http://image_magick.veidrodis.com:8003/image_magick/binaries/>`_. However,
-   downloads from this site are at your own risk. LassoSoft Inc can not
-   guarantee their contents nor their continued availability.
+   Older installers can be downloaded from this `ImageMagick installers
+   archive`_. However, downloads from this site are at your own risk. LassoSoft
+   Inc. cannot guarantee their contents nor their continued availability.
 
 
 Troubleshooting
 ===============
 
 Lasso Connector for IIS is not loading a page.
-   The Application Pool for the site may be set to run 32-bit applications. Edit
-   the Application Pool for the site:
+   The Application Pool for the site may be set to run 32-bit applications. To
+   disable:
 
-   -  Select "Application Pool"
-   -  Click "Advanced Settings"
+   -  Select the site's "Application Pool"
+   -  Click :guilabel:`Advanced Settings`
    -  Set "Enable 32-bit Applications" to "False"
+
+   IIS may be missing required features. To check:
+
+   Windows Server
+      -  Open "Server Manager"
+      -  Select "Roles" node
+      -  Scroll to "Web Server"
+      -  Click :guilabel:`Add Role Services`
+      -  Expand :menuselection:`Web Server --> Common HTTP Features`
+      -  Check "Default Document" and "Static Content"
+      -  Continue through installation wizard
+
+   Windows 7 or 8
+      -  Open "Control Panel"
+      -  Open "Programs and Features"
+      -  Click :guilabel:`Turn Windows features on or off"`
+      -  Expand :menuselection:`Internet Information Services --> World Wide Web
+         Services --> Common HTTP Features`
+      -  Check "Default Document" and "Static Content"
+      -  Click :guilabel:`OK`
+      -  Continue through installation wizard
+
+ISAPI Filters option for IIS 7 is missing.
+   If you cannot find the ISAPI Filters option, it is most likely not installed.
+   To install ISAPI Filters on IIS 7 or 8:
+
+   Windows Server
+      -  Open "Server Manager"
+      -  Select "Roles" node
+      -  Scroll to "Web Server"
+      -  Click :guilabel:`Add Role Services`
+      -  Expand :menuselection:`Web Server --> Application Development`
+      -  Check "ISAPI Extensions" and "ISAPI Filters"
+      -  Continue through installation wizard
+
+   Windows 7 or 8
+      -  Open "Control Panel"
+      -  Open "Programs and Features"
+      -  Click :guilabel:`Turn Windows features on or off"`
+      -  Expand :menuselection:`Internet Information Services --> World Wide Web
+         Services --> Application Development Features`
+      -  Check "ISAPI Extensions" and "ISAPI Filters"
+      -  Click :guilabel:`OK`
+      -  Continue through installation wizard
 
 Standard 500 error page is returned instead of Lasso's default error page.
    IIS's "HTTP Errors" feature may be enabled. To disable:
 
-   Windows 2008
+   Windows Server
       -  Open "Server Manager"
       -  Select "Roles" node
       -  Scroll to "Web Server"
-      -  Click "Remove Role Services"
-      -  Expand "Web Server -> Common HTTP Features"
+      -  Click :guilabel:`Remove Role Services`
+      -  Expand :menuselection:`Web Server --> Common HTTP Features`
       -  Uncheck "HTTP Errors"
       -  Continue through installation wizard
 
-   Windows 2007
+   Windows 7 or 8
       -  Open "Control Panel"
-      -  Click "Programs"
-      -  Click "Turn Windows features on or off"
-      -  Expand "Internet Information Services -> World Wide Web Services ->
-         Common HTTP Features"
+      -  Open "Programs and Features"
+      -  Click :guilabel:`Turn Windows features on or off"`
+      -  Expand :menuselection:`Internet Information Services --> World Wide Web
+         Services --> Common HTTP Features`
       -  Uncheck "HTTP Errors"
+      -  Click :guilabel:`OK`
       -  Continue through installation wizard
 
+.. only:: html
 
-LassoTube How Tos
-=================
+   LassoTube How-Tos
+   =================
 
-`Configure Apache2 and Lasso
-<http://www.youtube.com/watch?v=f7oCiUw-OxA&list=UUVvBq5EMVi4KoME3rvNOgOA&index=2&feature=plcp>`_
+   `Configure Apache2 and Lasso
+   <http://www.youtube.com/watch?v=f7oCiUw-OxA&list=UUVvBq5EMVi4KoME3rvNOgOA&index=2&feature=plcp>`_
 
-`Configure IIS7 for Lasso
-<http://www.youtube.com/watch?v=oQ-6K3EHY3M&feature=relmfu>`_
+   `Configure IIS7 for Lasso
+   <http://www.youtube.com/watch?v=oQ-6K3EHY3M&feature=relmfu>`_
+
+.. _Microsoft .NET Framework 3.5: http://www.microsoft.com/en-us/download/details.aspx?id=22
+.. _Microsoft .NET Framework 4: http://www.microsoft.com/en-us/download/details.aspx?id=17718
+.. _Microsoft Visual C++ 2012 Redistributable: http://www.microsoft.com/en-us/download/details.aspx?id=30679
+.. _Lasso 9 Server for Windows: http://www.lassosoft.com/Lasso-9-Server-Download#Win
+.. _Open IIS Manager: http://technet.microsoft.com/en-us/library/cc770472(v=ws.10).aspx
+.. _ImageMagick-6.7.7-7-Q16-windows-x64-dll.exe: http://ftp.sunet.se/pub/multimedia/graphics/ImageMagick/binaries/ImageMagick-6.7.7-7-Q16-windows-x64-dll.exe
+.. _ImageMagick installers archive: http://ftp.sunet.se/pub/multimedia/graphics/ImageMagick/binaries/
