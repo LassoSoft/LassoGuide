@@ -9,8 +9,8 @@ These instructions are for installing Lasso 9 Server on OS X. An Intel-based Mac
 running OS X 10.5 or later is required.
 
 
-Prerequisites
-=============
+Before Installing
+=================
 
 -  Lasso requires a Java runtime, which is not included with OS X 10.7 and
    later. The latest version of Apple's "Java for OS X" can be downloaded from
@@ -20,21 +20,22 @@ Prerequisites
    systems, install `XQuartz`_ instead.
 
 
-Standard Installer
-==================
+Installation
+============
 
 #. Download and expand `Lasso 9 Server for OS X`_ from the LassoSoft website.
 
 #. Run the installer to perform a standard installation, which will install
    Lasso 9 and start or restart the system's Apache. By default the following
-   files will be installed:
+   files and folders will be installed:
 
    -  Apache conf file
 
       -  :file:`/etc/apache2/other/mod_lasso9.10.5.conf` (OS X 10.5)
       -  :file:`/etc/apache2/sites/mod_lasso9.10.5.conf` (OS X Server 10.5)
       -  :file:`/etc/apache2/other/mod_lasso9.conf` (OS X 10.6 and later)
-      -  :file:`/etc/apache2/sites/mod_lasso9.conf` (OS X Server 10.6 and 10.7)
+      -  :file:`/etc/apache2/sites/mod_lasso9.conf`
+         (OS X Server 10.6 and Server 10.7)
       -  :file:`/Library/Server/Web/Config/apache2/sites/mod_lasso9.conf`
          (OS X Server 10.8 and later)
 
@@ -73,6 +74,6 @@ From here on, you can read up on using the :ref:`instance-manager` and
    and plugin for Lasso to continue running, or simply reinstall Lasso to place
    the files in the correct locations.
 
-.. _Apple support site:  http://support.apple.com/downloads
-.. _XQuartz:  http://xquartz.macosforge.org/
+.. _Apple support site: http://support.apple.com/downloads
+.. _XQuartz: http://xquartz.macosforge.org/
 .. _Lasso 9 Server for OS X: http://www.lassosoft.com/Lasso-9-Server-Download#Mac

@@ -10,11 +10,11 @@ hosting data-driven web applications. This chapter introduces important concepts
 and information you should know before starting to use the Lasso Platform or
 Lasso Server.
 
-Lasso Server (and Lasso Developer) is server-side software that runs along with
-any FastCGI-capable web server. It adds a suite of dynamic functionality and
-database connectivity to your website. This functionality empowers you to build
-and serve just about any dynamic web application that you need with maximum
-productivity and ease.
+:dfn:`Lasso Server` (and :dfn:`Lasso Developer`) is server-side software that
+runs along with any FastCGI-capable web server. It adds a suite of dynamic
+functionality and database connectivity to your website. This functionality
+empowers you to build and serve just about any dynamic web application that you
+need with maximum productivity and ease.
 
 .. only:: html
 
@@ -38,6 +38,7 @@ productivity and ease.
    covered in this book starting with Part II, the
    :ref:`lasso-language-guide-index`.
 
+
 Lasso Runtime
 =============
 
@@ -55,12 +56,13 @@ supports a flexible array of options for ahead-of-time compilation of code into
 dynamically loaded libraries as well as stand-alone executables for OS X and
 Linux platforms.
 
-Though the Lasso runtime can operate in the role of a quick command-line
+Although the Lasso runtime can operate in the role of a quick command-line
 utility, it is designed with features to support the needs of an "always-on"
 application process. Internally, such an application consists of a set of
 sub-processes, or threads, each waiting to receive messages and sleeping until
 they arrive. Each thread maintains its own set of variables, and a thread cannot
 directly access the variables of another thread.
+
 
 Lasso Language
 ==============
@@ -85,20 +87,21 @@ during development but also while a system is in service and urgent, well-tested
 patches need to be applied.
 
 Object types and methods can be compiled ahead of time using the Lasso compiler
-(:program:`lassoc`). The result of this compilation is a dynamic library which
+(:program:`lassoc`). The result of this compilation is a dynamic library that
 can be automatically loaded on demand when the type or method is first required.
 This helps keep unused data out of memory, improves startup time, and lets an
 application be built and deployed in a modular manner.
 
+
 Lasso Server
 ============
 
-Lasso Server is a suite of tools and methodologies for developing, serving, and
-administering data-driven web sites written in the Lasso language. Lasso Server
-operates with any web server supporting FastCGI, such as Apache, IIS, lighttpd,
-and nginx. A full complement of methods and objects are included for accessing
-web server parameters and variables as well as for encoding and decoding data
-and for responding to requests.
+Lasso Server offers a suite of tools and methodologies for developing, serving,
+and administering data-driven web sites written in the Lasso language. Lasso
+Server operates with any web server supporting FastCGI, such as Apache, IIS,
+lighttpd, and nginx. A full complement of methods and objects are included for
+accessing web server parameters and variables as well as for encoding and
+decoding data and for responding to requests.
 
 Lasso Server provides an object model for programmatically building response
 documents in addition to a simple template mode for creating or customizing
@@ -123,6 +126,7 @@ access to database configuration, users and groups, sessions, email queues,
 error logs and more. Lasso Instance Manager and Lasso Server Admin provide an
 accessible access point for the server administrator to monitor and configure
 the operations of the server.
+
 
 Lasso Developer
 ===============

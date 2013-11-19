@@ -29,19 +29,19 @@ development goals.
    to Lasso. It covers version |version| and was created on |today|. The
    material in this book will evolve and improve along with Lasso. The most
    up-to-date version of this documentation containing all fixes can be found at
-   `<http://lassoguide.com>`_.
+   `<http://lassoguide.com/>`_.
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
+      getstart/index_getstart
       server/index_server
       language/index_language
       operations/index_operations
       databases/index_databases
       api/index_api
-      getstart/index_getstart
 
 
 How to Use This Guide
@@ -111,8 +111,8 @@ Here are some additional resources you may find handy:
 `Lasso Reference <http://www.lassosoft.com/lassoDocs/languageReference>`_
    Reference to the built-in types, methods, and traits.
 
-`LassoTalk <http://www.lassosoft.com/LassoTalk/>`_
-   The online Lasso community / email list is a great place to ask questions and
+`LassoTalk <http://www.lassotalk.com/>`_
+   The online Lasso community/email list is a great place to ask questions and
    get answers.
 
 `Tag Swap <http://www.lassosoft.com/tagswap>`_
