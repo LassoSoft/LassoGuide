@@ -7,7 +7,7 @@
 
 .. insert summary for HTML version
 
-.. container:: col four
+.. container:: col four first
 
    .. only:: html
 
@@ -26,7 +26,7 @@
       encryption
       serialization
 
-.. container:: col four
+.. container:: col four first
 
    .. only:: html
 
@@ -41,7 +41,7 @@
       sessions
       lassoapps
 
-.. container:: col four
+.. container:: col four first
 
    .. only:: html
 
@@ -57,7 +57,7 @@
       sys-process
       logging
 
-.. container:: col four
+.. container:: col four first
 
    .. only:: html
 

@@ -7,7 +7,7 @@
 
 .. insert summary for HTML version
 
-.. container:: col two
+.. container:: col two first
 
    .. only:: html
 
@@ -22,7 +22,7 @@
       ubuntu-installation
       windows-installation
 
-.. container:: col two
+.. container:: col two first
 
    .. only:: html
 
