@@ -87,8 +87,8 @@ machine. Consult the :ref:`installation guide for your operating system
 
 .. _calling-lasso-cli:
 
-Calling Lasso on the CLI
-========================
+Calling Lasso from the CLI
+==========================
 
 Lasso code can be saved in a file and then executed on the command line. This
 style of execution happens directly and does not require a web server or web
@@ -101,15 +101,15 @@ of the Lasso platform, see the :ref:`command-line-tools` chapter.)
 Using the lasso9 Tool
 ---------------------
 
-The :program:`lasso9` tool is an executable included with Lasso that handles the
+The :program:`lasso9` executable is a tool included with Lasso that handles the
 parsing and execution of Lasso code from the command line. For example, the
 following text might be placed into a file "test.lasso"::
 
    'The current date is ' + date
 
-The file can be executed from the terminal using the :program:`lasso9` tool. If
-the reader has created such a test file and has done a :command:`cd` to the
-location of the file, then the file can be executed like so:
+The file can be executed from the terminal using lasso9. If the reader has
+created such a test file and has done a :command:`cd` to the location of the
+file, then the file can be executed like so:
 
 .. code-block:: none
 
@@ -168,7 +168,7 @@ Executing Code Directly
 The :program:`lasso9` tool includes a :option:`-s` option which indicates that
 the next argument given to the tool is the Lasso code to be executed. This
 method bypasses the need to first place the code in a file. Instead, the source
-code can be given directly to the :program:`lasso9` tool when it is invoked.
+code can be given directly to lasso9 when it is invoked.
 
 .. code-block:: none
 
@@ -187,11 +187,11 @@ Executing Code from STDIN
 -------------------------
 
 The :program:`lasso9` tool can also accept code to execute from STDIN. This is
-useful when piping results from one command to the :program:`lasso9` tool in
-order for it to execute the given code. In order to have :program:`lasso9`
-receive its code from STDIN, the :option:`--` argument is used. The following
-example uses the standard :command:`echo` command to produce code for the
-:program:`lasso9` tool to read from STDIN and then execute:
+useful when piping results from one command to lasso9 in order for it to execute
+the given code. In order to have lasso9 receive its code from STDIN, the
+:option:`--` argument is used. The following example uses the standard
+:command:`echo` command to produce code for lasso9 to read from STDIN and then
+execute:
 
 .. code-block:: none
 

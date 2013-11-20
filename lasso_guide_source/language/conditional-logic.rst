@@ -57,7 +57,7 @@ the association/givenBlock syntax. ::
       // ...
    }
 
-Either form is accepted. Though an if/else conditional produces no value, the
+Either form is accepted. Although an if/else conditional produces no value, the
 first form does auto-collection, as will the second if associated with an
 auto-collect block (``=> {^ ... ^}``). See the :ref:`captures` chapter for more
 information about these different types of code blocks.
@@ -104,10 +104,10 @@ The second form uses the association/givenBlock syntax::
       // ...
    }
 
-Either form is accepted. Though a match conditional produces no value, the first
-form does auto-collection, as will the second if associated with an auto-collect
-block (``=> {^ ... ^}``). See the :ref:`captures` chapter for more information
-about these different types of code blocks.
+Either form is accepted. Although a match conditional produces no value, the
+first form does auto-collection, as will the second if associated with an
+auto-collect block (``=> {^ ... ^}``). See the :ref:`captures` chapter for more
+information about these different types of code blocks.
 
 
 Loop Constructs

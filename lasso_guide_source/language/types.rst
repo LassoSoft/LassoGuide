@@ -264,11 +264,11 @@ the outside world. ::
          public lastName,
          public age
 
-     public describe() => {
-        return .describeName + ', ' + .describeAge
-     }
-     private describeName() => .firstName + ' ' + .lastName
-     protected describeAge() => 'age ' + .age
+      public describe() => {
+         return .describeName + ', ' + .describeAge
+      }
+      private describeName() => .firstName + ' ' + .lastName
+      protected describeAge() => 'age ' + .age
    }
 
 Given the definition above, the following example illustrates valid and invalid
@@ -279,7 +279,7 @@ use of a ``person`` object::
    // =>  , age
 
    #p->describeAge
-   // => FAILURE: access not permitted
+   // => // FAILURE: access not permitted
 
 The second usage fails because the ``describeAge`` method is protected. A type
 that inherits from person can access ``describeAge``, but it cannot access
@@ -347,10 +347,10 @@ returned since it is automatically calling the method from the parent type. The
 type ``two``. ::
 
    two->first
-   // => 'alpha'
+   // => alpha
 
    two->second
-   // => 'gamma'
+   // => gamma
 
 
 Accessing Inherited Methods
@@ -377,7 +377,7 @@ corresponding method from type ``one``. ::
    }
 
    two->third
-   // => 'beta'
+   // => beta
 
 Equivalently, Lasso 9 supports a shortcut syntax of two periods for targeting
 "inherited" which can be used to access the methods of a parent type. The
@@ -409,7 +409,7 @@ default zero-parameter type creator. Attempting to provide parameters to a type
 creator that does not accept any parameters will fail. ::
 
    local(myperson = person(264))
-   // => FAILURE: person() accepts no parameters
+   // => // FAILURE: person() accepts no parameters
 
 
 .. _types-oncreate:
@@ -438,7 +438,7 @@ values to the data members. ::
          .'firstName' = #firstName
          .'lastName' = #lastName
          .'birthdate' = #birthdate
-     }
+      }
    }
 
 To create an instance of this type, the creator must be called with the required
@@ -799,8 +799,8 @@ object. These methods are summarized below.
 .. member:: null->setTrait(trait::trait)
    :noindex:
 
-   Sets the trait of the target object to the parameter. The existing trait is
-   replaced.
+   Sets the trait of the target object to the parameter, replacing the existing
+   trait.
 
 .. member:: null->addTrait(trait::trait)
    :noindex:

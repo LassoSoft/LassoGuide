@@ -5,9 +5,8 @@
 Operators
 *********
 
-An :dfn:`operator` is a special symbol which, combined with one or more
-operands, performs an operation using those operands and, generally, produces a
-value.
+An :dfn:`operator` is a special symbol that, combined with one or more operands,
+performs an operation using those operands and, generally, produces a value.
 
 Lasso supports the standard arithmetic operators and logical operators as well
 as numerous other useful operations. Operators can be :dfn:`unary`, taking only
@@ -219,7 +218,7 @@ Logical
 There are three :dfn:`logical operators`. The first is the unary operator "not".
 This operator treats its single operand as a boolean value and produces the
 opposite of that value. The "not" operator turns a "true" into a "false" and a
-"false" into a "true". Though the operand can be of any type, this operator
+"false" into a "true". Although the operand can be of any type, this operator
 always produces a "true" or "false" value. The "not" operator can take one of
 two forms: an exclamation mark (``!``) or the ``not`` keyword. ::
 
@@ -538,7 +537,7 @@ The following example illustrates this formatting principle::
    targetObject->meth(5, 7)
    & meth2()
    & meth3(90) &;
-   // => execute meth, meth2, meth3, and then produce targetObject
+   // => // Execute meth, meth2, meth3, and then produce targetObject
 
 
 Escape Method
@@ -576,7 +575,7 @@ parentheses to disambiguate. ::
    #lv->\(meth + 'name')
    // => // Produces a reference to the member method defined by concatenating "name" with the value of "meth"
 
-Though the escape operators are used to find methods by name, the object
+Although the escape operators are used to find methods by name, the object
 produced by the operators is a :dfn:`memberstream`. This object manages the
 finding of the desired method, the potential bundling of the target object (in
 the case of ``->\``), and the execution of the method when the memberstream is

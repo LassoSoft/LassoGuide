@@ -240,12 +240,12 @@ Checking Traits
 ===============
 
 Since traits provide member methods for a type it is often useful to check
-whether a given type instance has a trait applied. The `~null->isA()` method can
+whether a given type instance has a trait applied. The `~null->isA` method can
 be used for this check. This member method can be used on any type instance and
 will return a positive integer if the instance has the provided trait name
 applied to it.
 
-In this code the `~null->isA()` method returns "2" since the ``month`` type does
+In this code the `~null->isA` method returns "2" since the ``month`` type does
 have the ``trait_firstLast`` trait applied to it::
 
    local(mymonth = month(2008, 12));
@@ -276,7 +276,7 @@ When an instance of the type is created, the instance has the specified trait
 applied to it automatically.
 
 The trait of any object in Lasso can be programmatically manipulated using the
-`~null->trait()`, `~null->setTrait()`, and `~null->addTrait()` methods described
+`~null->trait`, `~null->setTrait`, and `~null->addTrait` methods described
 in the next section.
 
 

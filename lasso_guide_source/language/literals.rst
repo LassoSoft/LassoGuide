@@ -173,7 +173,7 @@ additional digits, and ending with an optional exponent. A decimal exponent
 begins with an upper or lowercase "E", followed by an optional "-" or "+"
 followed by one or more digits. Lasso also supports decimal literals for "NaN"
 (not a number) as well and positive and negative "infinity". (Note that case is
-irrelevant when using the "NaN" and "infinity" literals.) ::
+irrelevant when using the ``NaN`` and ``infinity`` literals.) ::
 
    .1
    -.89

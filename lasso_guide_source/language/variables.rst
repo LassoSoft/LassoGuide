@@ -12,7 +12,7 @@ and used repeatedly later.
 There are two types of variables: local variables and thread variables. The type
 of the variable defines its scope and the rules about using it. Each variable is
 given a name, and that name is used to access the variable's value. An object
-which a variable points to can be changed, or reassigned, as described in the
+that a variable points to can be changed, or reassigned, as described in the
 :ref:`operators` chapter.
 
 
@@ -54,13 +54,13 @@ the value of the variable is produced as the result. This is only the case when
 one variable name is used and when it is not accompanied by an initial value. ::
 
    local(name)
-   // => the value of "name", potentially creating "name"
+   // => // The value of "name", potentially creating "name"
 
 Local variables can also be accessed using the "#" character before the name.
 This is the preferred method for accessing local variables. ::
 
    #name
-   // => the value of "name"
+   // => // The value of "name"
 
 When using this method, the local variable must have already been defined or it
 is considered an error. This error-checking is done at the time the code is
@@ -115,9 +115,10 @@ object. That value is used as the variable's name. ::
    var(nameExpr = expression)
 
 .. note::
-   Because a literal variable name can resemble a method call with no parameters,
-   if the variable name is intended to be the result of a method call, then that
-   call should be given empty parentheses ``()`` to disambiguate. ::
+   Because a literal variable name can resemble a method call with no
+   parameters, if the variable name is intended to be the result of a method
+   call, then that call should be given empty parentheses ``()`` to
+   disambiguate. ::
 
       // Defines var with the name of what nameCall() returns
       var(nameCall() = expression)
@@ -130,13 +131,13 @@ value of the variable is produced as the result. This is only the case when one
 variable name is used and when it is not accompanied by an initial value. ::
 
    var(name)
-   // => the value of "name", potentially creating "name"
+   // => // The value of "name", potentially creating "name"
 
 Vars can also be accessed using the "$" character before the name. When using
 this method, an error is returned if the var has not been previously defined. ::
 
    $name
-   // => the value of "name"
+   // => // The value of "name"
 
 
 .. _variables-type-constraints:
@@ -169,22 +170,22 @@ is constrained to hold only strings. The next example shows valid and invalid
 usage of the two variables::
 
    #lname = 400
-   // Valid: 400 is an integer
+   // => // Valid: 400 is an integer
 
    #lname = 'hello'
-   // FAILURE: #lname can only hold integers
+   // => // FAILURE: #lname can only hold integers
 
    $vname = 940
-   // FAILURE: $vname can only hold strings
+   // => // FAILURE: $vname can only hold strings
 
    local(lname = 'hello')
-   // FAILURE: #lname can only hold integers
+   // => // FAILURE: #lname can only hold integers
 
 When applying a type constraint in a variable declaration, it is required that a
 default value be provided. ::
 
    local(lname::integer, x, y, z)
-   // FAILURE: #lname requires default value
+   // => // FAILURE: #lname requires default value
 
 
 .. _variables-decompositional:
@@ -241,13 +242,13 @@ Note that the local must include more than one element, and none of the elements
 can be assigned values. ::
 
    local(x) = #foo
-   // Unchanged, works as expected
+   // => // Unchanged, works as expected
 
    local(x, _) = #foo
-   // Fine, grabs first #foo
+   // => // Fine, grabs first #foo
 
    local(x = 1, _) = #foo
-   // FAILURE: x cannot have value
+   // => // FAILURE: x cannot have value
 
 Also note that assign-produce (``:=``) cannot be used with decompositional
 assignment, and that quoted variable names are not permitted.

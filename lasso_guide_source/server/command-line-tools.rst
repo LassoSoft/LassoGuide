@@ -386,7 +386,7 @@ loads just the MySQL database connector::
 
    #!/usr/bin/lasso9
    // If LASSO9_MASTER_HOME is specified, find module there
-   // Otherwise find it in the LASSO9_HOME path
+   // Otherwise, find it in the LASSO9_HOME path
    lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/MySQLConnector.' + sys_dll_ext)
 
 
@@ -420,7 +420,7 @@ LassoApp directory. ::
 
    #!/usr/bin/lasso9
    // Load a compiled LassoApp from LASSO9_MASTER_HOME if specified
-   // Else load it from LASSO9_HOME
+   // Otherwise, load it from LASSO9_HOME
    lassoapp_installer->install(
       lassoapp_compiledsrc_appsource(
          (sys_masterHomePath || sys_homePath) +

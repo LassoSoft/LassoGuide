@@ -71,14 +71,13 @@ created thread operates in the same manner, writing and reading objects to and
 from its creator thread.
 
 
-Sending and Receiving Object Between Threads
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Send and Receive Objects Between Threads
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The next example creates a new thread and illustrates how objects can be sent
 and received::
 
-   // Create the new thread
-   // Save the filedesc pair in #creatorPipes
+   // Create the new thread, saving the filedesc pair in #creatorPipes
    local(creatorPipes) = split_thread => {
 
       // Save the filedescs sent to this new thread

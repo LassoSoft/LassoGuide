@@ -116,8 +116,8 @@ The parameter names are only used within the method so the choice of parameter
 names need only make sense to the implementer of the method. However, the
 parameter names may be used in documentation or reported in error messages so
 they should be made descriptive when possible. Knowing a method requires the
-parameter "firstname" is more descriptive than a method that requires the
-parameter "fn".
+parameter ``firstname`` is more descriptive than a method that requires the
+parameter ``fn``.
 
 
 Optional Parameters
@@ -212,7 +212,7 @@ ways::
    find_in_string('the fox', -find='x')
 
 Within the method's body, three pre-defined local variables will be created for
-these parameters including "input", "find", and "ignoreCase".
+these parameters including ``input``, ``find``, and ``-ignoreCase``.
 
 Note that calling the method as ``find_in_string('the fox')`` will generate a
 failure because the ``-find`` keyword parameter is required (since it has no
@@ -287,7 +287,7 @@ failure will be generated. Any type or trait name can be used as a constraint,
 and all parameter values must pass the "isA" test for their constraint before
 the method body begins to execute. (The "isA" test involves calling the object's
 ``isA`` method with the constraint; if a non-zero value is returned, then it
-passes. See `~null->isA()` for details about this member method.) Additionally,
+passes. See `~null->isA` for details about this member method.) Additionally,
 all parameter default values must produce results of a type matching the type
 constraint set for their respective parameters.
 
@@ -328,7 +328,7 @@ associated code block is of a specific type. If a method returns a value having
 a type that does not pass the "isA" test for the specified return type, then a
 failure is generated. (The "isA" test involves calling the object's ``isA``
 method with the constraint; if a non-zero value is returned, then it passes. See
-`~null->isA()` for details about this member method.) Specifying a return type
+`~null->isA` for details about this member method.) Specifying a return type
 provides knowledge to the caller of the method about the method's resulting
 value. It also ensures the method's developer that their programming is correct,
 at least with respect to the method returning the proper value type. Specifying
@@ -349,9 +349,9 @@ type :type:`string`. ::
 Type Binding
 ------------
 
-Signatures are also used to denote that the method belongs to a particular data
-type. This is referred to as the :dfn:`type binding` for the signature. A
-signature with no bound type is referred to as being :dfn:`unbound`. All example
+Signatures are also used to denote that the method belongs to a particular type.
+This is referred to as the :dfn:`type binding` for the signature. A signature
+with no bound type is referred to as being :dfn:`unbound`. All example
 signatures given up to this point were unbound signatures. A type binding occurs
 at the beginning of the signature, before the signature's name. It consists of a
 type name followed by the target operator (``->``) followed by the rest of the
@@ -424,7 +424,7 @@ value expression. ::
 Code Blocks
 -----------
 
-Many methods will need to do more than return a single easily-calculated value.
+Many methods will need to do more than return a single easily calculated value.
 A method body can be composed of multiple expressions enclosed by a pair of
 curly braces (``{ ... }``). This type of method body is referred to as a code
 block.

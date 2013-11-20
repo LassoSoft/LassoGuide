@@ -37,8 +37,8 @@ This state consists of:
 When a capture is invoked, it will in turn execute its associated code which
 will execute within the context of that capture's state. The currently executing
 capture is known as the :dfn:`current capture` and is made available through the
-`currentCapture` method. (See the :ref:`operators` chapter for more info about
-:ref:`invocation <operators-invocation>`.)
+`currentCapture` method. (See the :ref:`operators` chapter for more information
+about :ref:`invocation <operators-invocation>`.)
 
 
 Creating Captures
@@ -233,7 +233,7 @@ from within the capture no longer exits the surrounding capture. ::
    local(cap) = { return self->type }->detach
 
    #cap()
-   // => Produces result of self->type
+   // => // Produces result of self->type
 
 Note that because the capture above is detached, it returns as normal and simply
 produces its value to the caller and allows the caller to continue its
