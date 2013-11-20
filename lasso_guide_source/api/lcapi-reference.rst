@@ -5,4 +5,7 @@
 C/C++ Reference for LCAPI
 *************************
 
-.. doxygenindex::
+LassoCAPI.h
+===========
+
+.. doxygenfile:: LassoCAPI.h

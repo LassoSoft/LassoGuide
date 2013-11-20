@@ -1,8 +1,8 @@
-.. _encryption:
+.. _encryption-compression:
 
-**********
-Encryption
-**********
+**************************
+Encryption and Compression
+**************************
 
 Lasso provides a set of data encryption methods which support the most common
 encryption and hash functions used on the Internet today. These encryption
@@ -138,9 +138,10 @@ stored in the "ciphertext" variable. This is then used to store the data in the
       'ciphertext'=encode_base64(#ciphertext)
    ) => {}
 
-The example below retrieves the record created above and sticks the
-Base64-decoded "ciphertext" field in a variable of the same name. It then
-decrypts the data into the "plaintext" variable and displays that variable. ::
+The example below retrieves the record created above and places the
+Base64-decoded value of the "ciphertext" field in a variable of the same name.
+It then decrypts the data into the "plaintext" variable and displays that
+variable. ::
 
    inline(
       -search,

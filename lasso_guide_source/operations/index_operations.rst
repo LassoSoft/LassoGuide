@@ -23,7 +23,7 @@
       regular-expressions
       images-multimedia
       containers
-      encryption
+      encryption-compression
       serialization
 
 .. container:: col four first

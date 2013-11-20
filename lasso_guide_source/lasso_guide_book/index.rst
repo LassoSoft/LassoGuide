@@ -88,7 +88,7 @@ Data Handling
    /operations/xml
    /operations/pdf
    /operations/containers
-   /operations/encryption
+   /operations/encryption-compression
    /operations/serialization
 
 
