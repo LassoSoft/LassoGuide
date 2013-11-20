@@ -91,6 +91,7 @@ add_function_parentheses = False
 highlight_language='html+lasso'
 
 primary_domain = 'ls'
+unused_docs = ['glossary']
 
 # -- Breathe Options
 breathe_projects = { "LCAPI": os.path.abspath("../doxyxml/") }

@@ -142,7 +142,6 @@ Here are some additional resources you may find handy:
    .. toctree::
       :hidden:
 
-      glossary
       credits
       copyright
       license

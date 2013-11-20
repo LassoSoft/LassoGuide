@@ -278,7 +278,7 @@ There are two ways to run a file containing Lasso code from the command line:
       $> lasso9 /path/to/code.lasso
 
 -  Make sure the file has execute permissions turned on and that it starts with
-   the proper :term:`hashbang`/:term:`shebang`, then call the file directly::
+   the proper hashbang/shebang, then call the file directly::
 
       $> /path/to/code.lasso
 
@@ -288,10 +288,10 @@ can do this in OS X or Linux with the :command:`chmod` command::
    $> chmod +x /path/to/code.lasso
 
 Calling the file directly also requires that the file contain the proper
-:term:`hashbang`/:term:`shebang` which tells your shell which interpreter to
-use when executing the file. It must be the first line of the file and it starts
-with the pound sign and an exclamation mark followed by the path to the
-interpreter. For Lasso code, it should look like this::
+hashbang/shebang, which tells your shell which interpreter to use when executing
+the file. It must be the first line of the file and it starts with the pound
+sign and an exclamation mark followed by the path to the interpreter. For Lasso
+code, it should look like this::
 
    #!/usr/bin/lasso9
 

@@ -212,7 +212,7 @@ To add a new FileMaker Server host:
    default. If the host does not require a password, then leave this field
    blank.
 #. Click the :guilabel:`Add host` button.
-#. Once the host is added, the new host appears in the Hosts listing below.
+#. Once the host is added, the new host appears in the "Hosts" listing below.
 
 Databases in newly created hosts are enabled by default. The administrator can
 disable databases by expanding the database listing and setting the
@@ -360,7 +360,7 @@ To add a new MySQL host:
 #. Enter a password for the host in the "Password" field. Lasso will connect to
    the data source and all databases therein using this password by default.
 #. Click the :guilabel:`Add host` button.
-#. Once the host is added, the new host appears in the Hosts listing below.
+#. Once the host is added, the new host appears in the "Hosts" listing below.
 
 Databases in newly created hosts are enabled by default. The administrator can
 disable databases by expanding the database listing and setting the
@@ -508,7 +508,7 @@ To add a new Oracle host:
 #. Enter a password for the host in the "Password" field. Lasso will connect to
    the data source and all databases therein using this password by default.
 #. Click the :guilabel:`Add host` button.
-#. Once the host is added, the new host appears in the "Hosts Listing" below.
+#. Once the host is added, the new host appears in the "Hosts" listing below.
 
 Databases in newly created hosts are enabled by default. The administrator can
 disable databases by expanding the database listing and setting the
@@ -607,7 +607,7 @@ To add a new PostgreSQL server host:
 #. Enter a password for the host in the "Password" field. Lasso will connect to
    the data source and all databases therein using this password by default.
 #. Click the :guilabel:`Add host` button.
-#. Once the host is added, the new host appears in the Hosts listing below.
+#. Once the host is added, the new host appears in the "Hosts" listing below.
 
 Databases in newly created hosts are enabled by default. The administrator can
 disable databases by expanding the database listing and setting the
@@ -730,7 +730,7 @@ To add a new ODBC host:
 #. Enter a password for the host in the "Password" field. Lasso will connect to
    the data source and all databases therein using this password by default.
 #. Click the :guilabel:`Add host` button.
-#. Once the host is added, the new host appears in the Hosts listing below.
+#. Once the host is added, the new host appears in the "Hosts" listing below.
 
 Databases in newly created hosts are enabled by default. The administrator can
 disable databases by expanding the database listing and setting the
@@ -836,7 +836,7 @@ To add a new SQL Server database host:
 #. Enter a password for the host in the "Password" field. Lasso will connect to
    the data source and all databases therein using this password by default.
 #. Click the :guilabel:`Add host` button.
-#. Once the host is added, the new host appears in the Hosts listing below.
+#. Once the host is added, the new host appears in the "Hosts" listing below.
 
 Databases in newly created hosts are enabled by default. The administrator can
 disable databases by expanding the database listing and setting the

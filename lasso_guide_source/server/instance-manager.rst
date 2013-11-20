@@ -1,4 +1,5 @@
 .. http://www.lassosoft.com/Lasso-9-Server-Instance-Manager
+.. highlight:: none
 .. _instance-manager:
 
 **********************
@@ -325,18 +326,14 @@ Starting and Stopping Lasso Instance Manager
 Stopping the Lasso Instance Manager process differs on each platform.
 
 OS X
-   Execute the following command from the terminal:
-
-   .. code-block:: none
+   Execute the following command from the terminal::
 
       $> sudo launchctl unload /Library/LaunchDaemons/com.lassosoft.lassoinstancemanager.plist
 
 Linux
    The CentOS and Ubuntu installations create a service "lassoimd" for the
    Instance Manager executable, which loads at startup. To stop this service,
-   execute the following command from the terminal:
-
-   .. code-block:: none
+   execute the following command from the terminal::
 
       $> sudo service lassoimd stop
 
@@ -354,31 +351,23 @@ the computer boots up. If the Instance Manager has been manually stopped, it can
 be manually started again.
 
 OS X
-   Execute the following command from the terminal:
-
-   .. code-block:: none
+   Execute the following command from the terminal::
 
       $> sudo launchctl load /Library/LaunchDaemons/com.lassosoft.lassoinstancemanager.plist
 
-   You can then verify that Lasso Instance Manager is running:
+   You can then verify that Lasso Instance Manager is running::
 
-   .. code-block:: none
-
-      $> ps ax | grep lassoim
-      62   ??  Ss     6:00.83 /usr/sbin/lassoim
+      $> ps -ax | grep lassoim
+      62 ?? 7:10.95 /usr/sbin/lassoim
 
 Linux
    The CentOS and Ubuntu installations create a service "lassoimd" for the
    Instance Manager executable, which loads at startup. To start this service,
-   execute the following command from the terminal:
-
-   .. code-block:: none
+   execute the following command from the terminal::
 
       $> sudo service lassoimd start
 
-   You can then verify that Lasso Instance Manager is running:
-
-   .. code-block:: none
+   You can then verify that Lasso Instance Manager is running::
 
       $> sudo service lassoimd status
       lassoimd (pid 4653) is running...
