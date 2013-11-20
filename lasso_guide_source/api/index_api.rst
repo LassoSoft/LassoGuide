@@ -7,7 +7,7 @@
 
 .. insert summary for HTML version
 
-.. container:: col two
+.. container:: col eight first
 
    .. only:: html
 
@@ -22,7 +22,7 @@
       lcapi-sources
       lcapi-reference
 
-.. container:: col two
+.. container:: col eight first
 
    .. only:: html
 

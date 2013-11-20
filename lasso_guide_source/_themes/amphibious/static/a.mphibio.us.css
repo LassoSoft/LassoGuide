@@ -99,13 +99,13 @@ blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color:
 hr { border: solid #ececec; border-width: 1px 0 0; clear: both; margin: 1em 0 2em; height: 0; }
 
 code,pre,tt { font-family: Menlo, Consolas, Monaco, "Courier New", Courier, monospace;}
-/*	#c-c-reference-for-lcapi fixes  */
-#c-c-reference-for-lcapi blockquote, #c-c-reference-for-lcapi blockquote p { font-size: 1em; font-style: normal; color: #666; }
-#c-c-reference-for-lcapi blockquote {padding: 0 0 0 0; margin: 0 0 10px 14px;}
-#c-c-reference-for-lcapi blockquote p {font-size: 14px;}
-#c-c-reference-for-lcapi blockquote p:last-child{margin-bottom: 1.3em;}
-#c-c-reference-for-lcapi em {font-style: normal; font-weight: bold;color: #000;}
-#c-c-reference-for-lcapi .line-block {margin-bottom: 0;}
+/*	#c-c-reference fixes  */
+#c-c-reference blockquote, #c-c-reference blockquote p { font-size: 1em; font-style: normal; color: #666; }
+#c-c-reference blockquote {padding: 0 0 0 0; margin: 0 0 10px 14px;}
+#c-c-reference blockquote p {font-size: 14px;}
+#c-c-reference blockquote p:last-child{margin-bottom: 1.3em;}
+#c-c-reference em {font-style: normal; font-weight: bold;color: #000;}
+#c-c-reference .line-block {margin-bottom: 0;}
 
 /* Link-o-matic
 ================================================== */
@@ -584,6 +584,7 @@ Class Name						Shorthand			Styles
 .container .one-third.col			.container table th.one-third,			.container table td.one-third			{ width: 300px; }
 .container .two-thirds.col			.container table th.two-thirds,			.container table td.two-thirds			{ width: 620px; }
 
+.container .eight.col.first {width: 450px;}
 /* Offsets */
 .container .push_one                   { padding-left: 60px;  }
 .container .push_two                   { padding-left: 120px; }
@@ -1099,7 +1100,7 @@ a.headerlink {padding: 0 5px;}
 {
 	#maincontent .section 
 	{
-		padding: 10px 15px 40px 10px;
+		padding: 10px 15px 20px 10px;
 	}
 	
 	footer.footer .section 
@@ -1114,97 +1115,9 @@ a.headerlink {padding: 0 5px;}
 	#lasso-server-guide,
 	#lasso-api-guide 
 	{
-/*
-		-webkit-column-count: 2;
-		-webkit-column-gap: 20px; 
-		-webkit-column-rule: 0px dotted black;
-*/
-		-moz-column-count: 2;
-		-moz-column-gap: 20px; 
-		-moz-column-rule: 0px dotted black;
-		column-count: 2;
-		column-gap: 20px; 
-		column-rule: 0px dotted black;
 		padding-bottom: 40px;
 	}
 	
-	#lasso-operations-guide 
-	{
-/* 		-webkit-column-count: 4; */
-		-moz-column-count: 4;
-		column-count: 4;
-	}
-	
-	#lasso-databases-guide 
-	{
-		-webkit-column-count: 5;
-		-moz-column-count: 5;
-		column-count: 5;
-	}
-	
-	#lasso-server-guide {}
-	#lasso-api-guide {}
-	
-	#lasso-language-guide a,
-	#lasso-operations-guide a,
-	#lasso-databases-guide a,
-	#lasso-server-guide a,
-	#lasso-api-guide a
-	{
-		display: block;		
-	}
-	
-	h1, #lasso-api-guide h1,
-	#lasso-language-guide p 
-	{
-/* 		-webkit-column-span:all; */
-		   -moz-column-span:all;
-		    column-span:all;
-	}
-	
-	#lasso-language-guide p.rubric 
-	{
-/* 		-webkit-column-span:1; */
-		-moz-column-count: 1;
-	    column-span:1;
-	}
-	
-	#lasso-language-guide  .toctree-wrapper 
-	{	
-		-moz-column-count: 2;
-		-moz-column-gap: 20px;  
-		-moz-column-rule: 0px dotted black;
-	}
-	
-	#lasso-operations-guide h1 {
-/* 	-webkit-column-span:all; */
-	   -moz-column-span:2;
-	    column-span:all;}
-	
-	#lasso-language-guide .toctree-wrapper,
-	#lasso-operations-guide .toctree-wrapper,
-	#lasso-databases-guide .toctree-wrapper ul,
-	#lasso-server-guide .toctree-wrapper,
-	#lasso-api-guide .toctree-wrapper 
-	{
-/* 		-webkit-column-break-after: always; */
-		   -moz-column-break-after:always;
-		       column-break-after:always;
-		
-	}
-	
-	#lasso-databases-guide .toctree-wrapper ul:first-child
-	{
-		padding-top: 1em;
-	}
-	/* shimming height on first elements to offset column reflow */
-	
-	#lasso-api-guide p + p 
-	{
-		padding-top: 50px;
-	}
-	/* shimming height on last element */
-  
 }  
 
 /* #Tablet (Portrait)Design for a width of 768px

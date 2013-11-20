@@ -20,7 +20,7 @@
    clearer understanding of the abstractions required for creating optimized web
    applications using Lasso.
 
-.. container:: col two first
+.. container:: col eight first
 
    .. only:: html
 
@@ -37,7 +37,7 @@
       /language/captures
       /language/query-expressions
 
-.. container:: col two first
+.. container:: col eight first
 
    .. only:: html
 
