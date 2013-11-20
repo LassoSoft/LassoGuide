@@ -195,7 +195,7 @@ Object Operations
 Accessing Fields of Objects
 ---------------------------
 
-.. member:: java_jnienv->GetFieldId(...)
+.. member:: java_jnienv->GetFieldID(...)
 
    Returns the field ID of a Java object's instance field. It takes a
    :type:`jobject` class reference, a string with the value of the field's name,

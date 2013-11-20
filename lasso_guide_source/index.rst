@@ -55,7 +55,7 @@ documentation without reading every word.
    chapters and come back to them when you need to.
 
 -  After reading through :ref:`lasso-get-start-index`, you are probably ready to
-   start digging into developing with Lasso. As you get up to speed, keep the 
+   start digging into developing with Lasso. As you get up to speed, keep the
    :ref:`lasso-language-guide-index` handy to familiarize yourself with the
    basic features and syntax.
 
@@ -119,6 +119,9 @@ Here are some additional resources you may find handy:
 
 `LassoSoft Website <http://www.lassosoft.com>`_
    The latest information about Lasso.
+
+`Lasso 9 source code repository <http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/>`_
+   An SVN repository containing source code for a number of Lasso 9 components.
 
 `LassoGuide source <http://source.lassosoft.com/svn/guide/>`_
    The SVN repository containing the full LassoGuide source.

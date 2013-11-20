@@ -1,9 +1,8 @@
 .. default-domain:: c
+.. _lcapi-reference:
 
-.. _lcapi-c-reference:
-
-***************
-C/C++ Reference
-***************
+*************************
+C/C++ Reference for LCAPI
+*************************
 
 .. doxygenindex::

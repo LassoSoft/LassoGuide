@@ -61,7 +61,7 @@ Static Method Code
    // => 32.000000
 
 
-Static Method Walk Through
+Static Method Walk-Through
 --------------------------
 
 One thing to notice is that all the communication is done using
@@ -147,7 +147,7 @@ Java Object Member Method Code
    // => 92
 
 
-Java Object Member Method Walk Through
+Java Object Member Method Walk-Through
 --------------------------------------
 
 Once again, all the communication is done using the `java_jvm_getenv` method,

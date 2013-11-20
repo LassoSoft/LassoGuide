@@ -1,6 +1,5 @@
 .. default-domain:: c
 .. default-role:: func
-
 .. _lcapi-methods:
 
 **********************
@@ -8,10 +7,10 @@ Creating Lasso Methods
 **********************
 
 When Lasso first starts up, it looks for module files (Windows DLLs, OS X
-DYLIBs, or Linux SOs) in its LassoModules folder. As it encounters each module,
-it executes that module's `registerLassoModule()` function once and only once.
-LCAPI developers must write code to register each of the new custom method (or
-type or data source) in this `registerLassoModule()` function. The following
+DYLIBs, or Linux SOs) in its "LassoModules" directory. As it encounters each
+module, it executes that module's ``registerLassoModule`` function once and only
+once. LCAPI developers must write code to register each of the new custom method
+(or type or datasource) in this ``registerLassoModule`` function. The following
 example function is required in every LCAPI module. It gets called once when
 Lasso starts up:
 
@@ -22,19 +21,19 @@ Lasso starts up:
          REG_FLAGS_TAG_DEFAULT, "simple test LCAPI tag" );
    }
 
-The preceding example registers a C function called "myTagFunc" to execute
-whenever the Lasso `CAPITester_testtag` method call is encountered in Lasso
-code. The first parameter "CAPITester" is the namespace in which "testtag" will
-be placed.
+The preceding example registers a C function called ``myTagFunc`` to execute
+whenever the Lasso ``CAPITester_testtag`` method call is encountered in Lasso
+code. The first parameter ``CAPITester`` is the namespace in which ``testtag``
+will be placed.
 
 Once the method function is registered, Lasso will call it at appropriate times
 while parsing and executing Lasso code. The custom method functions will not be
 called if none of the custom methods are encountered while executing a script.
 When Lasso encounters one of your custom methods, it will be called with two
-parameters: an opaque data structure called a "token", and an integer "action"
-(which is currently unused). LCAPI provides many function calls that can be used
-to get information about the environment, variables, parameters, etc., when
-provided with a token.
+parameters: an opaque data structure called a ``token``, and an integer
+``action`` which is currently unused. LCAPI provides many function calls that
+can be used to get information about the environment, variables, parameters,
+etc., when provided with a token.
 
 The passed-in token can also be used to acquire any parameters and to return a
 value from your custom method function.
@@ -55,7 +54,7 @@ Use the following C++ code:
 
 Below is the Lasso code needed to get the custom method to execute::
 
-   Here is the custom tag:<br />
+   <p>Here is the custom tag:</p>
    [CAPITester_testtag]
    <!-- This should display "Hello, World" when this page executes -->
 
@@ -71,7 +70,7 @@ Custom Method Tutorial
 ======================
 
 .. only:: html
-   
+
    This section provides a walk-through of building an example method to show
    how LCAPI features are used. This code can be found in the "SampleMethod"
    folder in the LCAPI examples, which can be :download:`downloaded here
@@ -85,26 +84,22 @@ Custom Method Tutorial
    <http://lassoguide.com/_downloads/lcapi_examples.zip>`_.
 
 The method will simply display its parameters, and it will look like the example
-below when called in Lasso code:
-
-.. code-block:: lasso
+below when called in Lasso code::
 
    sample_method('some text here', -option1='named param', -option2=12.5)
 
 Notice the method takes one unnamed parameter, one keyword string parameter
-named "-option1", and a keyword numeric parameter named "-option2". For keyword
-parameters, Lasso does not care about the order in which you pass them, so plan
-to make this method as flexible as possible by not assuming anything about their
-order. The following variations should work exactly the same:
-
-.. code-block:: lasso
+named ``-option1``, and a keyword numeric parameter named ``-option2``. For
+keyword parameters, Lasso does not care about the order in which you pass them,
+so plan to make this method as flexible as possible by not assuming anything
+about their order. The following variations should work exactly the same::
 
    sample_method('some text here', -option1='named param', -option2=12.5)
    sample_method('some text here', -option2=12.5, -option1='named param')
 
 
-LCAPI Module Code
------------------
+LCAPI Method Module Code
+------------------------
 
 Below is the C++ code for the custom method:
 
@@ -112,56 +107,56 @@ Below is the C++ code for the custom method:
 
    void registerLassoModule()
    {
-       lasso_registerTagModule( "sample", "method", myTagFunc,
-           REG_FLAGS_TAG_DEFAULT, "sample test" );
+      lasso_registerTagModule( "sample", "method", myTagFunc,
+         REG_FLAGS_TAG_DEFAULT, "sample test" );
    }
 
    osError myTagFunc( lasso_request_t token, tag_action_t action )
    {
-       std::basic_string<char> retValue;
-       lasso_type_t opt2 = NULL;
-       auto_lasso_value_t v;
-       INITVAL(&v);
+      std::basic_string<char> retValue;
+      lasso_type_t opt2 = NULL;
+      auto_lasso_value_t v;
+      INITVAL(&v);
 
-       if( lasso_findTagParam(token, "-option1", &v) == osErrNoErr ) {
-           retValue.append("The value of -option1 is ");
-           retValue.append(v.data);
-       }
+      if( lasso_findTagParam(token, "-option1", &v) == osErrNoErr ) {
+         retValue.append("The value of -option1 is ");
+         retValue.append(v.data);
+      }
 
-       if( lasso_findTagParam2(token, "-option2", &opt2) == osErrNoErr ) {
-           double tempValue;
-           char tempValueFmtd[128];
+      if( lasso_findTagParam2(token, "-option2", &opt2) == osErrNoErr ) {
+         double tempValue;
+         char tempValueFmtd[128];
 
-           lasso_typeGetDecimal(token, opt2, &tempValue);
-           sprintf(tempValueFmtd, "%.15lg", tempValue);
+         lasso_typeGetDecimal(token, opt2, &tempValue);
+         sprintf(tempValueFmtd, "%.15lg", tempValue);
 
-           retValue.append(" The value of -option2 is ");
-           retValue.append(tempValueFmtd);
-       }
+         retValue.append(" The value of -option2 is ");
+         retValue.append(tempValueFmtd);
+      }
 
-       int count = 0;
-       lasso_getTagParamCount(token, &count);
+      int count = 0;
+      lasso_getTagParamCount(token, &count);
 
-       for( int i = 0; i < count; ++i )
-       {
-           lasso_getTagParam(token, i, &v);
-           if ( v.name == v.data ) {
-               retValue.append(" The value of unnamed param is ");
-               retValue.append(v.data);
-           }
-       }
+      for( int i = 0; i < count; ++i )
+      {
+         lasso_getTagParam(token, i, &v);
+         if ( v.name == v.data ) {
+            retValue.append(" The value of unnamed param is ");
+            retValue.append(v.data);
+         }
+      }
 
-       return lasso_returnTagValueString(token, retValue.c_str(), (int)retValue.length());
+      return lasso_returnTagValueString(token, retValue.c_str(), (int)retValue.length());
    }
 
 
-LCAPI Module Code Walk Through
-------------------------------
+Method Module Code Walk-Through
+-------------------------------
 
-This section provides a step-by-step walk through of the code for the custom
+This section provides a step-by-step walk-through of the code for the custom
 method module.
 
-#. First, the new method is registered in the required `registerLassoModule()`
+#. First, the new method is registered in the required ``registerLassoModule``
    export function:
 
    .. code-block:: c++
@@ -172,19 +167,19 @@ method module.
             REG_FLAGS_TAG_DEFAULT, "sample test" );
       }
 
-#. Implement "myTagFunc", which gets called when ``sample_method`` is
+#. Implement ``myTagFunc``, which gets called when ``sample_method`` is
    encountered. All method functions have this prototype. When the method
-   function is called, it's passed an opaque "token" data structure.
+   function is called, it's passed an opaque ``token`` data structure.
 
    .. code-block:: c++
 
       osError myTagFunc( lasso_request_t token, tag_action_t action )
       {
 
-   The remainder of the code in the walk through includes the implementation for
-   the "myTagFunc" function.
+   The remainder of the code in the walk-through includes the implementation for
+   the ``myTagFunc`` function.
 
-#. Allocate a string to be this method's return value.
+#. Allocate a string to be this method's return value:
 
    .. code-block:: c++
 
@@ -202,7 +197,7 @@ method module.
 
 #. Call `lasso_findTagParam` in order to get the value of the ``-option1``
    parameter. If it is found (no error while finding the named parameter),
-   append some information about it to our return value string.
+   append some information about it to our return value string:
 
    .. code-block:: c++
 
@@ -211,8 +206,8 @@ method module.
          retValue.append(v.data);
       }
 
-#. Look for the other named parameter, "-option2" and store its value into
-   variable "opt2". Because "-option2" should be a decimal value, use
+#. Look for the other named parameter ``-option2`` and store its value into
+   variable "opt2". Because ``-option2`` should be a decimal value, use
    `lasso_findTagParam2`, which will preserve the original data type of the
    value as opposed to converting it into a string like `lasso_findTagParam`
    will.
@@ -234,7 +229,7 @@ method module.
       lasso_typeGetDecimal(token, opt2, &tempValue);
       sprintf(tempValueFmtd, "%.15lg", tempValue);
 
-#. Append the parameter's information to the return string.
+#. Append the parameter's information to the return string:
 
    .. code-block:: c++
 
@@ -281,9 +276,9 @@ method module.
 
 #. Returning an error code is very important. If you return a non-zero error
    code, then the interpreter will throw an exception indicating that this
-   method failed fatally and Lasso's standard page error routines will display
-   an error message. In our example, `lasso_returnTagValueString` will return
-   an error if it has a problem setting the return value.
+   method failed fatally, causing Lasso's standard page error routines to
+   display an error message. In our example, `lasso_returnTagValueString` will
+   return an error if it has a problem setting the return value.
 
    .. code-block:: c++
 
