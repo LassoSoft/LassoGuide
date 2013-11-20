@@ -44,6 +44,8 @@ body {
 	-ms-text-size-adjust: 100%;
 }
 .container {font-size: 1.1em;}
+.container .container {font-size: 1.0em;} /* Fix for conflict with the container:: directive */
+
 /* Using proportional font sizes for proper cascade
 ================================================== */
 h1, h2, h3, h4, h5, h6 {
@@ -99,13 +101,14 @@ blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color:
 hr { border: solid #ececec; border-width: 1px 0 0; clear: both; margin: 1em 0 2em; height: 0; }
 
 code,pre,tt { font-family: Menlo, Consolas, Monaco, "Courier New", Courier, monospace;}
-/*	#c-c-reference fixes  */
-#c-c-reference blockquote, #c-c-reference blockquote p { font-size: 1em; font-style: normal; color: #666; }
-#c-c-reference blockquote {padding: 0 0 0 0; margin: 0 0 10px 14px;}
-#c-c-reference blockquote p {font-size: 14px;}
-#c-c-reference blockquote p:last-child{margin-bottom: 1.3em;}
-#c-c-reference em {font-style: normal; font-weight: bold;color: #000;}
-#c-c-reference .line-block {margin-bottom: 0;}
+/*	#c-c-reference-for-lcapi fixes  */
+#c-c-reference-for-lcapi blockquote, #c-c-reference-for-lcapi blockquote p {font-size: 1em; font-style: normal;}
+#c-c-reference-for-lcapi blockquote {padding: 0 0 0 0; margin: 0 0 10px 14px;}
+#c-c-reference-for-lcapi blockquote blockquote {color: #666;}
+#c-c-reference-for-lcapi blockquote p {font-size: 14px;}
+#c-c-reference-for-lcapi blockquote p:last-child{margin-bottom: 1.3em;}
+#c-c-reference-for-lcapi em, #c-c-reference-for-lcapi dt {font-style: normal; font-weight: bold;color: #000;}
+#c-c-reference-for-lcapi .line-block {margin-bottom: 0;}
 
 /* Link-o-matic
 ================================================== */
