@@ -82,7 +82,7 @@ add_function_parentheses = False
 #show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-#pygments_style = 'autumn'
+pygments_style = 'trac'
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
@@ -90,6 +90,11 @@ add_function_parentheses = False
 # The default language for syntax coloring
 highlight_language='html+lasso'
 
+# workaround for https://bitbucket.org/birkenfeld/sphinx/issue/580
+rst_epilog = """
+.. |dot| unicode:: 0x2E
+   :trim:
+"""
 primary_domain = 'ls'
 unused_docs = ['glossary']
 
@@ -206,7 +211,7 @@ latex_elements = {
 \setsansfont[BoldFont={Myriad Pro},Color=273777]{Myriad Pro Light}
 \setmonofont[Scale=0.8]{Lucida Console}
 
-% For the Chinese character
+% For the Chinese character (Apple LiSung or Arial Unicode MS also works)
 \usepackage{xeCJK}
 \setCJKmainfont{Apple LiGothic}
 
