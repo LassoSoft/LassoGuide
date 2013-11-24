@@ -109,6 +109,7 @@ code,pre,tt { font-family: Menlo, Consolas, Monaco, "Courier New", Courier, mono
 #c-c-reference-for-lcapi blockquote p:last-child{margin-bottom: 1.3em;}
 #c-c-reference-for-lcapi em, #c-c-reference-for-lcapi dt {font-style: normal; font-weight: bold;color: #000;}
 #c-c-reference-for-lcapi .line-block {margin-bottom: 0;}
+#c-c-reference-for-lcapi .line-block .line strong {font-family: Menlo, Consolas, Monaco, "Courier New", Courier, monospace;}
 
 /* Link-o-matic
 ================================================== */

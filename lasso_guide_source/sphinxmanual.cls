@@ -143,7 +143,7 @@
   \cleardoublepage
   \phantomsection
   \py@OldThebibliography{1}
-  \addcontentsline{toc}{chapter}{\bibname}
+  \addcontentsline{toc}{part}{\bibname}
 }
 
 % Same for the indices.
@@ -155,6 +155,6 @@
     \cleardoublepage
     \phantomsection
     \py@OldTheindex
-    \addcontentsline{toc}{chapter}{\indexname}
+    \addcontentsline{toc}{part}{\indexname}
   }
 }

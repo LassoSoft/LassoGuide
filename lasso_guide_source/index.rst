@@ -23,10 +23,9 @@ development goals.
 .. only:: latex
 
    This book is meant to serve as both an introduction and comprehensive guide
-   to Lasso. It covers version |version| and was created on |today|. The
-   material in this book will evolve and improve along with Lasso. The most
-   up-to-date version of this documentation containing all fixes can be found at
-   `<http://lassoguide.com/>`_.
+   to Lasso |version|. The material in this book will evolve and improve along
+   with Lasso. The most up-to-date version of this documentation containing all
+   improvements can be found at `<http://lassoguide.com/>`_.
 
 .. only:: html
 
@@ -104,7 +103,7 @@ code blocks.
 Additional Resources
 ====================
 
-Here are some additional resources you may find handy:
+Here are some additional resources you may find useful:
 
 `Lasso Reference <http://www.lassosoft.com/lassoDocs/languageReference>`_
    Reference to the built-in types, methods, and traits.
@@ -117,7 +116,7 @@ Here are some additional resources you may find handy:
    Methods, types, and traits created by members of the Lasso community to solve
    common problems.
 
-`LassoSoft Website <http://www.lassosoft.com>`_
+`LassoSoft Website <http://www.lassosoft.com/>`_
    The latest information about Lasso.
 
 `Lasso 9 source code repository <http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/>`_

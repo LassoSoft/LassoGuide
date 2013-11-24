@@ -214,14 +214,24 @@ latex_elements = {
 % For the Chinese character (Apple LiSung or Arial Unicode MS also works)
 \usepackage{xeCJK}
 \setCJKmainfont{Apple LiGothic}
+\setCJKsansfont{Apple LiGothic}
+\setCJKmonofont{Apple LiGothic}
 
 % To make sure figures are placed where we want them
 \usepackage{float}
 
 \let\origfigure=\figure
 \renewenvironment{figure}[6]{
- \origfigure[H]}
+  \origfigure[H]}
 {\endlist}
+
+% Ensure keyword parameters in method signatures don't break after hyphen
+\exhyphenpenalty=10000
+
+% Insert line break after definition list terms
+% Has the side effect of allowing footnotes inside definition terms
+\usepackage{enumitem}
+\setlist[description]{style=nextline}
 
 %%
 % For some reason, this works to get the default font color

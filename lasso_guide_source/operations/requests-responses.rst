@@ -1,10 +1,8 @@
-.. only:: html
+.. _requests-responses:
 
-   .. _requests-responses:
-
-   **************************
-   Web Requests and Responses
-   **************************
+**************************
+Web Requests and Responses
+**************************
 
 Lasso Server receives requests from whichever HTTP server it is connected to.
 Each request consists of the headers and body data as sent by the requesting
@@ -72,7 +70,7 @@ Request Headers
 ---------------
 
 The incoming HTTP request headers are pre-processed by the web server and then
-further processed by Lasso. All header names are normalized to upper case by the
+further processed by Lasso. All header names are normalized to uppercase by the
 web server and prepended with ``HTTP_`` and all dashes (``-``) replaced with
 underscores (``_``). Once received by Lasso, any leading ``HTTP_`` prepended by
 the web server to each variable is stripped. All underscores (``_``) are then
@@ -210,25 +208,25 @@ Web Responses
 =============
 
 Sending a response to a web request is a simple as having "The Words" in the
-targeted ".lasso" text file. Files requested through a web request are assumed
-to begin as plain text. Lasso code can be inserted into the file using the
-following text delimiters::
+targeted "\*.lasso" text file. Files requested through a web request are assumed
+to begin as plain text. Lasso code can be inserted into the file using any of
+the following text delimiters::
 
    <?lasso … ?>
    <?= … ?>
    [ … ]
 
-Because supporting the ``[ … ]`` delimiters can be problematic for embedding
+Because supporting the ``[ ... ]`` delimiters can be problematic for embedding
 with other technologies (i.e. JavaScript and CSS), they can be disabled for the
 remainder of the file by having the literal ``[no_square_brackets]`` as the
 first line.
 
-Any code within the delimiters will have the results of the expressions within
+Any code between the delimiters will have the results of the expressions within
 its body converted to string objects and included in the response output string.
-Code within auto-collecting captures is included as well. For example, values
-produced by code within ``inline(...) … /inline`` or ``inline(...) => {^ … ^}``
-would be included in the output. Such code is free to call any methods or types
-to formulate the response data.
+Code between auto-collecting captures is included as well. For example, values
+produced by code between ``inline(...) ... /inline`` or
+``inline(...) => {^ ... ^}`` would be included in the output. Such code is free
+to call any methods or types to formulate the response data.
 
 The request is completed when the initial code has run to the end, when the
 `abort` method is called, or when an unhandled failure occurs. Outgoing data is
@@ -251,7 +249,7 @@ components. For example, a header or footer might be split out and reused on all
 pages. The `web_response` object provides a variety of methods for including
 other source code files. Files included in this way behave just as a file
 accessed directly would. That is, they begin executing as plain text and any
-Lasso code must be included within delimiters.
+Lasso code must be included between delimiters.
 
 The path to an include file can be full or relative. Complete paths from the
 file system root are accepted as well. Consult the chapter on :ref:`files` for
@@ -284,10 +282,10 @@ Any of the following methods can be used to include file content.
 .. member:: web_response->includes()::trait_forEach
 
    Lasso keeps track of web files which are being executed. As execution of a
-   file begins, the file's name is pushed onto an internally-kept stack. As a
+   file begins, the file's name is pushed onto an internally kept stack. As a
    file's execution ends, that name is popped from the stack. This method
    provides access to that stack. This method returns the list of
-   currently-executing file names as an object which can be iterated or used in
+   currently executing file names as an object which can be iterated or used in
    a query expression.
 
 .. member:: web_response->getInclude(path::string)
@@ -354,8 +352,8 @@ processing is completed and the response is to be sent to the client.
 .. member:: web_response->setCookie(nv::pair, -domain=void, -expires=void, -path=void, -secure=false)
 
    Sets the indicated cookie. Any duplicate cookie would be replaced. The first
-   parameter must be the cookie "name=value" pair. If used, the ``-domain`` and
-   ``-path`` keyword parameters must have string values.
+   parameter must be the cookie :samp:`{name}={value}` pair. If used, the
+   ``-domain`` and ``-path`` keyword parameters must have string values.
 
    The ``-expires`` parameter can be either a date object, a duration object, an
    integer, a string or any object which will produce a suitable value when
@@ -429,7 +427,7 @@ to be viewed either inline or downloaded as an attachment.
       value defaults to "attachment". The other possible value is "inline".
    :param string -charset:
       If given, this string will be appended to the :mailheader:`Content-Type`
-      header as a ";charset=" component.
+      header as a "|semi| charset=" component.
    :param boolean -skipProbe:
       Defaults to "false". If set to "true", no content type probe will occur.
    :param boolean -noAbort:
@@ -449,6 +447,8 @@ to be viewed either inline or downloaded as an attachment.
 
    If the `sendFile` method succeeds and does not abort, no value is returned.
 
+.. |semi| unicode:: 0x3B
+   :trim:
 
 HTTP Response Status
 --------------------
@@ -497,7 +497,8 @@ used. These methods are described below.
    This is the recommended route for applications wanting to provide virtual
    URLs. Once an at-begin is in place it cannot be removed. Multiple at-begins
    are supported and are run in the order in which they are installed. (The
-   easiest way to install an atBegin is to stick it in the LassoStartup folder.)
+   easiest way to install an atBegin is to place it in the "LassoStartup"
+   directory.)
 
    The object installed as the at-begin code is copied to each request's thread
    each time. This means that a capture's local variables or any object's data
