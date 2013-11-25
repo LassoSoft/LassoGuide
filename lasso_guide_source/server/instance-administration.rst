@@ -279,7 +279,7 @@ this interface you can also specify the site's logging settings.
    Configuring error logging in Lasso Server Admin is not the same thing as
    configuring page-level error handling, such as for syntax errors and security
    errors. Page-level error handling is described in the :ref:`error-handling`
-   chapter of the Lasso Language Guide.
+   chapter.
 
 
 Filter Log Messages

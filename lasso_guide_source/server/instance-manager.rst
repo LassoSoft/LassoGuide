@@ -273,8 +273,8 @@ modified or removed unless a highly customized instance is required.
 Instance Home Directory Contents
 ================================
 
-A Lasso instance's home directory can contain several folders and files which
-can be used to tailor the instance. Specifically, these are the "LassoModules",
+A Lasso instance's home directory can contain several folders and files that can
+be used to tailor the instance. Specifically, these are the "LassoModules",
 "LassoLibraries", and "LassoApps" directories. However, by default, an instance
 will also look for these directories in the Instance Manager's home directory.
 Files can be placed in the proper location inside of the instance's home

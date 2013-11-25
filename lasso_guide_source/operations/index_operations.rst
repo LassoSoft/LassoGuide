@@ -21,10 +21,26 @@
       math
       date-duration
       regular-expressions
-      images-multimedia
       containers
-      encryption-compression
-      serialization
+      encryption
+      serialization-compression
+
+.. container:: col four first
+
+   .. only:: html
+
+      .. rubric:: System Input and Output
+
+   .. toctree::
+      :maxdepth: 2
+
+      files
+      images-multimedia
+      pdf
+      xml
+      logging
+      os-process
+      sys-process
 
 .. container:: col four first
 
@@ -40,22 +56,7 @@
       authentication
       sessions
       lassoapps
-
-.. container:: col four first
-
-   .. only:: html
-
-      .. rubric:: System Input and Output
-
-   .. toctree::
-      :maxdepth: 2
-
-      files
-      pdf
-      xml
-      os-process
-      sys-process
-      logging
+      command-line-tools
 
 .. container:: col four first
 

@@ -1,8 +1,8 @@
-.. _encryption-compression:
+.. _encryption:
 
-**************************
-Encryption and Compression
-**************************
+**********
+Encryption
+**********
 
 Lasso provides a set of data encryption methods which support the most common
 encryption and hash functions used on the Internet today. These encryption
@@ -18,20 +18,17 @@ available on your system and the `cipher_encrypt`, `cipher_decrypt`, and
 `cipher_digest` methods allow values to be encrypted, decrypted, or digest
 values to be generated respectively.
 
-Finally, Lasso provides a set of methods to compress or decompress data for more
-efficient data transmission.
-
 
 Encryption Methods
 ==================
 
-Lasso provides a number of methods which allow data to be encrypted for secure
+Lasso provides a number of methods that allow data to be encrypted for secure
 storage or transmission. Three different types of encryption are supplied:
 
 BlowFish
    This is a fast, popular encryption algorithm. Lasso provides tools to encrypt
    and decrypt string values using a developer-defined seed. This is the best
-   method to use for data which needs to be stored in a database or transmitted
+   method to use for data that needs to be stored in a database or transmitted
    securely and decrypted later.
 
 MD5
@@ -41,8 +38,7 @@ MD5
 
 SHA1
    This is a one-way cryptographic hash algorithm that is often used for
-   passwords. There is no way to decode data which has been hashed using
-   SHA1.
+   passwords. There is no way to decode data that has been hashed using SHA1.
 
 .. method:: encrypt_blowfish(plaintext, -seed::string)
 
@@ -81,7 +77,7 @@ SHA1
 
    Generates a keyed hash message authentication code for a given input and
    password. The method requires a ``-password`` parameter to specify the key
-   for the hash and a ``-token`` parameter to specify the text message which is
+   for the hash and a ``-token`` parameter to specify the text message that is
    to be hashed. These parameters should be specified as a string or as a byte
    stream. The digest algorithm used for the hash can be specified using an
    optional ``-digest`` parameter. The digest algorithm defaults to "MD5".
@@ -99,17 +95,17 @@ BlowFish Seeds
 --------------
 
 BlowFish requires a seed in order to encrypt or decrypt a string. The same seed
-which was used to encrypt data using the `encrypt_blowfish` method must be
-passed to the `decrypt_blowfish` method to decrypt that data. If you lose the
-key used to encrypt data then the data will be essentially unrecoverable.
+that was used to encrypt data using the `encrypt_blowfish` method must be passed
+to the `decrypt_blowfish` method to decrypt that data. If you lose the key used
+to encrypt data then the data will be essentially unrecoverable.
 
 Seeds can be any string between 4 characters and 112 characters long. Pick the
 longest string possible to ensure a secure encryption. Ideal seeds contain a mix
 of letters, digits, and punctuation.
 
 The security considerations of storing, transmitting, and hard-coding seed
-values is beyond the scope of this book. In the examples that follow, we present
-methodologies which are easy to use, but may not provide the highest level of
+values is beyond the scope of this book. The examples that follow present
+methodologies that are easy to use, but may not provide the highest level of
 security possible. You should consult a security expert if security is very
 important for your website.
 
@@ -117,7 +113,7 @@ important for your website.
 Store Encrypted Data in a Database
 ----------------------------------
 
-Use the `encrypt_blowfish` and `decrypt_blowfish` methods to encrypt data which
+Use the `encrypt_blowfish` and `decrypt_blowfish` methods to encrypt data that
 will be stored in a database and then decrypt the data when it is retrieved from
 the database.
 
@@ -201,7 +197,7 @@ via a form::
       local(is_authenticated) = (found_count > 0)
    }
    if(#is_authenticated) => {
-      // Log in successful
+      // Login successful
       // ...
    else
       // Credentials don't match
@@ -301,7 +297,7 @@ Use the `cipher_list` method. The following example will return a list of all
 the cipher algorithms supported by this installation of Lasso::
 
    cipher_list
-   // => staticarray(DES-ECB, DES-EDE, DES-CFB, DES-OFB, DES-CBC, DES-EDE3-CBC,\
+   // => staticarray(DES-ECB, DES-EDE, DES-CFB, DES-OFB, DES-CBC, DES-EDE3-CBC, \
    //                RC4, RC2-CBC, BF-CBC, CAST5-CBC, RC5-CBC)
 
 With a ``-digest`` parameter the method will limit the returned list to all of
@@ -327,66 +323,3 @@ Use the `cipher_encrypt` method. The following example will return the 3DES
 encryption for the value of a database field "message"::
 
    cipher_encrypt(field('message'), -cipher='DES-EDE3-CBC', -key='My Very Secret Key For 3DES')
-
-
-Compression Methods
-===================
-
-Lasso provides two methods that allow data to be stored or transmitted more
-efficiently. The `compress` method can be used to compress any text string into
-an efficient byte stream that can be stored in a binary field in a database or
-transmitted to another server. The `decompress` method can then be used to
-restore a compressed byte stream into the original string.
-
-.. method:: compress(b::bytes)
-.. method:: compress(s::string)
-
-   Compresses a string or bytes object.
-
-.. method:: uncompress(b::bytes)
-.. method:: decompress(b::bytes)
-
-   Decompresses a byte stream.
-
-The compression algorithm should only be used on large string values. For
-strings of less than one hundred characters the algorithm may actually result in
-a larger string than the source.
-
-These methods can be used in concert with the `serialize` method which creates a
-string representation of a type that implements `trait_serializable`, and the
-`serialization_reader->read` method which returns the original value based on a
-string representation.
-
-
-Compress and Decompress a String
---------------------------------
-
-The following example takes the string value stored in the variable "input" and
-compresses it and stores that information in "smaller". Finally, it decompresses
-the data into the variable "output" and then displays the value now stored in
-output. ::
-
-   local(input)   = 'This is the string to be compressed.'
-   local(smaller) = compress(#input)
-   local(output)  = decompress(#smaller)
-   #output
-
-   // => This is the string to be compressed.
-
-
-Compress and Decompress an Array
---------------------------------
-
-The following example takes an array value stored in "my_array" and serializes
-the data into the "input" variable. It then compresses that data into the
-"smaller" variable. The "output" variable is then set to the decompressed and
-deserialized value stored in the "smaller" variable. The value in "output" is
-then displayed. ::
-
-   local(my_array) = array('one', 'two', 'three', 'four', 'five')
-   local(input)    = #my_array->serialize
-   local(smaller)  = compress(#input)
-   local(output)   = serialization_reader(xml(decompress(#smaller)))->read
-   #output
-
-   // => array(one, two, three, four, five)

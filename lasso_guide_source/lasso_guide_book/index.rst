@@ -2,13 +2,14 @@
 
 .. _book-table-of-contents:
 
-*****************
-Table of Contents
-*****************
+%%%%%%%%%%%%%%%%%%%
+ Table of Contents
+%%%%%%%%%%%%%%%%%%%
 
-#############################
-Introduction and Installation
-#############################
+
+##########################
+Getting Started with Lasso
+##########################
 
 .. toctree::
 
@@ -23,14 +24,14 @@ Installation
 .. toctree::
 
    /server/osx-installation
-   /server/ubuntu-installation
    /server/centos-installation
+   /server/ubuntu-installation
    /server/windows-installation
 
 
-++++++++++++++++++++++++++++++++
-Configuration and Administration
-++++++++++++++++++++++++++++++++
++++++++++++++++++
+Server Management
++++++++++++++++++
 
 .. toctree::
 
@@ -43,6 +44,8 @@ Configuration and Administration
 A Taste of Lasso
 ++++++++++++++++
 
+.. a.k.a. Overview Guide for Programmers
+
 .. toctree::
 
    /getstart/overview/basics
@@ -51,11 +54,11 @@ A Taste of Lasso
    /getstart/overview/conclusion
 
 
-.. _lasso-language-guide:
+.. _book-language:
 
-##############
-Language Guide
-##############
+#################
+Language Elements
+#################
 
 .. toctree::
 
@@ -73,6 +76,8 @@ Language Guide
    /language/threading
 
 
+.. Operations Guide broken down into parts
+
 #############
 Data Handling
 #############
@@ -84,12 +89,23 @@ Data Handling
    /operations/math
    /operations/date-duration
    /operations/regular-expressions
-   /operations/images-multimedia
-   /operations/xml
-   /operations/pdf
    /operations/containers
-   /operations/encryption-compression
-   /operations/serialization
+   /operations/encryption
+   /operations/serialization-compression
+
+
+#######################
+System Input and Output
+#######################
+
+.. toctree::
+
+   /operations/files
+   /operations/images-multimedia
+   /operations/pdf
+   /operations/xml
+   /operations/logging
+   /operations/sys-process
 
 
 ###########################
@@ -98,26 +114,17 @@ Web Application Development
 
 .. toctree::
 
-   requests-responses
+   /operations/requests-responses
+   /operations/uploading-files
+   /operations/authentication
    /operations/sessions
    /operations/lassoapps
+   /operations/command-line-tools
 
 
-#################
-System Operations
-#################
-
-.. toctree::
-
-   /operations/files
-   /operations/logging
-   /operations/sys-process
-   /server/command-line-tools
-
-
-###########################
-Networking & Communications
-###########################
+#############################
+Networking and Communications
+#############################
 
 .. toctree::
 
@@ -129,9 +136,9 @@ Networking & Communications
    /operations/protocols-pipes
 
 
-#######################
-Database Communications
-#######################
+###################
+Database Operations
+###################
 
 .. toctree::
 
@@ -143,9 +150,9 @@ Database Communications
    /databases/filemaker-data-sources
 
 
-###################
-External Source API
-###################
+###############
+Extending Lasso
+###############
 
 
 +++++++++++

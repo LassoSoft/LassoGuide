@@ -688,7 +688,7 @@ Requirements
    Linux
       Consult the documentation of the ODBC drivers for information about how to
       set up data sources on Linux. Many ODBC drivers ship with a control panel
-      which allows configuration of those drivers. Lasso can access data sources
+      that allows configuration of those drivers. Lasso can access data sources
       configured as System DSNs.
 
 

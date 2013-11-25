@@ -35,8 +35,7 @@ need with maximum productivity and ease.
    embedded in templates with HTML, XML or other data types. Lasso Server
    manages processing and executing these files and responding to the client
    with the resulting data. The details of programming in the Lasso language are
-   covered in this book starting with Part II, the
-   :ref:`lasso-language-guide-index`.
+   covered in this book starting with Part II, :ref:`book-language`.
 
 
 Lasso Runtime

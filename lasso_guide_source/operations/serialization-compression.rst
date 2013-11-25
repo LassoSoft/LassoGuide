@@ -1,16 +1,19 @@
-.. _serialization:
+.. _serialization-compression:
 
-*************
-Serialization
-*************
+*****************************
+Serialization and Compression
+*****************************
 
-Serializing an object converts the object into a format which can be transmitted
+Serializing an object converts the object into a format that can be transmitted
 over the network or written to a file. The serialized object data can then later
-be used to de-serialize --- or recreate --- the object.
+be used to de-serialize---or re-create---the object.
 
 Lasso uses XML for object serialization. An object that supports serialization
 can be converted to and from XML. The object is given control over which of its
 data members will be written to the output.
+
+Lasso also provides a set of methods to compress or decompress data for more
+efficient data transmission.
 
 
 Serializing Objects
@@ -25,7 +28,7 @@ method is provided through `trait_serializable`, which is described here.
 .. provide:: trait_serializable->serialize()::string
 
    Serializes the object and returns the resulting data. That data can then be
-   deserialized --- recreating an object with the correct data.
+   deserialized, re-creating an object with the correct data.
 
 
 Deserializing Data
@@ -70,7 +73,7 @@ Serializable objects must implement the following methods:
 
    This method is called during object serialization. It should return an array,
    staticarray or some other suitable object containing each of the elements
-   which should be serialized along with the target object.
+   that should be serialized along with the target object.
 
    Each element in the return value should be a `serialization_element`. These
    objects contain a key and a value. The key and the value must both be
@@ -83,7 +86,7 @@ Serializable objects must implement the following methods:
    As an object is deserialized by a `serialization_reader`, first a new
    instance is created, then this method is called once for each of the
    serialization elements that were originally included in the data. The
-   `serialization_element` items contain the keys and values used to recreate
+   `serialization_element` items contain the keys and values used to re-create
    the original object state.
 
 In addition to implementing the proper methods, the object must have
@@ -113,8 +116,8 @@ key and value are made available through methods named accordingly.
 Serializable Type Example
 -------------------------
 
-This example illustrates how to create a new object type which is serializable.
-The example type has data members which are saved during serialization. ::
+This example illustrates how to create a new object type that is serializable.
+The example type has data members that are saved during serialization. ::
 
    define example_obj => type {
      trait { import trait_serializable }
@@ -145,4 +148,67 @@ The example type has data members which are saved during serialization. ::
    )
    #new->dmem1
 
-   // => 'Value for first member'
+   // => Value for first member
+
+
+Compression Methods
+===================
+
+Lasso provides two methods that allow data to be stored or transmitted more
+efficiently. The `compress` method can be used to compress any text string into
+an efficient byte stream that can be stored in a binary field in a database or
+transmitted to another server. The `decompress` method can then be used to
+restore a compressed byte stream into the original string.
+
+.. method:: compress(b::bytes)
+.. method:: compress(s::string)
+
+   Compresses a string or bytes object.
+
+.. method:: uncompress(b::bytes)
+.. method:: decompress(b::bytes)
+
+   Decompresses a byte stream.
+
+The compression algorithm should only be used on large string values. For
+strings of less than one hundred characters the algorithm may actually result in
+a larger string than the source.
+
+These methods can be used in concert with the `serialize` method which creates a
+string representation of a type that implements `trait_serializable`, and the
+`serialization_reader->read` method which returns the original value based on a
+string representation.
+
+
+Compress and Decompress a String
+--------------------------------
+
+The following example takes the string value stored in the variable "input" and
+compresses it and stores that information in "smaller". Finally, it decompresses
+the data into the variable "output" and then displays the value now stored in
+output. ::
+
+   local(input)   = 'This is the string to be compressed.'
+   local(smaller) = compress(#input)
+   local(output)  = decompress(#smaller)
+   #output
+
+   // => This is the string to be compressed.
+
+
+Compress and Decompress an Array
+--------------------------------
+
+The following example takes an array value stored in "my_array" and serializes
+the data into the "input" variable. It then compresses that data into the
+"smaller" variable. The "output" variable is then set to the decompressed and
+deserialized value stored in the "smaller" variable. The value in "output" is
+then displayed. ::
+
+   local(my_array) = array('one', 'two', 'three', 'four', 'five')
+   local(input)    = #my_array->serialize
+   local(smaller)  = compress(#input)
+   local(output)   = serialization_reader(xml(decompress(#smaller)))->read
+   #output
+
+   // => array(one, two, three, four, five)
