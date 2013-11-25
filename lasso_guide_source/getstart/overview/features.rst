@@ -6,9 +6,8 @@ Lasso Programming Features
 
 The Lasso programming language has a number of great features that make coding
 in it enjoyable. This tutorial will scratch the surface of some of the best
-features while also giving you an introduction to defining methods, types, and
-traits. (For more detailed information, read the appropriate section in the
-:ref:`lasso-language-guide-index`.)
+features of Lasso while also giving an introduction to defining methods, types, and
+traits.
 
 
 Type Constraints
@@ -21,7 +20,7 @@ variable that can only store integer values::
    local(myInt::integer) = 5
    #myInt = 8
    #myInt = '44'
-   // => Throws an error since we are trying to assign a string.
+   // => // Throws an error since we are trying to assign a string
 
 This syntax also works for type-constraining thread variables.
 
@@ -67,8 +66,8 @@ method like this::
 
    define time_of_day(datetime::date=date) => time_of_day(#datetime->hour)
 
-This defines a second method which also has the name "time_of_day", but accepts
-a date object and returns the value of calling the ``time_of_day`` method that
+This defines a second method that also has the name "time_of_day", but accepts a
+date object and returns the value of calling the ``time_of_day`` method that
 takes an integer, passing it the hour of the date object. This method definition
 doesn't have a capture associated with it. If your method is going to just
 return the value of an expression, you can put that expression to the right of
@@ -112,7 +111,7 @@ name, the associate operator, the ``type`` keyword, and finally the braces for
 the capture containing the type definition code. The definition starts with two
 data sections that define three data members for the type. Two member methods
 are then defined using the access level keyword ``public`` instead of the
-``define`` keyword. The ``onCreate`` methods are special for types: they define
+``define`` keyword. The ``onCreate`` methods are special for types: they define
 type creator methods that are automatically called when you create instances of
 your type. The following code would use the ``person->onCreate`` method to
 create an object of type "person" and then output their first and last name::
@@ -123,8 +122,7 @@ create an object of type "person" and then output their first and last name::
    // => Sean Stephens
 
 Types in Lasso also have single inheritance and can implement and import traits,
-described next. For more information on types, read the :ref:`types` chapter of
-the Language Guide.
+described next. For more information on types, see the :ref:`types` chapter.
 
 
 Traits
@@ -151,7 +149,7 @@ slightly modified version of the ``trait_positionallyKeyed`` definition::
 
 The definition starts with the ``define`` keyword followed by the name of the
 trait, the associate operator, the ``trait`` keyword, and then a set of braces
-enclosing the trait definition. There are then three sections which start with
+enclosing the trait definition. There are then three sections that start with
 their own keyword:
 
 import
@@ -177,8 +175,7 @@ provide
 The result of this trait definition is that types defining a ``size`` method and
 a ``get`` method can import this trait and have the following methods available
 as member methods: ``first``, ``second``, ``last``. For more information on
-defining and using traits, read the :ref:`traits` chapter of the Lasso Language
-Guide.
+defining and using traits, see the :ref:`traits` chapter.
 
 
 Query Expressions
@@ -223,8 +220,7 @@ adds 72, 14, and 88 together.
 The best part about query expressions is that most of the actions are lazily
 executed. This means you can store a query expression in a variable, and it will
 wait to be executed until the value for the variable is expected. For a better
-description, read the :ref:`query-expressions` chapter of the Lasso Language
-Guide.
+description, see the :ref:`query-expressions` chapter.
 
 .. only:: html
 

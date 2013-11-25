@@ -231,7 +231,16 @@ latex_elements = {
 % Insert line break after definition list terms
 % Has the side effect of allowing footnotes inside definition terms
 \usepackage{enumitem}
-\setlist[description]{style=nextline}
+\setlist[description]{style=nextline,labelsep=*}
+
+% Reduce left margin for quote
+\renewenvironment{quote}{
+  \list{}{
+    \leftmargin=10pt
+    \rightmargin\leftmargin
+  }\item\relax
+}
+{\endlist}
 
 %%
 % For some reason, this works to get the default font color

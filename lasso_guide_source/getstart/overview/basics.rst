@@ -7,7 +7,8 @@ Lasso Basics
 Welcome to Lasso! This guide is meant to assist you in diving into the language.
 It assumes you have prior programming experience and that you have properly
 installed Lasso and configured Lasso to work with your web server. (See the
-appropriate :ref:`installation guide <lasso-server-guide-index>` for your OS.)
+appropriate installation guide section for your operating system for complete
+instructions.)
 
 The examples in this particular chapter can all be run inside the
 :ref:`Lasso Quick Code <instance-administration-quick-code>` area in the Lasso
@@ -85,8 +86,8 @@ an example of creating and using both types of variables::
 
    // => 42
 
-One nice feature of local variables is decompositional assignment. This makes it
-easy to assign values from array-like data types into locals::
+One handy feature of local variables is decompositional assignment. This makes
+it easy to assign values from array-like types into locals::
 
    local(a,b,c) = array('rhino', 'runs', 'rapidly')
    #a
@@ -96,8 +97,7 @@ easy to assign values from array-like data types into locals::
    #c
    // => rapidly
 
-For more information on variables, read the :ref:`variables` chapter in the
-Language Guide.
+For more information on variables, see the :ref:`variables` chapter.
 
 .. only:: html
 

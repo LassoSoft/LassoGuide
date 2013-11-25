@@ -15,9 +15,9 @@ Embedding Lasso
 ===============
 
 Lasso is designed to make it easy to intermix HTML and Lasso code in a single
-file. Just create a normal HTML file with the ".lasso" suffix and you can
-intersperse Lasso code between the following delimiters: ``[ ... ]``, ``<?lasso
-... ?>``, and ``<?= ... ?>``.
+file. Just create a normal HTML file with the "|dot| lasso" extension and you
+can intersperse Lasso code between the following delimiters: ``[ ... ]``,
+``<?lasso ... ?>``, and ``<?= ... ?>``.
 
 For example, you could place the following code in a file named "test.lasso" in
 the root of your web root::
@@ -45,7 +45,7 @@ the root of your web root::
    </body>
 
 Now all you need to do is use a web browser to request the URL from the server
-(e.g. ``http://www.example.com/test.lasso``) and it will use Lasso to return an
+(e.g. :ref:`!http://example.com/test.lasso`) and it will use Lasso to return an
 HTML page with something like the following content:
 
 .. code-block:: none
@@ -66,16 +66,17 @@ To create a LassoApp, create a directory in the "LassoApps" directory of your
 instance's home directory. By default, URLs for the LassoApp will start with
 "/lasso9/AppName/". The discussion that follows will assume an app named
 "AddressBook" with URLs that look like
-``http://www.example.com/lasso9/AddressBook``.
+:ref:`!http://example.com/lasso9/AddressBook`.
 
 
 The _install Files
 ------------------
 
 The first time a LassoApp is loaded by the instance, it will execute any files
-with a file name beginning with "_install" and ending with ".lasso" or ".inc".
-For example, an install file that performs a specific task, such as creating a
-database required by the app, could be named "_install.create_dbs.lasso".
+with a file name beginning with "_install" and ending with "|dot| lasso" or
+"|dot| inc". For example, an install file that performs a specific task, such as
+creating a database required by the app, could be named
+"_install.create_dbs.lasso".
 
 
 The _init File
@@ -95,8 +96,8 @@ Matching URLs to Code Files
 
 LassoApps match the code files they process based on the type of content
 requested as represented by the extension in the URL path. The default type is
-HTML if no extension is used or if the ".lasso" extension is used. That means
-the following example URLs will all match the same code:
+HTML if no extension is used or if the "|dot| lasso" extension is used. That
+means the following example URLs will all match the same code:
 
 .. code-block:: none
 
@@ -114,8 +115,8 @@ for display. (Note that if you use the URL ending in "people.lasso", Lasso won't
 look for a secondary file to run based on content; only that code file will be
 run.)
 
-For example, your "people.lasso" file might contain the code to create an array
-of people objects and then return that array at the end::
+For example, your "people.lasso" file might contain code to create an array of
+people objects and then return that array at the end::
 
    local(found_people) = array
 
@@ -156,9 +157,9 @@ Your "people[html].lasso" file might look something like this::
 This separation of logic and presentation allows for some rather powerful
 features. For example, let's say I wanted to return a JSON representation of the
 array of people when they accessed the URL
-``http://example.com/lasso9/AddressBook/people.json``. I already have the logic
-that finds the people and creates the array, so all I need to do is add a file
-named "people[xhr].lasso" to create and display the array of maps::
+:ref:`!http://example.com/lasso9/AddressBook/people.json`. I already have the
+logic that finds the people and creates the array, so all I need to do is add a
+file named "people[xhr].lasso" to create and display the array of maps::
 
    <?lasso
       local(people) = #1
@@ -172,7 +173,7 @@ named "people[xhr].lasso" to create and display the array of maps::
       )
    ?>
 
-For more information on creating and compiling LassoApps, be sure to read the
-:ref:`lassoapps` chapter in the Operations Guide.
+For more information on creating and compiling LassoApps, see the
+:ref:`lassoapps` chapter.
 
 .. _frameworks available: http://www.lassosoft.com/Lasso-frameworks
