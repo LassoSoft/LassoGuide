@@ -56,7 +56,8 @@ Installation
 
 #. When the installer has finished, click on the link on the web page that
    appears in order to load the initialization form for Lasso Instance Manager
-   (found on your own machine at ``http://localhost/lasso9/instancemanager``).
+   (found on your own machine at
+   :ref:`!http://localhost/lasso9/instancemanager`).
 
 #. Use the form to set an administrator username and password for your Lasso
    installation and default instance.

@@ -94,7 +94,7 @@ arrow tab in the top center of the page.
 The Lasso Quick Code console has two configurable options:
 
 -  **<?lasso** -- When this option is checked, anything entered in the "Code"
-   field is treated as having been wrapped in "<?lasso ... ?>" delimiters.
+   field is treated as having been wrapped in ``<?lasso ... ?>`` delimiters.
 -  **Auto-collect** -- When this option is checked, the Lasso Quick Code console
    will display the results of auto-collecting the code in the "Result" field.
 

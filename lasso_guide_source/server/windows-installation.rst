@@ -45,6 +45,9 @@ Installation
 Download and expand the correct `Lasso 9 Server for Windows`_ installer for your
 OS and web server from the LassoSoft website and run the installer package.
 
+When done, open :ref:`!http://your-server-domain.name/lasso9/instancemanager`
+to load the initialization form and complete your Lasso installation.
+
 
 Configuring IIS 7 or 8
 ======================
@@ -98,8 +101,8 @@ Configuring Apache 2.2
 -  Edit the Apache :file:`httpd.conf` file and add the following line:
    ``Include conf/mod_lasso9.conf``
 -  Restart Apache.
--  In a browser, open the configuration page at
-   ``http://localhost/lasso9/instancemanager``.
+-  In a browser, open :ref:`!http://localhost/lasso9/instancemanager` to load
+   the initialization form and complete your Lasso installation.
 
 
 Configuring ImageMagick

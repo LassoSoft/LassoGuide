@@ -117,8 +117,8 @@ To start lassoserver as a FastCGI proxy server listening on a socket at
 
    $> lassoserver -fproxy //tmp/lasso.sock
 
-To start lassoserver as an HTTP server that processes ".lasso" and ".inc" files
-as Lasso code::
+To start lassoserver as an HTTP server that processes "\*.lasso" and "\*.inc"
+files as Lasso code::
 
    $> lassoserver -httproot /path/to/webroot -scriptextensions "lasso;inc"
 
@@ -574,12 +574,12 @@ loading the very basic built-in functions and objects and then let the rest of
 the system load in over time.
 
 A special type of library can also be produced: a bitcode file, which has a
-".bc" file extension. Bitcode is an LLVM-specific format that Lasso knows how to
-load. Bitcode files can be shared across platforms on the same processor. For
-example, the same bitcode file could be used on OS X x86 and CentOS x86. Bitcode
-files don't load as fast, have about 80% larger file size and consume more
-memory than library files compiled into a shared library, but they don't require
-GCC and are cross-platform.
+"|dot| bc" file extension. Bitcode is an LLVM-specific format that Lasso knows
+how to load. Bitcode files can be shared across platforms on the same processor.
+For example, the same bitcode file could be used on OS X x86 and CentOS x86.
+Bitcode files don't load as fast, have about 80% larger file size and consume
+more memory than library files compiled into a shared library, but they don't
+require GCC and are cross-platform.
 
 
 Prerequisites

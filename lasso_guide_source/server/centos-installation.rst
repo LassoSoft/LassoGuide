@@ -19,7 +19,7 @@ for your system and run::
    $> yum install httpd java-1.6.0-openjdk ImageMagick mysql
    $> rpm -ivh name-of-file.rpm
 
-When done, open :samp:`http://{your-server-domain.name}/lasso9/instancemanager`
+When done, open :ref:`!http://your-server-domain.name/lasso9/instancemanager`
 to load the initialization form and complete your Lasso installation.
 
 From here on, you can read up on using the :ref:`instance-manager` and
@@ -50,7 +50,7 @@ To install Lasso 9 on a **64-bit CentOS 5 system**, as root run::
 
    $> yum install Lasso-Instance-Manager.x86_64
 
-When done, open :samp:`http://{your-server-domain.name}/lasso9/instancemanager`
+When done, open :ref:`!http://your-server-domain.name/lasso9/instancemanager`
 to load the initialization form and complete your Lasso installation.
 
 From here on, you can read up on using the :ref:`instance-manager` and
@@ -77,7 +77,7 @@ To install Lasso 9 on a **64-bit CentOS 6 system**, as root run::
 
    $> yum install Lasso-Instance-Manager
 
-When done, open :samp:`http://{your-server-domain.name}/lasso9/instancemanager`
+When done, open :ref:`!http://your-server-domain.name/lasso9/instancemanager`
 to load the initialization form and complete your Lasso installation.
 
 From here on, you can read up on using the :ref:`instance-manager` and

@@ -481,8 +481,8 @@ The Oracle database server must be configured with a user that has access to all
 of the databases, tables, and other resources that will be published through
 Lasso. Consult the Oracle documentation for help configuring Oracle's built-in
 security. The Oracle website has a "Getting Started" section which explains how
-to install and perform basic configuration of an Oracle database server.
-`<http://www.oracle.com/pls/db111/portal.portal_db>`_
+to install and perform basic configuration of an Oracle database server:
+`<http://www.oracle.com/pls/db111/portal.portal_db>`_.
 
 
 Adding an Oracle Data Source Host
@@ -498,8 +498,8 @@ To add a new Oracle host:
    :guilabel:`Oracle` item.
 #. Click the :guilabel:`Add host` item to reveal the host connection form.
 #. Enter the IP address or domain name where the Oracle data sources are being
-   hosted, the port, and the database name using the ":/" format in the "Host"
-   field (e.g. "www.example.com:1521/Mydatabase").
+   hosted, the port, and the database name using the "host:port/database" format
+   in the "Host" field (e.g. "www.example.com:1521/Mydatabase").
 #. Enter the TCP port of the Oracle service in the "Port" field. This is
    commonly "1521" for Oracle.
 #. Select "Yes" from the :guilabel:`Enabled` drop-down to enable the host.

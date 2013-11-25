@@ -15,7 +15,7 @@ allows those instances to be configured in one convenient location.
 Lasso Instance Manager stands as an intermediary between the individual Lasso 9
 instances and the web server. Each Lasso 9 instance is configured with a host
 name pattern. By default, Lasso Instance Manager catches all requests with the
-file extension ".lasso" and all requests where the URI path begins with
+file extension "|dot| lasso" and all requests where the URI path begins with
 "/lasso9/", and it uses the instance's host name patterns to determine which
 running Lasso 9 instance should serve each request.
 
@@ -25,9 +25,8 @@ Initialization
 
 After the initial installation, you will be presented with a simple install
 acknowledgment and a process to initialize and create the first instance. Under
-OS X this will be a web page; under Linux you will see an output in the terminal
-that gives the URL
-:samp:`http://{your-server-domain.name}/lasso9/instancemanager`.
+OS X this will be a web page; under Linux you will see output in the terminal
+giving the URL :ref:`!http://your-server-domain.name/lasso9/instancemanager`.
 
 When Lasso Instance Manager is run for the first time, it will look for an
 existing Lasso 9.0 installation that was installed through the Lasso 9.0
