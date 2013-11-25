@@ -42,7 +42,10 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
-html:
+pdfdownload: $(wildcard $(BUILDDIR)/latex/LassoGuide*.pdf)
+	-rsync -aq $(BUILDDIR)/latex/LassoGuide*.pdf $(BUILDDIR)/html
+
+html: pdfdownload
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
@@ -111,9 +114,9 @@ latexpdf:
 	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
 	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
 	mv -f  $(BUILDDIR)/latex/Makefile{2,}
-	@echo "Running LaTeX files through xelatex..."
+	@echo "Running LaTeX files through XeLaTeX..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
-	@echo "xelatex finished; the PDF files are in $(BUILDDIR)/latex."
+	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."
 
 text:
 	$(SPHINXBUILD) -b text $(ALLSPHINXOPTS) $(BUILDDIR)/text
