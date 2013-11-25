@@ -1,15 +1,17 @@
+:tocdepth: 3
+
 .. _pdf:
 
 ************************
 Portable Document Format
 ************************
 
-Lasso 9 provides support for creating Portable Document Format (PDF) files. The
-PDF file format is a widely accepted standard for electronic documentation, and
-facilitates superb printer-quality documents from simple graphs to complex forms
-such as tax forms, escrow documents, loan applications, stock reports, and user
-manuals. For more information on PDF technology, see the following URL:
-`<http://www.adobe.com/products/acrobat/adobepdf.html>`_
+Lasso 9 provides support for creating :dfn:`Portable Document Format` (PDF)
+files. The PDF file format is a widely accepted standard for electronic
+documentation, and facilitates superb printer-quality documents from simple
+graphs to complex forms such as tax forms, escrow documents, loan applications,
+stock reports, and user manuals. For more information on PDF technology, see the
+following URL: `<http://www.adobe.com/products/acrobat/adobepdf.html>`_.
 
 .. note::
    The ``pdf_…`` methods in Lasso 9 are implemented in LJAPI, and based on the
@@ -23,7 +25,7 @@ Introduction to PDF Files
 PDF files are created in Lasso by using the :type:`pdf_doc` type, and calling
 various member methods and other ``pdf_…`` methods to add data to the object.
 The PDF is then written to file when the Lasso page containing all code is
-served by the Web server.
+served by the web server.
 
 
 Create a Basic PDF File Using Lasso
@@ -50,56 +52,56 @@ document using the :type:`pdf_font` type. Then, the text "I am a PDF document"
 is defined using the :type:`pdf_text` type, and added using the `pdf_doc->add`
 member method. The PDF is then written to file upon execution of
 ``#my_file->close``. Since no path information was specified along with the file
-name to the ``-file`` pramater, the file "MyFile.pdf" is created in the same
+name to the ``-file`` parameter, the file "MyFile.pdf" is created in the same
 folder as the page whose code created it.
 
 This chapter explains in detail how these and other methods are used to create
 and edit PDF files. This chapter also shows how to output a PDF file to a client
 browser within the context of a Lasso page, which is described in the
-:ref:`Serving PDF Files <serving-pdf-files>` section.
+:ref:`pdf-serving-files` section.
 
 .. note::
    When creating files, the user running the Lasso Server instance or
    command-line process must be allowed to write to the folder by the operating
-   system. For more information, see the :ref:`Files <files>` chapter.
+   system. For more information, see the :ref:`files` chapter.
 
 
-Working With PDF Documents
-==========================
+Working With PDF Files
+======================
 
-Lasso provides a data type that allows existing PDF documents to be read and
-manipulated. A PDF document is read using :type:`pdf_read`. The document can
-then be inspected for page count, page size, and the values of any embedded form
-elements. Pages from the file can be placed within a new PDF document. A range
-of pages from the PDF document can be saved as a new PDF document and encryption
-options can be added to the new PDF document.
+Lasso provides a type that allows existing PDF files to be read and manipulated.
+A PDF file is read using :type:`pdf_read`. The file can then be inspected for
+page count, page size, and the values of any embedded form elements. Pages from
+the file can be placed within a new PDF file. A range of pages from the PDF file
+can be saved as a new PDF file and encryption options can be added to the new
+PDF file.
 
 .. type:: pdf_read
 .. method:: pdf_read(-file::string, -password::string= ?)
 
-   Reads an existing PDF document into an object. Requires one parameter
-   ``-file`` which specifies the name of the PDF document to be read. Optional
-   ``-password`` parameter specifies the owner's password for the file.
+   Reads an existing PDF file into an object. Requires one parameter ``-file``
+   which specifies the name of the PDF file to be read. Optional ``-password``
+   parameter specifies the owner's password for the file.
 
 .. member:: pdf_read->pageCount()::integer
 
-   Returns the number of pages in the document.
+   Returns the number of pages in the file.
 
 .. member:: pdf_read->pageSize(page::integer= ?)::staticarray
 
-   Returns the size of a page in the document as a staticarray of width and
-   height. Optional integer parameter specifies which page in the PDF to return
-   the size of and defaults to the first page.
+   Returns the size of a page in the file as a staticarray of width and height.
+   Optional integer parameter specifies which page in the PDF to return the size
+   of and defaults to the first page.
 
 .. member:: pdf_read->getHeaders()::map
 .. member:: pdf_read->getHeaders(name::string)
 
-   Returns a map of header elements from the PDF document, or the value for a
+   Returns a map of header elements from the PDF file, or the value for a
    specified header name.
 
 .. member:: pdf_read->fieldNames()::array
 
-   Returns an array of form elements embedded in the PDF document.
+   Returns an array of form elements embedded in the PDF file.
 
 .. member:: pdf_read->fieldType(name::string)
 
@@ -125,27 +127,26 @@ options can be added to the new PDF document.
 .. member:: pdf_read->importFDF(file::string, -noFields= ?, -noComments= ?)
 .. member:: pdf_read->importFDF(data::bytes, -noFields= ?, -noComments= ?)
 
-   Merges an FDF file into the current PDF document. Any form elements within
-   the document will be populated with the values from the FDF file. Accepts a
-   parameter that specifies the path to the FDF file. Alternately, accepts a
-   bytes object containing the file data. Optional ``-noFields`` and
-   ``-noComments`` parameters prevent either fields or comments from being
-   merged.
+   Merges an FDF file into the current PDF file. Any form elements within the
+   file will be populated with the values from the FDF file. Accepts a parameter
+   that specifies the path to the FDF file. Alternately, accepts a bytes object
+   containing the file data. Optional ``-noFields`` and ``-noComments``
+   parameters prevent either fields or comments from being merged.
 
 .. member:: pdf_read->exportFDF(path::string= ?)
 
-   Exports an FDF file from the current PDF document. The FDF file will contain
-   values for each of the form elements in the PDF document. If a parameter is
+   Exports an FDF file from the current PDF file. The FDF file will contain
+   values for each of the form elements in the PDF file. If a parameter is
    specified then the FDF file will be written to that path. Otherwise, a byte
    object containing the data for the FDF file will be returned.
 
 .. member:: pdf_read->javaScript()
 
-   Returns the global document JavaScript action for the current PDF document.
+   Returns the global document JavaScript action for the current PDF file.
 
 .. member:: pdf_read->addJavaScript(script::string)
 
-   Adds a JavaScript action to the current PDF document.
+   Adds a JavaScript action to the current PDF file.
 
 .. member:: pdf_read->save(\
          file::string, \
@@ -155,42 +156,45 @@ options can be added to the new PDF document.
          -ownerPassword=''\
       )
 
-   Saves a copy of the current PDF document. Requires one parameter which
-   specifies the path to the file where the PDF document should be saved. Also
-   accepts ``-userPassword``, ``-ownerPassword``, ``-encryptStrong``, and
+   Saves a copy of the current PDF file. Requires one parameter which specifies
+   the path to the file where the PDF file should be saved. Also accepts
+   ``-userPassword``, ``-ownerPassword``, ``-encryptStrong``, and
    ``-permissions`` parameters. See the descriptions in the following
    documentation on the :type:`pdf_doc` type for more information about these
    parameters.
 
 .. member:: pdf_read->setPageRange(to::string)
 
-   Selects a range of pages to save into a new PDF document. Multiple ranges can
-   be specified separated by commas. Ranges take the form "4-10" to specify a
-   start and end page number. Optional "e" or "o" prefixes specify to only
-   select even or odd pages. Optional "!" prefix specifies a range of pages that
+   Selects a range of pages to save into a new PDF file. Multiple ranges can be
+   specified separated by commas. Ranges take the form "4-10" to specify a start
+   and end page number. Optional "e" or "o" prefixes specify to only select even
+   or odd pages. Optional "|bang| " prefix specifies a range of pages that
    should not be included. For example, "o4-10" would select the pages 5, 7, and
    9 while "1-10,!2-9" would select the pages 1 and 10.
 
 .. note::
    A pdf_read object can be used in concert with the `pdf_doc->insertPage`
-   method described below to insert pages from an existing PDF document into a
-   new PDF document.
+   method described below to insert pages from an existing PDF file into a new
+   PDF file.
+
+.. |bang| unicode:: 0x21
+   :trim:
 
 
-Read in an Existing PDF Document
---------------------------------
+Read In an Existing PDF File
+----------------------------
 
-In order to work with an existing PDF document, it must first be read in as a
-pdf_read object::
+In order to work with an existing PDF file, it must first be read in as a
+pdf_read object. ::
 
    local(old_pdf) = pdf_read('/documents/somepdf.pdf')
 
 
-Determine the Attributes of an Existing PDF Document
-----------------------------------------------------
+Determine the Attributes of an Existing PDF File
+------------------------------------------------
 
-The number of pages and the dimensions of an existing PDF document can be
-returned using the `pdf_read->pageCount` and `pdf_read->pageSize` methods::
+The number of pages and the dimensions of an existing PDF file can be returned
+using the `pdf_read->pageCount` and `pdf_read->pageSize` methods. ::
 
    local(old_pdf) = pdf_read('/documents/somepdf.pdf')
    'Number of pages: ' + #old_pdf->pageCount + '<br />\n'
@@ -201,128 +205,87 @@ returned using the `pdf_read->pageCount` and `pdf_read->pageSize` methods::
    // Page size: staticarray(0.000000, 792.000000, 612.000000, 792.000000)
 
 
-Creating PDF Documents
-======================
+Creating PDF Files
+==================
 
-PDF documents are initialized and created using the :type:`pdf_doc` type. This
-is the basic type used to create PDF documents in concert with all the other
-types and methods described in this chapter.
+PDF files are initialized and created using the :type:`pdf_doc` type. This is
+the basic type used to create PDF documents with Lasso, and is used in concert
+with all methods described in this chapter.
 
 .. type:: pdf_doc
 .. method:: pdf_doc(...)
 
-   Initializes a PDF document. Uses optional parameters which set the basic
+   Initializes a PDF file. Uses optional parameters that set the basic
    specifications for the file being created. Data is added to the object using
    member methods, which are described throughout this chapter. The table below
    outlines the optional parameters that can be passed to a `pdf_doc` creator
    method.
 
-   .. tabularcolumns:: |l|L|
+   :param -file:
+      Defines the file name and path of the PDF file. If omitted, the PDF
+      file is created in RAM (see the :ref:`pdf-serving-files` section for more
+      information). If a file name is specified without a folder path, the file
+      is created in the same location as the Lasso page containing the ``pdf_…``
+      methods.
+   :param -size:
+      Define the page size of the file. Values for this parameter are standard
+      print sizes, and can be "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7",
+      "A8", "A9", "A10", "B0", "B1", "B2", "B3", "B4", "B5", "ARCH_A", "ARCH_B",
+      "ARCH_C", "ARCH_D", "ARCH_E", "FLSA", "FLSE", "HALFLETTER", "LEDGER",
+      "LEGAL", "LETTER", "NOTE", and "TABLOID". Defaults to "A4". Optional.
+   :param -height:
+      Defines a custom page height for the file. Accepts an integer value which
+      represents the size in points. This can be used in combination with the
+      ``-width`` parameter instead of the ``-size`` parameter. Optional.
+   :param -width:
+      Defines a custom page width for the file. Requires an integer value which
+      represents the size in points. This can be used in combination with the
+      ``-height`` parameter instead of the ``-size`` parameter. Optional.
+   :param -margins:
+      Defines the margin size for the page. Requires an array of four decimal
+      values which define the left, right, top, and bottom margins for the page
+      ( :samp:`{left}, {right}, {top}, {bottom}` ). Optional.
+   :param -color:
+      Defines the initial text color of the PDF file. Requires a hex color
+      string. Defaults to "#000000" if not specified. Optional.
+   :param -useDate:
+      Adds the current date and time to the document header. Optional.
+   :param -noCompress:
+      Produces a PDF without compression to allow PDF code to be viewed. PDF
+      files are compressed by default if not used. Optional.
+   :param -pageNo:
+      Sets the starting page number for the PDF file. Requires an integer value,
+      which is the page number of the first page. Optional.
+   :param -pageHeader:
+      Sets text that will be displayed at the top of each page in the PDF.
+      Requires a text string as a value. Optional.
+   :param 'Header'='Content':
+      Adds defined document headers to the PDF file. ``'Header'`` is replaced
+      with the name of the document header (e.g. ``Title``, ``Author``), and
+      ``'Content'`` is replaced with the header value. Optional.
+   :param -userPassword:
+      Specifies a password that will be required to open the resulting PDF in a
+      reader application including Adobe Reader, Preview, etc. The file will be
+      encrypted if this parameter is specified. Optional.
+   :param -ownerPassword:
+      Specifies a password that will be required to open the resulting PDF in
+      an editor including Acrobat Pro, Lasso's ``pdf_read`` type, etc. The file
+      will be encrypted if this parameter is specified. Optional.
+   :param -encryptStrong:
+      If specified then strong 128-bit encryption is used rather than 40-bit
+      encryption. Note, encryption will only be performed if either
+      ``-userPassword`` or ``-ownerPassword`` is specified. Optional.
+   :param -permissions:
+      A comma-delimited list of permissions for the PDF file. Values include
+      "Print", "Modify", "Copy", or "Annotate". Four additional options are
+      available only if ``-encryptStrong`` is used: "FillIn", "Assemble",
+      "ScreenReader", and "DegradedPrint". Optional.
 
-   +----------------------+--------------------------------------------------+
-   |Parameter             |Description                                       |
-   +======================+==================================================+
-   |``-file``             |Defines the file name and path of the PDF         |
-   |                      |document. If omitted, the PDF document is created |
-   |                      |in RAM (see the :ref:`Serving PDF Files           |
-   |                      |<serving-pdf-files>` section of this chapter for  |
-   |                      |more information). If a file name is specified    |
-   |                      |without a folder path, the file is created in the |
-   |                      |same location as the Lasso page containing the    |
-   |                      |``pdf_…`` methods.                                |
-   +----------------------+--------------------------------------------------+
-   |``-size``             |Define the page size of the document. Values for  |
-   |                      |this parameter are standard print sizes, and can  |
-   |                      |be "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7",|
-   |                      |"A8", "A9", "A10", "B0", "B1", "B2", "B3", "B4",  |
-   |                      |"B5", "ARCH_A", "ARCH_B", "ARCH_C", "ARCH_D",     |
-   |                      |"ARCH_E", "FLSA", "FLSE", "HALFLETTER", "LEDGER", |
-   |                      |"LEGAL", "LETTER", "NOTE", and "TABLOID". Defaults|
-   |                      |to "A4". Optional.                                |
-   +----------------------+--------------------------------------------------+
-   |``-height``           |Defines a custom page height for the              |
-   |                      |document. Accepts an integer value which          |
-   |                      |represents the size in points. This can be used   |
-   |                      |in combination with the ``-width`` parameter      |
-   |                      |instead of the``-size`` parameter. Optional.      |
-   +----------------------+--------------------------------------------------+
-   |``-width``            |Defines a custom page width for the               |
-   |                      |document. Requires an integer value which         |
-   |                      |represents the size in points. This can be used   |
-   |                      |in combination with the ``-height`` parameter     |
-   |                      |instead of the ``-size`` parameter. Optional.     |
-   +----------------------+--------------------------------------------------+
-   |``-margins``          |Defines the margin size for the page. Requires an |
-   |                      |array of four decimal values, which define the    |
-   |                      |left, right, top, and bottom margins for the page |
-   |                      |(``Left``, ``Right``, ``Top``,``Bottom``).        |
-   |                      |Optional.                                         |
-   +----------------------+--------------------------------------------------+
-   |``-color``            |Defines the initial text color of the PDF         |
-   |                      |document. Requires a hex color string. Defaults to|
-   |                      |"#000000" if not specified. Optional.             |
-   +----------------------+--------------------------------------------------+
-   |``-useDate``          |Adds the current date and time to the file        |
-   |                      |header. Optional.                                 |
-   +----------------------+--------------------------------------------------+
-   |``-noCompress``       |Produces a PDF without compression to allow PDF   |
-   |                      |code to be viewed. PDF files are compressed by    |
-   |                      |default if not used. Optional.                    |
-   +----------------------+--------------------------------------------------+
-   |``-pageNo``           |Sets the starting page number for the PDF         |
-   |                      |document. Requires an integer value, which is the |
-   |                      |page number of the first page. Optional.          |
-   +----------------------+--------------------------------------------------+
-   |``-pageHeader``       |Sets text that will be displayed at the top of    |
-   |                      |each page in the PDF. Requires a text string as a |
-   |                      |value. Optional.                                  |
-   +----------------------+--------------------------------------------------+
-   |``-author``           |Takes a string value allowing you to specify the  |
-   |                      |Author file header.                               |
-   +----------------------+--------------------------------------------------+
-   |``-title``            |Takes a string value allowing you to specify the  |
-   |                      |Title file header.                                |
-   +----------------------+--------------------------------------------------+
-   |``-subject``          |Takes a string value allowing you to specify the  |
-   |                      |Subject file header.                              |
-   +----------------------+--------------------------------------------------+
-   |``-keywords``         |Takes a string value allowing you to specify the  |
-   |                      |Keywords file header.                             |
-   +----------------------+--------------------------------------------------+
-   |``-creator``          |Takes a string value allowing you to specify the  |
-   |                      |Creator file header.                              |
-   +----------------------+--------------------------------------------------+
-   |``-userPassword``     |Specifies a password that will be required to     |
-   |                      |open the resulting PDF in a reader application    |
-   |                      |including Adobe Reader, Preview, etc. The file    |
-   |                      |will be encrypted if this parameter is            |
-   |                      |specified. Optional.                              |
-   +----------------------+--------------------------------------------------+
-   |``-ownerPassword``    |Specifies a password that will be required to     |
-   |                      |open the resulting PDF in an editor including     |
-   |                      |Acrobat Pro, Lasso's :type:`pdf_read` type, etc.  |
-   |                      |The file will be encrypted if this parameter is   |
-   |                      |specified. Optional.                              |
-   +----------------------+--------------------------------------------------+
-   |``-encryptStrong``    |If specified then strong 128-bit encryption is    |
-   |                      |used rather than 40-bit encryption. Note,         |
-   |                      |encryption will only be performed if either       |
-   |                      |``-userPassword`` or ``-ownerPassword`` is        |
-   |                      |specified. Optional.                              |
-   +----------------------+--------------------------------------------------+
-   |``-permissions``      |A comma delimited list of permissions for the PDF |
-   |                      |file. Values include "Print", "Modify", "Copy", or|
-   |                      |"Annotate". Four additional options are available |
-   |                      |only if ``-encryptStrong`` is used: "FillIn",     |
-   |                      |"Assemble", "ScreenReader", and "DegradedPrint".  |
-   |                      |Optional.                                         |
-   +----------------------+--------------------------------------------------+
-
-   The examples below show creating basic pdf_doc objects, however these objects
-   contain little or no data. Calling `pdf_doc->close` on an object with no data
-   will have no result — no PDF file will be created. Various types of data can
-   be added to these objects using the methods described in the remainder of
-   this chapter.
+The examples below show creating basic pdf_doc objects, though these objects
+contain little or no data. Calling `pdf_doc->close` on an object with no data
+will have no result, and no PDF file will be created. Various types of data can
+be added to these objects using the methods described in the remainder of this
+chapter.
 
 
 Start a Basic PDF File
@@ -332,7 +295,7 @@ Use the :type:`pdf_doc` type to create a PDF file which could eventually be
 saved to a hard drive location on the machine running Lasso. Use the ``-file``
 parameter to define the location and file name, and the ``-size`` parameter to
 define a pre-defined standard size. This basic example creates a pdf_doc object
-that is ready to add data to the first page::
+that is ready to have data added to the first page::
 
    local(my_file) = pdf_doc(-file='my_file.pdf', -size='A4')
 
@@ -341,7 +304,7 @@ Start a PDF File With a Custom Page Size
 ----------------------------------------
 
 Use the :type:`pdf_doc` type with the ``-height`` and ``-width`` parameters to
-define a custom page size in points. One inch is equal to 72 points::
+define a custom page size in points. One inch is equal to 72 points. ::
 
    local(file) = pdf_doc(-file='MyFile.pdf', -height='648.0', -width='468.0')
 
@@ -352,8 +315,8 @@ Start a PDF File With Custom Margins
 Use the :type:`pdf_doc` type with the ``-margins`` parameter to define custom
 page margins (in points). The following example adds a margin of 72 points (one
 inch) to the left and right sides of the page, but adds no margin to the top and
-bottom. This example also adds the date and time of creation to the file header
-using the ``-useDate`` parameter::
+bottom. This example also adds the date and time of creation to the document
+header using the ``-useDate`` parameter::
 
    local(my_file) = pdf_doc(
       -file='MyFile.pdf',
@@ -366,15 +329,15 @@ using the ``-useDate`` parameter::
 Start an Uncompressed PDF File
 ------------------------------
 
-Use the :type:`pdf_doc` type with the ``-noCompress`` parameter::
+Use the :type:`pdf_doc` type with the ``-noCompress`` parameter. ::
 
    local(my_file) = pdf_doc(-file='MyFile.pdf', -size='A4', -noCompress)
 
 
-Start a PDF File With Custom File Headers
------------------------------------------
+Start a PDF File With Custom Document Headers
+---------------------------------------------
 
-Use the :type:`pdf_doc` type with appropriate header::
+Use the :type:`pdf_doc` type with appropriate header. ::
 
    local(my_file) = PDF_Doc(
       -file='MyFile.pdf',
@@ -389,54 +352,48 @@ Adding Content to PDFs
 ======================
 
 In Lasso 9, there are several different types of data that can be added to a PDF
-document. Many of these types are first defined as objects using methods such as
-`pdf_text`, `pdf_list`, `pdf_image`, `pdf_table`, or `pdf_barcode` and
-then added to a pdf_doc object using the `pdf_doc->add` member method.
-Each data type is described separately in subsequent sections of this chapter.
+file. Many of these types are first defined as objects using methods such as
+`pdf_text`, `pdf_list`, `pdf_image`, `pdf_table`, or `pdf_barcode` and then
+added to a pdf_doc object using the `pdf_doc->add` member method. Each type is
+described separately in subsequent sections of this chapter.
 
 .. member:: pdf_doc->add(elm, ...)
 
-   Adds a PDF content object to a document. This can be used to add pdf_text,
+   Adds a PDF content object to a file. This can be used to add pdf_text,
    pdf_list, pdf_image, pdf_table, or pdf_barcode objects. If no position
    information is specified then the object is added to the flow of the page,
    otherwise it is drawn at the specified location. Requires one parameter,
    which is the object to be added. Optional parameters are described below.
 
-   .. tabularcolumns:: |l|L|
+   :param -align:
+      Sets the alignment of the object in the page (``'Left'``, ``'Center'``, or
+      ``'Right'``). Defaults to "Left". Works only for ``pdf_image`` and
+      ``pdf_barcode`` objects. Optional.
+   :param -wrap:
+      Keyword parameter specifies that text should flow around the embedded
+      object. Works only for ``pdf_image`` and ``pdf_barcode`` objects.
+      Optional.
+   :param -left:
+      Specifies the placement of the object relative to the left side of the
+      document. Requires a decimal value, which is the placement offset in
+      points. Works only for ``pdf_image`` and ``pdf_barcode`` objects.
+      Optional.
+   :param -top:
+      Specifies the placement of the object relative to the top of the document.
+      Requires a decimal value, which is the placement offset in points. Works
+      only for ``pdf_image`` and ``pdf_barcode`` objects. Optional.
+   :param -height:
+      Scales the object to the specified height. Requires a decimal value which
+      is the desired object height in points. Works only for ``pdf_image`` and
+      ``pdf_barcode`` objects. Optional.
+   :param -width:
+      Scales the object to the specified width. Requires a decimal value which
+      is the desired object width in points. Works only for ``pdf_image`` and
+      ``pdf_barcode`` objects. Optional.
 
-   +-----------+---------------------------------------------------------------+
-   |Parameter  |Description                                                    |
-   +===========+===============================================================+
-   |``-align`` |Sets the alignment of the object in the page ('Left',          |
-   |           |'Center', or 'Right'). Defaults to 'Left'. Works               |
-   |           |only for pdf_image and pdf_barcode objects. Optional.          |
-   +-----------+---------------------------------------------------------------+
-   |``-wrap``  |Keyword parameter specifies that text should flow around the   |
-   |           |embedded object. Works only for pdf_image and                  |
-   |           |pdf_barcode objects. Optional.                                 |
-   +-----------+---------------------------------------------------------------+
-   |``-left``  |Specifies the placement of the object relative to the left side|
-   |           |of the document. Requires a decimal value, which is the        |
-   |           |placement offset in points. Works only for pdf_image and       |
-   |           |pdf_barcode objects. Optional.                                 |
-   +-----------+---------------------------------------------------------------+
-   |``-top``   |Specifies the placement of the object relative to the top of   |
-   |           |the document. Requires a decimal value, which is the placement |
-   |           |offset in points. Works only for pdf_image and                 |
-   |           |pdf_barcode objects. Optional.                                 |
-   +-----------+---------------------------------------------------------------+
-   |``-height``|Scales the object to the specified height. Requires a decimal  |
-   |           |value which is the desired object height in points. Works only |
-   |           |for pdf_image and pdf_barcode objects. Optional.               |
-   +-----------+---------------------------------------------------------------+
-   |``-width`` |Scales the object to the specified width. Requires a decimal   |
-   |           |value which is the desired object width in points. Works only  |
-   |           |for pdf_image and pdf_barcode objects. Optional.               |
-   +-----------+---------------------------------------------------------------+
-
-   For examples of using the `pdf_doc->add` method to add text, image, table,
-   and barcode PDF objects to a pdf_doc object, see the corresponding sections
-   in this chapter.
+For examples of using the `pdf_doc->add` method to add text, image, table, and
+barcode PDF objects to a pdf_doc object, see the corresponding sections in this
+chapter.
 
 .. member:: pdf_doc->getVerticalPosition()
 
@@ -447,8 +404,8 @@ Each data type is described separately in subsequent sections of this chapter.
 Adding Pages
 ============
 
-If the content of a PDF document will span more than one page, additional pages
-can be added using special ``pdf_doc->`` member methods. These methods signal
+If the content of a PDF file will span more than one page, additional pages can
+be added using special :type:`pdf_doc` member methods. These methods signal
 where pages start and stop within the flow of the Lasso PDF creation methods.
 
 .. member:: pdf_doc->addPage()
@@ -462,7 +419,6 @@ where pages start and stop within the flow of the Lasso PDF creation methods.
       #my_file->add('Thus, ends the discussion on page 1.')
       #my_file->addPage
       #my_file->add('On page 2, we will discuss something else.')
-
 
 .. member:: pdf_doc->addChapter(text::string, -number::integer, -hideNumber= ?)
 .. member:: pdf_doc->addChapter(text::pdf_text, -number::integer, -hideNumber= ?)
@@ -478,7 +434,6 @@ where pages start and stop within the flow of the Lasso PDF creation methods.
 
       #my_file->addChapter(pdf_text('Important Chapter'), -number=30)
 
-
 .. member:: pdf_doc->setPageNumber(page::integer)
 
    Sets a page number for a new page. Requires an integer value.
@@ -487,13 +442,12 @@ where pages start and stop within the flow of the Lasso PDF creation methods.
 
       #my_file->setPageNumber(5)
 
-
 .. member:: pdf_doc->getPageNumber()::integer
 
    Returns the current page number.
 
    The following example returns a page number of 1 when used within the first
-   page of the document::
+   page of the file::
 
       #my_file->getPageNumber
       // => 1
@@ -502,55 +456,48 @@ where pages start and stop within the flow of the Lasso PDF creation methods.
 Adding Pages from Existing PDFs
 ===============================
 
-Pages in existing PDF documents can be added to a pdf_doc object using the
-:type:`pdf_read` type. This type makes it possible to use existing PDF documents
+Pages in existing PDF files can be added to a pdf_doc object using the
+:type:`pdf_read` type. This type makes it possible to use existing PDF files
 as templates.
 
 .. note::
    Lasso cannot change existing text or graphics that are contained within a PDF
-   document read in using `pdf_read`. Instead, Lasso is able to overlay text,
+   file read in using `pdf_read`. Instead, Lasso is able to overlay text,
    graphics, and other elements on the PDF.
 
-Once an existing PDF document has been read in as a Lasso object using
-`pdf_read`, it may be added to a pdf_doc object using the `pdf-doc->insertPage`
-method.
+Once an existing PDF file has been read in as a Lasso object using `pdf_read`,
+it may be added to a pdf_doc object using the `pdf-doc->insertPage` method.
 
 .. member:: pdf_doc->insertPage(pdf::pdf_read, number::integer, ...)
 
    Inserts a page from a pdf_read object into a pdf_doc object. Requires a
    reference to a pdf_read object, followed by a comma and the number of the
    page to insert. This method has many optional parameters for specifying how
-   an existing page should be inserted into a pdf_doc oject. These parameters
+   an existing page should be inserted into a pdf_doc object. These parameters
    are explained below.
 
-   +--------------------+------------------------------------------------------+
-   |Optional Parameters |Description                                           |
-   +====================+======================================================+
-   |``-newPage``        |Keyword parameter specifying that the new page should |
-   |                    |be appended at the end of the document. Otherwise the |
-   |                    |page is drawn over the first page in the pdf_doc      |
-   |                    |object by default.                                    |
-   +--------------------+------------------------------------------------------+
-   |``-top``            |If the page being inserted is shorter than the current|
-   |                    |pages in the pdf_doc object, this parameter may be    |
-   |                    |used to specify the offset of the new page from the   |
-   |                    |top of the current page frame in points.              |
-   +--------------------+------------------------------------------------------+
-   |``-left``           |If the page being inserted is not as wide the current |
-   |                    |pages in the pdf_doc object, this parameter may be    |
-   |                    |used to specify the offset of the new page from the   |
-   |                    |left of the current page frame in points.             |
-   +--------------------+------------------------------------------------------+
-   |``-width``          |Scales the inserted page by width. Requires either a  |
-   |                    |point width value, or a percentage string (e.g. 50%). |
-   +--------------------+------------------------------------------------------+
-   |``-height``         |Scales the inserted page by height. Requires either a |
-   |                    |point height value, or a percentage string (e.g. 50%).|
-   +--------------------+------------------------------------------------------+
+   :param -newPage:
+      Keyword parameter specifying that the new page should be appended at the
+      end of the file. Otherwise the page is drawn over the first page in
+      the ``pdf_doc`` object by default.
+   :param -top:
+      If the page being inserted is shorter than the current pages in the
+      ``pdf_doc`` object, this parameter may be used to specify the offset of
+      the new page from the top of the current page frame in points.
+   :param -left:
+      If the page being inserted is not as wide the current pages in the
+      ``pdf_doc`` object, this parameter may be used to specify the offset of
+      the new page from the left of the current page frame in points.
+   :param -width:
+      Scales the inserted page by width. Requires either a point width value, or
+      a percentage string (e.g. '50%').
+   :param -height:
+      Scales the inserted page by height. Requires either a point height value,
+      or a percentage string (e.g. '50%').
 
 
-Insert an Existing Page Into a New PDF Document
------------------------------------------------
+Insert an Existing Page Into a New PDF File
+-------------------------------------------
 
 Use the `pdf_doc->insertPage` method with a defined pdf_read object. The example
 below makes the first page of "somepdf.pdf" the first page of the pdf_doc
@@ -562,8 +509,8 @@ described in the rest of this chapter::
    #new_pdf->insertPage(#old_pdf, 1)
 
 
-Insert an Existing Page at the End of a New PDF Document
---------------------------------------------------------
+Insert an Existing Page at the End of a New PDF File
+----------------------------------------------------
 
 Use the `pdf_doc->insertPage` method with the optional ``-newPage`` parameter.
 The example below adds the first page of the "somepdf.pdf" PDF after all
@@ -596,22 +543,22 @@ section. All PDF accessor methods are defined below.
 
 .. member:: pdf_doc->getMargins()::staticarray
 
-   Returns the current page margins as a staticarray ``(: left, right, top,
-   bottom)``.
+   Returns the current page margins as a staticarray :samp:`(: {left, right,
+   top, bottom})`.
 
 .. member:: pdf_doc->getSize()::staticarray
 
    Returns the current page size as a staticarray of width and height point
-   values ``(: width, height)``.
+   values :samp:`(: {width, height})`.
 
 .. member:: pdf_doc->getColor()::string
 
    Returns the current color as a hex string.
 
-.. member:: pdf_doc->getHeaders
+.. member:: pdf_doc->getHeaders()
 
-   Returns all document headers as a map data type
-   ``map('header1'='content1', 'header2'='content2', …)``.
+   Returns all document headers as a map object in the form
+   ``map('header1'='content1', 'header2'='content2', ...)``.
 
 .. member:: pdf_doc->setFont(font::pdf_font)
 
@@ -628,8 +575,8 @@ margins of a defined pdf_doc object::
    // => staticarray(72.0, 72.0, 72.0, 72.0)
 
 
-Return a PDF Page Size
-----------------------
+Return PDF Page Size
+--------------------
 
 Use the `pdf_doc->getSize` method. The following example returns the current
 sizes of a defined pdf_doc object::
@@ -638,8 +585,8 @@ sizes of a defined pdf_doc object::
    // => staticarray(595, 842)
 
 
-Return a PDF Base Font Color
-----------------------------
+Return PDF Base Font Color
+--------------------------
 
 Use the `pdf_doc->getColor` method. The following example returns the base font
 color of a defined pdf_doc object::
@@ -666,7 +613,7 @@ Close a PDF File
 ----------------
 
 Use the `pdf_doc->close` method after all desired modifications have been
-performed on the pdf_doc object::
+performed on the pdf_doc object. ::
 
    local(my_file) = pdf_doc(
       -file='MyFile.pdf',
@@ -679,13 +626,13 @@ performed on the pdf_doc object::
    #my_file->close
 
 
-.. _creating-text-content:
+.. _pdf-creating-text-content:
 
 Creating Text Content
 =====================
 
-Text content is the most basic type of data within a PDF document. PDF text is
-first defined as a pdf_text object, and then added to a pdf_doc object using the
+Text content is the most basic type of data within a PDF file. PDF text is first
+defined as a pdf_text object, and then added to a pdf_doc object using the
 `pdf_doc->add` method.
 
 A pdf_text object may be positioned within the current PDF page using the
@@ -694,7 +641,7 @@ positioning parameters are specified, the text will be added to the top left
 corner of the page by default.
 
 
-.. _using-fonts:
+.. _pdf-using-fonts:
 
 Using Fonts
 -----------
@@ -716,41 +663,31 @@ type.
    Stores all the specifications for a font style. This includes font family,
    size, style, and color. Parameters are used with the `pdf_font` creator
    method that define the font family, size, color, and specifications. The
-   following parameters may be used with the `pdf_font` creator method:
+   following parameters may be used with the `pdf_font` creator method.
 
-   .. tabularcolumns:: |l|L|
-
-   +--------------+------------------------------------------------------------+
-   |Parameter     |Description                                                 |
-   +==============+============================================================+
-   |``-face``     |Specifies the font by its family name. Allowed font names   |
-   |              |are "Courier", "Courier-Bold", "Courier-Oblique",           |
-   |              |"Courier-BoldOblique", "Helvetica", "Helvetica-Bold",       |
-   |              |"Helvetica-Oblique", "Helvetica-BoldOblique", "Symbol",     |
-   |              |"Times-Roman", "Times-Bold", "Times-Italic",                |
-   |              |"Times-BoldItalic", and "ZapfDingbats". Optional.           |
-   +--------------+------------------------------------------------------------+
-   |``-file``     |Uses a font from a local font file. The file name and path  |
-   |              |to the font must be specified (e.g. "/Fonts/Courier.ttf").  |
-   |              |This parameter may be used instead of the ``-face``         |
-   |              |parameter. Optional.                                        |
-   +--------------+------------------------------------------------------------+
-   |``-size``     |Sets the font size in points. Requires an integer point     |
-   |              |value as a parameter (e.g. "14"). Optional.                 |
-   +--------------+------------------------------------------------------------+
-   |``-color``    |Sets the font color. Requires a hex color string as a       |
-   |              |parameter (e.g "#550000"). Defaults to "#000000" if not     |
-   |              |specified. Optional.                                        |
-   +--------------+------------------------------------------------------------+
-   |``-encoding`` |Sets the desired font encoding. The font encoding defaults  |
-   |              |to "CP1252" if not specified. TrueType fonts can be asked to|
-   |              |return an array of supported encodings via the              |
-   |              |`pdf_font->getSupportedEncodings` method. Optional.         |
-   +--------------+------------------------------------------------------------+
-   |``-embed``    |Embeds the fonts used within the PDF document as opposed to |
-   |              |relying on the client PDF reader for font information.      |
-   |              |Optional.                                                   |
-   +--------------+------------------------------------------------------------+
+   :param -face:
+      Specifies the font by its family name. Allowed font names are "Courier",
+      "Courier-Bold", "Courier-Oblique", "Courier-BoldOblique", "Helvetica",
+      "Helvetica-Bold", "Helvetica-Oblique", "Helvetica-BoldOblique", "Symbol",
+      "Times-Roman", "Times-Bold", "Times-Italic", "Times-BoldItalic", and
+      "ZapfDingbats". Optional.
+   :param -file:
+      Uses a font from a local font file. The file name and path to the font
+      must be specified (e.g. "/Fonts/Courier.ttf"). This parameter may be used
+      instead of the ``-face`` parameter. Optional.
+   :param -size:
+      Sets the font size in points. Requires an integer point value as a
+      parameter (e.g. "14"). Optional.
+   :param -color:
+      Sets the font color. Requires a hex color string as a parameter (e.g
+      "#550000"). Defaults to "#000000" if not specified. Optional.
+   :param -encoding:
+      Sets the desired font encoding. The font encoding defaults to "CP1252" if
+      not specified. TrueType fonts can be asked to return an array of supported
+      encodings via the ``pdf_font->getSupportedEncodings`` method. Optional.
+   :param -embed:
+      Embeds the fonts used within the PDF file as opposed to relying on the
+      client PDF reader for font information. Optional.
 
 The following examples show how to set variables as pdf_font objects that define
 the font styles to be used with a pdf_text object.
@@ -766,7 +703,7 @@ also set to green::
    local(my_font) = pdf_font(-face='Helvetica', -size=14, -color='#005500')
 
 Individual parameters may be viewed and changed in a pdf_font object using
-``pdf_font->`` member methods. These parameters are most useful for retrieving
+:type:`pdf_font` member methods. These parameters are most useful for retrieving
 and setting information about a pdf_font object that was defined using the
 ``-file`` parameter, and are summarized below.
 
@@ -819,7 +756,7 @@ and setting information about a pdf_font object that was defined using the
 .. member:: pdf_font->getPSFontName()
 
    Returns the exact PostScript font name of the current font of a pdf_font
-   object (e.g. "AdobeCorIDMinBd").
+   object, e.g. "AdobeCorIDMinBd".
 
 .. member:: pdf_font->isTrueType()
 
@@ -827,8 +764,8 @@ and setting information about a pdf_font object that was defined using the
 
 .. member:: pdf_font->getSupportedEncodings()
 
-   Returns an array of all supported encodings for a current TrueType font face
-   "array('1252 Latin 1','1253 Greek')".
+   Returns an array of all supported encodings for a current TrueType font face,
+   e.g. "array('1252 Latin 1','1253 Greek')".
 
 .. member:: pdf_font->getFullFontName()
 
@@ -875,7 +812,7 @@ Return a Font Face
 Use the `pdf_font->getFace` method. The following example returns the current
 font face of a defined pdf_font object::
 
-   #my_font->GetFace
+   #my_font->getFace
    // => Courier
 
 
@@ -885,7 +822,7 @@ Return a Font Encoding
 Use the `pdf_font->getEncoding` method. The following example returns the
 encoding of the current font face of a defined pdf_font object::
 
-   #my_font->GetEncoding
+   #my_font->getEncoding
    // => Cp1252
 
 
@@ -900,74 +837,58 @@ constructor method and parameters are described below.
 .. method:: pdf_text(text::string, ...)
 
    Creates a text object to be added to a pdf_doc object. The constructor method
-   requires the text string to be added to the PDF document as the first
-   parameter. Optional parameters are listed below.
+   requires the text string to be added to the PDF file as the first parameter.
+   Optional parameters are listed below.
 
-   .. tabularcolumns:: |l|L|
-
-   +--------------------+------------------------------------------------------+
-   |Parameter           |Description                                           |
-   +====================+======================================================+
-   |``-type``           |Specifies the text type. This can be "Chunk",         |
-   |                    |"Phrase", or "Paragraph". Different parameters are    |
-   |                    |available for each of these types, as described below.|
-   |                    |Defaults to the "Paragraph" type if no ``-type``      |
-   |                    |parameter is specified. Optional.                     |
-   +--------------------+------------------------------------------------------+
-   |``-color``          |Sets the font color. Requires a hex color string as a |
-   |                    |parameter (e.g. "#550000"). Defaults to "#000000"     |
-   |                    |if not specified. Optional.                           |
-   +--------------------+------------------------------------------------------+
-   |``-backgroundColor``|Sets the text background color. Require a hex color   |
-   |                    |string as a parameter (e.g. "#550000"). Optional.     |
-   +--------------------+------------------------------------------------------+
-   |``-underline``      |Keyword parameter underlines the text. Optional.      |
-   +--------------------+------------------------------------------------------+
-   |``-textRise``       |Sets the baseline shift for superscript. Requires a   |
-   |                    |decimal value that specifies the text rise in points. |
-   |                    |Optional.                                             |
-   +--------------------+------------------------------------------------------+
-   |``-font``           |Sets the font for the specified text. The value is a  |
-   |                    |pdf_font object, which is described in the            |
-   |                    |:ref:`Using Fonts <using-fonts>` section of this      |
-   |                    |chapter. The font defaults to the current inherited   |
-   |                    |font if no ``-font`` parameter is specified. Optional.|
-   +--------------------+------------------------------------------------------+
-   |``-anchor``         |Links the specified text to a URL. The value of the   |
-   |                    |parameter is the URL string (e.g.                     |
-   |                    |"http://www.example.com"). Optional.                  |
-   +--------------------+------------------------------------------------------+
-   |``-name``           |Sets the name of an anchor destination within a page. |
-   |                    |The value of the parameter is the anchor name         |
-   |                    |(e.g. "Name" ). Optional.                             |
-   +--------------------+------------------------------------------------------+
-   |``-goTo``           |Links the specified text to a local anchor destination|
-   |                    |to go to. The value of the parameter is the local     |
-   |                    |anchor name (e.g. "Name"). Optional.                  |
-   +--------------------+------------------------------------------------------+
-   |``-file``           |Links the specified text to a PDF document. The value |
-   |                    |of the parameter is a PDF file name (e.g.             |
-   |                    |"Somefile.pdf"). The ``-goTo`` parameter can be used  |
-   |                    |concurrently to specify an anchor name within the     |
-   |                    |destination document. Optional.                       |
-   +--------------------+------------------------------------------------------+
-   |``-leading``        |Sets the leading space in points (the space above each|
-   |                    |line of text), requires a decimal value. For "Phrase" |
-   |                    |and "Paragraph" types only.                           |
-   +--------------------+------------------------------------------------------+
-   |``-align``          |Sets the alignment of the text in the page ("Left",   |
-   |                    |"Center", or "Right"). Optional.                      |
-   +--------------------+------------------------------------------------------+
-   |``-indentLeft``     |Sets the left indent of the text object. Requires a   |
-   |                    |decimal value which is the number of points to indent |
-   |                    |the text. Optional. Available for "Paragraph" types   |
-   |                    |only.                                                 |
-   +--------------------+------------------------------------------------------+
-   |``-indentRight``    |Sets the right indent of the text object. Requires a  |
-   |                    |decimal value which is the number of points to indent |
-   |                    |the text. Optional. Available for "Paragraph" types   |
-   |                    |only.                                                 |
-   +--------------------+------------------------------------------------------+
+   :param -type:
+      Specifies the text type. This can be "Chunk", "Phrase", or "Paragraph".
+      Different parameters are available for each of these types, as described
+      below. Defaults to the "Paragraph" type if no ``-type`` parameter is
+      specified. Optional.
+   :param -color:
+      Sets the font color. Requires a hex color string as a parameter (e.g.
+      "#550000"). Defaults to "#000000" if not specified. Optional.
+   :param -backgroundColor:
+      Sets the text background color. Require a hex color string as a parameter
+      (e.g. "#550000"). Optional.
+   :param -underline:
+      Keyword parameter underlines the text. Optional.
+   :param -textRise:
+      Sets the baseline shift for superscript. Requires a decimal value that
+      specifies the text rise in points. Optional.
+   :param -font:
+      Sets the font for the specified text. The value is a ``pdf_font`` object,
+      which is described in the :ref:`pdf-using-fonts` section. The font
+      defaults to the current inherited font if no ``-font`` parameter is
+      specified. Optional.
+   :param -anchor:
+      Links the specified text to a URL. The value of the parameter is the URL
+      string (e.g. :ref:`!http://www.example.com`). Optional.
+   :param -name:
+      Sets the name of an anchor destination within a page. The value of the
+      parameter is the anchor name (e.g. "Name" ). Optional.
+   :param -goTo:
+      Links the specified text to a local anchor destination to go to. The value
+      of the parameter is the local anchor name (e.g. "Name"). Optional.
+   :param -file:
+      Links the specified text to a PDF file. The value of the parameter is a
+      PDF file name (e.g. "Somefile.pdf"). The ``-goTo`` parameter can be used
+      concurrently to specify an anchor name within the destination file.
+      Optional.
+   :param -leading:
+      Sets the leading space in points (the space above each line of text),
+      requires a decimal value. For "Phrase" and "Paragraph" types only.
+   :param -align:
+      Sets the alignment of the text in the page (``'Left'``, ``'Center'``, or
+      ``'Right'``). Optional.
+   :param -indentLeft:
+      Sets the left indent of the text object. Requires a decimal value which is
+      the number of points to indent the text. Optional. Available for
+      "Paragraph" types only.
+   :param -indentRight:
+      Sets the right indent of the text object. Requires a decimal value which
+      is the number of points to indent the text. Optional. Available for
+      "Paragraph" types only.
 
 The following examples show how to add text to a defined PDF variable named
 "my_file" that has been initialized previously using the `pdf_doc` method.
@@ -1010,7 +931,7 @@ Add a Linked Phrase
 
 Use the :type:`pdf_text` type with the ``-anchor`` parameter. The following
 example adds the text "Click here to go somewhere" to the pdf_doc object with a
-predefined font, and links the phrase to "http://www.example.com"::
+predefined font, and links the phrase to :ref:`!http://www.example.com`::
 
    local(text) = pdf_text(
       'Click here to go somewhere',
@@ -1073,7 +994,7 @@ Adding Lists
 ------------
 
 A list of items can be constructed using the :type:`pdf_list` type, which can be
-added to a pdf_doc objcet. The `pdf_list` constructor method and parameters are
+added to a pdf_doc object. The `pdf_list` constructor method and parameters are
 described below.
 
 .. type:: pdf_list
@@ -1083,44 +1004,35 @@ described below.
    added to this object using the `pdf_list->add` method. Optional parameters
    for this object are described in the table below.
 
-   .. tabularcolumns:: |l|L|
-
-   +--------------------+------------------------------------------------------+
-   |Parameter           |Description                                           |
-   +====================+======================================================+
-   |``-format``         |Specifies whether the list is numbered, lettered, or  |
-   |                    |bulleted. Requires a value of "Number", "Letter",     |
-   |                    |"Bullet". Defaults to "Bullet" if no ``-format``      |
-   |                    |parameter is specified. Optional.                     |
-   +--------------------+------------------------------------------------------+
-   |``-bullet``         |Specifies a custom character to use as the bullet     |
-   |                    |character. Requires a character as a parameter (e.g.  |
-   |                    |"x"). Defaults to "•" if not specified. Optional.     |
-   +--------------------+------------------------------------------------------+
-   |``-indent``         |Sets the space between the bullet and the list item.  |
-   |                    |Requires a decimal or integer parameter which is the  |
-   |                    |width of the indentation in points. Optional.         |
-   +--------------------+------------------------------------------------------+
-   |``-font``           |Sets the font for the specified text. The value is a  |
-   |                    |pdf_font object, which is described in the            |
-   |                    |:ref:`Using Fonts <using-fonts>` section of this      |
-   |                    |chapter. The font defaults to the current inherited   |
-   |                    |font if no ``-font`` parameter is specified.          |
-   +--------------------+------------------------------------------------------+
-   |``-align``          |Sets the alignment of the list in the page ("Left",   |
-   |                    |"Center", or "Right"). Optional.                      |
-   +--------------------+------------------------------------------------------+
-   |``-color``          |Sets the font color. Requires a hex color string as a |
-   |                    |parameter (e.g "#550000"). Defaults to "#000000" if   |
-   |                    |not used. Optional.                                   |
-   +--------------------+------------------------------------------------------+
-   |``-backgroundColor``|Sets the text background color. Require a hex color   |
-   |                    |string as a parameter (e.g. "#550000"). Optional.     |
-   +--------------------+------------------------------------------------------+
-   |``-leading``        |Sets the list leading space in points (the space above|
-   |                    |each line of text), requires a decimal value.         |
-   |                    |Optional.                                             |
-   +--------------------+------------------------------------------------------+
+   :param -format:
+      Specifies whether the list is numbered, lettered, or bulleted. Requires a
+      value of ``'Number'``, ``'Letter'``, ``'Bullet'``. Defaults to
+      "Bullet" if no ``-format`` parameter is specified. Optional.
+   :param -bullet:
+      Specifies a custom character to use as the bullet character. Requires a
+      character as a parameter (e.g. ``'x'``). Defaults to the empty string if
+      not specified. Optional.
+   :param -indent:
+      Sets the space between the bullet and the list item. Requires a decimal or
+      integer parameter which is the width of the indentation in points.
+      Optional.
+   :param -font:
+      Sets the font for the specified text. The value is a `pdf_font` object,
+      which is described in the :ref:`pdf-using-fonts` section. The font
+      defaults to the current inherited font if no ``-font`` parameter is
+      specified.
+   :param -align:
+      Sets the alignment of the list in the page (``'Left'``, ``'Center'``, or
+      ``'Right'``). Optional.
+   :param -color:
+      Sets the font color. Requires a hex color string as a parameter (e.g
+      ``'#550000'``). Defaults to "#000000" if not used. Optional.
+   :param -backgroundColor:
+      Sets the text background color. Require a hex color string as a parameter
+      (e.g. ``'#550000'``). Optional.
+   :param -leading:
+      Sets the list leading space in points (the space above
+      each line of text), requires a decimal value. Optional.
 
 .. member:: pdf_list->add(text::string)
 .. member:: pdf_list->add(text::pdf_text)
@@ -1148,8 +1060,8 @@ Add a Bulleted List
 
 Use the :type:`pdf_list` type with the ``-format='Bullet'`` parameter to define
 the list, and the `pdf_list->add` method to add items to the list. The example
-below adds a bulleted list with four items, where a hyphen ("-") is used as the
-bullet character::
+below adds a bulleted list with four items, where a hyphen (``-``) is used as
+the bullet character::
 
    local(list) = pdf_list(-format='Bullet', -bullet='-', -font=#my_font)
    #list->add('This is item one')
@@ -1166,30 +1078,29 @@ When adding text to a pdf_doc object, special characters can be used to
 designate lines breaks, tabs, and more. These characters are summarized in the
 table below.
 
+.. tabularcolumns:: |l|L|
+
+.. _pdf-special-characters:
+
 .. table:: Special Characters
 
-   +----------+------------------------------------------+
-   |Character |Description                               |
-   +==========+==========================================+
-   |\n        |Line break character (OS X and Linux).    |
-   +----------+------------------------------------------+
-   |\r\n      |Line break character (Windows).           |
-   +----------+------------------------------------------+
-   |\t        |Tab character.                            |
-   +----------+------------------------------------------+
-   |\"        |Double quote character.                   |
-   +----------+------------------------------------------+
-   |\'        |Single quote character.                   |
-   +----------+------------------------------------------+
-   |\\        |Backslash character.                      |
-   +----------+------------------------------------------+
+   ========= ===================================================================
+   Character Description
+   ========= ===================================================================
+   ``\n``    Line break (OS X and Linux)
+   ``\r\n``  Line break (Windows)
+   ``\t``    Tab
+   ``\"``    Double quote
+   ``\'``    Single quote
+   ``\\``    Backslash
+   ========= ===================================================================
 
 
 Use Special Characters in a Text String
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example shows how to use special characters within a pdf_doc text
-type::
+object::
 
    #my_file->add('\\ \t \'Single Quotes\', \"Double Quotes\" ')
 
@@ -1197,21 +1108,21 @@ type::
 Creating and Using Forms
 ========================
 
-Forms can be created in PDF documents for submitting information to a Web site.
-PDF forms use the same attributes as HTML forms, making them useful for
-submitting information to a Web site in place of an HTML form. This section
-describes how to create form elements within a PDF file, and also how PDF forms
-can be used to submit data to a Lasso-enabled database.
+Forms can be created in PDF files for submitting information to a website. PDF
+forms use the same attributes as HTML forms, making them useful for submitting
+information to a website in place of an HTML form. This section describes how to
+create form elements within a PDF file, and also how PDF forms can be used to
+submit data to a Lasso-enabled database.
 
 .. note::
-   Due to the iText implementation of PDF support in Lasso 9, PDF documents
-   created may contain only one form.
+   Due to the iText implementation of PDF support in Lasso 9, PDF files created
+   may contain only one form.
 
 
 Creating Forms
 --------------
 
-Form elements are created in pdf_doc objects using ``pdf_doc->`` form member
+Form elements are created in pdf_doc objects using :type:`pdf_doc` form member
 methods which are described below.
 
 .. member:: pdf_doc->addTextField(\
@@ -1269,7 +1180,7 @@ methods which are described below.
       -checked::boolean= ?\
    )
 
-   Adds a check box to a form. Requires the first parameter to specify the name
+   Adds a checkbox to a form. Requires the first parameter to specify the name
    of the checkbox, and the second parameter to specify the value for the
    checkbox. An optional ``-checked`` parameter specifies that the checkbox is
    checked by default.
@@ -1305,8 +1216,8 @@ methods which are described below.
       -font= ?\
    )
 
-   Adds a pull-down menu to a form. Requires the first parameter to specify the
-   name of the pull-down menu, and the second parameter to specify the array of
+   Adds a drop-down menu to a form. Requires the first parameter to specify the
+   name of the drop-down menu, and the second parameter to specify the array of
    values contained in the menu ``(: 'Value1', 'Value2')``. Optionally, the
    array passed as the second parameter can contain a pair for each value. The
    first element in the pair is the value to be used upon form submission, and
@@ -1383,46 +1294,43 @@ methods which are described below.
    optional ``-font`` parameter can be used to specify a pdf_font object for the
    font of the text.
 
-
 .. note::
    **Field Label**
 
    With the exception of the `pdf_doc->addSubmitButton` and
-   `pdf_doc->addResetButton` methods, no form input element tags include
+   `pdf_doc->addResetButton` methods, no form input element methods include
    captions or labels with the field elements. Field captions and labels can be
    applied using the `pdf_text` and `pdf_doc->add` methods to position text
-   appropriately. See the :ref:`Creating Text Content <creating-text-content>`
-   section for more information.
+   appropriately. See the :ref:`pdf-creating-text-content` section for more
+   information.
 
 .. note::
-   All ``pdf_doc->`` form member methods, with the exception of
+   All :type:`pdf_doc` form member methods, with the exception of
    `pdf_doc->addHiddenField` and `pdf_doc->addRadioButtonGroup`, require
    placement parameters for specifying the exact positioning of form elements
-   within a page. These parameters are summarized in :ref:`Form Placement
-   Parameters Table <pdf-table-placement>`.
+   within a page. These parameters are summarized in the table
+   :ref:`pdf-form-placement`.
 
-.. _pdf-table-placement:
+.. tabularcolumns:: |l|L|
 
-.. table:: Table 15: Form Placement Parameters
+.. _pdf-form-placement:
 
-   +-----------+--------------------------------------------------+
-   |Parameter  |Description                                       |
-   +===========+==================================================+
-   |``-left``  |Specifies the placement of the left side of the   |
-   |           |form element from the left side of the current    |
-   |           |page in points. Requires a decimal                |
-   |           |value.                                            |
-   +-----------+--------------------------------------------------+
-   |``-top``   |Specifies the placement of the bottom of the form |
-   |           |element from the bottom of the current page in    |
-   |           |points. Requires a decimal value.                 |
-   +-----------+--------------------------------------------------+
-   |``-width`` |Specifies the width of the form element in        |
-   |           |points. Requires a decimal value.                 |
-   +-----------+--------------------------------------------------+
-   |``-height``|Specifies the height of the form element in       |
-   |           |points. Requires a decimal value.                 |
-   +-----------+--------------------------------------------------+
+.. table:: Form Placement Parameters
+
+   =========== =================================================================
+   Parameter   Description
+   =========== =================================================================
+   ``-left``   Specifies the placement of the left side of the form element from
+               the left side of the current page in points. Requires a decimal
+               value.
+   ``-top``    Specifies the placement of the bottom of the form element from
+               the bottom of the current page in points. Requires a decimal
+               value.
+   ``-width``  Specifies the width of the form element in points. Requires a
+               decimal value.
+   ``-height`` Specifies the height of the form element in points. Requires a
+               decimal value.
+   =========== =================================================================
 
 
 Add a Text Field
@@ -1496,13 +1404,13 @@ wide and "6.0" points high each::
    not appear in the form.
 
 
-Add an Editable Pull-Down Menu
+Add an Editable Drop-Down Menu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the `pdf_doc->addComboBox` method. The example below adds a pull-down menu
+Use the `pdf_doc->addComboBox` method. The example below adds a drop-down menu
 named "Menu_Name" with the values "One", "Two", "Three", and "Four" as menu
 values. The value "One" is selected by default, and an ``-editable`` parameter
-allows the users to edit the values if desired. The pull-down menu size is
+allows the users to edit the values if desired. The drop-down menu size is
 "144.0" points wide and "36.0" points high::
 
    #my_file->addComboBox(
@@ -1514,11 +1422,11 @@ allows the users to edit the values if desired. The pull-down menu size is
    )
 
 
-Add a Pull-Down Menu with Different Displayed Values
+Add a Drop-Down Menu with Different Displayed Values
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `pdf_doc->addComboBox` method whose values are each pairs. The example
-below adds a pull-down menu named "Menu_Name" with the values "1", "2", "3", and
+below adds a drop-down menu named "Menu_Name" with the values "1", "2", "3", and
 "4" as submittable menu values, but displays the names "One", "Two", "Three",
 and "Four" for each value. No value is selected by default::
 
@@ -1567,8 +1475,8 @@ Use the `pdf_doc->addSubmitButton` method. The example below adds a submit
 button named "Button_Name" with a value of "Submitted_Value". A caption
 parameter specifies the displayed name of the button, which is "Submit This
 Form". The URL parameter specifies that the user will be taken to
-"http://www.example.com/responsepage.lasso" when the button is selected in the
-form::
+:ref:`!http://www.example.com/responsepage.lasso` when the button is selected in
+the form::
 
    #my_file->addSubmitButton(
       'Button_Name',
@@ -1608,7 +1516,7 @@ Submit Information to a Database Using a PDF Form
 
 #. In the "form.lasso" page, name the PDF form fields to correspond to the names
    of fields in the desired database. The names of these fields will be used in
-   the inline method in the Lasso response page::
+   the inline method in the Lasso response page. ::
 
       local(my_file) = pdf_doc(-file='form.pdf', -size='A4')
       local(my_font) = pdf_font(-face='Helvetica', -size=12)
@@ -1626,7 +1534,7 @@ Submit Information to a Database Using a PDF Form
       )
 
 #. Create a submit button in the "form.lasso" page that contains the name and
-   URL of the Lasso response page::
+   URL of the Lasso response page. ::
 
       #my_file->addSubmitButton(
          'Search',
@@ -1644,7 +1552,7 @@ Submit Information to a Database Using a PDF Form
 #. In the "response.lasso" page, create an `inline` method that uses the
    action parameters passed from the PDF form to perform a database action.
    This example performs a search on the "Contacts" database using the
-   "First_Name" and "Last_Name" parameters passed from the PDF form::
+   ``First_Name`` and ``Last_Name`` parameters passed from the PDF form. ::
 
       [inline(
          -search,
@@ -1673,59 +1581,52 @@ Submit Information to a Database Using a PDF Form
 Creating Tables
 ===============
 
-Tables can be created in PDF documents for displaying data. These are created
-using the :type:`pdf_table` type and added to a PDF object using ``pdf_doc->``
+Tables can be created in PDF files for displaying data. These are created using
+the :type:`pdf_table` type and added to a PDF object using :type:`pdf_doc`
 member methods, which are described in this section.
 
 
 Defining Tables
 ---------------
 
-Tables for organizing data can be defined for use in a PDF document using the
+Tables for organizing data can be defined for use in a PDF file using the
 :type:`pdf_table` type. Objects of this type are added to a pdf_doc object.
 
 .. type:: pdf_table
 .. method:: pdf_table(cols::integer, rows::integer, ...)
 
-   Creates a table to be placed in a PDF. Uses parameters which set the basic
+   Creates a table to be placed in a PDF. Uses parameters that set the basic
    specifications of the table to be created. The first parameter is required
    and specifies the number of columns in the table. The second parameter is
-   also required and specifies the number of rows in the table. Below is a table
-   of optional parameters for the `pdf_table` constructor method
+   also required and specifies the number of rows in the table. Below is a list
+   of optional parameters for the `pdf_table` constructor method.
 
-   .. tabularcolumns:: |l|L|
+   :param -spacing:
+      Specifies the spacing around a table cell. Defaults to "0" (no spacing)
+      if not specified. Optional.
+   :param -padding:
+      Specifies the padding within a table cell. Defaults to "0" (no padding)
+      if not specified. Optional.
+   :param -width:
+      Specifies the width of the table as a percentage of the current page
+      width. Defaults to the width of the cell text plus spacing, padding, and
+      borders if not specified. Optional.
+   :param -borderWidth:
+      Specifies the border width of the table in points. Requires a decimal
+      value. Optional.
+   :param -borderColor:
+      Specifies the border color of the table. Requires a hex color string (e.g.
+      ``'#000000'``). Optional.
+   :param -backgroundColor:
+      Specifies the background color of the table. Requires a hex color string
+      (e.g. ``'#CCCCCC'``). Optional.
+   :param -colWidth:
+      Sets the column width for each column in the table. Requires an array of
+      decimals representing the width percentage of each column. Optional.
 
-   +--------------------+------------------------------------------------------+
-   |Optional Parameters |Description                                           |
-   +====================+======================================================+
-   |``-spacing``        |Specifies the spacing around a table cell. Defaults to|
-   |                    |"0" (no spacing) if not specified. Optional.          |
-   +--------------------+------------------------------------------------------+
-   |``-padding``        |Specifies the padding within a table cell. Defaults to|
-   |                    |"0" (no padding) if not specified. Optional.          |
-   +--------------------+------------------------------------------------------+
-   |``-width``          |Specifies the width of the table as a percentage of   |
-   |                    |the current page width. Defaults to the width of the  |
-   |                    |cell text plus spacing, padding, and borders if not   |
-   |                    |specified. Optional.                                  |
-   +--------------------+------------------------------------------------------+
-   |``-borderWidth``    |Specifies the border width of the table in points.    |
-   |                    |Requires a decimal value. Optional.                   |
-   +--------------------+------------------------------------------------------+
-   |``-borderColor``    |Specifies the border color of the table. Requires     |
-   |                    |a hex color string (e.g. "#000000"). Optional.        |
-   +--------------------+------------------------------------------------------+
-   |``-backgroundColor``|Specifies the background color of the table. Requires |
-   |                    |a hex color string (e.g. "#CCCCCC"). Optional.        |
-   +--------------------+------------------------------------------------------+
-   |``-colWidth``       |Sets the column width for each column in the table.   |
-   |                    |Requires an array of decimals representing the width  |
-   |                    |percentage of each column. Optional.                  |
-   +--------------------+------------------------------------------------------+
-
-   Member methods can be used to set additional specifications for a pdf_table
-   object, as well as access data member values from pdf_table objects. These
-   methods are summarized below.
+Member methods can be used to set additional specifications for a pdf_table
+object, as well as access data member values from pdf_table objects. These
+methods are summarized below.
 
 .. member:: pdf_table->getColumnCount()
 
@@ -1761,9 +1662,9 @@ width::
 Create a Table with a Border
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the :type:`pdf_table` type with the ``-border…`` parameters. The example
-below creates a basic table, and then adds a black border with a width of 3
-points to the table::
+Use the :type:`pdf_table` type with the ``-borderWidth`` and ``-borderColor``
+parameters. The example below creates a basic table, and then adds a black
+border with a width of 3 points to the table::
 
    local(my_table) = pdf_table(
       2,
@@ -1808,7 +1709,7 @@ below creates a basic table with percentage widths for three columns::
 Adding Content to Table Cells
 -----------------------------
 
-Content is added to table cells using additional ``pdf_table->`` member methods
+Content is added to table cells using additional :type:`pdf_table` member methods
 which are summarized below.
 
 .. member:: pdf_table->add(str::string, col::integer, row::integer, ...)
@@ -1822,48 +1723,36 @@ which are summarized below.
    or a pdf_barcode object to be inserted as the first parameter. Also requires
    specifying the column number as the second parameter and row number as the
    third parameter. Row and columns numbers start from "0" with rows increasing
-   from top to bottom and columns increading from left to right. The table below
+   from top to bottom and columns increasing from left to right. The table below
    lists the optional parameters that can also be specified.
 
-   .. tabularcolumns:: |l|L|
-
-   +------------------------+--------------------------------------------------+
-   |Optional Parameters     |Description                                       |
-   +========================+==================================================+
-   |``-colspan``            |Specifies the number of columns a cell should     |
-   |                        |span. If specified, requires an integer value     |
-   |                        |"1" or greater. Optional.                         |
-   +------------------------+--------------------------------------------------+
-   |``-rowspan``            |Specifies the number of rows a cell should        |
-   |                        |span. If specified, requires an integer value     |
-   |                        |"1" or greater. Optional.                         |
-   +------------------------+--------------------------------------------------+
-   |``-verticalAlignment``  |Vertical alignment for text within a cell. Accepts|
-   |                        |a value of "Top", "Center", or "Bottom". Defaults |
-   |                        |to "Center" if not specified. Optional.           |
-   +------------------------+--------------------------------------------------+
-   |``-horizontalAlignment``|Horizontal alignment for text within a cell.      |
-   |                        |Accepts a value of "Left", "Center", or "Right".  |
-   |                        |Defaults to "Center" if not specified. Optional.  |
-   +------------------------+--------------------------------------------------+
-   |``-borderColor``        |Specifies the border color for the cell           |
-   |                        |(e.g. "#440000"). Defaults to "#000000" if not    |
-   |                        |specified. Optional.                              |
-   +------------------------+--------------------------------------------------+
-   |``-borderWidth``        |Specifies the border width of the cell in         |
-   |                        |points. Requires an integer value. Defaults to    |
-   |                        |"0" if not specified. Optional.                   |
-   +------------------------+--------------------------------------------------+
-   |``-header``             |Specifies that the cell is a table header. This is|
-   |                        |typically used for cells in the first             |
-   |                        |row. Optional.                                    |
-   +------------------------+--------------------------------------------------+
-   |``-noWrap``             |Specifies that the text contained in a cell should|
-   |                        |not wrap to conform to the cell size              |
-   |                        |specifications. If used, the cell will expand to  |
-   |                        |the right to accommodate longer text              |
-   |                        |strings. Optional.                                |
-   +------------------------+--------------------------------------------------+
+   :param -colspan:
+      Specifies the number of columns a cell should span. If specified, requires
+      an integer value "1" or greater. Optional.
+   :param -rowspan:
+      Specifies the number of rows a cell should span. If specified, requires an
+      integer value "1" or greater. Optional.
+   :param -verticalAlignment:
+      Vertical alignment for text within a cell. Accepts a value of ``'Top'``,
+      ``'Center'``, or ``'Bottom'``. Defaults to "Center" if not specified.
+      Optional.
+   :param -horizontalAlignment:
+      Horizontal alignment for text within a cell. Accepts a value of
+      ``'Left'``, ``'Center'``, or ``'Right'``. Defaults to "Center" if not
+      specified. Optional.
+   :param -borderColor:
+      Specifies the border color for the cell (e.g. ``'#440000'``). Defaults to
+      "#000000" if not specified. Optional.
+   :param -borderWidth:
+      Specifies the border width of the cell in points. Requires an integer
+      value. Defaults to "0" if not specified. Optional.
+   :param -header:
+      Specifies that the cell is a table header. This is typically used for
+      cells in the first row. Optional.
+   :param -noWrap:
+      Specifies that the text contained in a cell should not wrap to conform to
+      the cell size specifications. If used, the cell will expand to the right
+      to accommodate longer text strings. Optional.
 
 
 Add a Cell to a Table
@@ -1949,7 +1838,7 @@ Creating Graphics
 =================
 
 This section describes how to draw custom graphic objects and insert image files
-within a PDF document.
+within a PDF file.
 
 
 Inserting Images
@@ -1962,39 +1851,29 @@ conjunction with the `pdf_doc->addImage` method as documented below.
 .. method:: pdf_image(...)
 
    Reads an image file as a Lasso object so it can be placed into a PDF file.
-   Requires either a ``-file``, ``-url``, or ``-raw`` parameter, as described
-   in the table below. Only images in JPEG, GIF, PNG, and WMF formats may be
-   used.
+   Requires either a ``-file``, ``-url``, or ``-raw`` parameter, as described in
+   the list below. Only images in JPEG, GIF, PNG, and WMF formats may be used.
 
-   .. tabularcolumns:: |l|L|
-
-   +-----------------+---------------------------------------------------------+
-   |Parameters       |Description                                              |
-   +=================+=========================================================+
-   |``-file``        |Specifies the local path to an image file. Required if   |
-   |                 |the ``-url`` or ``-raw`` parameters are not used.        |
-   +-----------------+---------------------------------------------------------+
-   |``-url``         |Specifies a URL to an image file. Required if the        |
-   |                 |``-file`` or ``-raw`` parameters are not used.           |
-   +-----------------+---------------------------------------------------------+
-   |``-raw``         |Inputs a raw string of bits representing the image.      |
-   |                 |Required if the ``-url`` or ``-file`` parameters are not |
-   |                 |used.                                                    |
-   +-----------------+---------------------------------------------------------+
-   |``-height``      |Scales the image to the specified height. Requires a     |
-   |                 |decimal value which is the desired image height in       |
-   |                 |points. Optional.                                        |
-   +-----------------+---------------------------------------------------------+
-   |``-width``       |Scales the image to the specified width. Requires a      |
-   |                 |decimal value which is the desired image width in points.|
-   |                 |Optional                                                 |
-   +-----------------+---------------------------------------------------------+
-   |``-proportional``|Keyword parameter specifying that all scaling should     |
-   |                 |preserve the aspect ratio of the inserted page. Optional.|
-   +-----------------+---------------------------------------------------------+
-   |``-rotate``      |Rotates the image by the specified degrees clockwise.    |
-   |                 |Optional.                                                |
-   +-----------------+---------------------------------------------------------+
+   :param -file:
+      Specifies the local path to an image file. Required if the ``-url`` or
+      ``-raw`` parameters are not used.
+   :param -url:
+      Specifies a URL to an image file. Required if the ``-file`` or ``-raw``
+      parameters are not used.
+   :param -raw:
+      Inputs a raw string of bits representing the image. Required if the
+      ``-url`` or ``-file`` parameters are not used.
+   :param -height:
+      Scales the image to the specified height. Requires a decimal value which
+      is the desired image height in points. Optional.
+   :param -width:
+      Scales the image to the specified width. Requires a decimal value which is
+      the desired image width in points. Optional.
+   :param -proportional:
+      Keyword parameter specifying that all scaling should preserve the aspect
+      ratio of the inserted page. Optional.
+   :param -rotate:
+      Rotates the image by the specified degrees clockwise. Optional.
 
 
 Add an Image File to a pdf_doc Object
@@ -2041,8 +1920,8 @@ right in the page, and increasing the Y-Value moves the point up in the page.
 The maximum X and Y values are defined by the current width and height of the
 page in points.
 
-Custom graphics may be drawn in PDF pages using ``pdf_doc->`` drawing member
-methods. These member methods operate by controlling a “virtual pen” which draws
+Custom graphics may be drawn in PDF pages using :type:`pdf_doc` drawing member
+methods. These member methods operate by controlling a "virtual pen" which draws
 graphics similar to a true graphics editor. These member methods are summarized
 below.
 
@@ -2185,7 +2064,7 @@ at coordinates (50, 50), has a radius of 20 points, and runs from 0 degrees to
 Creating Barcodes
 =================
 
-Barcodes are special device-readable images that can be created in PDF documents
+Barcodes are special device-readable images that can be created in PDF files
 using the :type:`pdf_barcode` type, and added to a pdf_doc using member methods,
 which are described in this section. Lasso 9 can be used to create the following
 industry-standard barcodes:
@@ -2200,10 +2079,6 @@ industry-standard barcodes:
 -  POSTNET
 -  PLANET
 
-
-Creating Bar Codes
-------------------
-
 Barcodes can be defined for use in a PDF file using the :type:`pdf_barcode`
 type. Objects of this type can then be added to pdf_doc objects.
 
@@ -2213,64 +2088,48 @@ type. Objects of this type can then be added to pdf_doc objects.
    Creates a barcode image to be placed in a PDF. Uses parameters which set the
    basic specifications of the barcode to be created.
 
-   .. tabularcolumns:: |l|L|
-
-   +------------------------+--------------------------------------------------+
-   |Parameters              |Description                                       |
-   +========================+==================================================+
-   |``-type``               |Specifies the type of barcode to be created.      |
-   |                        |Available parameters are "CODE39", "CODE39_EX",   |
-   |                        |"CODE128", "CODE128_UCC", "CODE128_RAW", "EAN8",  |
-   |                        |"EAN13", "POSTNET", and "PLANET". Required.       |
-   +------------------------+--------------------------------------------------+
-   |``-code``               |Specifies the numeric or alphanumeric barcode     |
-   |                        |data. Some formats require specific data strings: |
-   |                        |"EAN8" requires an 8-digit integer, "EAN13"       |
-   |                        |requires a 13-digit integer, "POSTNET" requires   |
-   |                        |a ZIP code, and "CODE39" requires uppercase       |
-   |                        |characters. Required.                             |
-   +------------------------+--------------------------------------------------+
-   |``-color``              |Specifies the color of the bars in the            |
-   |                        |barcode. Requires a hex string color              |
-   |                        |value. Defaults to "#000000" if not               |
-   |                        |specified. Optional.                              |
-   +------------------------+--------------------------------------------------+
-   |``-supplemental``       |Adds an additional two or five-digit supplemental |
-   |                        |barcode to "EAN8" or "EAN13" barcode              |
-   |                        |types. Requires a two or five-digit integer as a  |
-   |                        |parameter. Optional.                              |
-   +------------------------+--------------------------------------------------+
-   |``-generateChecksum``   |Generates a checksum for the barcode. Optional.   |
-   +------------------------+--------------------------------------------------+
-   |``-showCode39StartStop``|Displays start and stop characters "(*)" in the   |
-   |                        |text for Code 39 barcodes. Optional.              |
-   +------------------------+--------------------------------------------------+
-   |``-showEANGuardBars``   |Show the guard bars for "EAN" barcodes. Optional. |
-   +------------------------+--------------------------------------------------+
-   |``-barHeight``          |Sets the height of the bars in points. Requires a |
-   |                        |decimal value.                                    |
-   +------------------------+--------------------------------------------------+
-   |``-barWidth``           |Sets the width of the bars in points. Requires a  |
-   |                        |decimal value.                                    |
-   +------------------------+--------------------------------------------------+
-   |``-baseLine``           |Sets the text baseline in points. Requires a      |
-   |                        |decimal value.                                    |
-   +------------------------+--------------------------------------------------+
-   |``-showChecksum``       |Keyword parameter sets the generated checksum to  |
-   |                        |be shown in the text                              |
-   +------------------------+--------------------------------------------------+
-   |``-font``               |Sets the text font. Requires a pdf_font object.   |
-   +------------------------+--------------------------------------------------+
-   |``-barMultiplier``      |Sets the bar multiplier for wide bars. Requires a |
-   |                        |decimal value                                     |
-   +------------------------+--------------------------------------------------+
-   |``-textSize``           |Sets the size of the text. Requires a decimal     |
-   |                        |value.                                            |
-   +------------------------+--------------------------------------------------+
+   :param -type:
+      Specifies the type of barcode to be created. Available parameters are
+      ``'CODE39'``, ``'CODE39_EX'``, ``'CODE128'``, ``'CODE128_UCC'``,
+      ``'CODE128_RAW'``, ``'EAN8'``, ``'EAN13'``, ``'POSTNET'``, and
+      ``'PLANET'``. Required.
+   :param -code:
+      Specifies the numeric or alphanumeric barcode data. Some formats require
+      specific data strings: "EAN8" requires an 8-digit integer, "EAN13"
+      requires a 13-digit integer, "POSTNET" requires a ZIP code, and "CODE39"
+      requires uppercase characters. Required.
+   :param -color:
+      Specifies the color of the bars in the barcode. Requires a hex string
+      color value. Defaults to "#000000" if not specified. Optional.
+   :param -supplemental:
+      Adds an additional two or five-digit supplemental barcode to "EAN8" or
+      "EAN13" barcode types. Requires a two or five-digit integer as a
+      parameter. Optional.
+   :param -generateChecksum:
+      Generates a checksum for the barcode. Optional.
+   :param -showCode39StartStop:
+      Displays start and stop characters "``(*)``" in the text for Code 39
+      barcodes. Optional.
+   :param -showEANGuardBars:
+      Show the guard bars for "EAN" barcodes. Optional.
+   :param -barHeight:
+      Sets the height of the bars in points. Requires a decimal value.
+   :param -barWidth:
+      Sets the width of the bars in points. Requires a decimal value.
+   :param -baseLine:
+      Sets the text baseline in points. Requires a decimal value.
+   :param -showChecksum:
+      Keyword parameter sets the generated checksum to be shown in the text.
+   :param pdf_font -font:
+      Sets the text font. Requires a `pdf_font` object.
+   :param -barMultiplier:
+      Sets the bar multiplier for wide bars. Requires a decimal value.
+   :param -textSize:
+      Sets the size of the text. Requires a decimal value.
 
 
 Create a Barcode
-^^^^^^^^^^^^^^^^
+----------------
 
 Use the :type:`pdf_barcode` type. The example below creates a basic Code 39
 barcode with the data "1234567890", and uses the optional Code 39 start and stop
@@ -2286,7 +2145,7 @@ characters "(*)". The barcode is then added to a pdf_doc object using
 
 
 Create a Barcode with a Specified Bar Width
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------
 
 Use the :type:`pdf_barcode` type with the ``-barWidth`` parameter. The following
 example sets a pdf_barcode object with a bar width of "0.2" points::
@@ -2300,7 +2159,7 @@ example sets a pdf_barcode object with a bar width of "0.2" points::
 
 
 Create a Barcode with a Specified Bar Multiplier
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------------
 
 Use the :type:`pdf_barcode` type with the ``-barMultiplier`` parameter. The
 following example sets a pdf_barcode object with a bar multiplier constant of
@@ -2315,7 +2174,7 @@ following example sets a pdf_barcode object with a bar multiplier constant of
 
 
 Create a Barcode with a Specified Text Size
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------
 
 Use the :type:`pdf_barcode` type with the ``-textSize`` parameter. The following
 example sets a pdf_barcode object with a text size of 6.0 points. The barcode is
@@ -2330,7 +2189,7 @@ then added to a pdf_doc object using `pdf_doc->add`::
 
 
 Create a Barcode with a Specified Font
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------
 
 Use the :type:`pdf_barcode` type with the ``-font`` parameter. The following
 example sets a pdf_barcode object font specified in a pdf_font object named
@@ -2364,9 +2223,7 @@ PDF Text Example
 ----------------
 
 The following example creates a PDF file that contains two pages of text with
-multiple text styles.
-
-::
+multiple text styles::
 
    local(text_example) = pdf_doc(-file='Text_Example.pdf', -size='A4')
    #text_example->addPage
@@ -2380,12 +2237,12 @@ multiple text styles.
    #text_example->add(#title, -number=1)
 
    local(text1) = pdf_text('\n\nThe Lasso product line consists of
-      authoring and serving tools that allow Web designers and Web
-      developers to quickly build and serve powerful data-driven Web
+      authoring and serving tools that allow web designers and web
+      developers to quickly build and serve powerful data-driven web
       sites with maximum productivity and ease. The product line
       includes Lasso 9 Server for building, serving, and
-      administering data-driven Web sites, and LassoLab for
-      building and testing data-driven Web sites within a graphical
+      administering data-driven web sites, and LassoLab for
+      building and testing data-driven web sites within a graphical
       editor.\n\nLasso 9 Server works with the following data
       sources:',
       -type='Paragraph',
@@ -2412,17 +2269,17 @@ multiple text styles.
 
    local(text2) = pdf_text('\nLasso\'s innovative architecture provides
       an industry first multi-platform, database-independent and open
-      standards approach to delivering database-driven Web sites
+      standards approach to delivering database-driven web sites
       firmly positioning Lasso technology within the rapidly evolving
-      server-side Web tools market. Lasso technology is used at
-      hundreds of thousands of Web sites worldwide.\n\n',
+      server-side web tools market. Lasso technology is used at
+      hundreds of thousands of web sites worldwide.\n\n',
       -type='Paragraph',
       -font=#font2
    )
    #text_example->add(#text2)
 
    local(text3) = pdf_text(
-      'Click here to go to the LassoSoft Web site',
+      'Click here to go to the LassoSoft website',
       -Type='Phrase',
       -Font=#font3,
       -Underline='true',
@@ -2431,7 +2288,7 @@ multiple text styles.
    #text_example->add(#text3)
 
    #text_example->drawText(
-      #text_example->GetPageNumber->asString,
+      #text_example->getPageNumber->asString,
       -font=#font2,
       -top=30,
       -left=560
@@ -2442,8 +2299,8 @@ multiple text styles.
 
    local(text4) = pdf_text('Lasso 9 Server is server-side software
       that adds a suite of dynamic functionality and administration to
-      your Web server. This functionality empowers you to build and
-      serve just about any dynamic Web application that can be built
+      your web server. This functionality empowers you to build and
+      serve just about any dynamic web application that can be built
       with maximum productivity and ease.\n\n',
       -type='Paragraph',
       -leading=15,
@@ -2452,14 +2309,14 @@ multiple text styles.
    #text_example->add(#text4)
 
    local(text5) = pdf_text("Lasso works by using a simple scripting
-      language, which can be embedded in Web
-      pages and scripts residing on your Web server. The details of
+      language, which can be embedded in web
+      pages and scripts residing on your web server. The details of
       scripting and programming in Lasso 9 are covered in the
       Lasso 9 Language Guide also included with this product. By
       default, Lasso 9 Server is designed to run on the most
-      prevalent modern Web server platforms with the most popular Web
-      serving applications. In addition, Lasso's extensibility allows
-      Web Server Connectors to be authored for any Web server for
+      prevalent modern web server platforms with the most popular web
+      serving applications. Additionally, Lasso's extensibility allows
+      web Server Connectors to be authored for any web server for
       which default connectivity is not provided.\n\n",
       -type='Paragraph',
       -leading=15,
@@ -2468,7 +2325,7 @@ multiple text styles.
    #text_example->add(#text5)
 
    #text_example->drawText(
-      #text_example->GetPageNumber->asString,
+      #text_example->getPageNumber->asString,
       -font=#font2,
       -top=30,
       -left=560
@@ -2479,9 +2336,7 @@ multiple text styles.
 PDF Form Example
 ----------------
 
-The following example creates a PDF file that contains both text and a form.
-
-::
+The following example creates a PDF file that contains both text and a form::
 
    local(form_example) = pdf_doc(-file='Form_Example.pdf', -size='a4')
    local(myFont)       = pdf_font(-face='Helvetica', -size='12')
@@ -2499,7 +2354,7 @@ The following example creates a PDF file that contains both text and a form.
       -font=#myFont
    )
    #form_example->drawText(
-      'Pull-Down Menu',
+      'Drop-Down Menu',
       -font=#myFont,
       -left=90,
       -top=200
@@ -2554,9 +2409,7 @@ The following example creates a PDF file that contains both text and a form.
 PDF Table Example
 -----------------
 
-The following example creates a PDF file that contains both text and a table.
-
-::
+The following example creates a PDF file that contains both text and a table::
 
    local(table_example) = pdf_doc(-file='Table_Example.pdf', -size='A4')
 
@@ -2589,9 +2442,7 @@ PDF Graphics Example
 --------------------
 
 The following example shows how to create a PDF file that contains drawn graphic
-objects.
-
-::
+objects::
 
    local(graphic_example) = pdf_doc(-file='Graphic_Example.pdf', -height=650, -width=550)
    local(text) = pdf_text('This PDF file contains lines and circles. See below.\n')
@@ -2617,9 +2468,7 @@ PDF Barcode Example
 -------------------
 
 The following example shows how to create a PDF file that contains text
-accompanied by a barcode.
-
-::
+accompanied by a barcode::
 
    local(barcode_example) = pdf_doc(
       -file='Barcode_Example.pdf',
@@ -2643,7 +2492,7 @@ accompanied by a barcode.
    #barcode_example->close
 
 
-.. _serving-pdf-files:
+.. _pdf-serving-files:
 
 Serving PDF Files
 =================
@@ -2657,18 +2506,16 @@ Linking to PDF Files
 --------------------
 
 Named PDF files may be linked to in a Lasso page using basic HTML. Once a user
-clicks on a link to a file with a ".pdf" extension, the client browser should
-prompt to download the file or launch the file in PDF reader (if configured to
-do so).
+clicks on a link to a file with a "|dot| pdf" extension, the client browser
+should prompt to download the file or launch the file in PDF reader (if
+configured to do so).
 
 
-Link a PDF file
-^^^^^^^^^^^^^^^
+Link to a PDF file
+^^^^^^^^^^^^^^^^^^
 
 The example below shows how a PDF can be created and written to file, and then
-linked to in the Lasso page.
-
-::
+linked to from the Lasso page::
 
     <?lasso
       local(my_file) = pdf_doc(-file='MyFile.pdf', -size='A4')
@@ -2688,26 +2535,27 @@ Serving PDF Files to Client Browsers
 ------------------------------------
 
 PDF files may also be served directly to a client browser using the `pdf_serve`
-method. This method automatically informs the client Web browser that the data
-being load is a PDF file, and outputs the file with the correct file name. If
-the client Web browser is configured to handle PDF files via a reader, then the
-out PDF file will automatically be opened in the clients configured PDF reader.
-Otherwise, the client Web browser should prompt the user to save the file.
+method. This method automatically informs the client web browser that the data
+being loaded is a PDF file, and outputs the file with the correct file name. If
+the client web browser is configured to handle PDF files via a reader, then the
+served PDF file will automatically be opened in the client's configured PDF
+reader. Otherwise, the client web browser should prompt the user to save the
+file.
 
 .. method:: pdf_serve(doc::pdf_doc, -file, -type= ?)
 
-   Serves a PDF file to a client browser with a MIME type of "application/pdf".
-   Requires the first parameter to specify the pdf_doc object to serve, and the
-   second parameter, ``-file``, specifies the name of the file to be output to
-   the browser. An optional ``-type`` parameter may be used to specify
-   additional MIME types.
+   Serves a PDF file to a client browser with a MIME type of
+   :mimetype:`application/pdf`. Requires the first parameter to specify the
+   pdf_doc object to serve, and the second parameter, ``-file``, specifies the
+   name of the file to be output to the browser. An optional ``-type`` parameter
+   may be used to specify additional MIME types.
 
 
 Serve a PDF File to a Client Browser
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `pdf_serve` method to serve the created PDF file. The file parameter
-specifies the file name that should be output::
+specifies the file name that should be output. ::
 
    local(my_file) = pdf_doc(-file='MyFile.pdf', -size='A4', -noCompress)
    #my_file->add(pdf_text('Hello World'))
@@ -2719,10 +2567,10 @@ Serve a PDF File Without Writing to File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 PDF files may be served to the client browser without ever writing them to file
-on the local server. This is done using the pdf_doc type without the ``-file``
-parameter. This allows a PDF file to be created in the system memory, but does
-not the save the file to a hard drive location. The resulting file can be saved
-by the end user to a location on the end user's hard drive::
+on the local server. This is done by creating a pdf_doc object without the
+``-file`` parameter. This allows a PDF file to be created in the system memory,
+but does not the save the file to a hard drive location. The resulting file can
+be saved by the end user to a location on the end user's hard drive. ::
 
    local(my_file) = pdf_doc(-size='A4', -noCompress)
    #my_file->add(pdf_text('Hello World'))
