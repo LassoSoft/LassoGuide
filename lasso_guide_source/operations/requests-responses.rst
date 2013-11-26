@@ -701,14 +701,16 @@ used. These methods are described below.
    be invoked for each request and use the `web_request` and `web_response`
    within it.
 
+.. method:: define_atEnd(code)
 .. member:: web_response->addAtEnd(code)
 
-   This `web_response` method sets the parameter to be run at the request's end.
-   At-end code is normally run before data is sent to the client, but this may
-   not be the case if data has been manually pushed using the
-   `web_response->sendChunk` method. At-begins are executed before the session
-   link-rewriter is run. Multiple at-ends are supported and each are run in the
-   order in which they were installed.
+   These methods set the parameter to be run at the request's end. (The
+   `define_atEnd` method just calls `web_response->addAtEnd`.) At-end code is
+   normally run before data is sent to the client, but this may not be the case
+   if data has been manually pushed using the `web_response->sendChunk` method.
+   At-begins are executed before the session link-rewriter is run. Multiple at-
+   ends are supported and each are run in the order in which they were
+   installed.
 
    At-ends are added on a per-request basis, as opposed to at-begins which are
    added globally. At-end code is not copied in any way. A capture passed to

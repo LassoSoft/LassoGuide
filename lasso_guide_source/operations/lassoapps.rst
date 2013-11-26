@@ -454,6 +454,14 @@ the app. Because the files within a LassoApp are not real files, Lasso Server
 will need to alter paths used in HTML links to be able to access the file data.
 The `lassoapp_link` method must be used for all intra-app file links.
 
+.. method:: lassoApp_link(path::string)
+
+   Use this method to make links to files that are internal to a LassoApp. A
+   LassoApp is compiled out of all the files within a folder. Any links from
+   file to file within that code must be made using `lassoApp_link`, including
+   links in HTML anchor tags (``<a>``), image tags (``<img src="...">``), and
+   form actions.
+
 To illustrate, consider a LassoApp which contains an image file called
 "icon.png" within an "images" sub-directory. In order to display the image, the
 `lassoapp_link` method would be used to alter the path, at runtime, to point to
@@ -485,6 +493,19 @@ It is possible to directly access, or :dfn:`include`, a LassoApp node given its
 path. This can be used to pull in file data within the current LassoApp as well
 as other LassoApps running on the system. This technique can be used to assemble
 a result page based on multiple files working together.
+
+.. method:: lassoApp_include(path::string)
+.. method:: lassoApp_include(path::string, as::string, extra=void)
+.. method:: lassoApp_include_current(path::string, extra=void)
+   
+   These methods allow you to include content from the LassoApp node specified
+   in the ``path`` parameter. The default is to determine the content type by
+   the extension of the node, but the second method allows you to specify the
+   extension to use.
+
+   The first two methods allow you to specify a node in any LassoApp---the root
+   of their path being the top level for all LassoApps. The last method
+   (`lassoApp_include_current`) has it's root at the current LassoApp.
 
 To include a LassoApp file from a Lasso file external to the LassoApp, the
 `lassoapp_include` method is used. This method accepts one string parameter,

@@ -250,6 +250,10 @@ such as certain looping constructs or control structures. (For example,
 Capture Methods
 ===============
 
+.. method:: currentCapture()
+
+   Returns a reference to the capture that is currently executing.
+
 .. type:: capture
 
    A capture is a block of Lasso code that can be passed to another method or
