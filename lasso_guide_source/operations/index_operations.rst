@@ -52,7 +52,6 @@
       :maxdepth: 2
 
       requests-responses
-      uploading-files
       authentication
       sessions
       lassoapps

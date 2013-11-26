@@ -63,7 +63,8 @@ iterated over in their entirety. The request's POST body is processed depending
 on the incoming :mailheader:`Content-Type`. Both :mimetype:`multipart/form-data`
 and :mimetype:`application/x-www-form-urlencoded` content types are
 automatically handled. This includes the processing of file uploads, the results
-of which are made available through the `web_request->fileUploads` method.
+of which are made available through the `web_request->fileUploads` method,
+described below.
 
 
 Request Headers
@@ -85,7 +86,7 @@ methods. All header names and values are treated as strings.
 .. member:: web_request->header(name::string)
 .. member:: web_request->rawHeader(name::string)
 
-   The `headers` method returns all of the headers as an object which can be
+   The `headers` method returns all of the headers as an object that can be
    iterated or used in a query expression. Each header element is presented as a
    pair object containing the header name and value as the pair's first and
    second elements, respectively. The `header` method returns the first header
@@ -98,42 +99,48 @@ corresponding raw web request variable name. For headers that return a string
 value, an empty string is returned if the header has no value or is not present.
 A zero or "false" is returned for other non-existent value types.
 
-=================================== ==================== ===========
-Method Name                         Web Request Variable Return Type
-=================================== ==================== ===========
-``web_request->contentLength``      CONTENT_LENGTH       integer
-``web_request->contentType``        CONTENT_TYPE         string
-``web_request->gatewayInterface``   GATEWAY_INTERFACE    string
-``web_request->httpAccept``         HTTP_ACCEPT          string
-``web_request->httpAcceptEncoding`` HTTP_ACCEPT_ENCODING string
-``web_request->httpAcceptLanguage`` HTTP_ACCEPT_LANGUAGE string
-``web_request->httpCacheControl``   HTTP_CACHE_CONTROL   string
-``web_request->httpConnection``     HTTP_CONNECTION      string
-``web_request->httpCookie``         HTTP_COOKIE          string
-``web_request->httpHost``           HTTP_HOST            string
-``web_request->httpReferer``        HTTP_REFERER         string
-``web_request->httpReferrer``       HTTP_REFERER         string
-``web_request->httpUserAgent``      HTTP_USER_AGENT      string
-``web_request->isHttps``            HTTPS                boolean
-``web_request->path``               PATH                 string
-``web_request->pathInfo``           SCRIPT_NAME          string
-``web_request->pathTranslated``     PATH_TRANSLATED      string
-``web_request->remoteAddr``         REMOTE_ADDR          string
-``web_request->remotePort``         REMOTE_PORT          integer
-``web_request->requestMethod``      REQUEST_METHOD       string
-``web_request->requestURI``         REQUEST_URI          string
-``web_request->scriptFilename``     SCRIPT_FILENAME      string
-``web_request->scriptName``         SCRIPT_NAME          string
-``web_request->scriptURI``          SCRIPT_URI           string
-``web_request->scriptURL``          SCRIPT_URL           string
-``web_request->serverAddr``         SERVER_ADDR          string
-``web_request->serverAdmin``        SERVER_ADMIN         string
-``web_request->serverName``         SERVER_NAME          string
-``web_request->serverPort``         SERVER_PORT          integer
-``web_request->serverProtocol``     SERVER_PROTOCOL      string
-``web_request->serverSignature``    SERVER_SIGNATURE     string
-``web_request->serverSoftware``     SERVER_SOFTWARE      string
-=================================== ==================== ===========
+.. tabularcolumns:: |l|l|l|
+
+.. _requests-responses-variable-methods:
+
+.. table:: Web Request Variable Methods
+
+   =================================== ==================== ====================
+   Method Name                         Web Request Variable Return Type
+   =================================== ==================== ====================
+   ``web_request->contentLength``      CONTENT_LENGTH       integer
+   ``web_request->contentType``        CONTENT_TYPE         string
+   ``web_request->gatewayInterface``   GATEWAY_INTERFACE    string
+   ``web_request->httpAccept``         HTTP_ACCEPT          string
+   ``web_request->httpAcceptEncoding`` HTTP_ACCEPT_ENCODING string
+   ``web_request->httpAcceptLanguage`` HTTP_ACCEPT_LANGUAGE string
+   ``web_request->httpCacheControl``   HTTP_CACHE_CONTROL   string
+   ``web_request->httpConnection``     HTTP_CONNECTION      string
+   ``web_request->httpCookie``         HTTP_COOKIE          string
+   ``web_request->httpHost``           HTTP_HOST            string
+   ``web_request->httpReferer``        HTTP_REFERER         string
+   ``web_request->httpReferrer``       HTTP_REFERER         string
+   ``web_request->httpUserAgent``      HTTP_USER_AGENT      string
+   ``web_request->isHttps``            HTTPS                boolean
+   ``web_request->path``               PATH                 string
+   ``web_request->pathInfo``           SCRIPT_NAME          string
+   ``web_request->pathTranslated``     PATH_TRANSLATED      string
+   ``web_request->remoteAddr``         REMOTE_ADDR          string
+   ``web_request->remotePort``         REMOTE_PORT          integer
+   ``web_request->requestMethod``      REQUEST_METHOD       string
+   ``web_request->requestURI``         REQUEST_URI          string
+   ``web_request->scriptFilename``     SCRIPT_FILENAME      string
+   ``web_request->scriptName``         SCRIPT_NAME          string
+   ``web_request->scriptURI``          SCRIPT_URI           string
+   ``web_request->scriptURL``          SCRIPT_URL           string
+   ``web_request->serverAddr``         SERVER_ADDR          string
+   ``web_request->serverAdmin``        SERVER_ADMIN         string
+   ``web_request->serverName``         SERVER_NAME          string
+   ``web_request->serverPort``         SERVER_PORT          integer
+   ``web_request->serverProtocol``     SERVER_PROTOCOL      string
+   ``web_request->serverSignature``    SERVER_SIGNATURE     string
+   ``web_request->serverSoftware``     SERVER_SOFTWARE      string
+   =================================== ==================== ====================
 
 
 GET and POST Arguments
@@ -143,7 +150,7 @@ Lasso automatically tokenizes GET arguments and processes the POST body into a
 series of name/value pairs according to the sent content type. These two sets of
 pairs can be retrieved separately or treated as a single series of elements.
 File uploads are not included in the POST arguments, but are made available
-through the `fileUploads` method.
+through the `web_request->fileUploads` method.
 
 The value for any GET or POST argument is always a bytes object. The name is
 always a string.
@@ -156,22 +163,22 @@ always a string.
 .. member:: web_request->postParams()
 .. member:: web_request->params()
 
-   This set of methods refers to the GET arguments as the "query" params and
-   any POST arguments as the "post" params. Both sets together are just the
-   "params". For the methods which accept a name parameter, they return the
-   first matching argument's string value. If no argument matches, then a "void"
-   value is returned.
+   This set of methods refers to the GET arguments as the "query" params and any
+   POST arguments as the "post" params. Both sets together are just the
+   "params". For the methods that accept a name parameter, they return the first
+   matching argument's string value. If no argument matches, then a "void" value
+   is returned.
 
-   The `param` method treats both argument sources as a single source with
-   the POST arguments occurring first. The `param(name::string, joiner)`
-   method presents an interface for accessing arguments which occur more than
-   once. The ``joiner`` parameter is used to determine the result of the method.
-   If ``void`` is passed, then the resulting argument values are returned in a
+   The `param` method treats both argument sources as a single source with the
+   POST arguments occurring first. The `param(name::string, joiner)` method
+   presents an interface for accessing arguments that occur more than once. The
+   ``joiner`` parameter is used to determine the result of the method. If
+   ``void`` is passed, then the resulting argument values are returned in a
    staticarray. If a string value is passed, then the argument values are joined
    with that string in between each value. The result of passing any other
-   object type will depend on the behavior of its "+" operator.
+   object type will depend on the behavior of its ``+`` operator.
 
-   The methods which accept zero parameters return all of the GET, POST, or both
+   The methods that accept zero parameters return all of the GET, POST, or both
    argument pairs as an object which may be iterated over or used in a query
    expression.
 
@@ -186,8 +193,8 @@ always a string.
    :mimetype:`multipart/form-data` input.
 
 
-Read Cookies
-------------
+Reading Cookies
+---------------
 
 Cookie values are sent as HTTP header fields. As such, they can be read and
 parsed from the various header-related `web_request` methods. The `web_request`
@@ -204,17 +211,201 @@ object provides methods to directly access the pre-parsed cookie data.
    members.
 
 
+Uploading Files
+---------------
+
+Lasso can process and manage files uploaded to your web server by visitors to
+your website. To allow visitors to upload files to your web server, use an HTML
+``<form>`` tag along with an ``<input>`` tag for each file being uploaded. The
+form tag must have an "enctype" attribute of :mimetype:`multipart/form-data`,
+and the input tags for file uploads need to have a "type" attribute of "file".
+The following HTML code could be used to upload a single file to your server::
+
+   <form action="upload_file.lasso" method="post" enctype="multipart/form-data">
+      <fieldset>
+         <legend>Upload a Photo</legend>
+         <input type="file" name="photo">
+         <input type="submit" value="Upload">
+      </fieldset>
+   </form>
+
+The "file" input tells the browser to show controls for selecting a file to be
+uploaded to the web server. Once a user selects the file and then clicks
+"Upload", the form will upload the data to your web server and the files can be
+processed by "upload_file.lasso", the Lasso file specified as the action of the
+form submission.
+
+Uploaded files processed by Lasso are initially stored in a temporary location.
+If you do nothing with them, they will be deleted. If you wish to keep them, you
+should move them to a different directory. To inspect and process these uploaded
+files use the `web_request->fileUploads` method.
+
+.. member:: web_request->fileUploads()
+
+   This method returns an array, each element of which holds information about
+   an uploaded file. The size of this array will be equal to the number of files
+   uploaded. Each element of the array is a staticarray of pairs that houses the
+   following information about the files:
+
+   fieldname
+      The name of the "file" input type. (In our example, "photo")
+   contenttype
+      The MIME content type of the file.
+   filename
+      The original name of the file that was uploaded.
+   tmpfilename
+      The path to which the file was temporarily uploaded.
+   filesize
+      The size of the file in bytes.
+
+The following example code will loop through all uploaded files and display this
+information::
+
+   <dl>
+   [with file_info in web_request->fileUploads do {^]
+      <dt>[#file_info->find('filename')->first->second]</dt>
+      <dd>
+         <ul>
+            <li>[#file_info->find('tmpfilename')->first->second]</li>
+            <li>[#file_info->find('contenttype')->first->second]</li>
+            <li>[#file_info->find('filesize')->first->second]</li>
+            <li>[#file_info->find('fieldname')->first->second]</li>
+         </ul>
+      </dd>
+   [^}]
+   </dl>
+
+The preceding example produces HTML like this::
+
+   <dl>
+      <dt>MyAvatar.jpg</dt>
+      <dd>
+         <ul>
+            <li>//tmp/lassoqM9SFY37921967.uld</li>
+            <li>image/jpeg</li>
+            <li>851191</li>
+            <li>photo</li>
+         </ul>
+      </dd>
+   </dl>
+
+The following example will move uploaded files out of their temporary location
+and into the "/assets/img/avatars/" directory in the web root, overwriting any
+existing files with the same name::
+
+   local(path) = '/assets/img/avatars/'
+   with upload in web_request->fileUploads do {
+      file(#upload->find('tmpfilename')->first->second)
+         ->moveTo(#path + #upload->find('filename')->first->second, true)
+   }
+
+
+Monitoring Uploads
+^^^^^^^^^^^^^^^^^^
+
+If you expect the uploads to take a lot of time, either due to uploading many
+files or a few large ones, you may want to provide feedback to your visitors
+that the browser and server are working on the uploads. Lasso comes with a
+method that will allow you to do just that.
+
+To track files, you first need an input named "_lasso_upload_tracker_id"
+with a unique value in your form. You can use `lasso_uniqueId` to generate a
+UUID which is essentially guaranteed to be unique each time you call it. With
+that in place, while the thread that processes the form submission is working on
+uploading the files, you can check the status of that process in another thread.
+This is done by passing the unique ID to the `upload_tracker->check` method of
+the :thread:`upload_tracker` thread object. That method returns a staticarray
+whose first element is the amount of data uploaded, the second is the total size
+of all the files being uploaded, and the third is the name of the current file
+being uploaded.
+
+The following basic example has a form set up properly in "index.lasso". When
+the submit button is pressed it opens another window to display "progress.lasso"
+before submitting the form. This page calls `upload_tracker->check` with the
+unique ID that gets passed to it. It also uses ``<meta http-equiv="refresh"
+content="1">`` to refresh itself every second. The result is that we get a
+progress bar that is updated every second.
+
+.. rubric:: index.lasso
+
+::
+
+   <!DOCTYPE html>
+   <html>
+   <head>
+      <title>Upload A Photo</title>
+      <script type="text/javascript">
+      //<!--
+         function trackProgress(id) {
+            window.open(
+              "/progress.lasso?id=" + id,
+              null,
+              "height=100,width=400,location=no,menubar=no,resizable=yes,scrollbars=yes,title=yes"
+            );
+         }
+      //-->
+      </script>
+   </head>
+   <body>
+      [local(id) = lasso_uniqueid]
+      <form action="upload_file.lasso" method="post" enctype="multipart/form-data">
+         <input type="hidden"
+            name="_lasso_upload_tracker_id" value="[#id]">
+         <fieldset>
+            <legend>Upload a Photo</legend>
+            <input type="file" name="photo">
+            <input type="submit"
+               value="Upload"
+               onclick="trackProgress('[#id->encodeUrl]')">
+         </fieldset>
+      </form>
+   </body>
+   </html>
+
+.. rubric:: progress.lasso
+
+::
+
+   [local(info) = upload_tracker->check(web_request->param('id'))]
+   <!DOCTYPE html>
+   <html>
+   <head>
+   [if(#info->first > 0 and #info->first != #info->second)]
+      <meta http-equiv="refresh" content="1">
+   [/if]
+   </head>
+   <body>
+   [if(#info->first > 0 and #info->second > 0)]
+   [#info->last]
+   <div style="background-color: white;border: 1px solid black;width:380px;height: 20px;">
+      <div style="background-color: black;height: 20px;width: [
+        380 * (decimal(#info->first) / decimal(#info->second))
+      ]px;"></div>
+   </div>
+   [/if]
+   </body>
+   </html>
+
+
 Web Responses
 =============
 
 Sending a response to a web request is a simple as having "The Words" in the
 targeted "\*.lasso" text file. Files requested through a web request are assumed
 to begin as plain text. Lasso code can be inserted into the file using any of
-the following text delimiters::
+the following text delimiters:
 
-   <?lasso … ?>
-   <?= … ?>
-   [ … ]
+::
+
+   <?lasso ... ?>
+
+::
+
+   <?= ... ?>
+
+::
+
+   [ ... ]
 
 Because supporting the ``[ ... ]`` delimiters can be problematic for embedding
 with other technologies (i.e. JavaScript and CSS), they can be disabled for the
@@ -281,17 +472,17 @@ Any of the following methods can be used to include file content.
 
 .. member:: web_response->includes()::trait_forEach
 
-   Lasso keeps track of web files which are being executed. As execution of a
+   Lasso keeps track of web files that are being executed. As execution of a
    file begins, the file's name is pushed onto an internally kept stack. As a
    file's execution ends, that name is popped from the stack. This method
-   provides access to that stack. This method returns the list of
-   currently executing file names as an object which can be iterated or used in
-   a query expression.
+   provides access to that stack. This method returns the list of currently
+   executing file names as an object that can be iterated or used in a query
+   expression.
 
 .. member:: web_response->getInclude(path::string)
 
-   Locates the file and will return an object which can be invoked to execute
-   the file. The method will fail if the file does not exist.
+   Locates the file and will return an object that can be invoked to execute the
+   file. The method will fail if the file does not exist.
 
 For compatibility and simplicity, Lasso supports the following unbound methods
 which function in the same manner as the `web_response` bound methods:
@@ -320,9 +511,9 @@ manipulated through these methods.
 
    These methods return existing outgoing headers. The first method finds the
    first occurrence of the indicated header and returns its value. The second
-   method returns all the current headers as an object which can be iterated
-   over or used in a query expression. Each element is a pair object containing
-   the header name/value in the pair's first/second.
+   method returns all the current headers as an object that can be iterated over
+   or used in a query expression. Each element is a pair object containing the
+   header name/value in the pair's first/second.
 
 .. member:: web_response->setHeaders(headers::trait_forEach)
 .. member:: web_response->replaceHeader(header::pair)
@@ -356,7 +547,7 @@ processing is completed and the response is to be sent to the client.
    ``-domain`` and ``-path`` keyword parameters must have string values.
 
    The ``-expires`` parameter can be either a date object, a duration object, an
-   integer, a string or any object which will produce a suitable value when
+   integer, a string or any object that will produce a suitable value when
    converted into a string. A date indicates the absolute date at which the
    cookie will expire. A duration indicates the time that the cookie should
    expire based on the time at which the cookie is being set. An integer
@@ -376,8 +567,8 @@ Bytes Response Data
 
 By default, the result of a request will have a :mimetype:`text/html` content
 type with a UTF-8 character set and the body data will be generated from a Lasso
-string object which always consists of Unicode character data. In order to
-output binary data, the bytes need to be set directly and the response's
+string object that always consists of Unicode character data. In order to output
+binary data, the bytes need to be set directly and the response's
 :mailheader:`Content-Type` header adjusted accordingly. The method
 `web_response->rawContent` can be used to get or set the outgoing content data.
 
@@ -406,7 +597,7 @@ to be viewed either inline or downloaded as an attachment.
    :mailheader:`Content-Type`, :mailheader:`Content-Disposition` and
    :mailheader:`Content-Length` headers.
 
-   The first parameter ("data") can be any object which supports
+   The first parameter ("data") can be any object that supports
    `trait_each_sub`. This includes objects such as string, bytes and file. The
    second parameter ("name") is optional, but if given it will trigger the
    addition of a "filename=" element to the :mailheader:`Content-Disposition`
@@ -449,6 +640,7 @@ to be viewed either inline or downloaded as an attachment.
 
 .. |semi| unicode:: 0x3B
    :trim:
+
 
 HTTP Response Status
 --------------------

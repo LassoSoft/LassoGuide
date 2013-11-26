@@ -115,7 +115,6 @@ Web Application Development
 .. toctree::
 
    /operations/requests-responses
-   /operations/uploading-files
    /operations/authentication
    /operations/sessions
    /operations/lassoapps
