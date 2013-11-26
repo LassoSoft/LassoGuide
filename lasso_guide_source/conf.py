@@ -242,8 +242,7 @@ latex_elements = {
 {\endlist}
 
 % Style the ToC title
-\usepackage{tocloft}
-\renewcommand{\cfttoctitlefont}{\normalfont\Huge\bfseries}
+\usepackage[titles]{tocloft}
 
 %%
 % For some reason, this works to get the default font color

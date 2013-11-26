@@ -17,7 +17,7 @@ Embedding Lasso
 Lasso is designed to make it easy to intermix HTML and Lasso code in a single
 file. Just create a normal HTML file with the "|dot| lasso" extension and you
 can intersperse Lasso code between the following delimiters: ``[ ... ]``,
-``<?lasso ... ?>``, and ``<?= ... ?>``.
+``<?lasso ... ?>``, or ``<?= ... ?>``.
 
 For example, you could place the following code in a file named "test.lasso" in
 the root of your web root::

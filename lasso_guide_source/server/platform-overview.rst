@@ -5,10 +5,10 @@
 Lasso Platform Overview
 ***********************
 
-Welcome to Lasso Server, a powerful and comprehensive tool for building and
-hosting data-driven web applications. This chapter introduces important concepts
-and information you should know before starting to use the Lasso Platform or
-Lasso Server.
+Lasso Server is a powerful and comprehensive tool for building and hosting
+data-driven web applications. This chapter introduces important concepts and
+information you should know before starting to use the Lasso Platform or Lasso
+Server.
 
 :dfn:`Lasso Server` (and :dfn:`Lasso Developer`) is server-side software that
 runs along with any FastCGI-capable web server. It adds a suite of dynamic

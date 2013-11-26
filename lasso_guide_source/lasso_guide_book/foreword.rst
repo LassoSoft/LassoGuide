@@ -1,8 +1,9 @@
 .. raw:: latex
 
    \cleardoublepage
-   \subsection*{Foreword}
-   \thispagestyle{plain}%
+   \section*{Foreword}
+   \addcontentsline{toc}{chapter}{Foreword}
+   \thispagestyle{plain}
    \vfill
 
 Lasso has been around for decades, and will be around for decades to come.
@@ -28,15 +29,15 @@ preserved. With countless hours of effort, a group of dedicated contributors
 have worked together to ensure that a strong central manual---a canon---would
 exist for this new language. These individuals include:
 
--  Kyle Jessup
--  Fletcher Sandbeck
--  Jonathan Guthrie
--  Paul Higgins
--  Brad Lindsay
--  Steve Piercy
--  Michael Collins
--  Aaron Smalser
--  Eric Knibbe
+| Kyle Jessup
+| Fletcher Sandbeck
+| Jonathan Guthrie
+| Paul Higgins
+| Brad Lindsay
+| Steve Piercy
+| Michael Collins
+| Aaron Smalser
+| Eric Knibbe
 
 It is with great pleasure that I thank this group for their concerted and
 tireless efforts over several years to bring this endeavour to bear. May this be
@@ -52,5 +53,7 @@ Long Live Lasso!
 .. raw:: latex
 
    \vfill
+   \clearpage
+   \thispagestyle{empty}
    \cleardoublepage
    \pagenumbering{arabic}

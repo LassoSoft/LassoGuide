@@ -105,7 +105,8 @@
   \hspace*{2em} COM051000	\hspace*{2em} COMPUTERS / Programming / General \\
   \hspace*{2em} COM052000	\hspace*{2em} COMPUTERS / Reference \par
 
-  LassoSoft and the LassoSoft logo are registered trademarks of LassoSoft Inc.
+  Lasso, LassoGuide, LassoTalk, LassoSoft and the LassoSoft logo are trademarks
+  of LassoSoft Inc.
 
   Many of the designations used by manufacturers and sellers to distinguish
   their products are claimed as trademarks. All terms mentioned in this book
@@ -152,12 +153,15 @@
 %
 \let\py@OldTableofcontents=\tableofcontents
 \renewcommand{\tableofcontents}{%
+  \ChTitleVar{\raggedright\color{InnerLinkColor}\bfseries\fontsize{36}{40}\selectfont}
   \setcounter{page}{1}%
   \pagebreak%
   \pagestyle{plain}%
   {%
     \parskip = 0mm%
+    \phantomsection
     \py@OldTableofcontents%
+    \addcontentsline{toc}{part}{\contentsname}
     \if@openright%
       \ifodd\value{page}%
         \typeout{Adding blank page after the table of contents.}%
@@ -166,7 +170,7 @@
     \fi%
     \cleardoublepage%
   }%
-  \pagenumbering{arabic}% not working when using tocloft
+  %\pagenumbering{arabic}% delay until after foreword
   \@ifundefined{fancyhf}{}{\pagestyle{normal}}%
 }
 \pagenumbering{roman}

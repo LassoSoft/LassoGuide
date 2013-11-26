@@ -13,18 +13,28 @@
 Getting Started with Lasso
 ##########################
 
+++++++++++++++++
+A Taste of Lasso
+++++++++++++++++
+
+.. a.k.a. Overview Guide for Programmers
+
 .. toctree::
 
    /index
-   /server/platform-overview
+   /getstart/overview/basics
+   /getstart/overview/features
+   /getstart/overview/embedding
+   /getstart/overview/conclusion
 
 
-++++++++++++
-Installation
-++++++++++++
+++++++++++++++++++
+Installation Guide
+++++++++++++++++++
 
 .. toctree::
 
+   /server/platform-overview
    /server/osx-installation
    /server/centos-installation
    /server/ubuntu-installation
@@ -40,20 +50,6 @@ Server Management
    /server/instance-manager
    /server/instance-administration
    /server/datasource-setup
-
-
-++++++++++++++++
-A Taste of Lasso
-++++++++++++++++
-
-.. a.k.a. Overview Guide for Programmers
-
-.. toctree::
-
-   /getstart/overview/basics
-   /getstart/overview/features
-   /getstart/overview/embedding
-   /getstart/overview/conclusion
 
 
 .. _book-language:
