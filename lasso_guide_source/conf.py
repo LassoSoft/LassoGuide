@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Lasso Guide documentation build configuration file, created by
+# LassoGuide documentation build configuration file, created by
 # sphinx-quickstart on Wed Oct 24 16:16:59 2012.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -41,7 +41,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Lasso Guide'
+project = u'LassoGuide'
 copyright = u'%s, LassoSoft Inc.' % time.strftime('%Y')
 
 # The version info for the project you're documenting, acts as replacement for
@@ -65,7 +65,7 @@ release = '9.2'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['**/.svn']
+exclude_patterns = ['**/.svn', 'glossary.rst', 'lasso_guide_book/foreword.rst']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 default_role = 'meth'
@@ -96,7 +96,6 @@ rst_epilog = """
    :trim:
 """
 primary_domain = 'ls'
-unused_docs = ['glossary']
 
 # -- Breathe Options
 breathe_projects = { "LCAPI": os.path.abspath("../doxyxml/") }
@@ -242,6 +241,10 @@ latex_elements = {
 }
 {\endlist}
 
+% Style the ToC title
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\normalfont\Huge\bfseries}
+
 %%
 % For some reason, this works to get the default font color
 % (Using fontspec never allowed for Sphinx's overrides to kick in.)
@@ -275,7 +278,7 @@ latex_additional_files = ['sphinx.sty', 'sphinxmanual.cls']
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('lasso_guide_book/index', 'LassoGuide9.2.tex', u'Lasso Guide',
+  ('lasso_guide_book/index', 'LassoGuide9.2.tex', u'LassoGuide',
    u'LassoSoft Inc.', 'manual'),
 ]
 
@@ -305,7 +308,7 @@ latex_show_urls = 'footnote'
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'lassoguide', u'Lasso Guide',
+    ('index', 'lassoguide', u'LassoGuide',
      [u'LassoSoft Inc.'], 1)
 ]
 
@@ -319,8 +322,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'LassoGuide', u'Lasso Guide',
-   u'LassoSoft Inc.', 'LassoGuide', 'One line description of project.',
+  ('index', 'LassoGuide', u'LassoGuide',
+   u'LassoSoft Inc.', 'LassoGuide', 'Guide to the Lasso language and server.',
    'Miscellaneous'),
 ]
 
@@ -337,7 +340,7 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'Lasso Guide'
+epub_title = u'LassoGuide'
 epub_author = u'LassoSoft Inc.'
 epub_publisher = u'LassoSoft Inc.'
 epub_copyright = u'2013, LassoSoft Inc.'

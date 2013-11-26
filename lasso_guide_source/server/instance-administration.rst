@@ -381,14 +381,14 @@ By default, Lasso 9 Server is configured to store session information using the
 "SQLite" session driver. You can change this by following these steps:
 
 #. Select the driver you wish to use from the :guilabel:`Driver` drop-down list.
-#. If the driver is not "SQLite" or "In Memory", then you will need to select a
-   value from the :guilabel:`Database` drop-down list and the
-   :guilabel:`Sessions Table` drop-down list. (You can click the
-   :guilabel:`Create Sessions Table` button below the :guilabel:`Sessions Table`
-   drop-down list to have Lasso 9 create a table in the selected database with
-   the correct schema for storing sessions. If you click this button, you will
-   be given the chance to name the table whatever you desire, and then that new
-   table will be selected in the :guilabel:`Sessions Table` drop-down list.)
+#. If the driver is not "SQLite" or "In Memory", select a value from the
+   :guilabel:`Database` drop-down list and the :guilabel:`Sessions Table`
+   drop-down list. (You can click the :guilabel:`Create Sessions Table` button
+   below the :guilabel:`Sessions Table` drop-down list to have Lasso 9 create a
+   table in the selected database with the correct schema for storing sessions.
+   If you click this button, you will be given the chance to name the table
+   whatever you desire, and then that new table will be selected in the
+   :guilabel:`Sessions Table` drop-down list.)
 #. Click the :guilabel:`Select As Default Driver` button to have the
    `session_start` method use your selection for storing session information.
 

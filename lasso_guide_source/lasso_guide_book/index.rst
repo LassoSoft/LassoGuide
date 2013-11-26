@@ -6,6 +6,8 @@
  Table of Contents
 %%%%%%%%%%%%%%%%%%%
 
+.. include:: foreword.rst
+
 
 ##########################
 Getting Started with Lasso

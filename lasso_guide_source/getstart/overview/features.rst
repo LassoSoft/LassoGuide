@@ -6,8 +6,8 @@ Lasso Programming Features
 
 The Lasso programming language has a number of great features that make coding
 in it enjoyable. This tutorial will scratch the surface of some of the best
-features of Lasso while also giving an introduction to defining methods, types, and
-traits.
+features of Lasso while also giving an introduction to defining methods, types,
+and traits.
 
 
 Type Constraints

@@ -65,7 +65,7 @@ To configure IIS 7 or 8 manually:
 
 To configure access to Lasso Instance Manager and Lasso Server Admin:
 
--  `Open IIS Manager`_ and expand your computer name from the nodes on the left.
+-  In IIS Manager, expand your computer name from the nodes on the left.
 -  Select a web site from the nodes on the left, then right-click.
 -  Select :guilabel:`Add Application...` to add a new application:
 
@@ -92,12 +92,13 @@ Configuring Apache 2.2
    `<http://httpd.apache.org/>`_, but `unofficial 64-bit installers`_ can be
    found elsewhere online.
 
--  Copy the file
-   :file:`C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\home\\LassoExecutables\\mod_lasso9.dll`
-   into the Apache :file:`modules\\\ ` folder.
--  Copy the file
-   :file:`C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\home\\LassoExecutables\\mod_lasso9.conf`
-   into the Apache :file:`conf\\\ ` folder.
+-  Open
+   :file:`C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\home\\LassoExecutables\\\ `
+   and copy these files:
+
+   -  :file:`mod_lasso9.dll` into the Apache :file:`modules\\\ ` folder
+   -  :file:`mod_lasso9.conf` into the Apache :file:`conf\\\ ` folder
+
 -  Edit the Apache :file:`httpd.conf` file and add the following line:
    ``Include conf/mod_lasso9.conf``
 -  Restart Apache.

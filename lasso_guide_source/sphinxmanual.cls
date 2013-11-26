@@ -53,7 +53,7 @@
     \fi
     \begin{flushright}%
       \sphinxlogo%
-      {\rm\Huge\py@HeaderFamily \@title \par}%
+      {\rm\Huge\py@HeaderFamily \textbf{Lasso}Guide \par}%
       {\em\LARGE\py@HeaderFamily \py@release\releaseinfo \par}
       \vfill
       {\LARGE\py@HeaderFamily
@@ -72,19 +72,61 @@
   \end{titlepage}%
   %\cleardoublepage%
   \setcounter{footnote}{0}%
+
   % Make Copyright Page
   \clearpage\null\vfill
   \pagestyle{empty}
   \begin{minipage}[b]{0.9\textwidth}
   \footnotesize\raggedright
   \setlength{\parskip}{0.5\baselineskip}
-  Copyright \copyright \the\year\ LassoSoft Inc.\par
-  All rights reserved.
+  Copyright \copyright \the\year\ \@author\\
+  All rights reserved.\par
+  %This work may be distributed and/or modified under the conditions of the
+  %(insert license here). \\
+  The latest version may be accessed at \url{http://lassoguide.com/}.
+
+  \begin{center}
+  \begin{tabular}{ll}
+  First edition:  & December 2013 %\\
+  \end{tabular}
+  \end{center}
+  \begin{center}
+  18 17 16 15 14 13\hspace{2em}8 7 6 5 4 3 2 1
+  \end{center}
+
+  Lassosoft Inc. \\
+  \hspace*{2em} LassoGuide : Release 9.2 / LassoSoft Inc. -- 1st ed. \\
+  \hspace*{2em} p. \hspace*{2em} cm. \\
+  \hspace*{2em} Includes index. \\
+  \hspace*{2em} ISBN  \par% insert ISBN
+
+  BISAC subject headings: \\
+  \hspace*{2em} COM060160	\hspace*{2em} COMPUTERS / Web / Web Programming \\
+  \hspace*{2em} COM051000	\hspace*{2em} COMPUTERS / Programming / General \\
+  \hspace*{2em} COM052000	\hspace*{2em} COMPUTERS / Reference \par
+
+  LassoSoft and the LassoSoft logo are registered trademarks of LassoSoft Inc.
+
+  Many of the designations used by manufacturers and sellers to distinguish
+  their products are claimed as trademarks. All terms mentioned in this book
+  that are known to be trademarks or service marks have been appropriately
+  capitalized.
+
+  The software described in this book maybe under some license agreement. The
+  software may be used or copied only in accordance with the terms of that
+  agreement.
+
+  While every precaution has been taken in the preparation of this book, neither
+  LassoSoft nor the publisher assume responsibility for errors or omissions, or
+  for damages resulting from the use of the information contained herein.
+
+  Produced with Sphinx and \LaTeX. \\
+  Printed and bound in Canada.
   \end{minipage}
   \vspace*{2\baselineskip}
   \cleardoublepage
   \rfoot{\thepage}
-  
+
   \let\thanks\relax\let\maketitle\relax
   %\gdef\@thanks{}\gdef\@author{}\gdef\@title{}
 }
@@ -124,7 +166,7 @@
     \fi%
     \cleardoublepage%
   }%
-  \pagenumbering{arabic}%
+  \pagenumbering{arabic}% not working when using tocloft
   \@ifundefined{fancyhf}{}{\pagestyle{normal}}%
 }
 \pagenumbering{roman}
