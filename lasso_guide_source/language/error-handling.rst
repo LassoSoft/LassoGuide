@@ -322,6 +322,11 @@ with many conditionals and special cases.
    the `protect` capture, and execution will resume starting with the code
    following that capture.
 
+.. method:: abort()
+
+   Sets the current error code to `error_code_aborted` and stops Lasso from
+   continuing execution. This can **not** be stopped with `protect`.
+
 
 Handle Methods
 --------------
