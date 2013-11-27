@@ -224,6 +224,19 @@ expressions, ending with the closing parenthesis. ::
    (: 1, 2, 'hello')
 
 
+GenerateSeries Literals
+=======================
+
+Lasso's :type:`generateSeries` type is a quick and effecient way to create a
+range object for use with query expressions. The object created has a starting
+integer and ending integer for the range separated by the word "to". An optional
+integer specifying the step size, which defaults to 1, can also be added after
+the word "by". ::
+
+   0 to 10 by 2
+   // => 0, 2, 4, 6, 8, 10
+
+
 Comments
 ========
 

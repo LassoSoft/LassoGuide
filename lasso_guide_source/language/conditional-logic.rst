@@ -258,3 +258,41 @@ Loop Methods
    When called within an iterate loop, returns the current element from the
    object being iterated. Returns the element's value if the iterated object is
    a map.
+
+
+GenerateSeries
+--------------
+
+The :type:`generateSeries` type is great for use with query expressions.
+Together, they allow you to easily loop through a specified range. For more
+information on the wonders of query expressions, :ref:`see the documentation
+<query-expressions>`.
+
+.. type:: generateSeries
+.. method:: generateSeries(from, to, by=1)
+
+   This method creates an integer range for use with query expressions. The
+   first number in the range is specified by the first parameter. The second
+   parameter specifies the maximum value of the last number in the range, and
+   and optional third parameter specifies the step to use for going through the
+   range (defaults to 1). Note that the second parameter might not be in the
+   range if the step is set in such a way that it is not in the range.
+
+
+Using generateSeries
+^^^^^^^^^^^^^^^^^^^^
+
+The following example sums the even numbers starting with 2 and ending with 10::
+
+   // Note that 11 is not part of the series generated
+   with num in generateSeries(2, 11, 2) sum #num
+
+   // => 30
+
+There is a generateSeries literal syntax that can also be used. The following is
+equivalent to the proceding example::
+
+   // Note that 11 is not part of the series generated
+   with num in 2 to 11 by 2 sum #num
+
+   // => 30
