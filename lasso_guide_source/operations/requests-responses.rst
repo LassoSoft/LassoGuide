@@ -562,6 +562,32 @@ processing is completed and the response is to be sent to the client.
    the list will alter its resulting cookie header.
 
 
+Response Body
+-------------
+
+Lasso allows you to programatically inspect and set the contents of the response
+body. This can be useful for code that needs to clear any data that has been
+already added to the response body and insert something completely different
+(e.g. display an error message).
+
+.. member:: web_response->rawContent
+.. member:: web_response->rawContent=(text)
+
+   The first method returns the current contents of the response body. Note, any
+   plain text or auto-collected data in the currently executing code file will
+   not be part of the body until the code file finishes processing. The second
+   method allows for setting the contents of the response body to the value
+   specified by the ``text`` parameter.
+
+.. member:: web_response->sendChunk()
+
+   This method is used in complex HTTP sessions, and allows for sending the HTTP
+   response body in multiple chuncks. Each time it is called, it sends the
+   current contents of the response in `~web_response->rawContent` and then
+   clears it for building the next chunk. If the headers for the response have
+   not yet been sent, it will first send them before sending the first chunk.
+
+
 Bytes Response Data
 -------------------
 
