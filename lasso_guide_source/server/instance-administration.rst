@@ -345,9 +345,9 @@ message from the queue.
 Managing Lasso Sessions
 -----------------------
 
-Clicking on the "Sessions" link in the Main Menu will take you to to an
-interface that allows you to browse and manage sessions in real time as well as
-configure the location for storing sessions.
+Clicking on the "Sessions" link in the Main Menu will take you to an interface
+that allows you to browse and manage sessions in real time as well as configure
+the location for storing sessions.
 
 
 View Sessions

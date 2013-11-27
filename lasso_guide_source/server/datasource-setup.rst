@@ -428,18 +428,18 @@ Requirements
    9 and Oracle are running on separate machines. The Instant Client can be
    downloaded from the following website. (Make sure to download just the basic
    Instant Client files rather than the complete Oracle 10g client or database
-   installation.)
+   installer.)
    `<http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html>`_
 
 
 Installing Oracle Instant Client
 --------------------------------
 
-OS X
-   -  Download version 10.0.2.4 of the Instant Client for OS X.
-   -  Decompress the archive, which will create a folder "instantclient_10_2".
-   -  Copy the contents of folder into :file:`/usr/local/oracle/lib/`.
-   -  Execute the following command to create symbolic links so that Lasso can
+:OS X:
+   #. Download version 10.0.2.4 of the Instant Client for OS X.
+   #. Decompress the archive, which will create a folder "instantclient_10_2".
+   #. Copy the contents of folder into :file:`/usr/local/oracle/lib/`.
+   #. Execute the following command to create symbolic links so that Lasso can
       find the Oracle libraries. (Using :command:`sudo` will require that you
       enter your password in order to continue.)
 
@@ -447,18 +447,18 @@ OS X
 
          $> sudo ln -sf /usr/local/oracle/lib/* /usr/local/lib/
 
-   -  Execute the following command to create a symbolic link to the library
+   #. Execute the following command to create a symbolic link to the library
       "libclntsh.dylib.10.1" so that Lasso can load the library:
 
       .. code-block:: none
 
          $> sudo ln -s /usr/local/lib/libclntsh.dylib.10.1 /usr/local/lib/libclntsh.dylib
 
-Linux
-   -  Download version 11.2.0.2.0 of the Instant Client for Linux.
-   -  Decompress the archive, which will create a folder "instantclient_11_2".
-   -  Copy the contents of the folder into :file:`/usr/local/oracle/lib/`.
-   -  Execute the following command to create symbolic links so that Lasso can
+:Linux:
+   #. Download version 11.2.0.2.0 of the Instant Client for Linux.
+   #. Decompress the archive, which will create a folder "instantclient_11_2".
+   #. Copy the contents of the folder into :file:`/usr/local/oracle/lib/`.
+   #. Execute the following command to create symbolic links so that Lasso can
       find the Oracle libraries. (Using :command:`sudo` will require that you
       enter your password in order to continue.)
 
@@ -466,7 +466,7 @@ Linux
 
          $> sudo ln -sf /usr/local/oracle/lib/* /usr/local/lib/
 
-   -  Execute the following command to create a symbolic link to the library
+   #. Execute the following command to create a symbolic link to the library
       "libclntsh.so.11.1" so that Lasso can load the library:
 
       .. code-block:: none

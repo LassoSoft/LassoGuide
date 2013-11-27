@@ -72,9 +72,9 @@ instance's home directory. By default, URLs for the LassoApp will start with
 The _install Files
 ------------------
 
-The first time a LassoApp is loaded by the instance, it will execute any files
-with a file name beginning with "_install" and ending with "|dot| lasso" or
-"|dot| inc". For example, an install file that performs a specific task, such as
+The first time an instance loads a LassoApp, it will execute any files with a
+file name beginning with "_install" and ending with "|dot| lasso" or "|dot|
+inc". For example, an install file that performs a specific task, such as
 creating a database required by the app, could be named
 "_install.create_dbs.lasso".
 
@@ -85,9 +85,9 @@ The _init File
 Another special file is the "_init" file. While the "_install" files will only
 ever execute once at installation, a file such as "_init.lasso" will be executed
 every time the instance starts. Initialization files are used to define all of
-the types, traits and methods used within the application, along with any
-``atBegin`` blocks. (Defining methods, types, etc. is best done at startup on a
-production system, since re-defining a method can have an impact on system
+the types, traits and methods used within the application, along with any code
+set by `define_atBegin`. (Defining methods, types, etc. is best done at startup
+on a production system, since re-defining a method can have an impact on system
 resources.)
 
 

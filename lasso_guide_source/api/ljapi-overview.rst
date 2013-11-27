@@ -39,7 +39,7 @@ power of the integer.
 
 .. note::
    If you are running the example code in a shell script or via the command-line
-   interpreter instead of in a Lasso Server instance, you will need to load the
+   interpreter instead of in a Lasso Server instance, you'll need to load the
    LJAPI environment. This can be done with the following two lines of code
    (replace "LJAPI9.bundle" with the name of the library for your OS's
    installation). ::
@@ -126,8 +126,8 @@ instantiated object of that class. This example will walk you through creating a
 ZipFile object and running the ``size`` method on that object to find out how
 many items are in the zip file.
 
-To run this example yourself, you'll need to supply a zip file and replace the
-path and file name in the example with the path and name of your zip file.
+To run this example yourself, supply a zip file and replace the path and file
+name in the example with the path and name of your zip file.
 
 
 Java Object Member Method Code

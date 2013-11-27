@@ -227,6 +227,9 @@ latex_elements = {
 % Ensure keyword parameters in method signatures don't break after hyphen
 \exhyphenpenalty=10000
 
+% Use consistent spacing between words and sentences
+\frenchspacing
+
 % Insert line break after definition list terms
 % Has the side effect of allowing footnotes inside definition terms
 \usepackage{enumitem}

@@ -131,7 +131,7 @@ methods: ``example_file->open``, ``example_file->close``,
    data member. The names of all pointer members should begin with an
    underscore. Naming a pointer as such will indicate to Lasso that it should
    not be copied when a copy is made of the type instance. In the initializer
-   function, you need to add the integer data member as seen on lines 293--295::
+   function, add the integer data member as seen on lines 293--295::
 
       lasso_type_t i;
       lasso_typeAllocInteger(token, &i, 0);
@@ -233,7 +233,7 @@ methods: ``example_file->open``, ``example_file->close``,
 
       if( count > 0 ) // We are given *at the least* a path
       {
-         // First param is going to be a string, so use the LCAPI 5 call to get it
+         // First param is going to be a string, so use the LCAPI call to get it
          auto_lasso_value_t pathParam;
          pathParam.name = "";
          lasso_getTagParam(token, 0, &pathParam);

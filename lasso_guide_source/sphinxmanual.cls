@@ -121,7 +121,7 @@
   LassoSoft nor the publisher assume responsibility for errors or omissions, or
   for damages resulting from the use of the information contained herein.
 
-  Produced with Sphinx and \LaTeX. \\
+  Produced with Sphinx and {\fontfamily{lmr}\selectfont\LaTeX}. \\
   Printed and bound in Canada.
   \end{minipage}
   \vspace*{2\baselineskip}
@@ -160,8 +160,8 @@
   {%
     \parskip = 0mm%
     \phantomsection
-    \py@OldTableofcontents%
     \addcontentsline{toc}{part}{\contentsname}
+    \py@OldTableofcontents%
     \if@openright%
       \ifodd\value{page}%
         \typeout{Adding blank page after the table of contents.}%

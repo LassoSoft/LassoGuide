@@ -34,19 +34,19 @@ Requirements
 In order to compile LCAPI methods, types, or data source connectors you need the
 following:
 
-Windows
-   -  Lasso 9 installed on a supported Windows OS
-   -  Microsoft Visual C++ .NET
-
-OS X
+:OS X:
    -  Lasso 9 installed on a supported OS
    -  Xcode
    -  The 10.5 SDK, which does not come with the newest development tools.
       See this link for unsupported help with `installing older SDKs`_.
 
-Linux
+:Linux:
    -  Lasso 9 installed on a supported OS
    -  The gcc C/C++ development libraries and executables
+
+:Windows:
+   -  Lasso 9 installed on a supported Windows OS
+   -  Microsoft Visual C++ .NET
 
 
 .. _lcapi-overview-quickstart:
@@ -170,11 +170,10 @@ Frequently Asked Questions
 ==========================
 
 How do I install my custom module?
-   Once you've compiled your module, you'll need to move it to the
-   "LassoModules" directory for the instance you want it to run in or the
-   "LassoModules" directory in the master Lasso home directory. You will need to
-   restart any running instances for them to pick up the new
-   method/type/datasource.
+   Once you've compiled your module, move it to the "LassoModules" directory for
+   the instance you want it to run in or the "LassoModules" directory in the
+   master Lasso home directory. You'll need to restart any running instances for
+   them to pick up the new method/type/datasource.
 
 How do I return text from my custom module?
    Use either `lasso_returnTagValueString` to return UTF-8 data, or

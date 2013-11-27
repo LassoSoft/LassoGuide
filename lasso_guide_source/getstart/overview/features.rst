@@ -200,7 +200,7 @@ only accessible in the query expression, and ``trait_queriable`` is an object
 whose type implements and imports ``trait_queriable``, such as the
 ``staticarray`` in the example.
 
-After this initial ``with`` clause, a query expression can have 0 or more
+After this initial ``with`` clause, a query expression can have zero or more
 operation clauses that each start with their own keyword. The example above uses
 three: ``where`` which filters the input using an expression, ``skip`` which
 skips a set number of elements, and ``take`` which returns a set number of

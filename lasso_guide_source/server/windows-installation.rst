@@ -124,92 +124,88 @@ Troubleshooting
 ===============
 
 Lasso Connector for IIS is not loading a page.
-
    -  The Application Pool for the site may be set to run 32-bit applications.
       To disable:
 
-      -  Select the site's "Application Pool"
-      -  Click :guilabel:`Advanced Settings`
-      -  Set "Enable 32-bit Applications" to "False"
+      #. Select the site's "Application Pool"
+      #. Click :guilabel:`Advanced Settings`
+      #. Set "Enable 32-bit Applications" to "False"
 
    -  IIS may be missing required features. To check:
 
-      Windows Server
-         -  Open "Server Manager"
-         -  Select "Roles" node
-         -  Scroll to "Web Server"
-         -  Click :guilabel:`Add Role Services`
-         -  Expand :menuselection:`Web Server --> Common HTTP Features`
-         -  Check "Default Document" and "Static Content"
-         -  Continue through installation wizard
+      :Windows Server:
+         #. Open "Server Manager"
+         #. Select "Roles" node
+         #. Scroll to "Web Server"
+         #. Click :guilabel:`Add Role Services`
+         #. Expand :menuselection:`Web Server --> Common HTTP Features`
+         #. Check "Default Document" and "Static Content"
+         #. Continue through installation wizard
 
-      Windows 7 or 8
-         -  Open "Control Panel"
-         -  Open "Programs and Features"
-         -  Click :guilabel:`Turn Windows features on or off"`
-         -  Expand :menuselection:`Internet Information Services --> World Wide Web
-            Services --> Common HTTP Features`
-         -  Check "Default Document" and "Static Content"
-         -  Click :guilabel:`OK`
-         -  Continue through installation wizard
+      :Windows 7 or 8:
+         #. Open "Control Panel"
+         #. Open "Programs and Features"
+         #. Click :guilabel:`Turn Windows features on or off"`
+         #. Expand :menuselection:`Internet Information Services --> World Wide
+            Web Services --> Common HTTP Features`
+         #. Check "Default Document" and "Static Content"
+         #. Click :guilabel:`OK`
+         #. Continue through installation wizard
 
 ISAPI Filters option for IIS 7 is missing.
-
    -  If you cannot find the ISAPI Filters option, it is most likely not
       installed. To install ISAPI Filters on IIS 7 or 8:
 
-      Windows Server
-         -  Open "Server Manager"
-         -  Select "Roles" node
-         -  Scroll to "Web Server"
-         -  Click :guilabel:`Add Role Services`
-         -  Expand :menuselection:`Web Server --> Application Development`
-         -  Check "ISAPI Extensions" and "ISAPI Filters"
-         -  Continue through installation wizard
+      :Windows Server:
+         #. Open "Server Manager"
+         #. Select "Roles" node
+         #. Scroll to "Web Server"
+         #. Click :guilabel:`Add Role Services`
+         #. Expand :menuselection:`Web Server --> Application Development`
+         #. Check "ISAPI Extensions" and "ISAPI Filters"
+         #. Continue through installation wizard
 
-      Windows 7 or 8
-         -  Open "Control Panel"
-         -  Open "Programs and Features"
-         -  Click :guilabel:`Turn Windows features on or off"`
-         -  Expand :menuselection:`Internet Information Services --> World Wide Web
-            Services --> Application Development Features`
-         -  Check "ISAPI Extensions" and "ISAPI Filters"
-         -  Click :guilabel:`OK`
-         -  Continue through installation wizard
+      :Windows 7 or 8:
+         #. Open "Control Panel"
+         #. Open "Programs and Features"
+         #. Click :guilabel:`Turn Windows features on or off"`
+         #. Expand :menuselection:`Internet Information Services --> World Wide
+            Web Services --> Application Development Features`
+         #. Check "ISAPI Extensions" and "ISAPI Filters"
+         #. Click :guilabel:`OK`
+         #. Continue through installation wizard
 
 Standard 500 error page is returned instead of Lasso's default error page.
-
    -  IIS's "HTTP Errors" feature may be enabled. To disable:
 
-      Windows Server
-         -  Open "Server Manager"
-         -  Select "Roles" node
-         -  Scroll to "Web Server"
-         -  Click :guilabel:`Remove Role Services`
-         -  Expand :menuselection:`Web Server --> Common HTTP Features`
-         -  Uncheck "HTTP Errors"
-         -  Continue through installation wizard
+      :Windows Server:
+         #. Open "Server Manager"
+         #. Select "Roles" node
+         #. Scroll to "Web Server"
+         #. Click :guilabel:`Remove Role Services`
+         #. Expand :menuselection:`Web Server --> Common HTTP Features`
+         #. Uncheck "HTTP Errors"
+         #. Continue through installation wizard
 
-      Windows 7 or 8
-         -  Open "Control Panel"
-         -  Open "Programs and Features"
-         -  Click :guilabel:`Turn Windows features on or off"`
-         -  Expand :menuselection:`Internet Information Services --> World Wide Web
-            Services --> Common HTTP Features`
-         -  Uncheck "HTTP Errors"
-         -  Click :guilabel:`OK`
-         -  Continue through installation wizard
+      :Windows 7 or 8:
+         #. Open "Control Panel"
+         #. Open "Programs and Features"
+         #. Click :guilabel:`Turn Windows features on or off"`
+         #. Expand :menuselection:`Internet Information Services --> World Wide
+            Web Services --> Common HTTP Features`
+         #. Uncheck "HTTP Errors"
+         #. Click :guilabel:`OK`
+         #. Continue through installation wizard
 
 .. only:: html
 
    LassoTube How-Tos
    =================
 
-   `Configure Apache2 and Lasso
-   <http://www.youtube.com/watch?v=f7oCiUw-OxA&list=UUVvBq5EMVi4KoME3rvNOgOA&index=2&feature=plcp>`_
-
-   `Configure IIS7 for Lasso
-   <http://www.youtube.com/watch?v=oQ-6K3EHY3M&feature=relmfu>`_
+   -  `Configure Apache 2 and Lasso
+      <http://www.youtube.com/watch?v=f7oCiUw-OxA&list=UUVvBq5EMVi4KoME3rvNOgOA&index=2&feature=plcp>`_
+   -  `Configure IIS 7 for Lasso
+      <http://www.youtube.com/watch?v=oQ-6K3EHY3M&feature=relmfu>`_
 
 .. _Microsoft .NET Framework 3.5: http://www.microsoft.com/en-us/download/details.aspx?id=22
 .. _Microsoft .NET Framework 4: http://www.microsoft.com/en-us/download/details.aspx?id=17718
