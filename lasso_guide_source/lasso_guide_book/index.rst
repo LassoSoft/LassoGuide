@@ -106,9 +106,9 @@ System Input and Output
    /operations/sys-process
 
 
-###########################
-Web Application Development
-###########################
+#######################
+Application Development
+#######################
 
 .. toctree::
 
@@ -119,9 +119,9 @@ Web Application Development
    /operations/command-line-tools
 
 
-#############################
-Networking and Communications
-#############################
+######################
+External Communication
+######################
 
 .. toctree::
 

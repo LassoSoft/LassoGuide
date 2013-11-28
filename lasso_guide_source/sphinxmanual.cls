@@ -79,11 +79,12 @@
   \begin{minipage}[b]{0.9\textwidth}
   \footnotesize\raggedright
   \setlength{\parskip}{0.5\baselineskip}
-  Copyright \copyright \the\year\ \@author\\
+  Copyright \copyright \the\year\ \@author \\
   All rights reserved.\par
-  %This work may be distributed and/or modified under the conditions of the
-  %(insert license here). \\
-  The latest version may be accessed at \url{http://lassoguide.com/}.
+  This work may be distributed and/or modified under the conditions of the
+  license as described at \url{http://lassoguide.com/license.html}. In all cases
+  this notice must remain intact.\par
+  The latest version of the work may be accessed at \url{http://lassoguide.com/}.
 
   \begin{center}
   \begin{tabular}{ll}
@@ -98,7 +99,7 @@
   \hspace*{2em} LassoGuide : Release 9.2 / LassoSoft Inc. -- 1st ed. \\
   \hspace*{2em} p. \hspace*{2em} cm. \\
   \hspace*{2em} Includes index. \\
-  \hspace*{2em} ISBN  \par% insert ISBN
+  \hspace*{2em} ISBN: 978-0-9936363-0-1 \par
 
   BISAC subject headings: \\
   \hspace*{2em} COM060160	\hspace*{2em} COMPUTERS / Web / Web Programming \\
@@ -122,7 +123,7 @@
   for damages resulting from the use of the information contained herein.
 
   Produced with Sphinx and {\fontfamily{lmr}\selectfont\LaTeX}. \\
-  Printed and bound in Canada.
+  Printed and bound by Lulu.
   \end{minipage}
   \vspace*{2\baselineskip}
   \cleardoublepage

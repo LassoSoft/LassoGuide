@@ -138,13 +138,14 @@ Here are some additional resources you may find useful:
 
    -  :ref:`search`
    -  :ref:`genindex`
+   -  :ref:`copyright-license`
 
    .. -  :ref:`glossary`
-   .. -  :ref:`copyright`
-   .. -  :ref:`license`
 
    .. toctree::
       :hidden:
 
-      copyright
+      acknowledgements
       license
+
+   ..   glossary
