@@ -104,9 +104,12 @@ latex:
 	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
 	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
 	mv -f  $(BUILDDIR)/latex/Makefile{2,}
+	@echo "Implementing ugly hack to fix spacing of content inside descriptions using style=nextline..."
+	awk '{gsub(/leavevmode\\begin/,"leavevmode\\vspace*{-1.2\\baselineskip}\\begin")}; 1' $(BUILDDIR)/latex/LassoGuide9.2.tex | sed '/leavevmode$$/{N;s/\n\s*$$//;}' > $(BUILDDIR)/latex/LassoGuide9.2.temp
+	mv -f  $(BUILDDIR)/latex/LassoGuide9.2.{temp,tex}
 	@echo
 	@echo "Build finished; the LaTeX files are in $(BUILDDIR)/latex."
-	@echo "Run \`make' in that directory to run these through (pdf)latex" \
+	@echo "Run \`make' in that directory to run these through XeLaTeX" \
 	      "(use \`make latexpdf' here to do that automatically)."
 
 latexpdf:
@@ -114,6 +117,9 @@ latexpdf:
 	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
 	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
 	mv -f  $(BUILDDIR)/latex/Makefile{2,}
+	@echo "Implementing ugly hack to fix spacing of content inside descriptions using style=nextline..."
+	awk '{gsub(/leavevmode\\begin/,"leavevmode\\vspace*{-1.2\\baselineskip}\\begin")}; 1' $(BUILDDIR)/latex/LassoGuide9.2.tex | sed '/leavevmode$$/{N;s/\n\s*$$//;}' > $(BUILDDIR)/latex/LassoGuide9.2.temp
+	mv -f  $(BUILDDIR)/latex/LassoGuide9.2.{temp,tex}
 	@echo "Running LaTeX files through XeLaTeX..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
 	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."

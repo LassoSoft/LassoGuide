@@ -191,6 +191,7 @@ latex_elements = {
 
     # The font size ('10pt', '11pt' or '12pt').
     'pointsize': '10pt',
+    'babel': '\\usepackage[english]{babel}',
     'inputenc': '',
     'utf8extra': '',
     'fontpkg': '',
@@ -233,7 +234,9 @@ latex_elements = {
 % Insert line break after definition list terms
 % Has the side effect of allowing footnotes inside definition terms
 \usepackage{enumitem}
-\setlist[description]{style=nextline,labelsep=*}
+\setlist[description]{style=nextline,leftmargin=1.4em,labelsep=*}
+\setlist[enumerate]{labelsep=6pt}
+\setlist[itemize]{labelsep=6pt}
 
 % Reduce left margin for quote
 \renewenvironment{quote}{
