@@ -1,3 +1,6 @@
+{%- if prev or next %}
+            <li class="divider-vertical"></li>
+{%- endif %}
 {%- if prev %}
   <li><a class="tooltip" href="{{ prev.link|e }}"
          title="{{ prev.title }}"><b class="east hmr"></b>Previous</a></li>

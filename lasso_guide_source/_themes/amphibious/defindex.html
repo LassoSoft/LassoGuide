@@ -1,4 +1,4 @@
-{% extends "basic/layout.html" %}
+{%- extends "basic/layout.html" %}
 {% set script_files = script_files + ['_static/a.mphibio.us.js'] %}
 {% set css_files = ['_static/a.mphibio.us.css'] + css_files %}
 
@@ -21,11 +21,11 @@
             {% endblock %}
             <li class="divider-vertical"></li>
           </ul>
-          
+
           {% block sidebarsourcelink %}
           	{% include "sourcelink.html" %}
           {% endblock %}
-          
+
           {% block sidebarsearch %}
             {% include "searchbox.html" %}
           {% endblock %}
@@ -140,4 +140,3 @@
   </div>
 </footer>
 {%- endblock %}
-
