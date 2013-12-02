@@ -1,10 +1,10 @@
-.. _curl:
+.. _network-requests:
 
 **************************
 Network Requests with Curl
 **************************
 
-Lasso provides a complete interface to the open source `cURL library`_. Curl
+Lasso provides a complete interface to the open source `curl library`_. Curl
 transfers data with URL syntax, supporting a wide variety of protocols such as
 "DICT", "FILE", "FTP", "FTPS", "Gopher", "HTTP", "HTTPS", "IMAP", "IMAPS",
 "LDAP", "LDAPS", "POP3", POP3S, "RTMP", "RTSP", "SCP", "SFTP", "SMTP", "SMTPS",
@@ -48,7 +48,7 @@ Lasso Curl API
 
 .. member:: curl->contentType=(s::string)
 
-   Override the default HTTP :mailheader:`Content-Type:` header by setting this
+   Override the default HTTP :mailheader:`Content-Type` header by setting this
    value.
 
 .. member:: curl->close()
@@ -76,7 +76,7 @@ Lasso Curl API
 
 .. member:: curl->set(key, value)
 
-   Used to set specific curl option behavior. The key should be one of the
+   Used to set specific `curl` option behavior. The key should be one of the
    ``CURLOPT_…`` methods. These options and appropriate values can be reviewed
    in the `curl documentation`_.
 
@@ -91,7 +91,7 @@ Lasso Curl API
 
 .. member:: curl->statusCode()
 
-   Return the last received HTTP, FTP or SMTP response code. The value will be
+   Return the last received HTTP, FTP, or SMTP response code. The value will be
    zero if no server response code has been received.
 
 .. member:: curl->raw()
@@ -107,7 +107,7 @@ Lasso Curl API
 .. member:: curl->version(info= ?)
 
    Returns a string of the version of curl currently deployed on the host
-   system. If the optional "info" parameter is supplied as "true", then more
+   system. If the optional ``info`` parameter is supplied as "true", then more
    detailed information will be returned as a staticarray.
 
 .. member:: curl->readSomeBytes()
@@ -146,16 +146,16 @@ Lasso Curl API
    "filetype", "filesize", "filemoddate", and "filename".
 
    There is an optional ``-options`` parameter that can take an array of pairs
-   specifying additional curl options. The first item in the pair should be one
-   of the ``CURLOPT_…`` methods and the second should be the corresponding value
-   you wish to set.
+   specifying additional `curl` options. The first item in the pair should be
+   one of the ``CURLOPT_…`` methods and the second should be the corresponding
+   value you wish to set.
 
 
 Curl Options
 ============
 
-A myriad of curl options can be set for the current curl object to customize its
-behavior. This can be done by using the `curl->set` method, passing it the
+A myriad of `curl` options can be set for the current curl object to customize
+its behavior. This can be done by using the `curl->set` method, passing it the
 ``CURLOPT_…`` macro methods representing the option you wish to set and the
 value you wish to set it to as the second param. What follows is a list of
 options that can be set on Lasso's curl object. It has been adapted from the
@@ -171,21 +171,21 @@ Behavior Options
    Used with `curl->set`. If set to "1", it directs curl to output a lot of
    verbose information about its operations. This is very useful for debugging.
    The verbose information will be sent to STDERR which gets logged to
-   :file:`lasso.err.txt` in your instances home directory for Lasso Server. You
+   :file:`lasso.err.txt` in your instance's home directory for Lasso Server. You
    will almost never want to set this in production, but you will want to use it
    to help you debug and report problems.
 
 .. method:: CURLOPT_HEADER()
 
-   Used with `curl->set`. If set to "1", it directs the library to include the
-   header in the body output. This is only relevant for protocols that actually
-   have headers preceding the data (like HTTP).
+   Used with `curl->set`. If set to "1", it directs curl to include the header
+   in the body output. This is only relevant for protocols that actually have
+   headers preceding the data (like HTTP).
 
 .. method:: CURLOPT_NOPROGRESS()
 
-   Used with `curl->set`. If set to "1", it tells the library to shut off the
-   progress meter completely. It will also prevent the CURLOPT_PROGRESSFUNCTION
-   from getting called. Future versions of libcurl are likely not to have any
+   Used with `curl->set`. If set to "1", it directs curl to shut off the
+   progress meter completely. It will also prevent `CURLOPT_PROGRESSFUNCTION()`
+   from being called. Future versions of libcurl are likely not to have any
    built-in progress meter at all.
 
 
@@ -195,12 +195,12 @@ Callback Options
 .. method:: CURLOPT_WRITEDATA()
 
    Used with `curl->set`. This option expects a filedesc object which curl will
-   use when calling its file write function.
+   use when calling its file writing function.
 
 .. method:: CURLOPT_READDATA()
 
    Used with `curl->set`. This option expects either a filedesc or bytes object
-   to be used when curl calls its file read function.
+   to be used when curl calls its file reading function.
 
 
 Error Options
@@ -244,7 +244,7 @@ Network Options
 .. method:: CURLOPT_HTTPPROXYTUNNEL()
 
    Used with `curl->set`. If set to a value of "1", curl will tunnel all
-   operations through a given HTTP proxy. This is different to simply using a
+   operations through a given HTTP proxy. This is different from simply using a
    proxy.
 
 .. method:: CURLOPT_INTERFACE()
@@ -257,7 +257,7 @@ Network Options
 
    Used with `curl->set`. Pass an integer that will be used to indicate your
    preferred size (in bytes) for the receive buffer used by curl. This is just a
-   request to the library, the actual buffer size used may be different than
+   request to the library; the actual buffer size used may be different than
    your request.
 
 .. method:: CURLOPT_PORT()
@@ -268,9 +268,10 @@ Network Options
 
 .. method:: CURLOPT_TCP_NODELAY()
 
-   Used with `curl->set`. Specifies whether the TCP_NODELAY option is to be set
-   or cleared (1 = set, 0 = clear). The option is cleared by default. Setting
-   this option after the connection has been established will have no effect.
+   Used with `curl->set`. Specifies whether the ``TCP_NODELAY`` option is to be
+   set or cleared (1 = set, 0 = clear). The option is cleared by default.
+   Setting this option after the connection has been established will have no
+   effect.
 
 
 Authentication Options
@@ -290,20 +291,19 @@ Authentication Options
 
    .. method:: CURL_NETRC_IGNORED()
 
-      The library will ignore the :file:`~/.netrc` file and use only the
-      information in the URL.
+      Curl will ignore the :file:`~/.netrc` file and use only the information in
+      the URL.
 
    .. method:: CURL_NETRC_REQUIRED()
 
-      The use of your :file:`~/.netrc` file is required, and the library should
-      ignore the information in the URL.
-
+      The use of your :file:`~/.netrc` file is required, and curl should ignore
+      the information in the URL.
 
 .. method:: CURLOPT_NETRC_FILE()
 
    Used with `curl->set`. Set to a string containing the full path name to the
    file you want libcurl to use as the :file:`.netrc` file. If this option is
-   omitted and `CURLOPT_NETRC` is set to use a :file:`.netrc` file then curl
+   omitted and `CURLOPT_NETRC()` is set to use a :file:`.netrc` file then curl
    will attempt to find a :file:`.netrc` file in the current user's home
    directory.
 
@@ -312,13 +312,13 @@ Authentication Options
    Used with `curl->set`. The option expects a string that will be used to
    authenticate with the remote server. The string should be formatted to
    include both username and password in the following manner:
-   "myname:mypassword".
+   ``'myname:mypassword'``.
 
 .. method:: CURLOPT_PROXYUSERPWD()
 
    Used with `curl->set`. This option expects a string that specifies the
-   authentication for the HTTP proxy in the format of "username:password". Use
-   `CURLOPT_PROXYAUTH` to specify the authentication method.
+   authentication for the HTTP proxy in the format of ``'username:password'``.
+   Use `CURLOPT_PROXYAUTH()` to specify the authentication method.
 
 .. method:: CURLOPT_HTTPAUTH()
 
@@ -336,7 +336,7 @@ Authentication Options
 .. method:: CURLOPT_PROXYAUTH()
 
    Used with `curl->set`. Use this option to specify which HTTP authentication
-   method(s) you want curl to use. See `CURLOPT_HTTPAUTH` for a list of values
+   method(s) you want curl to use. See `CURLOPT_HTTPAUTH()` for a list of values
    for this option.
 
 
@@ -364,15 +364,15 @@ HTTP Options
    :mailheader:`Location` header the server sends as part of its HTTP response.
    This means that curl will send the same request to the new location and
    follow any new :mailheader:`Location` headers all the way until no more such
-   headers are returned. `CURLOPT_MAXREDIRS` can be used to limit the number of
-   redirects curl will follow.
+   headers are returned. `CURLOPT_MAXREDIRS()` can be used to limit the number
+   of redirects curl will follow.
 
 .. method:: CURLOPT_UNRESTRICTED_AUTH()
 
    Used with `curl->set`. If set to "1", then curl will continue to send
-   authentication (username & password) when following locations, even if the
+   authentication (username+password) when following locations, even if the
    hostname changes. (This option is meaningful only when setting
-   `CURLOPT_FOLLOWLOCATION`.)
+   `CURLOPT_FOLLOWLOCATION()`.)
 
 .. method:: CURLOPT_MAXREDIRS()
 
@@ -385,11 +385,11 @@ HTTP Options
 .. method:: CURLOPT_PUT()
 
    .. deprecated:: 7.12.1
-      This option is deprecated in curl in favor of using `CURLOPT_UPLOAD`.
+      This option is deprecated in curl in favor of using `CURLOPT_UPLOAD()`.
 
    Used with `curl->set`. If set to "1", then curl will use the HTTP PUT method
-   to transfer data. The data should be set with `CURLOPT_READDATA` and
-   `CURLOPT_INFILESIZE`.
+   to transfer data. The data should be set with `CURLOPT_READDATA()` and
+   `CURLOPT_INFILESIZE()`.
 
 .. method:: CURLOPT_POST()
 
@@ -397,10 +397,10 @@ HTTP Options
    for its request. This will also have the request use a
    :mailheader:`Content-Type: application/x-www-form-urlencoded` header (by far
    the most commonly used :mailheader:`Content-Type` for the POST method). You
-   can override this header by setting your own with `CURLOPT_HTTPHEADER`.
+   can override this header by setting your own with `CURLOPT_HTTPHEADER()`.
 
-   Use `CURLOPT_POSTFIELDS` to specify what data to post and
-   `CURLOPT_POSTFIELDSIZE` or `CURLOPT_POSTFIELDSIZE_LARGE` to set the data
+   Use `CURLOPT_POSTFIELDS()` to specify what data to post and
+   `CURLOPT_POSTFIELDSIZE()` or `CURLOPT_POSTFIELDSIZE_LARGE()` to set the data
    size.
 
 .. method:: CURLOPT_POSTFIELDS()
@@ -411,14 +411,13 @@ HTTP Options
    want the server to receive it; curl will not convert or encode it for you.
    Most web servers will assume this data will be URL encoded.
 
-   Using `CURLOPT_POSTFIELDS` implies `CURLOPT_POST`; that option will be
+   Using `CURLOPT_POSTFIELDS()` implies `CURLOPT_POST()`; that option will be
    automatically set along with all of its other side effects.
 
-   If you want to do a zero-byte POST, you need to set `CURLOPT_POSTFIELDSIZE`
-   explicitly to zero. Simply setting `CURLOPT_POSTFIELDS` to NULL or an empty
-   string effectively disables the sending of the specified string, and curl
-   will instead assume that you'll send the POST data using the read callback.
-
+   If you want to do a zero-byte POST, set `CURLOPT_POSTFIELDSIZE()` explicitly
+   to zero. Simply setting `CURLOPT_POSTFIELDS()` to "null" or an empty string
+   effectively disables the sending of the specified string, and curl will
+   instead assume that you'll send the POST data using the ``read`` callback.
 
 .. method:: CURLOPT_POSTFIELDSIZE()
 
@@ -431,18 +430,18 @@ HTTP Options
 .. method:: CURLOPT_POSTFIELDSIZE_LARGE()
 
    Used with `curl->set`. This is the large file version of
-   `CURLOPT_POSTFIELDSIZE`.
+   `CURLOPT_POSTFIELDSIZE()`.
 
 .. method:: CURLOPT_REFERER()
 
-   Used with `curl->set`. This option takes a string value that specifies the
-   value for the :mailheader:`Referer` header in the HTTP request sent to the
-   remote server.
+   Used with `curl->set`. This option takes a string value specifying the value
+   for the :mailheader:`Referer` header in the HTTP request sent to the remote
+   server.
 
 .. method:: CURLOPT_USERAGENT()
 
-   Used with `curl->set`. This option takes a string value that specifies the
-   value for the :mailheader:`User-Agent` header in the HTTP request sent to the
+   Used with `curl->set`. This option takes a string value specifying the value
+   for the :mailheader:`User-Agent` header in the HTTP request sent to the
    remote server.
 
 .. method:: CURLOPT_HTTPHEADER()
@@ -467,25 +466,25 @@ HTTP Options
 
    Used with `curl->set`. This option expects a string value that sets the
    cookie value for the HTTP header. The format of the string should be
-   :samp:`{NAME}={CONTENTS}`, where *NAME* is the cookie name and *CONTENTS* is
+   :samp:`{NAME}={CONTENTS}`, where "NAME" is the cookie name and "CONTENTS" is
    what the cookie should contain. To send multiple cookies, separate each
-   cookie in the string with a semi-colon and a space like this:
-   ``"name1=content1; name2=content2;"``. Using this option multiple times will
+   cookie in the string with a semicolon and a space like this:
+   ``'name1=content1; name2=content2;'``. Using this option multiple times will
    only make the latest string override the previous ones.
 
 .. method:: CURLOPT_COOKIEFILE()
 
-   Used with `curl->set`. This option takes a string value that is the path and
-   file name to a file holding cookie data to read and send with the request.
-   The cookie data may be in Netscape / Mozilla cookie data format or just
-   regular HTTP-style headers dumped to a file.
+   Used with `curl->set`. This option takes a string value for the path to and
+   name of a file holding cookie data to read and send with the request. The
+   cookie data may be in Netscape/Mozilla cookie data format or just regular
+   HTTP-style headers dumped to a file.
 
 .. method:: CURLOPT_COOKIEJAR()
 
    Used with `curl->set`. This option takes a string value specifying the path
    and file name for curl to store cookies in. If the file can't be created, no
-   error will be reported. (Using `CURLOPT_VERBOSE` will have a warning printed,
-   but this is the only way to get this feedback.)
+   error will be reported. (Using `CURLOPT_VERBOSE()` will have a warning
+   printed, but this is the only way to get this feedback.)
 
 .. method:: CURLOPT_COOKIESESSION()
 
@@ -526,10 +525,10 @@ FTP Options
 
    Used with `curl->set`. This option expects a string value specifying the
    address to use for the FTP PORT instruction. The string may be an IP address,
-   a host name, a network interface name (under Unix) or just adash character
-   (``-``) to let the library use your system's default IP address. The address
-   can then be followed by a colon and a port number or port range separated by
-   a dash.
+   a host name, a network interface name (under Unix) or just a dash character
+   (``-``) to let curl use your system's default IP address. The address can
+   then be followed by a colon and a port number or port range separated by a
+   dash.
 
 .. method:: CURLOPT_QUOTE()
 
@@ -554,7 +553,7 @@ FTP Options
 .. method:: CURLOPT_FTPLISTONLY()
 
    Used with `curl->set`. If set to "1", curl will just list the file names in a
-   folder instead of doing a full listing of names, sizes, dates, etc.
+   folder instead of doing a full listing of names, sizes, dates, and so on.
 
 .. method:: CURLOPT_FTPAPPEND()
 
@@ -563,8 +562,8 @@ FTP Options
 
 .. method:: CURLOPT_FTP_USE_EPRT()
 
-   Used with `curl->set`. If the value is set to "1", curl will use EPRT and
-   LPRT command for active FTP downloads.
+   Used with `curl->set`. If set to "1", curl will use EPRT and LPRT command for
+   active FTP downloads.
 
 .. method:: CURLOPT_FTP_USE_EPSV()
 
@@ -579,7 +578,7 @@ FTP Options
 
 .. method:: CURLOPT_FTP_RESPONSE_TIMEOUT()
 
-   Used with `curl->set`. This option takes an integer value that specifies the
+   Used with `curl->set`. This option takes an integer value specifying the
    number of seconds to wait for the server to respond to a command before
    considering the session hung.
 
@@ -630,13 +629,13 @@ Protocol Options
 
 .. method:: CURLOPT_RESUME_FROM()
 
-   Used with `curl->set`. This option takes an integer value that specifies the
+   Used with `curl->set`. This option takes an integer value specifying the
    offset in number of bytes to start the transfer from.
 
 .. method:: CURLOPT_RESUME_FROM_LARGE()
 
    Used with `curl->set`. This is the large file version of
-   `CURLOPT_RESUME_FROM` and also takes an integer for its value.
+   `CURLOPT_RESUME_FROM()` and also takes an integer for its value.
 
 .. method:: CURLOPT_CUSTOMREQUEST()
 
@@ -646,7 +645,7 @@ Protocol Options
 
 .. method:: CURLOPT_FILETIME()
 
-   Used with `curl->set`. If set to "1", curl will try and get the modification
+   Used with `curl->set`. If set to "1", curl will try to get the modification
    date for the document in the transfer.
 
 .. method:: CURLOPT_NOBODY()
@@ -658,13 +657,13 @@ Protocol Options
 .. method:: CURLOPT_INFILESIZE()
 
    Used with `curl->set`. This option takes an integer specifying the expected
-   size of the infile for an upload. It does not limit how much data curl
+   size of the input file for an upload. It does not limit how much data curl
    actually sends.
 
 .. method:: CURLOPT_INFILESIZE_LARGE()
 
    Used with `curl->set`. This is the large file version of
-   `CURLOPT_INFILESIZE`.
+   `CURLOPT_INFILESIZE()`.
 
 .. method:: CURLOPT_UPLOAD()
 
@@ -681,7 +680,7 @@ Protocol Options
 .. method:: CURLOPT_MAXFILESIZE_LARGE()
 
    Used with `curl->set`. This is the large file version of
-   `CURLOPT_MAXFILESIZE`.
+   `CURLOPT_MAXFILESIZE()`.
 
 .. The values for CURLOPT_TIMECONDITION aren't available
 ..   .. method:: CURLOPT_TIMECONDITION()
@@ -698,15 +697,15 @@ Connection Options
 
 .. method:: CURLOPT_LOW_SPEED_LIMIT()
 
-   Used with `curl->set`. This option takes an integer value that specifies the
+   Used with `curl->set`. This option takes an integer value specifying the
    number of bytes per second the transfer should be below for the duration of
-   `CURLOPT_LOW_SPEED_TIME` for curl to consider too slow and abort.
+   `CURLOPT_LOW_SPEED_TIME()` for curl to consider too slow and abort.
 
 .. method:: CURLOPT_LOW_SPEED_TIME()
 
-   Used with `curl->set`. This option takes an integer value that specifies the
+   Used with `curl->set`. This option takes an integer value specifying the
    number of seconds a curl transfer must be below the rate set by
-   `CURLOPT_LOW_SPEED_LIMIT` for curl to abort due to bad connection.
+   `CURLOPT_LOW_SPEED_LIMIT()` for curl to abort due to bad connection.
 
 .. method:: CURLOPT_MAXCONNECTS()
 
@@ -728,7 +727,7 @@ Connection Options
 
 .. method:: CURLOPT_CONNECTTIMEOUT()
 
-   Used with `curl->set`. This option takes an integer value that specifies the
+   Used with `curl->set`. This option takes an integer value specifying the
    number of seconds to wait before timing out during the connection phase.
    (Once connected, this option is of no value.) The default is 300 seconds.
 
@@ -775,33 +774,33 @@ Connection Options
       Require SSL for all communication or fail with ``CURLE_USE_SSL_FAILED``.
 
 
-SSL & Security Options
-----------------------
+SSL and Security Options
+------------------------
 
 .. method:: CURLOPT_SSLCERT()
 
-   Used with `curl->set`. This option expects a string value that specifies the
-   path and file name to your certificate, or, with NSS, the nickname of the
+   Used with `curl->set`. This option expects a string value specifying the path
+   to and file name of your certificate, or, with NSS, the nickname of the
    certificate you want to use. (If you want to use a file from the current
-   directory, precede it with a "./" prefix in order to avoid confusion
+   directory, precede it with a "|dot| /" prefix in order to avoid confusion
    with a nickname.)
 
 .. method:: CURLOPT_SSLCERTTYPE()
 
-   Used with `curl->set`. This option expects a string value of either "PEM" or
-   "DER". It is used to tell curl the format of your certificate. The default is
-   "PEM".
+   Used with `curl->set`. This option expects a string value of either ``'PEM'``
+   (the default) or ``'DER'``. It is used to tell curl the format of your
+   certificate.
 
 .. method:: CURLOPT_SSLKEY()
 
-   Used with `curl->set`. This option expects a string value that specifies the
-   path and file name to your private key.
+   Used with `curl->set`. This option expects a string value specifying the path
+   to and file name of your private key.
 
 .. method:: CURLOPT_SSLKEYTYPE()
 
-   Used with `curl->set`. This option expects a string value of either "PEM",
-   "DER", or "ENG". It is used to tell curl the format of your private key. The
-   default is "PEM".
+   Used with `curl->set`. This option expects a string value of either ``'PEM'``
+   (the default), ``'DER'``, or ``'ENG'``. It is used to tell curl the format of
+   your private key.
 
 .. method:: CURLOPT_SSLKEYPASSWD()
 
@@ -840,15 +839,15 @@ SSL & Security Options
 
 .. method:: CURLOPT_CAINFO()
 
-   Used with `curl->set`. This option expects a string value that specifies the
-   path and file name to a file containing one or more certificates needed to do
-   peer verification. By default, this option is set to the path curl believes
-   your system keeps its CA cert bundle.
+   Used with `curl->set`. This option expects a string value specifying the path
+   to and name of a file containing one or more certificates needed to do peer
+   verification. By default, this option is set to the path curl believes your
+   system keeps its CA cert bundle.
 
 .. method:: CURLOPT_CAPATH()
 
-   Used with `curl->set`. This option expects a string value that specifies the
-   path to a directory containing multiple CA certificates to be used for peer
+   Used with `curl->set`. This option expects a string value specifying the path
+   to a directory containing multiple CA certificates to be used for peer
    verification.
 
 .. method:: CURLOPT_SSL_VERIFYHOST()
@@ -862,14 +861,14 @@ SSL & Security Options
 
 .. method:: CURLOPT_RANDOM_FILE()
 
-   Used with `curl->set`. This option expects a string value that specifies the
-   path and file name to a file whose contents will be used in seeding the
-   random engine for SSL.
+   Used with `curl->set`. This option expects a string value specifying the path
+   to and file name of a file whose contents will be used in seeding the random
+   engine for SSL.
 
 .. method:: CURLOPT_EGDSOCKET()
 
-   Used with `curl->set`. This option expects a string value that specifies the
-   path and file name to the Entropy Gathering Daemon socket which will be used
+   Used with `curl->set`. This option expects a string value specifying the path
+   to and file name of the Entropy Gathering Daemon socket that will be used
    when seeding the random engine for SSL.
 
 .. method:: CURLOPT_SSL_CIPHER_LIST()
@@ -881,13 +880,13 @@ SSL & Security Options
 
 .. method:: CURLOPT_KRB4LEVEL()
 
-   Used with `curl->set`. This option expects a string value of either "clear",
-   "safe", "confidential", or "private". It is used to set the kerberos security
-   level for FTP and enable kerberos awareness. Set the option to "null" to
-   disable kerberos.
+   Used with `curl->set`. This option expects a string value of either
+   ``'clear'``, ``'safe'``, ``'confidential'``, or ``'private'``. It is used to
+   set the Kerberos security level for FTP and enable Kerberos awareness. Set
+   the option to "null" to disable Kerberos.
 
 
-Using the curl Type
+Using the Curl Type
 ===================
 
 The :type:`curl` type is meant to be a low-level implementation, which means
@@ -899,8 +898,8 @@ understanding of how to use the :type:`curl` type in case you find yourself
 needing more control.
 
 
-Making an HTTP Request
-----------------------
+Make an HTTP HEAD Request
+-------------------------
 
 The following example uses the :type:`curl` type to make a HEAD request to an
 HTTP server::
@@ -931,8 +930,8 @@ HTTP server::
    // , )
 
 
-Listing an FTP Directory
-------------------------
+List an FTP Directory
+---------------------
 
 The following example lists the file and folder names at the specified FTP
 location::
@@ -956,12 +955,12 @@ location::
    // folder1
 
 
-The include_url Method
-======================
+include_url
+===========
 
-The `include_url` method is a nice wrapper around the curl type for requesting
-data via HTTP. We strongly recommend using this method for your HTTP request
-needs if possible.
+The `include_url` method is a wrapper around the curl type for requesting data
+via HTTP. We strongly recommend using this method for your HTTP request needs if
+possible.
 
 .. method:: include_url(\
       url::string, \
@@ -985,10 +984,10 @@ needs if possible.
       -basicAuthOnly= ?\
    )
 
-   This method requires a string representing a URL in the form of
-   "http://www.example.com" ("https://" can also be used). By default, this
-   method returns the HTML body result of performing an HTTP GET request at the
-   specified URL.
+   Requires a string representing a URL in the form of
+   :ref:`!http://www.example.com` (:ref:`!https://` can also be used). By
+   default, this method returns the HTML body result of performing an HTTP GET
+   request at the specified URL.
 
    This method has several optional parameters that modify its behavior:
 
@@ -996,15 +995,13 @@ needs if possible.
       Pass this parameter a staticarray or array of key/value pairs. This data
       is then converted into a query string and appended to the URL when making
       the HTTP request.
-
    :param -postParams:
       This option can take either a string, bytes, or :trait:`trait_forEach`
       object. For string and bytes objects, the data is set as the POST field
-      (`CURLOPT_POSTFIELDS`) for the request without modification. If passed a
+      (`CURLOPT_POSTFIELDS()`) for the request without modification. If passed a
       :trait:`trait_forEach` object, each value should be a key/value pair
       object that will then first be converted into the query string format
       before being set as the POST field.
-
    :param -sendMimeHeaders:
       This option can take either a string, bytes, or :trait:`trait_forEach`
       object. For string and bytes objects, the data is set as additional HTTP
@@ -1012,70 +1009,55 @@ needs if possible.
       :trait:`trait_forEach` object, each value should be a key/value pair
       object whose first value is the header name and the second value is the
       value. These will then first be converted into the form "Header: Value"
-      and joined with "\\r\\n" before being set as additional HTTP headers.
-
+      and joined with ``"\r\n"`` before being set as additional HTTP headers.
    :param -username:
       This option allows you to specify the username for connections that
       require authentication.
-
    :param -password:
       This option allows you to specify the password for connections that
       require authentication.
-   
    :param -noData:
       Passing this option does not change any aspect of the curl HTTP request,
       but tells `include_url` not to return any data.
-   
    :param -verifyPeer:
       Use this option to specify whether or not Lasso should verify the SSL
       certificate of the HTTP peer being connected to. The default is "true".
-   
    :param -sslCert:
-      This parameter is used to set the `CURLOPT_SSLCERT` option.
-   
+      This parameter is used to set the `CURLOPT_SSLCERT()` option.
    :param -sslCertType:
-      This parameter is used to set the `CURLOPT_SSLCERTTYPE` option.
-   
+      This parameter is used to set the `CURLOPT_SSLCERTTYPE()` option.
    :param -sslKey:
-      This parameter is used to set the `CURLOPT_SSLKEY` option.
-   
+      This parameter is used to set the `CURLOPT_SSLKEY()` option.
    :param -sslKeyType:
-      This parameter is used to set the `CURLOPT_SSLKEYTYPE` option.
-   
+      This parameter is used to set the `CURLOPT_SSLKEYTYPE()` option.
    :param -sslKeyPasswd:
-      This parameter is used to set the `CURLOPT_SSLKEYPASSWD` option.
-   
+      This parameter is used to set the `CURLOPT_SSLKEYPASSWD()` option.
    :param -timeout:
-      This parameter is used to set the `CURLOPT_TIMEOUT` option.
-   
+      This parameter is used to set the `CURLOPT_TIMEOUT()` option.
    :param -connectTimeout:
-      This parameter is used to set the `CURLOPT_CONNECTTIMEOUT` option.
-   
+      This parameter is used to set the `CURLOPT_CONNECTTIMEOUT()` option.
    :param -retrieveMimeHeaders:
       This parameter expect a string specifying the name of a thread variable to
       store the HTTP response header data in.
-   
    :param -options:
       Pass this parameter a staticarray or array of pairs, the first value of
       the pair should be one of the ``CURLOPT_…`` methods and the second value
-      should be the appropriate setting for that curl option.
-   
+      should be the appropriate setting for that `curl` option.
    :param -string:
       The default is for `include_url` to return a bytes object, but if this
       parameter is set, then it will return a string object. You can pass a
       string to this parameter to specify the character set to use. Setting the
       parameter to "true" causes `include_url` to first check the curl headers
-      for the character set to use, otherwise Lasso will try and determine the
+      for the character set to use, otherwise Lasso will try to determine the
       character set itself from the body of the response. If that fails, the
       default is to use UTF-8 encoding.
-   
    :param -basicAuthOnly:
       Setting this option to "true" causes `include_url` to only use HTTP Basic
       authentication.
 
 
-Basic HTTP Request
-------------------
+Make an HTTP GET Request
+------------------------
 
 The following example issues a basic HTTP GET request for the specified URL::
 
@@ -1086,11 +1068,11 @@ The following example issues a basic HTTP GET request for the specified URL::
    // <html>
    // <head>
    //     <title>Example Domain</title>
-   // (... You get the idea ...)
+   // (... rest of response ...)
 
 
-Sending Data with an HTTP PUT Request
--------------------------------------
+Send Data with an HTTP PUT Request
+----------------------------------
 
 The following example issues an HTTP PUT request, passing data in the body of
 the request. The example result is a JSON-formatted string, but would be the
@@ -1105,8 +1087,8 @@ body of the HTTP response given by your server. ::
    // => {"status": "Success"}
 
 
-Specifying HTTP Headers
------------------------
+Specify HTTP Headers
+--------------------
 
 The following example adds a :mailheader:`User-Agent` header to the HTTP
 request::
@@ -1121,11 +1103,11 @@ request::
    // <html>
    // <head>
    //     <title>Example Domain</title>
-   // (... rest of response ...)
+   // ... rest of response ...
 
 
-Reading Response Headers
-------------------------
+Read Response Headers
+---------------------
 
 The following example gets the response headers for the request stored in a
 variable named "my_headers" and then displays them::
@@ -1154,13 +1136,9 @@ variable named "my_headers" and then displays them::
 FTP Methods
 ===========
 
-The ``ftp_…`` methods are nice wrappers around the curl type for requesting and
-sending data via FTP. We strongly recommend using these methods for your FTP
-needs if possible.
-
-
-Retrieve the Contents of a Remote File
---------------------------------------
+The ``ftp_…`` methods are simple wrappers around the :type:`curl` type for
+requesting and sending data via FTP. We strongly recommend using these methods
+for your FTP needs if possible.
 
 .. method:: ftp_getData(\
       url::string, \
@@ -1169,27 +1147,12 @@ Retrieve the Contents of a Remote File
       -options::array= ?\
    )
 
-   This method returns a bytes object representing the remote file's contents at
-   the specified FTP URL. It can also optionally take a username and password to
-   be used for authentication to the FTP server. Also, the "-options" parameter
+   Returns a bytes object representing the remote file's contents at the
+   specified FTP URL. It can also optionally take a username and password to be
+   used for authentication to the FTP server. Also, the ``-options`` parameter
    can be passed an array of pairs, the first value of the pair should be one of
    the ``CURLOPT_…`` methods and the second value should be the appropriate
-   setting for that curl option.
-
-   The following example downloads the data in a file named "test.txt" from the
-   remote server, and then displays it::
-
-      ftp_getData(
-         'ftp://example.com/test.txt',
-         -username=`MyUsername`,
-         -password=`Shh...Secret`
-      )
-
-      // => "Hello, world."
-
-
-Download a Remote File
-----------------------
+   setting for that `curl` option.
 
 .. method:: ftp_getFile(\
       url::string, \
@@ -1199,69 +1162,29 @@ Download a Remote File
       -options::array= ?\
    )
 
-   This method downloads the remote file specified by the FTP URL in the first
-   parameter to the location specified by the "-file" parameter. It can also
-   optionally take a username and password to be used for authentication to the
-   FTP server. Also, the "-options" parameter can be passed an array of
-   pairs, the first value of the pair should be one of the ``CURLOPT_…``
-   methods and the second value should be the appropriate setting for that curl
-   option.
-
-   The following example downloads the remote file "test.txt" to "/tmp/file.txt"
-   from the root of the file system::
-
-      ftp_getFile(
-         'ftp://example.com/test.txt',
-         -file='//tmp/file.txt',
-         -username = `MyUsername`,
-         -password = `Shh...Secret`
-      )
-
-
-List the Contents of a Remote Directory
----------------------------------------
+   Downloads the remote file specified by the FTP URL in the first parameter to
+   the location specified by the ``-file`` parameter. It can also optionally
+   take a username and password to be used for authentication to the FTP server.
+   Also, the ``-options`` parameter can be passed an array of pairs, the first
+   value of the pair should be one of the ``CURLOPT_…`` methods and the second
+   value should be the appropriate setting for that `curl` option.
 
 .. method:: ftp_getListing(\
       url::string, \
       -username= ?, \
       -password= ?, \
-      -listonly::boolean= ?, \
+      -listOnly::boolean= ?, \
       -options::array= ?\
    )
 
-   This method gets a directory listing of the remote directory specified by the
-   FTP URL. If you only want the names of the files and folders in the specified
-   remote directory, pass the "-listOnly" parameter. You can also optionally
+   Acquires a directory listing of the remote directory specified by the FTP
+   URL. If you only want the names of the files and folders in the specified
+   remote directory, pass the ``-listOnly`` parameter. You can also optionally
    specify a username and password to be used for authentication to the FTP
-   server. The method can also take the "-options" parameter which expects an
-   array of pairs, the first value of the pair should be one of the
+   server. The method can also take the ``-options`` parameter which expects an
+   array of pairs; the first value of the pair should be one of the
    ``CURLOPT_…`` methods and the second value should be the appropriate setting
-   for that curl option.
-
-   The following example gets a list of all the files and folders at the FTP
-   root of the "example.com" server and displays its size and then its name
-   (with a trailing slash if it is a directory)::
-
-      local(listing) = ftp_getListing(
-         'ftp://example.com/test.txt',
-         -username = `MyUsername`,
-         -password = `Shh...Secret`
-      )
-      with item in #listing
-         let item_type = #item->find('filetype')
-         let item_size = #item->find('filesize')
-         let item_name = #item->find('filename') + (#item_type == 'directory' ? '/' | '')
-      do {^ #item_size + "B  " + #item_name ^}
-
-      // =>
-      // 170B  ./
-      // 170B  ../
-      // 387B  directory/
-      // 15B  test.txt
-
-
-Update an Existing Remote File
-------------------------------
+   for that `curl` option.
 
 .. method:: ftp_putData(\
       url::string, \
@@ -1271,34 +1194,18 @@ Update an Existing Remote File
       -options::array= ?\
    )
 
-   This method takes an FTP URL and a bytes object representing file data. If a
-   file doesn't exist at the location specified by the URL, one will be created
-   with the data specified by the "-data" parameter. If a file does exist at the
-   path specified by the URL then its contents will be overwritten with the new
-   data. (See the example below for how to change the behavior to append the
-   data instead.)
+   Takes an FTP URL and a bytes object representing file data. If a file doesn't
+   exist at the location specified by the URL, one will be created with the data
+   specified by the ``-data`` parameter. If a file does exist at the path
+   specified by the URL then its contents will be overwritten with the new data.
+   (See the example below for how to change the behavior to append the data
+   instead.)
 
    This method can optionally take a username and password to be used for
-   authentication to the FTP server. Also, the "-options" parameter can be
+   authentication to the FTP server. Also, the ``-options`` parameter can be
    passed an array of pairs, the first value of the pair should be one of the
    ``CURLOPT_…`` methods and the second value should be the appropriate setting
-   for that curl option.
-
-   The following example will take the data "\\nAs You Wish" and append it to
-   the remote "test.txt" file. (The `CURLOPT_FTPAPPEND` method changes the
-   behavior to append the data.) ::
-
-      ftp_putData(
-         'ftp://example.com/test.txt',
-         -data     = bytes("\nAs You Wish"),
-         -username = `MyUsername`,
-         -password = `Shh...Secret`,
-         -options  = array(CURLOPT_FTPAPPEND=1)
-      )
-
-
-Upload a Local File to the Remote Server
-----------------------------------------
+   for that `curl` option.
 
 .. method:: ftp_putFile(\
       url::string, \
@@ -1308,34 +1215,17 @@ Upload a Local File to the Remote Server
       -options::array= ?\
    )
 
-   This method uploads the local file specified by the "-file" parameter to the
-   remote location specified by the FTP URL passed as the first parameter. If a
-   file doesn't exist at the location specified by the URL, one will be created,
+   Uploads the local file specified by the ``-file`` parameter to the remote
+   location specified by the FTP URL passed as the first parameter. If a file
+   doesn't exist at the location specified by the URL, one will be created,
    otherwise the contents of the existing remote file will be overwritten with
    the new data from the local file.
 
    This method can optionally take a username and password to be used for
-   authentication to the FTP server. Also, the "-options" parameter can be
+   authentication to the FTP server. Also, the ``-options`` parameter can be
    passed an array of pairs, the first value of the pair should be one of the
    ``CURLOPT_…`` methods and the second value should be the appropriate setting
-   for that curl option.
-
-   The following example takes the local file "test.txt" at the current webroot
-   and uploads it as "file.txt" to the specified path in the URL. The
-   `CURLOPT_FTP_CREATE_MISSING_DIRS` option specifies that any missing
-   intermediary directories on the remote server will be created. ::
-
-      ftp_putFile(
-         'ftp://example.com/new_dir/test.txt',
-         -file     = "/test.txt",
-         -username = `MyUsername`,
-         -password = `Shh...Secret`,
-         -options  = array(CURLOPT_FTP_CREATE_MISSING_DIRS=1)
-      )
-
-
-Delete a Remote File
---------------------
+   for that `curl` option.
 
 .. method:: ftp_deleteFile(\
       url::string, \
@@ -1344,21 +1234,112 @@ Delete a Remote File
       -options::array= ?\
    )
 
-   This method will delete the remote file specified by the FTP URL in the first
-   parameter. It can optionally take a username and password to be used for
-   authentication to the FTP server. Also, the "-options" parameter can be
-   passed an array of pairs, the first value of the pair should be one of the
-   ``CURLOPT_…`` methods and the second value should be the appropriate setting
-   for that curl option.
+   Deletes the remote file specified by the FTP URL in the first parameter. It
+   can optionally take a username and password to be used for authentication to
+   the FTP server. Also, the ``-options`` parameter can be passed an array of
+   pairs, the first value of the pair should be one of the ``CURLOPT_…`` methods
+   and the second value should be the appropriate setting for that `curl`
+   option.
 
-   The following example will delete the "test.txt" file at the FTP root of the
-   remote server::
 
-      ftp_deleteFile(
-         'ftp://example.com/test.txt',
-         -username = `MyUsername`,
-         -password = `Shh...Secret`
-      )
+Retrieve Contents of a Remote File
+----------------------------------
+
+The following example downloads the data in a file named "test.txt" from the
+remote server, and then displays it::
+
+   ftp_getData(
+      'ftp://example.com/test.txt',
+      -username=`MyUsername`,
+      -password=`Shh...Secret`
+   )
+
+   // => "Hello, world."
+
+
+Download a Remote File
+----------------------
+
+The following example downloads the remote file "test.txt" to "/tmp/file.txt"
+from the root of the file system::
+
+   ftp_getFile(
+      'ftp://example.com/test.txt',
+      -file='//tmp/file.txt',
+      -username = `MyUsername`,
+      -password = `Shh...Secret`
+   )
+
+
+List Contents of a Remote Directory
+-----------------------------------
+
+The following example gets a list of all the files and folders at the FTP
+root of the "example.com" server and displays its size and then its name
+(with a trailing slash if it is a directory)::
+
+   local(listing) = ftp_getListing(
+      'ftp://example.com/test.txt',
+      -username = `MyUsername`,
+      -password = `Shh...Secret`
+   )
+   with item in #listing
+      let item_type = #item->find('filetype')
+      let item_size = #item->find('filesize')
+      let item_name = #item->find('filename') + (#item_type == 'directory' ? '/' | '')
+   do {^ #item_size + "B  " + #item_name ^}
+
+   // =>
+   // 170B  ./
+   // 170B  ../
+   // 387B  directory/
+   // 15B  test.txt
+
+
+Update an Existing Remote File
+------------------------------
+
+The following example will take the data "\\nAs You Wish" and append it to
+the remote "test.txt" file. (The `CURLOPT_FTPAPPEND()` option changes the
+behavior to append the data.) ::
+
+   ftp_putData(
+      'ftp://example.com/test.txt',
+      -data     = bytes("\nAs You Wish"),
+      -username = `MyUsername`,
+      -password = `Shh...Secret`,
+      -options  = array(CURLOPT_FTPAPPEND=1)
+   )
+
+
+Upload a Local File to the Remote Server
+----------------------------------------
+
+The following example takes the local file "test.txt" at the current web root
+and uploads it as "file.txt" to the specified path in the URL. (The
+`CURLOPT_FTP_CREATE_MISSING_DIRS()` option specifies that any missing
+intermediary directories on the remote server will be created.) ::
+
+   ftp_putFile(
+      'ftp://example.com/new_dir/test.txt',
+      -file     = "/test.txt",
+      -username = `MyUsername`,
+      -password = `Shh...Secret`,
+      -options  = array(CURLOPT_FTP_CREATE_MISSING_DIRS=1)
+   )
+
+
+Delete a Remote File
+--------------------
+
+The following example will delete the "test.txt" file at the FTP root of the
+remote server::
+
+   ftp_deleteFile(
+      'ftp://example.com/test.txt',
+      -username = `MyUsername`,
+      -password = `Shh...Secret`
+   )
 
 .. _curl library: http://curl.haxx.se/
 .. _curl documentation: http://curl.haxx.se/libcurl/c/curl_easy_setopt.html

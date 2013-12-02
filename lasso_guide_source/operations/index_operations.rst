@@ -35,7 +35,7 @@
       :maxdepth: 2
 
       files
-      images-multimedia
+      images-media
       pdf
       xml
       logging
@@ -46,7 +46,7 @@
 
    .. only:: html
 
-      .. rubric:: Web Application Development
+      .. rubric:: Application Development
 
    .. toctree::
       :maxdepth: 2
@@ -61,12 +61,12 @@
 
    .. only:: html
 
-      .. rubric:: Networking and Communications
+      .. rubric:: External Communication
 
    .. toctree::
       :maxdepth: 2
 
-      curl
+      network-requests
       sending-email
       retrieving-email
       dns

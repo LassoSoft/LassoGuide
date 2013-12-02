@@ -50,7 +50,7 @@ hour::
 
 The first line contains the ``define`` keyword, followed by the name for the
 method and its the parameter list in parentheses (the method signature),
-followed by the associate operator (``=>``) and an open brace. All the code
+followed by the association operator (``=>``) and an open brace. All the code
 between that open brace and its matching closing brace is the capture associated
 with the method, which is executed when the method is called.
 
@@ -59,9 +59,9 @@ then the code that determines the time of day will run and return the proper
 value.
 
 Notice that the type constraint in the method definition's signature constrains
-``hour`` to be an ``integer`` object. This enables a handy feature in Lasso
-called "multiple dispatch". Let's say we want a similar function that accepts a
-``date`` object. No need for a different method name; instead we can define that
+``hour`` to be an integer object. This enables a handy feature in Lasso called
+"multiple dispatch". Let's say we want a similar function that accepts a
+date object. No need for a different method name; instead we can define that
 method like this::
 
    define time_of_day(datetime::date=date) => time_of_day(#datetime->hour)
@@ -71,7 +71,7 @@ date object and returns the value of calling the ``time_of_day`` method that
 takes an integer, passing it the hour of the date object. This method definition
 doesn't have a capture associated with it. If your method is going to just
 return the value of an expression, you can put that expression to the right of
-the associate operator. It's equivalent to this code::
+the association operator. It's equivalent to this code::
 
    define time_of_day(datetime::date=date) => {
       return time_of_day(#datetime->hour)
@@ -107,7 +107,7 @@ definition to demonstrate how::
    }
 
 The type definition starts off with the ``define`` keyword followed by the type
-name, the associate operator, the ``type`` keyword, and finally the braces for
+name, the association operator, the ``type`` keyword, and finally the braces for
 the capture containing the type definition code. The definition starts with two
 data sections that define three data members for the type. Two member methods
 are then defined using the access level keyword ``public`` instead of the
@@ -148,7 +148,7 @@ slightly modified version of the ``trait_positionallyKeyed`` definition::
    }
 
 The definition starts with the ``define`` keyword followed by the name of the
-trait, the associate operator, the ``trait`` keyword, and then a set of braces
+trait, the association operator, the ``trait`` keyword, and then a set of braces
 enclosing the trait definition. There are then three sections that start with
 their own keyword:
 
@@ -184,7 +184,7 @@ Query Expressions
 Query expressions allow programmers to create highly readable code that can do
 complex manipulation of data sets. Here is a quick example::
 
-   local(data_set) = (:42, 11, 72, 13, 14, 88, 92, 35)
+   local(data_set) = (: 42, 11, 72, 13, 14, 88, 92, 35)
 
    with number in #data_set
    where #number % 2 == 0
@@ -198,7 +198,7 @@ Every query expression starts as :samp:`with {newLocalName} in
 {trait_queriable}`, where ``newLocalName`` becomes the name of a local variable
 only accessible in the query expression, and ``trait_queriable`` is an object
 whose type implements and imports ``trait_queriable``, such as the
-``staticarray`` in the example.
+:type:`staticarray` in the example.
 
 After this initial ``with`` clause, a query expression can have zero or more
 operation clauses that each start with their own keyword. The example above uses
@@ -219,9 +219,9 @@ adds 72, 14, and 88 together.
 
 The best part about query expressions is that most of the actions are lazily
 executed. This means you can store a query expression in a variable, and it will
-wait to be executed until the value for the variable is expected. For a better
-description, see the :ref:`query-expressions` chapter.
+wait to be executed until the value for the variable is expected. For a more
+thorough description, see the :ref:`query-expressions` chapter.
 
 .. only:: html
 
-   Next Topic: :ref:`Embedding Lasso and Creating LassoApps <overview-embedding-lassoapps>`
+   Next Topic: :ref:`Serving Lasso <overview-serving-lasso>`

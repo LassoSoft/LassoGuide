@@ -43,5 +43,5 @@
 
       overview/basics
       overview/features
-      overview/embedding
+      overview/serving
       overview/conclusion

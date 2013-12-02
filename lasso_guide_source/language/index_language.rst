@@ -33,7 +33,7 @@
       /language/literals
       /language/variables
       /language/operators
-      /language/conditional-logic
+      /language/control-flow
       /language/captures
       /language/query-expressions
 

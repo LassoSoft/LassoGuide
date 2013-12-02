@@ -1,19 +1,19 @@
 :tocdepth: 3
 
-.. _images-multimedia:
+.. _images-media:
 
-*******************
-Images & Multimedia
-*******************
+****************
+Images and Media
+****************
 
 Lasso 9 includes features that allow you to manipulate and serve images and
-multimedia files on the fly. The ``image_…`` methods allow you to do the
-following with image files in the supported image formats:
+media files on the fly. The ``image_…`` methods allow you to do the following
+with image files in the supported image formats:
 
 -  Scaling and cropping images, facilitating the creation of thumbnail images on
    the fly.
 -  Rotating images and changing image orientation.
--  Apply image effects such as modulation, blurring, and sharpening effects.
+-  Applying image effects such as modulation, blurring, and sharpening effects.
 -  Adjusting image color depth and opacity.
 -  Combining images, adding logos and watermarks.
 -  Image format conversion.
@@ -24,23 +24,23 @@ following with image files in the supported image formats:
    The image type and features in Lasso 9 are implemented using ImageMagick
    6.6.6-10 (July 7, 2011 build), which is installed as part of Lasso 9 Server
    on OS X. Windows and Linux require ImageMagick to be installed separately,
-   which is covered in the installation guide. For more information on
-   ImageMagick, visit http://www.imagemagick.com.
+   which is covered in their respective installation guides. For more
+   information on ImageMagick, visit `<http://www.imagemagick.com/>`_.
 
 
-Introduction to Manipulating Image Files
-========================================
+Image File Operations
+=====================
 
 Image files can be manipulated via Lasso by setting a variable to an instance of
 the :type:`image` type, and then using various member methods to manipulate the
 variable. Instantiating an image object usually involves loading data from an
-image file on the server into memory as an :type:`image` object. Once the image
-file is manipulated, it can either be served directly to the client browser, or
-it can be saved to disk on the server.
+image file on the server into memory as an image object. Once the image file is
+manipulated, it can either be served directly to the client browser, or it can
+be saved to disk on the server.
 
 
-Dynamically Manipulate an Image on The Server
----------------------------------------------
+Dynamically Manipulate an Image File
+------------------------------------
 
 The following shows an example of initializing, manipulating, saving, and
 serving an image file named "image.jpg" using the :type:`image` type::
@@ -55,13 +55,13 @@ serving an image file named "image.jpg" using the :type:`image` type::
 In the example above, an image file named "image.tif" is referenced as a Lasso
 image object using the :type:`image` type, then resized to 35 x 35 pixels using
 the `image->scale` method. (The optional ``-thumbnail`` parameter optimizes the
-image for the Web.) Then the image is converted to JPEG format and saved to disk
+image for the web.) Then the image is converted to JPEG format and saved to disk
 using the `image->save` method. Finally, the new image is displayed on the
 current page using an HTML ``<img>`` tag.
 
 This chapter explains in detail how these and other methods are used to
-manipulate image and multimedia files. This chapter also shows how to output an
-image file to a client browser within the context of a Lasso page.
+manipulate image and media files. This chapter also shows how to output an image
+file to a client browser within the context of a Lasso page.
 
 
 Supported Image Formats
@@ -69,38 +69,39 @@ Supported Image Formats
 
 Because the :type:`image` member methods are based on ImageMagick, Lasso
 supports reading and manipulating over 88 major file formats (not including
-sub-formats). A comprehensive list of supported image formats can be found at
-the following URL: http://www.imagemagick.org/script/formats.php#supported
+subformats). A comprehensive list of `supported image formats`_ can be found at
+the ImageMagick website.
 
 A list of commonly used image formats that are certified to work with Lasso 9
-out-of-the-box without additional components installed are shown in
-:ref:`Table 1: Tested and Certified Image Formats
-<images-multimedia-table-1>`.
+out-of-the-box without requiring installation of additional components are shown
+in the table :ref:`images-media-tested-formats`.
 
-.. _images-multimedia-table-1:
+.. tabularcolumns:: |l|L|
 
-.. table:: Table 1: Tested and Certified Image Formats
+.. _images-media-tested-formats:
+
+.. table:: Tested and Certified Image Formats
 
    =========== =================================================================
    Format      Description
    =========== =================================================================
-   :dfn:`BMP`  Microsoft Windows bitmap.
+   :dfn:`BMP`  Microsoft Windows bitmap file.
    :dfn:`CMYK` Raw cyan, magenta, yellow, and black samples.
-   :dfn:`GIF`  CompuServe Graphics Interchange Format. 8-bit RGB PseudoColor
+   :dfn:`GIF`  CompuServe Graphics Interchange Format. LZW-compressed 8-bit RGB
                with up to 256 palette entries.
-   :dfn:`JPEG` Joint Photographic Experts Group JFIF format. Also known as JPG.
-   :dfn:`PNG`  Portable Network Graphics.
+   :dfn:`JPEG` Joint Photographic Experts Group format. Also known as :dfn:`JPG`.
+   :dfn:`PNG`  Portable Network Graphics format.
    :dfn:`PSD`  Adobe Photoshop bitmap file.
    :dfn:`RGB`  Raw red, green, and blue samples.
-   :dfn:`TIFF` Tagged Image File Format. Also known as TIF.
+   :dfn:`TIFF` Tagged Image File Format. Also known as :dfn:`TIF`.
    =========== =================================================================
 
 .. note::
-   Many of the supported formats listed on the ImageMagick site such as EPS and
+   Many of the formats listed on the ImageMagick site such as EPS and
    PDF may be used with the ``image_…`` methods, but require additional
    components such as Ghostscript to be installed before they will work. These
    formats may be used, but because they rely heavily on third-party components,
-   they are not officially supported by LassoSoft.
+   they are not officially supported.
 
 
 File Permissions
@@ -122,7 +123,7 @@ Referencing Images as Lasso Objects
 
 For Lasso to be able to edit an image, an image file or image data must first be
 modelled as a Lasso image object using the :type:`image` type. Once a variable
-has been set to an image data type, various member methods can be used to
+has been set to an image object, various member methods can be used to
 manipulate the image. Once the image data is manipulated, it can either be
 served directly to the client browser, or it can be saved to disk on the server.
 
@@ -154,7 +155,7 @@ served directly to the client browser, or it can be saved to disk on the server.
       local(myImage3) = image(#binary)
 
 
-Getting Image Information
+Image Information Methods
 =========================
 
 Information about an image can be returned using special `image` member methods.
@@ -189,7 +190,7 @@ methods in Lasso 9 are defined below.
 .. member:: image->pixel(x::integer, y::integer, -hex = ?)
 
    Returns the color of the pixel located at the specified pixel coordinates
-   (X,Y). The returned value is an array of RGB color integers (0-255) by
+   (X,Y). The returned value is an array of RGB color integers (0--255) by
    default. An optional ``-hex`` parameter returns a hex color string
    ("#FFCCDD") instead of an RGB array.
 
@@ -208,8 +209,8 @@ methods in Lasso 9 are defined below.
    Returns the image file path and name, or "null" for in-memory images.
 
 
-Return the Height and Width of an Image
----------------------------------------
+Return Height and Width of an Image
+-----------------------------------
 
 Use the `image->height` and `image-width` methods on an image object. This
 returns an integer value representing the height and width of the image in
@@ -221,8 +222,8 @@ pixels::
    // => 400 x 300
 
 
-Return the Resolution of an Image
----------------------------------
+Return Resolution of an Image
+-----------------------------
 
 Use the `image->resolutionH` and `image->resolutionV` methods on an image
 object. This returns a decimal value representing the horizontal and vertical
@@ -234,8 +235,8 @@ object. This returns a decimal value representing the horizontal and vertical
    // => 600 x 600
 
 
-Return the Color Depth of an Image
-----------------------------------
+Return Color Depth of an Image
+------------------------------
 
 Use the `image->depth` method on an image object. This returns an integer value
 representing the color depth of an image in bits::
@@ -246,8 +247,8 @@ representing the color depth of an image in bits::
    // => 16
 
 
-Return the Format of an Image
------------------------------
+Return Format of an Image
+-------------------------
 
 Use the `image->format` method on an image object. This returns a string value
 representing the file format of the image::
@@ -282,7 +283,7 @@ method, which is described below.
    Converts an image object to a new format. Requires a file extension as a
    string parameter which represents the new format the image is being converted
    to (e.g. ``'jpg'``, ``'gif'``). A ``-quality`` parameter specifies the image
-   compression ratio (integer value of 1-100) used when saving to JPEG or GIF
+   compression ratio (integer value of 1--100) used when saving to JPEG or GIF
    format.
 
 .. member:: image->save(path::string)
@@ -291,16 +292,16 @@ method, which is described below.
    Saves the image to a file in a format defined by the file extension.
    Automatically converts images when the extension of the image to save as
    differs from that of the original image. A ``-quality`` parameter specifies
-   the image compression ratio (integer value of 1-100) used when saving to JPEG
+   the image compression ratio (integer value of 1--100) used when saving to JPEG
    or GIF format.
 
 .. member:: image->addComment(comment)
 
    Adds a file header comment to the image before it is saved. Passing a
-   ``null`` parameter removes any existing comments.
+   "null" parameter removes any existing comments.
 
 
-Convert an Image File From One Format to Another
+Convert an Image File from One Format to Another
 ------------------------------------------------
 
 Use the `image->convert` and `image->save` methods on an image object,
@@ -311,8 +312,8 @@ specifying the new format as part of the `image->convert` method::
    #myImage->save('/images/image.jpg', -quality=100)
 
 
-Automatically Convert an Image File From One Format to Another
---------------------------------------------------------------
+Automatically Convert the Format of an Image File
+-------------------------------------------------
 
 Use the `image->save` method on an image object, changing the image file
 extension to the desired image format. A ``-quality`` parameter value of "100"
@@ -345,10 +346,10 @@ information::
    #myImage->save(/images/image.gif')
 
 
-Remove All Comments From an Image File Header
+Remove All Comments from an Image File Header
 ---------------------------------------------
 
-Use the `image->addComment` method with a ``null`` parameter to remove all
+Use the `image->addComment` method with a "null" parameter to remove all
 comments from an image object before it is saved to file. The following code
 adds a comment and then removes all comments. The result is an image with no
 comments::
@@ -359,14 +360,14 @@ comments::
    #myImage->save('/images/image.gif')
 
 
-Manipulating Images
-===================
+Images Manipulation Methods
+===========================
 
 Images can be transformed and manipulated using special `image` member methods.
 These methods change the appearance of the image as it served to the client
 browser. This includes methods for changing image size and orientation, applying
 image effects, adding text to images, and merging images, which are described in
-the following sub-sections.
+the following subsections.
 
 
 Changing Image Size and Orientation
@@ -390,7 +391,7 @@ These methods are defined below.
 .. member:: image->rotate(deg::integer, -bgColor=::string)
 
    Rotates an image counterclockwise by the specified amount in degrees (integer
-   value of "0-360"). An optional ``-bgColor`` parameter specifies the hex
+   value of 0--360). An optional ``-bgColor`` parameter specifies the hex
    color to fill the blank areas of the resulting image.
 
 .. member:: image->crop(...)
@@ -523,8 +524,8 @@ merging. These methods are described below.
    Applies a filter that improves the quality of a noisy, lower-quality image.
 
 
-Adjust the Brightness of an Image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Adjust Brightness of an Image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `image->modulate` method on an image object and adjust the first integer
 parameter, representing brightness. The following example increases the
@@ -535,8 +536,8 @@ brightness of an image by a factor of two::
    #myImage->save('/images/image.jpg')
 
 
-Adjust the Color Saturation of an Image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Adjust Color Saturation of an Image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `image->modulate` method on an image object and adjust the second
 integer parameter, representing color saturation. The following example
@@ -547,8 +548,8 @@ decreases the color saturation of an image by 25%::
    #myImage->save('/images/image.jpg')
 
 
-Adjust the Hue of an Image
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Adjust Hue of an Image
+^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `image->modulate` method on an image object and adjust the third integer
 parameter, representing hue. The following example tints the image green by
@@ -559,8 +560,8 @@ increasing the hue value. Decreasing the hue value tints the image red::
    #myImage->save('/images/image.jpg')
 
 
-Adjust the Contrast of an Image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Adjust Contrast of an Image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `image->contrast` method on an image object. The first example increases
 the contrast. The second example uses a "false" parameter value, which reduces
@@ -660,8 +661,8 @@ method as described below.
 
 .. note::
    When specifying a font, the full hard drive path to the font must be used
-   (e.g. ``-font='//Library/Fonts/Arial.ttf'``). True Type (".ttf"), and Type
-   One (".pfa", ".pfb") font types are officially supported.
+   (e.g. ``-font='//Library/Fonts/Arial.ttf'``). True Type ("\*.ttf"), and Type
+   One ("\*.pfa", "\*.pfb") font types are officially supported.
 
 
 Add Text to an Image
@@ -699,16 +700,20 @@ table below.
 
    Composites a second image onto the current image. Requires two Lasso image
    objects to be composited. An ``-op`` parameter specifies the composite method
-   which affects how the second image is applied to the first image (a list of
+   that affects how the second image is applied to the first image (a list of
    operators is shown below). Optional ``-left`` and ``-top`` parameters specify
    the horizontal and vertical offset of the second image over the first in
    integer pixels (defaults to the upper left corner). An optional ``-opacity``
    parameter attenuates the opacity of the composited second image, where a
    value of "0" is fully opaque and "1.0" is fully transparent.
 
-   The table below shows the various composite methods that can be specified by
-   the ``-op`` parameter. The descriptions for each method are adapted from the
-   ImageMagick Web site.
+   The table below shows the various composite operators that can be specified
+   by the ``-op`` parameter. The descriptions for each method are adapted from
+   the ImageMagick web site.
+
+   .. tabularcolumns:: |l|L|
+
+   .. _images-media-composite-operators:
 
    .. table:: Composite Image Tag Operators
 
@@ -754,8 +759,8 @@ table below.
       ``Hue``            Only the hue of the second image is overlaid.
       ``Saturate``       Only the saturation of the second image is overlaid.
       ``Luminize``       Only the luminosity of the second image is overlaid.
-      ``Modulate``       Has the effect of Hue, Saturate, and Luminize functions
-                         applied at the same time.
+      ``Modulate``       Has the effect of the ``Hue``, ``Saturate``, and
+                         ``Luminize`` functions applied at the same time.
       ================== =======================================================
 
 
@@ -820,9 +825,8 @@ of additional ImageMagick commands and functionality.
 
    Execute ImageMagick commands. Provides direct access to the ImageMagick
    command-line interface. Supports the "composite", "mogrify", and "montage"
-   commands. For detailed descriptions of these commands and their corresponding
-   parameters, see the following URL:
-   `<http://www.imagemagick.com/www/utilities.html>`_
+   commands. See the `ImageMagick Command-Line Tools documentation`_ for
+   detailed descriptions of these commands and their corresponding parameters.
 
 
 Execute an ImageMagick Command Using Lasso
@@ -837,54 +841,50 @@ stunning blue border to an image::
    #myImage->eave('/images/image.gif')
 
 
-Serving Image and Multimedia Files
-==================================
+Serving Image and Media Files
+=============================
 
-This section discusses how to serve image and multimedia files, including
-referencing files within HTML pages and serving files separately via HTTP.
+This section discusses how to serve image and media files, including referencing
+files within HTML pages and serving files separately via HTTP.
 
 
 Referencing Within HTML Files
 -----------------------------
 
-The easiest way to serve images and multimedia files is simply by referencing
-files stored within the web server root using standard HTML tags such as
-``<img>`` or ``<embed>``. The path to the image file can be calculated in the
-Lasso page or stored within a database field. Since the specified file is
-ultimately served by the web server application which is optimized for serving
-images and multimedia files, this is the most efficient way to serve images and
-multimedia files.
+The easiest way to serve images and media files is by simply referencing files
+stored within the web server root using standard HTML tags such as ``<img>`` or
+``<embed>``. The path to the image file can be calculated in the Lasso page or
+stored within a database field. Since the specified file is ultimately served by
+the web server application that is optimized for serving images and media files,
+this is the most efficient way to serve images and media files.
 
 
-Generate the Path to an Image or Multimedia File
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Generate the Path to an Image or Media File
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following example shows a variable "company_name" that contains "blueworld".
+The following example shows a variable "company_name" that contains "LassoSoft".
 This variable is used to construct a path to an image file stored within the
 "images" folder named with the company name and "_logo.gif" to form the full
-file path "/images/blueworld_logo.gif"::
+file path "/images/LassoSoft_logo.gif"::
 
-   [local(company_name) = 'blueworld']
+   [local(company_name) = 'LassoSoft']
    <img src="/images/[#company_name]_logo.gif" />
 
-   // => <img src="/images/blueworld_logo.gif" />
+   // => <img src="/images/LassoSoft_logo.gif" />
 
-The following example shows a variable "company_name" that contains "blueworld".
-This variable is used to construct a path to an image file stored within the
-"images" folder named with the company name and "_logo.gif" to form the full
-file path "/images/blueworld_logo.gif". The path to the image file is stored
+Using the same image path described above, the path to the image file is stored
 within the variable "image_path" and then referenced in the HTML ``<img>`` tag::
 
-   [local(company_name) = 'blueworld']
+   [local(company_name) = 'LassoSoft']
    [local(image_path) = '/images/' + #company_name + '_logo.gif']
    <img src="[#image_path]" />
 
-   // => <img src="/images/blueworld_logo.gif" />
+   // => <img src="/images/LassoSoft_logo.gif" />
 
 The following example shows a variable "band_name" that contains "ArtOfNoise".
 This variable is used to construct a path to sound files stored within the
-"sounds" folder named with the band name and ".mp3" to form the full file path
-"/sounds/ArtOfNoise.mp3". The path to the sound file is stored within the
+"sounds" folder named with the band name and "|dot| mp3" to form the full file
+path "/sounds/ArtOfNoise.mp3". The path to the sound file is stored within the
 variable "sound_path" and then referenced in the HTML ``<a>`` tag::
 
    [local(band_name)  = 'ArtOfNoise']
@@ -897,7 +897,7 @@ variable "sound_path" and then referenced in the HTML ``<a>`` tag::
 Serving Files via HTTP
 ----------------------
 
-Lasso can also be used to serve image and multimedia files rather than merely
+Lasso can also be used to serve image and media files rather than merely
 referencing them by path. Files are served through Lasso using the
 `web_response->sendFile` method or a combination of the
 `web_response->replaceHeader` method and `web_response->includeBytes` method.
@@ -905,17 +905,17 @@ Lasso 9 also includes an `image->data` method that automatically converts an
 image object to a bytes object, allowing an edited image object to be output
 using `web_response->sendFile` without it first being written to disk.
 
-In order to serve an image or multimedia file through Lasso the MIME type of the
-file must first be determined. Often, this can be discovered by looking at the
+In order to serve an image or media file through Lasso the MIME type of the file
+must first be determined. Often, this can be discovered by looking at the
 configuration of the web server or web browser. The MIME type for a GIF is
 :mimetype:`image/gif` and the MIME type for a JPEG is :mimetype:`image/jpeg`.
 
 .. note::
    It is not recommended that you configure your web server application to
-   process all ".gif" and ".jpg" files through Lasso. Lasso will attempt to
+   process all "\*.gif" and "\*.jpg" files through Lasso. Lasso will attempt to
    interpret the binary data of the image file as Lasso code. Instead, use one
-   of the procedures below to serve an image file from a path with a ".lasso"
-   extension.
+   of the procedures below to serve an image file from a path with a "|dot|
+   lasso" extension.
 
 .. member:: image->data()
 
@@ -937,12 +937,12 @@ named "picture.gif" being served from an "images" folder::
 
 Alternatively, you can use the `web_response->replaceHeader` method to set the
 MIME type of the image to be served and use the `web_response->includeBytes`
-method to include data from the image file. If using this method, you need to
-ensure that no stray data is inadvertently added into the outgoing data buffer
-as it will corrupt the output. This includes whitespace characters. The
-following example shows a GIF named "picture.gif" being served from an "images"
-folder. It is the only contents of this file being called by the client browser
-and calls abort to avoid any data corruption::
+method to include data from the image file. If using this method, ensure that no
+stray data is inadvertently added into the outgoing data buffer as it will
+corrupt the output. This includes whitespace characters. The following example
+shows a GIF named "picture.gif" being served from an "images" folder. It is the
+only contents of this file being called by the client browser and calls abort to
+avoid any data corruption::
 
    <?lasso
       web_response->replaceHeader('Content-Type'='image/gif')
@@ -950,21 +950,20 @@ and calls abort to avoid any data corruption::
       abort
    ?>
 
-.. note::
-   If either of the code examples above is stored in a file named "image.lasso"
-   at the root of the web serving folder then the image could be accessed with
-   the following ``<img>`` tag::
+If either of the code examples above is stored in a file named "image.lasso" at
+the root of the web serving folder then the image could be accessed with the
+following ``<img>`` tag::
 
-      <img src="/image.lasso" />
+   <img src="/image.lasso" />
 
 
-Serve a Multimedia File
-^^^^^^^^^^^^^^^^^^^^^^^
+Serve a Media File
+^^^^^^^^^^^^^^^^^^
 
 Use the `web_response->sendFile` method to set the MIME type of the file to be
-served and pass it a :type:`file` object to include data from the multimedia
-file. The following example shows a sound file named "ArtOfNoise.mp3" being
-served from a "sounds" folder::
+served and pass it a :type:`file` object to include data from the media file.
+The following example shows a sound file named "ArtOfNoise.mp3" being served
+from a "sounds" folder::
 
    web_response->sendFile(
       file('/sounds/ArtOfNoise.mp3'),
@@ -975,10 +974,10 @@ If the code above is stored in a file named "ArtOfNoise.lasso" at the root of
 the web serving folder then the sound file could be accessed with the following
 ``<a>`` tag::
 
-    <a href="/ArtOfNoise.lasso">Art of Noise Song</a>
+   <a href="/ArtOfNoise.lasso">Art of Noise Song</a>
 
-This same technique can be used to serve multimedia files of any type by
-designating the appropriate MIME type in the ``-type`` option passed to the
+This same technique can be used to serve media files of any type by designating
+the appropriate MIME type in the ``-type`` option passed to the
 `web_response->sendFile` method.
 
 
@@ -989,9 +988,9 @@ Since the Lasso page can process any Lasso code before serving the image it is
 easy to create a file that generates an error if an unauthorized person tries to
 access a file. The following code checks the `client_username` for the name
 "John". If the current user is not named "John" then a file "error.gif" is
-served instead of the desired "picture.gif" file. To really limit access to the
-files, they are being served from outside the web root of the web server so that
-the files couldn't be loaded directly by a URL. In this example, the files are
+served instead of the desired "picture.gif" file. To completely limit access to
+the files, they are being served from outside the web root of the web server so
+that the files can't be loaded directly by a URL. In this example, the files are
 being served from the "secret" folder which is at the root level of the file
 system::
 
@@ -1007,5 +1006,7 @@ system::
          -type='image/gif')
    }
 
-This same technique can be used to restrict access to any image or multimedia
-file.
+This same technique can be used to restrict access to any image or media file.
+
+.. _supported image formats: http://www.imagemagick.com/script/formats.php#supported
+.. _ImageMagick Command-Line Tools documentation: http://www.imagemagick.com/script/command-line-tools.php

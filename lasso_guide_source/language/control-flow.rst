@@ -1,19 +1,26 @@
 .. http://www.lassosoft.com/Language-Guide-Conditional-Logic
-.. _conditional-logic:
+.. _control-flow:
 
-*****************
-Conditional Logic
-*****************
+************
+Control Flow
+************
 
-Conditional logic makes a program tick. With it, sections of code can be skipped
+Control Flow makes a program tick. With it, sections of code can be skipped
 or repeated multiple times. Code can be executed in every repetition of a loop
 or every several repetitions. Complex decision trees can be created that execute
 code only under very specific conditions. Lasso supports a variety of constructs
 for performing conditional logic.
 
 
+Conditional Constructs
+======================
+
+Lasso offers two types of conditional constructs, one for general conditionals
+and another which trades flexibility for speed and readability.
+
+
 If/Else Conditional
-===================
+-------------------
 
 An :dfn:`if/else conditional` is a construct that allows code to be executed
 only if a particular expression evaluates as "true". The if/else conditional
@@ -24,7 +31,7 @@ supports one default "else" which will execute if none of the conditional
 expressions are "true".
 
 The if/else conditional can take two forms. The following example shows the
-first form. The "// ..." in the example shows where the body expressions for
+first form. The "``// ...``" in the example shows where the body expressions for
 that particular condition would occur. ::
 
    if (expression1)
@@ -63,20 +70,23 @@ auto-collect block (``=> {^ ... ^}``). See the :ref:`captures` chapter for more
 information about these different types of code blocks.
 
 
-Match Conditional
-=================
+Match/Case Conditional
+----------------------
 
-A :dfn:`match conditional` allows code to be selectively executed based upon the
-logical equivalence of two or more objects. Match conditionals are given an
-initial test value and a series of case values and conditional bodies. The
-initial value is tested against each case value using the initial value's
-``onCompare`` method. The first case value that matches the initial test value
-will have its conditional body executed. Each case can have more than one value
-to test against. If no case values match, then the default case, if present, has
-its conditional body executed.
+A :dfn:`match/case conditional` allows code to be selectively executed based
+upon the logical equivalence of two or more objects. The match/case conditional
+is given an initial test value and a series of case values and conditional
+bodies. The initial value is tested against each case value using the initial
+value's ``onCompare`` method. The first case value that matches the initial test
+value will have its conditional body executed. Each case can have more than one
+value to test against. If no case values match, then the default case, if
+present, has its conditional body executed. Using a match/case conditional when
+possible allows the compiler to perform optimizations not available with an
+if/else conditional, potentially leading to better performance.
 
-Like the if/else conditional, a match conditional has two forms. The following
-example shows the first form with several case values and a default case::
+Like the if/else conditional, a match/case conditional has two forms. The
+following example shows the first form with several case values and a default
+case::
 
    match (expression)
    case (c1, c2)
@@ -104,8 +114,8 @@ The second form uses the association/givenBlock syntax::
       // ...
    }
 
-Either form is accepted. Although a match conditional produces no value, the
-first form does auto-collection, as will the second if associated with an
+Either form is accepted. Although a match/case conditional produces no value,
+the first form does auto-collection, as will the second if associated with an
 auto-collect block (``=> {^ ... ^}``). See the :ref:`captures` chapter for more
 information about these different types of code blocks.
 
@@ -115,17 +125,17 @@ Loop Constructs
 
 Lasso offers several constructs that execute a body of code repeatedly, or
 :dfn:`loop`, based upon some criteria. This criteria can be a boolean
-expression, a number counting to a pre-defined point, or the count of the number
+expression, a number counting to a predefined point, or the count of the number
 of elements in a composite object. Each method of looping supports skipping to
 the top of the next iteration, aborting the loop process entirely, and
 retrieving the current count of the number of loops that have occurred.
 
-Each of these loop constructs support the two forms shown for if/else and match.
-Most examples are shown in both forms. Also, like if/else and match
-conditionals, loop constructs do not produce a value, but the first form does
-auto-collection, as will the second if associated with an auto-collect block
-(``=> {^ ... ^}``). See the :ref:`captures` chapter for more information about
-these different types of code blocks.
+Each of these loop constructs support the two forms shown for if/else and
+match/case. Most examples are shown in both forms. Also, like if/else and
+match/case conditionals, loop constructs do not produce a value, but the first
+form does auto-collection, as will the second if associated with an auto-collect
+block (``=> {^ ... ^}``). See the :ref:`captures` chapter for more information
+about these different types of code blocks.
 
 
 While Loop
@@ -191,8 +201,8 @@ significant. In the case of using keyword parameters, either the ``-from`` or
 ``-by`` may be omitted, and all keyword parameters may be supplied in any order.
 
 
-Iterate
--------
+Iterate Loop
+------------
 
 An :dfn:`iterate loop` is applied to objects that contain other objects, such as
 arrays, maps, or any type that supports :trait:`trait_forEach`. Iterate will
@@ -260,39 +270,38 @@ Loop Methods
    a map.
 
 
-GenerateSeries
---------------
+generateSeries
+^^^^^^^^^^^^^^
 
-The :type:`generateSeries` type is great for use with query expressions.
-Together, they allow you to easily loop through a specified range. For more
-information on the wonders of query expressions, :ref:`see the documentation
-<query-expressions>`.
+The `generateSeries` method is great for use with query expressions. (See the
+:ref:`query-expressions` chapter for more information on their abilities.)
+Together, they allow you to easily loop through a specified series of values.
 
 .. type:: generateSeries
 .. method:: generateSeries(from, to, by=1)
 
-   This method creates an integer range for use with query expressions. The
-   first number in the range is specified by the first parameter. The second
-   parameter specifies the maximum value of the last number in the range, and
+   This method creates an integer series for use with query expressions. The
+   first parameter specifies the first number in the series. The second
+   parameter specifies the maximum value of the last number in the series, and
    and optional third parameter specifies the step to use for going through the
-   range (defaults to 1). Note that the second parameter might not be in the
-   range if the step is set in such a way that it is not in the range.
+   series (defaults to 1). Note that the second parameter will not be included
+   in the series if the step value causes it to be skipped.
 
+The following example uses a query expression to sum the even numbers starting
+with 2 and ending with 10::
 
-Using generateSeries
-^^^^^^^^^^^^^^^^^^^^
-
-The following example sums the even numbers starting with 2 and ending with 10::
-
-   // Note that 11 is not part of the series generated
+   // Note that 11 is not part of the generated series
    with num in generateSeries(2, 11, 2) sum #num
-
    // => 30
 
 There is a generateSeries literal syntax that can also be used. The following is
-equivalent to the proceding example::
+equivalent to the preceding example::
 
-   // Note that 11 is not part of the series generated
+   // Note that 11 is not part of the generated series
    with num in 2 to 11 by 2 sum #num
-
    // => 30
+
+A generateSeries object can be converted to a staticarray for later use. ::
+
+   generateSeries(2, 11, 2)->asStaticArray
+   // => staticarray(2, 4, 6, 8, 10)

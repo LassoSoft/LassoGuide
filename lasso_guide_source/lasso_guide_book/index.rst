@@ -24,7 +24,7 @@ A Taste of Lasso
    /index
    /getstart/overview/basics
    /getstart/overview/features
-   /getstart/overview/embedding
+   /getstart/overview/serving
    /getstart/overview/conclusion
 
 
@@ -64,7 +64,7 @@ Language Elements
    /language/literals
    /language/variables
    /language/operators
-   /language/conditional-logic
+   /language/control-flow
    /language/captures
    /language/query-expressions
    /language/methods
@@ -99,7 +99,7 @@ System Input and Output
 .. toctree::
 
    /operations/files
-   /operations/images-multimedia
+   /operations/images-media
    /operations/pdf
    /operations/xml
    /operations/logging
@@ -125,7 +125,7 @@ External Communication
 
 .. toctree::
 
-   /operations/curl
+   /operations/network-requests
    /operations/sending-email
    /operations/retrieving-email
    /operations/dns

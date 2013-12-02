@@ -10,14 +10,14 @@ Lasso has been around for decades, and will be around for decades to come.
 
 Although other languages have become known as the more "popular" languages, the
 criteria used to measure popularity have rarely been challenged. Lasso came out
-of the Mac world---a world filled with artists, educators and medical
+of the Mac world---a world filled with artists, educators, and medical
 practitioners---in the nascent days of the Internet. It has been used by a wide
 variety of people, whether they be occasional programmers, hard-core developers
 or anything in between. It has been used to create systems which support and
 manage the Internet, to drive billions of dollars in sales, and to monitor
 simple everyday life events.
 
-Lasso presented the world with a novel and logical way to script, develop and
+Lasso presented the world with a novel and logical way to script, develop, and
 write code poetry. Tens of thousands of people owe their livelihoods to Lasso,
 and almost all live their lives unaware of Lasso's importance. Lasso has become
 a foundation block of the world's digital future, steadily inspiring joy and
