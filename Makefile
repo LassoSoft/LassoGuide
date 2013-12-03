@@ -43,7 +43,7 @@ clean:
 	-rm -rf $(BUILDDIR)/*
 
 pdfdownload: $(wildcard $(BUILDDIR)/latex/LassoGuide*.pdf)
-	-rsync -aq $(BUILDDIR)/latex/LassoGuide*.pdf $(BUILDDIR)/html/
+	-rsync -aq $(BUILDDIR)/latex/LassoGuide9*.pdf $(BUILDDIR)/html/
 
 html: pdfdownload
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
@@ -112,6 +112,7 @@ latex:
 	@echo "Run \`make' in that directory to run these through XeLaTeX" \
 	      "(use \`make latexpdf' here to do that automatically)."
 
+# PDF for hardcover edition
 latexpdf:
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
@@ -123,6 +124,24 @@ latexpdf:
 	@echo "Running LaTeX files through XeLaTeX..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
 	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."
+
+# PDF for paperback edition
+latexpdfpb:
+	$(SPHINXBUILD) -b latex -D pygments_style=bw $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
+	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
+	mv -f  $(BUILDDIR)/latex/Makefile{2,}
+	@echo "Implementing ugly hack to fix spacing of content inside descriptions using style=nextline..."
+	awk '{gsub(/leavevmode\\begin/,"leavevmode\\vspace*{-1.2\\baselineskip}\\begin")}; 1' $(BUILDDIR)/latex/LassoGuide9.2.tex | sed '/leavevmode$$/{N;s/\n\s*$$//;}' > $(BUILDDIR)/latex/LassoGuide9.2.temp
+	mv -f  $(BUILDDIR)/latex/LassoGuide9.2.{temp,tex}
+	@echo "Implementing ugly hack to change the ISBN..."
+	awk '{gsub(/978-0-9936363-1-8/,"978-0-9936363-0-1")}; 1' $(BUILDDIR)/latex/sphinxmanual.cls > $(BUILDDIR)/latex/sphinxmanual.temp
+	mv -f  $(BUILDDIR)/latex/sphinxmanual.{temp,cls}
+	@echo "Running LaTeX files through XeLaTeX..."
+	$(MAKE) -C $(BUILDDIR)/latex all-pdf
+	mv -f  $(BUILDDIR)/latex/LassoGuide{,Paperback}9.2.pdf
+	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."
+	@echo "Resave using Quartz Filter --> Gray Tone in Preview to create a grayscale PDF."
 
 text:
 	$(SPHINXBUILD) -b text $(ALLSPHINXOPTS) $(BUILDDIR)/text
