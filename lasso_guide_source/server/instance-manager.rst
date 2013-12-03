@@ -100,7 +100,7 @@ Instance Name
    instance among the others.
 
 Host Patterns
-   A host pattern is a string of characters that are matched against the
+   A :dfn:`host pattern` is a string of characters that are matched against the
    incoming HOST field of the HTTP request. An instance may have several of
    these patterns. These patterns serve to direct individual requests to
    specific Lasso instances. A host pattern resembles a domain name, and can
@@ -119,7 +119,7 @@ Instance URL
    instance.
 
 Description
-   A convenient, optional description of this Lasso instance.
+   An optional description of this Lasso instance.
 
 Serial Number
    If you already have a serial number for the new instance, enter it here.
@@ -250,12 +250,12 @@ appropriate button in this view.
 Modify Instance Environment Variables
 -------------------------------------
 
-Environment variables control how an instance runs or how the software that an
-instance is using (e.g. ImageMagick or Java) operates. Click the instance's
-"Variables" button to reveal the environment variables view. All current
-variables are shown in this view. Existing variables can be removed, and new
-variables can be added. Any variable modifications will not take effect until
-the instance is restarted.
+:dfn:`Environment variables` control how an instance runs or how the software
+that an instance is using (e.g. ImageMagick or Java) operates. Click the
+instance's "Variables" button to reveal the environment variables view. All
+current variables are shown in this view. Existing variables can be removed, and
+new variables can be added. Any variable modifications will not take effect
+until the instance is restarted.
 
 New instances are automatically configured with the :envvar:`LASSO9_HOME` and
 :envvar:`LASSO9_MASTER_HOME` variables. It is recommended that these not be
@@ -280,41 +280,34 @@ will also look for these directories in the Instance Manager's home directory.
 Files can be placed in the proper location inside of the instance's home
 directory in order to override the files provided by the Instance Manager.
 
-
 LassoModules
-------------
-
-The "LassoModules" directory contains all Lasso C API (LCAPI) modules. These are
-all loaded when an instance is first started. The instance will first load all
-modules located in the Instance Manager's home, and then all modules located in
-the instance's home. This permits an instance to replace an LCAPI module with
-its own version, if required, or to have an instance-specific LCAPI module.
-
+   The :dfn:`LassoModules` directory contains all Lasso C API (LCAPI) modules.
+   These are all loaded when an instance is first started. The instance will
+   first load all modules located in the Instance Manager's home, and then all
+   modules located in the instance's home. This permits an instance to replace
+   an LCAPI module with its own version, if required, or to have an
+   instance-specific LCAPI module.
 
 LassoLibraries
---------------
-
-The "LassoLibraries" directory contains all available on-demand libraries. These
-libraries are loaded as required as the instance runs. Whenever an attempt is
-made to use a non-existent method or type, the "LassoLibraries" directory is
-searched for a suitable implementation. An instance will first look in its own
-home directory for such a library. If not found, the Instance Manager's home
-directory is searched. This permits an instance to override a library that would
-have been loaded from the Instance Manager's home directory with its own version
-or to have its own instance-specific library.
-
+   The :dfn:`LassoLibraries` directory contains all available on-demand
+   libraries. These libraries are loaded as required as the instance runs.
+   Whenever an attempt is made to use a non-existent method or type, the
+   "LassoLibraries" directory is searched for a suitable implementation. An
+   instance will first look in its own home directory for such a library. If not
+   found, the Instance Manager's home directory is searched. This permits an
+   instance to override a library that would have been loaded from the Instance
+   Manager's home directory with its own version or to have its own
+   instance-specific library.
 
 LassoApps
----------
-
-The "LassoApps" directory contains applications that are loaded when an instance
-starts up. At startup, the instance finds all the applications in the Instance
-Manager's "LassoApps" directory and compares it with the applications in its own
-"LassoApps" directory. Any applications in the Instance Manager's "LassoApps"
-directory with the same name as those in the instance's home directory are
-skipped. This allows an instance to install its own version of a Lasso
-application with the same name without ever loading the Instance Manager's
-version.
+   The :dfn:`LassoApps` directory contains applications that are loaded when an
+   instance starts up. At startup, the instance finds all the applications in
+   the Instance Manager's "LassoApps" directory and compares it with the
+   applications in its own "LassoApps" directory. Any applications in the
+   Instance Manager's "LassoApps" directory with the same name as those in the
+   instance's home directory are skipped. This allows an instance to install its
+   own version of a Lasso application with the same name without ever loading
+   the Instance Manager's version.
 
 
 .. _instance-manager-starting-stopping:
@@ -382,14 +375,17 @@ be manually started again.
 Uninstallation
 ==============
 
-On OS X, an uninstaller is provided in the same package as the original
-installer. Run this to uninstall Lasso Instance Manager. This action will remove
-any Lasso instance home directories that were created in the default location
-(:file:`/var/lasso`). This will not remove any home directories that were
-created in custom locations.
+:OS X:
+   An uninstaller is provided in the same package as the original installer. Run
+   this to uninstall Lasso Instance Manager. This action will remove any Lasso
+   instance home directories that were created in the default location
+   (:file:`/var/lasso`). This will not remove any home directories that were
+   created in custom locations.
 
-On Linux, use the standard package manager (yum or apt) to uninstall Lasso
-Instance Manager.
+:Linux:
+   Use the standard package manager (yum or apt) to uninstall Lasso Instance
+   Manager.
 
-On Windows, use the system's built-in uninstall utility via the "Programs and
-Features" control panel.
+:Windows:
+   Use the system's built-in uninstall utility via the :file:`Programs and
+   Features` control panel.

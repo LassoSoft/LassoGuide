@@ -103,7 +103,7 @@ Main Menu
 ---------
 
 The Lasso Server Admin is primarily navigated by using the pop-up menu on the
-upper left portion of the page. This is the :dfn:`Main Menu` which contains the
+upper left portion of the page. This is the "Main Menu" which contains the
 following divisions and options:
 
 .. figure:: /_static/server_admin_main_menu.png
@@ -295,10 +295,10 @@ Delete Log Messages
 
 There are two action buttons below the log entries table:
 
--  **Delete All Messages** -- This will delete all log entries stored in the
-   SQLite database.
--  **Delete All Found** -- This will delete all log entries that have been found
-   based on the search term in the "Message" text field above.
+-  **Delete All Messages** -- delete all log entries stored in the SQLite
+   database
+-  **Delete All Found** -- delete all log entries that have been found based on
+   the search term in the "Message" text field above
 
 
 Log Book Settings
@@ -312,8 +312,8 @@ the :guilabel:`Save` button to update the instance's logging settings.
 
 .. _instance-administration-email:
 
-Monitoring and Managing Lasso's Email Queue
--------------------------------------------
+Monitoring and Managing the Email Queue
+---------------------------------------
 
 Clicking on the "Email Queue" link in the Main Menu will take you to a web page
 that displays the instance's email queue. The email queue logs all email

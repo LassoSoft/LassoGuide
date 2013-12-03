@@ -22,7 +22,6 @@ using the :type:`dsinfo` type. (Information about creating and using LCAPI
 third-party data source connectors can be found in the :ref:`lcapi-sources`
 LCAPI documentation.)
 
-
 :ref:`datasource-setup-filemaker`
    Supports FileMaker Server 7--12 Advanced and FileMaker Server 9--12.
 
@@ -50,8 +49,8 @@ LCAPI documentation.)
    preferences and security settings.
 
 
-Using Lasso Data Source Connectors
-==================================
+Lasso Data Source Connectors
+============================
 
 :dfn:`Data source connectors` allow database actions to be performed via Lasso
 code. Database actions can be used in Lasso to search for records in a database
@@ -87,7 +86,7 @@ steps need to be taken:
    parameters to the inline. Each of the data sources documented below will give
    examples of interfacing with a data source host in this manner.
 
-.. note::
+.. important::
    Links to third-party distributions and tools are provided for your
    convenience and were accurate when this manual was written. LassoSoft cannot
    guarantee the availability or suitability of software downloaded from
@@ -101,7 +100,7 @@ FileMaker Server Data Sources
 
 Lasso 9 communicates with FileMaker Server 7--12 Advanced and FileMaker Server
 9--12 through the built-in XML interface. Lasso cannot communicate with any
-other products in the FileMaker 7, 8 or 9 product line such as FileMaker Pro.
+other products in the FileMaker 7, 8, or 9 product line such as FileMaker Pro.
 
 
 Requirements
@@ -185,8 +184,8 @@ below.
    :ref:`filemaker-data-sources` chapter.
 
 
-Adding FileMaker Server Data Source Hosts
------------------------------------------
+Adding a FileMaker Server Data Source Host
+------------------------------------------
 
 For general information about navigating Lasso Server Admin and adding a host to
 a data source, see the section on :ref:`configuring datasources
@@ -326,7 +325,7 @@ Now there is a user with all permissions that can communicate with MySQL from
 the machine Lasso 9 is running on. This user can now be used when configuring
 the MySQL host in the "Datasources" section of Lasso Server Admin.
 
-.. note::
+.. important::
    You may, of course, wish to tighten security and restrict the user Lasso 9
    uses. It is possible to assign limited privileges to the user Lasso 9 uses
    one at a time by replacing "ALL" in the "GRANT" statement with an individual
@@ -412,8 +411,8 @@ same machine as Lasso might appear::
 
 .. _datasource-setup-oracle:
 
-Oracle Data Source
-==================
+Oracle Data Sources
+===================
 
 Lasso 9 can communicate with an Oracle service running on a host machine via a
 TCP/IP connection. For more information on Oracle, visit
@@ -425,11 +424,10 @@ Requirements
 
 -  Oracle Database 10g
 -  The Lasso 9 machine must have the Oracle "Instant Client" installed if Lasso
-   9 and Oracle are running on separate machines. The Instant Client can be
-   downloaded from the following website. (Make sure to download just the basic
+   9 and Oracle are running on separate machines. The `Instant Client download`_
+   can be found on the Oracle website. (Make sure to download just the basic
    Instant Client files rather than the complete Oracle 10g client or database
    installer.)
-   `<http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html>`_
 
 
 Installing Oracle Instant Client
@@ -481,8 +479,7 @@ The Oracle database server must be configured with a user that has access to all
 of the databases, tables, and other resources that will be published through
 Lasso. Consult the Oracle documentation for help configuring Oracle's built-in
 security. The Oracle website has a "Getting Started" section which explains how
-to install and perform basic configuration of an Oracle database server:
-`<http://www.oracle.com/pls/db111/portal.portal_db>`_.
+to install and perform `basic configuration of an Oracle database server`_.
 
 
 Adding an Oracle Data Source Host
@@ -561,8 +558,8 @@ appear::
 
 .. _datasource-setup-postgresql:
 
-PostgreSQL Data Source
-======================
+PostgreSQL Data Sources
+=======================
 
 Lasso 9 can communicate with PostgreSQL servers configured to accept TCP/IP
 client connections. For more information on PostgreSQL, visit
@@ -581,8 +578,8 @@ Configuring PostgreSQL
 
 The PostgreSQL database server must be configured with a user that has access to
 all of the databases, tables, and other resources that will be published through
-Lasso. Consult the PostgreSQL documentation for help configuring its built-in
-security: `<http://www.postgresql.org/docs/manuals/>`_.
+Lasso. Consult the `PostgreSQL documentation`_ for help configuring its built-in
+security.
 
 
 Adding a PostgreSQL Data Source Host
@@ -673,23 +670,23 @@ Requirements
 -  An ODBC driver that has been configured as a System DSN in the ODBC control
    panel.
 
-   Windows
-      ODBC data sources are configured using "ODBC Data Source Administrator"
-      which is normally accessed through the Windows Control Panel under
-      :file:`Administrative Tools`. Lasso can access data sources configured as
-      System DSNs.
-
-   OS X
+   :OS X:
       ODBC data sources are configured using "ODBC Administrator" which can be
       found in the :file:`/Applications/Utilities` folder (OS X 10.5) or
       downloaded from `<http://support.apple.com/kb/DL895>`_. Lasso can access
       data sources configured as System DSNs.
 
-   Linux
+   :Linux:
       Consult the documentation of the ODBC drivers for information about how to
       set up data sources on Linux. Many ODBC drivers ship with a control panel
       that allows configuration of those drivers. Lasso can access data sources
       configured as System DSNs.
+
+   :Windows:
+      ODBC data sources are configured using "ODBC Data Source Administrator"
+      which is normally accessed through the Windows Control Panel under
+      :file:`Administrative Tools`. Lasso can access data sources configured as
+      System DSNs.
 
 
 Configuring ODBC Hosts
@@ -779,8 +776,8 @@ same machine as Lasso might appear::
 
 .. _datasource-setup-sql-server:
 
-SQL Server Data Source
-======================
+SQL Server Data Sources
+=======================
 
 Lasso 9 can communicate with Microsoft SQL Server databases configured to accept
 TCP/IP client connections. For more information on SQL Server, visit
@@ -793,14 +790,14 @@ Requirements
 -  Microsoft SQL Server 2005--2012
 -  The Lasso 9 machine must have the SQL Server client libraries installed.
 
-   Windows
-      The necessary client libraries should already be installed.
-
-   OS X and Linux
+   :OS X and Linux:
       The FreeTDS libraries need to be compiled and installed, for which the
       source can be found at `<http://www.freetds.org/>`_. (Instead of compiling
       from source, you may first want to look into installing via a package
-      manager such as "apt", "yum", "macports", or "homebrew".)
+      manager such as :program:`apt`, :program:`yum`, :program:`macports`, or :program:`homebrew`.)
+
+   :Windows:
+      The necessary client libraries should already be installed.
 
 
 Configuring SQL Server
@@ -808,9 +805,8 @@ Configuring SQL Server
 
 The SQL Server database server must be configured with a user that has access to
 all of the databases, tables, and other resources that will be published through
-Lasso. Consult the SQL Server documentation for help configuring its built-in
-security:
-`<http://www.microsoft.com/en-us/sqlserver/learning-center/resources.aspx>`_.
+Lasso. Consult the `SQL Server documentation`_ for help configuring its built-in
+security.
 
 
 Adding a SQL Server Data Source Host
@@ -827,7 +823,7 @@ To add a new SQL Server database host:
 #. Click the :guilabel:`Add host` item to reveal the host connection form.
 #. Enter the IP address or domain name where the SQL Server data source is being
    hosted followed by a backslash and the name of a database in the "Host"
-   field. (e.g. "www.example.com\MyDataBase")
+   field. (e.g. "www.example.com\\MyDataBase")
 #. Enter the TCP port the SQL Server service is listening on in the "Port"
    field. This is commonly "1433" for SQL Server.
 #. Select "Yes" from the :guilabel:`Enabled` drop-down to enable the host.
@@ -887,16 +883,21 @@ the same machine as Lasso might appear::
 
 .. _datasource-setup-sqlite:
 
-SQLite Data Source
-==================
+SQLite Data Sources
+===================
 
 Lasso Server comes with an embedded high-performance data source called SQLite.
 This data source is used to store Lasso's internal site preferences and security
-settings. SQLite is installed, enabled, and pre-configured within Lasso Server
-by default. No further set up or installation of SQLite is required.
+settings. SQLite is installed, enabled, and preconfigured within Lasso Server by
+default. No further set up or installation of SQLite is required.
 
 SQLite databases are stored in the "SQLiteDBs" folder within each instance's
 home directory. By default this folder contains databases that are required for
 Lasso Server to function. Custom databases may be created and added to this
 folder and Lasso `inline` methods will automatically have access to them using
 the ``-database`` parameter.
+
+.. _Instant Client download: http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html
+.. _basic configuration of an Oracle database server: http://www.oracle.com/pls/db111/portal.portal_db
+.. _PostgreSQL documentation: http://www.postgresql.org/docs/manuals/
+.. _SQL Server documentation: http://www.microsoft.com/en-us/sqlserver/learning-center/resources.aspx

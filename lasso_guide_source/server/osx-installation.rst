@@ -69,7 +69,7 @@ From here on, you can read up on using the :ref:`instance-manager` and
    On OS X Server, ensure that the Web or Websites service is running in Server
    Preferences or Server.app.
 
-.. note::
+.. important::
    If you upgrade your OS X installation or install OS X Server after installing
    Lasso 9 Server, you will need to either manually move the Apache conf file
    and plugin for Lasso to continue running, or simply reinstall Lasso to place

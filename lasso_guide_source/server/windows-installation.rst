@@ -10,7 +10,7 @@ Supported Platforms
 ===================
 
 Lasso 9 Server has been tested on 64-bit Windows Server 2012, Windows Server
-2008 R2, Windows 8 and Windows 7. Supported web servers are IIS 8, IIS 7, and
+2008 R2, Windows 8, and Windows 7. Supported web servers are IIS 8, IIS 7, and
 Apache 2.2.
 
 .. note::
@@ -113,7 +113,7 @@ Configuring ImageMagick
    `ImageMagick installers archive`_.
 -  :ref:`Restart Lasso Instance Manager <instance-manager-starting-stopping>`.
 
-.. note::
+.. important::
    Links to third-party distributions and tools are provided for your
    convenience and were accurate when this manual was written. LassoSoft cannot
    guarantee the availability or suitability of software downloaded from
@@ -134,7 +134,7 @@ Lasso Connector for IIS is not loading a page.
    -  IIS may be missing required features. To check:
 
       :Windows Server:
-         #. Open "Server Manager"
+         #. Open :file:`Server Manager`
          #. Select "Roles" node
          #. Scroll to "Web Server"
          #. Click :guilabel:`Add Role Services`
@@ -144,7 +144,7 @@ Lasso Connector for IIS is not loading a page.
 
       :Windows 7 or 8:
          #. Open "Control Panel"
-         #. Open "Programs and Features"
+         #. Open :file:`Programs and Features`
          #. Click :guilabel:`Turn Windows features on or off"`
          #. Expand :menuselection:`Internet Information Services --> World Wide
             Web Services --> Common HTTP Features`
@@ -157,7 +157,7 @@ ISAPI Filters option for IIS 7 is missing.
       installed. To install ISAPI Filters on IIS 7 or 8:
 
       :Windows Server:
-         #. Open "Server Manager"
+         #. Open :file:`Server Manager`
          #. Select "Roles" node
          #. Scroll to "Web Server"
          #. Click :guilabel:`Add Role Services`
@@ -167,7 +167,7 @@ ISAPI Filters option for IIS 7 is missing.
 
       :Windows 7 or 8:
          #. Open "Control Panel"
-         #. Open "Programs and Features"
+         #. Open :file:`Programs and Features`
          #. Click :guilabel:`Turn Windows features on or off"`
          #. Expand :menuselection:`Internet Information Services --> World Wide
             Web Services --> Application Development Features`
@@ -179,7 +179,7 @@ Standard 500 error page is returned instead of Lasso's default error page.
    -  IIS's "HTTP Errors" feature may be enabled. To disable:
 
       :Windows Server:
-         #. Open "Server Manager"
+         #. Open :file:`Server Manager`
          #. Select "Roles" node
          #. Scroll to "Web Server"
          #. Click :guilabel:`Remove Role Services`
@@ -189,7 +189,7 @@ Standard 500 error page is returned instead of Lasso's default error page.
 
       :Windows 7 or 8:
          #. Open "Control Panel"
-         #. Open "Programs and Features"
+         #. Open :file:`Programs and Features`
          #. Click :guilabel:`Turn Windows features on or off"`
          #. Expand :menuselection:`Internet Information Services --> World Wide
             Web Services --> Common HTTP Features`
