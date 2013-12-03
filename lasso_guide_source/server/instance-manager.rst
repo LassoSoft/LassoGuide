@@ -57,6 +57,7 @@ Each instance in the list shows:
 -  Instance uptime
 
 .. figure:: /_static/server_im_main_screen.png
+   :width: 100 %
    :align: center
    :alt: Lasso Instance Manager Main Screen
 
@@ -86,6 +87,7 @@ to be created. When done, click the :guilabel:`+ Add` button at the bottom to
 create your new instance.
 
 .. figure:: /_static/server_im_add_instance.png
+   :width: 100 %
    :align: center
    :alt: Adding an Instance
 
@@ -241,6 +243,7 @@ Log File View` button. Each log can be cleared or downloaded by clicking the
 appropriate button in this view.
 
 .. figure:: /_static/server_im_view_log.png
+   :width: 100 %
    :align: center
    :alt: Viewing Instance Logs
 
@@ -262,6 +265,7 @@ New instances are automatically configured with the :envvar:`LASSO9_HOME` and
 modified or removed unless a highly customized instance is required.
 
 .. figure:: /_static/server_im_site_variables.png
+   :width: 100 %
    :align: center
    :alt: Adding Instance Environment Variables
 

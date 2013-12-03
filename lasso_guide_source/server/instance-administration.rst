@@ -48,13 +48,6 @@ as described in the installation sections of this guide.
 User Interface
 ==============
 
-.. figure:: /_static/server_admin_landing.png
-   :align: center
-   :alt: Lasso Server Admin Landing Page
-   :width: 672
-
-   Lasso Server Admin -- Landing Page
-
 
 System Status
 -------------
@@ -62,11 +55,12 @@ System Status
 The :dfn:`System Status` tab, located in the top right portion of the page,
 contains information regarding the Lasso Server instance.
 
-.. figure:: /_static/server_admin_system_status.png
+.. figure:: /_static/server_admin_landing_status.png
+   :width: 100 %
    :align: center
-   :alt: Lasso Server Admin System Status
+   :alt: Lasso Server Admin Landing Page and System Status
 
-   Lasso Server Admin -- System Status
+   Lasso Server Admin -- Landing Page and System Status
 
 -  **Uptime** -- length of time the instance has been running
 -  **CPU Time** -- how much CPU time has been consumed by the instance
@@ -85,9 +79,9 @@ Admin web interface. The Lasso Quick Code console can be opened by clicking the
 arrow tab in the top center of the page.
 
 .. figure:: /_static/server_admin_quick_code.png
+   :width: 100 %
    :align: center
    :alt: Lasso Server Admin Lasso Quick Code
-   :width: 672
 
    Lasso Server Admin -- Lasso Quick Code
 
@@ -107,7 +101,7 @@ upper left portion of the page. This is the "Main Menu" which contains the
 following divisions and options:
 
 .. figure:: /_static/server_admin_main_menu.png
-   :align: center
+   :width: 200 pt
    :alt: Lasso Server Admin Main Menu
 
    Lasso Server Admin -- Main Menu
