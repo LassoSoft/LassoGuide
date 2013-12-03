@@ -1,5 +1,5 @@
-.. _whatis:
 .. http://www.lassosoft.com/Tutorial-What-is-Lasso
+.. _whatis:
 
 **************
 What is Lasso?
@@ -8,21 +8,23 @@ What is Lasso?
 Lasso is a dynamic scripting language designed for creating dynamic, data-driven
 websites. Lasso gives website pages the ability to be dynamic by integrating
 with a web server to create the content of the pages on-the-fly, pages which are
-then sent to a Web browser.
+then sent to a web browser.
+
 
 HTML
 ====
 
-A web page is really just a text document, like a Microsoft Word document or a
-PDF. When you open up a PDF to look at it, the PDF reader on your computer takes
-the code which makes up the document and paints it on the screen to make it
-readble for you.
+A web page is essentially just a text document, like a Microsoft Word document
+or a PDF. When you open up a PDF to look at it, the PDF reader on your computer
+takes the code which makes up the document and paints it on the screen to make
+it readable for you.
 
-In the same way a Web browser on your computer (like Safari or Chrome or
+In the same way, a web browser on your computer (like Safari or Chrome or
 Internet Explorer) takes a document and displays. When you request a web page,
 your computer goes out to the Internet and requests a document to be read. These
 documents are typically made with a specific set of descriptive wrappers, called
 "HTML", which define what and where things should be placed on the page.
+
 
 Body Tag
 --------
@@ -30,25 +32,26 @@ Body Tag
 If you take some basic text, and put it into a text document, you can open up
 that document with a browser and see your text. In this example, we'll include
 the "body tag", as it defines what should be in the body of the visible portion
-of the page in an HTML document:: 
+of the page in an HTML document::
 
    <html>
       <body>Hello! I am an HTML document</body>
    </html>
 
-This would look like this in your browser:
+which would look like this in your browser:
 
-Hello! I am an HTML document
+| ``Hello! I am an HTML document``
 
 
 Dealing with Dynamically Changing Content
 =========================================
 
 However, websites these days are much more dynamic and have constantly changing
-information and content. This isn't magic - your server must do the lifting for
-you. Here is a simple example:
+information and content. This isn't magic; your server must do the lifting for
+you. What follows is a simple example.
 
-Current Date Example
+
+Display Current Date
 --------------------
 
 Let's say you wanted your document to show the current date. One inefficient way
@@ -61,14 +64,14 @@ One way to have the server automatically update the date for you would be to
 write a script to open up the document every day and change the date for you.
 This works great until you want to show something more granular like seconds.
 Then you would have to open the document every second and change it. This
-wouldn't just be inefficient for a human, but inefficient for a server —
-especially if the web site has many pages that might need updating.
+wouldn't just be inefficient for a human, but inefficient for a server;
+especially if the website has many pages that may need updating.
 
-Instead, you can use Lasso to dynamically insert the date for you, whenever
-the page is requested by a browser. Here is how you would do it.
+Instead, you can use Lasso to dynamically insert the date for you, whenever a
+browser requests the page. Here is how you would do it.
 
-Create a file named "index.lasso" inside the webroot for your website. Place the
-following code in that document::
+Create a file named "index.lasso" inside the web root for your website. Place
+the following code in that document::
 
    <html>
       <body>Hello! I am an HTML document. Today is [date].</body>
@@ -97,11 +100,11 @@ This would have the date display as "Wed, July 24, 2013".
 
 What we have just done here is embedded Lasso code into a document. With Lasso
 properly installed and configured, the web server will ask Lasso to process the
-document and create a response for it to send back to the requesting Web
+document and create a response for it to send back to the requesting web
 browser. When Lasso processes the document, it looks for the embedded Lasso code
-to execute within special delimiters and leaves the rest of the document alone.
-Text that is within square brackets (``[]``) or within ``<?lasso ?>`` or within
-``<?= ?>`` is interpreted as Lasso code.
+to execute between special delimiters and leaves the rest of the document alone.
+Text that is between square brackets (``[ ... ]``) or ``<?lasso ... ?>`` or
+``<?= ... ?>`` is interpreted as Lasso code.
 
 Let's take a closer look at the Lasso code we just used. In the first example,
 it was simply ``date``. This creates a date object with the current date and
@@ -112,4 +115,4 @@ on creating and working with objects in future chapters.)
 
 This is a very simple example, so let's move to something a little more complex.
 
-:ref:`Next Tutorial: Using Logic <using-logic>`
+Next Tutorial: :ref:`using-logic`
