@@ -9,8 +9,8 @@ This chapter describes two different methods of calling Lasso: either using
 Lasso as a script processor on the command line or using Lasso as a web
 application server through the web browser.
 
-This information is presented at the start of the Language Guide as it is vital
-to understanding the rest of the topics and examples given in this guide.
+This information is presented at the start of this part as it is vital to
+understanding the rest of the topics and examples given in this guide.
 
 
 Calling Lasso Web Pages
@@ -24,13 +24,14 @@ Lasso code is embedded within a regular HTML file by inserting the code between
 a certain set of delimiters. These delimiters consist of an opening and a
 closing element. Outside of these delimiting elements, all text is treated as if
 it were plain text string literals. Such text is not interpreted by Lasso.
-Within the delimiters, all text is parsed and executed as Lasso code. In this
+Between the delimiters, all text is parsed and executed as Lasso code. In this
 manner, an HTML file becomes a template, with the final resulting data being the
 combination of whatever plain text the file contained, plus whatever text was
 generated via any contained Lasso code.
 
-The available delimiting elements are described below. The "..." shown between
-the delimiters illustrates where Lasso code would be inserted by the developer.
+The available delimiting elements are described below. The "|dot| .." shown
+between the delimiters illustrates where Lasso code would be inserted by the
+developer.
 
 ::
 
@@ -45,17 +46,17 @@ the delimiters illustrates where Lasso code would be inserted by the developer.
    [ ... ]
 
 All three delimiters will produce identical results. Multiple expressions can be
-contained within these delimiters. The result from each contained expression is
+contained between these delimiters. The result from each contained expression is
 converted to a string and then concatenated together along with any plain text
 existing outside of the delimiters.
 
 Although square brackets (``[ ... ]``) are enabled by default, they can be
 disabled by placing ``[no_square_brackets]``, usually at the top of the page,
-outside the delimiters. Once ``[no_square_brackets]`` is encountered by the
-Lasso parser, square brackets will be turned "off" and any subsequently
-encountered square brackets will be treated as plain text. Turning square
-brackets off works on a per-file basis, and there is no way to turn them back on
-once they are off.
+outside the delimiters. Once the Lasso parser encounters
+``[no_square_brackets]``, square brackets are be turned "off" and any
+subsequently encountered square brackets will be treated as plain text. Turning
+square brackets off works on a per-file basis, and there is no way to turn them
+back on once they are off.
 
 To illustrate how Lasso code is embedded within a Lasso page, the following code
 may be stored in a file named "test.lasso" contained within the web server root.
@@ -81,8 +82,8 @@ browser.
 
 If the embedded message is not visible in the web browser or an error occurs,
 then you should make sure that Lasso Server has been properly installed on your
-machine. Consult the :ref:`installation guide for your operating system
-<lasso-server-guide-index>` for complete instructions.
+machine. See the appropriate server installation guide section for your
+operating system for complete instructions.
 
 
 .. _calling-lasso-cli:
@@ -103,7 +104,7 @@ Using the lasso9 Tool
 
 The :program:`lasso9` executable is a tool included with Lasso that handles the
 parsing and execution of Lasso code from the command line. For example, the
-following text might be placed into a file "test.lasso"::
+following text could be placed into a file "test.lasso"::
 
    'The current date is ' + date
 
@@ -118,8 +119,8 @@ file, then the file can be executed like so:
 
 If the terminal reports the command was not found, or you receive some other
 error, then you should make sure that Lasso has been installed properly on your
-machine. Consult the :ref:`installation guide for your operating system
-<lasso-server-guide-index>` for complete instructions.
+machine. See the appropriate server installation guide section for your
+operating system for complete instructions.
 
 When running Lasso code on the command line, delimiters are not required, though
 they can be used. By default, text is assumed to consist of Lasso code only,
@@ -134,9 +135,9 @@ Associating Files with the lasso9 Tool
 --------------------------------------
 
 Files containing Lasso code can be directly associated with the
-:program:`lasso9` tool by inserting a standard :dfn:`hashbang` line *at the
-very top of the file*, and by making the file executable (usually accomplished
-by running :command:`chmod +x thefile.lasso`).
+:program:`lasso9` tool by inserting a standard "hashbang" or "shebang" line *at
+the very top of the file*, and by making the file executable (usually
+accomplished by running :command:`chmod +x thefile.lasso`).
 
 The hashbang line for a standard installation looks like this::
 
@@ -157,9 +158,9 @@ command line.
    The current date is 2012-08-08 15:07:25
 
 The result, regardless of the execution method, is identical. Also, note that
-the file's extension (".lasso" in this case) is irrelevant when executing Lasso
-code on the command line. The example file could just have easily been named
-"test", with no extension, and the results would have been the same.
+the file's extension ("|dot| lasso" in this case) is irrelevant when executing
+Lasso code on the command line. The example file could just have easily been
+named "test", with no extension, and the results would have been the same.
 
 
 Executing Code Directly
@@ -179,8 +180,8 @@ Running the above example will produce the same output as the previous examples.
 Care must be exercised when using this method because the shell will interpret
 some characters for itself, therefore distorting the source code given to the
 command. Because of this, it is generally recommended that such source code be
-surrounded within double quotes and that single quotes be used for any contained
-string literals, as illustrated in the example above.
+surrounded between double quotes and that single quotes be used for any
+contained string literals, as illustrated in the example above.
 
 
 Executing Code from STDIN
