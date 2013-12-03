@@ -21,7 +21,7 @@ Lasso starts up:
          REG_FLAGS_TAG_DEFAULT, "simple test LCAPI tag" );
    }
 
-The preceding example registers a C function called ``myTagFunc`` to execute
+The preceding example registers a C function named ``myTagFunc`` to execute
 whenever the Lasso ``CAPITester_testtag`` method call is encountered in Lasso
 code. The first parameter ``CAPITester`` is the namespace in which ``testtag``
 will be placed.
@@ -39,8 +39,8 @@ The passed-in token can also be used to acquire any parameters and to return a
 value from your custom method function.
 
 
-Basic Custom Method Function Example
-====================================
+Basic Custom Method Function
+============================
 
 Use the following C++ code:
 
@@ -71,16 +71,16 @@ Custom Method Tutorial
 
 .. only:: html
 
-   This section provides a walk-through of building an example method to show
-   how LCAPI features are used. This code can be found in the "SampleMethod"
-   folder in the LCAPI examples, which can be :download:`downloaded here
+   This section provides a walkthrough of building an example method to show how
+   LCAPI features are used. This code can be found in the "SampleMethod" folder
+   in the LCAPI examples, which can be :download:`downloaded here
    <../_downloads/lcapi_examples.zip>`.
 
 .. only:: latex
 
-   This section provides a walk-through of building an example method to show
-   how LCAPI features are used. This code can be found in the "SampleMethod"
-   folder in the LCAPI examples, which can be `downloaded here
+   This section provides a walkthrough of building an example method to show how
+   LCAPI features are used. This code can be found in the "SampleMethod" folder
+   in the LCAPI examples, which can be `downloaded here
    <http://lassoguide.com/_downloads/lcapi_examples.zip>`_.
 
 The method will simply display its parameters, and it will look like the example
@@ -88,11 +88,11 @@ below when called in Lasso code::
 
    sample_method('some text here', -option1='named param', -option2=12.5)
 
-Notice the method takes one unnamed parameter, one keyword string parameter
-named ``-option1``, and a keyword numeric parameter named ``-option2``. For
-keyword parameters, Lasso does not care about the order in which you pass them,
-so plan to make this method as flexible as possible by not assuming anything
-about their order. The following variations should work exactly the same::
+Notice the method takes one unnamed parameter, one string keyword parameter
+``-option1``, and one numeric keyword parameter ``-option2``. For keyword
+parameters, Lasso does not care about the order in which you pass them, so plan
+to make this method as flexible as possible by not assuming anything about their
+order. The following variations should work exactly the same::
 
    sample_method('some text here', -option1='named param', -option2=12.5)
    sample_method('some text here', -option2=12.5, -option1='named param')
@@ -150,10 +150,10 @@ Below is the C++ code for the custom method:
    }
 
 
-Method Module Code Walk-Through
--------------------------------
+Method Module Code Walkthrough
+------------------------------
 
-This section provides a step-by-step walk-through of the code for the custom
+This section provides a step-by-step walkthrough of the code for the custom
 method module.
 
 #. First, the new method is registered in the required ``registerLassoModule``
@@ -176,7 +176,7 @@ method module.
       osError myTagFunc( lasso_request_t token, tag_action_t action )
       {
 
-   The remainder of the code in the walk-through includes the implementation for
+   The remainder of the code in the walkthrough includes the implementation for
    the ``myTagFunc`` function.
 
 #. Allocate a string to be this method's return value:

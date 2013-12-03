@@ -63,12 +63,12 @@ types::
    }
 
 
-Basic Custom Type Example
-=========================
+Basic Custom Type
+=================
 
 This tutorial walks through the main points of creating a custom type using
 LCAPI. The resulting type is an ``example_file`` type, and the ability to open,
-close, read and write to the file are implemented via the following member
+close, read, and write to the file are implemented via the following member
 methods: ``example_file->open``, ``example_file->close``,
 ``example_file->read``, ``example_file->write``.
 
@@ -137,9 +137,9 @@ methods: ``example_file->open``, ``example_file->close``,
       lasso_typeAllocInteger(token, &i, 0);
       lasso_typeAddDataMember(token, file, kPrivateMember, i);
 
-   This LCAPI ``example_file`` type stores its private data in a structure
-   called ``file_desc_t``. The actual call to `lasso_setPtrMember` is in the
-   method's ``onCreate`` method as shown on lines 344--345 of the
+   This LCAPI ``example_file`` type stores its private data in a structure named
+   ``file_desc_t``. The actual call to `lasso_setPtrMember` is in the method's
+   ``onCreate`` method as shown on lines 344--345 of the
    :file:`CAPIFile.cpp` file::
 
       file_desc_t * desc = new file_desc_t;

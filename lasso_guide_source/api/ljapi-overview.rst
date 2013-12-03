@@ -10,14 +10,9 @@ using Java's libraries that can then be run on all platforms Lasso supports. It
 also gives you access to use Java's standard classes to create and manipulate
 Java objects without writing a line of Java code.
 
-
-Java Native Interface (JNI)
-===========================
-
 The LJAPI functionality is implemented in an LCAPI module that bridges the C/C++
-Java Native Interface (JNI) to Lasso. For more information about interoperating
-with Java using JNI, see
-`<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/jniTOC.html>`_.
+Java Native Interface (JNI) to Lasso. See the Oracle website for more
+information about `interoperating with Java using JNI`_.
 
 
 Requirements
@@ -28,8 +23,8 @@ Requirements
 -  Any other OS-specific packages required for Java support in Lasso installed
 
 
-Execute a Static Method
-=======================
+Executing a Static Method
+=========================
 
 Static methods are methods that are associated with a class, but are not run on
 an instantiated object of that class. This example will walk you through running
@@ -42,7 +37,8 @@ power of the integer.
    interpreter instead of in a Lasso Server instance, you'll need to load the
    LJAPI environment. This can be done with the following two lines of code
    (replace "LJAPI9.bundle" with the name of the library for your OS's
-   installation). ::
+   installation). See the section on :ref:`loading libraries in shell scripts
+   <command-loading-libraries>` for more information. ::
 
       lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/LJAPI9.bundle')
       ljapi_initialize
@@ -61,14 +57,13 @@ Static Method Code
    // => 32.000000
 
 
-Static Method Walk-Through
---------------------------
+Static Method Walkthrough
+-------------------------
 
 One thing to notice is that all the communication is done using
 `java_jvm_getenv`. This method returns the :type:`java_jnienv` object for the
 Lasso instance, and it is this object that allows Lasso to communicate with the
 Java Virtual Machine (JVM).
-
 
 #. The first line of code finds the Java class we want to work with and returns
    a Lasso :type:`jobject`; storing it into the local variable "class". The
@@ -118,8 +113,8 @@ Java Virtual Machine (JVM).
       java_jvm_getenv->CallStaticFloatMethod(#class, #mID, jfloat(4.0), jint(3))
 
 
-Instantiate a Java Object and Execute a Member Method
-=====================================================
+Instantiating a Java Object and Executing a Member Method
+=========================================================
 
 Member methods are methods that are associated with a class and are run on an
 instantiated object of that class. This example will walk you through creating a
@@ -147,8 +142,8 @@ Java Object Member Method Code
    // => 92
 
 
-Java Object Member Method Walk-Through
---------------------------------------
+Java Object Member Method Walkthrough
+-------------------------------------
 
 Once again, all the communication is done using the `java_jvm_getenv` method,
 which wraps the Lasso instance's :type:`java_jnienv` object.
@@ -202,7 +197,7 @@ which wraps the Lasso instance's :type:`java_jnienv` object.
 
 #. The next line isn't actually necessary since the "class" variable already has
    the class information for "java.util.zip.ZipFile", but we have it here to
-   demonstrate how you might deal with wanting to call methods on Java objects
+   demonstrate how you could deal with wanting to call methods on Java objects
    that were returned by other methods. So, `~java_jnienv->GetObjectClass`
    returns the class information for the specified object. For more information,
    see
@@ -225,3 +220,5 @@ which wraps the Lasso instance's :type:`java_jnienv` object.
    ::
 
       java_jvm_getenv->CallIntMethod(#obj, #mID)
+
+.. _interoperating with Java using JNI: http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/jniTOC.html

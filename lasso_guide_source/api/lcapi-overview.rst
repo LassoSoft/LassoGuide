@@ -3,9 +3,9 @@
 .. highlight:: none
 .. _lcapi-overview:
 
-********
-Overview
-********
+**************
+LCAPI Overview
+**************
 
 The :dfn:`Lasso C/C++ Application Programming Interface` (LCAPI) lets you write
 C or C++ code to add new Lasso methods, types, or data source connectors to
@@ -15,13 +15,13 @@ for Windows, OS X, and Linux.
 
 .. only:: html
 
-   This chapter provides a walk-through for building and debugging an example
+   This chapter provides a walkthrough for building and debugging an example
    LCAPI method. You can download the source code for this and other examples
    :download:`here <../_downloads/lcapi_examples.zip>`.
 
 .. only:: latex
 
-   This chapter provides a walk-through for building and debugging an example
+   This chapter provides a walkthrough for building and debugging an example
    LCAPI method. You can download the source code for this and other examples
    `here <http://lassoguide.com/_downloads/lcapi_examples.zip>`_.
 
@@ -54,7 +54,7 @@ following:
 Quick Start
 ===========
 
-This section provides a walk-through for building sample LCAPI method modules.
+This section provides a walkthrough for building sample LCAPI method modules.
 
 Build a sample LCAPI module in Windows
    #. Download and expand the example code.
@@ -141,7 +141,7 @@ Debug in OS X or Linux
 
          $> sudo gdb
 
-      .. note::
+      .. tip::
          For newer versions of OS X, use :command:`lldb` instead of
          :command:`gdb`.
 
@@ -160,7 +160,7 @@ Debug in OS X or Linux
       your web server. GNU Debugger will break at the first line in
       ``tagMathAbsFunc`` when the ``example_math_abs`` method is called.
 
-.. note::
+.. tip::
    Type "help" in GNU Debugger for more information about using the GNU
    Debugger, or search for gdb tutorials on the web for more in-depth
    information.
@@ -254,7 +254,7 @@ How do I write code that will compile easily across multiple operating systems?
    \*nix makefiles that are provided with the sample projects: notice the same
    source code is used for Windows, and all source files are saved with
    DOS-style CR/LF line breaks so as not to confuse the Windows compilers. As a
-   last resort, you can use ``#ifdef`` to show/hide portions of source code that
-   are platform-specific.
+   last resort, you can use ``#ifdef`` to show/hide platform-specific portions
+   of source code.
 
 .. _installing older SDKs: http://hints.macworld.com/article.php?story=20110318050811544

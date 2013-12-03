@@ -63,19 +63,19 @@ which is described later in this chapter::
       auto_lasso_value_t * host, auto_lasso_value_t * usernamepassword );
 
 
-Data Source Connector Example
-=============================
+Basic Data Source Connector
+===========================
 
 .. only:: html
 
-   This section provides a walk-through of an example data source to show how
+   This section provides a walkthrough of an example data source to show how
    some of the LCAPI features are used. This code can be found in the
    "SampleConnector" example project which can be downloaded with the other
    LCAPI examples :download:`here <../_downloads/lcapi_examples.zip>`.
 
 .. only:: latex
 
-   This section provides a walk-through of an example data source to show how
+   This section provides a walkthrough of an example data source to show how
    some of the LCAPI features are used. This code can be found in the
    "SampleConnector" example project which can be downloaded with the other
    LCAPI examples `here <http://lassoguide.com/_downloads/lcapi_examples.zip>`_.
@@ -208,11 +208,11 @@ Below is the code for the Sample Data Source Connector::
    }
 
 
-Data Source Connector Walk-Through
-----------------------------------
+Data Source Connector Walkthrough
+---------------------------------
 
-This section provides a step-by-step walk-through of the code for the custom
-data source connector.
+This section provides a step-by-step walkthrough of the code for the custom data
+source connector.
 
 #. Register the new data source in the ``registerLassoModule`` function::
 
@@ -316,14 +316,13 @@ data source connector.
          lasso_getDataSourceName(token, &v1, &boolnotused, &notused);
          lasso_getTableName(token, &v2);
 
-
 #. In our example, only the "Payroll" table in the "Accounting" database has any
    data in it, so we have a conditional to check to see if the "Accounting"
    database was specified. We then use `lasso_getInputColumnCount` to get the
    number of search fields passed to the `inline`. We have a ``for`` loop to
    retrieve the name/value text for each search parameter. For example,
    ``inline(-database='Accounting', -table='Payroll', 'Employee'='fred',
-   'Wages'='15000')`` will fill the ``columnItem`` variable with the values
+   'Wages'='15000')`` will fill the "columnItem" variable with the values
    "Employee, fred" the first time through the loop, and "Wages, 15000" the
    second time through the loop::
 
