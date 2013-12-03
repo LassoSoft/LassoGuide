@@ -6,10 +6,11 @@ Methods
 *******
 
 Methods are the fundamental process abstraction in many languages, including
-Lasso 9. Methods provide a means for encapsulating a series of expressions so
-that they can be called repeatedly as a group. Complex, multi-step tasks are
-best expressed as a group of related methods. A method is defined under a
-specific name and is associated with a signature and a code block.
+Lasso 9. :dfn:`Methods` provide a means for encapsulating a series of
+expressions so that they can be called repeatedly as a group. Complex,
+multi-step tasks are best expressed as a group of related methods. A method is
+defined under a specific name and is associated with a signature and a code
+block.
 
 
 Signatures
@@ -17,7 +18,7 @@ Signatures
 
 Before method definitions can be understood, it is important to understand
 signatures. A :dfn:`signature` is a description of a method and includes its
-name, parameter names and types, and the method's return value type. Signatures
+name, parameter names, and types, and the method's return value type. Signatures
 are used when defining methods, and simplified signatures are used when defining
 types and traits. This chapter will concentrate on signatures for defining
 methods only.
@@ -27,7 +28,7 @@ name must start with a letter, or one or two leading underscores followed by a
 letter. Letter case is not considered when comparing method names.
 
 Method names beginning with an underscore are generally intended to only be used
-internally, as they represent methods that might change in the future and are
+internally, as they represent methods that could change in the future and are
 therefore considered unstable.
 
 Some valid examples of method names are shown below::
@@ -100,7 +101,7 @@ in the proper order according to the method's signature.
 
 The name of each required parameter must be a valid variable name. Each name
 should begin with a letter or an underscore followed by a letter, then zero or
-more letters, numbers, underscores or period characters.
+more letters, numbers, underscores, or period characters.
 
 The following signature defines two required parameters named ``firstname`` and
 ``lastname``. Within the method these parameters can be accessed through the
@@ -196,7 +197,7 @@ optional. Optional keyword parameters are indicated in the same manner as
 regular optional parameters, by following the parameter name with an equals
 (``=``) and a default value expression.
 
-For example, a hypothetical ``find_in_string`` method might have the following
+For example, a hypothetical ``find_in_string`` method could have the following
 signature. The required input is followed by two keyword parameters: the
 required ``-find`` and the optional ``-ignoreCase``::
 
@@ -211,7 +212,7 @@ ways::
    find_in_string('the fox', -ignoreCase=true, -find='x')
    find_in_string('the fox', -find='x')
 
-Within the method's body, three pre-defined local variables will be created for
+Within the method's body, three predefined local variables will be created for
 these parameters including ``input``, ``find``, and ``-ignoreCase``.
 
 Note that calling the method as ``find_in_string('the fox')`` will generate a
@@ -231,15 +232,15 @@ of its behavior. When calling a method, a keyword parameter can be passed
 without an associated value. Doing so is implicitly the same as passing a
 boolean "true" value for that parameter. Boolean keyword parameters are normally
 specified with a default value of "false" so if the keyword parameter is not
-specified the pre-defined variable will have a value of "false".
+specified the predefined variable will have a value of "false".
 
 The following signature defines the method ``server_date`` as accepting either a
 ``-short`` keyword parameter, a ``-long`` keyword parameter, or neither::
 
    server_date(-short=false, -long=false)
 
-If the method is called as ``server_date(-short)`` then the pre-defined local
-variable "short" will have a value of "true" and the pre-defined local variable
+If the method is called as ``server_date(-short)`` then the predefined local
+variable "short" will have a value of "true" and the predefined local variable
 "long" will have a value of "false". If the method is called as
 ``server_date()`` then both variables will have a value of "false".
 
@@ -251,15 +252,15 @@ The list of parameters may end with three periods (``...``) in order to specify
 that the method should accept a variable number of additional parameters after
 any specified required and optional parameters. The additional parameters are
 known as :dfn:`rest parameters`. When the method is called, any additional
-parameters are placed into a pre-defined local variable named "rest". If there
+parameters are placed into a predefined local variable named "rest". If there
 are no rest parameters, the "rest" local will be "void"; otherwise, it will be a
 staticarray holding the remaining parameter values passed to the method.
 
 The signature below specifies that the ``string_concatenate`` method requires
 one parameter named ``value``, but will accept any number of additional
 parameters. Within the method, the first parameter will be placed into the
-pre-defined local variable "value", and the remaining parameters, if any, will
-be placed into the pre-defined local variable "rest"::
+predefined local variable "value", and the remaining parameters, if any, will
+be placed into the predefined local variable "rest"::
 
    string_concatenate(value, ...)
 
@@ -309,9 +310,7 @@ and unconstrained parameters can be mixed. ::
 
    method_name(firstname::string, lastname)
    method_name(firstname, lastname::string)
-   method_name(firstname::string, lastname::string,
-         -age::decimal=0.0,
-         -dept='')
+   method_name(firstname::string, lastname::string, -age::decimal=0.0, -dept='')
 
 Within a method body, parameters with type constraints translate into local
 variables with type constraints. A parameter that is constrained to accept a
@@ -366,16 +365,14 @@ be called except with a target instance of ``type_name``. The second signature
 can be called at any point without a target type instance.
 
 
-Syntax for Signatures
----------------------
+Signature Syntax
+----------------
 
-What follows are the syntax diagrams for signatures and their related elements.
+These are the syntax diagrams for signatures and their related elements.
 
-.. figure:: /_static/syntax_diagram_signature.png
+.. image:: /_static/syntax_signature.*
    :align: center
-   :alt: syntax diagram for signatures
-
-   Signature Syntax Diagrams
+   :alt: Syntax diagram for signatures
 
 
 Defining Methods
@@ -424,10 +421,9 @@ value expression. ::
 Code Blocks
 -----------
 
-Many methods will need to do more than return a single easily calculated value.
-A method body can be composed of multiple expressions enclosed by a pair of
-curly braces (``{ ... }``). This type of method body is referred to as a code
-block.
+Many methods do more than return a single easily calculated value. A method body
+can be composed of multiple expressions enclosed by a pair of curly braces (``{
+... }``). This type of method body is referred to as a code block.
 
 Code blocks provide the most flexibility when defining methods. They allow a
 series of expressions to be encapsulated as the implementation of the method.
@@ -459,16 +455,14 @@ the method::
    }
 
 
-Syntax for define
------------------
+define Syntax
+-------------
 
-What follows is the syntax diagram for ``define``.
+This is the syntax diagram for ``define``.
 
-.. figure:: /_static/syntax_diagram_define.png
+.. image:: /_static/syntax_define.*
    :align: center
-   :alt: syntax diagram for define
-
-   ``define`` Syntax Diagram
+   :alt: Syntax diagram for define
 
 
 Multiple Dispatch
@@ -608,9 +602,7 @@ Number of Parameters Example
 
 The number of parameters that a set of methods accepts can be used to determine
 method dispatch. For example, one method may require a single parameter while a
-second method requires two parameters, such as in the example that follows. Note
-how the body of the second method calls the first method to get the initial
-result string before augmenting it and returning that value. ::
+second method requires two parameters, such as in the example that follows::
 
    define log_object(a::array) => {
       return '[log] array with ' + #a->size + ' elements'
@@ -628,3 +620,6 @@ result string before augmenting it and returning that value. ::
    // =>
    // [log] array with 5 elements
    // [log] array with 5 elements. Elements: 1, 2, 3, 4, 5
+
+Note how the body of the second method calls the first method to get the initial
+result string before augmenting it and returning that value.
