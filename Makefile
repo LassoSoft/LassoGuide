@@ -43,7 +43,7 @@ clean:
 	-rm -rf $(BUILDDIR)/*
 
 pdfdownload: $(wildcard $(BUILDDIR)/latex/LassoGuide*.pdf)
-	-rsync -aq $(BUILDDIR)/latex/LassoGuide*.pdf $(BUILDDIR)/html
+	-rsync -aq $(BUILDDIR)/latex/LassoGuide*.pdf $(BUILDDIR)/html/
 
 html: pdfdownload
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html

@@ -7,7 +7,10 @@
 %%%%%%%%%%%%%%%%%%%
 
 .. include:: foreword.rst
+.. include:: preface.rst
 
+
+.. _book-get-start:
 
 ##########################
 Getting Started with Lasso
@@ -21,7 +24,6 @@ A Taste of Lasso
 
 .. toctree::
 
-   /index
    /getstart/overview/basics
    /getstart/overview/features
    /getstart/overview/serving
@@ -74,7 +76,7 @@ Language Elements
    /language/threading
 
 
-.. Operations Guide broken down into parts
+.. _book-data:
 
 #############
 Data Handling
@@ -92,6 +94,8 @@ Data Handling
    /operations/serialization-compression
 
 
+.. _book-input-output:
+
 #######################
 System Input and Output
 #######################
@@ -106,6 +110,8 @@ System Input and Output
    /operations/sys-process
 
 
+.. _book-development:
+
 #######################
 Application Development
 #######################
@@ -118,6 +124,8 @@ Application Development
    /operations/lassoapps
    /operations/command-line-tools
 
+
+.. _book-communication:
 
 ######################
 External Communication
@@ -133,6 +141,8 @@ External Communication
    /operations/protocols-pipes
 
 
+.. _book-databases:
+
 ###################
 Database Operations
 ###################
@@ -146,6 +156,8 @@ Database Operations
    /databases/odbc-data-sources
    /databases/filemaker-data-sources
 
+
+.. _book-extending:
 
 ###############
 Extending Lasso

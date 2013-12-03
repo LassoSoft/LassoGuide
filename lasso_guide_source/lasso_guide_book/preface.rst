@@ -1,9 +1,13 @@
-.. http://www.lassosoft.com/Language-Guide-Overview
-.. _lasso-guide-index:
+.. raw:: latex
 
-*****************************
- Welcome to **Lasso**\ Guide
-*****************************
+   \cleardoublepage
+   \phantomsection
+   \section*{\Huge Welcome to \textbf{Lasso}Guide}
+   \addcontentsline{toc}{chapter}{Preface}
+   \pagestyle{plain}
+   \bigskip
+   \begingroup
+   \titleformat{\paragraph}{\Large}{}{}{}
 
 Lasso is a powerful programming language used to drive millions of web pages
 from servers around the world. It has an easy-to-master syntax and allows fast,
@@ -11,50 +15,42 @@ flexible development and scripting. Lasso can be used in many ways, and as a
 language, provides a virtually infinite set of shortcuts for achieving
 development goals.
 
-What follows is a living set of documentation for the Lasso 9 programming
-language. As this documentation will be improved over time, please review
-regularly during your development and feel free to ask questions or make
-suggestions for improvement. Send all requests or suggestions to
-docs@lassosoft.com where we will review and answer as soon as possible.
-
-.. toctree::
-   :maxdepth: 1
-
-   /getstart/index_getstart
-   /server/index_server
-   /language/index_language
-   /operations/index_operations
-   /databases/index_databases
-   /api/index_api
+This guide is meant to serve as both an introduction and comprehensive manual to
+Lasso |version|. The material in this guide will evolve and improve along with
+Lasso. The most up-to-date version of this documentation containing all
+improvements can be found at `<http://lassoguide.com/>`_.
 
 
-How to Use This Guide
-=====================
+.. rubric:: Organization of This Guide
 
-This guide has many parts and is intended to cover all aspects of the Lasso
-programming language. Due to the comprehensive nature of this guide, the
-following suggestions are provided to help you get the most out of this
-documentation without reading every word.
+This guide is divided up into eight parts covering all aspects of the Lasso
+programming language.
 
--  Read most everything in the introduction, but read only the installation
-   instructions for the OS you are using. Also, if you are just getting
-   started, you can skim the :ref:`instance-manager` and
-   :ref:`instance-administration` chapters and come back to them when you
-   need to.
+-  :ref:`book-get-start` introduces the basic features of the Lasso language and
+   server, as well as instructions for installing and configuring Lasso.
 
--  After reading through :ref:`lasso-get-start-index`, you are probably ready
-   to start digging into developing with Lasso. As you get up to speed, keep
-   the :ref:`lasso-language-guide-index` handy to familiarize yourself with
-   the basic features and syntax.
+-  :ref:`book-language` covers the syntax and features of the Lasso language.
+   Read this thoroughly for a complete understanding of how Lasso code is
+   structured.
 
--  Read through the chapter titles in all of the other sections to
-   familiarize yourself with the contents of this documentation and what's
-   available in the language. When you find yourself needing more information
-   about some aspect or feature of Lasso, you'll know where to find it.
+-  :ref:`book-data`, :ref:`book-input-output`, :ref:`book-development`, and
+   :ref:`book-communication` detail the capabilities of the libraries that ship
+   with Lasso, divided into appropriate categories. Method definitions and
+   examples of common use cases are included.
+
+-  :ref:`book-databases` describes Lasso's database connection interface. Basic
+   database operations as well as pointers about specific database types are
+   covered.
+
+-  :ref:`book-extending` includes tutorials and references for adding your own
+   functionality using Lasso's C and Java APIs.
+
+Explanations, method definitions, and code examples are arranged within the text
+to teach you the Lasso platform step-by-step. An index is also available to help
+find information about a particular language element.
 
 
-Conventions Used in This Guide
-==============================
+.. rubric:: Conventions Used in This Guide
 
 There are many code samples used throughout this guide. References to methods,
 types, or traits and small snippets of code inlined with other text are set in a
@@ -89,8 +85,7 @@ commands will be shown using the line comment convention as outlined above for
 code blocks.
 
 
-Additional Resources
-====================
+.. rubric:: Additional Resources
 
 Here are some additional resources you may find useful:
 
@@ -117,20 +112,12 @@ Here are some additional resources you may find useful:
 `LassoGuide source <http://source.lassosoft.com/svn/guide/>`_
    The SVN repository containing the full LassoGuide source.
 
+.. raw:: latex
 
-Appendices
-==========
-
--  :ref:`search`
--  :ref:`genindex`
--  :ref:`copyright-license`
-
-.. -  :ref:`glossary`
-
-.. toctree::
-   :hidden:
-
-   /acknowledgements
-   /license
-
-..   glossary
+   \endgroup
+   \vfill
+   \clearpage
+   \thispagestyle{empty}
+   \cleardoublepage
+   \pagenumbering{arabic}
+   \pagestyle{normal}

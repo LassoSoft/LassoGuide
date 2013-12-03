@@ -65,7 +65,7 @@ release = '9.2'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['**/.svn', 'glossary.rst', 'lasso_guide_book/foreword.rst']
+exclude_patterns = ['**/.svn', 'glossary.rst', 'lasso_guide_book/foreword.rst', 'lasso_guide_book/preface.rst']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 default_role = 'meth'
@@ -247,10 +247,10 @@ latex_elements = {
 }
 {\endlist}
 
-% Style the ToC title
+% Style the ToC title and add space between chapter numbers/titles
 \usepackage[titles]{tocloft}
+\addtolength{\cftsecnumwidth}{0.5em}
 
-%%
 % For some reason, this works to get the default font color
 % (Using fontspec never allowed for Sphinx's overrides to kick in.)
 \makeatletter

@@ -1,7 +1,7 @@
 .. raw:: latex
 
    \cleardoublepage
-   \section*{Foreword}
+   \section*{\Huge Foreword}
    \addcontentsline{toc}{chapter}{Foreword}
    \thispagestyle{plain}
    \vfill
@@ -56,4 +56,3 @@ Long Live Lasso!
    \clearpage
    \thispagestyle{empty}
    \cleardoublepage
-   \pagenumbering{arabic}
