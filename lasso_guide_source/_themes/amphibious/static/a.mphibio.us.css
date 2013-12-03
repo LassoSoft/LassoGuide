@@ -44,7 +44,7 @@ body {
 	-ms-text-size-adjust: 100%;
 }
 .container {font-size: 1.1em; -webkit-backface-visibility: hidden;}
-.container .container {font-size: 1.0em;} /* Fix for conflict with the container:: directive */
+.container .container {font-size: 1.0em;-webkit-transform-style: preserve-3d;} /* Fix for conflict with the container:: directive */
 
 /* Using proportional font sizes for proper cascade
 ================================================== */
