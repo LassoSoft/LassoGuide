@@ -127,16 +127,13 @@ latexpdf:
 
 # PDF for paperback edition
 latexpdfpb:
-	$(SPHINXBUILD) -b latex -D pygments_style=bw $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	$(SPHINXBUILD) -b latex -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-0-1}' -D pygments_style=bw $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
 	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
 	mv -f  $(BUILDDIR)/latex/Makefile{2,}
 	@echo "Implementing ugly hack to fix spacing of content inside descriptions using style=nextline..."
 	awk '{gsub(/leavevmode\\begin/,"leavevmode\\vspace*{-1.2\\baselineskip}\\begin")}; 1' $(BUILDDIR)/latex/LassoGuide9.2.tex | sed '/leavevmode$$/{N;s/\n\s*$$//;}' > $(BUILDDIR)/latex/LassoGuide9.2.temp
 	mv -f  $(BUILDDIR)/latex/LassoGuide9.2.{temp,tex}
-	@echo "Implementing ugly hack to change the ISBN..."
-	awk '{gsub(/978-0-9936363-1-8/,"978-0-9936363-0-1")}; 1' $(BUILDDIR)/latex/sphinxmanual.cls > $(BUILDDIR)/latex/sphinxmanual.temp
-	mv -f  $(BUILDDIR)/latex/sphinxmanual.{temp,cls}
 	@echo "Running LaTeX files through XeLaTeX..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
 	mv -f  $(BUILDDIR)/latex/LassoGuide{,Paperback}9.2.pdf

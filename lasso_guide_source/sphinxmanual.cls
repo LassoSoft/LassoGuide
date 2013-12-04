@@ -99,7 +99,7 @@
   \hspace*{2em} LassoGuide : Release 9.2 / LassoSoft Inc. -- 1st ed. \\
   \hspace*{2em} p. \hspace*{2em} cm. \\
   \hspace*{2em} Includes index. \\
-  \hspace*{2em} ISBN: 978-0-9936363-1-8 \par
+  \hspace*{2em} ISBN: \isbn \par
 
   BISAC subject headings: \\
   \hspace*{2em} COM060160	\hspace*{2em} COMPUTERS / Web / Web Programming \\

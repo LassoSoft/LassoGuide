@@ -186,6 +186,9 @@ htmlhelp_basename = 'LassoGuide-doc'
 # -- Options for LaTeX output --------------------------------------------------
 
 latex_elements = {
+    # Unused by XeLaTeX, so we commandeer it to set the ISBN
+    'cmappkg': '\\newcommand\\isbn{978-0-9936363-1-8}',
+
     # The paper size ('letterpaper' or 'a4paper').
     'papersize': 'letterpaper',
 
@@ -195,8 +198,8 @@ latex_elements = {
     'inputenc': '',
     'utf8extra': '',
     'fontpkg': '',
-    'fncychap':'\\usepackage{fncychap}',
-    'fontenc':'',
+    'fncychap': '\\usepackage{fncychap}',
+    'fontenc': '',
 
     # Need to add blank page at the end for publisher
     'printindex': r'\printindex \pagestyle{empty} \clearpage\null\vfill\pagestyle{empty}\par',
