@@ -4,61 +4,65 @@
 ODBC Data Sources
 *****************
 
-This chapter documents methods and behaviors which are specific to the ODBC data
+This chapter documents methods and behaviors that are specific to the ODBC data
 source in Lasso. Native support for ODBC data sources is included in Lasso. This
-feature allows Lasso to communicate with hundreds of ODBC compliant data
+feature allows Lasso to communicate with hundreds of ODBC-compliant data
 sources, including Sybase, DB2, Frontbase, OpenBase, Interbase, and Microsoft
 SQL Server. For more information on ODBC connectivity and availability for a
 particular data source, see the data source documentation or contact the data
-source manufacturer.
+source provider.
 
-Lasso accesses ODBC drivers which are set up as System DSNs. The ODBC Data
-Source Administrator utility or control panel should be used to configure the
-driver as a System DSN, then the data source name is entered into Lasso. See the
-:ref:`Setting Up Data Sources <datasource-setup>` chapter for additional
-details.
+Lasso accesses ODBC drivers that are set up as System DSNs. The ODBC Data Source
+Administrator utility or control panel should be used to configure the driver as
+a System DSN, after which the data source name can be entered into Lasso. See
+the :ref:`datasource-setup` chapter for additional details.
 
 
 Tips for Using ODBC Data Sources
 ================================
 
-The following is a list of tips to following when writing Lasso code that
+The following is a list of guidelines to follow when writing Lasso code that
 interfaces with ODBC data sources.
 
 -  Always specify a primary key field using the ``-keyField`` parameter in
    ``-search``, ``-add``, and ``-findAll`` actions. This will ensure that the
    `keyField_value` method will always return a value.
+
 -  Use ``-keyField`` and ``-keyValue`` to reference a particular record for
    updates or deletes.
+
 -  Some data sources will truncate any data beyond the length they are set up to
    store. Ensure that all fields have sufficient capacity for the values that
    need to be stored in them.
--  Use ``-returnField`` parameters to reduce the number of fields which are
+
+-  Use ``-returnField`` parameters to reduce the number of fields that are
    returned from a ``-search`` action. Returning only the fields that need to be
    used for further processing or shown to the site visitor reduces the amount
    of data that needs to travel between Lasso and the data source.
+
 -  When an ``-add`` or ``-update`` action is performed on a database, the data
    from the added or updated record is available inside the associated block of
    the `inline` method. If the ``-returnField`` parameter is used, then only
    those fields specified should be returned from an ``-add`` or ``-update``
    action. Setting ``-maxRecords=0`` can be used as an indication that no record
    should be returned.
--  SQL statements which are generated using visitor-defined data should
-   be screened carefully for unwanted commands such as "DROP" or
-   "GRANT".
+
+-  SQL statements that are generated using visitor-defined data should be
+   screened carefully for unwanted commands such as "DROP" or "GRANT".
+
 -  Always sanitize any inputs from site visitors that are incorporated into SQL
-   statements. For example, any SQL strings that have visitor defined data
-   should be sanitized using the `string->encodeSql` method for MySQL data
-   sources and the `string->encodeSql92` method for SQL92 compliant data sources
-   such as SQLite, PostgreSQL, or JDBC data sources. Encoding the values in this
-   manner ensures that quotes and other reserved characters are properly escaped
-   within the SQL statement thereby helping to prevent SQL injection attacks.
+   statements. For example, any SQL strings that have visitor-defined data
+   should be sanitized using the `string->encodeSql` method for MySQL-like data
+   sources or the `string->encodeSql92` method for SQL92-compliant data sources
+   or JDBC data sources. Encoding the values in this manner ensures that quotes
+   and other reserved characters are properly escaped within the SQL statement,
+   thereby helping to prevent SQL injection attacks.
 
    For example, the following SQL "SELECT" statement contains a SQL string in
    the LIKE clause and uses `string->encodeSql92` to encode the value of the
-   "company" `web_request->param`. This encoding causes all single quotes within
-   the passed "company" parameter to be encoded with an additional single
-   quote::
+   ``'company'`` `web_request->param`. This encoding causes all single quotes
+   within the passed ``company`` parameter to be encoded with an additional
+   single quote. ::
 
       local(sql_statement) = "SELECT * FROM contacts.people WHERE " +
          "company LIKE '" + string(web_request->param('company'))->encodeSql92 + "%'"
@@ -70,54 +74,42 @@ interfaces with ODBC data sources.
 
       SELECT * FROM Contacts.People WHERE Company LIKE 'McDonald''s'
 
--  Lasso 9 uses connection pooling when connecting to data sources via ODBC,
-   and the ODBC connections will remain open during the time that Lasso 9 is
+-  Lasso 9 uses connection pooling when connecting to data sources via ODBC, and
+   the ODBC connections will remain open during the time that Lasso 9 is
    running.
 
 
-Feature Matrix
-==============
+Supported Features for ODBC Data Sources
+========================================
 
-The following table details the features of each data source in this chapter.
-Since some features are only available in certain data sources it is important
-to check these tables when reading the documentation in order to ensure that
-each data source supports your solutions required features.
+The following chart details the features of this data source connector.
 
-.. table:: Table: ODBC Data Sources
-
-   +-----------------------+---------------------------------------------------+
-   |Feature                |Description                                        |
-   +=======================+===================================================+
-   |Friendly Name          |Lasso Connector for ODBC                           |
-   +-----------------------+---------------------------------------------------+
-   |Internal Name          |odbc                                               |
-   +-----------------------+---------------------------------------------------+
-   |Module Name            |SQLConnector.dll, SQLConnector.dylib, or           |
-   |                       |SQLConnector. so                                   |
-   +-----------------------+---------------------------------------------------+
-   |Inline Host Attributes |The ``-name`` should specify the data source name  |
-   |                       |(System DSN). A ``-username`` and ``-password``    |
-   |                       |may also be required.                              |
-   +-----------------------+---------------------------------------------------+
-   |Actions                |``-add``, ``-delete``, ``-findAll``, ``-search``,  |
-   |                       |``-show``, ``-sql``, ``-update``                   |
-   +-----------------------+---------------------------------------------------+
-   |Operators              |``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``,       |
-   |                       |``-gte``, ``-lt``, ``-lte``, ``-nbw``, ``-ncn``,   |
-   |                       |``-new``, ``-opBegin``/``-opEnd`` with "and",      |
-   |                       |"or", "not".                                       |
-   +-----------------------+---------------------------------------------------+
-   |KeyField               |``-keyField``/``-keyValue``                        |
-   +-----------------------+---------------------------------------------------+
+:Friendly Name:
+   Lasso Connector for ODBC
+:Internal Name:
+   odbc
+:Module Name:
+   SQLConnector.dll, SQLConnector.dylib, or SQLConnector. so
+:Inline Host Attributes:
+   The ``-name`` should specify the data source name (System DSN). A
+   ``-username`` and ``-password`` may also be required.
+:Actions:
+   ``-add``, ``-delete``, ``-findAll``, ``-search``, ``-show``, ``-sql``,
+   ``-update``
+:Operators:
+   ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
+   ``-nbw``, ``-ncn``, ``-new``; ``-opBegin``/``-opEnd`` with "and", "or",
+   "not".
+:KeyField:
+   ``-keyField``/``-keyValue``
 
 
 Using ODBC Data Sources
 =======================
 
-Data source operations outlined in the
-:ref:`Database Interaction Fundamentals <database-interaction>`,
-:ref:`Searching and Displaying Data <searching-displaying>`, and
-:ref:`Adding and Updating Records <adding-updating>` chapters are supported with
-ODBC data sources. Because ODBC is a standardized API for connecting to tabular
-data sources, there are no unique methods in Lasso 9 that are specific to ODBC
-data sources or invoke special functions specific to any ODBC data source.
+Data source operations outlined in the :ref:`database-interaction`,
+:ref:`searching-displaying`, and :ref:`adding-updating` chapters are supported
+with ODBC data sources. Because ODBC is a standardized API for connecting to
+tabular data sources, there are no unique methods in Lasso 9 that are specific
+to ODBC data sources or invoke special functions specific to any ODBC data
+source.
