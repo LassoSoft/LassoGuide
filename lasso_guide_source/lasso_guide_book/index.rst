@@ -105,7 +105,7 @@ System Input and Output
    /operations/files
    /operations/images-media
    /operations/pdf
-   /operations/xml
+   /operations/xml-documents
    /operations/logging
    /operations/sys-process
 

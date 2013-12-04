@@ -37,7 +37,7 @@
       files
       images-media
       pdf
-      xml
+      xml-documents
       logging
       os-process
       sys-process

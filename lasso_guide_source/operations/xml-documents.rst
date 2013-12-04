@@ -1,8 +1,8 @@
-.. _xml:
+.. _xml-documents:
 
-***
-XML
-***
+*************
+XML Documents
+*************
 
 Lasso provides a full suite of objects both for constructing new XML documents
 and parsing existing XML documents. Lasso's implementation follows the `DOM
@@ -14,7 +14,7 @@ method for parsing existing XML data. This method is called `xml` and does not
 conform to the DOM specification.
 
 Lasso also provides both XPath and XSLT functionality. This functionality is
-integrated into the XML object model, although it is not considered part of the
+integrated into the XML object model, though it is not considered part of the
 DOM specification itself.
 
 In cases where elements are accessed by numeric position, Lasso's implementation
@@ -22,92 +22,97 @@ conforms to the DOM specification's zero-based indexes, as opposed to Lasso's
 standard one-based positions. This will be noted in all relevant cases within
 this chapter.
 
-The following table lists all the possible objects which may be encountered
+The following table lists all the possible objects that may be encountered
 within or inserted into an XML document.
 
 .. tabularcolumns:: |l|l|L|
 
-=========================== ===================== ==============================
-Lasso Object Name           DOM Level 2 Name      Purpose
-=========================== ===================== ==============================
-`xml_DOMImplementation`     DOMImplementation     Creates `xml_document` and
-                                                  `xml_documentType` objects.
-                                                  Can parse existing XML
-                                                  documents or create new empty
-                                                  documents.
-`xml_node`                  Node                  Base functionality supported
-                                                  by all objects.
-`xml_document`              Document              Represents the entire
-                                                  document provides access to
-                                                  the document's data.
-`xml_element`               Element               Represents an XML element
-                                                  node.
-`xml_attr`                  Attr                  Represents an attribute of an
-                                                  XML element node.
-`xml_characterData`         CharacterData         Represents character data
-                                                  within the document. This is
-                                                  the base object type for
-                                                  `xml_text` and
-                                                  `xml_cdataSection` objects.
-`xml_text`                  Text                  Represents the character data
-                                                  of an `xml_element` or
-                                                  `xml_attr` node.
-`xml_cdataSection`          CDATASection          Represents a CDATA node.
-`xml_entityReference`       EntityReference       Represents an entity
-                                                  reference.
-`xml_entity`                Entity                Represents a parsed or
-                                                  unparsed entity within the
-                                                  document.
-`xml_processingInstruction` ProcessingInstruction Represents a processing
-                                                  instruction located within the
-                                                  document.
-`xml_comment`               Comment               Represents the content of an
-                                                  XML comment node.
-`xml_documentType`          DocumentType          Represents the doctype
-                                                  attribute of an XML document.
-`xml_documentFragment`      DocumentFragment      Represents a minimal document
-                                                  object.
-`xml_notation`              Notation              Represents a notation declared
-                                                  in the DTD.
-`xml_nodeList`              NodeList              Represents a list of node
-                                                  objects. Provides random
-                                                  access to the list. This list
-                                                  uses zero-based indexes, in
-                                                  contrast to Lasso's standard
-                                                  one-based positions.
-`xml_namedNodeMap`          NamedNodeMap          Represents a collection of
-                                                  nodes which can be accessed by
-                                                  name.
-=========================== ===================== ==============================
+.. _xml-object-names:
+
+.. table:: XML Object Names
+
+   =========================== ===================== ===========================
+   Lasso Object Name           DOM Level 2 Name      Purpose
+   =========================== ===================== ===========================
+   `xml_DOMImplementation`     DOMImplementation     Creates `xml_document` and
+                                                     `xml_documentType` objects.
+                                                     Can parse existing XML
+                                                     documents or create new
+                                                     empty documents.
+   `xml_node`                  Node                  Base functionality
+                                                     supported by all objects.
+   `xml_document`              Document              Represents the entire
+                                                     document provides access to
+                                                     the document's data.
+   `xml_element`               Element               Represents an XML element
+                                                     node.
+   `xml_attr`                  Attr                  Represents an attribute of
+                                                     an XML element node.
+   `xml_characterData`         CharacterData         Represents character data
+                                                     within the document. This
+                                                     is the base object type for
+                                                     `xml_text` and
+                                                     `xml_cdataSection` objects.
+   `xml_text`                  Text                  Represents the character
+                                                     data of an `xml_element` or
+                                                     `xml_attr` node.
+   `xml_cdataSection`          CDATASection          Represents a CDATA node.
+   `xml_entityReference`       EntityReference       Represents an entity
+                                                     reference.
+   `xml_entity`                Entity                Represents a parsed or
+                                                     unparsed entity within the
+                                                     document.
+   `xml_processingInstruction` ProcessingInstruction Represents a processing
+                                                     instruction located within
+                                                     the document.
+   `xml_comment`               Comment               Represents the content of
+                                                     an XML comment node.
+   `xml_documentType`          DocumentType          Represents the doctype
+                                                     attribute of an XML
+                                                     document.
+   `xml_documentFragment`      DocumentFragment      Represents a minimal
+                                                     document object.
+   `xml_notation`              Notation              Represents a notation
+                                                     declared in the DTD.
+   `xml_nodeList`              NodeList              Represents a list of node
+                                                     objects. Provides random
+                                                     access to the list. This
+                                                     list uses zero-based
+                                                     indexes, in contrast to
+                                                     Lasso's standard one-based
+                                                     positions.
+   `xml_namedNodeMap`          NamedNodeMap          Represents a collection of
+                                                     nodes that can be accessed
+                                                     by name.
+   =========================== ===================== ===========================
 
 
 Creating XML Documents
 ======================
 
-XML documents are created either from existing XML character data or from
-scratch. A document created from scratch will initially contain only the root
-document node which can then have children or attributes added to it. A document
-created from existing XML character data will be parsed and validated and the
-resulting document object tree will be created. When attempting to create an XML
-document from existing data, if the data is not valid, then a failure will be
-generated during parsing. The current `error_msg` will indicate the error that
-was encountered.
+XML documents are created either from existing XML character data or as empty
+documents. An empty XML document will initially contain only the root document
+node which can then have children or attributes added to it. A document created
+from existing XML character data will be parsed and validated and the resulting
+document object tree will be created. When attempting to create an XML document
+from existing data, if the data is not valid, then a failure will be generated
+during parsing. The current `error_msg` will indicate the encountered error.
 
 New XML documents can be created in one of two ways: the DOM Level 2-conformant
-`xml_DOMImplementation` object, or the `xml` method. Both have the same
+:type:`xml_DOMImplementation` type, or the `xml` method. Both have the same
 abilities, but the `xml` method provides a simplified interface and is
 compatible with earlier Lasso versions. It's important to note that `xml` is not
-itself an object, it is merely a method which provides a moderately easier to
-use interface to XML document creation. Internally, the `xml` method uses the
-`xml_DOMImplementation` object and therefore provides equivalent functionality
-to the `xml_DOMImplementation` object.
+itself an object, it is merely a method that provides a moderately easier to use
+interface to XML document creation. Internally, the `xml` method uses the
+:type:`xml_DOMImplementation` type and therefore provides equivalent
+functionality to the :type:`xml_DOMImplementation` type.
 
 
 Using xml
 ---------
 
 The `xml` method is presented in five variations; two for parsing existing XML
-documents and three for creating new from-scratch documents.
+documents and three for creating new blank documents.
 
 .. method:: xml(text::string)
 .. method:: xml(text::bytes)
@@ -133,20 +138,20 @@ In all cases, the resulting value from the `xml` method will be the root element
 of the document. This will be an object of type :type:`xml_element`. It's
 important to note that this is not the `xml_document` object, which differs from
 the root element node. This behavior is a departure from that of the
-`xml_DOMImplementation` object which does return the `xml_document` object
+:type:`xml_DOMImplementation` type which does return the `xml_document` object
 itself. The owning `xml_document` object can be obtained from any node within
 that document by calling the `xml_node->ownerDocument` method.
 
 
 xml Examples
-------------
+^^^^^^^^^^^^
 
-Create an XML document from existing data::
+Example of creating an XML document from existing data::
 
    local(myDocumentText) = '<a><b>b content</b><c/></a>'
    local(myDocumentObj)  = xml(#myDocumentText)
 
-Create XML document from scratch::
+Example of creating a blank XML document::
 
    local(myDocumentObj) = xml('my_namespace', 'a')
 
@@ -155,8 +160,8 @@ Using xml_DOMImplementation
 ---------------------------
 
 The :type:`xml_DOMImplementation` type provides comparable functionality to the
-`xml` method, but follows the DOM Level 2 specification. The
-`xml_DOMImplementation` object itself is stateless and can be created with zero
+`xml` method, but follows the DOM Level 2 specification. An object of the type
+:type:`xml_DOMImplementation` is stateless and can be created with zero
 parameters. Once an `xml_DOMImplementation` object is obtained it can be used to
 create or parse XML documents as well as create XML document types.
 
@@ -166,20 +171,20 @@ This functionality is presented in the following four methods.
 
 .. member:: xml_DOMImplementation->createDocument(namespaceUri::string, rootNodeName::string)
 .. member:: xml_DOMImplementation->createDocument(namespaceUri::string, rootNodeName::string, dtd::xml_documentType)
+.. member:: xml_DOMImplementation->createDocumentType(qname::string, publicid::string, systemid::string)
 .. member:: xml_DOMImplementation->parseDocument(text::bytes)
-.. member:: xml_DOMImplementation->createDocumentType(qname::string, publicId::string, systemId::string)
 
 In contrast to the `xml` method, when creating or parsing an XML document the
-`xml_DOMImplementation` returns the document node. This will be an object of
-type :type:`xml_document`. It's important to note that this is not the root
+`xml_DOMImplementation` object returns the document node. This will be an object
+of type :type:`xml_document`. It's important to note that this is not the root
 element node. The root element node can be obtained through the
 `xml_document->documentElement` method.
 
 
 xml_DOMImplementation Examples
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create XML document from existing data::
+Example of creating an XML document from existing data::
 
    local(myDocumentText) = '<a><b>b content</b><c/></a>'
    local(myDocumentObj)  =
@@ -187,7 +192,7 @@ Create XML document from existing data::
          bytes(#myDocumentText)
       )
 
-Create XML document from scratch::
+Example of creating a blank XML document::
 
    local(domImpl) = xml_DOMImplementation
    local(docType) = #domImpl->createDocumentType(
@@ -203,7 +208,7 @@ Create XML document from scratch::
 
 The resulting document would have the following format:
 
-.. code-block:: none
+.. code-block:: xml
 
    <?xml version="1.0" encoding="UTF-8"?>
    <!DOCTYPE svg:svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -215,7 +220,7 @@ Creating XML Node Objects
 
 While the `xml_DOMImplementation` object is responsible for creating the initial
 `xml_document` object, the `xml_document` object is the means through which new
-XML node object types are created, including element, attribute and text nodes.
+XML node object types are created, including element, attribute, and text nodes.
 All XML objects always belong to a particular `xml_document` instance. No XML
 node objects can be created without an existing document. Nodes can be copied
 into another existing `xml_document`, but nodes are never shared between
@@ -294,7 +299,7 @@ to show the methods most commonly used when working with an XML document.
    the node type. For example an attribute node will return the attribute value.
    A text node will return the text content for the node. Many node types, such
    as element nodes, will return "null". This value is read/write for nodes that
-   have values (see `xml_node->nodeValue=` method).
+   have values (see the `xml_node->nodeValue=` method).
 
 .. member:: xml_node->parentNode()
 
@@ -303,7 +308,7 @@ to show the methods most commonly used when working with an XML document.
 
 .. member:: xml_node->ownerDocument()
 
-   Returns the `xml_document` which is the owner of the target node. In the case
+   Returns the `xml_document` that is the owner of the target node. In the case
    of the document node, this will be "null".
 
 .. type:: xml_element
@@ -350,7 +355,7 @@ to show the methods most commonly used when working with an XML document.
 
 .. member:: xml_attr->ownerElement()
 
-   Returns the element node which owns the attribute or "null" if the attribute
+   Returns the element node that owns the attribute or "null" if the attribute
    is not in use.
 
 .. member:: xml_attr->value()::string
@@ -432,7 +437,7 @@ removing items from node maps.
 
 .. member:: xml_element->setAttributeNS(uri::string, qname::string, value::string)
 
-   Adds an attribute with the given namespace, name and value. If the attribute
+   Adds an attribute with the given namespace, name, and value. If the attribute
    already exists its value is set accordingly.
 
 .. member:: xml_element->setAttributeNode(node::xml_attr)
@@ -488,6 +493,10 @@ on any :type:`xml_node` type through the `xml_node->extract` and
 `xml_node->extractOne` methods. Consult the `XPath specification`_ for the
 specifics of XPath syntax.
 
+
+Using XPath
+-----------
+
 XPath is used to address a specific set of nodes within an XML document. For
 example, child nodes matching a node name pattern can be located, or nodes with
 specific attributes can be easily found within the document.
@@ -499,9 +508,9 @@ specific attributes can be easily found within the document.
 .. member:: xml_node->extract(xpath::string, namespaces::staticarray)
 
    Executes the XPath in the node and returns all matches as a staticarray. This
-   method should be used for XML documents which use namespaces. The second
+   method should be used for XML documents that use namespaces. The second
    parameter is a staticarray containing the relevant namespace prefixes and URI
-   pairs which are used within the XPath expression. Note that the namespace
+   pairs that are used within the XPath expression. Note that the namespace
    prefixes used in the XPath expression do not have to match those used within
    the document itself.
 
@@ -513,15 +522,15 @@ specific attributes can be easily found within the document.
 .. member:: xml_node->extractOne(xpath::string, namespaces::staticarray)
 
    Executes the XPath in the node and returns the first matching node or "null"
-   if there are no matches. This method should be used for XML documents which
+   if there are no matches. This method should be used for XML documents that
    use namespaces. The second parameter is a staticarray containing the relevant
-   namespace prefixes and URI pairs which are used within the XPath expression.
+   namespace prefixes and URI pairs that are used within the XPath expression.
    Note that the namespace prefixes used in the XPath expression do not have to
    match those used within the document itself.
 
 
 XPath Examples
---------------
+^^^^^^^^^^^^^^
 
 Extract all child elements of the a node::
 
@@ -530,7 +539,6 @@ Extract all child elements of the a node::
          <b at="val"/>
          <c at="val2">C Content</c>
       </a>')
-
    #doc->extract('//a/*')
 
    // => staticarray(<b at="val"/>, <c at="val2">C Content</c>)
@@ -542,8 +550,7 @@ Using namespaces, extract all child elements of the a node::
          <b at="val"/>
          <c at="val2">C Content</c>
       </a>')
-
-   #doc->extract('//n:a/*', (:'n'='my_uri'))
+   #doc->extract('//n:a/*', (: 'n'='my_uri'))
 
    // => staticarray(<b at="val"/>, <c at="val2">C Content</c>)
 
@@ -554,7 +561,6 @@ Extract the first child element of the a node::
          <b at="val"/>
          <c at="val2">C Content</c>
       </a>')
-
    #doc->extractOne('//a/*')
 
    // => <b at="val"/>
@@ -566,8 +572,7 @@ Extract the ``"at"`` attribute from the second child element of the a node::
          <b at="val"/>
          <c at="val2">C Content</c>
       </a>')
-
-   #doc->extractOne('//n:a/*[2]/@at', (:'n'='my_uri'))
+   #doc->extractOne('//n:a/*[2]/@at', (: 'n'='my_uri'))
 
    // => at="val2"
 
@@ -591,4 +596,4 @@ returned.
 
 .. _DOM Level 2 Core specification: http://www.w3.org/TR/DOM-Level-2-Core/
 .. _XPath specification: http://www.w3.org/TR/xpath/
-.. _XSLT specification: http://www.w3.org/TR/xslt
+.. _XSLT specification: http://www.w3.org/TR/xslt/
