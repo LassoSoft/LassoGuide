@@ -106,7 +106,7 @@ concatenate in a non-ticked string literal for these sequences. For example, the
 following string concatenation would create a regular expression that matches a
 letter followed by a tab followed by a digit::
 
-   local(my_regex) = `\w` + "\t" + `\d`
+   local(my_regexp) = `\w` + "\t" + `\d`
 
 
 Basic Matching Strings
@@ -517,9 +517,9 @@ The :type:`regexp` type allows a regular expression to be defined once and then
 reused many times. It facilitates simple search operations, splitting strings,
 and interactive find/replace operations.
 
-The :type:`regexp` type has some advantages over the string methods that perform
-regular expression operations. Performance can be increased by creating a
-regular expression once and then reusing it multiple times. The type has a
+The :type:`regexp` type has some advantages over the ``string_…`` methods that
+perform regular expression operations. Performance can be increased by creating
+a regular expression once and then reusing it multiple times. The type has a
 number of member methods that allow access to the stored regular expressions and
 input and output of strings, performing find/replace operations, or acting as
 components in an interactive find/replace operation. These are described below.
@@ -543,15 +543,15 @@ Creating Regular Expression Objects
       -ignoreCase::boolean= ?\
    )
 
-   The `regexp` creator method creates a reusable regular expression. A
-   `regexp` object must be initialized with a string regular expression pattern as
-   either the first parameter or as the argument of a ``-find`` keyword
-   parameter. The type will also store a replacement pattern, and input string
-   passed as either the second and third parameters or specified with the
-   ``-replace`` or ``-input`` keyword parameter, respectively. These can be
-   overridden with particular member methods. The type also has an
-   ``-ignoreCase`` option which controls whether regular expressions are applied
-   with case sensitivity or not.
+   The `regexp` creator method creates a reusable regular expression. A `regexp`
+   object must be initialized with a string regular expression pattern as either
+   the first parameter or as the argument of a ``-find`` keyword parameter. The
+   type will also store a replacement pattern, and input string passed as either
+   the second and third parameters or specified with the ``-replace`` or
+   ``-input`` keyword parameter, respectively. These can be overridden with
+   particular member methods. The type also has an ``-ignoreCase`` option which
+   controls whether regular expressions are applied with case sensitivity or
+   not.
 
    A regular expression can be created that explicitly specifies the find
    pattern, replacement pattern, input string, and optionally with the
@@ -564,11 +564,11 @@ Creating Regular Expression Objects
 
    However, a regular expression will usually be stored in a variable and then
    later run against an input string. The following code stores a regular
-   expression with a find and replace pattern into the variable "my_regex". The
+   expression with a find and replace pattern into the variable "my_regexp". The
    following section :ref:`regular-expressions-simple` will show how this
    regular expression can be applied to strings. ::
 
-      local(my_regex) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
+      local(my_regexp) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
 
 
 .. member:: regexp->findPattern()
@@ -601,10 +601,10 @@ code. The group count is "0" since the find expression does not contain any
 groups (designated by parentheses)::
 
    <pre>
-   FindPattern: [#my_regex->findPattern]
-   ReplacePattern: [#my_regex->replacePattern]
-   IgnoreCase: [#my_regex->ignoreCase]
-   GroupCount: [#my_regex->groupCount]
+   FindPattern: [#my_regexp->findPattern]
+   ReplacePattern: [#my_regexp->replacePattern]
+   IgnoreCase: [#my_regexp->ignoreCase]
+   GroupCount: [#my_regexp->groupCount]
    </pre>
 
    // =>
@@ -671,9 +671,9 @@ regular expression using one of the `regexp` creator methods and then calling
 regular expression is only created once this technique can be considerably
 faster than using the `string_replaceRegExp` method repeatedly. ::
 
-   local(my_regex) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
-   #my_regex->replaceAll(-input='The quick brown fox jumped over the lazy dog.')
-   #my_regex->replaceAll(-input='Lasso 9 Server')
+   local(my_regexp) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
+   #my_regexp->replaceAll(-input='The quick brown fox jumped over the lazy dog.')
+   #my_regexp->replaceAll(-input='Lasso 9 Server')
 
    // =>
    // Thx qxxck brxwn fxx jxmpxd xvxr thx lxzy dxg.
@@ -682,9 +682,9 @@ faster than using the `string_replaceRegExp` method repeatedly. ::
 The replace pattern can also be changed if necessary. The following code changes
 both the input and replace patterns each time the regular expression is used::
 
-   local(my_regex) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
-   #my_regex->replaceAll(-input='The quick brown fox jumped over the lazy dog.', -replace='y')
-   #my_regex->replaceAll(-input='Lasso 9 Server', -replace='z')
+   local(my_regexp) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
+   #my_regexp->replaceAll(-input='The quick brown fox jumped over the lazy dog.', -replace='y')
+   #my_regexp->replaceAll(-input='Lasso 9 Server', -replace='z')
 
    // =>
    // Thy qyyck brywn fyx jympyd yvyr thy lyzy dyg.
@@ -694,9 +694,9 @@ The replacement pattern can reference groups from the input using ``$1`` through
 ``$9``. The following example uses a regular expression to clean up the
 formatting on a couple of telephone numbers::
 
-   local(my_regex) = regexp(`\((\d{3})\) (\d{3})-(\d{4})`, `$1-$2-$3`)
-   #my_regex->replaceAll(-input='(360) 555-1212')
-   #my_regex->replaceAll(-input='(800) 555-1212')
+   local(my_regexp) = regexp(`\((\d{3})\) (\d{3})-(\d{4})`, `$1-$2-$3`)
+   #my_regexp->replaceAll(-input='(360) 555-1212')
+   #my_regexp->replaceAll(-input='(800) 555-1212')
 
    // =>
    // 360-555-1212
@@ -717,9 +717,9 @@ The same regular expression from the example above can be used to split a string
 into substrings. In this case the string will be split on vowels, generating a
 staticarray with elements containing only consonants or spaces::
 
-   local(my_regex) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
+   local(my_regexp) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
 
-   #my_regex->split(-input='The quick brown fox jumped over the lazy dog.')
+   #my_regexp->split(-input='The quick brown fox jumped over the lazy dog.')
    // => staticarray(Th,  q, , ck br, wn f, x j, mp, d , v, r th,  l, zy d, g.)
 
 The ``-find`` pattern can be modified within the `regexp->split` method to split
@@ -727,7 +727,7 @@ the string on a different regular expression. In this example the string is
 split on any one of one or more non-word characters. This splits the string into
 words not including any whitespace or punctuation. ::
 
-   #my_regex->split(-find=`\W+`, -input='The quick brown fox jumped over the lazy dog.')
+   #my_regexp->split(-find=`\W+`, -input='The quick brown fox jumped over the lazy dog.')
    // => staticarray(The, quick, brown, fox, jumped, over, the, lazy, dog)
 
 If the ``-find`` expression contains groups then they will be returned in the
@@ -735,7 +735,7 @@ array in between the split elements. For example, surrounding the ``-find``
 pattern above with parentheses will result in an array of alternating word
 elements and whitespace/punctuation elements. ::
 
-   #my_regex->split(-find=`(\W+)`, -input='The quick brown fox jumped over the lazy dog.')
+   #my_regexp->split(-find=`(\W+)`, -input='The quick brown fox jumped over the lazy dog.')
    // => staticarray(The,  , quick,  , brown,  , fox,  , jumped,  , over,  , the,  , lazy,  , dog, .)
 
 
@@ -755,7 +755,7 @@ The order of operations of an interactive find/replace operation is as follows:
    ``-input`` string. In this example the find pattern will match each word in
    the input string in turn::
 
-      local(my_regex) = regexp(
+      local(my_regexp) = regexp(
          -find=`\w+`,
          -input='The quick brown fox jumped over the lazy dog.',
          -ignoreCase
@@ -766,7 +766,7 @@ The order of operations of an interactive find/replace operation is as follows:
    forward. If there are no further matches then the method returns "false" and
    the loop is exited::
 
-      while(#my_regex->find) => {
+      while(#my_regexp->find) => {
          // ... your code here ...
       }
 
@@ -774,7 +774,7 @@ The order of operations of an interactive find/replace operation is as follows:
    the current match. If the find pattern had groups then they could be
    inspected here by passing an integer parameter to `regexp->matchString`::
 
-      local(match) = #my_regex->matchString
+      local(match) = #my_regexp->matchString
 
 #. The match is manipulated. For this example the match string will be reversed
    using the `string->reverse` method. This will reverse the word "lazy" to be
@@ -787,17 +787,17 @@ The order of operations of an interactive find/replace operation is as follows:
    parts of the input string that weren't matched (the spaces between the
    words)::
 
-      #my_regex->appendReplacement(#match)
+      #my_regexp->appendReplacement(#match)
 
 #. After the ``while`` loop the `regexp->appendTail` method is used to append
    the unmatched end of the input string to the output (the period at the end of
    the example input)::
 
-      #my_regex->appendTail
+      #my_regexp->appendTail
 
 #. Finally, the output string from the regular expression object is displayed::
 
-      #my_regex->output
+      #my_regexp->output
       // => ehT kciuq nworb xof depmuj revo eht yzal god.
 
 This same basic order of operation is used for any interactive find/replace
@@ -891,17 +891,17 @@ the output string with the replacement pattern ``$0``. Finally, any remaining
 unmatched input string is appended to the end of the output string using
 `regexp->appendTail`. ::
 
-   local(my_regex) = regexp(-find=`\$(\w+)`, -input=#my_string, -ignoreCase)
-   while(#my_regex->find) => {
-      #my_regex->appendReplacement(
-         #replacements->find(#my_regex->matchString(1)) or `$0`
+   local(my_regexp) = regexp(-find=`\$(\w+)`, -input=#my_string, -ignoreCase)
+   while(#my_regexp->find) => {
+      #my_regexp->appendReplacement(
+         #replacements->find(#my_regexp->matchString(1)) or `$0`
       )
    }
-   #my_regex->appendTail
+   #my_regexp->appendTail
 
 After the operation has completed the output string is displayed::
 
-   #my_regex->output
+   #my_regexp->output
    // => The quick red fox soared over the lazy ocelot.
 
 
