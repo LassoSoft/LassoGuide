@@ -4,7 +4,7 @@
 Inspecting Browser Request Data
 *******************************
 
-So far we have talked in general terms about a web server using Lasso to put
+So far, we have talked in general terms about a web server using Lasso to put
 together an HTML document for a web browser to view, but we haven't talked about
 how a server and browser communicate. Briefly, web browsers and web servers
 communicate over a protocol called HTTP. Think of the HTTP protocol as the
@@ -13,13 +13,13 @@ client (the browser) requesting a resource (usually an HTML page) from the
 server. The server puts together a response and sends it back.
 
 To build interactive web applications, Lasso gives programmers the ability to
-inspect the request being made using the ``web_request`` object. In this
-tutorial, we'll explore using and inspecting query parameters.
+inspect the request being made using the `web_request` object. In this tutorial,
+we'll explore using and inspecting query parameters.
 
 .. note::
-   For a list and description of all the methods of the ``web_request`` object
-   that can be used to examine client requests, search the Lasso Reference for
-   "web_request".
+   For a list and description of all the methods of the `web_request` object
+   that can be used to examine client requests, see the table
+   :ref:`requests-responses-variable-methods`.
 
 
 What Are Query Parameters?
@@ -28,13 +28,13 @@ What Are Query Parameters?
 Query parameters are key/value data sent as part of the URL string requested by
 a client. Let's look at the following example URL:
 
-http://example.com/rhino.lasso?first=hello&second=42
+| ``http://example.com/rhino.lasso?first=hello&second=42``
 
-It starts with the protocol ("http") followed by "://". Next comes the host name
-followed by a slash delimited path. The last part is the query string which
-starts with a question mark to seperate itself from the path. The query string
+It starts with the protocol ("http") followed by ``://``. Next comes the host
+name followed by a slash-delimited path. The last part is the query string which
+starts with a question mark to separate itself from the path. The query string
 contains the key/value data for the query parameters. Query parameters are
-seperated by ampersands. In our example above, we have two query parameters:
+separated by ampersands. In our example above, we have two query parameters:
 "first=hello" and "second=42". The keys and values are separated from each other
 by an equal sign.
 
@@ -47,8 +47,8 @@ replace it with "%26". Luckily, Lasso has a method to do all the replacements
 for us: ``bytes->encodeUrl``.
 
 
-Using Query Parameters in Our Example
-=====================================
+Using Query Parameters
+======================
 
 Our current example code sets the greeting and the background color based on the
 current time of day. This may be what we usually want, but perhaps we would also
@@ -77,14 +77,14 @@ some adjustments to our web page code::
 The code has been changed to first check to see if a query parameter with the
 name of hour has been sent. If it has, it will use that value, otherwise it will
 just use the current hour. The code has also added links at the bottom that can
-be clicked on to request this same page but with a query parameter setup to
+be clicked on to request this same page, but with a query parameter setup to
 specify which time of day we would like to see.
 
 Notice that if the "hour" query param has been sent that we are calling a method
 named "integer" on the value. The integer method takes in data of any type and
-tries to convert it to an integer value. For example, the string ``'73d'`` would
-be changed to the integer 73. This is called casting. The ``time_of_day`` method
-is expecting an integer, but all query param data are of type ``bytes`` (this is
+tries to convert it to an integer value. For example, the string "73d" would be
+changed to the integer 73. This is called casting. The ``time_of_day`` method is
+expecting an integer, but all query param data are of type ``bytes`` (this is
 because the data is taken from the query string which is sent as bytes via the
 HTTP connection), so we must cast the byte data into an integer value.
 
@@ -104,11 +104,11 @@ its method to "post". This tells the browser to create a POST HTTP request when
 it submits the form.
 
 
-Using POST Parameters in Our Example
-====================================
+Using POST Parameters
+=====================
 
 It's nice that our code can now demonstrate how the page looks for each time of
-day, but it might be nice to be able to choose a specific hour and see what it
+day, but it could be better to be able to choose a specific hour and see what it
 looks like for that hour. The sample code below allows for that::
 
    <?lasso
@@ -138,23 +138,24 @@ looks like for that hour. The sample code below allows for that::
    </html>
 
 We got rid of the links and replaced it with a form that will create the POST
-HTTP request. The form has a "select" tag which is setup to allow us to choose
-any hour of the day. It uses two ``loop`` blocks to automate building the
-options for us. There's also a submit button to click after we've selected the
-hour we wish to view. This will cause the form to submit its request.
+HTTP request. The form has a ``<select>`` tag which is setup to allow us to
+choose any hour of the day. It uses two ``loop`` statements to automate building
+the options for us. There's also a submit button to click after we've selected
+the hour we wish to view. This will cause the form to submit its request.
 
-We also changed ``web_request->queryParam`` to ``web_request->postParam`` in the
-top part of the code since we are now looking for a POST parameter named "hour".
+We also changed `web_request->queryParam` to `web_request->postParam` in the top
+part of the code since we are now looking for a POST parameter named "hour".
 
 .. note::
    If you want to be able to expect a parameter to be passed as either a POST or
-   a query param, then you can use ``web_request->param``.
+   a query param, then you can use `web_request->param`.
 
 
 Conclusion
 ==========
 
 This concludes the Beginner's Guide tutorial. To continue learning about Lasso,
-dig into the other sections in the Lasso Guide, start using it for your own
-projects, and use `Lasso Talk <http://www.lassosoft.com/lassotalk>`_ when you
-run into problems.
+dig into the other parts of this guide, start using Lasso for your own projects,
+and consult the `LassoTalk`_ list should you run into problems.
+
+.. _LassoTalk: http://www.lassotalk.com/

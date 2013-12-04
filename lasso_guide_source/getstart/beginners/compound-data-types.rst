@@ -16,13 +16,13 @@ however, store them in the same variable by using a compound data type.
 
 .. note::
    For more information on various compound data types available in Lasso, see
-   the :ref:`Containers chapter <containers>`
+   the :ref:`containers` chapter.
 
 
 Using an Array
 ==============
 
-One compound data type we could use is an ``array``. Arrays allow storing as
+One compound data type we could use is an :type:`array`. Arrays allow storing as
 many items as you want inside one array. You can even store an array inside
 another array.
 
@@ -55,7 +55,7 @@ local variable "all_greetings" by calling ``array`` with a comma-separated list
 of values. In our example, the values are all strings, but the values don't have
 to all be the same type, you could mix strings and integers, for example.
 
-We retrive values from the array by calling ``array->get`` and passing it the
+We retrieve values from the array by calling `array->get` and passing it the
 index we are looking for. For example, when we want "Good Morning!", the code
 above passes "1" (``#all_greetings->get(1)``). This is another example of
 calling a member method on an object. We stored an ``array`` object into the
@@ -63,13 +63,13 @@ calling a member method on an object. We stored an ``array`` object into the
 named "get".
 
 If we wanted to add things to the end of the array, we could do so by passing
-the value we want to add to the ``array->insert`` method. For the array object
+the value we want to add to the `array->insert` method. For the array object
 stored in the "all_greetings" variable, it would look like this::
 
    #all_greeting->insert("G'day, mate!")
 
-(See :ref:`the array documentation <array>` for more detail and other array
-methods.)
+(See the section on the :ref:`array <containers-array>` type for more detail and
+other array methods.)
 
 
 Using a Map
@@ -104,26 +104,26 @@ greetings::
 
 We create a map much the same way an array is created, with a comma-separated
 list of values, but with a map we specify the index (key) as well. To get an
-item out of a map, use the ``map->find`` method passing in the key whose value
-you wish to retrieve. As with arrays, there's a ``map->insert`` method that
-allows you to insert new key/values into the map. (See
-:ref:`the map documentation <map>` for more information.)
+item out of a map, use the `map->find` method passing in the key whose value you
+wish to retrieve. As with arrays, there's a `map->insert` method that allows you
+to insert new key/values into the map. (See the section on the
+:ref:`map <containers-map>` type for more information.)
 
 .. note::
    While arrays have a defined order, maps do not. Getting an element out of a
    map by index does not have a well-defined result. There is no first, second,
-   nth element in a map, so don't create code that relies on map order - it
-   could change.
+   or *n*\ th element in a map, so don't create code that relies on map order,
+   as it could change.
 
 
 Using a Map of Maps
 ===================
 
-It is common to have scenarios where it makes sense to have nested compound data
-types. Let's expand our example to change the background color of our web page
+It is a common scenario where using nested compound data types makes sense.
+Let's expand our example to change the background color of our web page
 depending on the time of day. We'll add the color information to our existing
 map::
-   
+
    <?lasso
       local(hour) = date->hour
       local(time_info) = map(
@@ -154,4 +154,4 @@ then use the map stored in "time_of_day" to get the background color and the
 greeting for the current time of day. For extra credit, change this solution to
 use an array of maps instead.
 
-:ref:`Next Tutorial: Defining Your Own Methods <define-your-methods>`
+Next Tutorial: :ref:`define-your-methods`
