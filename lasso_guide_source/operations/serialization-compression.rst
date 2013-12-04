@@ -4,13 +4,14 @@
 Serialization and Compression
 *****************************
 
-Serializing an object converts the object into a format that can be transmitted
-over the network or written to a file. The serialized object data can then later
-be used to de-serialize---or re-create---the object.
+To :dfn:`serialize` an object is to convert the object into a format that can be
+transmitted over the network or written to a file. The serialized object data
+can then later be used to :dfn:`deserialize`---or re-create---the object.
 
-Lasso uses XML for object serialization. An object that supports serialization
-can be converted to and from XML. The object is given control over which of its
-data members will be written to the output.
+Lasso uses XML for object serialization. An object whose type supports
+serialization can be converted to and from XML, or can be stored in a session.
+The object is given control over which of its data members will be written to
+the output.
 
 Lasso also provides a set of methods to compress or decompress data for more
 efficient data transmission.
@@ -21,7 +22,8 @@ Serializing Objects
 
 An object is serialized by calling its `~trait_serializable->serialize` method,
 which serializes the object and returns the resulting data as a string. This
-method is provided through `trait_serializable`, which is described here.
+method is provided through :trait:`trait_serializable`, which is described here.
+
 
 .. trait:: trait_serializable
 
@@ -35,9 +37,9 @@ Deserializing Data
 ==================
 
 Serialized object data is converted back into an object by using a
-`serialization_reader` object. This object is created with the serialized data
-after which its `~serialization_reader->read` method is called. If the read is
-successful, then a new object is returned of the same type and data as the
+:type:`serialization_reader` object. This object is created with the serialized
+data after which its `~serialization_reader->read` method is called. If the read
+is successful, then a new object is returned of the same type and data as the
 original serialized object.
 
 This example code serializes an array of objects, then deserializes it back into
@@ -72,7 +74,7 @@ Serializable objects must implement the following methods:
 .. require:: trait_serializable->serializationElements()::trait_forEach
 
    This method is called during object serialization. It should return an array,
-   staticarray or some other suitable object containing each of the elements
+   staticarray, or some other suitable object containing each of the elements
    that should be serialized along with the target object.
 
    Each element in the return value should be a `serialization_element`. These
@@ -89,27 +91,28 @@ Serializable objects must implement the following methods:
    `serialization_element` items contain the keys and values used to re-create
    the original object state.
 
-In addition to implementing the proper methods, the object must have
-`trait_serializable`. This trait should be added when the type is defined.
+In addition to implementing the proper methods, the object must import
+:trait:`trait_serializable`. This trait should be added when the type is
+defined.
 
 
 serialization_element Objects
 -----------------------------
 
-`serialization_element` objects are used when both serializing and
+:type:`serialization_element` objects are used when both serializing and
 deserializing. This simple object must be created with a key and a value. The
 key and value are made available through methods named accordingly.
 
 .. type:: serialization_element
 .. method:: serialization_element(key, value)
 
-   Create a new `serialization_element` object with a key and value.
+   Create a new :type:`serialization_element` object with a key and value.
 
 .. member:: serialization_element->key()
 .. member:: serialization_element->value()
 
-   These methods return, respectively, the key and value that was set when the
-   object was created. The key and the value can be objects of any serializable
+   These methods respectively return the key and value that was set when the
+   object was created. Both the key and value can be objects of any serializable
    type.
 
 
@@ -120,31 +123,31 @@ This example illustrates how to create a new object type that is serializable.
 The example type has data members that are saved during serialization. ::
 
    define example_obj => type {
-     trait { import trait_serializable }
+      trait { import trait_serializable }
 
-     data public dmem1 = 'Value for first member',
-          public dmem2 = 'Second member\'s value'
+      data public dmem1 = 'Value for first member',
+         public dmem2 = 'Second member\'s value'
 
-     public serializationElements()::trait_forEach => {
-       return (:
-         serialization_element(1, .dmem1),
-         serialization_element(2, .dmem2) )
-       }
+      public serializationElements()::trait_forEach => {
+         return (:
+            serialization_element(1, .dmem1),
+            serialization_element(2, .dmem2) )
+      }
 
-     public acceptDeserializedElement(d::serialization_element) => {
-       match(#d->key) => {
-         case(1)
-           .dmem1 = #d->value
-         case(2)
-           .dmem2 = #d->value
-       }
-     }
+      public acceptDeserializedElement(d::serialization_element) => {
+         match(#d->key) => {
+            case(1)
+               .dmem1 = #d->value
+            case(2)
+               .dmem2 = #d->value
+         }
+      }
    }
 
    local(
-     obj = example_obj,
-     data = #obj->serialize,
-     new = serialization_reader(#data)->read
+      obj = example_obj,
+      data = #obj->serialize,
+      new = serialization_reader(#data)->read
    )
    #new->dmem1
 
@@ -175,9 +178,9 @@ strings of less than one hundred characters the algorithm may actually result in
 a larger string than the source.
 
 These methods can be used in concert with the `serialize` method which creates a
-string representation of a type that implements `trait_serializable`, and the
-`serialization_reader->read` method which returns the original value based on a
-string representation.
+string representation of a type that implements :trait:`trait_serializable`, and
+the `serialization_reader->read` method which returns the original value based
+on a string representation.
 
 
 Compress and Decompress a String

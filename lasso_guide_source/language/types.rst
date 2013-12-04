@@ -6,11 +6,11 @@ Types
 *****
 
 Types are the fundamental data abstraction concept in Lasso 9. Lasso is an
-object-oriented language, and every piece of data is an object and every object
+object-oriented language, so every piece of data is an object and every object
 is of a particular type. A :dfn:`type` is a particular layout of data combined
 with a particular set of methods. Types provide a means for encapsulating data
-with the collection of methods designed to modify that data in predetermined
-ways.
+with the collection of methods designed to modify :dfn:`objects` representing
+that data in predetermined ways.
 
 
 Defining Types
@@ -28,14 +28,14 @@ members. ::
 Type Expressions
 ----------------
 
-A type expression consists of the word ``type`` followed by a set of curly
-braces (``{ ... }``). Within those curly braces reside a series of sections;
-each describing a different aspect of the type. These sections include:
-"parent"; "data"; "trait"; and "public", "protected", and "private" methods.
-Each section begins with one of those words and ends at the beginning of the
-next section or the end of the type expression (which would be a close curly
-brace). Each section is optional. Sections can occur in any order. The sections
-"trait" and "parent" can occur only once.
+A :dfn:`type expression` consists of the word ``type`` followed by a set of
+curly braces (``{ ... }``). Between those curly braces reside a series of
+sections; each describing a different aspect of the type. These sections
+include: "parent"; "data"; "trait"; and "public", "protected", and "private"
+methods. Each section begins with one of those words and ends at the beginning
+of the next section or the end of the type expression (which would be a close
+curly brace). Each section is optional. Sections can occur in any order. The
+sections "trait" and "parent" can occur only once.
 
 The most simple type definition is shown below. It defines a type named "person"
 and contains no sections. Therefore, the ``person`` type contains no methods or
@@ -51,8 +51,8 @@ Each data section defines one or more :dfn:`data members` for the type, which
 are other objects contained by the type. In a data member section, the word
 ``data`` is followed by one or more data member names. Data member names follow
 the same rules as variable and method names. They can begin with an underscore
-or the characters A-Z and then can be followed by zero or more underscores,
-letters, numbers or period characters. Character case is irrelevant for data
+or the characters A--Z and then can be followed by zero or more underscores,
+letters, numbers, or period characters. Character case is irrelevant for data
 member names.
 
 Like variables, data members store values. Three values are unique to each
@@ -77,8 +77,8 @@ other sections in the type expression if necessary. ::
    }
 
 
-Data Member Type Constraints
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Type Constraints
+^^^^^^^^^^^^^^^^
 
 Data member values can be constrained to hold only particular types of objects.
 To do this, follow the data member name with two colons (``::``) and then a type
@@ -93,8 +93,8 @@ value::
    }
 
 
-Data Member Default Values
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Default Values
+^^^^^^^^^^^^^^
 
 Data members can be given default values. When a type instance is first created,
 before it can be otherwise used, its data members are assigned their default
@@ -113,7 +113,7 @@ Accessing Data Members
 
 Data members can be accessed from within the methods of a type by targeting the
 current type instance using the keyword ``self`` and the target operator
-(``->``) followed by the name of the data member within single quotes. The
+(``->``) followed by the name of the data member between single quotes. The
 following expression would set the value of the data member "age" to "36"::
 
    self->'age' = 36
@@ -137,6 +137,8 @@ All of the data members in a type are private. This means that a data member can
 outside world. The following section describes how getters and setters can be
 used to access data member values from outside of the owning type.
 
+
+.. _types-getters-setters:
 
 Getters and Setters
 -------------------
@@ -213,6 +215,12 @@ another for the setter. See the section on :ref:`member methods
 The type definition above would operate identically if it instead omitted the
 manual getter and setter methods and made its "firstName" data member public.
 
+Setters can be defined to accept more than one parameter. When called, the
+additional parameters are given in the method call's parentheses, just as with a
+regular method. When defining such a setter method, the first parameter is
+always the new value for the assignent. All additional parameters follow. (For
+an example, see `security_registry->userComment=`.)
+
 Within a manual getter or setter, it is vital to refer to the data member using
 the single-quoted name syntax. Otherwise, an infinite recursion situation may
 arise as the getter/setter continually re-calls itself.
@@ -235,17 +243,17 @@ section can define one or more methods separated by commas. The choice of word
 used to begin a member methods section influences how the methods are permitted
 to be accessed. There are three such access levels.
 
-``public``
+public
    Public member methods can be called without any restrictions. They represent
    the public interface of the type. When the type is documented for others to
    use, only the public methods are described.
 
-``private``
+private
    Private member methods can only be called from methods defined within the
    owning type. Private methods are to be used for low-level implementation
    details that shouldn't be exposed to the end user or to inheriting types.
 
-``protected``
+protected
    Protected member methods can be called from within the owning type
    implementation or any type that inherits from that type. Protected methods
    represent functionality that is not intended to be exposed to the public, but
@@ -310,8 +318,8 @@ inheriting type's method. This permits inheriting types to override or replace
 functionality provided by a parent.
 
 
-Parent
-^^^^^^
+Parent Section
+^^^^^^^^^^^^^^
 
 The :dfn:`parent` section names the parent that the type being defined is to
 inherit from. For example, the ``person`` type can inherit from the ``entity``
@@ -390,11 +398,36 @@ example above can be rewritten using ``..`` in place of ``inherited->``::
    }
 
 
+Trait Section
+^^^^^^^^^^^^^
+
+Every type has a single trait which may be composed of other subtraits. A type
+inherits all of the methods that its trait defines, provided that the type
+implements the requirements for the trait. For example, a type must be
+serializable for it to be stored in a session, which means importing the
+:trait:`trait_serializable` trait. See the :ref:`traits` chapter for a
+complete description of how traits are created.
+
+The trait section of a type expression can import one or more other traits.
+These traits are combined to form the trait for the type. The following code
+shows a type definition that imports the :trait:`trait_array` and
+:trait:`trait_map` traits::
+
+   define mytype => type {
+      trait {
+         import trait_array, trait_map
+      }
+   }
+
+A trait section can appear anywhere within a type expression, but can appear
+only once.
+
+
 Type Creators
 -------------
 
 A :dfn:`type creator` is a method that returns a new instance of a type. For
-example, calling the method named ``string`` produces a new string object. By
+example, calling the method named `string` produces a new string object. By
 default each type has a creator method that corresponds to the name of the type
 and requires no parameters.
 
@@ -510,7 +543,7 @@ onCompare
 The ``onCompare`` method is called whenever an object is compared against
 another object. This includes when the equality (``==``), and inequality
 (``!=``) operators are used and when objects are compared for ordinality using
-any of the relative equality operators (``< <= > >=``).
+any of the relative equality operators (``<``, ``<=``, ``>``, ``>=``).
 
 An ``onCompare`` method must accept one parameter and must return an integer
 value. ::
@@ -519,9 +552,9 @@ value. ::
 
 If the parameter is equal to the current type instance then a value of "0"
 should be returned. If the current type instance is less than the parameter then
-an integer less than 0 should be returned (e.g. "-1"). If the current type
-instance is greater than the parameter then an integer greater than 0 should be
-returned (e.g. "1").
+an integer less than zero should be returned (e.g. "-1"). If the current type
+instance is greater than the parameter then an integer greater than zero should
+be returned (e.g. "1").
 
 For example, the following ``person`` type has an ``onCompare`` method that
 gives ``person`` objects the ability to compare themselves with each other::
@@ -556,7 +589,7 @@ persons::
 
 Multiple ``onCompare`` methods can be provided, each specialized to compare
 against particular object types. For example, an ``integer`` type would want to
-permit itself to be compared against other integer objects, but it might also
+permit itself to be compared against other integer objects, but it should also
 want to be comparable to decimal objects. Such an ``integer`` type would have
 one ``onCompare`` method for integer objects and another for decimal objects.
 This example also shows how the ``onCompare`` method can be manually called on
@@ -609,10 +642,10 @@ invoke
 ^^^^^^
 
 The ``invoke`` method is called whenever an object is invoked by applying
-parentheses to it. By default, invoking an object produces a copy of the object
-that was invoked. However, objects can add their own ``invoke`` methods to alter
-this behavior. The following code shows how an instance of the ``person`` type
-might be invoked::
+parentheses to it. By default, invoking an object produces a copy of the invoked
+object. However, objects can add their own ``invoke`` methods to alter this
+behavior. The following code shows how an instance of the ``person`` type might
+be invoked::
 
    define person => type {
       data
@@ -643,11 +676,11 @@ calling the ``invoke`` method or by applying parentheses::
 
 Implementing the ``_unknowntag`` method allows a type to handle requests for
 methods that it does not have. When a search for a member method fails, the
-system will call the ``_unknowntag`` method if it is defined. The method name
-that was originally sought is available by calling ``method_name``.
+system will call the ``_unknowntag`` method if it is defined. The originally
+sought method name is available by calling ``method_name``.
 
 The following example creates a type whose only member method is
-``_unknowntag``, which returns the name of the method that was called::
+``_unknowntag``, which returns the name of the called method::
 
    define echo_method => type {
       public _unknowntag => method_name->asString
@@ -660,19 +693,19 @@ The following example creates a type whose only member method is
 Operator Overloading
 --------------------
 
-Types can provide their own routines to be called when the standard arithmetic
+Types can provide their own routines to be called when the standard arithmetical
 operators (``+ - * / %``) are used with an instance of the type on the left-hand
 side of the expression.
 
 If the standard operators are overloaded they should be mapped as closely as
-possible to the standard arithmetic meanings of the operators. For example, the
-addition operator (``+``) is also used for string concatenation.
+possible to the standard arithmetical meanings of the operators. For example,
+the addition operator (``+``) is also used for string concatenation.
 
 
-Overloading +, -, \*, /, %
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Overloading Arithmetical Operators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-An arithmetic operator is overloaded by defining a member method whose name is
+An arithmetical operator is overloaded by defining a member method whose name is
 the same as the operator symbol. The method must accept one parameter and return
 an appropriate value. The type instance should not be modified by these
 operations. ::
@@ -683,7 +716,7 @@ operations. ::
    public /(rhs)
    public %(rhs)
 
-The following example provides a full set of arithmetic operators for the
+The following example provides a full set of arithmetical operators for the
 ``myint`` type::
 
    define myint => type {
@@ -702,41 +735,19 @@ The following example provides a full set of arithmetic operators for the
    // => 209
 
 
-Overloading ==, !=, <, <=, >, >=, ===, !==
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Overloading Equality Operators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 See the section on the :ref:`onCompare method <types-oncompare>` for information
-about how to overload the equality operators.
+about how to overload the equality operators (``==``, ``!=``, ``<``, ``<=``,
+``>``, ``>=``, ``===``, ``!==``).
 
 
-Overloading >>, !>>
-^^^^^^^^^^^^^^^^^^^
+Overloading Containment Operators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 See the section on the :ref:`contains method <types-contains>` for information
-about how to overload the containment operators.
-
-
-Trait
------
-
-Every type has a single trait which may be composed of other sub-traits. A type
-inherits all of the methods that its trait defines, provided that the type
-implements the requirements for the trait. See the :ref:`traits` chapter for a
-complete description of how traits are created.
-
-The trait section of a type expression can import one or more other traits.
-These traits are combined to form the trait for the type. The following code
-shows a type definition that imports the :trait:`trait_array` and
-:trait:`trait_map` traits::
-
-   define mytype => type {
-      trait {
-         import trait_array, trait_map
-      }
-   }
-
-A trait section can appear anywhere within a type expression, but can appear
-only once.
+about how to overload the containment operators (``>>``, ``!>>``).
 
 
 Modifying Types
@@ -751,11 +762,11 @@ method ``speak`` to the ``person`` type::
    define person->speak() => 'Hello, world!'
 
 
-Introspection Methods
-=====================
+Type/Object Introspection Methods
+=================================
 
-Lasso provides a number of methods that can be used to gain information about an
-object. These methods are summarized below.
+Lasso provides a number of methods that can be used to gain information about a
+type or object. These methods are summarized below.
 
 .. type:: null
 
@@ -766,12 +777,11 @@ object. These methods are summarized below.
 
 .. member:: null->isA(name::tag)
 
-   Checks whether an object is of the given type. The method will return an
-   integer greater than zero if the name of the type is specified or the name of
-   any parent type other than :type:`null`. The method will also return a
-   positive integer for any trait name that the type has applied to it. The
-   method call `null->isA(::null)` will only return "true" for the
-   :type:`null` type instance itself.
+   Checks whether an object is of the given type. The method will return "1" if
+   the type specified by the ``name`` parameter matches the type of the
+   instance, or "2" if the trait specified by ``name`` is implemented by the
+   type of the instance. The method call `null->isA(::null)` will only return
+   "1" for the :type:`null` type instance itself.
 
 .. member:: null->isNotA(name::tag)
 
@@ -779,8 +789,8 @@ object. These methods are summarized below.
 
 .. member:: null->listMethods()
 
-   Returns a staticarray containing the signatures for all of the methods that
-   are available for the type.
+   Returns a staticarray of :type:`signature` objects for all of the methods
+   that are available for the type.
 
 .. member:: null->hasMethod(name::tag)
 
@@ -796,13 +806,5 @@ object. These methods are summarized below.
    Returns the trait for the target object. Returns "null" if the object does
    not have a trait.
 
-.. member:: null->setTrait(trait::trait)
-   :noindex:
-
-   Sets the trait of the target object to the parameter, replacing the existing
-   trait.
-
-.. member:: null->addTrait(trait::trait)
-   :noindex:
-
-   Combines the target object's trait with the parameter.
+   .. seealso::
+      `~null->setTrait` and `~null->addTrait` in the :ref:`traits` chapter.
