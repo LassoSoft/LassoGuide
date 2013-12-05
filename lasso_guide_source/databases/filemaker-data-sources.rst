@@ -1,136 +1,133 @@
-.. _filemaker-data-sources:
 .. http://www.lassosoft.com/Language-Guide-FileMaker-Data-Sources
+.. _filemaker-data-sources:
 
 **********************
-Filemaker Data Sources
+FileMaker Data Sources
 **********************
 
-Lasso 9 allows access to FileMaker Server 7-12 Advanced and FileMaker Server
-9-12 through the Lasso Connector for FileMaker. Lasso provides several methods
+Lasso 9 allows access to FileMaker Server 7--12 Advanced and FileMaker Server
+9--12 through the Lasso Connector for FileMaker. Lasso provides several methods
 and options that are unique to FileMaker Server connections including
 ``-layoutResponse`` and ``-noValueLists``.
 
-Lasso is a predominantly data-source-independent language. It does include many
-FileMaker-specific options documented in this chapter. However, all of the
-common procedures outlined in the
-:ref:`Database Interaction Fundamentals <database-interaction>`,
-:ref:`Searching and Displaying Data <searching-displaying>`, and
-:ref:`Adding and Updating Records <adding-updating>` chapters can be used with
-FileMaker data sources.
+While Lasso is a predominantly data-source-independent platform, it does include
+many FileMaker-specific options as documented in this chapter. However, all of
+the common procedures outlined in the :ref:`database-interaction`,
+:ref:`searching-displaying`, and :ref:`adding-updating` chapters can be used
+with FileMaker data sources.
 
 .. note::
    The methods and options defined in this chapter can only be used with
-   FileMaker data sources. Any solution which relies on the methods in this
-   chapter cannot be easily retargeted to work with a different back-end
-   database.
+   FileMaker data sources. Any solution that relies on the methods in this
+   chapter cannot be easily retargeted to work with a different data source.
 
 
 Terminology
 ===========
 
-Since Lasso works with many different data sources this documentation uses data
-source agnostic terms to refer to databases, tables, and fields. The following
-terms which are used in the FileMaker documentation are equivalent to their
-Lasso counterparts:
+Since Lasso works with many different data sources this documentation uses
+data-source-agnostic terms to refer to databases, tables, and fields. The
+following terms that are used in the FileMaker documentation are equivalent to
+their Lasso counterparts:
 
 Database
    Database is used to refer to a single FileMaker database file. FileMaker
    databases differ from other databases in Lasso in that they contain layouts
-   rather than individual data tables. Even in FileMaker 7-12, Lasso sees
+   rather than individual data tables. Even in FileMaker 7--12, Lasso sees
    individual layouts rather than data tables. From a data storage point of
    view, a FileMaker database is equivalent to a single MySQL table.
 
 Layout
    Within Lasso a FileMaker layout is treated as equivalent to a table. The two
    terms can be used interchangeably. This equivalence simplifies Lasso security
-   and makes transitioning between back-end data sources easier. All FileMaker
-   layouts can be thought of as views of a single data table. Lasso can only
-   access fields which are contained in the layout named within the current
-   database action.
+   and makes transitioning between data sources easier. All FileMaker layouts
+   can be thought of as views of a single data table. Lasso can only access
+   fields that are contained in the layout named within the current database
+   action.
 
 Record
    FileMaker records are referenced using a single ``-keyValue`` rather than a
    ``-keyField`` and ``-keyValue`` pair. The ``-keyField`` in FileMaker is
-   always the record ID which is set internally.
+   always the record ID that is set internally.
 
-Fields
+Field
    The value for any field in the current layout in FileMaker can be returned
    including the values for related fields, repeating fields, and fields in
    portals.
 
-.. note::
-   Every database referenced by a related field or a portal must have the same
-   permissions defined. If a related database does not have the proper
-   permissions then FileMaker will not just leave the related fields blank, but
+.. important::
+   Every database that is referenced by a related field or a portal must have
+   the same permissions defined. If a related database does not have the proper
+   permissions then not only will FileMaker leave the related fields blank, but
    will deny the entire database request.
 
 
 Performance Tips
 ================
 
-This section contains a number of tips which will help get the best performance
+This section contains a number of tips that will help get the best performance
 from a FileMaker database. Since queries must be performed sequentially within
 FileMaker, even small optimizations can yield significant increases in the speed
 of web serving under heavy load.
 
-Dedicated FileMaker Machine
+-  **Dedicated FileMaker Machine** --
    For best performance, place the FileMaker Server on a different machine from
    Lasso Server and the web server.
 
-FileMaker Server
+-  **FileMaker Server** --
    If a FileMaker database must be accessed by a mix of FileMaker clients and
    web visitors through Lasso, it should be hosted on FileMaker Server. Lasso
-   can access the database directly through FileMaker Server 7-12 Advanced and
-   FileMaker Server 9-12.
+   can access the database directly through FileMaker Server 7--12 Advanced and
+   FileMaker Server 9--12.
 
-Index Fields
-   Any fields which will be searched through Lasso should have indexing turned
+-  **Index Fields** --
+   Any fields that will be searched through Lasso should have indexing turned
    on. Avoid searching on non-stored calculation fields, related fields, and
    summary fields.
 
-Custom Layouts
+-  **Custom Layouts** --
    Layouts should be created with the minimal number of fields required for
    Lasso. All the data for the fields in the layout will be sent to Lasso with
    the query results. Limiting the number of fields can dramatically cut down
    the amount of data that needs to be sent from FileMaker to Lasso.
 
-Value Lists
+-  **Value Lists** --
    For FileMaker Server data sources use the ``-noValueLists`` parameter to
    suppress the automatic sending of value lists from FileMaker when those value
    lists are not going to be used on the response page.
 
-Layout Response
+-  **Layout Response** --
    For FileMaker Server data sources use the ``-layoutResponse`` parameter to
    specify what layout should be used to return results from FileMaker. A
    different layout can be used to specify the request and for the result of the
    request.
 
-Sorting
+-  **Sorting** --
    Sorting can have a serious impact on performance if large numbers of records
    must be sorted. Avoid sorting large record sets and avoid sorting on
    calculation fields, related fields, unindexed fields, or summary fields.
 
-Contains Searching
+-  **Contains Searching** --
    FileMaker is optimized for the default "Begins With" searches (and for
    numerical searches). Use of the contains operator (``-cn``) can dramatically
    slow down performance since FileMaker will not be able to use its indices to
    optimize searches.
 
-Max Records
+-  **Max Records** --
    Using ``-maxRecords`` to limit the number of records returned in the result
    set from FileMaker can speed up performance. Use ``-maxRecords`` and
    ``-skipRecords`` methods to navigate a visitor through the found set.
 
-Calculation Fields
+-  **Calculation Fields** --
    Calculation fields should be avoided if possible. Searching or sorting on
    unindexed, unstored calculation fields can have a negative effect on
    FileMaker performance.
 
-FileMaker Scripts
-   The use of FileMaker scripts should be avoided if possible. When FileMaker
-   executes a script, no other database actions can be performed at the same
-   time. FileMaker scripts can usually be rewritten as Lasso code to achieve the
-   same effect, often with greater performance.
+-  **FileMaker Scripts** --
+   The use of FileMaker scripts should be avoided if possible. While FileMaker
+   executes a script, no other database actions can be performed. FileMaker
+   scripts can usually be rewritten as Lasso code to achieve the same effect,
+   often with greater performance.
 
 In addition to these tips, MySQL or PostgreSQL can be used to shift some of the
 burden off of FileMaker. MySQL and PostgreSQL can usually perform database
@@ -146,24 +143,24 @@ Following these tips will help to ensure that it is easy to transfer data from a
 FileMaker database to another data source, such as a PostgreSQL database, at a
 future date.
 
-Database Names
+-  **Database Names** --
    Database, layout, and field names should contain only a mix of letters,
    numbers, and the underscore character.
 
-Calculation Fields
+-  **Calculation Fields** --
    Avoid the use of calculation fields. Instead, perform calculations within
    Lasso and store the results back into regular fields if they will be needed
    later.
 
-Summary Fields
+-  **Summary Fields** --
    Avoid the use of summary fields. Instead, summarize data using `inline`
    searches within Lasso.
 
-Scripts
+-  **Scripts** --
    Avoid the use of FileMaker scripts. Most actions performed with scripts can
    be performed using the database actions available within Lasso.
 
-Record ID
+-  **Record ID** --
    Create a calculation field named "id" and assign it to the following
    calculation: ``Status(CurrentRecordID)``. Always use the ``-keyField='id'``
    within `inline` database actions. This ensures that when moving to a
@@ -192,96 +189,88 @@ to perform complex queries in FileMaker Server.
 Lasso also provides the following operators that allow different queries to be
 performed. Each operator should be specified immediately before the field and
 its search value are specified. Note that this list of operators is somewhat
-different from those supported by other data source connectors including other
+different from those supported by other data source connectors including older
 FileMaker data source connectors.
 
 .. tabularcolumns:: |l|L|
 
-======== =======================================================================
-Operator  Description
-======== =======================================================================
--bw      Begins with matches records where any word in the field begins with the
-         specified substring. This is the default if no other operator is
-         specified.
+.. _filemaker-search-operators:
 
--cn      Contains matches records where any word in the field contains the
-         substring.
+.. table:: FileMaker Search Operators
 
--eq      Equals matches records where any word in the field exactly matches the
-         string.
-
--ew      Ends with matches records where any word in the field ends with the
-         specified substring.
-
--gt      Greater than matches records where the field value is greater than the
-         parameter.
-
--gte     Greater than or equals.
-
--lt      Less than matches records where the field value is less than the
-         parameter.
-
--lte     Less than or equals.
-
--rx      Use a FileMaker search expression. See the table below for a list of
-         symbols.
-======== =======================================================================
+   ======== ====================================================================
+   Operator Description
+   ======== ====================================================================
+   ``-bw``  Begins With. Matches records where any word in the field begins with
+            the specified substring. This is the default if no other operator is
+            specified.
+   ``-cn``  Contains. Matches records where any word in the field contains the
+            substring.
+   ``-eq``  Equals. Matches records where any word in the field exactly matches
+            the string.
+   ``-ew``  Ends With. Matches records where any word in the field ends with the
+            specified substring.
+   ``-gt``  Greater Than. Matches records where the field value is greater than
+            the parameter.
+   ``-gte`` Greater Than or Equals.
+   ``-lt``  Less Than. Matches records where the field value is less than the
+            parameter.
+   ``-lte`` Less Than or Equals.
+   ``-rx``  Use a FileMaker search expression. See the table below for a list of
+            symbols.
+   ======== ====================================================================
 
 Note that there is no ``-neq`` operator or other negated operators. It is
 necessary to use a ``-not`` query to omit records from the found set instead.
 For example, to find records where the field "first_name" is not "Joe" the
 following search terms must be used: ``-not, -op='eq', 'first_name'='Joe'``
 
-.. is this paragraph still accurate?
-
 The ``-rx`` operator can be used to pass a raw FileMaker search expression as a
 query. This allows the use of any of the FileMaker search symbols. See the
-FileMaker documentation for a full list of how these symbols work.
+FileMaker documentation for a full explanation of how these symbols work.
 
-========= ======================================================================
-Symbol    Description
-========= ======================================================================
-@         Matches one character.
+.. tabularcolumns:: |l|L|
 
-\*        Matches zero or more characters. A single \* matches non-empty fields.
+.. _filemaker-search-symbols:
 
-\..       Matches values between a range of values such as "1..10" or "A..Z".
-          Can be written as two or three periods.
+.. table:: FileMaker Search Symbols
 
-#         Matches one number.
-
-""        Quotes surround a substring which should be matched literally.
-
-=         Matches a whole word. "=John" will match "John", but not "Johnny". A
-          single "=" matches empty field.
-
-==        Matches a whole field value rather than word by word. Should be
-          specified at the start of the search term.
-
-< > <= >= Matches values less than, greater than, less than or equal to, or
-          greater than or equal to a specified value.
-
-?         Matches a record with invalid data in the field.
-
-//        Matches today's date.
-
-!         Matches records which have a duplicate value. Both records will be
-          returned.
-========= ======================================================================
+   ============== ==============================================================
+   Symbol         Description
+   ============== ==============================================================
+   ``@``          Matches one character.
+   ``*``          Matches zero or more characters. A single ``*`` matches
+                  non-empty fields.
+   ``..``         Matches values between a range of values such as "1..10" or
+                  "A..Z". Can be written as two or three periods.
+   ``#``          Matches one number.
+   ``" "``        Quotes surround a substring that should be matched literally.
+   ``=``          Matches a whole word. "=John" will match "John", but not
+                  "Johnny". A single ``=`` matches empty fields.
+   ``==``         Matches a whole field value rather than word by word. Should
+                  be specified at the start of the search term.
+   ``<`` ``>``    Matches values less than or greater than a specified value.
+   ``<=`` ``>=``  Matches values less than or equal to or greater than or equal
+                  to a specified value.
+   ``//``         Matches today's date.
+   ``?``          Matches a record with invalid date data in the field.
+   ``!``          Matches records that have a duplicate value. Both records will
+                  be returned.
+   ============== ==============================================================
 
 The range symbol (``..``) is most useful for performing searches within a date
 range. For example a date in 2006 can be found by searching for ``-rx,
-'date_field'='1/1/2006 .. 12/31/2006'``.
+'date_field'='1/1/2006..12/31/2006'``.
 
 
 Logical Operators
 -----------------
 
 FileMaker data sources default to performing an "and" search. The records that
-are returned from the data source must match all of the criteria that are
-specified. It is also possible to specify ``-opLogical`` to switch to an "or"
-search where the records that are returned from the data source may match any of
-the criteria that are specified.
+are returned from the data source must match all of the specified criteria. It
+is also possible to specify ``-opLogical`` to switch to an "or" search where the
+records that are returned from the data source may match any of the specified
+criteria.
 
 For example, the following criteria returns records where the "first_name" is
 "John" and the "last_name" is "Doe": ``-eq, 'first_name'='John', -eq,
@@ -293,8 +282,8 @@ or the "last_name" is "Doe". This would return records for "John Doe" as well as
 'last_name'='Doe'``
 
 
-Complex Queries: FileMaker 9 and Above 
---------------------------------------
+Complex Queries with FileMaker 9 and Later
+------------------------------------------
 
 Starting with FileMaker Server 9, a search request is made up of one or more
 queries. By default a single query is generated and all of the search terms
@@ -309,21 +298,26 @@ contains, less than, greater than, etc. FileMaker's standard find symbols can be
 used for more complex criteria. It may also be necessary to use multiple queries
 for more complex search criteria.
 
-Search requests in FileMaker Server 9 and above do not support the not equals
-operator or any of the not variant operators. Instead, these should be created
+Search requests in FileMaker Server 9 and later do not support the not equals
+operator or any of the "not"-variant operators. Instead, these should be created
 by combining an omit query with the appropriate affirmative operator. The
 ``-opLogical``, ``-opBegin``, and ``-opEnd`` operators are not supported. The
 ``-or`` and ``-not`` operators must be used instead.
 
-======= ========================================================================
-Keyword Description
-======= ========================================================================
--Or     Starts a new query. Records which match the query will be added to the
-        result set.
+.. tabularcolumns:: |l|L|
 
--Not    Starts an omit query. Records which match the query will be omitted from
-        the result set.
-======= ========================================================================
+.. _filemaker-search-keywords:
+
+.. table:: FileMaker Search Keywords
+
+   ======== ====================================================================
+   Keyword  Description
+   ======== ====================================================================
+   ``-or``  Starts a new query. Records that match the query will be added to
+            the result set.
+   ``-not`` Starts an omit query. Records that match the query will be omitted
+            from the result set.
+   ======== ====================================================================
 
 A search with a single query uses an "and" operator to combine each of the
 search terms. Records where the field "first_name" begins with the letter "J"
@@ -336,7 +330,7 @@ first and second queries independently and then combines the search results. The
 result of the following search terms will be to find every record where the
 field "first_name" begins with the letter "J" and the field "last_name" begins
 with either the letter "D" or the letter "S". Each records in the result set
-will match either the first query or the second query::
+will match either the first query or the second query. ::
 
    -bw, 'first_name'='J',
    -bw, 'last_name'='D'
@@ -353,13 +347,13 @@ with the "J" and the field "last_name" begins with the letter "D" and every
 record where the field "last_name" begins with the letter "S".
 
 The result set can be narrowed by adding an omit query using a ``-not``
-parameter. FileMaker will run the first query and any ``-or`` queries first
+parameter. FileMaker will run the first query and any ``-or`` queries first,
 generating a complete result set. Then, the ``-not`` queries will be run and any
-records which match those queries will be omitted from the found set. The result
+records that match those queries will be omitted from the found set. The result
 of the following search terms will be to find every record where the field
 "first_name" begins with the letter "J" and the field "last_name" begins with
 the letter "D" except for the record for "John Doe". Each records in the result
-set will match the first query and will not match the second query::
+set will match the first query and will not match the second query. ::
 
    -bw, 'first_name'='J',
    -bw, 'last_name'='D'
@@ -372,8 +366,8 @@ or a few ``-or`` queries, but sometimes it is more logical to construct a large
 result set and then use one or more ``-not`` queries to omit records from it.
 
 
-Additional Commands
--------------------
+Additional Commands for FileMaker 9 and Later
+---------------------------------------------
 
 FileMaker Server 9 supports a number of additional unique commands that are
 summarized in the following table. Most of these commands are passed through to
@@ -381,34 +375,40 @@ FileMaker without modification by Lasso. The :title-reference:`FileMaker Server
 9 Custom Web Publishing with XML and XSLT documentation` should be consulted for
 full details about these commands.
 
-+---------------------+--------------------------------------------------------+
-|Keyword              |Description                                             |
-+---------------------+--------------------------------------------------------+
-|-layoutResponse      |Returns the result set using the layout specified in    |
-|                     |this parameter rather than the layout used to specify   |
-|                     |the database action.                                    |
-+---------------------+--------------------------------------------------------+
-|-noValueLists        |Suppresses the fetching of value list data for FileMaker|
-|                     |Server data sources.                                    |
-+---------------------+--------------------------------------------------------+
-|-relatedsets.filter  |If set to "layout" FileMaker will return only the number|
-|                     |of related records shown in portals on the current      |
-|                     |layout. Defaults to returning all records up to the     |
-|                     |number set by ``-relatedsets.max``.                     |
-+---------------------+--------------------------------------------------------+
-|-relatedsets.max     |Sets the number of related records returned. Can be set |
-|                     |to a number or "all".                                   |
-+---------------------+--------------------------------------------------------+
-|-script and          |Runs a script after the find has been processed and     |
-|-script.param        |sorted. The optional parameter can be accessed from     |
-|                     |within the script.                                      |
-+---------------------+--------------------------------------------------------+
-|-script.prefind and  |Runs a script before the find is processed.             |
-|-script.prefind.param|                                                        |
-+---------------------+--------------------------------------------------------+
-|-script.presort and  |Runs a script after the find has been processed, but    |
-|-script.presort.param|before the results are sorted.                          |
-+---------------------+--------------------------------------------------------+
+.. tabularcolumns:: |l|L|
+
+.. _filemaker-additional-parameters:
+
+.. table:: FileMaker Additional Parameters
+
+   +--------------------------+--------------------------------------------------------+
+   |Keyword                   |Description                                             |
+   +==========================+========================================================+
+   |``-layoutResponse``       |Returns the result set using the layout specified in    |
+   |                          |this parameter rather than the layout used to specify   |
+   |                          |the database action.                                    |
+   +--------------------------+--------------------------------------------------------+
+   |``-noValueLists``         |Suppresses the fetching of value list data for          |
+   |                          |FileMaker Server data sources.                          |
+   +--------------------------+--------------------------------------------------------+
+   |``-relatedSets.filter``   |If set to "layout", FileMaker will return only the      |
+   |                          |number of related records shown in portals on the       |
+   |                          |current layout. Defaults to returning all records up to |
+   |                          |the number set by ``-relatedSets.max``.                 |
+   +--------------------------+--------------------------------------------------------+
+   |``-relatedSets.max``      |Sets the number of related records returned. Can be set |
+   |                          |to a number or "all".                                   |
+   +--------------------------+--------------------------------------------------------+
+   |``-script`` and           |Runs a script after the find has been processed and     |
+   |``-script.param``         |sorted. The optional parameter can be accessed from     |
+   |                          |within the script.                                      |
+   +--------------------------+--------------------------------------------------------+
+   |``-script.preFind``       |Runs a script before the find is processed.             |
+   |``-script.preFind.param`` |                                                        |
+   +--------------------------+--------------------------------------------------------+
+   |``-script.preSort``       |Runs a script after the find has been processed, but    |
+   |``-script.preSort.param`` |before the results are sorted.                          |
+   +--------------------------+--------------------------------------------------------+
 
 
 Primary Key Field and Record ID
@@ -418,18 +418,18 @@ FileMaker databases include a built-in primary key value called the Record ID.
 This value is guaranteed to be unique for any record in a FileMaker database. It
 is predominantly sequential, but should not be relied upon to be sequential. The
 values of the Record IDs within a database may change after an import or after a
-database is compressed using "Save a Copy As…". Record IDs can be used within a
-solution to refer to a record on multiple pages, but should not be stored as
-permanent references to FileMaker records.
+database is compressed using :menuselection:`Save a Copy As...`. Record IDs can
+be used within a solution to refer to a record on multiple pages, but should not
+be stored as permanent references to FileMaker records.
 
 
-Return the Current Record ID
-----------------------------
+Return Current Record ID
+------------------------
 
-The Record ID for the current record can be returned using `keyField_value`.
-The following example shows an `inline` method that perform a ``-findAll``
-action and returns the Record ID for each returned record using the
-`keyField_value` method::
+The Record ID for the current record can be returned using `keyField_value`. The
+following example shows an `inline` method that performs a ``-findAll`` action
+and returns the Record ID for each returned record using the `keyField_value`
+method::
 
    inline(-database='contacts', -table='people', -findAll) => {^
       records => {^
@@ -449,10 +449,10 @@ Reference a Record by Record ID
 
 For ``-update`` and ``-delete`` action parameters the Record ID for the record
 being operated upon can be referenced using ``-keyValue``. The ``-keyField``
-does not need to be defined or should be set to an empty string if it is
-(``-keyField=''``). The following example shows a record in "contacts" being
-updated with "-keyValue=126". The name of the person referenced by the record is
-changed to "John Surname"::
+does not need to be defined or should be set to an empty string if it currently
+is (``-keyField=''``). The following example shows a record in "contacts" being
+updated with ``-keyValue=126``. The name of the person referenced by the record
+is changed to "John Surname". ::
 
    inline(
       -update,
@@ -469,16 +469,13 @@ changed to "John Surname"::
 
 The following example shows a record in "contacts" being deleted with
 ``-keyValue=127``. The ``-keyField`` keyword parameter is included, but its
-value is set to the empty string::
+value is set to the empty string. ::
 
    inline(-delete, -database='contacts', -table='people', -keyfield='', -keyValue=127) => {}
 
-
-Access the Record ID Within FileMaker
--------------------------------------
-
-The Record ID for the current record in FileMaker can be accessed using the
-calculation value ``Status(CurrentRecordID)`` within FileMaker.
+.. tip::
+   The Record ID for the current record in FileMaker can be accessed using the
+   calculation value ``Status(CurrentRecordID)`` within FileMaker.
 
 
 Sorting Records
@@ -488,8 +485,8 @@ In addition to the "ascending" and "descending" values for the ``-sortOrder``
 keyword parameter, FileMaker data sources can also accept a custom value. In
 FileMaker Server, the value for ``-sortOrder`` should name a value list. The
 order of that value list will be used as the custom sorting order for records in
-the result set. Note also that FileMaker Server only supports the specification
-of nine sort fields in a single database search.
+the result set. Note also that FileMaker Server only supports specifying up to
+nine sort fields in a single database search.
 
 Return Custom Sorted Results
 ----------------------------
@@ -498,7 +495,7 @@ Specify ``-sortField`` and ``-sortOrder`` keyword parameters within the search
 inline. The records are first sorted by "title" in custom order, then by
 "last_name" and "first_name" in ascending order. The "title" field will be
 sorted in the order of the elements within the value list associated with the
-field in the database. In this case, it will be sorted as "Mr., Mrs., Ms."::
+field in the database. In this case, it will be sorted as "Mr., Mrs., Ms.". ::
 
    inline(
       -findAll,
@@ -518,7 +515,7 @@ field in the database. In this case, it will be sorted as "Mr., Mrs., Ms."::
 The following results could be returned when this page is loaded. Each of the
 records with a title of "Mr." appear before each of the records with a title of
 "Mrs.". Within each title, the names are sorted in ascending alphabetical
-order::
+order. ::
 
    // =>
    // <br />Mr. John Doe
@@ -534,6 +531,8 @@ FileMaker includes a number of methods that allow the different types of
 FileMaker fields to be displayed. These methods are summarized below, and
 examples are included in the sections that follow.
 
+.. index:: field()
+
 .. method:: field(...)
    :noindex:
 
@@ -545,9 +544,9 @@ examples are included in the sections that follow.
 
 .. method:: repeating(name::string)
 
-   Executes an associated block once for each defined repetition of
-   a repeating field. Requires a single parameter, the name of the repeating
-   field from the current layout.
+   Executes a capture block once for each defined repetition of a repeating
+   field. Requires a single parameter, the name of the repeating field from the
+   current layout.
 
 .. method:: repeating_valueItem()
 
@@ -555,17 +554,16 @@ examples are included in the sections that follow.
 
 .. method:: portal(name::string)
 
-   Executes an associated block once for each record in a portal. Requires a
-   single parameter, the name of the portal relationship from the current
-   layout. Fields from the portal can be found using the same method as for
-   related records (e.g. ``field('Calls::Approved')`` within a portal showing
-   records from the "Calls" database).
-
+   Executes a capture block once for each record in a portal. Requires a single
+   parameter, the name of the portal relationship from the current layout.
+   Fields from the portal can be found using the same method as for related
+   records (e.g. ``field('Calls::Approved')`` within a portal showing records
+   from the "Calls" database).
 
 .. note::
-   All fields that are referenced by Lasso must be contained in the current
-   layout in FileMaker. For portals and repeating fields only the number of
-   repetitions shown in the current layout will be available to Lasso.
+   All fields that Lasso references must be contained in the current layout in
+   FileMaker. For portals and repeating fields only the number of repetitions
+   shown in the current layout will be available to Lasso.
 
 
 Related Fields
@@ -573,15 +571,15 @@ Related Fields
 
 Related fields are named using the relationship name followed by two colons and
 the field name. For example, a related field "call_duration" from a "calls"
-database might be referenced as "calls::call_duration". Any related fields
+database might be referenced as ``calls::call_duration``. Any related fields
 included in the layout specified for the current Lasso action can be referenced
 using this syntax. Data can be retrieved from related fields or it can be set in
 related fields when records are added or updated.
 
-.. note::
-   Every database which is referenced by a related field or a portal must have
+.. important::
+   Every database that is referenced by a related field or a portal must have
    the same permissions defined. If a related database does not have the proper
-   permissions then FileMaker will not just leave the related fields blank, but
+   permissions then not only will FileMaker leave the related fields blank, but
    will deny the entire database request.
 
 
@@ -593,11 +591,11 @@ must be contained in the current layout either individually or within a portal.
 In a one-to-one relationship, the value from the single related record will be
 returned. In a one-to-many relationship, the value from the first related record
 as defined by the relationship options will be returned. See the section on
-portals below for more control over one-to many relationships.
+portals below for more control over one-to-many relationships.
 
-The following example shows a "-findAll" action being performed in a database
-"contacts". The related field "last_call_time" from the "calls" databases is
-returned for each record through a relationship named "calls"::
+The following example shows a ``-findAll`` action being performed in a database
+"contacts". The related field "last_call_time" from the "calls" database is
+returned for each record through a relationship named "calls". ::
 
    inline(-findAll, -database='contacts', -table='people') => {^
       records => {^
@@ -613,22 +611,22 @@ returned for each record through a relationship named "calls"::
    // <br />496: Jane Person (Last call at 4:46 pm).
 
 
-Set the Value for a Related Field
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Set Value for a Related Field
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Specify the name of the related field, along with the related field's Record ID,
-within the action which adds or updates a record within the database. The
-related field must be contained in the current layout either individually or
-within a portal.
+within the action that adds or updates a record within the database. The related
+field must be contained in the current layout either individually or within a
+portal.
 
 In one-to-one or one-to-many relationships, the fully qualified field name must
 be used along with the Record ID of the related field in the format
-"table::field.id", where id is the related field's Record ID. See the section on
-portals below for more information.
+``table::field.id``, where "id" is the related field's Record ID. See the
+section on portals below for more information.
 
-The following example shows an "-update" action being performed in a database
+The following example shows an ``-update`` action being performed in a database
 "contacts". The related field "last_call_time", with a record ID of "9", from
-the "calls" database is updated for "Jane Person". The new value is returned::
+the "calls" database is updated for "Jane Person". The new value is returned. ::
 
    inline(
       -update,
@@ -647,15 +645,15 @@ the "calls" database is updated for "Jane Person". The new value is returned::
 Portals
 -------
 
-Portals allow one-to-many relationships to be displayed within FileMaker
-databases. Portals allow data from many related records to be retrieved and
-displayed in a single Lasso page. A portal must be present in the current
-FileMaker layout in order for its values to be retrieved using Lasso.
+A :dfn:`portal` allows one-to-many relationships to be displayed within
+FileMaker databases. Portals allow data from many related records to be
+retrieved and displayed in a single Lasso page. A portal must be present in the
+current FileMaker layout in order for its values to be retrieved using Lasso.
 
-.. note::
-   Every database which is referenced by a related field or a portal must have
+.. important::
+   Every database that is referenced by a related field or a portal must have
    the same permissions defined. If a related database does not have the proper
-   permissions then FileMaker will not just leave the related fields blank, but
+   permissions then not only will FileMaker leave the related fields blank, but
    will deny the entire database request.
 
 Only the number of repetitions formatted to display within FileMaker will be
@@ -665,10 +663,9 @@ records from the portal to be displayed using Lasso.
 Fields in portals are named using the same convention as related fields. The
 relationship name is followed by two colons and the field name. For example, a
 related field "call_duration" from a "calls" database might be referenced as
-"calls::call_duration".
+``calls::call_duration``.
 
-
-.. note::
+.. tip::
    Everything that is possible to do with portals can also be performed using
    nested `inline` capture blocks to perform actions in the related database.
    Portals are unique to FileMaker databases.
@@ -678,12 +675,12 @@ Return Values from a Portal
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the `portal` method with the name of the portal referenced. The `field`
-method within the `portal` associated block should reference the fields from
-the current portal row using the relationship field syntax.
+method within the `portal` capture block should reference the fields from the
+current portal row using the relationship field syntax.
 
-The following example shows a portal "calls" which is contained in the "people"
+The following example shows a portal "calls" that is contained in the "people"
 layout of the "contacts" database. The "time", "duration", and "number" of each
-call is displayed::
+call is displayed. ::
 
    inline(-findAll, -database='contact', -table='people') => {^
       records => {^
@@ -704,19 +701,20 @@ call is displayed::
    //     <br />555-1212 at 2:23 pm for 55 minutes.
    //     <br />555-1212 at 4:46 pm for 5 minutes.</p>
 
+
 Add a Record to a Portal
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 A record can be added to a portal by adding the record directly to the related
 database. In the following example the "calls" database is related to the
-"contacts" database by virtue of a field "contact_id" that stores the ID for the
-contact which the calls were made to. New records added to "calls" with the
+"contacts" database by means of a field "contact_id" that stores the ID for the
+contact to which the calls were made. New records added to "calls" with the
 appropriate "contact_id" will be shown through the portal to the next site
 visitor.
 
 In the following example a new call is added to the "calls" database for John
 Doe. John Doe has an ID of "123" in the "contacts" database. This is the value
-used for the "contact_id" field in "calls"::
+used for the "contact_id" field in "calls". ::
 
    inline(
       -add,
@@ -740,16 +738,17 @@ about how to create and use value lists within FileMaker.
 
 In order to display values from a value list, the layout referenced in the
 current database action must contain a field formatted to show the desired value
-list as a pop-up menu, select list, check boxes, or radio buttons. Lasso cannot
-reference a value list directly. Lasso can only reference a value list through a
-formatted field in the current layout.
+list as a drop-down menu, select list, checkboxes, or radio buttons. Lasso
+cannot reference a value list directly; but can only reference a value list
+through a formatted field in the current layout.
 
+.. index:: value_list(), value_listItem(), selected(), checked()
 
 .. method:: value_list(colName::string)
    :noindex:
 
-   Executes an associated block for each value in the named value list. Requires
-   a single parameter: the name of a field from the current layout that has a
+   Executes a capture block for each value in the named value list. Requires a
+   single parameter: the name of a field from the current layout that has a
    value list assigned to it.
 
 .. method:: value_listItem()
@@ -774,10 +773,10 @@ Display All Values from a Value List
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example shows how to display all values from a value list using a
-``-show`` action within an `inline` associated block. The field "title" in the
+``-show`` action within an `inline` capture block. The field "title" in the
 "contacts" database contains five values: "Mr.", "Mrs.", "Ms.", and "Dr.". The
 ``-show`` action allows the values for value lists to be retrieved without
-performing a database action::
+performing a database action. ::
 
    inline(-show, -database='contacts', -table='people') => {^
       value_list('title') => {^
@@ -792,19 +791,19 @@ performing a database action::
    // Dr.
 
 
-Display an HTML Pop-Up Menu in a Form with All Values from a Value List
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Display a Drop-Down Menu with All Values from a Value List
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following example shows how to format an HTML ``<select>`` pop-up menu to
+The following example shows how to format an HTML ``<select>`` drop-down menu to
 show all the values from a value list. A select list can be created with the
-same code by including a size and/or multiple option within the ``<select>``
-tag. This code is usually used within an HTML form that submits to a page that
-performs an ``-add`` action so the visitor can select a value from the value
-list for the record they create.
+same code by including a ``"size"`` and/or ``"multiple"`` option within the
+``<select>`` tag. This code is usually used within an HTML form that submits to
+a page that performs an ``-add`` action so the visitor can select a value from
+the value list for the record they create.
 
-The example shows a single ``<select>`` tag within an `inline` block with a
-``-show`` command. If many value lists from the same database are being
-formatted, they can all be contained within a single `inline` block::
+The example shows a single ``<select>`` tag within an `inline` capture block
+with a ``-show`` command. If many value lists from the same database are being
+formatted, they can all be contained within a single inline. ::
 
    <form action="response_page.lasso" method="post">
    [inline(-show, -database='contacts', -table='people')]
@@ -829,13 +828,13 @@ formatted, they can all be contained within a single `inline` block::
    // </form>
 
 
-Display HTML Radio Buttons with All Values from a Value List
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Display Radio Buttons with All Values from a Value List
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following example shows how to format a set of HTML ``<input>`` tags to show
 all the values from a value list as radio buttons. The visitor will be able to
-select one value from the value list. Check boxes can be created with the same
-code by changing the type from "radio" to "checkbox"::
+select one value from the value list. Checkboxes can be created with the same
+code by changing the type from "radio" to "checkbox". ::
 
    <form action="response_page.lasso" method="post">
    [inline(-show, -database='contacts', -table='people')]

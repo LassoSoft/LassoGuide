@@ -18,8 +18,33 @@ a System DSN, after which the data source name can be entered into Lasso. See
 the :ref:`datasource-setup` chapter for additional details.
 
 
-Tips for Using ODBC Data Sources
-================================
+Supported Features for ODBC Data Sources
+========================================
+
+The following chart details the features of this data source connector.
+
+:Friendly Name:
+   Lasso Connector for ODBC
+:Internal Name:
+   odbc
+:Module Name:
+   SQLConnector.dll, SQLConnector.dylib, or SQLConnector. so
+:Inline Host Attributes:
+   The ``-name`` should specify the data source name (System DSN). A
+   ``-username`` and ``-password`` may also be required.
+:Actions:
+   ``-add``, ``-delete``, ``-findAll``, ``-search``, ``-show``, ``-sql``,
+   ``-update``
+:Operators:
+   ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
+   ``-nbw``, ``-ncn``, ``-new``; ``-opBegin``/``-opEnd`` with "and", "or",
+   "not".
+:KeyField:
+   ``-keyField``/``-keyValue``
+
+
+ODBC Data Source Tips
+=====================
 
 The following is a list of guidelines to follow when writing Lasso code that
 interfaces with ODBC data sources.
@@ -77,31 +102,6 @@ interfaces with ODBC data sources.
 -  Lasso 9 uses connection pooling when connecting to data sources via ODBC, and
    the ODBC connections will remain open during the time that Lasso 9 is
    running.
-
-
-Supported Features for ODBC Data Sources
-========================================
-
-The following chart details the features of this data source connector.
-
-:Friendly Name:
-   Lasso Connector for ODBC
-:Internal Name:
-   odbc
-:Module Name:
-   SQLConnector.dll, SQLConnector.dylib, or SQLConnector. so
-:Inline Host Attributes:
-   The ``-name`` should specify the data source name (System DSN). A
-   ``-username`` and ``-password`` may also be required.
-:Actions:
-   ``-add``, ``-delete``, ``-findAll``, ``-search``, ``-show``, ``-sql``,
-   ``-update``
-:Operators:
-   ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
-   ``-nbw``, ``-ncn``, ``-new``; ``-opBegin``/``-opEnd`` with "and", "or",
-   "not".
-:KeyField:
-   ``-keyField``/``-keyValue``
 
 
 Using ODBC Data Sources
