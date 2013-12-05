@@ -4,8 +4,8 @@
 DNS
 ***
 
-The Domain Name System (DNS) is an essential part of the Internet's
-infrastructure which maps people-friendly domain names like "www.lassosoft.com"
+:abbr:`DNS (Domain Name System)` is an essential part of the Internet's
+infrastructure for mapping people-friendly domain names like "www.lassosoft.com"
 to machine-friendly IP addresses like "127.0.0.1". Every URL entered into a web
 browser or email address entered into an email client requires consulting the
 DNS system to determine which server to submit the request or route the message
@@ -20,7 +20,7 @@ are listed here:
 
 A
    This is the most common type of request and simply returns the IP address
-   which corresponds with the domain name.
+   that corresponds with the domain name.
 
 CNAME
    This is a request for the common name associated with a domain name.
@@ -34,12 +34,12 @@ NS
    information about the domain name.
 
 PTR
-   This type of request allows a reverse lookup to be performed --- returning
-   the domain name associated with an IP address.
+   This type of request allows a reverse lookup to be performed, returning the
+   domain name associated with an IP address.
 
 TXT
    Domain name servers can store additional information about a domain name.
-   Specially formatted domain names are sometimes used as keys which will return
+   Specially formatted domain names are sometimes used as keys that will return
    useful information when queried with this option.
 
 Any query can return either a single value or an array of values. For example, a
@@ -61,19 +61,20 @@ domain in which the machine or service resides, and the third word represents
 the top-level domain that has authorized the use of the domain name.
 
 Top-level domains are controlled by an organization that has been designated by
-the IANA (Internet Assigned Name Authority). Two common, general-purpose
-top-level domains are ".com" and ".net", ".edu" is a top-level domain reserved
-for educational institutions, ".gov" is a top-level domain reserved for U.S.
-government institutions, ".org" is a top-level domain reserved for non-profit
-organizations.
+the :abbr:`IANA (Internet Assigned Name Authority)`. Two common, general-purpose
+top-level domains are "|dot| com" and "|dot| net", "|dot| edu" is a top-level
+domain reserved for educational institutions, "|dot| gov" is a top-level domain
+reserved for U.S. government institutions, "|dot| org" is a top-level domain
+reserved for non-profit organizations.
 
 Each country has its own top-level domain defined by its standard two letter
-abbreviation, e.g. ".us" is the top-level domain for the United States, ".uk" is
-the top-level domain for the United Kingdom, and ".cn" is the top-level domain
-for China. The domain ".to" is actually the country domain for Tonga. Each
-country decides how it wants to assign domain names within their own top-level
-domain. Some have created virtual top-level domains like ".com.uk", ".org.uk",
-".edu.uk", etc.
+abbreviation, e.g. "|dot| us" is the top-level domain for the United States,
+"|dot| uk" is the top-level domain for the United Kingdom, and "|dot| cn" is the
+top-level domain for China. The domain "|dot| tv", frequently used to refer to
+television, is actually the country domain for Tuvalu. Each country decides how
+it wants to assign domain names within their own top-level domain. Some have
+created virtual top-level domains like "|dot| com.uk", "|dot| org.uk", "|dot|
+edu.uk", etc.
 
 
 IPv4 Addresses
@@ -104,8 +105,10 @@ essentially 128-bit integers. A typical IPv6 address may appear as follows:
    fe80:0000:0000:0000:0000:0000:0000:0000
 
 
-DNS Lookup
-==========
+Querying for DNS Records
+========================
+
+DNS queries are performed with the `dns_lookup` method.
 
 .. method:: dns_lookup(\
       name::string, \
@@ -144,8 +147,8 @@ DNS Lookup
    :param boolean -noRecurse:
       By default the local DNS server will automatically query other DNS servers
       to find the answer to a request. If this parameter is included then the
-      query will only return information which is known directly by the local
-      DNS server.
+      query will only return information that is known directly by the local DNS
+      server.
    :param boolean -inverse:
       Sets the inverse bit in the DNS query.
    :param boolean -status:
@@ -155,11 +158,10 @@ DNS Lookup
       :type:`dns_response` object representing the query is returned.
    :param boolean -formatQuery:
       If specified the query is not actually performed, but a string describing
-      the query that was constructed is returned.
+      the constructed query is returned.
    :param boolean -bitQuery:
       If specified the query is not actually performed, but a string is returned
-      which shows the low-level bit representation of the query that was
-      constructed.
+      that shows the low-level bit representation of the constructed query.
    :param boolean -showResponse:
       If specified the response is returned as :type:`dns_response` object that
       can be inspected using the member methods described in the documentation
@@ -168,7 +170,7 @@ DNS Lookup
       If specified a string is returned that describes the response from the
       DNS server.
    :param boolean -bitFormat:
-      If specified a string is returned which shows the low-level bit
+      If specified a string is returned that shows the low-level bit
       representation of the response from the DNS server.
    :param -hostname:
       Allows you to specify the name of a specific DNS server to query. Defaults
@@ -179,8 +181,8 @@ DNS Lookup
       How long to wait for a response when doing a DNS lookup.
 
 
-IP Lookup Example
------------------
+IP Lookup
+---------
 
 The following example looks up the associated IP address(es) for a specified
 domain name. Using a ``-type`` of "A" will always return an array, even if there
@@ -191,8 +193,8 @@ the specified domain name can be found. ::
    // => array(64.34.221.14)
 
 
-Reverse Lookup Example
-----------------------
+Reverse Lookup
+--------------
 
 Reverse lookups are performed when an IP address is passed to the
 `dns_lookup` method, or when the "PTR" type is specified, and return an array of
@@ -215,8 +217,8 @@ servers cannot be reached. ::
    // => array((10 = smtp1.lassosoft.com), (15 = smtp2.lassosoft.com))
 
 
-Using Different Formats
------------------------
+Return Different Formats
+------------------------
 
 The following output shows the human-readable response to a DNS request::
 
@@ -235,18 +237,25 @@ The following output shows the low-level bit formatting of a DNS response. The
 actual response is fairly long and not shown here::
 
    dns_lookup('www.lassosoft.com', -bitFormat)
-   // => // Long response here // <= //
+   // =>
+   // ASCII
+   // 3  T  X
+   // ... rest of response ...
 
 
-DNS Response Type
-=================
+DNS Response Helper Type
+========================
+
+The :type:`dns_response` type is a helper type which is used to format both DNS
+requests and responses. Normally a value of this type will only be returned from
+the `dns_lookup` method when ``-showResponse`` is specified. However, this type
+can also be used to parse raw DNS requests or responses if necessary.
 
 .. type:: dns_response
-.. method:: dns_response()
+.. method:: dns_response(message::bytes)
 
-   An object of this data type can be returned in response to a `dns_lookup`
-   depending on its parameters. The member methods of this type are described
-   below.
+   Create a new :type:`dns_response` object. An object of this type can be
+   returned from `dns_lookup` when ``-showResponse`` is specified.
 
 .. member:: dns_response->format()
 
@@ -258,7 +267,10 @@ DNS Response Type
 
 .. member:: dns_response->answer()
 
-   Returns the answer from the DNS server. This differs based on the type.
+   Returns an array of answers for most DNS responses. Address lookups or
+   reverse lookups will return an array of IP addresses or host names. MX record
+   lookups will return an array of pairs, each with a priority and an IP
+   address. Other lookups may return an array of strings or other data.
 
 .. member:: dns_response->data()
 
