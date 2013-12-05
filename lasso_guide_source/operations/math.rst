@@ -4,21 +4,21 @@
 Math
 ****
 
-Numbers in Lasso are stored and manipulated using the decimal and integer data
-types. This chapter details the operators and methods that can be used to
-manipulate decimal and integer values and to perform mathematical operations.
-Each of these methods is described in detail in the sections that follow;
-however, the Lasso Reference is the primary documentation source for Lasso
-operators and methods.
+Numbers in Lasso are stored and manipulated using the :type:`decimal` and
+:type:`integer` types. This chapter details the operators and methods that can
+be used to manipulate decimal and integer values and to perform mathematical
+operations. Each of these methods is described in detail in the sections that
+follow; however, the Lasso Reference is the primary documentation source for
+Lasso operators and methods.
 
 
-Integer Type
-============
+Creating Integer Objects
+========================
 
-The integer type represents whole number values. Basically, 0 and any positive
-or negative number which does not contain a decimal point is an integer value in
-Lasso. Examples include ``-123`` or ``456``. Integer objects may also be
-expressed in hexadecimal notation such as ``0x1A`` or ``0xff``.
+The :type:`integer` type represents whole number values. Basically, zero and any
+positive or negative number that does not contain a decimal point is an integer
+value in Lasso. Examples include ``-123`` or ``456``. Integer objects may also
+be expressed in hexadecimal notation such as ``0x1A`` or ``0xff``.
 
 .. type:: integer
 .. method:: integer()
@@ -32,11 +32,11 @@ expressed in hexadecimal notation such as ``0x1A`` or ``0xff``.
 Explicit Integer Conversion
 ---------------------------
 
-Strings that contain numeric data can be converted to the :type:`integer` data
-type using the `integer` creator method. The string must start with a numeric
-value. In the following examples the number ``123`` is the result of each
-explicit conversion. Only the first integer found in the string ``'123 and then
-456'`` is recognized::
+Strings that contain numeric data can be converted to integer objects using the
+`integer` creator method. The string must start with a numeric value. In the
+following examples the integer ``123`` is the result of each explicit
+conversion. Only the first integer found in the string ``'123 and then 456'`` is
+recognized::
 
    integer('123')
    // => 123
@@ -104,15 +104,15 @@ output that value in base 16::
    // => 0xff
 
 
-Integer Bit Operations
-======================
+Integer Bitwise Methods
+=======================
 
-Bit operations can be performed with Lasso's integer objects. These operations
-can be used to examine and manipulate binary data. They can also be used for
-general purpose binary set operations.
+Bitwise operations can be performed with Lasso's integer objects. These
+operations can be used to examine and manipulate binary data. They can also be
+used for general purpose binary set operations.
 
 Integer literals in Lasso can be specified using hexadecimal notation. This can
-greatly aid in constructing literals for use with the bit operation. For
+greatly aid in constructing literals for use with the bitwise operation. For
 example, ``0xff`` is the integer literal ``255``.
 
 .. member:: integer->bitAnd(p0::integer)
@@ -167,8 +167,8 @@ example, ``0xff`` is the integer literal ``255``.
    is not possible to change their value in-place.
 
 
-Performing a Bitwise Or
------------------------
+Perform a Bitwise Or
+--------------------
 
 In the following example the boolean "Or" of ``0x02`` and ``0x04`` is calculated
 and returned in hexadecimal notation::
@@ -179,8 +179,8 @@ and returned in hexadecimal notation::
    // => 0x6
 
 
-Shifting Bits to the Left
--------------------------
+Shift Bits to the Left
+----------------------
 
 In the following example, ``0x02`` is shifted left by three places and output in
 hexadecimal notation::
@@ -192,8 +192,8 @@ hexadecimal notation::
    // => 0x10
 
 
-Setting and Testing a Specified Bit
------------------------------------
+Set and Test a Specified Bit
+----------------------------
 
 In the following example, the second bit of an integer is set and then tested::
 
@@ -204,14 +204,14 @@ In the following example, the second bit of an integer is set and then tested::
    // => true
 
 
-Decimal Type
-============
+Creating Decimal Objects
+========================
 
-The :type:`decimal` data type represents real or floating point numbers.
-Basically, 0.0 or any positive or negative number that contains a decimal point
-is a decimal object in Lasso. Examples include ``-123.0`` and ``456.789``.
-Decimal values can also be written in exponential notation such as ``1.23e2``
-which is equivalent to ``1.23`` times ``10^2`` or ``123.0``.
+The :type:`decimal` type represents real or floating point numbers. Basically,
+0.0 or any positive or negative number that contains a decimal point is a
+decimal object in Lasso. Examples include ``-123.0`` and ``456.789``. Decimal
+values can also be written in exponential notation such as ``1.23e2`` which is
+equivalent to ``1.23`` times ``10^2`` or ``123.0``.
 
 .. type:: decimal
 .. method:: decimal()
@@ -222,9 +222,9 @@ which is equivalent to ``1.23`` times ``10^2`` or ``123.0``.
 .. method:: decimal(n::null)
 .. method:: decimal(n::void)
 
-   The creator methods for the decimal type converts :type:`integer`,
+   The creator methods for the :type:`decimal` type converts :type:`integer`,
    :type:`string`, :type:`bytes`, :type:`null`, and :type:`void` objects to a
-   :type:`decimal` object.
+   decimal value.
 
    The precision of a decimal value when converted to a string is always
    displayed as six decimal places even though the actual precision of the
@@ -237,7 +237,7 @@ Implicit Decimal Conversion
 ---------------------------
 
 Integer values are converted to decimal values automatically if they are used as
-a parameter to a mathematical operator in conjunction with a decimal value. The
+a parameter to an arithmetical operator in conjunction with a decimal value. The
 following example shows how the integer ``123`` is automatically converted to a
 decimal value because the other parameter of the ``+`` operator is the decimal
 value ``456.0``::
@@ -245,7 +245,7 @@ value ``456.0``::
    456.0 + 123
    // => 579.0
 
-The following example shows how a variable with a value of ``123`` is
+The following example shows how a variable with a value of "123" is
 automatically converted to a decimal value::
 
    local(number) = 123
@@ -257,11 +257,11 @@ automatically converted to a decimal value::
 Explicit Decimal Conversion
 ---------------------------
 
-Strings which contain numeric data can be converted to the :type:`decimal` data
-type using the `decimal` creator method. The string must start with a numeric
-value. In the following examples the number ``123.0`` is the result of each
-explicit conversion. Only the first decimal value found in the string ``'123 and
-then 456'`` is recognized::
+Strings containing numeric data can be converted to the :type:`decimal` type
+using the `decimal` creator method. The string must start with a numeric value.
+In the following examples the number ``123.0`` is the result of each explicit
+conversion. Only the first decimal value found in the string ``'123 and then
+456'`` is recognized::
 
    decimal('123')
    // => 123.0
@@ -272,7 +272,7 @@ then 456'`` is recognized::
    decimal('123 and then 456')
    // => 123.0
 
-Integers which are converted to decimals simply have a decimal point appended.
+Integers that are converted to decimals simply have a decimal point appended.
 The value of the number does not change. ::
 
    decimal(123)
@@ -303,13 +303,13 @@ method detailed below.
 
    Returns a string representation of the decimal value formatted as specified
    by the parameters passed to the method. If no parameters are passed to the
-   method, the string will be the decimal value with 6 places of precision.
+   method, the string will be the decimal value with six places of precision.
 
    :param string -decimalChar:
-      The character which should be used for the decimal point. It defaults to a
+      The character that should be used for the decimal point. It defaults to a
       period.
    :param string -groupChar:
-      The character which should be used for thousands grouping. Defaults to an
+      The character that should be used for thousands grouping. Defaults to an
       empty string.
    :param integer -precision:
       The number of places after the decimal point that should be output. The
@@ -332,7 +332,7 @@ Format a Decimal Number as U.S. Currency
 ----------------------------------------
 
 The following example outputs a decimal value as if it were U.S. currency by
-setting the precision to ``2``. For readability, it also sets a comma as the
+setting the precision to "2". For readability, it also sets a comma as the
 grouping character. ::
 
    local(dollar_amt) = 1234.56
@@ -341,29 +341,30 @@ grouping character. ::
    // => 1,234.56
 
 
-Mathematical Operators
-======================
+Arithmetical Operations
+=======================
 
-The easiest way to manipulate integer and decimal objects is to use mathematical
+The easiest way to manipulate integer and decimal objects is to use arithmetical
 operators. The sections below detail all the operators that can be used with
-integer and decimal values.
+integer and decimal values. See the :ref:`operators` chapter for further
+documentation of how these operators are used.
 
 
-Basic Mathematical Operators
------------------------------
+Basic Arithmetical Operators
+----------------------------
 
-Each mathematical operator takes two parameters, one to its left and the other
-to its right. If either of the parameters is a decimal then the result will be a
+Each basic operator takes two parameters, one to its left and the other to its
+right. If either of the parameters is a decimal then the result will be a
 decimal value. Some of the operators can also be used to perform string
 operations. If either of the parameters is a string value then the string
-operation defined by the operator will be performed rather than the mathematical
+operation defined by the operator will be performed rather than the arithmetical
 operation.
-
-.. _math-operators:
 
 .. tabularcolumns:: |l|l|L|
 
-.. table:: Table: Mathematical Operators
+.. _math-operators:
+
+.. table:: Arithmetical Operators
 
    ======== ============== =====================================================
    Operator Name           Description
@@ -373,13 +374,13 @@ operation.
                            parameter.
    ``*``    Multiplication Multiplies two parameters.
    ``/``    Division       Divides the left parameter by the right parameter.
-   ``%``    Modulus        Divides the left parameter by the right parameter and
-                           returns the remainder (modulo operation).
+   ``%``    Modulo         Produces the remainder of dividing the left parameter
+                           by the right parameter.
    ======== ============== =====================================================
 
 
-Using the Mathematical Operators
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using Arithmetical Operators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Two numbers can be added using the ``+`` operator. The output will be a decimal
 value if either of the parameters are a decimal value. ::
@@ -412,7 +413,7 @@ decimal value if either of the parameters are a decimal value. ::
    // => -1250.000000
 
 
-Mathematical Assignment Operators
+Arithmetical Assignment Operators
 ---------------------------------
 
 Each of the operators takes two parameters, one to its left and the other to its
@@ -421,11 +422,11 @@ string. The second parameter can be an integer, decimal, or string literal. The
 result of the operation is calculated and then stored back in the variable
 specified as the left-hand parameter.
 
-.. _math-assignment-operators:
-
 .. tabularcolumns:: |l|l|L|
 
-.. table:: Table: Mathematical Assignment Operators
+.. _math-assignment-operators:
+
+.. table:: Arithmetical Assignment Operators
 
    ======== =============== ====================================================
    Operator Name            Description
@@ -444,13 +445,14 @@ specified as the left-hand parameter.
    ``/=``   Divide-assign   Divides the value of the left parameter by the value
                             of the right parameter and assigns the result to the
                             variable designated by the left parameter.
-   ``%=``   Modulus-assign  Assigns the value of the left parameter modulo the
-                            right parameter to the left parameter.
+   ``%=``   Modulo-assign   Assigns the value of the left parameter modulo the
+                            right parameter to the variable designated by the
+                            left parameter.
    ======== =============== ====================================================
 
 
-Using the Mathematical Assignment Operators
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using Arithmetical Assignment Operators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A variable can be assigned a new value using the assignment operator (``=``).
 The following example shows how to define an integer variable and then set it to
@@ -474,17 +476,17 @@ add several values to it, then output the final value::
    // => -233
 
 
-Mathematical Comparison Operators
----------------------------------
+Arithmetical Equality Operators
+-------------------------------
 
-Each of the mathematical comparison operators takes two parameters, one on its
+Each of the arithmetical equality operators takes two parameters, one on its
 left and one on its right.
-
-.. _math-comparison-operators:
 
 .. tabularcolumns:: |l|l|L|
 
-.. table:: Table: Mathematical Comparison Operators
+.. _math-equality-operators:
+
+.. table:: Arithmetical Equality Operators
 
    ======== ================ ===================================================
    Operator Name             Description
@@ -502,12 +504,13 @@ left and one on its right.
    ======== ================ ===================================================
 
 
-Using the Mathematical Comparison Operators
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using Arithmetical Equality Operators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Two numbers can be compared for equality using the ``==`` operator and ``!=``
-operator. The result is a boolean "true" or "false". Integers are automatically
-converted to decimal values when compared with decimals. ::
+Two numbers can be compared for equality using the equality (``==``) and
+inequality (``!=``) operators. The result is a boolean "true" or "false".
+Integers are automatically converted to decimal values when compared with
+decimals. ::
 
    100 == 123
    // => false
@@ -521,8 +524,8 @@ converted to decimal values when compared with decimals. ::
    100.0 != -123
    // => true
 
-Numbers can be compared using the ``<``, ``<=``, ``>``, and ``>=`` operators.
-The result is a boolean "true" or "false". ::
+Numbers can be compared using the relative equality operators (``<``, ``<=``,
+``>``, ``>=``). The result is a boolean "true" or "false". ::
 
    -37 > 0
    // => false
@@ -594,9 +597,9 @@ when one is available.
    parameters and will then return an integer value regardless of the types of
    the objects passed as parameters.
 
-   When returning integer values ``math_random`` will return a maximum 32-bit
-   value. The range of returned integers is approximately between +/-
-   2,000,000,000.
+   When returning integer values `math_random` will return a maximum 32-bit
+   value. The range of returned integers is approximately between
+   +/- 2,000,000,000.
 
 .. method:: math_rint(value)
 
@@ -612,8 +615,8 @@ when one is available.
    parameter.
 
 
-Basic Math Operations Examples
-------------------------------
+Using Basic Math Methods
+------------------------
 
 The following are all examples of using basic math methods to calculate the
 results of various mathematical operations::
@@ -637,8 +640,8 @@ results of various mathematical operations::
    // => 200
 
 
-Rounding to an Integer
-----------------------
+Round to an Integer
+-------------------
 
 Decimals can be rounded to an integer using the `integer` creator method, the
 `math_floor` method to round to the next lowest integer, or the `math_ceil`
@@ -654,8 +657,8 @@ method to round to the next highest integer::
    // => 38
 
 
-Rounding to Nearest Integer
----------------------------
+Round to Nearest Integer
+------------------------
 
 Decimals can be rounded to the nearest integer using the `math_rint` method.
 This method rounds the decimal, but does not convert it to an integer::
@@ -664,8 +667,8 @@ This method rounds the decimal, but does not convert it to an integer::
    // => 38.000000
 
 
-Rounding to Specified Precision
--------------------------------
+Round to a Specified Precision
+------------------------------
 
 Numbers can be rounded to arbitrary precision using the `math_round` method with
 a decimal parameter. The second parameter should be of the form ``0.01``,
@@ -682,7 +685,6 @@ a decimal parameter. The second parameter should be of the form ``0.01``,
 
    math_round(3.1415926, 0.1)
    // => 3.100000
-
 
 Numbers can be rounded to an even multiple of another number using the
 `math_round` method with an integer parameter. The integer parameter should be a
@@ -725,8 +727,8 @@ returned. The random number will be different each time the page is loaded. ::
    // => 0.532773
 
 
-Return a Random Color Value
----------------------------
+Return a Random Hex Color Value
+-------------------------------
 
 In the following example a random hexadecimal color code is returned. The random
 number will be different each time the page is loaded. The range is from ``0``
@@ -739,15 +741,16 @@ to ``255`` to return two-digit hexadecimal values between ``00`` and ``FF``. ::
    ]
    <span style="color: [#color];">Color</span>
 
-   [// =>
-   ]<span style="color: #e64b32;">Color</span>
+   <!--
+   // => <span style="color: #e64b32;">Color</span>
+   -->
 
 
 Trigonometry and Advanced Math Methods
 ======================================
 
-Lasso provides a number of methods for performing trigonometric functions,
-square roots, logarithms, and calculating exponents.
+Lasso provides a number of methods for calculating square roots, logarithms, and
+exponents, and performing trigonometric functions.
 
 .. method:: math_acos(value)
 
@@ -809,11 +812,11 @@ square roots, logarithms, and calculating exponents.
    parameter passed to this method must be positive.
 
 
-Advanced Math Methods Operations Examples
------------------------------------------
+Using Advanced Math Methods
+---------------------------
 
 The following are examples of using some of these advanced math methods to
-calculate the results of various mathematical operations::
+calculate various mathematical operations::
 
    math_pow(3, 3)
    // => 27
