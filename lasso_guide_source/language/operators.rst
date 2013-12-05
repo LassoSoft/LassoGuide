@@ -200,6 +200,8 @@ or negative number is created from the beginning.
 Boolean Operations
 ==================
 
+.. index:: boolean literal
+
 :dfn:`Boolean` describes the values "true" and "false". Lasso supports several
 operators that either treat their operands as boolean values and/or produce
 boolean values. These operators are broken down into several categories.
@@ -509,8 +511,8 @@ multiple method calls. The retarget operator (``&``) is placed between the
 individual method calls. Retarget is only ever used in the context of a member
 method call using the target operator (``->``). The target object of the last
 target operator is used as the object for the retargeted member call. For each
-method call, the ``&`` is placed following the method name, parameters, and
-givenBlock (if present).
+method call, the ``&`` is placed following the method's name, parameters, and
+capture block (if present).
 
 The retarget operator can be used to string two or more methods together. The
 return value of the final method will be produced by this type of retarget. ::
@@ -602,5 +604,5 @@ the case of ``->\``), and the execution of the method when the
          See :ref:`methods`, :ref:`types` chapters
       :**Keywords** ``return``, ``yield``, etc.:
          See :ref:`captures`, :ref:`methods` chapters
-      :**Captures/Code blocks** ``{ ... }``, ``{^ ... ^}``:
+      :**Code/Capture blocks** ``{ ... }``, ``{^ ... ^}``:
          See :ref:`control-flow`, :ref:`captures`, :ref:`methods` chapters

@@ -110,7 +110,8 @@ Defining Traits
 
 A trait is defined using a :dfn:`trait expression` consisting of the ``define``
 keyword followed by the trait name, the association operator (``=>``), the
-keyword ``trait``, and a code block containing the definition of the trait. ::
+keyword ``trait``, and a code block containing the definition of the trait.
+::
 
    define myTrait => trait {
       // ...
@@ -124,6 +125,8 @@ Other traits can be imported in an import section.
 
 provide
 -------
+
+.. index:: provide keyword
 
 The member methods that a trait provides are specified similarly to the public
 section of a type definition. The :dfn:`provide` section begins with the keyword
@@ -148,6 +151,8 @@ data member::
 require
 -------
 
+.. index:: require keyword
+
 The :dfn:`require` section allows specifying a list of method signatures that
 are required for the trait to operate properly. The signatures may be simple
 method names, or they may be complete signatures with parameter specifications.
@@ -170,6 +175,8 @@ the "firstName" data member::
 
 import
 ------
+
+.. index:: import keyword
 
 The :dfn:`import` section allows the characteristics of other traits to be
 imported into this trait definition, thus allowing a hierarchy of traits to be

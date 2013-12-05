@@ -17,10 +17,14 @@ in-depth information about captures and examples of their use.
 Capture Structure
 =================
 
+.. index:: code block, capture block, auto-collect
+.. index::
+   see: associated block; capture block
+
 A :dfn:`capture` is a representation of the control state of a section of code.
-While methods are stateless (once they have had their code established),
-captures maintain state, some of which may change frequently during execution.
-This state consists of:
+While methods' code blocks are stateless (once they have had their code
+established), captures maintain state, some of which may change frequently
+during execution. This state consists of:
 
 -  The current method's code
 -  The current "self" and "inherited"
@@ -48,14 +52,14 @@ As previously mentioned, captures are automatically created when a method is
 executed. Captures can also be manually created by using curly braces as an
 expression. When using the association operator (``=>``) to invoke an object by
 passing it a capture, the capture is known as the object's :dfn:`associated
-block` or :dfn:`givenBlock`. ::
+block` or :dfn:`capture block`. ::
 
    #ary->forEach => {
       // ... a capture of the surrounding code ...
    }
 
 In the code above, ``forEach`` is associated with a capture object. This results
-in ``forEach`` being invoked with the capture as its givenBlock, which it may
+in ``forEach`` being invoked with the capture as its capture block, which it may
 execute as needed.
 
 Captures can also be assigned to variables like any other object. The following
@@ -160,6 +164,8 @@ been updated by ``method2``. ::
 
 Producing Values and Detaching
 ==============================
+
+.. index:: return keyword, yield keyword, returnHome keyword, yieldHome keyword
 
 Captures can produce values by using ``yield`` or ``return``. Both ``yield`` and
 ``return`` halt the execution of any of the capture's remaining code and produce
@@ -307,7 +313,7 @@ Capture Methods
 
 .. member:: capture->givenBlock()
 
-   Returns the givenBlock associated with the current capture object, if any.
+   Returns the capture block associated with the current capture object, if any.
 
 .. member:: capture->autoCollectBuffer()
 

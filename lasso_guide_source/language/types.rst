@@ -16,6 +16,8 @@ that data in predetermined ways.
 Defining Types
 ==============
 
+.. index:: define keyword
+
 Before a type can be used, it must first be defined. Defining a type is done
 in the same manner as other entities (traits, methods). The word ``define`` is
 used, followed by the name for the type, the association operator (``=>``), and
@@ -46,6 +48,8 @@ data members of its own. It is a completely valid, if somewhat boring, type. ::
 
 Data Members
 ------------
+
+.. index:: data keyword
 
 Each data section defines one or more :dfn:`data members` for the type, which
 are other objects contained by the type. In a data member section, the word
@@ -80,6 +84,8 @@ other sections in the type expression if necessary. ::
 Type Constraints
 ^^^^^^^^^^^^^^^^
 
+.. index:: tag literal
+
 Data member values can be constrained to hold only particular types of objects.
 To do this, follow the data member name with two colons (``::``) and then a type
 or trait name. When a data member is constrained, it cannot be assigned any
@@ -110,6 +116,8 @@ definition uses both type constraints and default values for "firstName" and
 
 Accessing Data Members
 ^^^^^^^^^^^^^^^^^^^^^^
+
+.. index:: self keyword
 
 Data members can be accessed from within the methods of a type by targeting the
 current type instance using the keyword ``self`` and the target operator
@@ -231,6 +239,8 @@ arise as the getter/setter continually re-calls itself.
 Member Methods
 --------------
 
+.. index:: public keyword, private keyword, protected keyword
+
 A :dfn:`member method` is a method that belongs to a particular type, as opposed
 to an :dfn:`unbound method` which does not, thus acting as a standalone
 function. A member method can operate on the data members of its owning type in
@@ -321,6 +331,8 @@ functionality provided by a parent.
 Parent Section
 ^^^^^^^^^^^^^^
 
+.. index:: parent keyword
+
 The :dfn:`parent` section names the parent that the type being defined is to
 inherit from. For example, the ``person`` type can inherit from the ``entity``
 type by naming it in its parent section. Each person object that gets created
@@ -363,6 +375,8 @@ type ``two``. ::
 
 Accessing Inherited Methods
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. index:: inherited keyword
 
 Sometimes it is necessary to call "down" to an inherited method. A method
 inherited from an ancestor (any of the parents down the chain to :type:`null`)
@@ -450,6 +464,8 @@ creator that does not accept any parameters will fail. ::
 onCreate
 ^^^^^^^^
 
+.. index:: onCreate callback
+
 Many types allow one or more parameters to be provided when a new object is
 created in order to customize the object before it is used. A type can specify
 its own type creators by defining one or more methods named ``onCreate``. When a
@@ -521,6 +537,8 @@ callback a type can customize its behavior.
 asString
 ^^^^^^^^
 
+.. index:: asString callback
+
 The ``asString`` method is called when an object is expressed as a string. By
 default, a type instance will simply output the name of the object's type.
 Overriding this method allows a type to control how it is output. The following
@@ -539,6 +557,8 @@ is called::
 
 onCompare
 ^^^^^^^^^
+
+.. index:: onCompare callback
 
 The ``onCompare`` method is called whenever an object is compared against
 another object. This includes when the equality (``==``), and inequality
@@ -610,6 +630,8 @@ returned. ::
 contains
 ^^^^^^^^
 
+.. index:: contains callback
+
 The ``contains`` method is called whenever an object is compared using the
 contains (``>>``) or not contains (``!>>``) operators.
 
@@ -640,6 +662,8 @@ returning "true" or "false".
 
 invoke
 ^^^^^^
+
+.. index:: invoke callback
 
 The ``invoke`` method is called whenever an object is invoked by applying
 parentheses to it. By default, invoking an object produces a copy of the invoked
@@ -673,6 +697,8 @@ calling the ``invoke`` method or by applying parentheses::
 
 \_unknowntag
 ^^^^^^^^^^^^
+
+.. index:: _unknowntag callback
 
 Implementing the ``_unknowntag`` method allows a type to handle requests for
 methods that it does not have. When a search for a member method fails, the

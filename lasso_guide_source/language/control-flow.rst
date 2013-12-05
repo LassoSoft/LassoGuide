@@ -22,6 +22,8 @@ and another which trades flexibility for speed and readability.
 If/Else Conditional
 -------------------
 
+.. index:: if conditional, else keyword
+
 An :dfn:`if/else conditional` is a construct that allows code to be executed
 only if a particular expression evaluates as "true". The if/else conditional
 differs from the conditional operator in that it permits multiple conditional
@@ -51,7 +53,7 @@ further conditions will be tested and execution will resume at the end of the
 if/else conditional.
 
 The second form operates like the first, but permits the if/else to be used with
-the association/givenBlock syntax. ::
+the association/code block syntax. ::
 
    if (expression1) => {
       // Code here executed if expression1 evaluates true
@@ -72,6 +74,8 @@ information about these different types of code blocks.
 
 Match/Case Conditional
 ----------------------
+
+.. index:: match conditional, case keyword
 
 A :dfn:`match/case conditional` allows code to be selectively executed based
 upon the logical equivalence of two or more objects. The match/case conditional
@@ -100,7 +104,7 @@ case::
       // ...
    /match
 
-The second form uses the association/givenBlock syntax::
+The second form uses the association/code block syntax::
 
    match (expression) => {
    case (c1, c2)
@@ -141,6 +145,8 @@ about these different types of code blocks.
 While Loop
 ----------
 
+.. index:: loop; while
+
 A :dfn:`while loop` executes its body as long as its test expression is "true".
 The test expression is evaluated before the beginning of each loop. ::
 
@@ -159,6 +165,8 @@ The test expression is evaluated before the beginning of each loop. ::
 
 Counting Loop
 -------------
+
+.. index:: loop; counting
 
 A :dfn:`counting loop` steps from one integer number to another, either counting
 up or down each iteration, until the counter reaches the end value. The most
@@ -203,6 +211,8 @@ significant. In the case of using keyword parameters, either the ``-from`` or
 
 Iterate Loop
 ------------
+
+.. index:: loop; iterate
 
 An :dfn:`iterate loop` is applied to objects that contain other objects, such as
 arrays, maps, or any type that supports :trait:`trait_forEach`. Iterate will
@@ -272,6 +282,8 @@ Loop Methods
 
 generateSeries
 ^^^^^^^^^^^^^^
+
+.. index:: series literal
 
 The `generateSeries` method is great for use with query expressions. (See the
 :ref:`query-expressions` chapter for more information on their abilities.)

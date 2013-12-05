@@ -41,11 +41,11 @@ interfaces with ODBC data sources.
    of data that needs to travel between Lasso and the data source.
 
 -  When an ``-add`` or ``-update`` action is performed on a database, the data
-   from the added or updated record is available inside the associated block of
-   the `inline` method. If the ``-returnField`` parameter is used, then only
-   those fields specified should be returned from an ``-add`` or ``-update``
-   action. Setting ``-maxRecords=0`` can be used as an indication that no record
-   should be returned.
+   from the added or updated record is available inside the capture block of the
+   `inline` method. If the ``-returnField`` parameter is used, then only those
+   fields specified should be returned from an ``-add`` or ``-update`` action.
+   Setting ``-maxRecords=0`` can be used as an indication that no record should
+   be returned.
 
 -  SQL statements that are generated using visitor-defined data should be
    screened carefully for unwanted commands such as "DROP" or "GRANT".

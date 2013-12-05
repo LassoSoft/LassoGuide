@@ -391,8 +391,8 @@ instead of processing the code on the page.
 
 The `handle` methods will be executed if a logical error occurs while Lasso is
 processing a page. However, the returned result will be an error message rather
-than the output of the page. Code within the `handle` capture can redirect the
-user to another page using `redirect_url` or can replace the contents of the
+than the output of the page. Code within the `handle` capture block can redirect
+the user to another page using `redirect_url` or can replace the contents of the
 page being served.
 
 There are two ways to use `handle` methods within a Lasso page:
@@ -463,7 +463,7 @@ The `protect` capture blocks can be used for the following purposes:
 
 -  To protect a portion of a page so that any errors that would normally result
    in an error message being displayed to the user are instead handled in the
-   internal `handle` code blocks.
+   internal `handle` capture blocks.
 
 -  To provide advanced flow control in a page. Code within the `protect` capture
    blocks is executed normally until a `fail` signal is encountered. The code
@@ -475,8 +475,8 @@ Protect a Portion of a Page from Errors
 
 Wrap the portion of the page that needs to be protected in a `protect` capture
 block. Any internal errors that Lasso reports will be caught by the `protect`
-code block and not reported to the end user. A `handle` code block should be
-included to handle the error if necessary.
+capture block and not reported to the end user. A `handle` capture block should
+be included to handle the error if necessary.
 
 In the following Lasso code an attempt is made to set a variable "myVar" to
 "null". However, if the variable has not been previously declared, an error

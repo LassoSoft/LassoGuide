@@ -21,20 +21,19 @@ Splitting Threads
 =================
 
 A new thread can be created by calling the `split_thread` method. This method
-requires being given a `capture` block. The capture given to `split_thread` will
-be run in a new thread. This new thread will contain copies of the local
-variables that are active at the time the new thread is created. Changing the
-value of a variable in the new thread will not affect the variables that were
-active at the creation point. Additionally, the current self is cleared for the
-new thread.
+requires a capture block. The capture given to `split_thread` will be run in a
+new thread. This new thread will contain copies of the local variables that are
+active at the time the new thread is created. Changing the value of a variable
+in the new thread will not affect the variables that were active at the creation
+point. Additionally, the current self is cleared for the new thread.
 
 .. method:: split_thread()::pair
 
-   Takes a capture assigned as a givenBlock and runs that capture in a separate
-   thread. Any local variables that would normally be available to that capture
-   are copied and available in the new thread. This method also returns a pair
-   object with file descriptors for writing and reading messages to and from the
-   newly created thread.
+   Takes a capture assigned as a capture block and runs that capture in a
+   separate thread. Any local variables that would normally be available to that
+   capture are copied and available in the new thread. This method also returns
+   a pair object with file descriptors for writing and reading messages to and
+   from the newly created thread.
 
 
 Thread with Capture
@@ -57,11 +56,11 @@ When a new thread is created by calling `split_thread`, the return value of that
 method call is a pair of filedesc objects. Similarly, the parameter given to the
 new thread is a pair of filedesc objects. (This can be accessed in the new
 thread by the pseudo-local variable ``#1``.) The :type:`filedesc` type
-represents a file or pipe over which data can be sent or received. These objects
-provide the means for the new thread and the creator thread to communicate. Two
-filedesc objects are required for thread communication, one representing the
-*write* end of the pipe and the other representing the *read* end. Objects are
-written to the write filedesc and read from the read filedesc.
+represents a file descriptor or pipe over which data can be sent or received.
+These objects provide the means for the new thread and the creator thread to
+communicate. Two filedesc objects are required for thread communication, one
+representing the *write* end of the pipe and the other representing the *read*
+end. Objects are written to the write filedesc and read from the read filedesc.
 
 Within this context of the given pair of filedescs, the write filedesc is always
 the first member of the pair while the read filedesc is always the second

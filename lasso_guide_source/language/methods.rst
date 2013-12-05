@@ -277,6 +277,8 @@ the rest variable to "other"::
 Parameter Type Constraints
 --------------------------
 
+.. index:: tag literal
+
 In a signature, all parameter types, with the exception of the rest parameter,
 can be specified with an optional type constraint. While parameter count and
 ordering ensure that the caller is passing the right number of parameters in the
@@ -322,18 +324,20 @@ object. See the :ref:`variables` chapter for more information on
 Return Type
 -----------
 
-Specifying a return type for a signature enforces that the value returned by the
-associated code block is of a specific type. If a method returns a value having
-a type that does not pass the "isA" test for the specified return type, then a
-failure is generated. (The "isA" test involves calling the object's ``isA``
-method with the constraint; if a non-zero value is returned, then it passes. See
-`~null->isA` for details about this member method.) Specifying a return type
-provides knowledge to the caller of the method about the method's resulting
-value. It also ensures the method's developer that their programming is correct,
-at least with respect to the method returning the proper value type. Specifying
-a return type is optional, and a method without a specified return type may
-return values of any type, or may return no value at all (in which case the
-value returned to the caller is "void").
+.. index:: tag literal
+
+Specifying a return type for a signature enforces that the value returned by its
+code block is of a specific type. If a method returns a value having a type that
+does not pass the "isA" test for the specified return type, then a failure is
+generated. (The "isA" test involves calling the object's ``isA`` method with the
+constraint; if a non-zero value is returned, then it passes. See `~null->isA`
+for details about this member method.) Specifying a return type provides
+knowledge to the caller of the method about the method's resulting value. It
+also ensures the method's developer that their programming is correct, at least
+with respect to the method returning the proper value type. Specifying a return
+type is optional, and a method without a specified return type may return values
+of any type, or may return no value at all (in which case the value returned to
+the caller is "void").
 
 The return type for a signature is specified at the end of the signature,
 following the parameter list parentheses, by including two colons (``::``)
@@ -378,6 +382,8 @@ These are the syntax diagrams for signatures and their related elements.
 Defining Methods
 ================
 
+.. index:: define keyword
+
 Before a method can be used, it must first be defined. Defining a method
 combines a signature with a method body, and allows it to be called by name from
 within other methods.
@@ -421,9 +427,11 @@ value expression. ::
 Code Blocks
 -----------
 
+.. index:: code block
+
 Many methods do more than return a single easily calculated value. A method body
 can be composed of multiple expressions enclosed by a pair of curly braces (``{
-... }``). This type of method body is referred to as a code block.
+... }``). This type of method body is referred to as a :dfn:`code block`.
 
 Code blocks provide the most flexibility when defining methods. They allow a
 series of expressions to be encapsulated as the implementation of the method.

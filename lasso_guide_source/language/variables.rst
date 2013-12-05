@@ -28,6 +28,9 @@ accessed with "RhINo" as well.
 Local Variables
 ===============
 
+.. index::
+   pair: local; variable
+
 Each capture runs with its own set of variables. These are called :dfn:`local
 variables` or :dfn:`locals`, and they are the most commonly used type of
 variable. Locals begin and end within the capture in which they are defined,
@@ -89,6 +92,9 @@ See the :ref:`methods` chapter for information on methods and method parameters.
 Thread Variables
 ================
 
+.. index::
+   pair: thread; variable
+
 :dfn:`Thread variables`, or :dfn:`vars`, are variables that are shared and
 accessible outside of any particular capture, yet are restricted to the
 currently executing thread. Each thread maintains its own set of vars. Vars are
@@ -144,6 +150,8 @@ this method, an error is returned if the var has not been previously defined. ::
 
 Type Constraints
 ================
+
+.. index:: tag literal
 
 A :dfn:`type constraint` can be applied to a local or thread variable in order
 to ensure that the value of the variable is always an object of a particular

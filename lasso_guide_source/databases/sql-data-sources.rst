@@ -55,11 +55,11 @@ Tips for Using SQL Data Sources
    of data that needs to travel between Lasso and the data source.
 
 -  When an ``-add`` or ``-update`` action is performed on a database, the data
-   from the added or updated record is available inside the associated block of
-   the `inline` method. If the ``-returnField`` parameter is used, then only
-   those fields specified should be returned from an ``-add`` or ``-update``
-   action. Setting ``-maxRecords=0`` can be used as an indication that no record
-   should be returned.
+   from the added or updated record is available inside the capture block of the
+   `inline` method. If the ``-returnField`` parameter is used, then only those
+   fields specified should be returned from an ``-add`` or ``-update`` action.
+   Setting ``-maxRecords=0`` can be used as an indication that no record should
+   be returned.
 
 
 Security Tips
@@ -674,7 +674,7 @@ Add or Update a Null Value to a Field
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the :type:`null` object as the field value. The following example adds a
-record with a "NULL" value in the "last_name::
+record with a "NULL" value in the "last_name" field::
 
    inline(
       -add,
@@ -708,15 +708,15 @@ displayed using the methods defined below. None of these methods will work in
 
 .. method:: value_list(name::string)
 
-   Executes an associated block once for each value allowed for an "ENUM" or
-   "SET" field. Requires a single parameter: the name of an "ENUM" or "SET"
-   field from the current table. This method will not work in ``-sql`` inlines
-   or if the ``-noValueLists`` parameter is specified.
+   Executes a capture block once for each value allowed for an "ENUM" or "SET"
+   field. Requires a single parameter: the name of an "ENUM" or "SET" field from
+   the current table. This method will not work in ``-sql`` inlines or if the
+   ``-noValueLists`` parameter is specified.
 
 .. method:: value_listItem()
 
-   While in a `value_list` associated block, it returns the value for the
-   current item.
+   While in a `value_list` capture block, it returns the value for the current
+   item.
 
 .. method:: selected()
 

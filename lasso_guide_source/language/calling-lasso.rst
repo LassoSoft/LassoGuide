@@ -16,6 +16,8 @@ understanding the rest of the topics and examples given in this guide.
 Calling Lasso Web Pages
 =======================
 
+.. index:: delimiters
+
 Lasso is most often used to serve web applications. Lasso code can be embedded
 in HTML pages and executed before they are served to web visitors. A page that
 includes Lasso code within it is referred to as a :dfn:`Lasso page`.
@@ -101,6 +103,8 @@ of the Lasso platform, see the :ref:`command-line-tools` chapter.)
 
 Using the lasso9 Tool
 ---------------------
+
+.. index:: lasso9
 
 The :program:`lasso9` executable is a tool included with Lasso that handles the
 parsing and execution of Lasso code from the command line. For example, the

@@ -128,6 +128,8 @@ backtick character cannot appear within a ticked string. ::
 Boolean Literals
 ================
 
+.. index:: boolean literal, true, false
+
 A :dfn:`boolean` is an object that is either "true" or "false". Lasso supports
 the creation of these objects by using the word ``true`` or ``false`` directly
 in the source code. ::
@@ -196,6 +198,8 @@ See the :ref:`math` chapter for more information on the :type:`decimal` type.
 Tag Literals
 ============
 
+.. index:: tag literal
+
 A :dfn:`tag` is an object that uniquely represents a particular string of
 characters. Unlike strings, tags cannot be modified. Tags are used to represent
 type and method names as well as variable names. A tag should begin with a
@@ -236,6 +240,10 @@ See the :ref:`containers` chapter for more information on the
 Series Literals
 ===============
 
+.. index::
+   single: series literal
+   see: range; series literal
+
 Lasso's :type:`generateSeries` type is a quick and efficient way to create a
 :dfn:`series` or :dfn:`range` for use with query expressions. The object created
 has a starting integer and ending integer for the series separated by the word
@@ -248,6 +256,8 @@ be added after the word "by". ::
 
 Comments
 ========
+
+.. index:: comment
 
 Lasso supports three types of comments: single line comments, block comments,
 and doc comments. Single line and block comments are ignored, having no effect

@@ -514,11 +514,14 @@ those groups. ::
 Making an Object Queriable
 ==========================
 
+.. index:: eacher
+
 An object can be used as the source of a with clause in a query expression if
 its type has implemented and imported the :trait:`trait_queriable` trait. For
 this, a type must implement the ``forEach`` member method. This method is always
-called with a givenBlock. Within the ``forEach`` member method, the object being
-queried should invoke the givenBlock, passing it each available element in turn.
+called with a capture block. Within the ``forEach`` member method, the object
+being queried should invoke the capture block, passing it each available element
+in turn.
 
 The following example implements a user list type. Objects of this type can be
 used in query expressions. For the sake of this example, it permits iteration
