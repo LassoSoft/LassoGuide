@@ -97,6 +97,8 @@ create your new instance.
 Instance Creation Fields
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. index:: serial number, license
+
 Instance Name
    This is the name of the new instance. It serves to uniquely identify the
    instance among the others.
@@ -211,6 +213,9 @@ Setting an instance's serial number will restart that instance.
 Restart an Instance
 -------------------
 
+.. index::
+   pair: instance; restart
+
 Clicking the :guilabel:`Restart Instance` button will open an alert, confirming
 your intention to restart the instance. Pressing :guilabel:`Cancel` will clear
 the alert window and nothing further will happen. Pressing :guilabel:`OK` will
@@ -253,6 +258,9 @@ appropriate button in this view.
 Modify Instance Environment Variables
 -------------------------------------
 
+.. index::
+   pair: instance; environment variable
+
 :dfn:`Environment variables` control how an instance runs or how the software
 that an instance is using (e.g. ImageMagick or Java) operates. Click the
 instance's "Variables" button to reveal the environment variables view. All
@@ -277,20 +285,25 @@ modified or removed unless a highly customized instance is required.
 Instance Home Directory Contents
 ================================
 
-A Lasso instance's home directory can contain several folders and files that can
-be used to tailor the instance. Specifically, these are the "LassoModules",
-"LassoLibraries", and "LassoApps" directories. However, by default, an instance
-will also look for these directories in the Instance Manager's home directory.
-Files can be placed in the proper location inside of the instance's home
-directory in order to override the files provided by the Instance Manager.
+.. index:: LassoModules, LassoLibraries, LassoApps, LassoStartup
 
-LassoModules
-   The :dfn:`LassoModules` directory contains all Lasso C API (LCAPI) modules.
-   These are all loaded when an instance is first started. The instance will
-   first load all modules located in the Instance Manager's home, and then all
-   modules located in the instance's home. This permits an instance to replace
-   an LCAPI module with its own version, if required, or to have an
-   instance-specific LCAPI module.
+A Lasso instance's home directory can contain several folders and files that can
+be used to tailor the instance. Specifically, these are the "LassoApps",
+"LassoLibraries", "LassoModules", and "LassoStartup" directories. However, by
+default, an instance will also look for the first three directories in the
+Instance Manager's home directory. Files can be placed in the appropriate
+location inside of the instance's home directory in order to override the files
+provided by the Instance Manager.
+
+LassoApps
+   The :dfn:`LassoApps` directory contains applications that are loaded when an
+   instance starts up. At startup, the instance finds all the applications in
+   the Instance Manager's "LassoApps" directory and compares it with the
+   applications in its own "LassoApps" directory. Any applications in the
+   Instance Manager's "LassoApps" directory with the same name as those in the
+   instance's home directory are skipped. This allows an instance to install its
+   own version of a Lasso application with the same name without ever loading
+   the Instance Manager's version.
 
 LassoLibraries
    The :dfn:`LassoLibraries` directory contains all available on-demand
@@ -303,15 +316,22 @@ LassoLibraries
    Manager's home directory with its own version or to have its own
    instance-specific library.
 
-LassoApps
-   The :dfn:`LassoApps` directory contains applications that are loaded when an
-   instance starts up. At startup, the instance finds all the applications in
-   the Instance Manager's "LassoApps" directory and compares it with the
-   applications in its own "LassoApps" directory. Any applications in the
-   Instance Manager's "LassoApps" directory with the same name as those in the
-   instance's home directory are skipped. This allows an instance to install its
-   own version of a Lasso application with the same name without ever loading
-   the Instance Manager's version.
+LassoModules
+   The :dfn:`LassoModules` directory contains all Lasso C API (LCAPI) modules.
+   These are all loaded when an instance is first started. The instance will
+   first load all modules located in the Instance Manager's home, and then all
+   modules located in the instance's home. This permits an instance to replace
+   an LCAPI module with its own version, if required, or to have an
+   instance-specific LCAPI module.
+
+LassoStartup
+   The :dfn:`LassoStartup` directory contains plain-text Lasso files which are
+   read when the instance starts. Any uncompiled custom types or methods can be
+   placed in files ending in either "|dot| lasso" or "|dot| inc" and will be
+   available across the instance.
+
+   .. note:: Lasso only searches for a "LassoStartup" directory in each
+      instance's home folder, and not in the Instance Manager's home directory.
 
 
 .. _instance-manager-starting-stopping:
