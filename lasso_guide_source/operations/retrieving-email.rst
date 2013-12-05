@@ -12,7 +12,7 @@ This enables developers to create solutions such as:
 -  An auto-responder that can reply to incoming messages with information
 
 Lasso's flexible POP implementation allows messages to be easily retrieved from
-a POP server with a minimal amount of coding. In addition, Lasso allows the
+a POP server with a minimal amount of coding. Additionally, Lasso allows the
 messages available on the POP server to be inspected without downloading or
 deleting them. Mail can be downloaded but left on the server so it can be
 checked by other clients (and deleted at a later point if necessary).
@@ -25,14 +25,20 @@ headers, or extract attachments from them.
    Lasso does not support downloading email via the IMAP protocol.
 
 
-.. _email-pop-type:
+.. _retrieving-email-pop:
 
-POP Type
-========
+Sending POP Commands
+====================
+
+.. index:: POP
 
 The :type:`email_pop` type is used to establish a connection to a POP email
 server, inspect the available messages, download one or more messages, and mark
 messages for deletion.
+
+
+POP Methods
+-----------
 
 The following describes the :type:`email_pop` type and some of its member
 methods:
@@ -69,12 +75,6 @@ methods:
    Performs the command specified when the object was created. "UniqueID" by
    default, or can be set to "Retrieve", "Headers", or "Delete".
 
-.. member:: email_pop->delete()
-.. member:: email_pop->delete(position::integer)
-
-   Marks the current message for deletion. Optionally accepts a position to mark
-   a specific message.
-
 .. member:: email_pop->retrieve()
 .. member:: email_pop->retrieve(position::integer)
 .. member:: email_pop->retrieve(position::integer, maxLines::integer)
@@ -83,17 +83,23 @@ methods:
    to retrieve a specific message. Optional second parameter specifies the
    maximum number of lines to fetch for each email.
 
-.. member:: email_pop->uniqueID()
-.. member:: email_pop->uniqueID(position::integer)
-
-   Gets the unique ID of the current message from the server. Optionally accepts
-   a position to get the unique ID of a specific message.
-
 .. member:: email_pop->headers()
 .. member:: email_pop->headers(position::integer)
 
-   Gets the headers of the current message from the server. Optionally accepts a
-   position to get the headers of a specific message.
+   Retrieves the headers of the current message from the server. Optionally
+   accepts a position to get the headers of a specific message.
+
+.. member:: email_pop->uniqueID()
+.. member:: email_pop->uniqueID(position::integer)
+
+   Retrieves the unique ID of the current message from the server. Optionally
+   accepts a position to get the unique ID of a specific message.
+
+.. member:: email_pop->delete()
+.. member:: email_pop->delete(position::integer)
+
+   Marks the current message for deletion. Optionally accepts a position to mark
+   a specific message.
 
 .. member:: email_pop->close()
 
@@ -119,8 +125,8 @@ methods:
    a connection to the server if one is not already established.
 
 
-Methodology
------------
+Message Retrieval
+-----------------
 
 The :type:`email_pop` type is intended to be used with the `iterate` method to
 quickly loop through all available messages on the server. The `email_pop->size`
@@ -130,8 +136,8 @@ fetches the "UniqueID" of the current message by default or can be set to
 "Delete" the current message.
 
 The ``-host``, ``-username``, and ``-password`` should be passed to the
-email_pop object when it is created. The ``-get`` parameter specifies what
-command the `email_pop->get` method will perform. In this case it is set to
+:type:`email_pop` object when it is created. The ``-get`` parameter specifies
+what command the `email_pop->get` method will perform. In this case it is set to
 "UniqueID" (the default). ::
 
    local(myPOP) = email_pop(
@@ -171,16 +177,16 @@ code will download and delete every message from the target server. The variable
    // Subject: Test
    // Content-Type: text/plain; charset=ISO-8859-1; format=flowed
    // Content-Transfer-Encoding: 7bit
-   // 
+   //
    // Testing
    // <hr />
 
 Both `email_pop->retrieve` and `email_pop->delete` could be specified with the
 current `loop_count` as a parameter, but it is unnecessary since they pick up
 the loop count from the surrounding `iterate` method. This example only
-downloads and displays the text of each message. Most solutions will need to use
-the `email_parse` type defined below to parse and process the downloaded
-messages.
+downloads and displays the text of each message. Most solutions will use the
+:type:`email_parse` type defined below to parse and process the downloaded
+:messages.
 
 None of the deletes will actually be performed until the connection to the
 remote server is closed. The `email_pop->close` method performs all deletes and
@@ -190,13 +196,13 @@ cancels all of the marked deletes. ::
    #myPOP->close
 
 
-email_pop Examples
-------------------
+Using Email_Pop
+---------------
 
 This section includes examples of the most common tasks that are performed using
-the :type:`email_pop` type. See the :ref:`Email Parsing <email-parsing>` section
-that follows for examples of downloading messages and parsing them for storage
-in a database.
+the :type:`email_pop` type. See the section on :ref:`email parsing
+<retrieving-email-parsing>` for examples of downloading messages and parsing
+them for storage in a database.
 
 
 Download and Delete All Emails from a POP Server
@@ -214,13 +220,13 @@ message from the server::
 
    iterate(#myPOP, local(myID)) => {
       local(myMSG) = #myPOP->retrieve
-      // ... Process Message ...
+      // ... process message ...
       #myPOP->delete
    }
    #myPOP->close
 
-Each downloaded message can be processed using the techniques in the
-:ref:`Email Parsing <email-parsing>` section that follows or can be stored in a
+Each downloaded message can be processed using the techniques described in the
+section on :ref:`email parsing <retrieving-email-parsing>` or can be stored in a
 database.
 
 
@@ -240,16 +246,15 @@ If it does not then the message is downloaded and the unique ID is inserted into
 "myUniqueIDs". ::
 
    local(myPOP) = email_pop(
-          -host = 'mail.example.com',
+      -host = 'mail.example.com',
       -username = 'POPUSER',
       -password = 'MySecretPassword'
    )
    iterate(#myPOP, local(myID)) => {
-      #myUniqueIDs->contains(#myID)
-         ? loop_continue
+      #myUniqueIDs->contains(#myID) ? loop_continue
 
       #myUniqueIDs->insert(#myID)
-      // ... Process Message ...
+      // ... process message ...
    }
    #myPOP->close
 
@@ -273,21 +278,19 @@ are set to determine whether either action should take place. ::
       local(needDownload) = false
       local(needDelete)   = false
       local(myHeaders)    = #myPOP->headers
-      // ... Process headers and set needDownload or needDelete to true ...
-      #needDownload
-         ? #myPOP->retrieve
-      #needDelete
-         ? #myPOP->delete
-    }
-    #myPOP->close
+      // ... process headers and set #needDownload or #needDelete to true ...
+      #needDownload ? #myPOP->retrieve
+      #needDelete ? #myPOP->delete
+   }
+   #myPOP->close
 
-The downloaded headers can be processed using the techniques in the
-:ref:`Email Parsing <email-parsing>` section that follows.
+The downloaded headers can be processed using the techniques described in the
+section on :ref:`email parsing <retrieving-email-parsing>`.
 
 
-.. _email-parsing:
+.. _retrieving-email-parsing:
 
-Email Parsing
+Parsing Email
 =============
 
 Each of the messages that are downloaded from a POP server is returned in raw
@@ -301,15 +304,15 @@ Email Structure
 
 The basic structure of a simple email message is shown below. The message starts
 with a series of headers. The headers of the message are followed by a blank
-line then the body of the message.
+line, then the body of the message.
 
-The :mailheader:`Received` headers are added by each server that handles the
-message so there may be many of them. The :mailheader:`Mime-Version`,
-:mailheader:`Content-Type`, and :mailheader:`Content-Transfer-Encoding` specify
-what type of email message it is and how it is encoded. The
+Each server that handles the message adds its own :mailheader:`Received`
+headers, so there may be many of them. The :mailheader:`Mime-Version`,
+:mailheader:`Content-Type`, and :mailheader:`Content-Transfer-Encoding` headers
+specify what type of email message it is and how it is encoded. The
 :mailheader:`Message-ID` is a unique ID given to the message by the email
 server. The :mailheader:`To`, :mailheader:`From`, :mailheader:`Subject`, and
-:mailheader:`Date` fields are all specified by the sending user in their email
+:mailheader:`Date` headers are all specified by the sending user in their email
 client (or in Lasso using `email_send`).
 
 .. code-block:: none
@@ -332,7 +335,7 @@ once (except for the :mailheader:`Received` headers which are in reverse
 chronological order). A header can be continued on the following line by
 starting the second line with a space or tab. Beyond those standard headers
 shown here, email messages can also contain many other headers identifying the
-sending software, logging SPAM and virus filtering actions, or even adding meta
+sending software, logging spam and virus filtering actions, or even adding meta
 information like a picture of the sender.
 
 A more complex email message is shown below. This message has a
@@ -387,15 +390,16 @@ Lasso allows access to the headers and each part (including recursive parts) of
 downloaded email messages through the :type:`email_parse` type.
 
 
-The Email_Parse Type
---------------------
+Parsing Methods
+---------------
 
 The :type:`email_parse` type requires the raw MIME text of an email message as a
 parameter when it is created. It returns an object whose member methods can be
 used to inspect the headers and parts of the email message. Outputting an
-email_parse object to the page will result in a message formatted with the most
-common headers and the default body part. An email_parse object can be used with
-the `iterate` method to inspect each part of the message in turn.
+:type:`email_parse` object to the page will result in a message formatted with
+the most common headers and the default body part. An :type:`email_parse` object
+can be used with the `iterate` method to inspect each part of the message in
+turn.
 
 .. type:: email_parse
 .. method:: email_parse(mime::string)
@@ -441,7 +445,8 @@ the `iterate` method to inspect each part of the message in turn.
 .. member:: email_parse->get(position::integer)
 
    Returns the specified part of the message. Requires a position parameter. The
-   part is returned as an email_parse object that can be further inspected.
+   part is returned as an :type:`email_parse` object that can be further
+   inspected.
 
 .. member:: email_parse->data()
 
@@ -455,7 +460,6 @@ the `iterate` method to inspect each part of the message in turn.
 
    Returns an array containing all of the email addresses in the
    :mailheader:`To`, :mailheader:`Cc`, and :mailheader:`Bcc` headers.
-
 
 .. member:: email_parse->to(...)
 .. member:: email_parse->from(...)
@@ -473,21 +477,27 @@ the `iterate` method to inspect each part of the message in turn.
    header from the email message. The table below maps the method to the header.
    (The Bcc header will always be empty for received emails.)
 
-   ======================================== =======================================
-   Method Name                              Email Header
-   ======================================== =======================================
-   `email_parse->to`                        :mailheader:`To`
-   `email_parse->from`                      :mailheader:`From`
-   `email_parse->cc`                        :mailheader:`CC`
-   `email_parse->bcc`                       :mailheader:`BCC`
-   `email_parse->subject`                   :mailheader:`Subject`
-   `email_parse->date`                      :mailheader:`Date`
-   `email_parse->content_type`              :mailheader:`Content-Type (MIME Type)`
-   `email_parse->boundary`                  :mailheader:`Content-Type (boundary)`
-   `email_parse->charset`                   :mailheader:`Content-Type (charset)`
-   `email_parse->content_disposition`       :mailheader:`Content-Disposition`
-   `email_parse->content_transfer_encoding` :mailheader:`Content-Transfer-Encoding`
-   ======================================== =======================================
+   .. tabularcolumns:: |l|L|
+
+   .. _retrieving-email-header-methods:
+
+   .. table:: Email Header Methods
+
+      ======================================== =======================================
+      Method Name                              Email Header
+      ======================================== =======================================
+      `email_parse->to`                        :mailheader:`To`
+      `email_parse->from`                      :mailheader:`From`
+      `email_parse->cc`                        :mailheader:`CC`
+      `email_parse->bcc`                       :mailheader:`BCC`
+      `email_parse->subject`                   :mailheader:`Subject`
+      `email_parse->date`                      :mailheader:`Date`
+      `email_parse->content_type`              :mailheader:`Content-Type (MIME Type)`
+      `email_parse->boundary`                  :mailheader:`Content-Type (boundary)`
+      `email_parse->charset`                   :mailheader:`Content-Type (charset)`
+      `email_parse->content_disposition`       :mailheader:`Content-Disposition`
+      `email_parse->content_transfer_encoding` :mailheader:`Content-Transfer-Encoding`
+      ======================================== =======================================
 
    The methods `email_parse->to`, `email_parse->from`, `email_parse->cc`, and
    `email_parse->bcc` also accept ``-extract``, ``-comment``, and ``-safeEmail``
@@ -496,24 +506,25 @@ the `iterate` method to inspect each part of the message in turn.
    instead.
 
 
-email_parse Examples
---------------------
+Using Email_Parse
+-----------------
 
 This section includes examples of the most common tasks that are performed using
-the :type:`email_parse` type. See the preceding :ref:`POP Type <email-pop-type>`
-section for examples of downloading messages from a POP email server.
+the :type:`email_parse` type. See the preceding section on the :ref:`email_pop
+type <retrieving-email-pop>` for examples of downloading messages from a POP
+email server.
 
 
 Display a Downloaded Message
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Simply use the :type:`email_parse` type on the downloaded message and display it
-on the page. The email_parse object will output a formatted version of the email
-message including a plain text body if one exists.
+on the page. The :type:`email_parse` object will output a formatted version of
+the email message including a plain text body if one exists.
 
 The following example shows how to download and display all the waiting messages
 on an example POP mail server. The unique ID of each downloaded message is shown
-as well as the output of `email_parse` in ``<pre>…</pre>`` tags. ::
+as well as the output of `email_parse` in a set of ``<pre>`` tags. ::
 
    <?lasso
       local(myPOP) = email_pop(
@@ -540,14 +551,14 @@ as well as the output of `email_parse` in ``<pre>…</pre>`` tags. ::
    // Subject: Test
    // Content-Type: text/plain; charset=ISO-8859-1; format=flowed
    // Content-Transfer-Encoding: 7bit
-   // 
+   //
    // Just Testing
    // </pre>
    // <hr />
 
 
-Inspect the Headers of a Downloaded Message
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Inspect Headers of a Downloaded Message
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are three ways to inspect the headers of a downloaded message.
 
@@ -575,11 +586,11 @@ There are three ways to inspect the headers of a downloaded message.
 
       local(myParse) = email_parse(#myMSG)
       if(#myParse->to >> 'mailinglist@example.com') => {
-         // ... Store the message in the mailingt list database ...
+         // ... store the message in the mailing list database ...
       else(#myParse->to >> 'help@example.com')
-         // ... Forward the message to technical support ...
+         // ... forward the message to technical support ...
       else
-         // ... Unknown recipient ...
+         // ... unknown recipient ...
       }
 
 #. The value for any header, including application-specific headers, headers
@@ -602,12 +613,12 @@ There are three ways to inspect the headers of a downloaded message.
 
    The spam status can then be checked with a conditional in order to ignore any
    messages that have been marked as spam (note that the details will depend on
-   what server-side spam checker is being used and which version)::
+   what server-side spam checker is being used and which version). ::
 
       if(#spam_status >> 'Yes') => {
-         // ... It is spam ...
+         // ... message is spam ...
       else
-         // ... It is not spam ...
+         // ... message is not spam ...
       }
 
 #. The value for all the headers in the message can be displayed using the
@@ -631,8 +642,8 @@ There are three ways to inspect the headers of a downloaded message.
       // <br />To: Example Recipient <example@example.com>
 
 
-Find the Different Parts of a Downloaded Message
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Locate Parts of a Downloaded Message
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The `email_parse->body` method can be used to find the plain text and HTML parts
 of a message. The following example shows both the plain text and HTML parts of
@@ -671,15 +682,15 @@ attachments. The headers and body of each part is shown::
    // <hr />
 
 
-Extract the Attachments of a Downloaded Message
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Extract Attachments of a Downloaded Message
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Attachments of a multipart message appear as parts with a
 :mailheader:`Content-Disposition` of "attachment". The name of the attachment
 can be found by looking at the "name" field of the :mailheader:`Content-Type`
 header. The data for the attachment is returned as the body of the part.
 
-The attachments can be extracted and written out as files that recreate the
+The attachments can be extracted and written out as files that re-create the
 attached file, or they can be stored in a database, processed by the `image`
 methods, or served immediately using `web_response->sendFile`.
 
@@ -689,7 +700,7 @@ The following example finds all of the attachments for a message using the
 `email_parse->content_disposition`. The name
 (``email_parse->content_type('name')``) and data (``email_parse->body``) of each
 part that includes an attachment is used to write out a file using
-`file->openWrite` and `file->writeBytes` which recreates the attachment. ::
+`file->openWrite` and `file->writeBytes` which re-creates the attachment. ::
 
    local(myParse) = email_parse(#myMSG)
    if(#myParse->mode >> 'multipart') => {
@@ -719,7 +730,7 @@ the messages are going to be used later.
    `email_parse->asString` directly in an inline::
 
       local(myPOP) = email_pop(
-             -host = 'mail.example.com',
+         -host = 'mail.example.com',
          -username = 'POPUSER',
          -password = 'MySecretPassword'
       )
@@ -738,13 +749,12 @@ the messages are going to be used later.
          ) => {}
       }
 
-
 -  Often it is desirable to store the common headers of the message in
    individual fields as well as the different body parts. This example shows how
    to do this::
 
       local(myPOP) = email_pop(
-             -host = 'mail.example.com',
+         -host = 'mail.example.com',
          -username = 'POPUSER',
          -password = 'MySecretPassword'
       )
@@ -799,8 +809,8 @@ Ultimately, the choice of which parts of the email message need to be stored in
 the database will be solution dependent.
 
 
-Helper Methods
-==============
+Email Helper Methods
+====================
 
 The email methods use a number of helper methods for their implementation. The
 following describes a number of these methods and how they can be used
@@ -812,9 +822,9 @@ independently.
    parameter returns the comments instead. Used as a utility method by
    `email_parse->header`.
 
-   `email_extract` allows the different parts of email headers to be
-   extracted. Email headers which contain email addresses are often formatted in
-   one of the three formats below::
+   `email_extract` allows the different parts of email headers to be extracted.
+   Email headers containing email addresses are often formatted in one of the
+   three formats below::
 
       john@example.com
       "John Doe" <john@example.com>
@@ -849,5 +859,5 @@ independently.
 
 .. method:: email_translateBreaksToCRLF()
 
-   Translates all return characters and line feeds in the input into ``\r\n``
+   Translates all return characters and line feeds in the input into ``"\r\n"``
    pairs.
