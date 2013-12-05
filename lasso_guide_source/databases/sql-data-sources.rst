@@ -4,39 +4,30 @@
 SQL Data Sources
 ****************
 
-This chapter documents methods and behaviors which are specific to the SQL data
-sources in Lasso. These include the data sources for MySQL, SQLite, Oracle,
-PostgreSQL, and SQL Server. Most of the features of Lasso work equally across
-all data sources. The differences specific to each SQL data source are noted in
-the features matrix and in the descriptions of individual features.
+This chapter documents methods and behaviors that are specific to the SQL data
+sources in Lasso. These include the data source connectors for MySQL, SQLite,
+Oracle, PostgreSQL, and SQL Server. Most of the features of Lasso work equally
+across all data sources. The differences specific to each SQL data source are
+noted in the features list and in the descriptions of individual features.
 
-.. _table-sql-data-sources:
+MySQL
+   Supports MySQL 3.x, 4.x, or 5.x data sources.
 
-.. tabularcolumns:: |l|L|
+Oracle
+   Supports Oracle data sources. The Oracle "Instant Client" libraries must be
+   installed in order to activate this data source.
 
-.. table:: Table: Data Sources
+PostgreSQL
+   Supports PostgreSQL data sources. The PostgreSQL client libraries must be
+   installed in order to activate this data source.
 
-   +--------------+------------------------------------------------------------+
-   |Data Source   |Description                                                 |
-   +==============+============================================================+
-   |``MySQL``     |Supports MySQL 3.x, 4.x, or 5.x data sources.               |
-   +--------------+------------------------------------------------------------+
-   |``Oracle``    |Supports Oracle data sources. The Oracle "Instant Client"   |
-   |              |libraries must be installed in order to activate this data  |
-   |              |source.                                                     |
-   +--------------+------------------------------------------------------------+
-   |``PostgreSQL``|Supports PostgreSQL data sources. The PostgreSQL client     |
-   |              |libraries must be installed in order to activate this data  |
-   |              |source.                                                     |
-   +--------------+------------------------------------------------------------+
-   |``SQL Server``|Supports Microsoft SQL Server. The SQL Server client        |
-   |              |libraries must be installed in order to activate this data  |
-   |              |source.                                                     |
-   +--------------+------------------------------------------------------------+
-   |``SQLite``    |Supports SQLite 3 data sources. SQLite is the internal data |
-   |              |source which is used for the storage of Lasso's preferences |
-   |              |and security settings.                                      |
-   +--------------+------------------------------------------------------------+
+SQL Server
+   Supports Microsoft SQL Server. The SQL Server client libraries must be
+   installed in order to activate this data source.
+
+SQLite
+   Supports SQLite 3 data sources. SQLite is the internal data source that is
+   used for the storage of Lasso's preferences and security settings.
 
 
 Tips for Using SQL Data Sources
@@ -45,19 +36,24 @@ Tips for Using SQL Data Sources
 -  Always specify a primary key field using the ``-keyField`` parameter for
    ``-search``, ``-add``, and ``-findall`` actions. This will ensure that the
    `keyField_value` method will always return a value.
+
 -  Use ``-keyField`` and ``-keyValue`` parameters to reference a particular
    record for updates or deletes.
+
 -  Data sources can be case-sensitive. For best results, reference database and
    table names in the same letter case as they appear on disk in your Lasso
    code. Field names may also be case-sensitive (such as in Oracle and
    PostgreSQL).
+
 -  Some data sources will truncate any data beyond the length they are set up to
    store. Ensure that all fields have sufficient capacity for the values that
    need to be stored in them.
--  Use ``-returnField`` parameters to reduce the number of fields which are
+
+-  Use ``-returnField`` parameters to reduce the number of fields that are
    returned from a ``-search`` action. Returning only the fields that need to be
    used for further processing or shown to the site visitor reduces the amount
    of data that needs to travel between Lasso and the data source.
+
 -  When an ``-add`` or ``-update`` action is performed on a database, the data
    from the added or updated record is available inside the associated block of
    the `inline` method. If the ``-returnField`` parameter is used, then only
@@ -65,24 +61,25 @@ Tips for Using SQL Data Sources
    action. Setting ``-maxRecords=0`` can be used as an indication that no record
    should be returned.
 
+
 Security Tips
 =============
 
--  SQL statements which are generated using visitor-defined data should
-   be screened carefully for unwanted commands such as "DROP" or
-   "GRANT".
+-  SQL statements that are generated using visitor-defined data should be
+   screened carefully for unwanted commands such as "DROP" or "GRANT".
+
 -  Always sanitize any inputs from site visitors that are incorporated into SQL
-   statements. Any SQL strings that have visitor defined data should be
-   sanitized using the `string->encodeSql` method for MySQL data sources and
-   the `string->encodeSql92` method for SQL92 compliant data sources such as
-   SQLite, PostgreSQL, or JDBC data sources. Encoding the values in this manner
-   ensures that quotes and other reserved characters are properly escaped within
-   the SQL statement thereby helping to prevent SQL injection attacks.
+   statements. Any SQL strings that have visitor-defined data should be
+   sanitized using the `string->encodeSql` method for MySQL data sources and the
+   `string->encodeSql92` method for SQL92-compliant data sources such as SQLite,
+   PostgreSQL, or JDBC data sources. Encoding the values in this manner ensures
+   that quotes and other reserved characters are properly escaped within the SQL
+   statement, thereby helping to prevent SQL injection attacks.
 
    For example, the following SQL "SELECT" statement contains a SQL string in
    the LIKE clause and uses `string->encodeSql` to encode the value of the
    "company" `web_request->param`. This encoding causes all single quotes within
-   the passed "company" parameter to be encoded with a backslash::
+   the passed ``company`` parameter to be encoded with a backslash. ::
 
       local(sql_statement) = "SELECT * FROM contacts.people WHERE " +
          "company LIKE '" + string(web_request->param('company'))->encodeSql + "%'"
@@ -95,164 +92,143 @@ Security Tips
       SELECT * FROM Contacts.People WHERE Company LIKE 'McDonald\'s'
 
 
-Feature Matrix
-==============
+Supported Features for SQL Data Sources
+=======================================
 
-The following tables detail the features of each data source in this chapter.
+The following lists detail the features of each data source in this chapter.
 Since some features are only available in certain data sources it is important
 to check these tables when reading the documentation in order to ensure that
-each data source supports your solutions required features.
+each data source supports your solution's required features.
 
-.. _table-mysql-features:
 
-.. table:: Table: MySQL Data Source
+.. _sql-mysql-features:
 
-   +-----------------------+---------------------------------------------------+
-   |Feature                |Description                                        |
-   +=======================+===================================================+
-   |Friendly Name          |Lasso Connector for MySQL                          |
-   +-----------------------+---------------------------------------------------+
-   |Internal Name          |mysqlds                                            |
-   +-----------------------+---------------------------------------------------+
-   |Module Name            |MySQLConnector.dll, MySQLConnector.dylib, or       |
-   |                       |MySQLConnector.so                                  |
-   +-----------------------+---------------------------------------------------+
-   |Inline Host Attributes |Requires ``-name`` specifying connection URL       |
-   |                       |(i.e. "mysql.example.com"), ``-username``, and     |
-   |                       |``-password``. Optional ``-port`` defaults to      |
-   |                       |"3306".                                            |
-   +-----------------------+---------------------------------------------------+
-   |Actions                |``-add``, ``-delete``, ``-exec``, ``-findAll``,    |
-   |                       |``-prepare``, ``-search``, ``-show``, ``-sql``,    |
-   |                       |``-update``                                        |
-   +-----------------------+---------------------------------------------------+
-   |Operators              |``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-ft``,       |
-   |                       |``-gt``, ``-gte``, ``-lt``, ``-lte``, ``-nbw``,    |
-   |                       |``-ncn``, ``-new``, ``-nrx``, ``-rx``,             |
-   |                       |``-opBegin``/``-opEnd`` with "and", "or", "not".   |
-   +-----------------------+---------------------------------------------------+
-   |KeyField               |``-keyField``/``-keyValue`` and ``-key=array``     |
-   +-----------------------+---------------------------------------------------+
+MySQL Data Source
+-----------------
 
-.. _table-oracle-features:
+:Friendly Name:
+   Lasso Connector for MySQL
+:Internal Name:
+   mysqlds
+:Module Name:
+   MySQLConnector.dll, MySQLConnector.dylib, or MySQLConnector.so
+:Inline Host Attributes:
+   Requires ``-name`` specifying connection URL (e.g. "mysql.example.com"),
+   ``-username``, and ``-password``. Optional ``-port`` defaults to "3306".
+:Actions:
+   ``-add``, ``-delete``, ``-exec``, ``-findAll``, ``-prepare``, ``-search``,
+   ``-show``, ``-sql``, ``-update``
+:Operators:
+   ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-ft``, ``-gt``, ``-gte``, ``-lt``,
+   ``-lte``, ``-nbw``, ``-ncn``, ``-new``, ``-nrx``, ``-rx``,
+   ``-opBegin``/``-opEnd`` with "and", "or", "not".
+:KeyField:
+   ``-keyField``/``-keyValue`` and ``-key=array``
 
-.. table:: Table: Oracle Data Source
 
-   +-----------------------+---------------------------------------------------+
-   |Feature                |Description                                        |
-   +=======================+===================================================+
-   |Friendly Name          |Lasso Connector for Oracle                         |
-   +-----------------------+---------------------------------------------------+
-   |Internal Name          |oracle                                             |
-   +-----------------------+---------------------------------------------------+
-   |Module Name            |SQLConnector.dll, SQLConnector.dylib, or           |
-   |                       |SQLConnector.so                                    |
-   +-----------------------+---------------------------------------------------+
-   |Inline Host Attributes |Requires ``-name`` specifying connection URL       |
-   |                       |(i.e., "oracle.example.com:1521/mydatabase"),      |
-   |                       |``-username``, and ``-password``.                  |
-   +-----------------------+---------------------------------------------------+
-   |Actions                |``-add``, ``-delete``, ``-findAll``, ``-search``,  |
-   |                       |``-show``, ``-sql``, ``-update``                   |
-   +-----------------------+---------------------------------------------------+
-   |Operators              |``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``,       |
-   |                       |``-gte``, ``-lt``, ``-lte``, ``-nbw``, ``-ncn``,   |
-   |                       |``-new``, ``-opBegin``/``-opEnd`` with "and", "or",|
-   |                       |"not".                                             |
-   +-----------------------+---------------------------------------------------+
-   |KeyField               |``-keyField``/``-keyValue``                        |
-   +-----------------------+---------------------------------------------------+
+.. _sql-oracle-features:
+
+Oracle Data Source
+------------------
+
+:Friendly Name:
+   Lasso Connector for Oracle
+:Internal Name:
+   oracle
+:Module Name:
+   SQLConnector.dll, SQLConnector.dylib, or SQLConnector.so
+:Inline Host Attributes:
+   Requires ``-name`` specifying connection URL (e.g.
+   "oracle.example.com:1521/mydatabase"), ``-username``, and ``-password``.
+:Actions:
+   ``-add``, ``-delete``, ``-findAll``, ``-search``, ``-show``, ``-sql``,
+   ``-update``
+:Operators:
+   ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
+   ``-nbw``, ``-ncn``, ``-new``, ``-opBegin``/``-opEnd`` with "and", "or",
+   "not".
+:KeyField:
+   ``-keyField``/``-keyValue``
 
 .. note::
    Field names are case-sensitive. All field names and key field names within
    the inline must be specified with the proper case.
 
-.. _table-postgresql-features:
 
-.. table:: Table: PostgreSQL Data Source
+.. _sql-postgresql-features:
 
-   +-----------------------+---------------------------------------------------+
-   |Feature                |Description                                        |
-   +=======================+===================================================+
-   |Friendly Name          |Lasso Connector for PostgreSQL                     |
-   +-----------------------+---------------------------------------------------+
-   |Internal Name          |postgresql                                         |
-   +-----------------------+---------------------------------------------------+
-   |Module Name            |SQLConnector.dll, SQLConnector.dylib, or           |
-   |                       |SQLConnector.so                                    |
-   +-----------------------+---------------------------------------------------+
-   |Inline Host Attributes |Requires ``-name`` specifying connection URL       |
-   |                       |(i.e., "postgresql.example.com"), ``-username``,   |
-   |                       |and ``-password``.                                 |
-   +-----------------------+---------------------------------------------------+
-   |Actions                |``-add``, ``-delete``, ``-findAll``, ``-search``,  |
-   |                       |``-show``, ``-sql``, ``-update``                   |
-   +-----------------------+---------------------------------------------------+
-   |Operators              |``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``,       |
-   |                       |``-gte``, ``-lt``, ``-lte``, ``-nbw``, ``-ncn``,   |
-   |                       |``-new``, ``-opBegin``/``-opEnd`` with "and",      |
-   |                       |"or", "not".                                       |
-   +-----------------------+---------------------------------------------------+
-   |KeyField               |``-keyField``/``-keyValue``                        |
-   +-----------------------+---------------------------------------------------+
+PostgreSQL Data Source
+----------------------
+
+:Friendly Name:
+   Lasso Connector for PostgreSQL
+:Internal Name:
+   postgresql
+:Module Name:
+   SQLConnector.dll, SQLConnector.dylib, or SQLConnector.so
+:Inline Host Attributes:
+   Requires ``-name`` specifying connection URL (e.g. "postgresql.example.com"),
+   ``-username``, and ``-password``.
+:Actions:
+   ``-add``, ``-delete``, ``-findAll``, ``-search``, ``-show``, ``-sql``,
+   ``-update``
+:Operators:
+   ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
+   ``-nbw``, ``-ncn``, ``-new``, ``-opBegin``/``-opEnd`` with "and", "or",
+   "not".
+:KeyField:
+   ``-keyField``/``-keyValue``
 
 .. note::
    Field names are case-sensitive. All field names and key field names within
    the inline must be specified with the proper case.
 
-.. _table-ms-sql-server-features:
 
-.. table:: Table: Microsoft SQL Server Data Source
+.. _sql-ms-sql-server-features:
 
-   +-----------------------+---------------------------------------------------+
-   |Feature                |Description                                        |
-   +=======================+===================================================+
-   |Friendly Name          |Lasso Connector for SQL Server                     |
-   +-----------------------+---------------------------------------------------+
-   |Internal Name          |sqlserver                                          |
-   +-----------------------+---------------------------------------------------+
-   |Module Name            |SQLConnector.dll, SQLConnector.dylib, or           |
-   |                       |SQLConnector.so                                    |
-   +-----------------------+---------------------------------------------------+
-   |Inline Host Attributes |Requires ``-name`` specifying connection URL       |
-   |                       |(i.e., "sqlserver.example.com\mydatabase"),        |
-   |                       |``-username``, and ``-password``.                  |
-   +-----------------------+---------------------------------------------------+
-   |Actions                |``-add``, ``-delete``, ``-findAll``, ``-search``,  |
-   |                       |``-show``, ``-sql``, ``-update``                   |
-   +-----------------------+---------------------------------------------------+
-   |Operators              |``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``,       |
-   |                       |``-gte``, ``-lt``, ``-lte``, ``-nbw``, ``-ncn``,   |
-   |                       |``-new``, ``-opBegin``/``-opEnd`` with "and",      |
-   |                       |"or", "not".                                       |
-   +-----------------------+---------------------------------------------------+
-   |KeyField               |``-keyField``/``-keyValue``                        |
-   +-----------------------+---------------------------------------------------+
+Microsoft SQL Server Data Source
+--------------------------------
 
-.. _table-sqlite-features:
+:Friendly Name:
+   Lasso Connector for SQL Server
+:Internal Name:
+   sqlserver
+:Module Name:
+   SQLConnector.dll, SQLConnector.dylib, or SQLConnector.so
+:Inline Host Attributes:
+   Requires ``-name`` specifying connection URL (e.g.
+   "sqlserver.example.com\\mydatabase"), ``-username``, and ``-password``.
+:Actions:
+   ``-add``, ``-delete``, ``-findAll``, ``-search``, ``-show``, ``-sql``,
+   ``-update``
+:Operators:
+   ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
+   ``-nbw``, ``-ncn``, ``-new``, ``-opBegin``/``-opEnd`` with "and", "or",
+   "not".
+:KeyField:
+   ``-keyField``/``-keyValue``
 
-.. table:: Table: SQLite Data Source
 
-   +-----------------------+---------------------------------------------------+
-   |Feature                |Description                                        |
-   +=======================+===================================================+
-   |Friendly Name          |Lasso Internal                                     |
-   +-----------------------+---------------------------------------------------+
-   |Internal Name          |sqliteconnector                                    |
-   +-----------------------+---------------------------------------------------+
-   |Module Name            |SQLiteConnector.dylib, SQLiteConnector.dll, or     |
-   |                       |SQLiteConnector.so                                 |
-   +-----------------------+---------------------------------------------------+
-   |Actions                |``-add``, ``-delete``, ``-findAll``, ``-search``,  |
-   |                       |``-show``, ``-sql``, ``-update``                   |
-   +-----------------------+---------------------------------------------------+
-   |Operators              |``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``,       |
-   |                       |``-gte``, ``-lt``, ``-lte``, ``-nbw``, ``-ncn``,   |
-   |                       |``-new``, ``-opBegin``/``-opEnd`` with "and",      |
-   |                       |"or", "not".                                       |
-   +-----------------------+---------------------------------------------------+
-   |KeyField               |``-keyField``/``-keyValue``                        |
-   +-----------------------+---------------------------------------------------+
+.. _sql-sqlite-features:
+
+SQLite Data Source
+------------------
+
+:Friendly Name:
+   Lasso Internal
+:Internal Name:
+   sqliteconnector
+:Module Name:
+   SQLiteConnector.dylib, SQLiteConnector.dll, or SQLiteConnector.so
+:Actions:
+   ``-add``, ``-delete``, ``-findAll``, ``-search``, ``-show``, ``-sql``,
+   ``-update``
+:Operators:
+   ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
+   ``-nbw``, ``-ncn``, ``-new``, ``-opBegin``/``-opEnd`` with "and", "or",
+   "not".
+:KeyField:
+   ``-keyField``/``-keyValue``
 
 
 SQL Data Source Methods
@@ -292,7 +268,7 @@ used. These methods are summarized below.
    string parameter, which is the name of a database.
 
 
-Check Whether a Database is hosted by MySQL
+Check Whether a Database is Hosted by MySQL
 -------------------------------------------
 
 The following example shows how to use `lasso_datasourceIsMySQL` to check
@@ -312,8 +288,8 @@ List All Databases Hosted by MySQL
 
 Use the `database_names` method to list all databases available to Lasso. The
 `lasso_datasourceIsMySQL` method can be used to check each database and only
-those that are hosted by MySQL will be returned. The result shows two databases,
-"site" and "example", which are available through MySQL::
+those that MySQL hosts will be returned. The result shows two databases, "site"
+and "example", which are available through MySQL::
 
    database_names
       if(lasso_datasourceIsMySQL(database_nameItem))
@@ -334,8 +310,8 @@ data sources. These search operations take advantage of special functions in
 MySQL such as full-text indexing, regular expressions, record limits, and
 distinct values to allow optimal performance and power when searching. These
 search operations can be used on MySQL data sources in addition to all search
-operations described in the :ref:`Searching and Displaying Data
-<searching-displaying>` chapter.
+operations described in the :ref:`searching-displaying` chapter.
+
 
 Search Field Operators
 ----------------------
@@ -343,37 +319,39 @@ Search Field Operators
 Additional field operators are available for the ``-operator`` (or ``-op``)
 parameter when searching MySQL data sources. These operators are summarized in
 the table below. Basic use of the ``-operator`` parameter is described in the
-:ref:`Searching and Displaying Data <searching-displaying>` chapter.
+:ref:`searching-displaying` chapter.
 
-.. table:: Table: MySQL Search Field Operators
+.. tabularcolumns:: |l|L|
 
-   +-------------------------+--------------------------------------------------+
-   |Operator                 |Description                                       |
-   +=========================+==================================================+
-   |``-op='ft'`` or ``-ft``  |Full-Text Search. If used, a MySQL full-text      |
-   |                         |search is performed on the field specified. Will  |
-   |                         |only work on fields that are full-text indexed in |
-   |                         |MySQL. Records are automatically returned in order|
-   |                         |of high relevance (contains many instances of that|
-   |                         |value) to low relevance (contains few instances of|
-   |                         |the value). Only one ``-ft`` operator may be used |
-   |                         |per action, and no ``-sortField`` parameter should|
-   |                         |be specified.                                     |
-   +-------------------------+--------------------------------------------------+
-   |``-op='nrx'`` or ``-rx`` |Regular Expression. If used, then regular         |
-   |                         |expressions may be used as part of the search     |
-   |                         |field value. Returns records matching the regular |
-   |                         |expression value for that field.                  |
-   +-------------------------+--------------------------------------------------+
-   |``-op='nrx'`` or ``-nrx``|Not Regular Expression. If used, then regular     |
-   |                         |expressions may be used as part of the search     |
-   |                         |field value. Returns records that do not match the|
-   |                         |regular expression value for that field.          |
-   +-------------------------+--------------------------------------------------+
+.. _sql-mysql-search-operators:
+
+.. table:: MySQL Search Field Operators
+
+   ========================= ===================================================
+   Operator                  Description
+   ========================= ===================================================
+   ``-op='ft'`` or ``-ft``   Full-Text Search. If used, a MySQL full-text search
+                             is performed on the field specified. Will only work
+                             on fields that are full-text indexed in MySQL.
+                             Records are automatically returned in order of high
+                             relevance (contains many instances of that value)
+                             to low relevance (contains few instances of the
+                             value). Only one ``-ft`` operator may be used per
+                             action, and no ``-sortField`` parameter should be
+                             specified.
+   ``-op='nrx'`` or ``-rx``  Regular Expression. If used, then regular
+                             expressions may be used as part of the search field
+                             value. Returns records matching the regular
+                             expression value for that field.
+   ``-op='nrx'`` or ``-nrx`` Not Regular Expression. If used, then regular
+                             expressions may be used as part of the search field
+                             value. Returns records that do not match the
+                             regular expression value for that field.
+   ========================= ===================================================
 
 .. note::
-   For more information on full-text searches and regular expressions supported
-   in MySQL, see the MySQL documentation.
+   For more information on full-text searches and the regular expressions
+   supported in MySQL, see the MySQL documentation.
 
 
 Perform a Full-Text Search on a Field
@@ -384,7 +362,7 @@ field in a search inline performs a MySQL full-text search on that field. The
 example below performs a full-text search on the "jobs" field in the "contacts"
 database, and returns the "first_name" field for each record that contain the
 word "Manager". Records that contain the most instances of the word "Manager"
-are returned first::
+are returned first. ::
 
    [inline(
       -search,
@@ -429,7 +407,7 @@ regular expression::
 
 The following example searches for all records where the "last_name" field
 doesn't contain eight characters. This is easily accomplished using the same
-inline search above using ``-op='nrx'`` instead::
+inline search above using ``-op='nrx'`` instead. ::
 
    [inline(
       -search,
@@ -462,40 +440,37 @@ summarized in the following table.
 
 .. tabularcolumns:: |l|L|
 
+.. _sql-search-parameters:
+
 .. table:: Search Parameters
 
-   +----------------+--------------------------------------------------+
-   |Parameter       |Description                                       |
-   +================+==================================================+
-   |``-useLimit``   |Prematurely ends a ``-search`` or ``-findAll``    |
-   |                |action once the specified number of records for   |
-   |                |the ``-maxRecords`` parameter have been found and |
-   |                |returns the found records. Requires the           |
-   |                |``-maxRecords`` parameter. This issues a "LIMIT"  |
-   |                |or "TOP" statement.                               |
-   +----------------+--------------------------------------------------+
-   |``-sortRandom`` |Sorts returned records randomly. Is used in place |
-   |                |of the ``-sortField`` and ``-sortOrder``          |
-   |                |parameters. Does not require a value.             |
-   +----------------+--------------------------------------------------+
-   |``-distinct``   |Causes a ``-search`` action to only output records|
-   |                |that contain unique field values (comparing only  |
-   |                |returned fields). Does not require a value. May be|
-   |                |used with the ``-returnField`` parameter to limit |
-   |                |the fields checked for distinct values.           |
-   +----------------+--------------------------------------------------+
-   |``-groupBy``    |Specifies a field name which should by used as the|
-   |                |"GROUP BY" statement. Allows data to be           |
-   |                |summarized based on the values of the specified   |
-   |                |field.                                            |
-   +----------------+--------------------------------------------------+
+   =============== =============================================================
+   Parameter       Description
+   =============== =============================================================
+   ``-useLimit``   Prematurely ends a ``-search`` or ``-findAll`` action once
+                   the specified number of records for the ``-maxRecords``
+                   parameter have been found and returns the found records.
+                   Requires the ``-maxRecords`` parameter. This issues a "LIMIT"
+                   or "TOP" statement.
+   ``-sortRandom`` Sorts returned records randomly. Is used in place  of the
+                   ``-sortField`` and ``-sortOrder`` parameters. Does not
+                   require a value.
+   ``-distinct``   Causes a ``-search`` action to only output records that
+                   contain unique field values (comparing only returned fields).
+                   Does not require a value. May be used with the
+                   ``-returnField`` parameter to limit the fields checked for
+                   distinct values.
+   ``-groupBy``    Specifies a field name that should by used as the "GROUP BY"
+                   statement. Allows data to be summarized based on the values
+                   of the specified field.
+   =============== =============================================================
 
 
 Return Records Once a Limit is Reached
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the ``-useLimit`` parameter in the search inline. Normally, Lasso will find
-all records that match the inline search criteria and then pair down the results
+all records that match the inline search criteria and then pare down the results
 based on ``-maxRecords`` and ``-skipRecords`` values. The ``-useLimit``
 parameter instructs the data source to terminate the specified search process
 once the number of records specified for ``-maxRecords`` is found. The following
@@ -571,7 +546,7 @@ returns records that contain distinct values for the "last_name" field::
    // Unknown<br />
 
 The ``-distinct`` parameter is especially useful for generating lists of values
-that can be used in a pull-down menu. The following example is a pull-down menu
+that can be used in a drop-down list. The following example is a drop-down list
 of all the last names in the "contacts" database::
 
    [inline(
@@ -601,12 +576,12 @@ Searching Null Values
 ---------------------
 
 When searching tables in a SQL data source, "NULL" values may be explicitly
-searched for within fields using the ``null`` object. A "NULL" value in a SQL
-data source designates that there is no other value stored in that particular
-field. This is similar to searching a field for an empty string (e.g.
-"'fieldname'=''"), however "NULL" values and empty strings are not the same in
+searched for within fields using the :type:`null` object. A "NULL" value in a
+SQL data source designates that there is no other value stored in that
+particular field. This is similar to searching a field for an empty string (e.g.
+``'fieldname'=''``), however "NULL" values and empty strings are not the same in
 SQL data sources. For more information about "NULL" values, see the
-documentation for the data source::
+documentation for the data source. ::
 
    [inline(
       -search,
@@ -631,7 +606,7 @@ Adding and Updating Records
 
 In Lasso 9, there are special add and update operations that can be performed
 using SQL data sources in addition to all add and update operations described in
-the :ref:`Adding and Updating Records <adding-updating>` chapter.
+the :ref:`adding-updating` chapter.
 
 
 Multiple Field Values
@@ -688,18 +663,18 @@ comma-delimited values::
 Adding or Updating Null Values
 ------------------------------
 
-"NULL" values can be explicitly added to fields using the ``null`` object. A
+"NULL" values can be explicitly added to fields using the :type:`null` object. A
 "NULL" value in a SQL data source designates that there is no value for a
 particular field. This is similar to setting a field to an empty string (e.g.
-"'fieldname'=''"), however the two are different in SQL data sources. For more
+``'fieldname'=''``), however the two are different in SQL data sources. For more
 information about "NULL" values, see the data source documentation.
 
 
 Add or Update a Null Value to a Field
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``null`` object as the field value. The following example adds a record
-with a "NULL" value in the "last_name::
+Use the :type:`null` object as the field value. The following example adds a
+record with a "NULL" value in the "last_name::
 
    inline(
       -add,
@@ -709,8 +684,8 @@ with a "NULL" value in the "last_name::
       'last_name'=null
    ) => {}
 
-The following example updates a record with a "NULL" value in the
-"last_name" field::
+The following example updates a record with a "NULL" value in the "last_name"
+field::
 
    inline(
       -update,
@@ -725,18 +700,18 @@ The following example updates a record with a "NULL" value in the
 Value Lists
 ===========
 
-A value list in Lasso is a set of possible values that can be used for a field.
-Value lists in MySQL are lists of pre-defined and stored values for a "SET" or
-"ENUM" field type. A value list from a "SET" or "ENUM" field can be displayed
-using the methods defined below. None of these methods will work in ``-sql``
-inlines or if ``-noValueLists`` is specified.
+A :dfn:`value list` in Lasso is a set of possible values that can be used for a
+field. Value lists in MySQL are lists of predefined and stored values for a
+"SET" or "ENUM" field type. A value list from a "SET" or "ENUM" field can be
+displayed using the methods defined below. None of these methods will work in
+``-sql`` inlines or if ``-noValueLists`` is specified.
 
 .. method:: value_list(name::string)
 
-   Executes an associated block once for each value allowed for an
-   "ENUM" or "SET" field. Requires a single parameter: the name of an "ENUM" or
-   "SET" field from the current table. This method will not work in ``-sql``
-   inlines or if the ``-noValueLists`` parameter is specified.
+   Executes an associated block once for each value allowed for an "ENUM" or
+   "SET" field. Requires a single parameter: the name of an "ENUM" or "SET"
+   field from the current table. This method will not work in ``-sql`` inlines
+   or if the ``-noValueLists`` parameter is specified.
 
 .. method:: value_listItem()
 
@@ -754,20 +729,19 @@ inlines or if ``-noValueLists`` is specified.
    the data of the "ENUM" or "SET" field.
 
 .. note::
-   See the :ref:`Searching and Displaying Data <searching-displaying>` chapter
-   for information about the ``-show`` parameter which is used throughout this
-   section.
+   See the :ref:`searching-displaying` chapter for information about the
+   ``-show`` parameter which is used throughout this section.
 
 
 Display Values for an ENUM or SET Field
 ---------------------------------------
 
 Perform a ``-show`` action to return the schema of a MySQL database and use the
-`value_list` method to display the allowed values for an "ENUM" or "SET"
-field. The following example shows how to display all values from the "ENUM"
-field "title" in the "contacts" database. "SET" fields function in the same
-manner as "ENUM" fields, and all examples in this section may be used with
-either "ENUM" or "SET" field types::
+`value_list` method to display the allowed values for an "ENUM" or "SET" field.
+The following example shows how to display all values from the "ENUM" field
+"title" in the "contacts" database. "SET" fields function in the same manner as
+"ENUM" fields, and all examples in this section may be used with either "ENUM"
+or "SET" field types. ::
 
    [inline(-show, -database='contacts', -table='people')]
       [value_list('title')]
@@ -782,8 +756,8 @@ either "ENUM" or "SET" field types::
    // <br />Dr.
 
 The following example shows how to display all values from a value list using a
-named `inline`. The same name "values" is referenced by ``-inlineName`` in
-both the `inline` method and `resultSet` method::
+named inline. The same name "values" is referenced by ``-inlineName`` in both
+the `inline` method and `resultSet` method. ::
 
    inline(-inlineName='values', -show, -database='contacts', -table='people') => {}
    // ... some code ...
@@ -800,19 +774,19 @@ both the `inline` method and `resultSet` method::
    // <br />Dr.
 
 
-Display an HTML Pop-up Menu in an -Add Form With All Values From a Value List
------------------------------------------------------------------------------
+Display a Drop-Down Menu in an -Add Form with All Values from a Value List
+--------------------------------------------------------------------------
 
-The following example shows how to format an HTML ``<select> … </select>`` 
-pop-up menu to show all the values from a value list. A select list can be
-created with the same code by including size and multiple parameters within the
-``<select>`` tag. This code is usually used within an HTML form that calls a
-response page that performs an ``-add`` or ``-update`` action so the visitor can
-select a value from the value list for the record they create or modify.
+The following example shows how to format an HTML ``<select>`` drop-down menu to
+show all the values from a value list. A select list can be created with the
+same code by including size and multiple parameters within the ``<select>`` tag.
+This code is usually used within an HTML form that calls a response page that
+performs an ``-add`` or ``-update`` action so the visitor can select a value
+from the value list for the record they create or modify.
 
-The example shows a single ``<select> … </select>`` within an `inline` method
-with a ``-show`` action. If many value lists from the same database are being
-formatted, they can all be contained within a single `inline` method::
+The example shows a single ``<select>`` within an `inline` method with a
+``-show`` action. If many value lists from the same database are being
+formatted, they can all be contained within a single inline. ::
 
    <form action="response.lasso" method="POST">
    [inline(-show, -database='contacts', -table='people')]
@@ -833,18 +807,18 @@ formatted, they can all be contained within a single `inline` method::
    //       <option value="Mrs.">Mrs.</option>
    //       <option value="Ms.">Ms.</option>
    //       <option value="Dr.">Dr.</option>
-   //    </select>   
+   //    </select>
    //    <p><input type="submit" name="submit" value="Add Record"></p>
    // </form>
 
 
-Display HTML Radio Buttons With All Values From a Value List
-------------------------------------------------------------
+Display Radio Buttons with All Values from a Value List
+-------------------------------------------------------
 
 The following example shows how to format a set of HTML ``<input>`` tags to show
 all the values from a value list as radio buttons. The visitor will be able to
-select one value from the value list. Check boxes can be created with the same
-code by changing the type from radio to checkbox::
+select one value from the value list. Checkboxes can be created with the same
+code by changing the type from radio to checkbox. ::
 
    <form action="response.lasso" method="POST">
    [inline(-show, -database='contacts', -table='people')]
@@ -867,7 +841,7 @@ code by changing the type from radio to checkbox::
    // </form>
 
 
-Display Only Selected Values From a Value List
+Display Only Selected Values from a Value List
 ----------------------------------------------
 
 The following example shows how to display the selected values from a value list
@@ -895,20 +869,20 @@ empty and only shows the `value_listItem` if it is not::
    // => <br />Mr.
 
 The `field` method can also be used simply to display the current value for a
-field without reference to the value list::
+field without reference to the value list. ::
 
    <br />[field('title')]
 
    // => <br />Mr.
 
 
-Display an HTML Pop-Up Menu in an -Update Form With Selected Value List Values
-------------------------------------------------------------------------------
+Display a Drop-Down Menu in an -Update Form with Selected Value List Values
+---------------------------------------------------------------------------
 
-The following example shows how to format an HTML ``<select> … </select>`` list
-to show all the values from a value list with the selected values highlighted.
-The `selected` method returns "selected" if the current value list item is
-selected in the database or nothing otherwise::
+The following example shows how to format an HTML ``<select>`` list to show all
+the values from a value list with the selected values highlighted. The
+`selected` method returns "selected" if the current value list item is selected
+in the database or nothing otherwise. ::
 
    <form action="response.lasso" method="POST">
    [inline(
@@ -939,14 +913,14 @@ selected in the database or nothing otherwise::
    // </form>
 
 
-Display HTML Check Boxes with Selected Value List Values
---------------------------------------------------------
+Display Checkboxes with Selected Value List Values
+--------------------------------------------------
 
 The following example shows how to format a set of HTML ``<input>`` tags to show
-all the values from a value list as check boxes with the selected check boxes
+all the values from a value list as checkboxes with the selected checkboxes
 checked. The `checked` method returns "checked" if the current value list item
 is selected in the database or nothing otherwise. Radio buttons can be created
-with the same code by changing the type from "checkbox" to "radio"::
+with the same code by changing the type from "checkbox" to "radio". ::
 
    <form action="response.lasso" method="POST">
    [inline(

@@ -10,25 +10,25 @@
 .. container:: col eight first
 
    .. only:: html
-   
+
       .. rubric:: Database Actions
-   
+
    .. toctree::
       :maxdepth: 2
-   
+
       database-interaction
       searching-displaying
       adding-updating
-   
+
 .. container:: col eight first
 
    .. only:: html
-   
+
       .. rubric:: Data Source Specifics
-   
+
    .. toctree::
       :maxdepth: 2
-   
+
       sql-data-sources
       odbc-data-sources
       filemaker-data-sources
