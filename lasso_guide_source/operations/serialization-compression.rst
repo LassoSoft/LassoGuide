@@ -17,30 +17,30 @@ Lasso also provides a set of methods to compress or decompress data for more
 efficient data transmission.
 
 
-Serializing Objects
-===================
+Serializing and Deserializing Objects
+=====================================
 
 An object is serialized by calling its `~trait_serializable->serialize` method,
 which serializes the object and returns the resulting data as a string. This
-method is provided through :trait:`trait_serializable`, which is described here.
-
-
-.. trait:: trait_serializable
-
-.. provide:: trait_serializable->serialize()::string
-
-   Serializes the object and returns the resulting data. That data can then be
-   deserialized, re-creating an object with the correct data.
-
-
-Deserializing Data
-==================
+method is provided through :trait:`trait_serializable`, which is described below.
 
 Serialized object data is converted back into an object by using a
 :type:`serialization_reader` object. This object is created with the serialized
 data after which its `~serialization_reader->read` method is called. If the read
-is successful, then a new object is returned of the same type and data as the
-original serialized object.
+is successful, then a new object of the same type and data as the original
+serialized object is returned.
+
+.. type:: serialization_reader
+.. method:: serialization_reader(s::string)
+.. method:: serialization_reader(x::xml_element)
+
+   Creates a :type:`serialization_reader` object. Can be instantiated with a
+   string of XML or an :type:`xml_element` object.
+
+.. member:: serialization_reader->read()
+.. member:: serialization_reader->read(x::xml_element)
+
+   Re-creates the serialized element.
 
 This example code serializes an array of objects, then deserializes it back into
 a new array::
@@ -63,6 +63,8 @@ must themselves also be serializable in order to be properly handled.
 
 Serializable objects must implement the following methods:
 
+.. trait:: trait_serializable
+
 .. require:: trait_serializable->onCreate()
 
    A serializable object must implement a zero parameter ``onCreate`` method.
@@ -77,23 +79,28 @@ Serializable objects must implement the following methods:
    staticarray, or some other suitable object containing each of the elements
    that should be serialized along with the target object.
 
-   Each element in the return value should be a `serialization_element`. These
-   objects contain a key and a value. The key and the value must both be
+   Each element in the return value should be a :type:`serialization_element`.
+   These objects contain a key and a value. The key and the value must both be
    serializable. The key and the value can be objects of any type. They are both
    given back to the object when it is deserialized in order to return it to the
    state it was in when it was serialized to begin with.
 
 .. require:: trait_serializable->acceptDeserializedElement(d::serialization_element)
 
-   As an object is deserialized by a `serialization_reader`, first a new
+   As an object is deserialized by a :type:`serialization_reader`, first a new
    instance is created, then this method is called once for each of the
    serialization elements that were originally included in the data. The
-   `serialization_element` items contain the keys and values used to re-create
-   the original object state.
+   :type:`serialization_element` items contain the keys and values used to
+   re-create the original object state.
 
-In addition to implementing the proper methods, the object must import
-:trait:`trait_serializable`. This trait should be added when the type is
-defined.
+Implementing the proper methods allows the object to import
+:trait:`trait_serializable`, which provides the `~trait_serializable->serialize`
+method. This trait should be added when the type is defined.
+
+.. provide:: trait_serializable->serialize()::string
+
+   Serializes the object and returns the resulting data. That data can then be
+   deserialized, re-creating an object with the correct data.
 
 
 serialization_element Objects
