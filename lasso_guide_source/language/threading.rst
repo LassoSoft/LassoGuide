@@ -42,8 +42,8 @@ Thread with Capture
 
 The following example shows a new thread being created. The new thread simply
 prints a message to the console. This illustrates how `split_thread` is used and
-how a new capture (within curly braces ``{ }``) is given to `split_thread` which
-will be run in a new thread. ::
+how a new capture (between curly braces ``{ ... }``) is given to `split_thread`
+which will be run in a new thread. ::
 
    split_thread => {
       stdoutnl("I'm alive in a new thread!")
@@ -232,8 +232,8 @@ in the following code::
    // => 920
 
 
-Thread Objects and active_tick
-------------------------------
+active_tick
+-----------
 
 Thread objects can define a method named ``active_tick``. If defined, this
 method will be called periodically by the system. This lets a thread object

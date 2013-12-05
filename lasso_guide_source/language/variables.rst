@@ -20,7 +20,7 @@ Variable Names
 ==============
 
 Lasso variable names should begin with a letter or an underscore followed by a
-letter, then zero or more letters, numbers, underscores or period characters.
+letter, then zero or more letters, numbers, underscores, or period characters.
 Variable names are case-insensitive, so a variable named "rhino" can also be
 accessed with "RhINo" as well.
 
@@ -124,10 +124,10 @@ object. That value is used as the variable's name. ::
       var(nameCall() = expression)
 
 A var can be accessed using two methods, similar to that of local variables.
-First, the var may simply be referenced using the ``var`` construct along with
-the var's name. The var may or may not have previously been defined. If the var
-has not been defined, then it is defined and assigned a value of "null". The
-value of the variable is produced as the result. This is only the case when one
+First, the var may simply be referenced using the ``var`` syntax along with the
+var's name. The var may or may not have previously been defined. If the var has
+not been defined, then it is defined and assigned a value of "null". The value
+of the variable is produced as the result. This is only the case when one
 variable name is used and when it is not accompanied by an initial value. ::
 
    var(name)
@@ -147,27 +147,27 @@ Type Constraints
 
 A :dfn:`type constraint` can be applied to a local or thread variable in order
 to ensure that the value of the variable is always an object of a particular
-type. For example, a local variable could be constrained to always hold a string
-object. If an attempt was made to assign to that variable a non-string object,
-such as an integer, the assignment would fail.
+type or trait. For example, a local variable could be constrained to always hold
+a string object. If an attempt was made to assign to that variable a non-string
+object, such as an integer, the assignment would fail.
 
 Lasso is a dynamically typed language, and, by default, variables can hold any
 type of object. Type constraints permit a developer to restrict variables to
-hold only particular object types in order to ensure that the code operating on
-those variables is working with valid inputs.
+hold only particular object types or containing a particular trait in order to
+ensure that the code operating on those variables is given valid inputs.
 
 Type constraints are applied when a local or thread variable is first defined.
 This is done by supplying a :ref:`tag literal <literals-tag>`, which consists of
-two colons (``::``) and then the name of the type to which the variable will be
-constrained, immediately following the variable name. The following example
-applies type constraints to a local and a var::
+two colons (``::``) and then the name of the type or trait to which the variable
+will be constrained, immediately following the variable name. The following
+example applies constraints to a local and a var::
 
    local(lname::integer = 0)
-   var(vname::string = '')
+   var(vname::trait_forEach = array)
 
 In the above example, "lname" is constrained to hold only integers, and "vname"
-is constrained to hold only strings. The next example shows valid and invalid
-usage of the two variables::
+is constrained to hold only types supporting :trait:`trait_forEach`. The next
+example shows valid and invalid usage of the two variables::
 
    #lname = 400
    // => // Valid: 400 is an integer
@@ -175,14 +175,17 @@ usage of the two variables::
    #lname = 'hello'
    // => // FAILURE: #lname can only hold integers
 
+   $vname = (: 1, 2, 'hello')
+   // => // Valid: staticarrays support trait_forEach
+
    $vname = 940
-   // => // FAILURE: $vname can only hold strings
+   // => // FAILURE: $vname can only hold types that support trait_forEach
 
    local(lname = 'hello')
-   // => // FAILURE: #lname can only hold integers
+   // => // FAILURE: #lname can still only hold integers
 
-When applying a type constraint in a variable declaration, it is required that a
-default value be provided. ::
+When applying a type constraint in a variable declaration, a provided default
+value is required. ::
 
    local(lname::integer, x, y, z)
    // => // FAILURE: #lname requires default value
@@ -193,15 +196,15 @@ default value be provided. ::
 Decompositional Assignment
 ==========================
 
-Lasso will "decompose" the right-hand value (RHS or rvalue) of an assignment
-when the left-hand side (LHS) is a local declaration containing just a list of
+Lasso will "decompose" the right-hand side value (RHS) of an assignment when the
+left-hand side value (LHS) is a local declaration containing just a list of
 variable names. This supports wildcards (the ``_`` character) as well as nested
 name lists. Any type that supports :trait:`trait_forEach` can be used like this
 on the RHS.
 
 The following examples should help clarify::
 
-   local(one, two, three, four) = (:1, 2, 3, 4, 5, 6)
+   local(one, two, three, four) = (: 1, 2, 3, 4, 5, 6)
 
    #one
    // => 1
@@ -212,7 +215,7 @@ The following examples should help clarify::
    #four
    // => 4
 
-   local(_, two, _, four) = (:1, 2, 3, 4, 5, 6)
+   local(_, two, _, four) = (: 1, 2, 3, 4, 5, 6)
 
    #two
    // => 2

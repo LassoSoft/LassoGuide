@@ -294,14 +294,15 @@ with 2 and ending with 10::
    with num in generateSeries(2, 11, 2) sum #num
    // => 30
 
-There is a generateSeries literal syntax that can also be used. The following is
-equivalent to the preceding example::
+There is a :type:`generateSeries` literal syntax that can also be used. The
+following is equivalent to the preceding example::
 
    // Note that 11 is not part of the generated series
    with num in 2 to 11 by 2 sum #num
    // => 30
 
-A generateSeries object can be converted to a staticarray for later use. ::
+A :type:`generateSeries` object can be converted to a staticarray for later use.
+::
 
    generateSeries(2, 11, 2)->asStaticArray
    // => staticarray(2, 4, 6, 8, 10)

@@ -9,7 +9,7 @@ Query Expressions
 sequences to be easily iterated, filtered, and manipulated using a natural
 language syntax which is reminiscent of SQL.
 
-A query expression can take each element in a sequence, manipulate it and
+A query expression can take each element in a sequence, manipulate it, and
 produce a new sequence. Query expressions let a developer drill down into nested
 sequences. For example, a query expression could iterate over each line in a
 block of text, then each word, and then each character; all in one expression.
@@ -17,8 +17,8 @@ Query expressions provide a variety of useful operations, such as ``order by``,
 ``sum``, ``average`` and ``group by``.
 
 
-Anatomy of a Query Expression
-=============================
+Query Expression Structure
+==========================
 
 Every query expression consists of three parts.
 
@@ -61,8 +61,8 @@ expression. Next follows the word ``in`` and then the source data element, which
 is any object whose type supports the :trait:`trait_queriable` trait, such as an
 :type:`array` or a :type:`list`. Note that when declaring the variable at the
 beginning of the with clause, the variable name is given by itself, without the
-"#" character, just as if the local were being defined using the standard local
-construct. ::
+"#" character, just as if the local were being defined using the standard
+``local`` syntax. ::
 
    with variable_name in source
 
@@ -127,9 +127,9 @@ Do
 A :dfn:`do` clause permits a block of code to be executed for each element that
 makes its way through the query expression. A do clause consists of the word
 ``do`` followed by either a single expression or a capture using either the
-regular curly brace form (``{ }``) or the auto-collect curly brace form (``{^
-^}``). If the code associated with a do clause consists of more than one
-expression, the code must be contained in a capture.
+regular curly brace form (``{ ... }``) or the auto-collect curly brace form
+(``{^ ... ^}``). If the code associated with a do clause consists of more than
+one expression, the code must be contained in a capture.
 
 The following examples show how the query expression do clause can be used to
 manipulate the elements in the source array. Both query expressions operate
@@ -186,8 +186,8 @@ of each element and then divide that value by the number of elements. As with
    // => 5
 
 
-Min / Max
----------
+Min and Max
+-----------
 
 The :dfn:`min` and :dfn:`max` clauses produce the smallest or largest value from
 the sequence, respectively. The standard less than (``<``) and greater than
@@ -263,7 +263,7 @@ Let
 ---
 
 A :dfn:`let` operation introduces a new variable into the query expression.
-Usually, this is done when evaluating an expression whose value will be be used
+Usually, this is done when evaluating an expression whose value will be used
 repeatedly further on throughout the query expression. For example, a let
 operation may evaluate an expression based upon the current iteration variable,
 assigning the result to a new variable, and then using both further within the
@@ -416,7 +416,7 @@ first and last names, could be ordered in an alphabetical manner::
          'Björg'='Riley', 'Hjörtur'='Hammershaimb')
       order by #n->second, #n->first
    select #n
-   // => (Hjörtur = Hammershaimb), (Ármarinn = Hammershaimb), (Kjarni = Jones),\
+   // => (Hjörtur = Hammershaimb), (Ármarinn = Hammershaimb), (Kjarni = Jones), \
    //    (Krinn = Jones), (Björg = Riley), (Halbjörg = Skywalker)
 
 
@@ -457,7 +457,7 @@ with their last and first name, and performs a query expression over them. ::
    // (Riley = (Björg = Riley)),
    // (Skywalker = (Halbjörg = Skywalker))
 
-The example above example breaks down into 6 steps:
+The example above example breaks down into six steps:
 
 #. Begin the query expression using "n" as the variable to hold each initial
    element from the source array. There are 6 elements in the source array, so

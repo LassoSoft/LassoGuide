@@ -14,8 +14,8 @@ powerful tool to use for solving some complex problems. This chapter provides
 in-depth information about captures and examples of their use.
 
 
-Anatomy of a Capture
-====================
+Capture Structure
+=================
 
 A :dfn:`capture` is a representation of the control state of a section of code.
 While methods are stateless (once they have had their code established),
@@ -47,7 +47,8 @@ Creating Captures
 As previously mentioned, captures are automatically created when a method is
 executed. Captures can also be manually created by using curly braces as an
 expression. When using the association operator (``=>``) to invoke an object by
-passing it a capture, the capture is known as the object's :dfn:`givenBlock`. ::
+passing it a capture, the capture is known as the object's :dfn:`associated
+block` or :dfn:`givenBlock`. ::
 
    #ary->forEach => {
       // ... a capture of the surrounding code ...
@@ -60,16 +61,16 @@ execute as needed.
 Captures can also be assigned to variables like any other object. The following
 example creates a capture and assigns it to the variable "cap"::
 
-   local(cap) = { /*... the capture's code ...*/ }
+   local(cap) = { /* ... the capture's code ... */ }
 
 There are two types of captures supported in Lasso 9: regular captures, like the
 examples above, and auto-collect captures. An auto-collect capture concatenates
-the result of calling the `~null->asString` method on every value produced
+the result of calling the ``asString`` method on every value produced
 inside the capture when the capture is executed, and produces that value. The
 following example creates an auto-collect capture and assigns it to the variable
 "cap"::
 
-   local(cap) = {^ /*... the capture's code ...*/ ^}
+   local(cap) = {^ /* ... the capture's code ... */ ^}
 
 Because all executing code occurs within a capture, every capture that is
 manually created (as in the two examples above) is done so within the context of
@@ -105,7 +106,7 @@ with the special parameter local variables (``#1``, ``#2``, etc.)::
       local(x2) = #3
       local(y2) = #4
    }
-   #dist(8,2,10,5) // Sets #x1, #y1, #x2, #y2 to 8, 2, 10, 5 respectively
+   #dist(8,2,10,5) // Sets #x1, #y1, #x2, #y2 to 8, 2, 10, 5, respectively
 
 When you invoke an auto-collect capture, the auto-collected value will be
 returned and can be accessed using `capture->autoCollectBuffer`::
@@ -157,8 +158,8 @@ been updated by ``method2``. ::
    // => Hello, world.
 
 
-Producing Values and Detaching Captures
-=======================================
+Producing Values and Detaching
+==============================
 
 Captures can produce values by using ``yield`` or ``return``. Both ``yield`` and
 ``return`` halt the execution of any of the capture's remaining code and produce
@@ -243,8 +244,8 @@ Captures provide two other forms of ``yield`` and ``return``: ``yieldHome`` and
 ``returnHome``. These are only valid when the capture has a home and can be used
 to return from a capture *to* its home, instead of returning *from* its home.
 These special-purpose forms are used to accomplish some implementation details
-such as certain looping constructs or control structures. (For example,
-`loop_continue` and `loop_abort` both rely on using these forms.)
+such as certain looping constructs or other control flow structures. (For
+example, `loop_continue` and `loop_abort` both rely on using these forms.)
 
 
 Capture Methods
@@ -300,8 +301,8 @@ Capture Methods
 
    Returns the current call stack of the code that is being executed based on
    where the capture was called. Each line of the call stack consists of a line
-   number, column number and file name for the capture invocations leading up to
-   the current one. The top of the stack has the most recent capture call and
+   number, column number, and file name for the capture invocations leading up
+   to the current one. The top of the stack has the most recent capture call and
    the list works its way back through each call.
 
 .. member:: capture->givenBlock()

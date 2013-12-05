@@ -10,7 +10,7 @@ inserted directly into code. Lasso supports :type:`string`, :type:`boolean`,
 :type:`integer`, :type:`decimal`, :type:`tag` and :type:`staticarray` literals.
 
 The method for expressing these literals is straightforward. For example, an
-integer literal is expressed, as one might expect, by simply using the numeral
+integer literal is expressed, as one would expect, by simply using the numeral
 in the source text. ``23`` is an example of an integer literal.
 
 
@@ -79,17 +79,19 @@ name.
 Also supported are a series of commonly used escape sequences. The following
 table shows all of the permissible escape sequences.
 
+.. tabularcolumns:: |l|l|L|
+
 .. _literals-string-escape:
 
 .. table:: Supported String Escape Sequences
 
-   ================== ================= ======================
-   Sequence           Value             Description
-   ================== ================= ======================
-   ``\xhh``           Unicode character 1-2 hex digits
+   ================== ================= ========================================
+   Escape Sequence    Value             Description
+   ================== ================= ========================================
+   ``\xhh``           Unicode character 1--2 hex digits
    ``\uhhhh``         Unicode character 4 hex digits
    ``\Uhhhhhhhh``     Unicode character 8 hex digits
-   ``\ooo``           Unicode character 1-3 octal digits
+   ``\ooo``           Unicode character 1--3 octal digits
    ``\:NAME:``        Unicode character Unicode character name
    ``\a``             0x07              Bell
    ``\b``             0x08              Backspace
@@ -99,12 +101,12 @@ table shows all of the permissible escape sequences.
    ``\r``             0x0D              Carriage return
    ``\t``             0x09              Tab
    ``\v``             0x0B              Vertical tab
-   ``\"``             0x22              Quotation mark
-   ``\'``             0x27              Apostrophe
+   ``\"``             0x22              Double quote
+   ``\'``             0x27              Single quote
    ``\?``             0x3F              Question mark
    ``\\``             0x5C              Backslash
-   ``\<end of line>`` none              Escape whitespace
-   ================== ================= ======================
+   ``\<end of line>`` none              Escaped whitespace
+   ================== ================= ========================================
 
 
 Ticked Strings
@@ -148,7 +150,7 @@ through 9 and can be written directly into the source code. ::
 
 Integers can also be written using hexadecimal notation. Hexadecimal integers
 begin with a zero followed by an upper or lowercase "x" followed by one or more
-hexadecimal digits (0-9 and A-F). Either upper or lowercase letters are
+hexadecimal digits (0--9 and A--F). Either upper or lowercase letters are
 permitted. A hexadecimal integer literal is always interpreted as a positive
 integer. ::
 
@@ -160,6 +162,8 @@ integer. ::
 Both numeric and hexadecimal integer literals produce the same :type:`integer`
 type with the same set of member methods.
 
+See the :ref:`math` chapter for more information on the :type:`integer` type.
+
 
 Decimal Literals
 ================
@@ -168,12 +172,12 @@ A :dfn:`decimal` is a fractional number. Decimal numbers contain a decimal point
 and therefore are called "decimals". Lasso supports 64-bit decimals. This gives
 Lasso's decimal numbers a range from approximately negative to positive 2x10^300
 and with precision down to 2x10^-300. A decimal literal begins with an optional
-"-" or "+" followed by zero or more digits, a decimal point, one or more
-additional digits, and ending with an optional exponent. A decimal exponent
+"-" or "+" character followed by zero or more digits, a decimal point, one or
+more additional digits, and ending with an optional exponent. A decimal exponent
 begins with an upper or lowercase "E", followed by an optional "-" or "+"
-followed by one or more digits. Lasso also supports decimal literals for "NaN"
-(not a number) as well and positive and negative "infinity". (Note that case is
-irrelevant when using the ``NaN`` and ``infinity`` literals.) ::
+character followed by one or more digits. Lasso also supports decimal literals
+for "NaN" (not a number) as well and positive and negative "infinity". (Note
+that case is irrelevant when using the ``NaN`` and ``infinity`` literals.) ::
 
    .1
    -.89
@@ -184,6 +188,8 @@ irrelevant when using the ``NaN`` and ``infinity`` literals.) ::
    infinity
    -infinity
 
+See the :ref:`math` chapter for more information on the :type:`decimal` type.
+
 
 .. _literals-tag:
 
@@ -193,10 +199,10 @@ Tag Literals
 A :dfn:`tag` is an object that uniquely represents a particular string of
 characters. Unlike strings, tags cannot be modified. Tags are used to represent
 type and method names as well as variable names. A tag should begin with a
-letter or underscore, followed by zero or more letters, numbers, underscores or
+letter or underscore, followed by zero or more letters, numbers, underscores, or
 period characters. Tags cannot contain spaces.
 
-Tags are commonly used when applying type constraints to methods, data members
+Tags are commonly used when applying type constraints to methods, data members,
 and variables; though they have other purposes as well.
 
 A tag literal consists of two colons followed by the tag's characters. ::
@@ -220,18 +226,21 @@ Staticarrays are created in the same way as any object, but Lasso supports a
 parenthesis immediately followed by a colon, then zero or more comma-delimited
 expressions, ending with the closing parenthesis. ::
 
-   // Creates a staticarray containing 1, 2 and "hello"
+   // Creates a staticarray containing 1, 2, and "hello"
    (: 1, 2, 'hello')
 
+See the :ref:`containers` chapter for more information on the
+:type:`staticarray` type.
 
-GenerateSeries Literals
-=======================
 
-Lasso's :type:`generateSeries` type is a quick and effecient way to create a
-range object for use with query expressions. The object created has a starting
-integer and ending integer for the range separated by the word "to". An optional
-integer specifying the step size, which defaults to 1, can also be added after
-the word "by". ::
+Series Literals
+===============
+
+Lasso's :type:`generateSeries` type is a quick and efficient way to create a
+:dfn:`series` or :dfn:`range` for use with query expressions. The object created
+has a starting integer and ending integer for the series separated by the word
+"to". An optional integer specifying the step size, which defaults to 1, can
+be added after the word "by". ::
 
    0 to 10 by 2
    // => 0, 2, 4, 6, 8, 10
@@ -242,8 +251,8 @@ Comments
 
 Lasso supports three types of comments: single line comments, block comments,
 and doc comments. Single line and block comments are ignored, having no effect
-on the execution of any nearby code. Doc comments are saved with any associated
-methods, types or traits, as explained below.
+on the execution of any nearby code. Doc comments are saved with the adjacent
+method, type, or trait, as explained below.
 
 
 Single Line Comments
@@ -251,13 +260,13 @@ Single Line Comments
 
 A :dfn:`single line comment` begins with two forward slashes (``//``). The
 comment runs until the end of the line, which is either a carriage return, line
-feed or a carriage return/line feed pair. ::
+feed, or a carriage return/line feed pair. ::
 
    local(n = 123) // This is the first comment
    // This is another comment
    #n += 456
 
-Note that when embedding Lasso code within a set of delimiters, a closing
+Note that when embedding Lasso code between a set of delimiters, a closing
 delimiter on the same line as a single line comment will be skipped by the Lasso
 parser.
 
@@ -265,7 +274,7 @@ Block Comments
 --------------
 
 A :dfn:`block comment` permits a large section of code to be commented. Any
-characters, as well as multiple lines, are permitted within the opening
+characters, as well as multiple lines, are permitted between the opening
 delimiter (``/*``) and closing delimiter (``*/``). Block comments cannot be
 nested. ::
 
@@ -319,15 +328,15 @@ Doc comments can only appear in the following locations:
       provide doIt() => { ... }
    }
 
-Doc comments can be set and retrieved programatically using the `docComment`
-method, as long as Lasso is run with the :envvar:`LASSO9_RETAIN_COMMENTS`
-variable enabled.
+Doc comments for a type can be set and retrieved programatically using the
+`tag->docComment` method, as long as Lasso is run with the
+:envvar:`LASSO9_RETAIN_COMMENTS` variable enabled.
 
 .. code-block:: none
 
    $> env LASSO9_RETAIN_COMMENTS=1 lasso9 -s "::array->docComment"
    /**!
-   An array is an object that can hold multiple values ...
+   An array is an object that can hold multiple values…
 
    $> env LASSO9_RETAIN_COMMENTS=1 lasso9 -s "
    ::boolean->docComment = 'Boolean objects are either true or false.'

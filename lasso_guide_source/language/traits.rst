@@ -50,9 +50,9 @@ a trait this requirement would be specified as follows::
    require get(x::integer)
    require size()::integer
 
-The requirements take the form of a list of member method signatures. If all of
-the member method signatures are defined by the type that the trait is applied
-to, then the methods provided by the trait will work.
+The requirements take the form of a list of member method signatures. If the
+type that the trait is applied to defines all of the trait's required member
+method signatures, then the methods provided by the trait will work.
 
 The methods provided by the trait are specified similar to how methods are
 defined in custom types. (However, instead of using the ``public`` keyword, the
@@ -108,9 +108,9 @@ then we can import this trait to automatically get an implementation of
 Defining Traits
 ===============
 
-A trait is defined using the ``define`` keyword followed by the trait name, the
-association operator (``=>``), the keyword ``trait``, and a code block
-containing the definition of the trait. ::
+A trait is defined using a :dfn:`trait expression` consisting of the ``define``
+keyword followed by the trait name, the association operator (``=>``), the
+keyword ``trait``, and a code block containing the definition of the trait. ::
 
    define myTrait => trait {
       // ...
@@ -122,7 +122,7 @@ provide section. Requirements for the trait are specified in a require section.
 Other traits can be imported in an import section.
 
 
-Provide
+provide
 -------
 
 The member methods that a trait provides are specified similarly to the public
@@ -145,7 +145,7 @@ data member::
    }
 
 
-Require
+require
 -------
 
 The :dfn:`require` section allows specifying a list of method signatures that
@@ -168,7 +168,7 @@ the "firstName" data member::
    }
 
 
-Import
+import
 ------
 
 The :dfn:`import` section allows the characteristics of other traits to be
@@ -177,7 +177,7 @@ defined. As many import sections as are necessary can be specified.
 
 The section begins with the keyword ``import`` followed by a comma-separated
 list of trait names. The following trait simply imports the characteristics of
-the built-in ``trait_array`` trait::
+the built-in :trait:`trait_array` trait::
 
    define myTrait => trait {
       import trait_array
@@ -207,8 +207,8 @@ as traits satisfying each others' requirements and resolving conflicting method
 names.
 
 An alternate method of defining the trait example from the start of this chapter
-would be to define three sub-traits and then use the composition operator
-(``+``) to compose them into a single trait. ::
+would be to define three subtraits and then use the composition operator (``+``)
+to compose them into a single trait. ::
 
    define trait_first => trait {
       require get
@@ -242,8 +242,8 @@ Checking Traits
 Since traits provide member methods for a type it is often useful to check
 whether a given type instance has a trait applied. The `~null->isA` method can
 be used for this check. This member method can be used on any type instance and
-will return a positive integer if the instance has the provided trait name
-applied to it.
+will return a positive integer if the instance is the provided type or has the
+provided trait name applied to it.
 
 In this code the `~null->isA` method returns "2" since the ``month`` type does
 have the ``trait_firstLast`` trait applied to it::
@@ -298,11 +298,14 @@ Trait Manipulation Methods
 
    Combines the target object's trait with the parameter.
 
-The `~null->setTrait` method should be used with care since resetting the trait
-of a type instance may result in many of its member methods becoming unavailable
-or ceasing to function. In general, traits will be added to a type instance to
-provide additional functionality rather than resetting the entire trait for a
-given object. The two examples below are equivalent::
+In general, traits will be added to a type instance to provide additional
+functionality rather than resetting the entire trait for a given object. The two
+examples below are equivalent::
 
    #myinstance->addtrait(trait_firstlast)
    #myinstance->settrait(#myinstance->trait + trait_firstlast)
+
+.. caution::
+   The `~null->setTrait` method should be used with care since resetting the
+   trait of a type instance may result in many of its member methods becoming
+   unavailable or ceasing to function.

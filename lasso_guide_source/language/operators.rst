@@ -8,7 +8,7 @@ Operators
 An :dfn:`operator` is a special symbol that, combined with one or more operands,
 performs an operation using those operands and, generally, produces a value.
 
-Lasso supports the standard arithmetic operators and logical operators as well
+Lasso supports the standard arithmetical operators and logical operators as well
 as numerous other useful operations. Operators can be :dfn:`unary`, taking only
 one operand, :dfn:`binary` requiring two operands, or :dfn:`ternary`, in the
 case of the conditional operator, requiring up to three operands.
@@ -22,13 +22,14 @@ one parameter and returns the resulting value.
 
 .. _operators-assignment:
 
-Assignment Operators
-====================
+Assignment Operations
+=====================
 
-Assignment places the result of an expression into a destination. The
-destination must be a local or thread variable, or it must be an
-appropriately named method call. Lasso supports two types of assignment, one
-that produces the assigned value (``:=``) and one that does not (``=``). ::
+:dfn:`Assignment` places the result of an expression into a destination. The
+destination must be a local or thread variable, or it must be an appropriately
+named method call. Lasso supports two types of assignment operators:
+assign-produce (``:=``) which produces the assigned value, and standard
+assignment (``=``) which does not. ::
 
    // "dest" assigned value of expression
    dest = expression
@@ -37,15 +38,14 @@ that produces the assigned value (``:=``) and one that does not (``=``). ::
    dest := expression
    // => // Produces a reference to "dest"
 
-The second assignment type, which produces the left-hand operand, is
+An assign-produce operation, which produces the left-hand operand, is
 right-associative so that multiple assignments can be lined up. The following
-assigns the value of "1" to "dst1", "dst2" and "dst3" and also produces "1"::
+assigns "1" to "dst1", "dst2" and "dst3" and also produces "1"::
 
    dst1 := dst2 := dst3 := 1
    // => 1
 
-Locals and vars can be assigned using the access syntax for either variable
-type. ::
+Locals and vars can both be assigned using assignment syntax. ::
 
    // local "l" assigned expression
    #l = expression
@@ -67,19 +67,20 @@ named ``foo=``. Such a method must accept at least one parameter and must return
 the assigned value as if it were being called in the role of assign-produce
 (``:=``). Methods that permit such assignment are useful as "setters" and let an
 object control how the assignment is ultimately made. See the :ref:`types`
-chapter for more detail on creating setter methods.
+chapter for more detail on creating :ref:`setter methods
+<types-getters-setters>`.
 
 
-Arithmetic Operators
-====================
+Arithmetical Operations
+=======================
 
-Arithmetic usually refers to mathematical operations using integer or decimal
-numbers. However, an arithmetic operator can be applied to any object that
-supports the operation.
+"Arithmetic" typically refers to mathematical operations using integer or
+decimal numbers, as explained in the :ref:`math` chapter. However, an
+arithmetical operator can be applied to any object that supports the operation.
 
 
-Addition, Subtraction, Multiplication, Division, Modulus
---------------------------------------------------------
+Basic Operators
+---------------
 
 These operators are all binary, requiring two operands. All of these operators
 can be implemented by a type containing the properly named method. Only the
@@ -100,22 +101,22 @@ use of each operator::
    // => // Returns the value of dividing op1 by op2
 
    op1 % op2
-   // => // Returns the value of the remainder from dividing op1 by op2 (modulo operation)
+   // => // Returns the remainder of dividing op1 by op2 (modulo operation)
 
    (: 10 + 3, 10 - 3, 10 * 3, 10 / 3, 10 % 3 )
    // => staticarray(13, 7, 30, 3, 1)
 
 
-Arithmetic Assignment
----------------------
+Assignment Operators
+--------------------
 
-While the standard arithmetic operators use their operands to produce a new
-value, Lasso supports syntax for applying the arithmetic operator *to* one of
-the operands. The following operators perform their operation and assign the
-result to the left-hand side operand. Only the left-hand operand can be assigned
-to and not every expression is capable of being assigned to, as described in the
-section on :ref:`assignment operators <operators-assignment>`. These assignment
-expressions do not produce a value. ::
+While the basic arithmetical operators use their operands to produce a new
+value, Lasso supports syntax for applying the operator *to* one of the operands.
+The following operators perform their operation and assign the result to the
+left-hand side operand. Only the left-hand operand can be assigned to and not
+every expression is capable of being assigned to, as described in the section on
+:ref:`assignment operators <operators-assignment>`. These assignment expressions
+do not produce a value. ::
 
    // Equivalent to op1 = op1 + op2
    op1 += op2
@@ -132,55 +133,55 @@ expressions do not produce a value. ::
    // Equivalent to op1 = op1 % op2
    op1 %= op2
 
-During parsing, these operators are expanded to their regular arithmetic and
+During parsing, these operators are expanded to their regular arithmetical and
 assignment operations, so a type does not need to do anything to support them
 aside from implementing the assignment operator method and the appropriate
-arithmetic operator method.
+arithmetical operator method.
 
 
-Pre / Post Increment and Decrement
-----------------------------------
+Pre-/Post-Increment and Decrement Operators
+-------------------------------------------
 
-There is a common need to "advance" an object in a bi-directional manner.
-Usually this is done using integers as counters, though the concept can be
-applied elsewhere. Lasso supports the increment and decrement operators (``++``
-and ``--``) in both pre and post modes.
+There is a common need to "advance" an object in a bidirectional manner. Usually
+this is done using integers as counters, though the concept can be applied
+elsewhere. Lasso supports the increment and decrement operators (``++`` and
+``--``) in both pre and post modes.
 
-Pre-incrementing and pre-decrementing an object will add or subtract "1" from
-the object and then produce that object as a result. Post-incrementing and
-post-decrementing an object first copies that object, then adds or subtracts "1"
+Pre-incrementing and pre-decrementing an object will add or subtract 1 from the
+object and then produce that object as a result. Post-incrementing and
+post-decrementing an object first copies that object, then adds or subtracts 1
 from the original operand, then produces the copied object as a result. ::
 
    // Pre-increment "op"
    ++op
    // => // Produces the newly incremented "op"
 
-   // Pre-Decrement "op"
+   // Pre-decrement "op"
    --op
    // => // Produces the newly decremented "op"
 
-   // Post-Increment "op"
+   // Post-increment "op"
    op++
    // => // Produces a copy of "op" before incrementing
 
-   // Post-Decrement "op"
+   // Post-decrement "op"
    op--
    // => // Produces a copy of "op" before decrementing
 
-These increment/decrement operators are translated into regular arithmetic
+These increment/decrement operators are translated into regular arithmetical
 method calls with "1" as the method parameter. This means that if a type is
 intended to be used with the increment (``++``) and decrement (``--``)
 operators, all that's necessary is to implement ``+`` and ``-`` which will be
 called with "1" as the parameter.
 
 
-Positive and Negative
----------------------
+Positive and Negative Operators
+-------------------------------
 
-Lasso supports the unary operators which are usually intended to change the sign
-of an integer or decimal number. These operators can be applied to any object
-that supports them. When applied, these operators will produce a new object,
-leaving the single operand unchanged. ::
+Lasso supports the unary operators which are typically intended to change the
+sign of an integer or decimal number. These operators can be applied to any
+object that supports them. When applied, these operators will produce a new
+object, leaving the single operand unchanged. ::
 
    +op1
    // => // Produces a new object whose value is positive op1
@@ -196,8 +197,8 @@ or negative number is created from the beginning.
 
 .. _operators-boolean:
 
-Boolean Operators
-=================
+Boolean Operations
+==================
 
 :dfn:`Boolean` describes the values "true" and "false". Lasso supports several
 operators that either treat their operands as boolean values and/or produce
@@ -212,8 +213,8 @@ boolean values. These operators are broken down into several categories.
    strings. All other objects and values are assumed to be "true".
 
 
-Logical
--------
+Logical Operators
+-----------------
 
 There are three :dfn:`logical operators`. The first is the unary operator "not".
 This operator treats its single operand as a boolean value and produces the
@@ -253,8 +254,8 @@ operators cannot be defined by the operand objects.
 
 .. _operators-equality:
 
-Equality
---------
+Equality Operators
+------------------
 
 The :dfn:`equality operators` are used to determine if one object is logically
 equivalent to another. These operators are split into positive and negative
@@ -293,8 +294,8 @@ automatically performed by the runtime, so a type need not account for that
 scenario in its own implementation of ``onCompare``.
 
 
-Relative Equality
------------------
+Relative Equality Operators
+---------------------------
 
 The :dfn:`relative equality operators` indicate whether an object is less than,
 greater than, or possibly equal to another object. These operators all produce
@@ -319,8 +320,8 @@ value (either zero, less than zero, or greater than zero), it can handle all
 possible types of equality tests.
 
 
-Containment
------------
+Containment Operators
+---------------------
 
 There are two :dfn:`containment operators` used to test if an object "contains"
 another object. One checks for positive containment (``>>``) and the other for
@@ -346,20 +347,21 @@ contain any number of other arbitrary objects, so it makes sense to query them
 for their contents.
 
 
-Conditional
------------
+Conditional Operator
+--------------------
 
-The :dfn:`conditional operator` allows the construction of an if/then/else
-scenario in which an expression is tested and depending on its boolean value,
+The :dfn:`conditional operator` allows for concisely implementing if/then/else
+logic in which an expression is tested and depending on its boolean value,
 either the "then" or the "else" expressions will be executed and their values
 produced as the result of the operator. The "then" and "else" can consist of
 only one expression. The "else" portion of a conditional operator may be
 omitted. In such a case, if the condition is "false", a "void" object will be
 produced.
 
-The conditional operator uses the two "?" and "|" characters. The "?" follows
-the test condition and the "|" delimits the "then" and "else" expressions. A
-conditional operator with no "else" will have no delimiting "|" character. ::
+The conditional operator uses the two "|query| " and "|" characters. The
+"|query| " follows the test condition and the "|" delimits the "then" and "else"
+expressions. A conditional operator with no "else" will have no delimiting "|"
+character. ::
 
    test ? expression1 | expression2
    // => // Produces expression1 if test is "true" else expression2
@@ -367,13 +369,16 @@ conditional operator with no "else" will have no delimiting "|" character. ::
    test ? expression
    // => // Produces expression if test is "true" else void
 
+.. |query| unicode:: 0x3F
+   :trim:
+
 
 Grouping
 ========
 
 Sub-expressions can be grouped together by surrounding them with parentheses.
 This can be used to alter the normal precedence of some operations. All
-sub-expressions in parentheses are evaluated before the expressions surrounding
+subexpressions in parentheses are evaluated before the expressions surrounding
 them. The first example below shows how multiplication normally occurs before
 addition. The second example applies parentheses to have the addition take
 precedence. ::
@@ -438,7 +443,7 @@ supporting :trait:`trait_forEach` to a method that accepts a rest parameter. ::
 The concept behind invocation is somewhat abstract, but it permits objects and
 methods to operate as :dfn:`function objects`. This is an object that can be
 called upon to do an operation with zero or more parameters and produce a value.
-For example, a sorting routine might employ such an object to handle the actual
+For example, a sorting routine could employ such an object to handle the actual
 comparisons between two objects, invoking the object each time it is required,
 while the routine handles only the shifting of the objects during the sort.
 
@@ -448,8 +453,8 @@ switching out the objects designated to handle each permutation while keeping
 the internal operations identical.
 
 
-Target
-======
+Target Operation
+================
 
 To :dfn:`target` means to access a particular member method or data member from
 an object. The target operator (``->``) is a binary operator accepting the
@@ -496,19 +501,19 @@ periods can only be used for methods, as only "self" can access data members. ::
    // => // Produces the value of calling inherited->meth(3, 4)
 
 
-Re-target
-=========
+Retarget Operation
+------------------
 
-The :dfn:`re-target` operation allows the same target object to be used for
-multiple method calls. The re-target operator (``&``) is placed between the
-individual method calls. Re-target is only ever used in the context of a member
+The :dfn:`retarget` operation allows the same target object to be used for
+multiple method calls. The retarget operator (``&``) is placed between the
+individual method calls. Retarget is only ever used in the context of a member
 method call using the target operator (``->``). The target object of the last
-target operator is used as the object for the re-targeted member call. For each
-method call, the ``&`` is placed following the method name, parameters and
+target operator is used as the object for the retargeted member call. For each
+method call, the ``&`` is placed following the method name, parameters, and
 givenBlock (if present).
 
-The re-target operator can be used to string two or more methods together. The
-return value of the final method will be produced by this type of re-target. ::
+The retarget operator can be used to string two or more methods together. The
+return value of the final method will be produced by this type of retarget. ::
 
    object->meth & meth2
    // => // Execute meth on the object then execute meth2 and produce its value
@@ -516,7 +521,7 @@ return value of the final method will be produced by this type of re-target. ::
    object->meth(1, 2) & meth2()
    // => // Execute meth on the object then execute meth2 and produce its value
 
-Re-target can also be used to change the produced value of a member method call
+Retarget can also be used to change the produced value of a member method call
 to be that of the target object. This is done by having a trailing ``&`` at the
 end of a method call. ::
 
@@ -524,8 +529,8 @@ end of a method call. ::
    // => // Execute meth, but produce targetObject
 
 
-Formatting Re-target
---------------------
+Formatting Retarget
+^^^^^^^^^^^^^^^^^^^
 
 When stringing several method calls together, formatting over multiple lines can
 help with readability. It is important, however, to keep the ``&`` on the same
@@ -540,8 +545,8 @@ The following example illustrates this formatting principle::
    // => // Execute meth, meth2, meth3, and then produce targetObject
 
 
-Escape Method
-=============
+Method Escaping
+===============
 
 To :dfn:`escape` a method is to allow a method to be searched for by name and
 returned to the caller. The caller can later use that method, executing it by
@@ -578,22 +583,24 @@ parentheses to disambiguate. ::
 Although the escape operators are used to find methods by name, the object
 produced by the operators is a :dfn:`memberstream`. This object manages the
 finding of the desired method, the potential bundling of the target object (in
-the case of ``->\``), and the execution of the method when the memberstream is
-invoked.
+the case of ``->\``), and the execution of the method when the
+:type:`memberstream` is invoked.
 
 
-Additional Syntax
-=================
+.. only:: html
 
-There are several other operator-like syntax elements that will be described in
-detail in later sections of this document. Many of them apply in limited
-situations or special contexts and so are beyond the scope of this chapter.
+   Additional Syntax
+   =================
 
-.. seealso::
+   There are several other operator-like syntax elements that will be described in
+   detail in later sections of this document. Many of them apply in limited
+   situations or special contexts and so are beyond the scope of this chapter.
 
-   -  **Association Operator** ``=>``
-      See :ref:`methods`, :ref:`types`
-   -  **Keywords** ``return``, ``yield``, etc.
-      See :ref:`captures`, :ref:`methods`
-   -  **Captures/Code blocks** ``{ }``, ``{^ ^}``
-      See :ref:`conditional-logic`, :ref:`captures`, :ref:`methods`
+   .. seealso::
+
+      :**Association Operator** ``=>``:
+         See :ref:`methods`, :ref:`types` chapters
+      :**Keywords** ``return``, ``yield``, etc.:
+         See :ref:`captures`, :ref:`methods` chapters
+      :**Captures/Code blocks** ``{ ... }``, ``{^ ... ^}``:
+         See :ref:`control-flow`, :ref:`captures`, :ref:`methods` chapters
