@@ -130,6 +130,8 @@ the operations of the server.
 Lasso Developer
 ===============
 
+.. index:: serial number
+
 Lasso Developer is a free of charge, single-user edition of Lasso Server that
 can be used by a single developer to create and test interactive web sites on
 their own machine. Lasso Developer has a client IP addresses limitation and

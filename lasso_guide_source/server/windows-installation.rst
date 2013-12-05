@@ -5,13 +5,9 @@
 Windows Installation
 ********************
 
-
-Supported Platforms
-===================
-
-Lasso 9 Server has been tested on 64-bit Windows Server 2012, Windows Server
-2008 R2, Windows 8, and Windows 7. Supported web servers are IIS 8, IIS 7, and
-Apache 2.2.
+These instructions are for installing Lasso 9 Server on 64-bit Windows Server
+2012, Windows Server 2008 R2, Windows 8, and Windows 7. Supported web servers
+are IIS 8, IIS 7, and Apache 2.2.
 
 .. note::
    Windows Vista is not an officially supported operating system.

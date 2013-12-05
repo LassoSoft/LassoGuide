@@ -5,10 +5,13 @@
 Datasource Setup
 ****************
 
-Lasso 9 Server communicates with data sources using Lasso data source connectors
-which are modular components configured using the "Datasources" section of Lasso
-Server Admin. Lasso 9 Server provides built-in connectors for all of the data
-sources listed below.
+Lasso 9 Server communicates with :dfn:`data sources`, which are any type of
+software mechanism for storing and retrieving data (including databases), using
+Lasso :dfn:`data source connectors`, which are modular components that translate
+Lasso requests into commands specific to each data source. Connections to data
+sources, or :dfn:`datasources`, are configured in the "Datasources" section of
+Lasso Server Admin. Lasso 9 Server provides built-in connectors for all of the
+data sources listed below.
 
 Most connectors can access data sources that are installed on the same machine
 as Lasso 9 or on a remote machine. Some connectors can only access files on the
@@ -20,7 +23,7 @@ Custom data source connectors for other data sources can also be created for use
 with Lasso 9 using Lasso 9's C API (LCAPI), Java API (LJAPI) or Lasso itself
 using the :type:`dsinfo` type. (Information about creating and using LCAPI
 third-party data source connectors can be found in the :ref:`lcapi-sources`
-LCAPI documentation.)
+chapter of the LCAPI documentation.)
 
 :ref:`datasource-setup-filemaker`
    Supports FileMaker Server 7--12 Advanced and FileMaker Server 9--12.
@@ -52,14 +55,14 @@ LCAPI documentation.)
 Lasso Data Source Connectors
 ============================
 
-:dfn:`Data source connectors` allow database actions to be performed via Lasso
-code. Database actions can be used in Lasso to search for records in a database
-that match specific criteria; to navigate through the found set from a search;
-to add, update, or delete a record in a database; to fetch schema information
-about a database; and more. Additionally, database actions can be used to
-execute SQL statements in SQL-compliant databases.
+Data source connectors allow database actions to be performed via Lasso code.
+Database actions can be used in Lasso to search for records in a database that
+match specific criteria; to navigate through the found set from a search; to
+add, update, or delete a record in a database; to fetch schema information about
+a database; and more. Additionally, database actions can be used to execute SQL
+statements in SQL-compliant databases.
 
-Interacting with data sources via Lasso usually involves these steps:
+Interacting with data sources via Lasso generally involves these steps:
 
 #. Configuring the data source application or service to accept connections from
    Lasso. This is done in the data source itself, outside of Lasso. This chapter
@@ -227,8 +230,9 @@ Setting up a data source host in Lasso Server Admin is the best way to ensure
 that access to the data source is centrally controlled. However, it can
 sometimes be beneficial to access a data source host without a lot of
 configuration. This section describes how to construct an `inline` method to
-access a FileMaker Server data source host. See the :ref:`inline-hosts` section
-for full details about specifying hosts in inlines.
+access a FileMaker Server data source host. See the
+:ref:`database-inline-connection` section for full details about specifying
+hosts in inlines.
 
 To access a FileMaker Server host directly in an `inline` method, the ``-host``
 parameter can be used to specify all of the connection parameters. The ``-host``
@@ -349,7 +353,7 @@ To add a new MySQL host:
 #. In the "Datasources" section of Lasso Server Admin, click the
    :guilabel:`MySQLDS` item.
 #. Click the :guilabel:`Add host` item to reveal the host connection form.
-#. Enter the IP address or domain name where the MySQL datasources are being
+#. Enter the IP address or domain name where the MySQL databases are being
    hosted in the "Host" field.
 #. Enter the TCP port the MySQL service communicates on in the "Port" field.
    This is commonly "3306" for MySQL.
@@ -375,8 +379,8 @@ Setting up a data source host in Lasso Server Admin is the best way to ensure
 that access to the data source is centrally controlled. However, it can
 sometimes be beneficial to access a data source host without a lot of
 configuration. This section describes how to construct an `inline` method that
-accesses a MySQL data source host. See the :ref:`inline-hosts` section for full
-details about specifying hosts in inlines.
+accesses a MySQL data source host. See the :ref:`database-inline-connection`
+section for full details about specifying hosts in inlines.
 
 To access a MySQL host directly in an `inline` method, the ``-host`` parameter
 can be used to specify all of the connection parameters. The ``-host`` parameter
@@ -521,8 +525,8 @@ Setting up a data source host in Lasso Server Admin is the best way to ensure
 that access to the data source is centrally controlled. However, it can
 sometimes be beneficial to access a data source host without a lot of
 configuration. This section describes how to construct an `inline` method that
-accesses an Oracle data source host. See the :ref:`inline-hosts` section for
-full details about specifying hosts in inlines.
+accesses an Oracle data source host. See the :ref:`database-inline-connection`
+section for full details about specifying hosts in inlines.
 
 To access an Oracle host directly in an `inline` method, the ``-host`` parameter
 can be used to specify all of the connection parameters. The ``-host`` parameter
@@ -620,8 +624,9 @@ Setting up a data source host in Lasso Server Admin is the best way to ensure
 that access to the data source is centrally controlled. However, it can
 sometimes be beneficial to access a data source host without a lot of
 configuration. This section describes how to construct an `inline` method that
-accesses a PostgreSQL data source host. See the :ref:`inline-hosts` section for
-full details about specifying hosts in inlines.
+accesses a PostgreSQL data source host. See the
+:ref:`database-inline-connection` section for full details about specifying
+hosts in inlines.
 
 To access a PostgreSQL host directly in an `inline` method, the ``-host``
 parameter can be used to specify all of the connection parameters. The ``-host``
@@ -659,9 +664,11 @@ the same machine as Lasso might appear::
 ODBC Data Sources
 =================
 
-Lasso 9 can communicate with any ODBC-compliant data source as long as the
-operating system has a compatible ODBC driver properly installed. For more
-information on ODBC, see the documentation included with your operating system.
+:dfn:`ODBC` (Open Database Connectivity) is a generalized API for providing
+access to databases. Lasso 9 can communicate with any ODBC-compliant data source
+as long as the operating system has a compatible ODBC driver properly installed.
+For more information on ODBC, see the documentation included with your operating
+system.
 
 
 Requirements
@@ -743,8 +750,8 @@ Setting up a data source host in Lasso Server Admin is the best way to ensure
 that access to the data source is centrally controlled. However, it can
 sometimes be beneficial to access a data source host without a lot of
 configuration. This section describes how to construct an `inline` method that
-accesses an ODBC data source host. See the :ref:`inline-hosts` section for full
-details about specifying hosts in inlines.
+accesses an ODBC data source host. See the :ref:`database-inline-connection`
+section for full details about specifying hosts in inlines.
 
 To access an ODBC host directly in an `inline` method, the ``-host`` parameter
 can be used to specify all of the connection parameters. The ``-host`` parameter
@@ -848,8 +855,9 @@ Setting up a data source host in Lasso Server Admin is the best way to ensure
 that access to the data source is centrally controlled. However, it can
 sometimes be beneficial to access a data source host without a lot of
 configuration. This section describes how to construct an `inline` method that
-accesses a SQL Server data source host. See the :ref:`inline-hosts` section for
-full details about specifying hosts in inlines.
+accesses a SQL Server data source host. See the
+:ref:`database-inline-connection` section for full details about specifying
+hosts in inlines.
 
 To access a SQL Server host directly in an `inline` method, the ``-host``
 parameter can be used to specify all of the connection parameters. The ``-host``

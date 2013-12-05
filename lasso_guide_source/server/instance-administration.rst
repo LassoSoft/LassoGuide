@@ -139,7 +139,7 @@ Configuring Datasources
 -----------------------
 
 Clicking on the "Datasources" link in the Main Menu will take you to a web page
-that lists the data sources your instance can access. Clicking on a data source
+that lists the datasources your instance can access. Clicking on a data source
 will reveal a list of hosts that have already been configured as well as an
 :guilabel:`Add host` button. Clicking on that button reveals a form to enter the
 "Host", "Port", "Username", and "Password" information for a new host. Entering
@@ -162,6 +162,8 @@ Lasso Server to various data sources.
 
 Entering a Lasso 9 Server License
 ---------------------------------
+
+.. index:: serial number, license
 
 Clicking on the "License" link in the Main Menu will take you to a web page that
 displays the current license of the instance. There is also an :guilabel:`Add
