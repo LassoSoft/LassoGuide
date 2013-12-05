@@ -4,34 +4,34 @@
 Shell Commands with os_process
 ******************************
 
-.. note::
+.. attention::
    The :type:`os_process` type has been deprecated and this documentation has
-   been superseded by the new `sys_process` type.
+   been superseded by the new :type:`sys_process` type.
 
 Lasso provides the ability to execute local processes or shell commands through
 the :type:`os_process` type. This type allows local processes to be launched
 with an array of parameters and shell variables. Some processes will execute and
 return a result immediately. Other processes can be left open for interactive
-read/write operations. The `os_process` type enables Lasso users to do things
-such as execute AppleScripts, print PDF files, and filter data through external
-applications.
+read/write operations. The :type:`os_process` type enables Lasso users to do
+things such as execute AppleScripts, print PDF files, and filter data through
+external applications.
 
-The `os_process` type works across all three platforms which Lasso supports. The
-UNIX underpinnings of OS X and Linux mean that those two operating systems can
-run many of the same commands and shell scripts. Windows presents a very
-different environment including DOS commands and batch files.
+The :type:`os_process` type works across all three platforms that Lasso
+supports. The UNIX underpinnings of OS X and Linux mean that those two operating
+systems can run many of the same commands and shell scripts. Windows presents a
+very different environment including DOS commands and batch files.
 
-The `os_process` type is implemented in an LCAPI module which is loaded by
+The :type:`os_process` type is implemented in an LCAPI module that is loaded by
 default for Lasso 9 Server, but not loaded when executing Lasso 9 scripts from
 the command line. To load the LCAPI module for use in Lasso 9 shell scripts,
 place the following line of code in your script::
 
    // If LASSO9_MASTER_HOME is specified, find module there
-   // Otherwise find it in the LASSO9_HOME path
+   // Otherwise, find it in the LASSO9_HOME path
    lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/OS_Process.' + sys_dll_ext)
 
-For more information on writing shell scripts, see the chapter on
-:ref:`command-line-tools`.
+For more information on writing shell scripts with Lasso, see the
+:ref:`command-line-tools` chapter.
 
 
 Using os_process
@@ -44,11 +44,11 @@ Using os_process
 
 .. method:: os_process(...)
 
-   The `os_process` type allows a developer to create a new process on the
+   The :type:`os_process` type allows a developer to create a new process on the
    machine and both read from and write data to it. The process is usually
-   closed after the `os_process` type is destroyed, but can optionally be left
-   running. The `os_process` type shares many of the same member methods and
-   conventions as the file type.
+   closed after the :type:`os_process` object is destroyed, but can optionally
+   be left running. The :type:`os_process` type shares many of the same member
+   methods and conventions as the :type:`file` type.
 
 .. member:: os_process->open(\
          command::string, \
@@ -57,7 +57,7 @@ Using os_process
       )
 
    Opens a new process. The command string should consist of any path
-   information required to find the executable and the executable name. An
+   information required to find the executable and the executable's name. An
    optional arguments array can be given. Any arguments are converted to strings
    and passed to the new process. An optional array of environment strings may
    also be passed in. Both of these optional arrays will be passed to the new
@@ -112,13 +112,13 @@ Using os_process
 
 .. member:: os_process->detach()
 
-   Detaches the `os_process` object from the process. This will prevent the
-   process from terminating when the `os_process` object is destroyed.
+   Detaches the :type:`os_process` object from the process. This will prevent
+   the process from terminating when the :type:`os_process` object is destroyed.
 
 .. member:: os_process->close()
 
    Closes the connection to the process. This will cause the process to
-   terminate unless it has previously been detached from the `os_process`
+   terminate unless it has previously been detached from the :type:`os_process`
    object by calling `os_process->detach`.
 
 .. member:: os_process->closeWrite()
@@ -145,8 +145,7 @@ to STDOUT, which is then read by Lasso::
    #os->read->encodeHTML
    #os->close
 
-   // =>
-   // Hello World!
+   // => Hello World!
 
 
 List
@@ -160,15 +159,13 @@ directory::
    #os->close
 
    // =>
-   // JDBCDrivers
-   // JavaLibraries
-   // LassoAdmin
    // LassoApps
-   // LassoErrors.txt
-   // LassoLibraries
    // LassoModules
    // LassoStartup
    // SQLiteDBs
+   // lasso.err.txt
+   // lasso.fastcgi.sock
+   // lasso.out.txt
 
 
 Create File
@@ -176,7 +173,7 @@ Create File
 
 This example uses the :command:`/usr/bin/tee` command to create a file
 "test.txt" in the site folder. The code does not generate any output, it just
-creates the file::
+creates the file. ::
 
    local(os) = os_process
    handle => {
@@ -208,8 +205,8 @@ AppleScript
 -----------
 
 This example uses the :command:`/usr/bin/osascript` command to run a simple
-AppleScript. AppleScript is a full scripting language which provides access to
-the system and running applications in OS X. The script shown simply returns the
+AppleScript. AppleScript is a full scripting language that provides access to
+the system and running applications in OS X. The script shown returns the
 current date and time::
 
    local(os) = os_process('/usr/bin/osascript', (: '-'))
@@ -218,16 +215,15 @@ current date and time::
    #os->read->encodeHTML
    #os->close
 
-   // =>
-   // Tuesday, March 21, 2006 11:52:34 AM
+   // => Tuesday, March 21, 2006 11:52:34 AM
 
 
 Web Request
 -----------
 
 This example uses the :command:`/usr/bin/curl` command to fetch a web page and
-return the results. The `curl` type or `include_url` method can be used for the
-same purpose. Only the first part of the output is shown. ::
+return the results. The :type:`curl` type or `include_url` method can be used
+for the same purpose. Only the first part of the output is shown. ::
 
    local(os) = os_process('/usr/bin/curl', (: 'http://www.apple.com/'))
    #os->read->encodeHTML
@@ -238,15 +234,15 @@ same purpose. Only the first part of the output is shown. ::
    //    <html>
    //    <head>
    //    <title>Apple</title>
-   //    ...
+   // ... rest of response ...
 
 
 Windows Examples
 ================
 
 This section includes several examples of using `os_process` on Windows. Each of
-the examples uses the command-line processor :program:`CMD` with the option
-``/C`` to interpret an individual command.
+the examples uses the command-line processor :program:`CMD` with the option "/C"
+to interpret an individual command.
 
 
 Echo
@@ -259,32 +255,31 @@ to simply echo the input back to Lasso::
    #os->readString->encodeHTML
    #os->close
 
-   // =>
-   // Hello World!
+   // => Hello World!
 
 
 List
 ----
 
 This example uses the :program:`CMD` processor with a :command:`DIR` command to
-list the contents of a directory. The ``/B`` option instructs Windows to only
-list the contents of the directory without extraneous header and footer
-information. ::
+list the contents of a directory. The "/B" option instructs Windows to only list
+the contents of the directory without extraneous header and footer information.
+::
 
    local(os) = os_process('cmd', (: '/C DIR /B .'))
    #os->readString->encodeHTML
    #os->close
 
    // =>
-   // JDBCDrivers
    // JavaLibraries
-   // LassoAdmin
+   // JDBCDrivers
    // LassoApps
-   // LassoErrors.txt
-   // LassoLibraries
    // LassoModules
    // LassoStartup
    // SQLiteDBs
+   // JDBCLog.txt
+   // lasso.err.txt
+   // lasso.out.txt
 
 
 Help
@@ -314,11 +309,11 @@ Multiple Commands
 -----------------
 
 This example uses the :program:`CMD` processor interactively to run several
-commands. The processor is started with a parameter of ``/Q`` which suppresses
-the echoing of commands back to the output. The result is exactly the same as
-what would be provided if these commands were entered directly into the command
-line shell. In order to process the results, it would be necessary to strip off
-the header and the directory prefix from each line. ::
+commands. The processor is started with a parameter of "/Q" which suppresses the
+echoing of commands back to the output. The result is exactly the same as what
+would be provided if these commands were entered directly into the command line
+shell. In order to process the results, it would be necessary to strip off the
+header and the directory prefix from each line. ::
 
    local(os) = os_process('cmd', (: '/Q')
    #os->write('ECHO Line One\r\n')
@@ -338,7 +333,7 @@ Batch File
 
 This example uses the :program:`CMD` processor to process a batch file. The
 contents of batch file "batch.bat" is shown below. The file is assumed to be
-located in the folder for the current site in the Lasso 9 Server application
+located in the folder for the current site in the Lasso Server application
 folder.
 
 .. code-block:: bat
@@ -347,14 +342,13 @@ folder.
    CLS
    ECHO This file demonstrates how to use a batch file.
 
-The batch file is executed by simply calling its name as a command. The results
-of the batch file are then output. Using a batch file makes executing a sequence
-of commands easy since all the code can be perfected using local testing before
-it is run through Lasso. ::
+The batch file is executed by calling its name as a command. The results of the
+batch file are then output. Using a batch file makes executing a sequence of
+commands easy since all the code can be perfected using local testing before it
+is run through Lasso. ::
 
    local(os) = os_process('cmd', (: '/C batch.bat'))
    #os->readString->encodeHTML
    #os->close
 
-   // =>
-   // This file demonstrates how to use a batch file.
+   // => This file demonstrates how to use a batch file.

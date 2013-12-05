@@ -17,8 +17,8 @@ supports. The UNIX underpinnings of OS X and Linux mean that those two operating
 systems can run many of the same commands and shell scripts. Windows presents a
 very different environment including DOS commands and batch files.
 
-For more information on writing shell scripts, see the chapter on
-:ref:`command-line-tools`.
+For more information on writing shell scripts with Lasso, see the
+:ref:`command-line-tools` chapter.
 
 
 Using sys_process
@@ -28,13 +28,13 @@ Using sys_process
 .. method:: sys_process()
 .. method:: sys_process(cmd::string, args= ?, env= ?, user::string= ?)
 
-   The `sys_process` type allows a developer to create a new process on the
-   machine and both read from and write data to it. The process is usually
-   closed after the `sys_process` type is destroyed, but can optionally be left
-   running. The `sys_process` type shares many of the same member methods and
-   conventions as the `file` type.
+   The :type:`sys_process` type allows a developer to create a new process on
+   the machine and both read from and write data to it. The process is usually
+   closed after the :type:`sys_process` object is destroyed, but can optionally
+   be left running. The :type:`sys_process` type shares many of the same member
+   methods and conventions as the :type:`file` type.
 
-   There are two constructor methods for creating objects of type `sys_process`:
+   There are two constructor methods for creating :type:`sys_process` objects:
    the first allows for an empty object with no information being passed to it.
    The second takes the same parameters as the `sys_process->open` method and
    calls that method, thereby immediately running the command passed to it.
@@ -109,13 +109,13 @@ Using sys_process
 
 .. member:: sys_process->detach()
 
-   Detaches the `sys_process` object from the process. This will prevent the
-   process from terminating when the `sys_process` object is destroyed.
+   Detaches the :type:`sys_process` object from the process. This will prevent
+   the process from terminating when the :type:`sys_process` object is destroyed.
 
 .. member:: sys_process->close()
 
    Closes the connection to the process. This will cause the process to
-   terminate unless it has previously been detached from the `sys_process`
+   terminate unless it has previously been detached from the :type:`sys_process`
    object by calling `sys_process->detach`.
 
 .. member:: sys_process->closeWrite()
@@ -133,7 +133,7 @@ Using sys_process
    Returns the exit code of the process if it has terminated, otherwise it
    returns "void".
 
-.. note::
+.. important::
    If you wish to run a command that you expect to run briefly and you want to
    inspect its output after it has run, then don't forget to call either
    `sys_process->wait` or `sys_process->exitCode` before calling any of the
@@ -174,20 +174,18 @@ This example uses the :command:`/bin/ls` command to list the contents of a
 directory::
 
    local(proc) = sys_process('/bin/ls', (: '/' + sys_homePath))
-   fail_if(#proc->exitCode != 0)
+   fail_if(#proc->exitCode != 0, 'Unknown error')
    #proc->readString->encodeHTML(true, false)
    #proc->close
 
    // =>
-   // JDBCDrivers
-   // JavaLibraries
-   // LassoAdmin
    // LassoApps
-   // LassoErrors.txt
-   // LassoLibraries
    // LassoModules
    // LassoStartup
    // SQLiteDBs
+   // lasso.err.txt
+   // lasso.fastcgi.sock
+   // lasso.out.txt
 
 
 Create File
@@ -195,7 +193,7 @@ Create File
 
 This example uses the :command:`/usr/bin/tee` command to create a file
 "test.txt" in the site folder. The code does not generate any output, it just
-creates the file::
+creates the file. ::
 
    local(proc) = sys_process
    handle => {
@@ -227,8 +225,8 @@ AppleScript
 -----------
 
 This example uses the :command:`/usr/bin/osascript` command to run a simple
-AppleScript. AppleScript is a full scripting language which provides access to
-the system and running applications in OS X. The script shown simply returns the
+AppleScript. AppleScript is a full scripting language that provides access to
+the system and running applications in OS X. The script shown returns the
 current date and time::
 
    local(proc) = sys_process('/usr/bin/osascript', (: '-'))
@@ -246,8 +244,8 @@ Web Request
 This example uses the :command:`/usr/bin/curl` command to fetch a web page and
 return the results. The :type:`curl` type or `include_url` method can be used
 for the same purpose. You'll notice that we don't just wait and then do a read;
-this is to show how to deal with not knowing how large of a response you will
-get from STDOUT. Only the first part of the output is shown. ::
+this is to show how to deal with not knowing how large of a response there will
+be from STDOUT. Only the first part of the output is shown. ::
 
    local(proc) = sys_process('/usr/bin/curl', (: 'http://www.apple.com/'))
    local(data)
@@ -257,11 +255,11 @@ get from STDOUT. Only the first part of the output is shown. ::
    #proc->close
 
    // =>
-   // <!DOCTYPE html>
+   // <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
    //    <html>
    //    <head>
    //    <title>Apple</title>
-   //    ...
+   // ... rest of response ...
 
 
 Windows Examples
@@ -290,9 +288,9 @@ List
 ----
 
 This example uses the :program:`CMD` processor with a :command:`DIR` command to
-list the contents of a directory. The "/B" option instructs Windows to only
-list the contents of the directory without extraneous header and footer
-information. ::
+list the contents of a directory. The "/B" option instructs Windows to only list
+the contents of the directory without extraneous header and footer information.
+::
 
    local(proc) = sys_process('cmd', (: '/C DIR /B .'))
    local(_) = #proc->wait
@@ -300,15 +298,15 @@ information. ::
    #proc->close
 
    // =>
-   // JDBCDrivers
    // JavaLibraries
-   // LassoAdmin
+   // JDBCDrivers
    // LassoApps
-   // LassoErrors.txt
-   // LassoLibraries
    // LassoModules
    // LassoStartup
    // SQLiteDBs
+   // JDBCLog.txt
+   // lasso.err.txt
+   // lasso.out.txt
 
 
 Help
@@ -339,11 +337,11 @@ Multiple Commands
 -----------------
 
 This example uses the :program:`CMD` processor interactively to run several
-commands. The processor is started with a parameter of "/Q" which suppresses
-the echoing of commands back to the output. The result is exactly the same as
-what would be provided if these commands were entered directly into the command
-line shell. In order to process the results, it would be necessary to strip off
-the header and the directory prefix from each line. ::
+commands. The processor is started with a parameter of "/Q" which suppresses the
+echoing of commands back to the output. The result is exactly the same as what
+would be provided if these commands were entered directly into the command line
+shell. In order to process the results, it would be necessary to strip off the
+header and the directory prefix from each line. ::
 
    local(proc) = sys_process('cmd', (: '/Q')
    #proc->write('ECHO Line One\r\n')
@@ -364,7 +362,7 @@ Batch File
 
 This example uses the :program:`CMD` processor to process a batch file. The
 contents of batch file "batch.bat" is shown below. The file is assumed to be
-located in the folder for the current site in the Lasso 9 Server application
+located in the folder for the current site in the Lasso Server application
 folder.
 
 .. code-block:: bat
@@ -373,10 +371,10 @@ folder.
    CLS
    ECHO This file demonstrates how to use a batch file.
 
-The batch file is executed by simply calling its name as a command. The results
-of the batch file are then output. Using a batch file makes executing a sequence
-of commands easy since all the code can be perfected using local testing before
-it is run through Lasso. ::
+The batch file is executed by calling its name as a command. The results of the
+batch file are then output. Using a batch file makes executing a sequence of
+commands easy since all the code can be perfected using local testing before it
+is run through Lasso. ::
 
    local(proc) = sys_process('cmd', (: '/C batch.bat'))
    local(_) = #proc->wait
