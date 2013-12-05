@@ -9,10 +9,10 @@ Creating Lasso Methods
 When Lasso first starts up, it looks for module files (Windows DLLs, OS X
 DYLIBs, or Linux SOs) in its "LassoModules" directory. As it encounters each
 module, it executes that module's ``registerLassoModule`` function once and only
-once. LCAPI developers must write code to register each of the new custom method
-(or type or datasource) in this ``registerLassoModule`` function. The following
-example function is required in every LCAPI module. It gets called once when
-Lasso starts up:
+once. LCAPI developers must write code to register each new custom method (or
+type or data source connector) in this ``registerLassoModule`` function. The
+following example function is required in every LCAPI module. It gets called
+once when Lasso starts up:
 
 .. code-block:: c++
 

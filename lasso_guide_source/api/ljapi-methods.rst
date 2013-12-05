@@ -4,6 +4,8 @@
 Lasso Types and Methods for LJAPI
 *********************************
 
+This chapter provides a reference to all of the types and functions in LJAPI.
+
 
 Methods
 =======
@@ -15,8 +17,8 @@ Methods
 
 .. method:: java_jvm_getenv(...)
 
-   This is the wrapper method for the java_jnienv object associated with the
-   Lasso instance's Java Virtual Machine. This is the method you will use to
+   This is the wrapper method for the :type:`java_jnienv` object associated with
+   the Lasso instance's Java Virtual Machine. This is the method you will use to
    access the Java Native Interface functions documented as member methods of
    :type:`java_jnienv`.
 

@@ -7,6 +7,8 @@
 LCAPI Overview
 **************
 
+.. index:: LCAPI
+
 The :dfn:`Lasso C/C++ Application Programming Interface` (LCAPI) lets you write
 C or C++ code to add new Lasso methods, types, or data source connectors to
 Lasso. Writing in LCAPI can offer speed and system performance advantages over
@@ -173,7 +175,7 @@ How do I install my custom module?
    Once you've compiled your module, move it to the "LassoModules" directory for
    the instance you want it to run in or the "LassoModules" directory in the
    master Lasso home directory. You'll need to restart any running instances for
-   them to pick up the new method/type/datasource.
+   them to pick up the new method/type/data source connector.
 
 How do I return text from my custom module?
    Use either `lasso_returnTagValueString` to return UTF-8 data, or
@@ -221,10 +223,10 @@ What is a `lasso_type_t` and how do I use it?
    A `lasso_type_t` represents an instance of a Lasso type. Any Lasso type can
    be represented by a `lasso_type_t`, including strings, integers, or custom
    types. LCAPI provides many functions for allocating or manipulating
-   `lasso_type_t` instances. All `lasso_type_t` instances encountered inside an
-   LCAPI method will be automatically garbage collected after the function
-   returns. Therefore, a `lasso_type_t` instance should not be saved unless it
-   is freed from the garbage collector using `lasso_typeDetach`.
+   `lasso_type_t` objects. All `lasso_type_t` objects encountered inside an
+   LCAPI method will be automatically garbage-collected after the function
+   returns. Therefore, a `lasso_type_t` object should not be saved unless it is
+   freed from the garbage collector using `lasso_typeDetach`.
 
 How do I access variables from the Lasso page I'm in?
    You may need to get or even create Lasso variables (the same variables that a

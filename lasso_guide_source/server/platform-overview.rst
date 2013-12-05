@@ -77,7 +77,7 @@ third-party libraries, data sources, technologies, and protocols.
 Lasso's type system combines the dynamic nature of scripting languages with
 some of the safety and features normally only available in statically typed
 languages. Types can be extended through a "traits" system, promoting code
-reuse, and methods are open to multiple dispatch which uses type annotations to
+re-use, and methods are open to multiple dispatch which uses type annotations to
 provide pattern matching over method calls.
 
 New types and methods can be added at runtime, which means that a running system

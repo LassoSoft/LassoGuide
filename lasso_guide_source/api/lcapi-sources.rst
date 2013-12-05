@@ -29,7 +29,7 @@ Data Source Connectors and Lasso Server Admin
 =============================================
 
 Once a custom data source connector module is registered by Lasso Server, it
-will appear in the "Datasources" area of Lasso Server Admin. If a connector
+will appear in the "Datasources" section of Lasso Server Admin. If a connector
 appears here, then it has been installed correctly.
 
 The administrator adds the data source connection information to the "Hosts"
@@ -256,7 +256,7 @@ source connector.
 
    The ``datasourceTerm`` action is called once when Lasso Server shuts down.
    This allows for any graceful cleanup that may be necessary for your
-   datasource.
+   data source.
 
    The ``datasourceCloseConnection`` action is called to close the connection to
    a data source.

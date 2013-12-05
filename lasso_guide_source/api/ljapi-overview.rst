@@ -4,6 +4,8 @@
 LJAPI Overview
 **************
 
+.. index:: LJAPI
+
 The :dfn:`Lasso Java Application Programming Interface` (LJAPI) allows you to
 run Java code from within Lasso. This allows for custom Java code to be created
 using Java's libraries that can then be run on all platforms Lasso supports. It

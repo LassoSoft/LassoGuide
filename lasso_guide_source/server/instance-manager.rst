@@ -339,6 +339,9 @@ LassoStartup
 Starting and Stopping Lasso Instance Manager
 ============================================
 
+.. index::
+   pair: instance manager; restart
+
 Stopping the Lasso Instance Manager process differs on each platform.
 
 :OS X:
