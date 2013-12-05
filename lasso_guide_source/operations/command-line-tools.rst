@@ -14,6 +14,8 @@ describe how you can run them yourself.
 lassoserver
 ===========
 
+.. index:: lassoserver
+
 The :program:`lassoserver` executable is installed at
 :file:`/usr/sbin/lassoserver` on OS X and Linux operating systems and at
 :file:`C:\\Program Files\\LassoSoft\\Lasso Instance
@@ -100,7 +102,7 @@ The following is the list of options for running lassoserver:
    Default is to not install any additional LassoApps.
 
 
-lassoserver Examples
+Starting lassoserver
 --------------------
 
 To start lassoserver as a FastCGI server listening on port 9000::
@@ -126,6 +128,8 @@ files as Lasso code::
 lassoim(d)
 ==========
 
+.. index:: lassoim(d)
+
 The :program:`lassoim(d)` executable is installed at :file:`/usr/sbin/lassoim`
 on OS X, :file:`/usr/sbin/lassoimd` on Linux operating systems, and
 :file:`C:\\Program Files\\LassoSoft\\Lasso Instance
@@ -147,14 +151,16 @@ operating systems.
 lasso9
 ======
 
+.. index:: lasso9
+
 The :program:`lasso9` executable is installed at :file:`/usr/bin/lasso9` on OS X
 and Linux operating systems and at :file:`C:\\Program Files\\LassoSoft\\Lasso
 Instance Manager\\home\\LassoExecutables\\lasso9` on Windows. This program can
 execute Lasso code from a file, piped from STDIN, passed in as a string, or
 inside an interactive interpreter. This executable doesn't load and start up
 everything that :program:`lassoserver` does. See the section on
-:ref:`making libraries available to shell scripts <command-libraries-available>`
-for what isn't loaded and how to load the extra components if you need them.
+:ref:`loading libraries in shell scripts <command-loading-libraries>` for what
+isn't loaded and how to load the extra components if you need them.
 
 To execute a file of Lasso code, pass the path to the file as the argument to
 lasso9. For example::
@@ -200,11 +206,13 @@ For more details, see the section on :ref:`calling Lasso from the CLI
 lassoc
 ======
 
+.. index:: lassoc
+
 The :program:`lassoc` executable is installed at :file:`/usr/bin/lassoc` on OS X
 and Linux operating systems and at :file:`C:\\Program Files\\LassoSoft\\Lasso
 Instance Manager\\home\\LassoExecutables\\lassoc` on Windows. This program is
 used to compile LassoApps, Lasso libraries, and Lasso executables. See the
-section on :ref:`compiling Lasso code <command-compiling-lasso>` for more
+section on :ref:`compiling Lasso code <command-compiling-lasso>` below for more
 information.
 
 
@@ -258,9 +266,56 @@ following lists the variables and a description of their function:
 
    Default is not set.
 
+.. envvar:: LASSOSERVER_APP_PREFIX
 
-Writing Lasso Shell Scripts on OS X and Linux
-=============================================
+   If this variable is set by the web server, lassoserver will assume the
+   host is dedicated to serving a single LassoApp, and will prepend this path to
+   all `lassoapp_link` paths. For details and an example, see the section on
+   :ref:`lassoapps-server-configuration` in the :ref:`lassoapps` chapter.
+
+   Default is not set.
+
+.. envvar:: LASSOSERVER_DOCUMENT_ROOT
+
+   If this variable is set by the web server, lassoserver will use this path
+   instead of the standard :envvar:`DOCUMENT_ROOT` to serve files from. Can be
+   useful when using Apache's ``VirtualDocumentRoot`` or ``UserDir`` features.
+   In the example below, Apache will serve any of the folder names in
+   "/srv/lasso/sites/" as virtual hosts, and Lasso will use the value of
+   :envvar:`LASSOSERVER_DOCUMENT_ROOT` as the host document root.
+
+   .. code-block:: apacheconf
+
+      <VirtualHost *:80>
+          ServerName admin.local
+          VirtualDocumentRoot "/srv/lasso/sites/%1"
+
+          RewriteEngine on
+          RewriteRule ^ - [E=LASSOSERVER_DOCUMENT_ROOT:/srv/lasso/sites/%{HTTP_HOST}]
+      </VirtualHost>
+
+   Default is not set.
+
+.. envvar:: LASSOSERVER_FASTCGIPORT
+
+   Set the port that the FastCGI server binds on. Same as specifying the
+   :option:`-p` option.
+
+.. envvar:: LASSOSERVER_USER
+
+   Specifies the OS user to run lassoserver as. Same as specifying the
+   :option:`-user` option.
+
+.. envvar:: LASSOSERVER_GROUP
+
+   Specifies the OS group to run lassoserver as. Same as specifying the
+   :option:`-group` option.
+
+
+Lasso Shell Scripts on OS X and Linux
+=====================================
+
+.. index:: shell script
 
 While most developers use Lasso to create dynamic websites, you can also write
 Lasso code that can be run from the command line to assist you in administrative
@@ -278,7 +333,7 @@ There are two ways to run a file containing Lasso code from the command line:
       $> lasso9 /path/to/code.lasso
 
 -  Make sure the file has execute permissions turned on and that it starts with
-   the proper hashbang/shebang, then call the file directly::
+   the proper hashbang, then call the file directly::
 
       $> /path/to/code.lasso
 
@@ -288,10 +343,10 @@ can do this in OS X or Linux with the :command:`chmod` command::
    $> chmod +x /path/to/code.lasso
 
 Calling the file directly also requires that the file contain the proper
-hashbang/shebang, which tells your shell which interpreter to use when executing
-the file. It must be the first line of the file and it starts with the pound
-sign and an exclamation mark followed by the path to the interpreter. For Lasso
-code, it should look like this::
+hashbang, which tells your shell which interpreter to use when executing the
+file. It must be the first line of the file and it starts with the pound sign
+and an exclamation mark followed by the path to the interpreter. For Lasso code,
+it should look like this::
 
    #!/usr/bin/lasso9
 
@@ -299,8 +354,8 @@ If you have a custom installation of Lasso, adjust the path to the lasso9
 executable accordingly.
 
 
-Dealing with Command-Line Arguments
------------------------------------
+Reading Command-Line Arguments
+------------------------------
 
 .. highlight:: lasso
 
@@ -351,10 +406,12 @@ itself is a Lasso shell script (`source`_), written in Lasso and compiled into a
 binary.
 
 
-.. _command-libraries-available:
+.. _command-loading-libraries:
 
-Making Libraries Available to Shell Scripts
-===========================================
+Loading Libraries in Shell Scripts
+==================================
+
+.. index:: LCAPI, LJAPI
 
 Lasso shell scripts are not run in the :program:`lassoserver` context. This
 means that various libraries and tools that lassoserver loads are not loaded or
@@ -390,8 +447,8 @@ loads just the MySQL database connector::
    lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/MySQLConnector.' + sys_dll_ext)
 
 
-Set up LJAPI Environment
-------------------------
+Set Up the LJAPI Environment
+----------------------------
 
 To create the JVM and set up the LJAPI environment, you must first load the
 LJAPI9 LCAPI module and then call the `ljapi_initialize` method::
@@ -465,8 +522,8 @@ Here's what happens when you run "/path/to/code.lasso":
    This is heavy.
 
 
-Include Another File Relative to the Path of the Running Script
----------------------------------------------------------------
+Include Another File Relative to the Script
+-------------------------------------------
 
 Sometimes it's helpful to have the script you are running able to include a file
 that is relative to the script. If you pass a relative path to the :type:`file`
@@ -481,10 +538,10 @@ that::
 
    // This should let us run this file anywhere and still properly import relative files
    local(path_here) = currentCapture->callsite_file->stripLastComponent
-   not #path_here->beginsWith('/')
-      ? #path_here = io_file_getcwd + '/' + #path_here
-   not #path_here->endsWith('/')
-      ? #path_here->append('/')
+   not #path_here->beginsWith('/') ?
+      #path_here = io_file_getcwd + '/' + #path_here
+   not #path_here->endsWith('/') ?
+      #path_here->append('/')
    local(f) = file(#path_here + '../sub2/code.lasso')
 
    stdoutnl('Loading ../sub2/code.lasso')
