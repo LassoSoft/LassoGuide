@@ -1,8 +1,8 @@
 .. raw:: latex
 
    \cleardoublepage
-   \section*{\Huge Foreword}
-   \addcontentsline{toc}{chapter}{Foreword}
+   \section*{\Huge\forewordname}
+   \addcontentsline{toc}{chapter}{\forewordname}
    \thispagestyle{plain}
    \vfill
 
@@ -54,5 +54,5 @@ Long Live Lasso!
 
    \vfill
    \clearpage
-   \thispagestyle{empty}
+   \thispagestyle{plain}
    \cleardoublepage

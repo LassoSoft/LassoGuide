@@ -170,6 +170,10 @@
     \phantomsection
     \addcontentsline{toc}{part}{\contentsname}
     \py@OldTableofcontents%
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\listtablename}
+    \listoftables
     \if@openright%
       \ifodd\value{page}%
         \typeout{Adding blank page after the table of contents.}%

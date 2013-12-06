@@ -250,9 +250,10 @@ latex_elements = {
 }
 {\endlist}
 
-% Style the ToC title and add space between chapter numbers/titles
+% Style the ToC titles and add space between chapter numbers/titles
 \usepackage[titles]{tocloft}
 \addtolength{\cftsecnumwidth}{0.5em}
+\newcommand\forewordname{Foreword}
 
 % For some reason, this works to get the default font color
 % (Using fontspec never allowed for Sphinx's overrides to kick in.)
