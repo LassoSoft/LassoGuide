@@ -1,27 +1,27 @@
-.. priorityQueue
-   series
-   treemap
 .. _containers:
 
 **********
 Containers
 **********
 
-Lasso provides a variety of ordered and unordered compound data types. These
-objects contain zero or more other arbitrary objects. Built-in support is
-provided for arrays, lists, maps and others.
+Lasso provides a variety of compound data types for storing data in an ordered
+and unordered manner. Objects of these types contain zero or more other
+arbitrary objects. Built-in support is provided for common compound data types
+such as arrays, lists, maps, and other containers.
 
 
-Ordered Containers
-==================
+Ordered Container Types
+=======================
 
-Ordered containers store their elements positioned by the order in which they
-are inserted. The element inserted first into an ordered container will always
-be first unless subsequently repositioned.
+:dfn:`Ordered containers` store their elements positioned by the order in which
+they are inserted. The element inserted first into an ordered container will
+always be first unless subsequently repositioned. Lasso provides support for
+:type:`pair`, :type:`array`, :type:`staticarray`, :type:`list`, :type:`queue`,
+and :type:`stack` types.
 
 
-Pair
-----
+Pair Type
+---------
 
 .. type:: pair
 
@@ -59,10 +59,10 @@ Using Pair Objects
    These methods set the first or second element of a pair to the passed value.
 
 
-.. _array:
+.. _containers-array:
 
-Array
------
+Array Type
+----------
 
 .. type:: array
 
@@ -82,7 +82,7 @@ Creating Array Objects
 .. method:: array(e, ...)
 
    An array can be created with zero or more parameters. All parameters passed
-   to the array method will be inserted into the new array.
+   to the `array` method will be inserted into the new array.
 
 
 Using Array Objects
@@ -133,7 +133,7 @@ Using Array Objects
 .. member:: array->second()
 .. member:: array->last()
 
-   These methods return the first, second and last elements from the array,
+   These methods return the first, second, and last elements from the array,
    respectively. If the array does not have an element for that position, "null"
    will be returned.
 
@@ -178,22 +178,22 @@ Using Array Objects
    Arrays can be combined with other compound types by using the ``+`` operator.
    A new array containing all the elements is returned.
 
-   Example of combining an array and a staticarray and a pair into a new array::
+   Example of combining an array, staticarray, and pair into a new array::
 
-      array(1, 2, 3, 4, 5) + (:'6','7','8') + pair('nine', 'ten')
+      array(1, 2, 3, 4, 5) + (: '6','7','8') + pair('nine', 'ten')
       // => array(1, 2, 3, 4, 5, 6, 7, 8, nine, ten)
 
 
-Staticarray
------------
+Staticarray Type
+----------------
 
 .. type:: staticarray
 
-   A staticarray is a container object that is not resizable. Staticarrays are
-   created with a fixed size. Positions within the staticarray can be reassigned
-   different objects, but new positions cannot be added or removed. Staticarrays
-   are designed to be as efficient as possible both in the time used to create a
-   new object and in the memory used for the object itself. The elements of a
+   A staticarray is a container object that is created with a fixed size and is
+   not resizable. Positions within the staticarray can be reassigned different
+   objects, but new positions cannot be added or removed. Staticarrays are
+   designed to be as efficient as possible both in the time used to create a new
+   object and in the memory used for the object itself. The elements of a
    staticarray are accessed randomly, like an array, with 1-based positions.
 
    Lasso provides a shortcut for creating staticarray objects through the
@@ -214,11 +214,11 @@ Creating Staticarray Objects
 
    Example of creating a few staticarrays::
 
-      // empty staticarray
+      // staticarray with no elements
       (:)
 
       // staticarray with variety of elements
-      (:1, 2, 8, 'Hi!', pair(1, 2))
+      (: 1, 2, 8, 'Hi!', pair(1, 2))
 
       // staticarray with 12 elements set to void
       staticarray_join(12, void)
@@ -238,8 +238,8 @@ Using Staticarray Objects
 .. member:: staticarray->second()
 .. member:: staticarray->last()
 
-   The first, second and last methods return the corresponding element or "null"
-   if there is no element at the position.
+   The first, second, and last methods return the corresponding element or
+   "null" if there is no element at the position.
 
 .. member:: staticarray->contains(matching)::boolean
 .. member:: staticarray->findPosition(matching, startPosition=1)
@@ -263,10 +263,10 @@ Using Staticarray Objects
 
    Example of joining new elements into a new staticarray::
 
-      (:1, 2, 3)->join(5, 'Hi')
+      (: 1, 2, 3)->join(5, 'Hi')
       // => staticarray(1, 2, 3, Hi, Hi, Hi, Hi, Hi)
 
-      (:1, 2, 3)->join((:4, 5, 6))
+      (: 1, 2, 3)->join((: 4, 5, 6))
       // => staticarray(1, 2, 3, 4, 5, 6)
 
 .. member:: staticarray->sub(position::integer, count::integer=(self->size - #pos) + 1)::staticarray
@@ -285,8 +285,8 @@ Using Staticarray Objects
    the right-hand side of the operator.
 
 
-List
-----
+List Type
+---------
 
 .. type:: list
 
@@ -294,7 +294,7 @@ List
    be efficiently added or removed from a list at the end or the beginning, but
    cannot be added into the middle. Lists do not support random access, so the
    only way to get particular elements from a list is through one of the
-   iterative methods such as :ref:`query expressions <query-expressions>`.
+   iterative constructs such as :ref:`query expressions <query-expressions>`.
 
 
 Creating List Objects
@@ -343,8 +343,8 @@ Using List Objects
    returns "true" if the list contains a match.
 
 
-Queue
------
+Queue Type
+----------
 
 .. type:: queue
 
@@ -352,7 +352,7 @@ Queue
    can efficiently be inserted into the end of the queue (called "pushing") and
    removed from the front of the queue (called "popping"). Queues do not support
    random access, so the only way to get particular elements from a queue is
-   through one of the iterative methods such as :ref:`query expressions
+   through one of the iterative constructs such as :ref:`query expressions
    <query-expressions>`.
 
 
@@ -375,7 +375,7 @@ Using Queue Objects
    These methods insert new elements into the queue. Elements will always be
    inserted at the end of the queue. The `insertFrom` method allows for multiple
    elements to be inserted into the queue by taking an object that implements
-   `trait_forEach`.
+   :trait:`trait_forEach`.
 
 .. member:: queue->first()
 .. member:: queue->get()
@@ -401,8 +401,8 @@ Using Queue Objects
    specified as an integer parameter to this method.
 
 
-Stack
------
+Stack Type
+----------
 
 .. type:: stack
 
@@ -410,7 +410,7 @@ Stack
    can efficiently be inserted into the beginning of the stack (called
    "pushing") and removed from the beginning of the stack (called "popping").
    Stacks do not support random access, so the only way to get particular
-   elements from a stack is through one of the iterative methods such as
+   elements from a stack is through one of the iterative constructs such as
    :ref:`query expressions <query-expressions>`.
 
 
@@ -450,19 +450,19 @@ Using Stack Objects
    recently inserted element.)
 
 
-Unordered Containers
-====================
+Unordered Container Types
+=========================
 
-Unordered containers store their elements in a manner without any position-based
-ordering. Lasso supports two unordered container types: :type:`map` and
-:type:`set`. Maps provide access to the elements via separate keys. Sets store
-only the elements themselves.
+:dfn:`Unordered containers` store their elements in a manner without any
+position-based ordering. Lasso supports two unordered container types:
+:type:`map` and :type:`set`. Maps provide access to the elements via separate
+keys. Sets store only the elements themselves.
 
 
-.. _map:
+.. _containers-map:
 
-Map
----
+Map Type
+--------
 
 .. type:: map
 
@@ -475,7 +475,7 @@ Map
    The keys used in a map can be of any type, provided that type has a suitable
    ``onCompare`` method. Keys must compare themselves consistently such that if
    ``A < B`` then always ``B >= A``. Most built-in Lasso types, such as strings,
-   integers and decimals, fit this criteria.
+   integers, and decimals, fit this criteria.
 
 
 Creating Map Objects
@@ -530,8 +530,8 @@ Using Map Objects
    Returns the number of elements contained within the map.
 
 
-Set
----
+Set Type
+--------
 
 .. type:: set
 

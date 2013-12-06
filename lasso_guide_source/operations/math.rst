@@ -170,7 +170,7 @@ example, ``0xff`` is the integer literal ``255``.
 Perform a Bitwise Or
 --------------------
 
-In the following example the boolean "Or" of ``0x02`` and ``0x04`` is calculated
+In the following example the boolean "or" of ``0x02`` and ``0x04`` is calculated
 and returned in hexadecimal notation::
 
    local(bit_set) = 0x02

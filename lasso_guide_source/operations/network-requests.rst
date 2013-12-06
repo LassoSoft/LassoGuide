@@ -194,13 +194,13 @@ Callback Options
 
 .. method:: CURLOPT_WRITEDATA()
 
-   Used with `curl->set`. This option expects a filedesc object which curl will
-   use when calling its file writing function.
+   Used with `curl->set`. This option expects a :type:`filedesc` object which
+   curl will use when calling its file writing function.
 
 .. method:: CURLOPT_READDATA()
 
-   Used with `curl->set`. This option expects either a filedesc or bytes object
-   to be used when curl calls its file reading function.
+   Used with `curl->set`. This option expects either a :type:`filedesc` or bytes
+   object to be used when curl calls its file reading function.
 
 
 Error Options
@@ -232,14 +232,17 @@ Network Options
 .. method:: CURLOPT_PROXYPORT()
 
    Used with `curl->set`. Sets the proxy port to connect to unless it is
-   specified in the proxy string `CURLOPT_PROXY`. This value should be an
-   integer.
+   specified in the proxy string set with `CURLOPT_PROXY()`. This value should
+   be an integer.
 
 .. method:: CURLOPT_PROXYTYPE()
 
-   Used with `curl->set`. Sets type of the proxy. The value should be one of the
-   following methods: ``CURLPROXY_HTTP``, ``CURLPROXY_SOCKS4``,
-   ``CURLPROXY_SOCKS5``.
+   Used with `curl->set`. Sets type of the proxy. The value passed should be one
+   of the following methods:
+
+   .. method:: CURLPROXY_HTTP()
+   .. method:: CURLPROXY_SOCKS4()
+   .. method:: CURLPROXY_SOCKS5()
 
 .. method:: CURLOPT_HTTPPROXYTUNNEL()
 
@@ -327,11 +330,22 @@ Authentication Options
    will first query the server to see which methods it supports and pick the
    best one you allow it to use.
 
-   The value should be one or more of the following methods added together:
-   ``CURLAUTH_BASIC``, ``CURLAUTH_DIGEST``, ``CURLAUTH_GSSNEGOTIATE``, or
-   ``CURLAUTH_NTLM``. If you want to allow any method, you can use
-   ``CURLAUTH_ANY``, and ``CURLAUTH_ANYSAFE`` allows for any method except
-   ``CURLAUTH_BASIC``.
+   The value passed can be either of the following methods:
+
+   .. method:: CURLAUTH_ANY()
+
+      Allows any authentication method.
+
+   .. method:: CURLAUTH_ANYSAFE()
+
+      Allows any authentication method except `CURLAUTH_BASIC()`.
+
+   Or, one or more of the following methods added together can be specified:
+
+   .. method:: CURLAUTH_BASIC()
+   .. method:: CURLAUTH_DIGEST()
+   .. method:: CURLAUTH_GSSNEGOTIATE()
+   .. method:: CURLAUTH_NTLM()
 
 .. method:: CURLOPT_PROXYAUTH()
 
@@ -749,7 +763,6 @@ Connection Options
 
       Specifies using IPv6 addresses.
 
-
 .. method:: CURLOPT_FTP_SSL()
 .. method:: CURLOPT_USE_SSL()
 
@@ -825,10 +838,15 @@ SSL and Security Options
    Used with `curl->set`. This option is used to control which version(s) of
    SSL/TLS can be used. The value passed should be one of the following methods
    to force using the version specified by the method name:
-   ``CURL_SSLVERSION_TLSv1``, ``CURL_SSLVERSION_SSLv2``,  or
-   ``CURL_SSLVERSION_SSLv3``. ``CURL_SSLVERSION_DEFAULT`` can be passed to tell
-   curl to figure out the remote server's protocol, though it won't use
-   ``CURL_SSLVERSION_SSLv2``.
+
+   .. method:: CURL_SSLVERSION_TLSv1()
+   .. method:: CURL_SSLVERSION_SSLv2()
+   .. method:: CURL_SSLVERSION_SSLv3()
+
+   .. method:: CURL_SSLVERSION_DEFAULT()
+
+      Can be passed to tell curl to figure out the remote server's protocol,
+      though it won't use `CURL_SSLVERSION_SSLv2()`.
 
 .. method:: CURLOPT_SSL_VERIFYPEER()
 
@@ -958,9 +976,9 @@ location::
 include_url
 ===========
 
-The `include_url` method is a wrapper around the curl type for requesting data
-via HTTP. We strongly recommend using this method for your HTTP request needs if
-possible.
+The `include_url` method is a wrapper around the :type:`curl` type for
+requesting data via HTTP. We strongly recommend using this method for your HTTP
+request needs if possible.
 
 .. method:: include_url(\
       url::string, \
