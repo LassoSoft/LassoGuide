@@ -5,28 +5,24 @@
 Strings
 *******
 
-Text in Lasso is stored and manipulated using the `string` data type or the
+Text in Lasso is stored and manipulated using the :type:`string` type or the
 ``string_…`` methods. This chapter details the operators and methods that can be
 used to manipulate string values.
 
 .. note::
-   Information about regular expressions and the `regexp` type can be found in
-   the :ref:`regular-expressions` chapter. The `string` type is often used in
-   conjunction with the `bytes` type to convert binary data between different
-   character encodings (e.g. UTF-8, ISO-8859-1). See the :ref:`bytes` chapter
-   for more information about the `bytes` type.
-
-
-Overview
-========
+   Information about regular expressions and the :type:`regexp` type can be
+   found in the :ref:`regular-expressions` chapter. The :type:`string` type is
+   often used in conjunction with the :type:`bytes` type to convert binary data
+   between different character encodings (e.g. UTF-8, ISO-8859-1). See the
+   :ref:`bytes` chapter for more information about the :type:`bytes` type.
 
 Text processing is a central function of Lasso. Many Lasso methods are dedicated
 to outputting and manipulating text. Lasso is used to format text-based HTML
 pages or XML data for output. Lasso is also used to process and manipulate
 text-based HTML form inputs and URLs.
 
-As a result of this focus on text processing, the `string` data type is the
-primary data type in Lasso. The result of all expressions are converted to
+As a result of this focus on text processing, the :type:`string` type is the
+primary type of data in Lasso. The result of all expressions are converted to
 strings before they are output into the HTML page or XML data being served.
 
 The following operations that can be performed directly on strings:
@@ -53,48 +49,48 @@ The following operations that can be performed directly on strings:
       // => true
 
 Each of these methods is described in detail in the sections that follow. This
-guide contains a description and examples of using operators and methods to
+chapter contains a description and examples of using operators and methods to
 manipulate strings.
 
 
 Unicode Characters
 ==================
 
-Lasso 9 supports the processing of Unicode characters in all string methods. The
-escape sequence ``\u…`` can be used with 4 hexadecimal digits (or ``\U…`` with 8
-or ``\x…`` with 2) to embed a Unicode character in a string. For example
-``\u002F`` represents a "/" character, ``\u0020`` represents a space, and
-``\u0042`` represents a capital letter "B". The same type of escape sequence can
-be used to embed any Unicode character, e.g. ``\u4E26`` represents the
+Lasso 9 supports the processing of Unicode characters in all :type:`string`
+methods. The escape sequence ``\u…`` can be used with 4 hexadecimal digits (or
+``\U…`` with 8 or ``\x…`` with 2) to embed a Unicode character in a string. For
+example ``\u002F`` represents a "/" character, ``\u0020`` represents a space,
+and ``\u0042`` represents a capital letter "B". The same type of escape sequence
+can be used to embed any Unicode character, e.g. ``\u4E26`` represents the
 Traditional Chinese character |4E26|.
 
 .. |4E26| unicode:: U+4E26
 
-Lasso also supports common escape sequences including ``\r`` for a return
-character, ``\n`` for a newline character, ``\r\n`` for a Windows
-return/newline, ``\f`` for a form-feed character, ``\t`` for a tab, and ``\v``
-for a vertical-tab. See the table of :ref:`supported escape sequences
-<literals-table-1>` for the full list.
+Lasso also supports common escape sequences including ``"\r"`` for a return
+character, ``"\n"`` for a newline character, ``"\r\n"`` for a Windows
+return/newline, ``"\f"`` for a form-feed character, ``"\t"`` for a tab, and
+``"\v"`` for a vertical-tab. See the table :ref:`literals-string-escape` for the
+full list.
 
 
 Converting Values to Strings
 ============================
 
-Expressions that produce a value will convert that value to the `string` data
+Expressions that produce a value will convert that value to the :type:`string`
 type automatically, or they can be explicitly converted using the `string`
-creator method as well as the `~null->asString` member method every object has.
+creator method as well as the ``asString`` member method every object has.
 
 .. method:: string(obj::any)
 .. method:: string(obj::bytes, enc::string= ?)
 
-   Converts a value to type `string`. Requires one value which is the data to be
-   converted. An optional second parameter can be used when converting byte
-   streams in order to specify which character set should be used to translate
-   the byte stream to a string (defaults to "UTF-8").
+   Converts a value to type :type:`string`. Requires one value which is the data
+   to be converted. An optional second parameter can be used when converting
+   byte streams in order to specify which character set should be used to
+   translate the byte stream to a string (defaults to "UTF-8").
 
 
-Automatic String Conversion Examples
-------------------------------------
+Automatic String Conversion
+---------------------------
 
 Integer and decimal values are converted to strings automatically if they are
 used as a parameter to a string operator. If either of the parameters to the
@@ -111,14 +107,15 @@ automatically converted to a string for the expression::
 
    local(number) = 123
    'String ' + #number + '\n' + #number->type
+
    // =>
    // String 123
    // integer
 
 Array, map, and pair values are converted to strings automatically when they are
-output to a web page or as part of an auto-collect capture block. The value they
-return is intended for the developer to be able to see the contents of the
-complex data type and is not intended to be displayed to site visitors. ::
+output to a web page or included as part of an auto-collect block. The value
+they return is intended for the developer to be able to see the contents of the
+complex type and is not intended to be displayed to site visitors. ::
 
    array('One', 'Two', 'Three')
    // => array(One, Two, Three)
@@ -144,9 +141,9 @@ Integer and decimal values can be converted to string objects using the `string`
 creator method. The value of the new string is the same as the value of the
 integer or decimal value when it is output using the `~null->toString` method.
 
-The following example shows a math calculation and the integer result "579". The
-next line shows the same calculation with string parameters and the result of
-"123456"::
+The following example shows a math calculation and the integer result ``579``.
+The next line shows the same calculation with string parameters and the result
+of ``123456``::
 
    123 + 456
    // => 579
@@ -157,14 +154,14 @@ next line shows the same calculation with string parameters and the result of
 Boolean values can also be converted to a string object using the `string`
 creator method. The value will always either be the string "true" or the string
 "false". The following example shows a conditional result converted to type
-`string`::
+:type:`string`::
 
    string('dog' == 'cat')
    // => false
 
 String member methods can be used on any value by first converting that value to
-a string using either the `string` creator method or the `~null->asString`
-member method every object has. The following example shows how to use the
+a string using either the `string` creator method or the ``asString`` member
+method every object has. The following example shows how to use the
 `string->size` member method on an integer by first converting it to a string
 object::
 
@@ -177,19 +174,19 @@ object::
 Byte streams that are converted to strings can include the character set to be
 used to export the data in the byte stream. By default byte streams are assumed
 to contain UTF-8 character data. The following example code would translate a
-byte stream contained in a variable named ``myByteStream`` using "ISO-8859-1" to
-interpret the character data. This is analogous to using the
+byte stream contained in a variable named "myByteStream" using the ISO-8859-1
+encoding to interpret the character data. This is analogous to using the
 `bytes->exportString` method which is described in more detail in the
-:ref:`Bytes <bytes>` chapter::
+:ref:`bytes` chapter::
 
-   string(#myByteStream, 'iso-8859-1')
+   string(#myByteStream, 'ISO-8859-1')
 
 
 String Inspection Methods
 =========================
 
-The `string` type has many member methods that return information about the
-value of the string object. Many of these methods are documented below.
+The :type:`string` type has many member methods that return information about
+the value of the string object. Many of these methods are documented below.
 
 .. type:: string
 
@@ -218,7 +215,7 @@ value of the string object. Many of these methods are documented below.
    a parameter that specifies the base or radix. If the specified character is a
    digit for the specified radix, then it returns the integer value for that
    digit. (Remember that when integers are converted to strings, they default to
-   displaying in base 10.) The radix or base can be any from ``2`` to ``36``.
+   displaying in base 10.) The radix or base can be any from "2" to "36".
 
 .. member:: string->sub(pos::integer)
 .. member:: string->substring(start::integer)
@@ -434,9 +431,9 @@ value of the string object. Many of these methods are documented below.
 .. member:: string->equals(find, case::boolean)
 .. member:: string->equals(find, -case::boolean= ?)
 
-   This method is similar to the ``==`` comparison operator. It returns "true"
-   if the specified string is equivalent to the base string. This matching will
-   not be case-sensitive unless passed the ``-case`` parameter.
+   This method is similar to the ``==`` equality operator. It returns "true" if
+   the specified string is equivalent to the base string. This matching will not
+   be case-sensitive unless passed the ``-case`` parameter.
 
 .. member:: string->compare(find::string, -case::boolean= ?)
 .. member:: string->compare(find::string, offset::integer, length::integer= ?, patOffset::integer= ?, patLength::integer= ?, -case::boolean= ?)
@@ -491,10 +488,10 @@ value of the string object. Many of these methods are documented below.
    "false".
 
 
-Find the Length of a String
----------------------------
+Find the Size of a String
+-------------------------
 
-The following example returns the length of the string::
+The following example returns the number of characters of the string::
 
    'Ralph is a red rhinoceros'->size
    // => 25
@@ -510,8 +507,7 @@ of lowercase letters it contains::
    local(my_string) = 'Ralph is a red rhinoceros'
 
    loop(#my_string->size) => {
-      #my_string->isLower(loop_count)
-         ? #num_lcase++
+      #my_string->isLower(loop_count) ? #num_lcase++
    }
    #num_lcase
 
@@ -521,8 +517,8 @@ of lowercase letters it contains::
 Check the Beginning of a String
 -------------------------------
 
-The following example checks to see if a string begins with ``https:``. If so,
-it displays "secure", otherwise it displays "insecure"::
+The following example checks to see if a string begins with "https:". If so, it
+displays "secure", otherwise it displays "insecure"::
 
    local(url) = "https://secure.example.com"
    #url->beginsWith("https:") ? "secure" | "insecure"
@@ -552,18 +548,6 @@ a string where there is an apostrophe::
    // 10
 
 
-Return a Specified Character
-----------------------------
-
-The following example uses `string->get` to return the last character in a
-string::
-
-   local(my_string) = "Ralph is a red rhinoceros"
-   #my_string->get(#my_string->length)
-
-   // => s
-
-
 Extract a Substring
 -------------------
 
@@ -575,11 +559,23 @@ The following example will pull the substring "red" out of the base string::
    // => red
 
 
+Extract a Specified Character Position
+--------------------------------------
+
+The following example uses `string->get` to return the last character in a
+string::
+
+   local(my_string) = "Ralph is a red rhinoceros"
+   #my_string->get(#my_string->size)
+
+   // => s
+
+
 String Manipulation Methods
 ===========================
 
-The `string` type includes many member methods that can be used to modify or
-manipulate a string object in-place. These methods do not return a value, and
+The :type:`string` type includes many member methods that can be used to modify
+or manipulate a string object in-place. These methods do not return a value, and
 instead modify the value of the string object. Many of these member methods are
 documented below.
 
@@ -615,7 +611,7 @@ documented below.
 
 .. member:: string->foldCase()
 
-   Converts the characters in the string object to allow for case- insensitive
+   Converts the characters in the string object to allow for case-insensitive
    comparisons. It modifies the string object in-place, not returning any value.
 
 .. member:: string->trim()
@@ -666,8 +662,8 @@ documented below.
 
 .. member:: string->padLeading(tosize::integer, with::string= ?)
 
-   Takes a parameter that specifies the length of the string. If the base string
-   object is smaller in size, then it changes the string by prepending a
+   Takes a parameter that specifies the target size of the string. If the base
+   string object is smaller in size, then it changes the string by prepending a
    character to the start of the string until the string is the specified size.
    The character used for prepending defaults to a space, but can be set with
    the optional second parameter. It modifies the string object in-place, not
@@ -675,8 +671,8 @@ documented below.
 
 .. member:: string->padTrailing(tosize::integer, with::string= ?)
 
-   Takes a parameter that specifies the length of the string. If the base string
-   object is smaller in size, then it changes the string by appending a
+   Takes a parameter that specifies the target size of the string. If the base
+   string object is smaller in size, then it changes the string by appending a
    character to the end of the string until the string is the specified size.
    The character used for appending defaults to a space, but can be set with the
    optional second parameter. It modifies the string object in-place, not
@@ -713,8 +709,8 @@ documented below.
    Takes either a string or a regular expression and replaces all matches found
    in the string object value with the specified replacement. For regular
    expression matches, the replacement string can be specified for this method,
-   or it will use the replacement string of the `regexp` object. It modifies the
-   string object in-place, not returning any value.
+   or it will use the replacement string of the :type:`regexp` object. It
+   modifies the string object in-place, not returning any value.
 
    When using a regular expression, the method defaults to a case-sensitive
    matching unless otherwise specified by the third parameter. When using a
@@ -722,8 +718,8 @@ documented below.
    matching unless otherwise specified by the third parameter.
 
 
-Appending Data to a String
---------------------------
+Append Data to a String
+-----------------------
 
 This example uses the `string->append` method to add a trailing slash to a
 directory path if one does not already exist::
@@ -764,7 +760,7 @@ then outputs the changed string::
    // => ralph the ringed rhino races red radishes in the rink.
 
 
-Remove a Pattern From the End of a String
+Remove a Pattern from the End of a String
 -----------------------------------------
 
 This example removes all the trailing commas from the string::
@@ -796,8 +792,8 @@ String Encoding Methods
    Returns a string with any reserved, illegal, or extended ASCII characters in
    the base string object converted to their equivalent HTML entity. This
    replacement can be modified by passing two boolean parameters. If the first
-   parameter is set to ``true``, then line breaks are encoded. If the second
-   parameter is set to ``true``, then the following characters are not encoded:
+   parameter is set to "true", then line breaks are encoded. If the second
+   parameter is set to "true", then the following characters are not encoded:
    ``" & ' < >`` (double quotation mark, ampersand, single quotation mark, less
    than or left angle bracket, and greater than or right angle bracket,
    respectively).
@@ -831,15 +827,15 @@ String Encoding Methods
    encoding is used for this conversion, but any encoding can be specified as a
    string parameter to this method.
 
-.. member:: string->encodeSql92()
-
-   Returns the value of the base string with any illegal characters for
-   SQL-92-compliant databases properly escaped. Not for use with MySQL.
-
 .. member:: string->encodeSql()
 
    Returns the value of the base string with any illegal characters for MySQL
    data sources properly escaped.
+
+.. member:: string->encodeSql92()
+
+   Returns the value of the base string with any illegal characters for
+   SQL-92-compliant databases properly escaped. Not for use with MySQL.
 
 
 Convert Escape Sequences
@@ -871,7 +867,7 @@ special HTML entities encoded::
    // => &lt;&gt;&amp;
 
 
-Encode For Use in MySQL
+Encode for Use in MySQL
 -----------------------
 
 The following example returns a string whose quotes have been encoded for use in
@@ -902,37 +898,43 @@ String Iteration Methods
 
    Takes a capture block and executes that block once for every substring that
    would be generated by splitting the base string object on a line break. Every
-   line break character is recognized: ``\r``, ``\n``, and ``\r\n``. Each of the
-   substrings can be accessed in the capture block through the special local
-   variable ``#1``.
+   line break character is recognized: ``"\r"``, ``"\n"``, and ``"\r\n"``. Each
+   of the substrings can be accessed in the capture block through the special
+   local variable ``#1``.
 
 .. member:: string->forEachMatch(exp::regexp)
 .. member:: string->forEachMatch(exp::string)
 
    Takes a capture block and executes that block once for every specified match
-   in the base string object. Matches can be specified as either string or
-   regexp objects. The match can be accessed in the capture block through the
-   special local variable ``#1``.
+   in the base string object. Matches can be specified as either :type:`string`
+   or :type:`regexp` objects. The match can be accessed in the capture block
+   through the special local variable ``#1``.
 
 .. member:: string->eachCharacter()
 
-   Returns an ``eacher`` which can be used in conjunction with query expressions
+   Returns an ``eacher`` that can be used in conjunction with query expressions
    to inspect and perform complex operations on every character in the base
    string object.
 
 .. member:: string->eachWordBreak()
 
-   Returns an ``eacher`` which can be used in conjunction with query expressions
+   Returns an ``eacher`` that can be used in conjunction with query expressions
    to inspect and perform complex operations on every word in the base string
+   object.
+
+.. member:: string->eachLineBreak()
+
+   Returns an ``eacher`` that can be used in conjunction with query expressions
+   to inspect and perform complex operations on every line in the base string
    object.
 
 .. member:: string->eachMatch(exp::regexp)
 .. member:: string->eachMatch(exp::string)
 
-   Returns an ``eacher`` which can be used in conjunction with query expressions
+   Returns an ``eacher`` that can be used in conjunction with query expressions
    to inspect and perform complex operations on every specified match in the
-   base string object. Matches can be specified as either string or regexp
-   objects.
+   base string object. Matches can be specified as either :type:`string` or
+   :type:`regexp` objects.
 
 
 Iterate Over Lines
@@ -950,7 +952,7 @@ variable "quoted_poem" in quotes. ::
 
    local(quoted_poem) = ''
    #poem->forEachLineBreak => {
-       #quoted_poem->append(#1 + '/')
+      #quoted_poem->append(#1 + '/')
    }
    #quoted_poem->removeTrailing('/')
    '"' + #quoted_poem + '"'
@@ -978,9 +980,9 @@ staticarray of words. ::
 Iterate Over a Specified Regular Expression Match
 -------------------------------------------------
 
-The following example uses `string->eachMatch` to find every vowel in a string,
-where the local variable "vowels" is used to count the number of each vowel in
-the string. ::
+The following example uses `string->eachMatch` with a :type:`regexp` object to
+find every vowel in a string, where the local variable "vowels" is used to count
+the number of each vowel in the string. ::
 
    local(my_string) = "ralph is a red rhinoceros."
    local(vowels)    = map("a"=0, "e"=0, "i"=0, "o"=0, "u"=0)
@@ -994,8 +996,8 @@ the string. ::
    // => map(a = 2, e = 2, i = 2, o = 2, u = 0)
 
 
-Miscellaneous String Methods
-============================
+String Export Methods
+=====================
 
 .. member:: string->split(find::string)
 
@@ -1009,8 +1011,8 @@ Miscellaneous String Methods
 
 .. member:: string->keys()
 
-   Returns a `generateSeries` from 1 to the length of the string, or an empty
-   `generateSeries` if the string is empty.
+   Returns a :type:`generateSeries` from 1 to the number of characters in the
+   string, or an empty :type:`generateSeries` if the string is empty.
 
 
 Split a String Into an Array
@@ -1025,5 +1027,5 @@ The following example creates an array by splitting a string on a comma::
 
 .. _Unicode Character Database: http://www.unicode.org/ucd/
 .. _Unicode Technical Reports: http://www.unicode.org/reports/
-.. _Unicode Normalization FAQ: http://unicode.org/faq/normalization.html
+.. _Unicode Normalization FAQ: http://www.unicode.org/faq/normalization.html
 .. _Unicode Standard Annex #15: http://www.unicode.org/reports/tr15/
