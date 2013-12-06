@@ -18,7 +18,7 @@ Lasso 9 Server can have multiple independent instances defined within
 :ref:`instance-manager`. Requests are distributed to each host based on the
 value of each request's :mailheader:`Host` header.
 
-The default instance will capture all incoming web requests. If no additional
+The default instance will catch all incoming web requests. If no additional
 instances have been created, then Lasso Server Admin for the sole instance can
 be accessed using any domain name pointing at the server that's enabled for
 Lasso 9. (Use "localhost" if accessing Lasso Server Admin from a browser on the
@@ -87,10 +87,12 @@ arrow tab in the top center of the page.
 
 The Lasso Quick Code console has two configurable options:
 
--  **<?lasso** -- When this option is checked, anything entered in the "Code"
-   field is treated as having been wrapped in ``<?lasso ... ?>`` delimiters.
--  **Auto-collect** -- When this option is checked, the Lasso Quick Code console
-   will display the results of auto-collecting the code in the "Result" field.
+-  **<?lasso** --
+   When this option is checked, anything entered in the "Code" field is treated
+   as having been wrapped in ``<?lasso ... ?>`` delimiters.
+-  **Auto-collect** --
+   When this option is checked, the Lasso Quick Code console will display the
+   results of auto-collecting the code in the "Result" field.
 
 
 Main Menu

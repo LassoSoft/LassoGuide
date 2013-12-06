@@ -7,9 +7,9 @@ Copyright and License
 This copyright notice concerns the contents of:
 
 | LassoGuide
-| |copy| 2013 Lassosoft Inc., http://www.lassosoft.com/
+| Copyright |copy| 1996--2013 Lassosoft Inc.
 | All rights reserved.
-| ISBN 978-0-9936363-0-1
+| http://www.lassosoft.com/
 
 .. |copy| unicode:: U+000A9 .. COPYRIGHT SIGN
 

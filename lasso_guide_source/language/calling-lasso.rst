@@ -96,7 +96,7 @@ Calling Lasso from the CLI
 Lasso code can be saved in a file and then executed on the command line. This
 style of execution happens directly and does not require a web server or web
 browser. Additionally, since a web server or web request is not in effect during
-such execution, none of the web-serving-specific functionality is available in
+such execution, none of the web serving--specific functionality is available in
 this context. (For more information on the command-line tools that come as part
 of the Lasso platform, see the :ref:`command-line-tools` chapter.)
 
