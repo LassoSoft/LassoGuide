@@ -22,7 +22,8 @@ Serializing and Deserializing Objects
 
 An object is serialized by calling its `~trait_serializable->serialize` method,
 which serializes the object and returns the resulting data as a string. This
-method is provided through :trait:`trait_serializable`, which is described below.
+method is provided through :trait:`trait_serializable`, which is described
+below.
 
 Serialized object data is converted back into an object by using a
 :type:`serialization_reader` object. This object is created with the serialized

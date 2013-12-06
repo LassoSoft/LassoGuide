@@ -213,7 +213,7 @@ priority and the second element of each pair is an IP address. The mail servers
 should be used in order of priority to provide fallback if the preferred mail
 servers cannot be reached. ::
 
-   dns_lookup('lassosoft.com', -Type='MX')
+   dns_lookup('lassosoft.com', -type='MX')
    // => array((10 = smtp1.lassosoft.com), (15 = smtp2.lassosoft.com))
 
 

@@ -21,11 +21,11 @@ with image files in the supported image formats:
 -  Executing extended ImageMagick commands.
 
 .. note::
-   The image type and features in Lasso 9 are implemented using ImageMagick
-   6.6.6-10 (July 7, 2011 build), which is installed as part of Lasso 9 Server
-   on OS X. Windows and Linux require ImageMagick to be installed separately,
-   which is covered in their respective installation guides. For more
-   information on ImageMagick, visit `<http://www.imagemagick.com/>`_.
+   The :type:`image` type and features in Lasso 9 are implemented using
+   ImageMagick 6.6.6-10 (July 7, 2011 build), which is installed as part of
+   Lasso 9 Server on OS X. Windows and Linux require ImageMagick to be installed
+   separately, which is covered in their respective installation guides. For
+   more information on ImageMagick, visit `<http://www.imagemagick.com/>`_.
 
 
 Image File Operations

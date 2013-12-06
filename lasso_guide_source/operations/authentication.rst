@@ -5,27 +5,29 @@ Authentication
 **************
 
 Lasso Server provides a built-in users and groups system. Initially, this system
-is only used to secure access to the Lasso Admin application. It can be used to
-provide authentication for your own web apps; however, Lasso is also flexible
-enough to support custom security & authentication mechanisms.
+is only used to secure access to the Lasso Server Admin application. It can be
+used to provide authentication for your own web apps; however, Lasso is also
+flexible enough to support custom security and authentication mechanisms.
 
 Lasso's security system data is stored in a SQLite database located in the
-instance's :file:`SQLiteDBs` directory. Passwords are not stored in plain text,
-although other information such as user names and group names are unencrypted.
+instance's "SQLiteDBs" directory. Passwords are not stored in plain text, though
+other information such as user names and group names are unencrypted.
 
-Within the system, users are grouped into particular realms. Realms completely
-separate their users such that the same username/password combination could
-exist in two different realms and they would be considered two unique users. A
-user only ever belongs to one realm which it is assigned to when the user is
-created. When a Lasso Server instance is first initialized, a "Lasso Security"
-realm is created. This is the default realm used in all the security-related
-methods and types. Alternate realms can be specified when needed.
+Within the system, users are grouped into particular realms. A :dfn:`realm`
+completely separates its users such that the same username+password combination
+could exist in two different realms and they would be considered two unique
+users. A user only ever belongs to one realm which it is assigned to when the
+user is created. When a Lasso Server instance is first initialized, a "Lasso
+Security" realm is created. This is the default realm used in all the
+security-related methods and types. Alternate realms can be specified when
+needed.
 
-Users can be grouped together. Each group can contain zero or more users. Users
-can belong to multiple groups at the same time. Users from different realms can
-belong to the same group. The special group "ANYUSER" always consists of all
-users. The special group "ADMINISTRATORS" is used to control who can access the
-Lasso Admin application as well as other system-related applications.
+Users can be grouped together. Each :dfn:`group` can contain zero or more users.
+Users can belong to multiple groups at the same time. Users from different
+realms can belong to the same group. The special group "ANYUSER" always consists
+of all users. The special group "ADMINISTRATORS" is used to control who can
+access the Lasso Server Admin application as well as other system-related
+applications.
 
 The built-in security system is accessed through two different interfaces: the
 set of ``auth_…`` methods and the :type:`security_registry` object.
@@ -34,8 +36,8 @@ set of ``auth_…`` methods and the :type:`security_registry` object.
 Authenticating Users
 ====================
 
-The ``auth_…`` methods are used by web apps to execute simple security checks.
-The checks acquire the username, password and realm information from the current
+Web apps use the ``auth_…`` methods to execute simple security checks. The
+checks acquire the username, password, and realm information from the current
 web request and, therefore, require that a request be active. In all cases, if
 the check fails or if no username and password are provided, then the auth
 methods will generate an "HTTP 401 Unauthorized" response with a
@@ -90,8 +92,8 @@ tools that want to use the security system should call this method as early as
 possible when starting up.
 
 A :type:`security_registry` object can be created with zero parameters. When
-created, it will open a connection to the security database. A
-:type:`security_registry` object must be closed once it is no longer required.
+created, it will open a connection to the security database. The object must be
+closed once it is no longer required.
 
 .. method:: security_initialize()
 
@@ -102,7 +104,8 @@ created, it will open a connection to the security database. A
 .. type:: security_registry
 .. method:: security_registry()
 
-   Creates a new `security_registry` object. Once created, it can be used to:
+   Creates a new :type:`security_registry` object. Once created, it can be used
+   to:
 
    -  Add/remove groups
    -  Alter group metadata (name, enabled)
@@ -162,7 +165,7 @@ created, it will open a connection to the security database. A
 
    Adds a new user to the system. A username and password must be supplied. An
    optional ``enabled`` and ``comment`` parameter can be provided. The
-   ``-realm`` keyword controls which realm the user is placed in. The default
+   ``-realm`` parameter controls which realm the user is placed in. The default
    realm is "Lasso Security". The user's information record is then returned as
    a map object containing the keys 'id', 'name', 'enabled', 'comment', 'email',
    'real_name' and 'realm'.
@@ -208,9 +211,12 @@ created, it will open a connection to the security database. A
    These methods can be used to remove a user from the system, remove a user
    from a group, or remove a user from all groups, respectively.
 
-.. member:: security_registry->userPassword(userid::integer) = password::string
-.. member:: security_registry->userEnabled(userid::integer) = enabled::boolean
-.. member:: security_registry->userComment(userid::integer) = comment::string
+.. member:: security_registry->userPassword=(password::string, userid::integer)
+.. member:: security_registry->userEnabled=(enabled::boolean, userid::integer)
+.. member:: security_registry->userComment=(comment::string, userid::integer)
 
-   Given a user ID, these methods will assign that user's password, enabled
-   state or associated comment, respectively.
+   Given a user ID, these setter methods will assign that user's password,
+   enabled state, or associated comment, respectively. Call these by specifying
+   the user ID as a parameter and the value as an assignment. ::
+
+      security_registry->userComment(1) = "I am the first user!"

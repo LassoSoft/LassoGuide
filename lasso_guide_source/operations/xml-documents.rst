@@ -119,28 +119,29 @@ documents and three for creating new blank documents.
 
    These first two methods parse existing XML data in either string or raw bytes
    form. If the document parsing is successful, these methods return the
-   top-level `xml_document` node object.
+   top-level :type:`xml_document` node object.
 
 .. method:: xml(namespaceUri::string, rootNodeName::string)
 .. method:: xml(namespaceUri::string, rootNodeName::string, dtd::xml_documentType)
 .. method:: xml()
 
    These subsequent three methods create a new document consisting of only the
-   root `xml_document` node and no children. These methods return the top-level
-   `xml_document` node object. The first two methods create the document given a
-   namespace and a root element name, along with an optional document type node
-   (an `xml_documentType`, created through the
+   root :type:`xml_document` node and no children. These methods return the
+   top-level :type:`xml_document` node object. The first two methods create the
+   document given a namespace and a root element name, along with an optional
+   document type node (an :type:`xml_documentType`, created through the
    `xml_DOMImplementation->createDocumentType` method). The third method takes
    zero parameters and returns a document with no namespace and the root element
    name set to "none".
 
 In all cases, the resulting value from the `xml` method will be the root element
 of the document. This will be an object of type :type:`xml_element`. It's
-important to note that this is not the `xml_document` object, which differs from
-the root element node. This behavior is a departure from that of the
-:type:`xml_DOMImplementation` type which does return the `xml_document` object
-itself. The owning `xml_document` object can be obtained from any node within
-that document by calling the `xml_node->ownerDocument` method.
+important to note that this is not the :type:`xml_document` object, which
+differs from the root element node. This behavior is a departure from that of
+the :type:`xml_DOMImplementation` type which does return the
+:type:`xml_document` object itself. The owning :type:`xml_document` object can
+be obtained from any node within that document by calling the
+`xml_node->ownerDocument` method.
 
 
 xml Examples
@@ -162,8 +163,8 @@ Using xml_DOMImplementation
 The :type:`xml_DOMImplementation` type provides comparable functionality to the
 `xml` method, but follows the DOM Level 2 specification. An object of the type
 :type:`xml_DOMImplementation` is stateless and can be created with zero
-parameters. Once an `xml_DOMImplementation` object is obtained it can be used to
-create or parse XML documents as well as create XML document types.
+parameters. Once an :type:`xml_DOMImplementation` object is obtained it can be
+used to create or parse XML documents as well as create XML document types.
 
 This functionality is presented in the following four methods.
 
@@ -175,9 +176,9 @@ This functionality is presented in the following four methods.
 .. member:: xml_DOMImplementation->parseDocument(text::bytes)
 
 In contrast to the `xml` method, when creating or parsing an XML document the
-`xml_DOMImplementation` object returns the document node. This will be an object
-of type :type:`xml_document`. It's important to note that this is not the root
-element node. The root element node can be obtained through the
+:type:`xml_DOMImplementation` object returns the document node. This will be an
+object of type :type:`xml_document`. It's important to note that this is not the
+root element node. The root element node can be obtained through the
 `xml_document->documentElement` method.
 
 
@@ -218,13 +219,13 @@ The resulting document would have the following format:
 Creating XML Node Objects
 -------------------------
 
-While the `xml_DOMImplementation` object is responsible for creating the initial
-`xml_document` object, the `xml_document` object is the means through which new
-XML node object types are created, including element, attribute, and text nodes.
-All XML objects always belong to a particular `xml_document` instance. No XML
-node objects can be created without an existing document. Nodes can be copied
-into another existing `xml_document`, but nodes are never shared between
-documents.
+While the :type:`xml_DOMImplementation` object is responsible for creating the
+initial :type:`xml_document` object, the :type:`xml_document` object is the
+means through which new XML node object types are created, including element,
+attribute, and text nodes. All XML objects always belong to a particular
+instance of the :type:`xml_document` type. No XML node objects can be created
+without an existing document. Nodes can be copied into another existing
+:type:`xml_document`, but nodes are never shared between documents.
 
 The following methods are use for creating new nodes:
 
@@ -271,15 +272,16 @@ to show the methods most commonly used when working with an XML document.
 
 .. member:: xml_node->nodeType()::string
 
-   Returns the name of the type of node. For example, an `xml_element` node
-   would return "ELEMENT_NODE". This is in contrast to the DOM Level 2
+   Returns the name of the type of node. For example, an :type:`xml_element`
+   node would return "ELEMENT_NODE". This is in contrast to the DOM Level 2
    specification which returns an integer value.
 
 .. member:: xml_node->nodeName()::string
 
    Returns the name of the node. This value will depend on the type of the node
-   in question. For `xml_element` nodes, this will be the same value as the tag
-   name. For `xml_attr` nodes, this will be the same as the attribute name.
+   in question. For :type:`xml_element` nodes, this will be the same value as
+   the tag name. For :type:`xml_attr` nodes, this will be the same as the
+   attribute name.
 
 .. member:: xml_node->prefix()
 
@@ -308,8 +310,8 @@ to show the methods most commonly used when working with an XML document.
 
 .. member:: xml_node->ownerDocument()
 
-   Returns the `xml_document` that is the owner of the target node. In the case
-   of the document node, this will be "null".
+   Returns the :type:`xml_document` that is the owner of the target node. In the
+   case of the document node, this will be "null".
 
 .. type:: xml_element
 
@@ -403,8 +405,8 @@ removing items from node maps.
 .. member:: xml_node->nodeValue=(value::string)
 
    Sets the value of the node to the indicated string. Only the following node
-   types can have their values set:  `xml_attr`, `xml_cdataSection`,
-   `xml_comment`, `xml_processingInstruction`, `xml_text`.
+   types can have their values set:  :type:`xml_attr`, :type:`xml_cdataSection`,
+   :type:`xml_comment`, :type:`xml_processingInstruction`, :type:`xml_text`.
 
 .. member:: xml_node->insertBefore(new::xml_node, ref::xml_node)::xml_node
 
@@ -583,7 +585,7 @@ XSLT
 Lasso's XML API supports XSL Transformations (XSLT) 1.0. For the specifics of
 XSLT, consult the `XSLT specification`_.
 
-XSLT support is provided on any `xml_node` type through the
+XSLT support is provided on any :type:`xml_node` type through the
 `~xml_node->transform` method. This method accepts an XSLT template as a string
 as well as a list of all variables to be made available during the
 transformation. The transformation is performed and a new XML document is

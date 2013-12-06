@@ -276,8 +276,8 @@ example uses Eastern Daylight Time (EDT) as the current time zone::
    // => 05/22/2002 18:02:05 GMT+00:00
 
 
-Show the Current Time Zone of the Server
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Display the Current Time Zone of the Server
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The `date_getLocalTimeZone` method displays the current time zone of the machine
 running Lasso. The following example uses Eastern Standard Time (EST) as the
@@ -390,8 +390,8 @@ See the ICU website for a detailed list of `ICU format string symbols`_.
    ``date->format("'day: '%A")``.
 
 
-Output Date Strings to Various Formats
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Convert Date Strings to Various Formats
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following examples show how to use `date_format` to output either Lasso date
 objects or valid Lasso date strings to alternate formats::
@@ -543,8 +543,8 @@ adjustments on date objects.
    ====================== ======================================================
 
 
-Output Date Objects to Various Formats
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Convert Date Objects to Various Formats
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following examples show how to output date objects in alternate formats
 using the `date->format` method::

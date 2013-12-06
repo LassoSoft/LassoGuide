@@ -4,11 +4,12 @@
 LDAP
 ****
 
-LDAP is an industry-standard method of publishing directory information within
-an organization. LDAP servers are used for many different tasks, such as
-publishing the contact information for employees or other publicly accessible
-information. LDAP servers are also used to publish authentication information so
-all servers within an organization can use the same usernames and passwords.
+:abbr:`LDAP (Lightweight Directory Access Protocol)` is an industry-standard
+protocol for publishing directory information within an organization. LDAP
+servers are used for many different tasks, such as publishing the contact
+information for employees or other publicly accessible information. LDAP servers
+are also used to publish authentication information so all servers within an
+organization can use the same usernames and passwords.
 
 An LDAP server provides access to a "directory information tree" (DIT). Each
 element in the tree is called an "entry" and has several attributes. Any element
@@ -29,8 +30,8 @@ attributes will be determined by the type of directory that is being searched,
 but may include first name, last name, email address, phone number, etc. The
 attributes are often named with one or two-character abbreviations like "cn"
 for combined name, "ln" for last name, "fn" for first name, or "ou" for
-operational unit. Attributes might also have longer names like "email",
-"telephonenumber", etc.
+operational unit. Attributes may also have longer names like "email",
+"telephonenumber", and so on.
 
 
 LDAP Searches
@@ -38,8 +39,8 @@ LDAP Searches
 
 A search is defined starting at a DN within the directory tree. This DN will
 usually be provided by the LDAP server administrator. The scope allows the
-search to be limited to the object itself (i.e. is the object contained within
-the tree), children of the object, or the entire tree below the object. Some
+search to be limited to the object itself (i.e., is the object contained within
+the tree?), children of the object, or the entire tree below the object. Some
 possible DNs are shown below:
 
 .. code-block:: none
@@ -56,7 +57,7 @@ specifies that all objects in the tree should be returned:
    (objectClass=*)
 
 This is actually a special case of the "exists" filter. This filter returns any
-entries which have a defined objectClass. Similarly, all entries which have a
+entries that have a defined objectClass. Similarly, all entries that have a
 full name attribute ("cn") could be found with this filter:
 
 .. code-block:: none
@@ -83,7 +84,7 @@ Two or more filters can be combined using the logical operators "and" (``&``) or
 "or" (``|``), or a filter can be negated using "not" (``!``). The following
 three filters would find all entries who have a first name of "John" and a last
 name of "Doe", a first name of "John" or a last name of "Doe", and a first name
-which is not "John" and a last name which is not "Doe":
+that is not "John" and a last name that is not "Doe":
 
 .. code-block:: none
 
@@ -93,9 +94,9 @@ which is not "John" and a last name which is not "Doe":
 
 Note that there are no quotes around the values in the filters. The parentheses
 are used to delimit the values. In order to find a value that contains
-parentheses, an asterisk ("*"), a backslash ("\"), or a null character, the
-following escape sequences can be used: "\\2a" for ``(``, "\\28" for ``)``,
-"\\29" for ``*``, "\\5c" for ``\``, and "\\00" for null.
+parentheses, an asterisk (``*``), a backslash (``\``), or a null character, the
+following escape sequences can be used: ``\2a`` for ``(``, ``\28`` for ``)``,
+``\29`` for ``*``, ``\5c`` for ``\``, and ``\00`` for null.
 
 
 LDAP Results
@@ -104,8 +105,8 @@ LDAP Results
 The results of an LDAP search will be an array of pairs. The first element of
 each pair will be the DN of the entry. The second element of each pair will be
 an array of pairs including the attribute names and values for the entry. For
-example, a search which found entries for "John Doe" and "Jane Doe" might
-contain the following elements::
+example, a search that found entries for "John Doe" and "Jane Doe" could contain
+the following elements::
 
    (:
       pair('cn=John Doe, ou=People, o=LassoSoft' = (:
@@ -128,16 +129,16 @@ attribute names to be returned without any values. By default both attribute
 names and values are returned.
 
 
-LDAP Type
-=========
+LDAP Methods
+============
 
-The :type:`ldap` data type can be used to create a connection to an LDAP server
-and then to send queries to the server.
+The :type:`ldap` type can be used to create a connection to an LDAP server and
+then to send queries to the server.
 
 .. type:: ldap
 .. method:: ldap(...)
 
-   Creates a new `ldap` object. Accepts an optional host name and port to
+   Creates a new ldap object. Accepts an optional host name and port to
    immediately open a connection to a server.
 
 .. member:: ldap->open(...)
@@ -162,9 +163,9 @@ and then to send queries to the server.
       The scope of the search. Optional. This parameter should be one of the
       following methods:
 
-      -  `ldap_scope_base` - Search the object itself.
-      -  `ldap_scope_onelevel` - Search the object's immediate children.
-      -  `ldap_scope_subtree` - Search the object and all its descendants.
+      -  `ldap_scope_base` -- Search the object itself.
+      -  `ldap_scope_onelevel` -- Search the object's immediate children.
+      -  `ldap_scope_subtree` -- Search the object and all its descendants.
 
    :param filter:
       The filter to apply to the search. Optional.
@@ -234,11 +235,15 @@ The result of this operation will be a staticarray of pairs. The first element
 of each pair is the DN of the entry. The second element of each pair is a
 staticarray of pairs containing the names and attributes of the element.
 
+.. tabularcolumns:: |l|l|
+
+.. _ldap-status-codes:
+
 .. table:: Common LDAP Status Codes
 
-   ==== =================================
+   ==== ========================================================================
    Code Description
-   ==== =================================
+   ==== ========================================================================
    0    Success (No Error)
    1    Operations Error
    2    Protocol Error
@@ -278,4 +283,4 @@ staticarray of pairs containing the names and attributes of the element.
    69   Object Class Mods Prohibited
    71   Affects Multiple DSAs
    80   Other
-   ==== =================================
+   ==== ========================================================================

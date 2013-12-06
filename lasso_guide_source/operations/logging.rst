@@ -27,32 +27,32 @@ Detail
    messages are logged only to the console by default.
 
 Deprecated
-   Flags any use of deprecated functionality in Lasso code. Deprecated tags are
-   supported in this version of Lasso, but may not be supported in a future
+   Flags any use of deprecated functionality in Lasso code. Deprecated methods
+   are supported in this version of Lasso, but may not be supported in a future
    version. Any deprecated functionality should be updated to new, preferred
    syntax for best compatibility with future versions of Lasso. Deprecated
    messages are logged only to the console by default.
 
-The destinations which the log levels can be routed to include:
-
-Database
-   The "logbook" table in the "lasso_logbook" SQLite database, viewable via the
-   "Log Book" section in Lasso Server Admin
-   (http://example.com/lasso9/Admin/logbook).
+The destinations that the log levels can be routed to include:
 
 Console
-   The Lasso 9 Server instance's console which is viewable from the instance
-   manager. It is stored in a file named :file:`lasso.out.txt` in the instance's
+   The Lasso Server instance's console, which is viewable from the Instance
+   Manager. It is stored in a file named :file:`lasso.out.txt` in the instance's
    :envvar:`LASSO9_HOME` directory and has a max file size of 10MB by default.
 
 File
    The :file:`lasso_logbook.txt` file, located in the instance's
-   :envvar:`LASSO9_HOME` folder. This file is also capped at 10MB by default.
+   :envvar:`LASSO9_HOME` directory. This file is also capped at 10MB by default.
+
+Database
+   The "logbook" table in the "lasso_logbook" SQLite database, viewable via the
+   "Log Book" section of Lasso Server Admin
+   (:ref:`!http://example.com/lasso9/admin/logbook`).
 
 The routing of Lasso's internal log levels can be modified in the "Log Book"
-section of Lasso Server Admin (http://example.com/lasso9/Admin/logbook). For
-details on how to change the log level routing programmatically see the
-subsequent :ref:`log-routing` section.
+section of Lasso Server Admin (:ref:`!http://example.com/lasso9/admin/logbook`).
+For details on how to change the log level routing programmatically see the
+subsequent section on :ref:`log routing <logging-routing>`.
 
 
 Logging Methods
@@ -107,8 +107,8 @@ that gets sent to the console; note that it contains a timestamp in brackets::
    // => [2013-03-23 16:59:41] A mathematical error occurred while processing this page
 
 
-Log Files
-=========
+Logging to Files
+================
 
 In addition to using the built-in log level routing system, it is sometimes
 desirable to create a separate log file specific to a custom solution. The `log`
@@ -116,12 +116,12 @@ method can be used to write text messages out to a log file.
 
 .. method:: log(path)
 
-   When executed, the contents of the `log` method's associated block's
-   auto-collection is appended to a specified text file. The `log` method can
-   write to any text file that is accessible from Lasso. The associated block
-   must be an auto-collect block as the collected data from the associated block
-   will be included in the appended data. If you don't use an auto-collect block
-   then no data will be appended to the log file.
+   When executed, the results of the auto-collection from the `log` method's
+   capture block is appended to a specified text file. The `log` method can
+   write to any text file that is accessible from Lasso. The capture block must
+   be an auto-collect block as the collected data from the capture block will be
+   included in the appended data. If you don't use an auto-collect block then no
+   data will be appended to the log file.
 
    The following example outputs a single line containing the date and time with
    a return at the end to the file specified. The methods are shown first with a
@@ -138,9 +138,9 @@ method can be used to write text messages out to a log file.
       ^}
 
    The path to the directory where the log will be stored should be specified
-   according to the same rules as those for the file methods. See the
-   :ref:`Paths <files-path>` section in the Files chapter for full details about
-   relative, absolute, and fully-qualified paths on OS X, Linux, and Windows.
+   according to the same rules as those for the :type:`file` methods. See the
+   section on :ref:`file paths <files-paths>` for full details about relative,
+   absolute, and fully qualified paths on OS X, Linux, and Windows.
 
 
 Log Site Visits to a File
@@ -174,7 +174,7 @@ date, e.g. "2013-05-31.txt"::
    ^}
 
 
-.. _log-routing:
+.. _logging-routing:
 
 Log Routing
 ===========
@@ -240,7 +240,7 @@ change the log settings programmatically.
    code.
 
 
-Change the Log Preferences
+Change Logging Preferences
 --------------------------
 
 Use the `log_setDestination` method to change the destination of a given log
@@ -254,7 +254,7 @@ and the errors table of the instance's database::
    )
 
 
-Reset the Log Preferences
+Reset Logging Preferences
 -------------------------
 
 The following four commands reset the log preferences to their default values.

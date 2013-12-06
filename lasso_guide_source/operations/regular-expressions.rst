@@ -236,7 +236,7 @@ characters that are matched by each of the variations.
    -  ``So`` -- Other Symbol
 
 ``Z``
-   Matches a single separator (usually a whitespace character). Variations
+   Matches a single separator (typically a whitespace character). Variations
    include:
 
    -  ``Zs`` -- Space Separator
@@ -569,7 +569,6 @@ Creating Regular Expression Objects
    regular expression can be applied to strings. ::
 
       local(my_regexp) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
-
 
 .. member:: regexp->findPattern()
 

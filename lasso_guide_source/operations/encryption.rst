@@ -16,7 +16,7 @@ Lasso's cipher methods provide access to a wide range of industry-standard
 encryption algorithms. The `cipher_list` method lists which algorithms are
 available on your system and the `cipher_encrypt`, `cipher_decrypt`, and
 `cipher_digest` methods allow values to be encrypted, decrypted, or digest
-values to be generated respectively.
+values to be generated, respectively.
 
 
 Encryption Methods
@@ -43,15 +43,15 @@ SHA1
 .. method:: encrypt_blowfish(plaintext, -seed::string)
 
    Encrypts a string using the industry-standard BlowFish algorithm. Accepts two
-   parameters, a string to be encrypted and a ``-seed`` keyword with the key or
-   password for the encryption. It returns an encrypted bytes object.
+   parameters, a string to be encrypted and a ``-seed`` keyword parameter with
+   the key or password for the encryption. It returns an encrypted bytes object.
 
    The BlowFish methods are not binary-safe, so the output of the method will be
    truncated after the first null character. It is necessary to use
    `encode_base64`, `encode_hex`, or `encode_utf8` prior to using this method to
    encrypt data that might contain binary characters.
 
-.. method:: decrypt_blowfish(ciphertext, -seed::string)
+.. method:: decrypt_blowfish(cipherText, -seed::string)
 
    Decrypts a byte stream encrypted using the industry-standard BlowFish
    algorithm. Accepts two parameters, a byte stream to be decrypted and a
@@ -103,11 +103,12 @@ Seeds can be any string between 4 characters and 112 characters long. Pick the
 longest string possible to ensure a secure encryption. Ideal seeds contain a mix
 of letters, digits, and punctuation.
 
-The security considerations of storing, transmitting, and hard-coding seed
-values is beyond the scope of this book. The examples that follow present
-methodologies that are easy to use, but may not provide the highest level of
-security possible. You should consult a security expert if security is very
-important for your website.
+.. caution::
+   The security considerations of storing, transmitting, and hard-coding seed
+   values is beyond the scope of this book. The examples that follow present
+   methodologies that are easy to use, but may not provide the highest level of
+   security possible. You should consult a security expert if security is very
+   important for your website.
 
 
 Store Encrypted Data in a Database
@@ -204,11 +205,11 @@ via a form::
       // ...
    }
 
-.. note::
+.. important::
    For more security, most login solutions require both a username and a
    password. Also, many login solutions restrict the number of login attempts
    that they will accept from a client's IP address, use salts, and iterate over
-   the hashing algorithm thousands of times. To reiterate: you should consult a
+   the hashing algorithm thousands of times. Again, you should consult a
    security expert if security is very important for your website.
 
 

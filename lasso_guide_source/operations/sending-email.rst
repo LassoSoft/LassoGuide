@@ -857,7 +857,7 @@ Send a Batch of Messages
 
 The `email_batch` method can be used when a number of messages need to be queued
 all at once. The method temporarily suspends some back-end operations of the
-email queue so that the messages can be queued faster. When the givenBlock is
+email queue so that the messages can be queued faster. When the capture block is
 processed the queue is allowed to resume sending the queue messages.
 
 The example below shows how an inline could be used to find a collection of
