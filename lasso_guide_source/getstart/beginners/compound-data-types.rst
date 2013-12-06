@@ -51,7 +51,7 @@ updated version of our ongoing example::
    </html>
 
 Notice how we set the initial values for the array and store the array in the
-local variable "all_greetings" by calling ``array`` with a comma-separated list
+local variable "all_greetings" by calling `array` with a comma-separated list
 of values. In our example, the values are all strings, but the values don't have
 to all be the same type, you could mix strings and integers, for example.
 
@@ -69,7 +69,7 @@ stored in the "all_greetings" variable, it would look like this::
    #all_greeting->insert("G'day, mate!")
 
 (See the section on the :ref:`array <containers-array>` type for more detail and
-other array methods.)
+other :type:`array` methods.)
 
 
 Using a Map

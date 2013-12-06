@@ -6,8 +6,9 @@ Defining Your Own Types
 
 Lasso is an object-oriented language and comes with many built-in types. In
 fact, we've been using the :type:`date` type to get the current hour in our
-ongoing example as well as ``integer``, ``string``, ``array``, and ``map``
-types. Lasso also gives programmers the ability to write their own custom types.
+ongoing example as well as :type:`integer`, :type:`string`, :type:`array`, and
+:type:`map` types. Lasso also gives programmers the ability to write their own
+custom types.
 
 Let's look at the current version of our ongoing example::
 

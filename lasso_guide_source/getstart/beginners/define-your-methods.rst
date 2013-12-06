@@ -6,7 +6,7 @@ Defining Your Own Methods
 
 In the tutorial on variables, we discussed how variables allow for storing a
 value that can then be referenced later. But wouldn't it be nice to be able to
-store a set of logic code for later reuse? That's where defining your own
+store a set of logic code for later re-use? That's where defining your own
 methods come in.
 
 .. note::

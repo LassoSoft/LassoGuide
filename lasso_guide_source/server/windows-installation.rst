@@ -109,11 +109,13 @@ Configuring ImageMagick
    `ImageMagick installers archive`_.
 -  :ref:`Restart Lasso Instance Manager <instance-manager-starting-stopping>`.
 
-.. important::
-   Links to third-party distributions and tools are provided for your
-   convenience and were accurate when this manual was written. LassoSoft cannot
-   guarantee the availability or suitability of software downloaded from
-   third-party web sites.
+.. only:: html
+
+   .. important::
+      Links to third-party distributions and tools are provided for your
+      convenience and were accurate when this manual was written. LassoSoft
+      cannot guarantee the availability or suitability of software downloaded
+      from third-party web sites.
 
 
 Troubleshooting

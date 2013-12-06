@@ -79,11 +79,13 @@
   \begin{minipage}[b]{0.9\textwidth}
   \footnotesize\raggedright
   \setlength{\parskip}{0.5\baselineskip}
-  Copyright \copyright \the\year\ \@author \\
-  All rights reserved.\par
+  Copyright \copyright 1996--\the\year\ Lassosoft Inc. \\
+  All rights reserved.
+
   This work may be distributed and/or modified under the conditions of the
   license as described at \url{http://lassoguide.com/license.html}. In all cases
-  this notice must remain intact.\par
+  this notice must remain intact.
+
   The latest version of the work may be accessed at \url{http://lassoguide.com/}.
 
   \begin{center}
@@ -99,20 +101,25 @@
   \hspace*{2em} LassoGuide : Release 9.2 / LassoSoft Inc. -- 1st ed. \\
   \hspace*{2em} p. \hspace*{2em} cm. \\
   \hspace*{2em} Includes index. \\
-  \hspace*{2em} ISBN: \isbn \par
+  \hspace*{2em} ISBN: \isbn
 
   BISAC subject headings: \\
   \hspace*{2em} COM060160	\hspace*{2em} COMPUTERS / Web / Web Programming \\
   \hspace*{2em} COM051000	\hspace*{2em} COMPUTERS / Programming / General \\
-  \hspace*{2em} COM052000	\hspace*{2em} COMPUTERS / Reference \par
+  \hspace*{2em} COM052000	\hspace*{2em} COMPUTERS / Reference
 
-  Lasso, LassoGuide, LassoTalk, LassoSoft and the LassoSoft logo are trademarks
-  of LassoSoft Inc.
+  Lasso, LassoGuide, LassoTalk, Lasso Professional, Lasso Studio, Lasso Dynamic
+  Markup Language, LDML, Lasso Service, Lasso Connector, Lasso Web Data Engine,
+  LassoSoft and the LassoSoft logo are trademarks of LassoSoft Inc.
 
   Many of the designations used by manufacturers and sellers to distinguish
   their products are claimed as trademarks. All terms mentioned in this book
   that are known to be trademarks or service marks have been appropriately
   capitalized.
+
+  Links to third-party distributions and tools are provided for your convenience
+  and were accurate when this manual was written. LassoSoft cannot guarantee the
+  availability or suitability of software downloaded from third-party web sites.
 
   The software described in this book maybe under some license agreement. The
   software may be used or copied only in accordance with the terms of that
