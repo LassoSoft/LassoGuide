@@ -158,9 +158,9 @@ and Linux operating systems and at :file:`C:\\Program Files\\LassoSoft\\Lasso
 Instance Manager\\home\\LassoExecutables\\lasso9` on Windows. This program can
 execute Lasso code from a file, piped from STDIN, passed in as a string, or
 inside an interactive interpreter. This executable doesn't load and start up
-everything that :program:`lassoserver` does. See the section on
-:ref:`loading libraries in shell scripts <command-loading-libraries>` for what
-isn't loaded and how to load the extra components if you need them.
+everything that :program:`lassoserver` does. See the section
+:ref:`command-loading-libraries` for what isn't loaded and how to load the extra
+components if you need them.
 
 To execute a file of Lasso code, pass the path to the file as the argument to
 lasso9. For example::
@@ -199,8 +199,8 @@ included. When finished, type :kbd:`Control-C` to exit.
    2
    3
 
-For more details, see the section on :ref:`calling Lasso from the CLI
-<calling-lasso-cli>`.
+For more details, see the section :ref:`calling-lasso-cli` in the
+:ref:`calling-lasso` chapter.
 
 
 lassoc
@@ -212,8 +212,7 @@ The :program:`lassoc` executable is installed at :file:`/usr/bin/lassoc` on OS X
 and Linux operating systems and at :file:`C:\\Program Files\\LassoSoft\\Lasso
 Instance Manager\\home\\LassoExecutables\\lassoc` on Windows. This program is
 used to compile LassoApps, Lasso libraries, and Lasso executables. See the
-section on :ref:`compiling Lasso code <command-compiling-lasso>` below for more
-information.
+section :ref:`command-compiling-lasso` below for more information.
 
 
 .. _command-environment-variables:
@@ -270,7 +269,7 @@ following lists the variables and a description of their function:
 
    If this variable is set by the web server, lassoserver will assume the
    host is dedicated to serving a single LassoApp, and will prepend this path to
-   all `lassoapp_link` paths. For details and an example, see the section on
+   all `lassoapp_link` paths. For details and an example, see the section
    :ref:`lassoapps-server-configuration` in the :ref:`lassoapps` chapter.
 
    Default is not set.

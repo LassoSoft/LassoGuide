@@ -64,8 +64,8 @@ opening ``if`` statement. This is called a "boolean" operator or "logic"
 operator: it requires that both the expression to its left and to its right
 evaluate as "true". In our case it means that the current hour has to be greater
 than or equal to 5 as well as less than 12. You will sometimes see it as ``&&``
-instead of ``and`` as in the second ``else`` statement. (See the section on
-:ref:`operators-boolean` for more information on all the available boolean
+instead of ``and`` as in the second ``else`` statement. (See the section
+:ref:`operators-boolean` for more information on all the available logical
 operators.)
 
 The other thing to note is the first ``else`` statement takes an expression in

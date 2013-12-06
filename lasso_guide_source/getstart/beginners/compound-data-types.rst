@@ -107,7 +107,7 @@ list of values, but with a map we specify the index (key) as well. To get an
 item out of a map, use the `map->find` method passing in the key whose value you
 wish to retrieve. As with arrays, there's a `map->insert` method that allows you
 to insert new key/values into the map. (See the section on the
-:ref:`map <containers-map>` type for more information.)
+:ref:`map <containers-map>` type for more detail and other :type:`map` methods.)
 
 .. note::
    While arrays have a defined order, maps do not. Getting an element out of a

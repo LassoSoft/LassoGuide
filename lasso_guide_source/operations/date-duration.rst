@@ -37,7 +37,7 @@ computer or web server Lasso is running on.
 .. note::
    Lasso extracts daylight saving time information from the operating system.
    For information on special exceptions with date calculations during daylight
-   saving time, see the :ref:`date-duration-math` section.
+   saving time, see the section :ref:`date-duration-math`.
 
 
 Date Type
@@ -152,8 +152,7 @@ the `date` creator method::
 
 If the value is not in a string format described previously, use the `date`
 creator method with the ``-format`` parameter. For information on how to use the
-``-format`` parameter, see the :ref:`date-duration-formatting-dates` section
-later in this chapter. ::
+``-format`` parameter, see the section :ref:`date-duration-formatting-dates`. ::
 
    date('5.22.02 12:30', -format='%m.%d.%y %H:%M')
    // => 5.22.02 12:30

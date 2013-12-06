@@ -1071,26 +1071,26 @@ the bullet character::
 Special Characters
 ------------------
 
-When adding text to a pdf_doc object, special characters can be used to
-designate lines breaks, tabs, and more. These characters are summarized in the
-table below.
+When adding text to a pdf_doc object, escape sequences can be used to insert
+special characters such as line breaks, tabs, and more. These characters are
+summarized in the table below.
 
 .. tabularcolumns:: |l|L|
 
-.. _pdf-special-characters:
+.. _pdf-escape-sequences:
 
-.. table:: Special Characters
+.. table:: Supported PDF Escape Sequences
 
-   ========= ===================================================================
-   Character Description
-   ========= ===================================================================
-   ``\n``    Line break (OS X and Linux)
-   ``\r\n``  Line break (Windows)
-   ``\t``    Tab
-   ``\"``    Double quote
-   ``\'``    Single quote
-   ``\\``    Backslash
-   ========= ===================================================================
+   =============== =============================================================
+   Escape Sequence Description
+   =============== =============================================================
+   ``\n``          Line break (OS X and Linux)
+   ``\r\n``        Line break (Windows)
+   ``\t``          Tab
+   ``\"``          Double quote
+   ``\'``          Single quote
+   ``\\``          Backslash
+   =============== =============================================================
 
 
 Use Special Characters in a Text String

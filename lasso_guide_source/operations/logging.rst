@@ -52,7 +52,7 @@ Database
 The routing of Lasso's internal log levels can be modified in the "Log Book"
 section of Lasso Server Admin (:ref:`!http://example.com/lasso9/admin/logbook`).
 For details on how to change the log level routing programmatically see the
-subsequent section on :ref:`log routing <logging-routing>`.
+section :ref:`logging-routing` later in this chapter.
 
 
 Logging Methods
@@ -139,8 +139,8 @@ method can be used to write text messages out to a log file.
 
    The path to the directory where the log will be stored should be specified
    according to the same rules as those for the :type:`file` methods. See the
-   section on :ref:`file paths <files-paths>` for full details about relative,
-   absolute, and fully qualified paths on OS X, Linux, and Windows.
+   section :ref:`files-paths` in the :ref:`files` chapter for full details about
+   relative, absolute, and fully qualified paths on OS X, Linux, and Windows.
 
 
 Log Site Visits to a File

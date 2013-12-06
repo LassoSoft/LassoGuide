@@ -51,8 +51,7 @@ and low-priority messages.
    The maximum size of an email message including all attachments must be less
    than 8MB when using the `email_send` method. If necessary, larger messages
    can be sent using the ``-immediate`` parameter or the `email_immediate`
-   method described in the section on :ref:`composing email
-   <sending-email-composing>`.
+   method described in the section :ref:`sending-email-composing`.
 
 
 Email Composition
@@ -145,7 +144,7 @@ text alternative, embedded HTML images, and attachments.
       Blind carbon copy recipients of the message.
    :param -body:
       The body of the message. Either a ``-body`` or ``-html`` part (or both) is
-      required. See the section on sending HTML Messages for details about how
+      required. See the section :ref:`sending-email-html` for details about how
       to create HTML and mixed messages.
    :param -html:
       The HTML part of the message. Either a ``-body`` or ``-html`` part (or
@@ -303,6 +302,8 @@ in this case, "announce@example.com". ::
       -body    = include('format.lasso')
    )
 
+
+.. _sending-email-html:
 
 Send HTML Messages
 ------------------

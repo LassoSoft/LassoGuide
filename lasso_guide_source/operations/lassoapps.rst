@@ -58,8 +58,8 @@ The root node is named "lasso9", so it is accessed using the path
 The default web server configuration for Lasso Server will direct all paths
 beginning with :file:`/lasso9` to Lasso Server. This is the default method for
 accessing LassoApps over the web, though the configuration can be modified for
-other situations or server requirements. See the section on :ref:`server
-configuration <lassoapps-server-configuration>` below.
+other situations or server requirements. See the section
+:ref:`lassoapps-server-configuration` for more information.
 
 
 Resources
@@ -120,8 +120,8 @@ Constructing a LassoApp
 
 All LassoApps reside as either a file or a directory located within the
 "LassoApps" directory, which is located within the current Lasso home. (See the
-section on :ref:`Lasso instance home directories
-<instance-manager-home-directory>` for more details.)
+section :ref:`instance-manager-home-directory` in the :ref:`instance-manager`
+chapter for more details.)
 
 LassoApps begin as a directory named according to the application. This
 directory contains all of the files for the application. Before deployment, this
@@ -377,7 +377,7 @@ as a return from the primary::
 The following sets local variables to the returned values from the primary
 processor, in the order they are specified. The number of local variables being
 set must match the number of elements in the returned staticarray. (See the
-section on :ref:`decompositional assignment <variables-decompositional>`.) ::
+section :ref:`variables-decompositional` in the :ref:`variables` chapter.) ::
 
    local(txt, usersAry) = #1
 
@@ -637,7 +637,8 @@ is restarted.
 
 .. note::
    For information on compiling without using a makefile or on Windows, see the
-   section on :ref:`compiling Lasso code <command-compiling-lasso>`.
+   section :ref:`command-compiling-lasso` in the :ref:`command-line-tools`
+   chapter.
 
 
 Installing the GCC compiler

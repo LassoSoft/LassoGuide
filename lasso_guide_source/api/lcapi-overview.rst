@@ -194,8 +194,8 @@ How do I prevent Lasso from automatically encoding text returned from my custom 
 
 How do I debug my custom method?
    You can set breakpoints in your code and attach your debugger to
-   :program:`lassoserver`. See the section on :ref:`debugging LCAPI modules
-   <lcapi-overview-debugging>` above.
+   :program:`lassoserver`. See the section :ref:`lcapi-overview-debugging`
+   above.
 
 How do I get parameters that were passed into my method?
    Most of the parameters passed into your custom method can be retrieved using

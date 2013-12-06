@@ -9,8 +9,8 @@ source in Lasso. Native support for ODBC data sources is included in Lasso. This
 feature allows Lasso to communicate with hundreds of ODBC-compliant data
 sources, including Sybase, DB2, Frontbase, OpenBase, Interbase, and Microsoft
 SQL Server. For more information on ODBC connectivity and availability for a
-particular data source, see the data source documentation or contact the data
-source provider.
+particular data source, see the documentation for the data source or contact the
+data source provider.
 
 Lasso accesses ODBC drivers that are set up as System DSNs. The ODBC Data Source
 Administrator utility or control panel should be used to configure the driver as

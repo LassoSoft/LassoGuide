@@ -193,8 +193,8 @@ Adding a FileMaker Server Data Source Host
 ------------------------------------------
 
 For general information about navigating Lasso Server Admin and adding a host to
-a data source, see the section on :ref:`configuring datasources
-<instance-administration-datasources>`.
+a data source, see the section :ref:`instance-administration-datasources` in
+the :ref:`instance-administration` chapter.
 
 To add a new FileMaker Server host:
 
@@ -347,8 +347,8 @@ Adding a MySQL Data Source Host
 -------------------------------
 
 For general information about navigating Lasso Server Admin and adding a host to
-a data source, see the section on :ref:`configuring data sources
-<instance-administration-datasources>`.
+a data source, see the section :ref:`instance-administration-datasources` in
+the :ref:`instance-administration` chapter.
 
 To add a new MySQL host:
 
@@ -492,8 +492,8 @@ Adding an Oracle Data Source Host
 ---------------------------------
 
 For general information about navigating Lasso Server Admin and adding a host to
-a data source, see the section on :ref:`configuring data sources
-<instance-administration-datasources>`.
+a data source, see the section :ref:`instance-administration-datasources` in
+the :ref:`instance-administration` chapter.
 
 To add a new Oracle host:
 
@@ -592,8 +592,8 @@ Adding a PostgreSQL Data Source Host
 ------------------------------------
 
 For general information about navigating Lasso Server Admin and adding a host to
-a data source, see the section on :ref:`configuring data sources
-<instance-administration-datasources>`.
+a data source, see the section :ref:`instance-administration-datasources` in
+the :ref:`instance-administration` chapter.
 
 To add a new PostgreSQL server host:
 
@@ -669,8 +669,8 @@ ODBC Data Sources
 :dfn:`ODBC` (Open Database Connectivity) is a generalized API for providing
 access to databases. Lasso 9 can communicate with any ODBC-compliant data source
 as long as the operating system has a compatible ODBC driver properly installed.
-For more information on ODBC, see the documentation included with your operating
-system.
+For more information on ODBC, see the :ref:`odbc-data-sources` chapter and the
+documentation included with your operating system.
 
 
 Requirements
@@ -720,8 +720,8 @@ Adding an ODBC Data Source Host
 -------------------------------
 
 For general information about navigating Lasso Server Admin and adding a host to
-a data source, see the section on :ref:`configuring data sources
-<instance-administration-datasources>`.
+a data source, see the section :ref:`instance-administration-datasources` in
+the :ref:`instance-administration` chapter.
 
 To add a new ODBC host:
 
@@ -822,8 +822,8 @@ Adding a SQL Server Data Source Host
 ------------------------------------
 
 For general information about navigating Lasso Server Admin and adding a host to
-a data source, see the section on :ref:`configuring data sources
-<instance-administration-datasources>`.
+a data source, see the section :ref:`instance-administration-datasources` in
+the :ref:`instance-administration` chapter.
 
 To add a new SQL Server database host:
 

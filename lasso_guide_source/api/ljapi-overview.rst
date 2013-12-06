@@ -39,8 +39,8 @@ power of the integer.
    interpreter instead of in a Lasso Server instance, you'll need to load the
    LJAPI environment. This can be done with the following two lines of code
    (replace "LJAPI9.bundle" with the name of the library for your OS's
-   installation). See the section on :ref:`loading libraries in shell scripts
-   <command-loading-libraries>` for more information. ::
+   installation). See the section :ref:`command-loading-libraries` in the
+   :ref:`command-line-tools` chapter for more information. ::
 
       lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/LJAPI9.bundle')
       ljapi_initialize

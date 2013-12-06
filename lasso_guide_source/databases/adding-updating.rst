@@ -28,8 +28,8 @@ additional keyword and pair parameters required for each database action.
    ``-delete``    Removes a record or records from a database.
    ============== ==============================================================
 
-The same instructions for character encoding and error reporting from
-:ref:`searching-displaying` apply when writing to databases.
+The same instructions for character encoding and error reporting from the
+:ref:`searching-displaying` chapter apply when writing to databases.
 
 
 Adding Records
@@ -55,10 +55,10 @@ parameters are detailed in the following table.
                     should be added. Required.
    ``-keyField``    The name of the field that holds the primary key for the
                     specified table. Recommended.
-   ``-host``        Optional inline host array. See the
-                    :ref:`database-inline-connection` section in the
+   ``-host``        Optional inline host array. See the section
+                    :ref:`database-inline-connection` in the
                     :ref:`database-interaction` chapter for more information.
-   name/value pairs A variable number of name/value pair parameters that specify
+   name/value pairs A variable number of name/value pair parameters specifying
                     the field name and initial field values for the added
                     record. Optional.
    ================ ============================================================
@@ -266,11 +266,11 @@ The required parameters are detailed in the following table.
    ``-key``         An array that specifies the search parameters to find the
                     records to be updated. Either a ``-keyField`` and
                     ``-keyValue`` or a ``-key`` is required.
-   ``-host``        Optional inline host array. See the
-                    :ref:`database-inline-connection` section in the
+   ``-host``        Optional inline host array. See the section
+                    :ref:`database-inline-connection` in the
                     :ref:`database-interaction` chapter for more information.
    name/value pairs A variable number of name/value pair parameters specifying
-                    the field values that need to be updated. Optional.
+                    the field name and values that need to be updated. Optional.
    ================ ============================================================
 
 Lasso has two methods for finding which records are to be updated.
@@ -590,8 +590,8 @@ parameters are detailed in the following table.
    ``-key``        An array that specifies the search parameters to find the
                    records to be deleted. Either a ``-keyField`` and
                    ``-keyValue`` or a ``-key`` is required.
-   ``-host``       Optional inline host array. See the
-                   :ref:`database-inline-connection` section in the
+   ``-host``       Optional inline host array. See the section
+                   :ref:`database-inline-connection` in the
                    :ref:`database-interaction` chapter for more information.
    =============== =============================================================
 

@@ -115,8 +115,8 @@ value, Lasso supports syntax for applying the operator *to* one of the operands.
 The following operators perform their operation and assign the result to the
 left-hand side operand. Only the left-hand operand can be assigned to and not
 every expression is capable of being assigned to, as described in the section on
-:ref:`assignment operators <operators-assignment>`. These assignment expressions
-do not produce a value. ::
+:ref:`assignment operations <operators-assignment>`. These assignment
+expressions do not produce a value. ::
 
    // Equivalent to op1 = op1 + op2
    op1 += op2
@@ -214,6 +214,8 @@ boolean values. These operators are broken down into several categories.
    deprecated; change your code to call `string->size` to check for empty
    strings. All other objects and values are assumed to be "true".
 
+
+.. _operators-logical:
 
 Logical Operators
 -----------------
