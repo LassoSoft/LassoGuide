@@ -403,10 +403,10 @@ full details about these commands.
    |``-script.param``         |sorted. The optional parameter can be accessed from     |
    |                          |within the script.                                      |
    +--------------------------+--------------------------------------------------------+
-   |``-script.preFind``       |Runs a script before the find is processed.             |
+   |``-script.preFind`` and   |Runs a script before the find is processed.             |
    |``-script.preFind.param`` |                                                        |
    +--------------------------+--------------------------------------------------------+
-   |``-script.preSort``       |Runs a script after the find has been processed, but    |
+   |``-script.preSort`` and   |Runs a script after the find has been processed, but    |
    |``-script.preSort.param`` |before the results are sorted.                          |
    +--------------------------+--------------------------------------------------------+
 
@@ -423,8 +423,8 @@ be used within a solution to refer to a record on multiple pages, but should not
 be stored as permanent references to FileMaker records.
 
 
-Return Current Record ID
-------------------------
+Return the Current Record ID
+----------------------------
 
 The Record ID for the current record can be returned using `keyField_value`. The
 following example shows an `inline` method that performs a ``-findAll`` action
@@ -488,8 +488,8 @@ order of that value list will be used as the custom sorting order for records in
 the result set. Note also that FileMaker Server only supports specifying up to
 nine sort fields in a single database search.
 
-Return Custom Sorted Results
-----------------------------
+Return Results in Custom Sort Order
+-----------------------------------
 
 Specify ``-sortField`` and ``-sortOrder`` keyword parameters within the search
 inline. The records are first sorted by "title" in custom order, then by
