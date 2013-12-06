@@ -38,12 +38,12 @@ content or when rewriting outgoing response data.
 Web Requests
 ============
 
-Lasso Server makes web request data available through a `web_request` object. An
-instance of this object is created for each request before processing begins.
-The request handling code can obtain its request object instance by calling the
-`web_request` method.
+Lasso Server makes web request data available through a :type:`web_request`
+object. An instance of this object is created for each request before processing
+begins. The request handling code can obtain its request object instance by
+calling the `web_request` method.
 
-The `web_request` object has the following purposes:
+The :type:`web_request` object has the following purposes:
 
 -  Making available all variables sent by the web server
 -  Including all client header information
@@ -51,8 +51,8 @@ The `web_request` object has the following purposes:
 -  Including tokenized GET arguments
 -  Including processed POST body data
 
-A `web_request` object will process the incoming data to make access to the
-various components of a web request more convenient. For example, all HTTP
+A :type:`web_request` object will process the incoming data to make access to
+the various components of a web request more convenient. For example, all HTTP
 cookies are found and separated made available through the
 `web_request->cookies` or `web_request->cookie(name)` methods. Standard HTTP
 headers are made available through accessors such as `web_request->requestURI`
@@ -67,8 +67,8 @@ of which are made available through the `web_request->fileUploads` method,
 described below.
 
 
-Request Headers
----------------
+Reading Request Headers
+-----------------------
 
 The incoming HTTP request headers are pre-processed by the web server and then
 further processed by Lasso. All header names are normalized to uppercase by the
@@ -77,7 +77,7 @@ underscores (``_``). Once received by Lasso, any leading ``HTTP_`` prepended by
 the web server to each variable is stripped. All underscores (``_``) are then
 converted to dashes (``-``).
 
-The `web_request` object makes header data available through the following
+The :type:`web_request` object makes header data available through the following
 methods. All header names and values are treated as strings.
 
 .. type:: web_request
@@ -143,8 +143,8 @@ A zero or "false" is returned for other non-existent value types.
    =================================== ==================== ====================
 
 
-GET and POST Arguments
-----------------------
+Reading GET and POST Arguments
+------------------------------
 
 Lasso automatically tokenizes GET arguments and processes the POST body into a
 series of name/value pairs according to the sent content type. These two sets of
@@ -156,11 +156,11 @@ The value for any GET or POST argument is always a bytes object. The name is
 always a string.
 
 .. member:: web_request->queryParam(name::string)
+.. member:: web_request->queryParams()
 .. member:: web_request->postParam(name::string)
+.. member:: web_request->postParams()
 .. member:: web_request->param(name::string)
 .. member:: web_request->param(name::string, joiner)
-.. member:: web_request->queryParams()
-.. member:: web_request->postParams()
 .. member:: web_request->params()
 
    This set of methods refers to the GET arguments as the "query" params and any
@@ -169,21 +169,22 @@ always a string.
    matching argument's string value. If no argument matches, then a "void" value
    is returned.
 
-   The `param` method treats both argument sources as a single source with the
-   POST arguments occurring first. The `param(name::string, joiner)` method
-   presents an interface for accessing arguments that occur more than once. The
-   ``joiner`` parameter is used to determine the result of the method. If
-   ``void`` is passed, then the resulting argument values are returned in a
-   staticarray. If a string value is passed, then the argument values are joined
-   with that string in between each value. The result of passing any other
-   object type will depend on the behavior of its ``+`` operator.
+   The `params` method presents both argument sources as a single queriable
+   :type:`tie` object with the POST arguments occurring first. The
+   `param(name::string, joiner)` method presents an interface for accessing
+   arguments that occur more than once. The ``joiner`` parameter is used to
+   determine the result of the method. If "void" is passed, then the resulting
+   argument values are returned in a staticarray. If a string value is passed,
+   then the argument values are joined with that string in between each value.
+   The result of passing any other object type will depend on the behavior of
+   its ``+`` operator.
 
    The methods that accept zero parameters return all of the GET, POST, or both
    argument pairs as an object which may be iterated over or used in a query
    expression.
 
-.. member:: web_request->postString()
 .. member:: web_request->queryString()
+.. member:: web_request->postString()
 
    These methods return the respective arguments in a format similar to how they
    were received. In the case of `queryString` the GET arguments are returned
@@ -197,8 +198,9 @@ Reading Cookies
 ---------------
 
 Cookie values are sent as HTTP header fields. As such, they can be read and
-parsed from the various header-related `web_request` methods. The `web_request`
-object provides methods to directly access the pre-parsed cookie data.
+parsed from the various header-related :type:`web_request` methods. The
+:type:`web_request` object provides methods to directly access the pre-parsed
+cookie data.
 
 .. member:: web_request->cookie(named::string)
 .. member:: web_request->cookies()::trait_forEach
@@ -218,7 +220,7 @@ Lasso can process and manage files uploaded to your web server by visitors to
 your website. To allow visitors to upload files to your web server, use an HTML
 ``<form>`` tag along with an ``<input>`` tag for each file being uploaded. The
 form tag must have an "enctype" attribute of :mimetype:`multipart/form-data`,
-and the input tags for file uploads need to have a "type" attribute of "file".
+and the "input" tags for file uploads need to have a "type" attribute of "file".
 The following HTML code could be used to upload a single file to your server::
 
    <form action="upload_file.lasso" method="post" enctype="multipart/form-data">
@@ -252,7 +254,7 @@ files use the `web_request->fileUploads` method.
    contenttype
       The MIME content type of the file.
    filename
-      The original name of the file that was uploaded.
+      The original name of the uploaded file.
    tmpfilename
       The path to which the file was temporarily uploaded.
    filesize
@@ -309,7 +311,7 @@ that the browser and server are working on the uploads. Lasso comes with a
 method that will allow you to do just that.
 
 To track files, you first need an input named "_lasso_upload_tracker_id"
-with a unique value in your form. You can use `lasso_uniqueId` to generate a
+with a unique value in your form. You can use `lasso_uniqueid` to generate a
 UUID which is essentially guaranteed to be unique each time you call it. With
 that in place, while the thread that processes the form submission is working on
 uploading the files, you can check the status of that process in another thread.
@@ -335,15 +337,13 @@ progress bar that is updated every second.
    <head>
       <title>Upload A Photo</title>
       <script type="text/javascript">
-      //<!--
          function trackProgress(id) {
             window.open(
-              "/progress.lasso?id=" + id,
-              null,
-              "height=100,width=400,location=no,menubar=no,resizable=yes,scrollbars=yes,title=yes"
+               "/progress.lasso?id=" + id,
+               null,
+               "height=100,width=400,location=no,menubar=no,resizable=yes,scrollbars=yes,title=yes"
             );
          }
-      //-->
       </script>
    </head>
    <body>
@@ -379,7 +379,7 @@ progress bar that is updated every second.
    [#info->last]
    <div style="background-color: white;border: 1px solid black;width:380px;height: 20px;">
       <div style="background-color: black;height: 20px;width: [
-        380 * (decimal(#info->first) / decimal(#info->second))
+         380 * (decimal(#info->first) / decimal(#info->second))
       ]px;"></div>
    </div>
    [/if]
@@ -392,23 +392,11 @@ Web Responses
 
 Sending a response to a web request is a simple as having "The Words" in the
 targeted "\*.lasso" text file. Files requested through a web request are assumed
-to begin as plain text. Lasso code can be inserted into the file using any of
-the following text delimiters:
-
-::
-
-   <?lasso ... ?>
-
-::
-
-   <?= ... ?>
-
-::
-
-   [ ... ]
+to begin as plain text. Lasso code can be inserted into the file between any of
+the following delimiters: ``[ ... ]``, ``<?lasso ... ?>``, or ``<?= ... ?>``.
 
 Because supporting the ``[ ... ]`` delimiters can be problematic for embedding
-with other technologies (i.e. JavaScript and CSS), they can be disabled for the
+with other technologies (i.e., JavaScript and CSS), they can be disabled for the
 remainder of the file by having the literal ``[no_square_brackets]`` as the
 first line.
 
@@ -426,27 +414,27 @@ buffered for as long as possible, but can be forced out at any point using the
 or the unbound method; both have the same behavior) will complete the request by
 halting all processing and sending the existing response data as-is.
 
-The `web_response` object automatically routes requests for LassoApps. Request
-paths that begin with "/lasso9/" are reserved for LassoApp usage and will be
-routed there. Physical file paths beginning with :file:`/lasso9/` are ignored by
-Lasso Server during the processing of a web request.
+The :type:`web_response` object automatically routes requests for LassoApps.
+Request paths that begin with "/lasso9/" are reserved for LassoApp usage and
+will be routed there. Lasso Server ignores physical file paths beginning with
+"/lasso9/" during the processing of a web request.
 
 
-Include
--------
+Including Files
+---------------
 
 It is often useful to split up large template files into smaller reusable
-components. For example, a header or footer might be split out and reused on all
-pages. The `web_response` object provides a variety of methods for including
-other source code files. Files included in this way behave just as a file
-accessed directly would. That is, they begin executing as plain text and any
-Lasso code must be included between delimiters.
+components. For example, a header or footer could be split out and reused on all
+pages. The :type:`web_response` object provides a variety of methods for
+including other source code files. Files included in this way behave just as a
+file accessed directly would. That is, they begin executing as plain text and
+any Lasso code must be included between delimiters.
 
 The path to an include file can be full or relative. Complete paths from the
-file system root are accepted as well. Consult the chapter on :ref:`files` for
-more details on how file paths are treated in Lasso. Components of LassoApps can
-be included as well by beginning the path with "/lasso9/", then the app name
-and then the path to the component.
+file system root are accepted as well. Consult the :ref:`files` chapter for more
+details on how file paths are treated in Lasso. Components of LassoApps can be
+included as well by beginning the path with "/lasso9/", then the app name and
+then the path to the component.
 
 Any of the following methods can be used to include file content.
 
@@ -485,7 +473,7 @@ Any of the following methods can be used to include file content.
    file. The method will fail if the file does not exist.
 
 For compatibility and simplicity, Lasso supports the following unbound methods
-which function in the same manner as the `web_response` bound methods:
+which function in the same manner as the :type:`web_response` bound methods:
 
 .. method:: include(path::string)
 .. method:: library(path::string)
@@ -494,14 +482,14 @@ which function in the same manner as the `web_response` bound methods:
    the `web_response->include` and `web_response->includeLibrary` methods.
 
 
-Response Headers
-----------------
+Writing Response Headers
+------------------------
 
-The `web_response` object provides methods for setting the outgoing response's
-HTTP headers. When a request is begun, a few default HTTP headers are
-established. The request handler code can add, modify or remove these headers as
-needed. Headers can be set or removed freely during a request; however, once any
-data has been sent then headers can no longer be effectively manipulated.
+The :type:`web_response` object provides methods for setting the outgoing
+response's HTTP headers. When a request is begun, a few default HTTP headers are
+established. The request handler code can add, modify, or remove these headers
+as needed. Headers can be set or removed freely during a request; however, once
+any data has been sent then headers can no longer be effectively manipulated.
 
 Note that the HTTP status code and message are not HTTP headers and so are not
 manipulated through these methods.
@@ -528,26 +516,26 @@ manipulated through these methods.
    headers. This method does not check for duplicate headers.
 
 
-Set Cookies
------------
+Setting Cookies
+---------------
 
-Outgoing cookies are added to the response HTTP headers by the `web_response`
-object. It provides a method for setting a cookie and a method for enumerating
-all cookies being set.
+Outgoing cookies are added to the response HTTP headers by the
+:type:`web_response` object. It provides a method for setting a cookie and a
+method for enumerating all cookies being set.
 
 Setting a cookie requires specifying a name and a value and optionally a domain,
 expiration, path, and SSL secure flag. These values are supplied as parameters
 when setting a cookie. Cookie headers are not created until the request
 processing is completed and the response is to be sent to the client.
 
-.. member:: web_response->setCookie(nv::pair, -domain=void, -expires=void, -path=void, -secure=false)
+.. member:: web_response->setCookie(nv::pair, -domain= ?, -expires= ?, -path= ?, -secure=false)
 
    Sets the indicated cookie. Any duplicate cookie would be replaced. The first
    parameter must be the cookie :samp:`{name}={value}` pair. If used, the
    ``-domain`` and ``-path`` keyword parameters must have string values.
 
    The ``-expires`` parameter can be either a date object, a duration object, an
-   integer, a string or any object that will produce a suitable value when
+   integer, a string, or any object that will produce a suitable value when
    converted into a string. A date indicates the absolute date at which the
    cookie will expire. A duration indicates the time that the cookie should
    expire based on the time at which the cookie is being set. An integer
@@ -562,8 +550,8 @@ processing is completed and the response is to be sent to the client.
    the list will alter its resulting cookie header.
 
 
-Response Body
--------------
+Setting the Response Body
+-------------------------
 
 Lasso allows you to programatically inspect and set the contents of the response
 body. This can be useful for code that needs to clear any data that has been
@@ -573,23 +561,23 @@ already added to the response body and insert something completely different
 .. member:: web_response->rawContent
 .. member:: web_response->rawContent=(text)
 
-   The first method returns the current contents of the response body. Note, any
-   plain text or auto-collected data in the currently executing code file will
-   not be part of the body until the code file finishes processing. The second
-   method allows for setting the contents of the response body to the value
-   specified by the ``text`` parameter.
+   The first method returns the current contents of the response body. Note that
+   any plain text or auto-collected data in the currently executing code file
+   will not be part of the body until the code file finishes processing. The
+   second method allows for setting the contents of the response body to the
+   value specified by the ``text`` parameter.
 
 .. member:: web_response->sendChunk()
 
    This method is used in complex HTTP sessions, and allows for sending the HTTP
-   response body in multiple chuncks. Each time it is called, it sends the
+   response body in multiple chunks. Each time it is called, it sends the
    current contents of the response in `~web_response->rawContent` and then
    clears it for building the next chunk. If the headers for the response have
    not yet been sent, it will first send them before sending the first chunk.
 
 
-Bytes Response Data
--------------------
+Sending Response Data
+---------------------
 
 By default, the result of a request will have a :mimetype:`text/html` content
 type with a UTF-8 character set and the body data will be generated from a Lasso
@@ -607,9 +595,9 @@ should usually be adjusted to accommodate the change. Use the
 `web_response->replaceHeader` method to replace the existing header with the
 new value.
 
-The `web_response` object provides the `~web_response->sendFile` method which
-packages together many of the steps required to send binary data to the client
-to be viewed either inline or downloaded as an attachment.
+The :type:`web_response` object provides the `~web_response->sendFile` method
+which packages together many of the steps required to send binary data to the
+client to be viewed either inline or downloaded as an attachment.
 
 .. member:: web_response->sendFile(data::trait_each_sub, name = null, \
                      -type = null, -disposition = 'attachment', \
@@ -624,11 +612,11 @@ to be viewed either inline or downloaded as an attachment.
    :mailheader:`Content-Length` headers.
 
    The first parameter ("data") can be any object that supports
-   `trait_each_sub`. This includes objects such as string, bytes and file. The
-   second parameter ("name") is optional, but if given it will trigger the
-   addition of a "filename=" element to the :mailheader:`Content-Disposition`
-   header. This controls the file name that the user agent will use to save a
-   downloaded file.
+   :trait:`trait_each_sub`. This includes objects such as string, bytes, and
+   file. The second parameter ("name") is optional, but if given it will trigger
+   the addition of a "filename=" element to the
+   :mailheader:`Content-Disposition` header. This controls the file name that
+   the user agent will use to save a downloaded file.
 
    The subsequent keyword parameters control the following:
 
@@ -667,6 +655,10 @@ to be viewed either inline or downloaded as an attachment.
 .. |semi| unicode:: 0x3B
    :trim:
 
+.. method:: web_response->abort()
+
+   Stops Lasso from sending any further data. Same as calling `abort`.
+
 
 HTTP Response Status
 --------------------
@@ -694,10 +686,10 @@ At Begin and End
 ================
 
 Lasso permits arbitrary code to be run immediately before and immediately after
-a request with full access to the `web_request` and `web_response` objects. Code
-run before a request can manipulate the request data that will be used by the
-request handler code. Code run after a request can manipulate the outgoing
-headers and content body, doing things such as rewriting HTML links or
+a request with full access to the :type:`web_request` and :type:`web_response`
+objects. Code run before a request can manipulate the request data that will be
+used by the request handler code. Code run after a request can manipulate the
+outgoing headers and content body, doing things such as rewriting HTML links or
 compressing data for efficiency.
 
 Code to be run after a request completes is added during the request itself
@@ -708,14 +700,14 @@ used. These methods are described below.
 .. method:: define_atBegin(code)
 
    Installs code to be invoked at the beginning of each request. The code will
-   have access to the `web_request` and `web_response` objects that will be
-   available during the request's duration. At-begin code can set response
-   headers and data and complete the request if it chooses, thus fully
+   have access to the :type:`web_request` and :type:`web_response` objects that
+   will be available during the request's duration. At-begin code can set
+   response headers and data and complete the request if it chooses, thus fully
    intercepting the normal request URI file request and processing routines.
    This is the recommended route for applications wanting to provide virtual
    URLs. Once an at-begin is in place it cannot be removed. Multiple at-begins
    are supported and are run in the order in which they are installed. (The
-   easiest way to install an atBegin is to place it in the "LassoStartup"
+   easiest way to install an at-begin is to place it in the "LassoStartup"
    directory.)
 
    The object installed as the at-begin code is copied to each request's thread
@@ -724,8 +716,8 @@ used. These methods are described below.
    define a method as the at-begin handler and then pass a reference to that
    method as the at-begin code. For example, passing ``\foo`` to
    `define_atBegin` would pass the ``foo`` method to `define_atBegin`. It would
-   be invoked for each request and use the `web_request` and `web_response`
-   within it.
+   be invoked for each request and use the :type:`web_request` and
+   :type:`web_response` within it.
 
 .. method:: define_atEnd(code)
 .. member:: web_response->addAtEnd(code)
@@ -734,8 +726,8 @@ used. These methods are described below.
    `define_atEnd` method just calls `web_response->addAtEnd`.) At-end code is
    normally run before data is sent to the client, but this may not be the case
    if data has been manually pushed using the `web_response->sendChunk` method.
-   At-begins are executed before the session link-rewriter is run. Multiple at-
-   ends are supported and each are run in the order in which they were
+   At-begins are executed before the session link rewriter is run. Multiple
+   at-ends are supported and each are run in the order in which they were
    installed.
 
    At-ends are added on a per-request basis, as opposed to at-begins which are

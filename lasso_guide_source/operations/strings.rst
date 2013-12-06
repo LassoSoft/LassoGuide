@@ -395,7 +395,7 @@ the value of the string object. Many of these methods are documented below.
 
    Searches the value of the string object for the specified string pattern,
    returning the position of where the pattern first begins in the string object
-   value or zero if the pattern can not be found.
+   value or zero if the pattern cannot be found.
 
    An optional ``-case`` parameter can be used to specify case-sensitive pattern
    matching. The ``-offset`` and ``-length`` parameters can be used to specify a
@@ -835,7 +835,7 @@ String Encoding Methods
 .. member:: string->encodeSql92()
 
    Returns the value of the base string with any illegal characters for
-   SQL-92-compliant databases properly escaped. Not for use with MySQL.
+   SQL-92--compliant databases properly escaped. Not for use with MySQL.
 
 
 Convert Escape Sequences

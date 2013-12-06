@@ -1,21 +1,24 @@
 .. _protocols-pipes:
 
-**********************************
-Networking Protocols & Named Pipes
-**********************************
+************************************
+Networking Protocols and Named Pipes
+************************************
 
 Lasso provides objects for TCP, TCP/SSL and UDP networking. It also provides
 objects for local communications over named pipes. These networking objects are
 designed to fit tightly into the language runtime's threading model. Each method
-call which might block accepts a timeout parameter. All such timeouts are in
+call that might block accepts a timeout parameter. All such timeouts are in
 seconds.
 
 
 TCP
 ===
 
-TCP networking is provided through the `net_tcp` type. Objects of this type
-represent either the client or the server end of a connection.
+.. index:: TCP
+
+:abbr:`TCP (Transmission Control Protocol)` networking is provided through the
+:type:`net_tcp` type. Objects of this type represent either the client or the
+server end of a connection.
 
 
 Creating net_tcp Objects
@@ -25,9 +28,9 @@ Creating net_tcp Objects
 .. method:: net_tcp()
 .. method:: net_tcp(fd::filedesc)
 
-   A net_tcp object is created with no parameters. Once an object is obtained it
-   can be used to open or accept TCP connections. Alternatively, can be passed
-   a filedesc object that it will use to read and write data.
+   A :type:`net_tcp` object is created with no parameters. Once an object is
+   obtained it can be used to open or accept TCP connections. Alternatively, can
+   be passed a :type:`filedesc` object that it will use to read and write data.
 
 
 Opening TCP Connections
@@ -47,7 +50,7 @@ Opening TCP Connections
    "false" if a connection cannot be made. It will return faster than that in
    cases where the indicated server is not on the network or has no server
    listening on the indicated port. This timeout is more likely to be hit when
-   connecting to a server which is available but under heavy load and not
+   connecting to a server that is available but under heavy load and not
    processing new connections in a timely manner. This timeout value can be
    tailored for the expected network conditions. A value of "-1" indicates no
    timeout.
@@ -57,34 +60,35 @@ Accepting TCP Connections
 -------------------------
 
 A TCP server listens on a specific port for client connections. Once a client
-connects, a new net_tcp object is returned for that connection. There are
-several steps for establishing a server. The series of methods is generally:
+connects, a new :type:`net_tcp` object is returned for that connection. There
+are several steps for establishing a server. The series of methods is generally:
 `~net_tcp->bind`, `~net_tcp->listen` and then either `~net_tcp->accept` or
 `~net_tcp->forEachAccept`.
 
 .. member:: net_tcp->bind(port::integer, address::string = '0.0.0.0')
 .. member:: net_tcp->listen(backlog::integer = 128)
 
-   When acting as a server, the net_tcp object must first be bound to a local
-   port and optional address. The address can be ignored in most cases, but is
-   useful on machines that have multiple network interfaces. The bind can be
-   called before a client connection is made as well, however the operating
+   When acting as a server, the :type:`net_tcp` object must first be bound to a
+   local port and optional address. The address can be ignored in most cases,
+   but is useful on machines that have multiple network interfaces. The bind can
+   be called before a client connection is made as well, however the operating
    system will automatically bind a client connection to a random port if it is
    not already bound, so binding a client connection is usually skipped.
 
    When creating a server, `~net_tcp->listen` is called after `~net_tcp->bind`.
-   This method begins the net_tcp object accepting client connections.
+   This method allows the new object to begin accepting client connections.
 
 .. member:: net_tcp->accept(timeoutSeconds::integer = -1)
 .. member:: net_tcp->forEachAccept()
 
-   After a net_tcp object has been bound and is listening, client connections
-   can then be accepted. The `~net_tcp->accept` method is called to accept one
-   connection. The process of accepting a connection does not actually connect
-   the net_tcp server object. Instead, a new net_tcp object is returned for that
-   connection. Usually, the new connection will be passed to new thread. This
-   permits the server's thread to continue accepting new connections in a loop
-   while the newly accepted connection is free to handle itself independently.
+   After a :type:`net_tcp` object has been bound and is listening, client
+   connections can then be accepted. The `~net_tcp->accept` method is called to
+   accept one connection. The process of accepting a connection does not
+   actually establish a connection; instead, a new object is returned for that
+   connection. Usually, the new connection should be passed to the new thread.
+   This permits the server's thread to continue accepting new connections in a
+   loop while the newly accepted connection is free to handle itself
+   independently.
 
    By default, `~net_tcp->accept` will wait forever for a client to connect. The
    timeout parameter can be used to have the call return null if no client has
@@ -101,7 +105,7 @@ Closing TCP Connections
 .. member:: net_tcp->close()
 
    TCP connections should be closed as soon as they are no longer needed. Once a
-   net_tcp object has been closed it should not be used again.
+   :type:`net_tcp` object has been closed it should not be used again.
 
 .. member:: net_tcp->shutdownRd()
 .. member:: net_tcp->shutdownWr()
@@ -109,7 +113,7 @@ Closing TCP Connections
 
    These methods give greater control over closing the connection at the TCP
    level. Respectively, these methods close down communications channels for the
-   read, write or read and write directions. A `~net_tcp->close` should still be
+   read, write, or read and write directions. A `~net_tcp->close` should still be
    called after a shutdown.
 
 
@@ -135,14 +139,14 @@ Writing TCP Data
    ``length`` parameter indicates how many bytes to sent. The default value of
    "-1" indicates that all the bytes should be sent.
 
-   This method returns the number of bytes which were sent. However, this number
+   This method returns the number of bytes that were sent. However, this number
    will always match the number of bytes requested to be sent. This method
    automatically handles TCP flow control, but does not accept a timeout value.
 
 
 
-Simple Multi-Threaded Server Example
-------------------------------------
+Simple Multi-Threaded Server
+----------------------------
 
 The example below creates a simple server that returns an HTTP response that
 simply echos back the request data it received. ::
@@ -151,9 +155,10 @@ simply echos back the request data it received. ::
    handle => { #server->close }
 
    #server->bind(8080) & listen & forEachAccept => {
-      local(con) = #1  // new client connection
+      // New client connection
+      local(con) = #1
 
-      // move connection into new thread
+      // Move connection into new thread
       split_thread => {
          handle => { #con->close }
          local(request) = ''
@@ -188,11 +193,14 @@ result:
 TCP/SSL
 =======
 
-Secure sockets layer (SSL) support is provided through the `net_tcp_ssl` type.
-This type inherits from :type:`net_tcp`, so all of its methods are available
-plus a few SSL-specific additions. SSL is turned on and off for connections
-which are already established. When being used as a server, a net_tcp_ssl object
-will return new net_tcp_ssl objects with SSL turned on.
+.. index:: SSL
+
+:abbr:`SSL (Secure Sockets Layer)` support is provided through the
+:type:`net_tcp_ssl` type. This type inherits from :type:`net_tcp`, so all of its
+methods are available plus a few SSL-specific additions. SSL is turned on and
+off for connections that are already established. When being used as a server,
+creating new :type:`net_tcp_ssl` objects will return :type:`net_tcp` objects
+with SSL turned on.
 
 
 Creating net_tcp_ssl Objects
@@ -206,9 +214,9 @@ Creating net_tcp_ssl Objects
 .. method:: net_tcp_ssl()
 .. method:: net_tcp_ssl(fd::filedesc)
 
-   The first method creates and returns a new net_tcp_ssl object and accepts no
-   parameters. The second creator method can be passed a filedesc object that
-   will use to read and write data.
+   The first method creates and returns a new :type:`net_tcp_ssl` object and
+   accepts no parameters. The second creator method can be passed a
+   :type:`filedesc` object that will use to read and write data.
 
 
 Loading SSL Certificates
@@ -218,15 +226,15 @@ Loading SSL Certificates
 
    Accepts the file paths to a certificate file and a private key file. This
    method is required when creating a TCP SSL server. The paths should be full
-   OS-specific paths to the files. This method calls through to OpenSSL to the
+   OS-specific paths to the files. This method calls through to the OpenSSL
    functions ``SSL_CTX_use_certificate_chain_file`` and
    ``SSL_CTX_use_PrivateKey_file``. This method will fail if an error is
    returned from the OpenSSL functions, in which case the OpenSSL-specific error
    code and message will be set.
 
 
-Beginning & Ending SSL Sessions
--------------------------------
+Beginning and Ending SSL Sessions
+---------------------------------
 
 .. member:: net_tcp_ssl->beginTLS(timeoutSecs::integer = 5)
 
@@ -234,8 +242,8 @@ Beginning & Ending SSL Sessions
    series of communications between the two hosts, this method accepts a timeout
    parameter which will terminate the action if it takes too long to complete.
 
-   This method returns no value, but will fail if an error is produced by the
-   underlying OpenSSL library.
+   This method returns no value, but will fail if the underlying OpenSSL library
+   produces an error.
 
 .. member:: net_tcp_ssl->endTLS()
 
@@ -250,26 +258,28 @@ Accepting SSL connections is accomplished in the same manner as accepting
 non-SSL connections. However, serving SSL requires setting the certificate and
 private key files through the `net_tcp_ssl->loadCerts` method.
 
-The net_tcp_ssl object supports both `~net_tcp_ssl->accept` and
-`~net_tcp_ssl->forEachAccept` just as net_tcp does. Accepting a connection
-using either of those methods will return a net_tcp_ssl object which has
-started the SSL session. Because some protocols require connections to be
-established first and then switched to SSL, `net_tcp_ssl` also provides an
-`~net_tcp_ssl->acceptNoSSL` method.
+The :type:`net_tcp_ssl` object supports both `~net_tcp_ssl->accept` and
+`~net_tcp_ssl->forEachAccept` just as :type:`net_tcp` does. Accepting a
+connection using either of those methods will return a :type:`net_tcp_ssl`
+object that has started the SSL session. Because some protocols require
+connections to be established first and then switched to SSL,
+:type:`net_tcp_ssl` also provides an `~net_tcp_ssl->acceptNoSSL` method.
 
 .. member:: net_tcp_ssl->acceptNoSSL(timeoutSeconds::integer = -1)::net_tcp_ssl
 
-   Accepts a new connection and returns a net_tcp_ssl object for it. This
-   connections has not yet started an SSL session and operates just as a net_tcp
-   connection would. SSL can be started though the `net_tcp_ssl->beginTLS`
-   method.
+   Accepts a new connection and returns a :type:`net_tcp_ssl` object for it.
+   This connection has not yet started an SSL session and operates just as a
+   :type:`net_tcp` connection would. SSL can be started via the
+   `net_tcp_ssl->beginTLS` method.
 
 
 UDP
 ===
 
-UDP is a connectionless protocol. It is used to transmit individual packets of
-data to a server.
+.. index:: UDP
+
+:abbr:`UDP (User Datagram Protocol)` is a connectionless protocol. It is used to
+transmit individual packets of data to a server.
 
 
 Creating net_udp Objects
@@ -279,19 +289,19 @@ Creating net_udp Objects
 .. method:: net_udp()
 .. method:: net_udp(fd::filedesc)
 
-   The first method accepts no parameters and returns a new net_udp object.
-   Alternatively, a filedesc object that will be used to read and write data can
-   be passed as a parameter.
+   The first method accepts no parameters and returns a new :type:`net_udp`
+   object. Alternatively, a :type:`filedesc` object that will be used to read
+   and write data can be passed as a parameter.
 
 
 Reading UDP Data
 ----------------
 
-Reading UDP data requires first binding a net_udp object to a specific port and
-optional address. Once bound, data can be read through the `net_udp->readPacket`
-method which returns data as an object of type :type:`net_udp_packet`. This
-contains the bytes sent as well as the address of the sender and the port from
-which it was sent.
+Reading UDP data requires first binding a :type:`net_udp` object to a specific
+port and optional address. Once bound, data can be read through the
+`net_udp->readPacket` method which returns data as an object of type
+:type:`net_udp_packet`. This contains the bytes sent as well as the address of
+the sender and the port from which it was sent.
 
 .. member:: net_udp->readPacket(maxBytes::integer, timeoutSeconds::integer = -1)
 
@@ -305,7 +315,7 @@ which it was sent.
    returning a "null" value. The default value of "-1" indicates that the method
    should wait forever.
 
-   When successful, this method returns a net_udp_packet object.
+   When successful, this method returns a :type:`net_udp_packet` object.
 
 .. type:: net_udp_packet
 .. method:: net_udp_packet(bytes, name, port)
@@ -326,7 +336,7 @@ which it was sent.
 Writing UDP Data
 ----------------
 
-With a net_udp object, data is sent one packet at a time to a particular
+With a :type:`net_udp` object, data is sent one packet at a time to a particular
 address and port combination. The receivers must be waiting to accept packets
 from other hosts.
 
@@ -341,24 +351,26 @@ Closing net_udp Objects
 
 .. member:: net_udp->close()
 
-   Although net_udp objects do not maintain a connection, they must still be
-   closed when they are no longer needed to free up resources.
+   Although :type:`net_udp` objects do not maintain a connection, they must
+   still be closed when they are no longer needed to free up resources.
 
 
 Named Pipes
 ===========
 
-A named pipe is a means of communication between processes on a single local
-machine. One process begins listening on a pipe with a particular name. Other
-processes connect to that pipe and data is exchanged. The :type:`net_named_pipe`
-type inherits from :type:`net_tcp` and so all of the same methods for reading
-and writing bytes data are available. Named pipe usage differs in that the bind
-and connect methods takes a pipe name parameter (with no port number). The
-`net_named_pipe->accept` method will return a `net_named_pipe` object for the
-new connection.
+.. index:: socket, named pipe
 
-The net_named_pipe objects are implemented as UNIX domain sockets on UNIX-based
-systems and as Named Pipes on Windows.
+A :dfn:`named pipe` is a means of communication between processes on a single
+local machine. One process begins listening on a pipe with a particular name.
+Other processes connect to that pipe and data is exchanged. The
+:type:`net_named_pipe` type inherits from :type:`net_tcp` and so all of the same
+methods for reading and writing bytes data are available. Named pipe usage
+differs in that the bind and connect methods takes a pipe name parameter (with
+no port number). The `net_named_pipe->accept` method will return a
+:type:`net_named_pipe` object for the new connection.
+
+The :type:`net_named_pipe` objects are implemented as UNIX domain sockets on
+UNIX-based systems and as named pipes on Windows.
 
 
 Creating net_named_pipe Objects
@@ -368,9 +380,9 @@ Creating net_named_pipe Objects
 .. method:: net_named_pipe()
 .. method:: net_named_pipe(fd::filedesc)
 
-   The first method accepts no parameters and returns a new net_named_pipe
-   object. Alternatively, a filedesc object that will be used to read and write
-   data can be passed as a parameter.
+   The first method accepts no parameters and returns a new `net_named_pipe`
+   object. Alternatively, a :type:`filedesc` object that will be used to read
+   and write data can be passed as a parameter.
 
 
 Opening Named Pipe Connections
@@ -395,6 +407,6 @@ Accepting Named Pipe Connections
    there is a problem creating the pipe.
 
    The `~net_named_pipe->listen` and `~net_named_pipe->accept` methods operate
-   as described for their `net_tcp` counterparts, except that
-   `net_named_pipe->accept` will return new net_named_pipe objects for each new
-   connection.
+   as described for their :type:`net_tcp` counterparts, except that
+   `net_named_pipe->accept` will return new :type:`net_named_pipe` objects for
+   each new connection.
