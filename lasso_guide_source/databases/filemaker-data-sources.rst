@@ -48,7 +48,7 @@ Layout
 Record
    FileMaker records are referenced using a single ``-keyValue`` rather than a
    ``-keyField`` and ``-keyValue`` pair. The ``-keyField`` in FileMaker is
-   always the record ID that is set internally.
+   always the Record ID that is set internally.
 
 Field
    The value for any field in the current layout in FileMaker can be returned
@@ -625,7 +625,7 @@ be used along with the Record ID of the related field in the format
 section on portals below for more information.
 
 The following example shows an ``-update`` action being performed in a database
-"contacts". The related field "last_call_time", with a record ID of "9", from
+"contacts". The related field "last_call_time", with a Record ID of "9", from
 the "calls" database is updated for "Jane Person". The new value is returned. ::
 
    inline(

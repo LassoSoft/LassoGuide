@@ -10,13 +10,13 @@ name/value pair parameters in order to perform the desired database action in a
 specific database and table or within a specific record.
 
 The inline parameters documented in this chapter are listed in
-:ref:`searching-search-parameters`. The sections that follow describe the
+:ref:`searching-displaying-parameters`. The sections that follow describe the
 additional keyword parameters and pair parameters required for each database
 action.
 
 .. tabularcolumns:: |l|L|
 
-.. _searching-search-parameters:
+.. _searching-displaying-parameters:
 
 .. table:: Search Parameters
 
@@ -66,23 +66,19 @@ Lasso stores and retrieves data from data sources based on the preferences
 established in the "Datasources" section of Lasso Server Admin. The following
 rules apply for each standard data source:
 
-Inline Host
+:Inline Host:
    The character encoding can be specified explicitly using a ``-tableEncoding``
    parameter within the ``-host`` array.
-
-Inline Table
+:Inline Table:
    The character encoding of the table specified using the ``-table`` parameter
    is used if ``-tableEncoding`` is not specified within the ``-host`` array.
-
-MySQL
+:MySQL:
    By default all communication is encoded as UTF-8.
-
-FileMaker Server
+:FileMaker Server:
    By default all communication is in the MacRoman character set when Lasso
    Server is hosted on OS X, or in the Latin-1 (ISO-8859-1) character set when
    Lasso Server is hosted on Windows.
-
-JDBC
+:JDBC:
    All communication with JDBC data sources is encoded as UTF-8.
 
 
@@ -144,29 +140,29 @@ the sections that follow.
 
 .. table:: -Search Action Requirements
 
-   =============== =============================================================
-   Parameter       Description
-   =============== =============================================================
-   ``-search``     The action that is to be performed. Required.
-   ``-database``   The database that should be searched. Required.
-   ``-table``      The table from the specified database that should be
-                   searched. Required.
-   ``-keyField``   The name of the field that holds the primary key for the
-                   specified table. Recommended.
-   ``-keyValue``   The particular value for the primary key of the record that
-                   should be returned. Using ``-keyValue`` overrides all the
-                   other search parameters and returns the single record
-                   specified. Optional.
-   ``-host``       Optional inline host array. See the section on
-                   :ref:`database-inline-connection` for more information.
-   Pair Parameters A variable number of name/value pair parameters specify the
-                   query that will be performed. Any pair parameters included in
-                   the search action will be used to define the query that is
-                   performed in the specified table. All pair parameters must
-                   reference a field within the database. Any fields that are
-                   not referenced will be ignored for the purposes of the
-                   search.
-   =============== =============================================================
+   ================ ============================================================
+   Parameter        Description
+   ================ ============================================================
+   ``-search``      The action that is to be performed. Required.
+   ``-database``    The database that should be searched. Required.
+   ``-table``       The table from the specified database that should be
+                    searched. Required.
+   ``-keyField``    The name of the field that holds the primary key for the
+                    specified table. Recommended.
+   ``-keyValue``    The particular value for the primary key of the record that
+                    should be returned. Using ``-keyValue`` overrides all the
+                    other search parameters and returns the single record
+                    specified. Optional.
+   ``-host``        Optional inline host array. See the section on
+                    :ref:`database-inline-connection` for more information.
+   name/value pairs A variable number of name/value pair parameters specify the
+                    query that will be performed. Any pair parameters included
+                    in the search action will be used to define the query that
+                    is performed in the specified table. All pair parameters
+                    must reference a field within the database. Any fields that
+                    are not referenced will be ignored for the purposes of the
+                    search.
+   ================ ============================================================
 
 
 Search a Database Using an Inline
