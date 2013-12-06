@@ -10,9 +10,9 @@ Lasso 9 allows access to FileMaker Server 7--12 Advanced and FileMaker Server
 and options that are unique to FileMaker Server connections including
 ``-layoutResponse`` and ``-noValueLists``.
 
-While Lasso is a predominantly data-source-independent platform, it does include
-many FileMaker-specific options as documented in this chapter. However, all of
-the common procedures outlined in the :ref:`database-interaction`,
+While Lasso is a predominantly data source--independent platform, it does
+include many FileMaker-specific options as documented in this chapter. However,
+all of the common procedures outlined in the :ref:`database-interaction`,
 :ref:`searching-displaying`, and :ref:`adding-updating` chapters can be used
 with FileMaker data sources.
 
@@ -26,7 +26,7 @@ Terminology
 ===========
 
 Since Lasso works with many different data sources this documentation uses
-data-source-agnostic terms to refer to databases, tables, and fields. The
+data source--agnostic terms to refer to databases, tables, and fields. The
 following terms that are used in the FileMaker documentation are equivalent to
 their Lasso counterparts:
 
@@ -278,7 +278,7 @@ For example, the following criteria returns records where the "first_name" is
 
 The following criteria instead returns records where the "first_name" is "John"
 or the "last_name" is "Doe". This would return records for "John Doe" as well as
-"Jane Doe" and "John Walker": ``-opLogical='or', -eq, 'first_name'='John', -eq,
+"Jane Doe" and "John Walker": ``-opLogical='Or', -eq, 'first_name'='John', -eq,
 'last_name'='Doe'``
 
 
@@ -287,9 +287,9 @@ Complex Queries with FileMaker 9 and Later
 
 Starting with FileMaker Server 9, a search request is made up of one or more
 queries. By default a single query is generated and all of the search terms
-within it are combined using an "and" operator. Additional queries can be added
-to either extend the found set using an "or" operator or to omit records from
-the found set using a "not" operator. These queries correspond precisely to find
+within it are combined using an "And" operator. Additional queries can be added
+to either extend the found set using an "Or" operator or to omit records from
+the found set using a "Not" operator. These queries correspond precisely to find
 requests within the FileMaker Server user interface.
 
 Each field can only be listed once per query. The standard Lasso operators can
@@ -299,7 +299,7 @@ used for more complex criteria. It may also be necessary to use multiple queries
 for more complex search criteria.
 
 Search requests in FileMaker Server 9 and later do not support the not equals
-operator or any of the "not"-variant operators. Instead, these should be created
+operator or any of the "Not"-variant operators. Instead, these should be created
 by combining an omit query with the appropriate affirmative operator. The
 ``-opLogical``, ``-opBegin``, and ``-opEnd`` operators are not supported. The
 ``-or`` and ``-not`` operators must be used instead.
@@ -319,7 +319,7 @@ by combining an omit query with the appropriate affirmative operator. The
             from the result set.
    ======== ====================================================================
 
-A search with a single query uses an "and" operator to combine each of the
+A search with a single query uses an "And" operator to combine each of the
 search terms. Records where the field "first_name" begins with the letter "J"
 and the field "last_name" begins with the letter "D" can be found using the
 following search terms in Lasso. Each record in the result set will match every
@@ -381,34 +381,34 @@ full details about these commands.
 
 .. table:: FileMaker Additional Parameters
 
-   +--------------------------+--------------------------------------------------------+
-   |Keyword                   |Description                                             |
-   +==========================+========================================================+
-   |``-layoutResponse``       |Returns the result set using the layout specified in    |
-   |                          |this parameter rather than the layout used to specify   |
-   |                          |the database action.                                    |
-   +--------------------------+--------------------------------------------------------+
-   |``-noValueLists``         |Suppresses the fetching of value list data for          |
-   |                          |FileMaker Server data sources.                          |
-   +--------------------------+--------------------------------------------------------+
-   |``-relatedSets.filter``   |If set to "layout", FileMaker will return only the      |
-   |                          |number of related records shown in portals on the       |
-   |                          |current layout. Defaults to returning all records up to |
-   |                          |the number set by ``-relatedSets.max``.                 |
-   +--------------------------+--------------------------------------------------------+
-   |``-relatedSets.max``      |Sets the number of related records returned. Can be set |
-   |                          |to a number or "all".                                   |
-   +--------------------------+--------------------------------------------------------+
-   |``-script`` and           |Runs a script after the find has been processed and     |
-   |``-script.param``         |sorted. The optional parameter can be accessed from     |
-   |                          |within the script.                                      |
-   +--------------------------+--------------------------------------------------------+
-   |``-script.preFind`` and   |Runs a script before the find is processed.             |
-   |``-script.preFind.param`` |                                                        |
-   +--------------------------+--------------------------------------------------------+
-   |``-script.preSort`` and   |Runs a script after the find has been processed, but    |
-   |``-script.preSort.param`` |before the results are sorted.                          |
-   +--------------------------+--------------------------------------------------------+
+   +----------------------------+--------------------------------------------------------+
+   |Keyword                     |Description                                             |
+   +============================+========================================================+
+   |``-layoutResponse``         |Returns the result set using the layout specified in    |
+   |                            |this parameter rather than the layout used to specify   |
+   |                            |the database action.                                    |
+   +----------------------------+--------------------------------------------------------+
+   |``-noValueLists``           |Suppresses the fetching of value list data for          |
+   |                            |FileMaker Server data sources.                          |
+   +----------------------------+--------------------------------------------------------+
+   |``-relatedSets.filter``     |If set to "layout", FileMaker will return only the      |
+   |                            |number of related records shown in portals on the       |
+   |                            |current layout. Defaults to returning all records up to |
+   |                            |the number set by ``-relatedSets.max``.                 |
+   +----------------------------+--------------------------------------------------------+
+   |``-relatedSets.max``        |Sets the number of related records returned. Can be set |
+   |                            |to a number or "All".                                   |
+   +----------------------------+--------------------------------------------------------+
+   || ``-script``               |Runs a script after the find has been processed and     |
+   || ``-script.param``         |sorted. The optional parameter can be accessed from     |
+   |                            |within the script.                                      |
+   +----------------------------+--------------------------------------------------------+
+   || ``-script.preFind``       |Runs a script before the find is processed.             |
+   || ``-script.preFind.param`` |                                                        |
+   +----------------------------+--------------------------------------------------------+
+   || ``-script.preSort``       |Runs a script after the find has been processed, but    |
+   || ``-script.preSort.param`` |before the results are sorted.                          |
+   +----------------------------+--------------------------------------------------------+
 
 
 Primary Key Field and Record ID

@@ -59,7 +59,7 @@ MySQL Data Source
 :Operators:
    ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-ft``, ``-gt``, ``-gte``, ``-lt``,
    ``-lte``, ``-nbw``, ``-ncn``, ``-new``, ``-nrx``, ``-rx``,
-   ``-opBegin``/``-opEnd`` with "and", "or", "not".
+   ``-opBegin``/``-opEnd`` with "And", "Or", "Not".
 :KeyField:
    ``-keyField``/``-keyValue`` and ``-key=array``
 
@@ -83,8 +83,8 @@ Oracle Data Source
    ``-update``
 :Operators:
    ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
-   ``-nbw``, ``-ncn``, ``-new``, ``-opBegin``/``-opEnd`` with "and", "or",
-   "not".
+   ``-nbw``, ``-ncn``, ``-new``, ``-opBegin``/``-opEnd`` with "And", "Or",
+   "Not".
 :KeyField:
    ``-keyField``/``-keyValue``
 
@@ -112,8 +112,8 @@ PostgreSQL Data Source
    ``-update``
 :Operators:
    ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
-   ``-nbw``, ``-ncn``, ``-new``, ``-opBegin``/``-opEnd`` with "and", "or",
-   "not".
+   ``-nbw``, ``-ncn``, ``-new``, ``-opBegin``/``-opEnd`` with "And", "Or",
+   "Not".
 :KeyField:
    ``-keyField``/``-keyValue``
 
@@ -141,8 +141,8 @@ SQL Server Data Source
    ``-update``
 :Operators:
    ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
-   ``-nbw``, ``-ncn``, ``-new``, ``-opBegin``/``-opEnd`` with "and", "or",
-   "not".
+   ``-nbw``, ``-ncn``, ``-new``, ``-opBegin``/``-opEnd`` with "And", "Or",
+   "Not".
 :KeyField:
    ``-keyField``/``-keyValue``
 
@@ -163,8 +163,8 @@ SQLite Data Source
    ``-update``
 :Operators:
    ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
-   ``-nbw``, ``-ncn``, ``-new``, ``-opBegin``/``-opEnd`` with "and", "or",
-   "not".
+   ``-nbw``, ``-ncn``, ``-new``, ``-opBegin``/``-opEnd`` with "And", "Or",
+   "Not".
 :KeyField:
    ``-keyField``/``-keyValue``
 

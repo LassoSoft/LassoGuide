@@ -37,8 +37,8 @@ The following chart details the features of this data source connector.
    ``-update``
 :Operators:
    ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
-   ``-nbw``, ``-ncn``, ``-new``; ``-opBegin``/``-opEnd`` with "and", "or",
-   "not".
+   ``-nbw``, ``-ncn``, ``-new``; ``-opBegin``/``-opEnd`` with "And", "Or",
+   "Not".
 :KeyField:
    ``-keyField``/``-keyValue``
 
