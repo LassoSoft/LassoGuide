@@ -57,8 +57,8 @@ MySQL Data Source
    ``-add``, ``-delete``, ``-exec``, ``-findAll``, ``-prepare``, ``-search``,
    ``-show``, ``-sql``, ``-update``
 :Operators:
-   ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-ft``, ``-gt``, ``-gte``, ``-lt``,
-   ``-lte``, ``-nbw``, ``-ncn``, ``-new``, ``-nrx``, ``-rx``,
+   ``-bw``, ``-cn``, ``-eq``, ``-ew``, ``-gt``, ``-gte``, ``-lt``, ``-lte``,
+   ``-nbw``, ``-ncn``, ``-new``, ``-ft``, ``-rx``, ``-nrx``,
    ``-opBegin``/``-opEnd`` with "And", "Or", "Not".
 :KeyField:
    ``-keyField``/``-keyValue`` and ``-key=array``
@@ -339,19 +339,19 @@ the table below. Basic use of the ``-operator`` parameter is described in the
                              value). Only one ``-ft`` operator may be used per
                              action, and no ``-sortField`` parameter should be
                              specified.
-   ``-op='nrx'`` or ``-rx``  Regular Expression. If used, then regular
+   ``-op='nrx'`` or ``-rx``  Regular Expression Search. If used, then regular
                              expressions may be used as part of the search field
                              value. Returns records matching the regular
                              expression value for that field.
-   ``-op='nrx'`` or ``-nrx`` Not Regular Expression. If used, then regular
-                             expressions may be used as part of the search field
-                             value. Returns records that do not match the
-                             regular expression value for that field.
+   ``-op='nrx'`` or ``-nrx`` Not Regular Expression Search. If used, then
+                             regular expressions may be used as part of the
+                             search field value. Returns records that do not
+                             match the regular expression value for that field.
    ========================= ===================================================
 
 .. note::
    For more information on full-text searches and the regular expressions
-   supported in MySQL, see the MySQL documentation.
+   supported in MySQL, see the `MySQL documentation`_.
 
 
 Perform a Full-Text Search on a Field
@@ -667,7 +667,7 @@ Null Values
 "NULL" value in a SQL data source designates that there is no value for a
 particular field. This is similar to setting a field to an empty string (e.g.
 ``'fieldname'=''``), however the two are different in SQL data sources. For more
-information about "NULL" values, see the data source documentation.
+information about "NULL" values, see the documentation for the data source.
 
 
 Add or Update a Null Field Value
@@ -953,3 +953,5 @@ with the same code by changing the type from "checkbox" to "radio". ::
 
 .. note::
    Storing multiple values is only supported using "SET" field types.
+
+.. _MySQL documentation: http://dev.mysql.com/doc/

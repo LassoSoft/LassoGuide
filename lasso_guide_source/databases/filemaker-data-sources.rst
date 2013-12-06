@@ -198,27 +198,27 @@ FileMaker data source connectors.
 
 .. table:: FileMaker Search Operators
 
-   ======== ====================================================================
-   Operator Description
-   ======== ====================================================================
-   ``-bw``  Begins With. Matches records where any word in the field begins with
-            the specified substring. This is the default if no other operator is
-            specified.
-   ``-cn``  Contains. Matches records where any word in the field contains the
-            substring.
-   ``-eq``  Equals. Matches records where any word in the field exactly matches
-            the string.
-   ``-ew``  Ends With. Matches records where any word in the field ends with the
-            specified substring.
-   ``-gt``  Greater Than. Matches records where the field value is greater than
-            the parameter.
-   ``-gte`` Greater Than or Equals.
-   ``-lt``  Less Than. Matches records where the field value is less than the
-            parameter.
-   ``-lte`` Less Than or Equals.
-   ``-rx``  Use a FileMaker search expression. See the table below for a list of
-            symbols.
-   ======== ====================================================================
+   ========================= ===================================================
+   Operator                  Description
+   ========================= ===================================================
+   ``-op='bw'`` or ``-bw``   Begins With. Matches records where any word in the
+                             field begins with the specified substring. This is
+                             the default if no other operator is specified.
+   ``-op='cn'`` or ``-cn``   Contains. Matches records where any word in the
+                             field contains the substring.
+   ``-op='eq'`` or ``-eq``   Equals. Matches records where any word in the field
+                             exactly matches the string.
+   ``-op='ew'`` or ``-ew``   Ends With. Matches records where any word in the
+                             field ends with the specified substring.
+   ``-op='gt'`` or ``-gt``   Greater Than. Matches records where the field value
+                             is greater than the parameter.
+   ``-op='gte'`` or ``-gte`` Greater Than or Equals.
+   ``-op='lt'`` or ``-lt``   Less Than. Matches records where the field value is
+                             less than the parameter.
+   ``-op='lte'`` or ``-lte`` Less Than or Equals.
+   ``-op='rx'`` or ``-rx``   Use a FileMaker search expression. See the table
+                             below for a list of symbols.
+   ========================= ===================================================
 
 Note that there is no ``-neq`` operator or other negated operators. It is
 necessary to use a ``-not`` query to omit records from the found set instead.
@@ -227,7 +227,7 @@ following search terms must be used: ``-not, -op='eq', 'first_name'='Joe'``
 
 The ``-rx`` operator can be used to pass a raw FileMaker search expression as a
 query. This allows the use of any of the FileMaker search symbols. See the
-FileMaker documentation for a full explanation of how these symbols work.
+`FileMaker documentation` for a full explanation of how these symbols work.
 
 .. tabularcolumns:: |l|L|
 
@@ -249,9 +249,10 @@ FileMaker documentation for a full explanation of how these symbols work.
                   "Johnny". A single ``=`` matches empty fields.
    ``==``         Matches a whole field value rather than word by word. Should
                   be specified at the start of the search term.
-   ``<`` ``>``    Matches values less than or greater than a specified value.
-   ``<=`` ``>=``  Matches values less than or equal to or greater than or equal
-                  to a specified value.
+   ``<``          Matches values less than a specified value.
+   ``<=``         Matches values less than or equal to a specified value.
+   ``>``          Matches values greater than a specified value.
+   ``>=``         Matches values greater than or equal to a specified value.
    ``//``         Matches today's date.
    ``?``          Matches a record with invalid date data in the field.
    ``!``          Matches records that have a duplicate value. Both records will
@@ -382,7 +383,7 @@ full details about these commands.
 .. table:: FileMaker Additional Parameters
 
    +----------------------------+--------------------------------------------------------+
-   |Keyword                     |Description                                             |
+   |Parameter                   |Description                                             |
    +============================+========================================================+
    |``-layoutResponse``         |Returns the result set using the layout specified in    |
    |                            |this parameter rather than the layout used to specify   |
@@ -399,15 +400,15 @@ full details about these commands.
    |``-relatedSets.max``        |Sets the number of related records returned. Can be set |
    |                            |to a number or "All".                                   |
    +----------------------------+--------------------------------------------------------+
-   || ``-script``               |Runs a script after the find has been processed and     |
-   || ``-script.param``         |sorted. The optional parameter can be accessed from     |
+   |``-script`` and             |Runs a script after the find has been processed and     |
+   |``-script.param``           |sorted. The optional parameter can be accessed from     |
    |                            |within the script.                                      |
    +----------------------------+--------------------------------------------------------+
-   || ``-script.preFind``       |Runs a script before the find is processed.             |
-   || ``-script.preFind.param`` |                                                        |
+   |``-script.preFind`` and     |Runs a script before the find is processed.             |
+   |``-script.preFind.param``   |                                                        |
    +----------------------------+--------------------------------------------------------+
-   || ``-script.preSort``       |Runs a script after the find has been processed, but    |
-   || ``-script.preSort.param`` |before the results are sorted.                          |
+   |``-script.preSort`` and     |Runs a script after the find has been processed, but    |
+   |``-script.preSort.param``   |before the results are sorted.                          |
    +----------------------------+--------------------------------------------------------+
 
 
@@ -590,8 +591,8 @@ Specify the name of the related field within a `field` method. The related field
 must be contained in the current layout either individually or within a portal.
 In a one-to-one relationship, the value from the single related record will be
 returned. In a one-to-many relationship, the value from the first related record
-as defined by the relationship options will be returned. See the section on
-portals below for more control over one-to-many relationships.
+as defined by the relationship options will be returned. See the section
+:ref:`filemaker-portals` below for more control over one-to-many relationships.
 
 The following example shows a ``-findAll`` action being performed in a database
 "contacts". The related field "last_call_time" from the "calls" database is
@@ -622,7 +623,7 @@ portal.
 In one-to-one or one-to-many relationships, the fully qualified field name must
 be used along with the Record ID of the related field in the format
 ``table::field.id``, where "id" is the related field's Record ID. See the
-section on portals below for more information.
+section :ref:`filemaker-portals` below for more information.
 
 The following example shows an ``-update`` action being performed in a database
 "contacts". The related field "last_call_time", with a Record ID of "9", from
@@ -641,6 +642,8 @@ the "calls" database is updated for "Jane Person". The new value is returned. ::
 
    // => 12:14:56
 
+
+.. _filemaker-portals:
 
 Portals
 -------
@@ -853,3 +856,5 @@ code by changing the type from "radio" to "checkbox". ::
    //    <input type="radio" name="title" value="Dr." /> Dr.
    //    <p><input type="submit" name="submit" value="Add Record"></p>
    // </form>
+
+.. _FileMaker documentation: http://www.filemaker.com/support/product/documentation.html

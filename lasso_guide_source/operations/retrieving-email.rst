@@ -200,9 +200,8 @@ Using Email_Pop
 ---------------
 
 This section includes examples of the most common tasks that are performed using
-the :type:`email_pop` type. See the section on :ref:`email parsing
-<retrieving-email-parsing>` for examples of downloading messages and parsing
-them for storage in a database.
+the :type:`email_pop` type. See the section :ref:`retrieving-email-parsing`
+for examples of downloading messages and parsing them for storage in a database.
 
 
 Download and Delete All Emails from a POP Server
@@ -226,8 +225,7 @@ message from the server::
    #myPOP->close
 
 Each downloaded message can be processed using the techniques described in the
-section on :ref:`email parsing <retrieving-email-parsing>` or can be stored in a
-database.
+section :ref:`retrieving-email-parsing` or can be stored in a database.
 
 
 Leave Mail on Server and Only Download New Messages
@@ -285,7 +283,7 @@ are set to determine whether either action should take place. ::
    #myPOP->close
 
 The downloaded headers can be processed using the techniques described in the
-section on :ref:`email parsing <retrieving-email-parsing>`.
+section :ref:`retrieving-email-parsing`.
 
 
 .. _retrieving-email-parsing:
@@ -483,21 +481,21 @@ turn.
 
    .. table:: Email Header Methods
 
-      ======================================== =======================================
-      Method Name                              Email Header
-      ======================================== =======================================
-      `email_parse->to`                        :mailheader:`To`
-      `email_parse->from`                      :mailheader:`From`
-      `email_parse->cc`                        :mailheader:`CC`
-      `email_parse->bcc`                       :mailheader:`BCC`
-      `email_parse->subject`                   :mailheader:`Subject`
-      `email_parse->date`                      :mailheader:`Date`
-      `email_parse->content_type`              :mailheader:`Content-Type (MIME Type)`
-      `email_parse->boundary`                  :mailheader:`Content-Type (boundary)`
-      `email_parse->charset`                   :mailheader:`Content-Type (charset)`
-      `email_parse->content_disposition`       :mailheader:`Content-Disposition`
-      `email_parse->content_transfer_encoding` :mailheader:`Content-Transfer-Encoding`
-      ======================================== =======================================
+      ========================================== =========================================
+      Email Header Method                        Email Header
+      ========================================== =========================================
+      ``email_parse->to``                        :mailheader:`To`
+      ``email_parse->from``                      :mailheader:`From`
+      ``email_parse->cc``                        :mailheader:`CC`
+      ``email_parse->bcc``                       :mailheader:`BCC`
+      ``email_parse->subject``                   :mailheader:`Subject`
+      ``email_parse->date``                      :mailheader:`Date`
+      ``email_parse->content_type``              :mailheader:`Content-Type (MIME Type)`
+      ``email_parse->boundary``                  :mailheader:`Content-Type (boundary)`
+      ``email_parse->charset``                   :mailheader:`Content-Type (charset)`
+      ``email_parse->content_disposition``       :mailheader:`Content-Disposition`
+      ``email_parse->content_transfer_encoding`` :mailheader:`Content-Transfer-Encoding`
+      ========================================== =========================================
 
    The methods `email_parse->to`, `email_parse->from`, `email_parse->cc`, and
    `email_parse->bcc` also accept ``-extract``, ``-comment``, and ``-safeEmail``

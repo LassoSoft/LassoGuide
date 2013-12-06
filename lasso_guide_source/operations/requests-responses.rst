@@ -106,7 +106,7 @@ A zero or "false" is returned for other non-existent value types.
 .. table:: Web Request Variable Methods
 
    =================================== ==================== ====================
-   Method Name                         Web Request Variable Return Type
+   Web Request Method                  Web Request Variable Return Type
    =================================== ==================== ====================
    ``web_request->contentLength``      CONTENT_LENGTH       integer
    ``web_request->contentType``        CONTENT_TYPE         string

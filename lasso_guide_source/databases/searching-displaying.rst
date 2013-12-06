@@ -153,8 +153,9 @@ the sections that follow.
                     should be returned. Using ``-keyValue`` overrides all the
                     other search parameters and returns the single record
                     specified. Optional.
-   ``-host``        Optional inline host array. See the section on
-                    :ref:`database-inline-connection` for more information.
+   ``-host``        Optional inline host array. See the section
+                    :ref:`database-inline-connection` in the
+                    :ref:`database-interaction` chapter for more information.
    name/value pairs A variable number of name/value pair parameters specify the
                     query that will be performed. Any pair parameters included
                     in the search action will be used to define the query that
@@ -197,8 +198,8 @@ If the search was successful then the following results will be returned::
    // <br />John Doe
 
 Additional pair parameters and keyword parameters can be used to generate more
-complex searches. These techniques are documented in the following section on
-:ref:`searching-operators`.
+complex searches. These techniques are documented in the section
+:ref:`searching-operators` later in this chapter.
 
 
 Search a Database Using Visitor-Supplied Values
@@ -261,26 +262,25 @@ create complex database queries. These parameters are summarized in
 
 .. table:: Operator Parameters
 
-   +-----------------------+-------------------------------------------------------+
-   |Parameters             |Description                                            |
-   +=======================+=======================================================+
-   || ``-operatorLogical`` |Specifies the logical operator for the search.         |
-   || ``-opLogical``       |Abbreviation is ``-opLogical``. Defaults to "And".     |
-   +-----------------------+-------------------------------------------------------+
-   || ``-operator``        |When specified before a pair parameter, establishes    |
-   || ``-op``              |the search operator for that pair parameter.           |
-   |                       |Abbreviation is ``-op``. Defaults to "bw". See below   |
-   |                       |for a full list of field operators. Operators can also |
-   |                       |be written as ``-bw``, ``-ew``, ``-cn``, etc.          |
-   +-----------------------+-------------------------------------------------------+
-   || ``-operatorBegin``   |Specifies the logical operator for all search          |
-   || ``-opBegin``         |parameters until ``-operatorEnd`` is reached.          |
-   |                       |Abbreviation is ``-opBegin``.                          |
-   +-----------------------+-------------------------------------------------------+
-   || ``-operatorEnd``     |Specifies the end of a logical operator grouping       |
-   || ``-opEnd``           |started with ``-operatorBegin``. Abbreviation is       |
-   |                       |``-opEnd``.                                            |
-   +-----------------------+-------------------------------------------------------+
+   +------------------------+------------------------------------------------------------+
+   |Parameter               |Description                                                 |
+   +========================+============================================================+
+   |``-operatorLogical`` or |Specifies the logical operator for the search. Abbreviation |
+   |``-opLogical``          |is ``-opLogical``. Defaults to "And".                       |
+   +------------------------+------------------------------------------------------------+
+   |``-operator`` or        |When specified before a pair parameter, establishes the     |
+   |``-op``                 |search operator for that pair parameter. Abbreviation is    |
+   |                        |``-op``. Defaults to "bw". See below for a full list of     |
+   |                        |field operators. Operators can also be written as ``-bw``,  |
+   |                        |``-ew``, ``-cn``, etc.                                      |
+   +------------------------+------------------------------------------------------------+
+   |``-operatorBegin`` or   |Specifies the logical operator for all search parameters    |
+   |``-opBegin``            |until ``-operatorEnd`` is reached. Abbreviation is          |
+   |                        |``-opBegin``.                                               |
+   +------------------------+------------------------------------------------------------+
+   |``-operatorEnd`` or     |Specifies the end of a logical operator grouping started    |
+   |``-opEnd``              |with ``-operatorBegin``. Abbreviation is ``-opEnd``.        |
+   +------------------------+------------------------------------------------------------+
 
 The operator parameters are divided into two categories:
 
@@ -324,54 +324,26 @@ regular expression operators.
 
 .. table:: Field Operators
 
-   +----------------+----------------------------------------------------------+
-   |Operators       |Description                                               |
-   +================+==========================================================+
-   || ``-op='bw'``  |Begins With. Default if no operator is set.               |
-   || ``-bw``       |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='nbw'`` |Not Begins With.                                          |
-   || ``-nbw``      |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='cn'``  |Contains.                                                 |
-   || ``-cn``       |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='ncn'`` |Not Contains.                                             |
-   || ``-ncn``      |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='ew'``  |Ends With.                                                |
-   || ``-ew``       |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='new'`` |Not Ends With.                                            |
-   || ``-new``      |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='eq'``  |Equals.                                                   |
-   || ``-eq``       |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='neq'`` |Not Equals.                                               |
-   || ``-neq``      |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='ft'``  |Full-Text. MySQL databases only.                          |
-   || ``-ft``       |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='gt'``  |Greater Than.                                             |
-   || ``-gt``       |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='gte'`` |Greater Than or Equals.                                   |
-   || ``-gte``      |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='lt'``  |Less Than.                                                |
-   || ``-lt``       |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='lte'`` |Less Than or Equals.                                      |
-   || ``-lte``      |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='rx'``  |RegExp. Regular expression search. SQL databases only.    |
-   || ``-rx``       |                                                          |
-   +----------------+----------------------------------------------------------+
-   || ``-op='nrx'`` |Not RegExp. Opposite of RegExp. SQL databases only.       |
-   || ``-nrx``      |                                                          |
-   +----------------+----------------------------------------------------------+
+   ========================= ===================================================
+   Operator                  Description
+   ========================= ===================================================
+   ``-op='bw'`` or ``-bw``   Begins With. Default if no operator is set.
+   ``-op='nbw'`` or ``-nbw`` Not Begins With.
+   ``-op='cn'`` or ``-cn``   Contains.
+   ``-op='ncn'`` or ``-ncn`` Not Contains.
+   ``-op='eq'`` or ``-eq``   Equals.
+   ``-op='neq'`` or ``-neq`` Not Equals.
+   ``-op='ew'`` or ``-ew``   Ends With.
+   ``-op='new'`` or ``-new`` Not Ends With.
+   ``-op='gt'`` or ``-gt``   Greater Than.
+   ``-op='gte'`` or ``-gte`` Greater Than or Equals.
+   ``-op='lt'`` or ``-lt``   Less Than.
+   ``-op='lte'`` or ``-lte`` Less Than or Equals.
+   ``-op='ft'`` or ``-ft``   Full-Text Search. MySQL databases only.
+   ``-op='rx'`` or ``-rx``   Regular Expression Search. MySQL databases only.
+   ``-op='nrx'`` or ``-nrx`` Not Regular Expression Search. MySQL databases
+                             only.
+   ========================= ===================================================
 
 
 Specify a Field Operator in an Inline
@@ -572,37 +544,39 @@ formatting and display to the visitor. The results parameters are summarized in
 
 .. table:: Results Parameters
 
-   +--------------------+----------------------------------------------------------+
-   |Parameter           |Description                                               |
-   +====================+==========================================================+
-   |``-distinct``       |Specifies that only records with distinct values in all   |
-   |                    |returned fields should be returned. MySQL only.           |
-   +--------------------+----------------------------------------------------------+
-   |``-maxRecords``     |Specifies how many records should be shown from           |
-   |                    |the found set. Optional, defaults to "50".                |
-   +--------------------+----------------------------------------------------------+
-   |``-skipRecords``    |Specifies an offset into the found set at which records   |
-   |                    |should start being shown. Optional, defaults to "1".      |
-   +--------------------+----------------------------------------------------------+
-   || ``-returnField``  |Specifies a field that should be returned in the results  |
-   || ``-returnColumn`` |of the search. Multiple ``-returnField`` parameters can   |
-   |                    |be used to return multiple fields. Optional, defaults to  |
-   |                    |returning all fields in the searched table.               |
-   +--------------------+----------------------------------------------------------+
-   || ``-sortField``    |Specifies that the results should be sorted based         |
-   || ``-sortColumn``   |on the data in the named field. Multiple                  |
-   |                    |``-sortField`` parameters can be used for complex         |
-   |                    |sorts. Optional, defaults to returning data in the        |
-   |                    |order it appears in the database.                         |
-   +--------------------+----------------------------------------------------------+
-   |``-sortOrder``      |When specified after a ``-sortField`` parameter,          |
-   |                    |specifies the order of the sort, either "ascending",      |
-   |                    |"descending" or custom. Optional, defaults to             |
-   |                    |"ascending" for each ``-sortField``.                      |
-   +--------------------+----------------------------------------------------------+
-   |``-sortRandom``     |Specifies that a MySQL database should randomly sort the  |
-   |                    |returned data set.                                        |
-   +--------------------+----------------------------------------------------------+
+   +---------------------+-----------------------------------------------------+
+   |Parameter            |Description                                          |
+   +=====================+=====================================================+
+   |``-distinct``        |Specifies that only records with distinct values in  |
+   |                     |all returned fields should be returned. MySQL only.  |
+   +---------------------+-----------------------------------------------------+
+   |``-maxRecords``      |Specifies how many records should be shown from the  |
+   |                     |found set. Optional, defaults to "50".               |
+   +---------------------+-----------------------------------------------------+
+   |``-skipRecords``     |Specifies an offset into the found set at which      |
+   |                     |records should start being shown. Optional, defaults |
+   |                     |to "1".                                              |
+   +---------------------+-----------------------------------------------------+
+   |``-returnField`` and |Specifies a field that should be returned in the     |
+   |``-returnColumn``    |results of the search. Multiple ``-returnField``     |
+   |                     |parameters can be used to return multiple fields.    |
+   |                     |Optional, defaults to returning all fields in the    |
+   |                     |searched table.                                      |
+   +---------------------+-----------------------------------------------------+
+   |``-sortField`` and   |Specifies that the results should be sorted based on |
+   |``-sortColumn``      |the data in the named field. Multiple ``-sortField`` |
+   |                     |parameters can be used for complex sorts. Optional,  |
+   |                     |defaults to returning data in the order it appears   |
+   |                     |in the database.                                     |
+   +---------------------+-----------------------------------------------------+
+   |``-sortOrder``       |When specified after a ``-sortField`` parameter,     |
+   |                     |specifies the order of the sort, either "ascending", |
+   |                     |"descending" or custom. Optional, defaults to        |
+   |                     |"ascending" for each ``-sortField``.                 |
+   +---------------------+-----------------------------------------------------+
+   |``-sortRandom``      |Specifies that a MySQL database should randomly sort |
+   |                     |the returned data set.                               |
+   +---------------------+-----------------------------------------------------+
 
 The results parameters are divided into three categories:
 
@@ -781,9 +755,9 @@ Parameters that sort and limit the found set work the same as they do for
                  Required.
    ``-keyField`` The name of the field that holds the primary key for the
                  specified table. Recommended.
-   ``-host``     Optional inline host array. See the section on
-                 :ref:`database-inline-connection` in the Database Interaction
-                 Fundamentals chapter for more information.
+   ``-host``     Optional inline host array. See the section
+                 :ref:`database-inline-connection` in the
+                 :ref:`database-interaction` chapter for more information.
    ============= ===============================================================
 
 
@@ -859,9 +833,9 @@ required.
    ``-database`` The database that should be searched. Required.
    ``-table``    The table from the specified database that should be searched.
                  Required.
-   ``-keyField`` The name of the field that holds the primary key
-                 for the specified table. Recommended.
-   ``-host``     Optional inline host array. See the section on
+   ``-keyField`` The name of the field that holds the primary key for the
+                 specified table. Recommended.
+   ``-host``     Optional inline host array. See the section
                  :ref:`database-inline-connection` in the
                  :ref:`database-interaction` chapter for more information.
    ============= ===============================================================
@@ -893,7 +867,7 @@ Displaying Data
 
 The examples in this chapter have all relied on the `records` method and `field`
 method to display the results of the search that have been performed. This
-section describes the use of these methods in more detail. (See the section on
+section describes the use of these methods in more detail. (See the section
 :ref:`database-action-results` in the :ref:`database-interaction` chapter for
 method documentation and more information.)
 
