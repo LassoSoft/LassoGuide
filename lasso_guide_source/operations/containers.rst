@@ -35,7 +35,7 @@ Creating Pair Objects
 
 .. method:: pair()
 .. method:: pair(p::pair)
-.. method:: pair(f, s)
+.. method:: pair(value, value)
 
    A pair is created in one of three ways. First, a zero parameter call to the
    `pair` method will generate a pair with the first and second values set to
@@ -53,8 +53,8 @@ Using Pair Objects
 
    These methods return the first or second element of a pair.
 
-.. member:: pair->first=(f)
-.. member:: pair->second=(s)
+.. member:: pair->first=(value)
+.. member:: pair->second=(value)
 
    These methods set the first or second element of a pair to the passed value.
 
@@ -79,7 +79,7 @@ Creating Array Objects
 ^^^^^^^^^^^^^^^^^^^^^^
 
 .. method:: array()
-.. method:: array(e, ...)
+.. method:: array(value, ...)
 
    An array can be created with zero or more parameters. All parameters passed
    to the `array` method will be inserted into the new array.
@@ -88,8 +88,8 @@ Creating Array Objects
 Using Array Objects
 ^^^^^^^^^^^^^^^^^^^
 
-.. member:: array->insert(v)
-.. member:: array->insert(v, position::integer)
+.. member:: array->insert(value)
+.. member:: array->insert(value, position::integer)
 
    These methods add new elements to the array. The first method adds the
    element to the end of the array. The second method permits the position of
@@ -206,7 +206,7 @@ Creating Staticarray Objects
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. method:: staticarray(...)
-.. method:: staticarray_join(count::integer, e)
+.. method:: staticarray_join(count::integer, value)
 
    The first method creates a new staticarray given zero or more elements. The
    second method, `staticarray_join`, creates a new staticarray of the given
@@ -252,7 +252,7 @@ Using Staticarray Objects
    ``startPosition`` parameter indicating where the search should begin. The
    `find` method returns a new array containing all of the matched objects.
 
-.. member:: staticarray->join(count::integer, o)::staticarray
+.. member:: staticarray->join(count::integer, value)::staticarray
 .. member:: staticarray->join(s::staticarray)::staticarray
 
    These methods combine the staticarray with other elements to create a new
@@ -276,11 +276,11 @@ Using Staticarray Objects
    the elements to return. The elements are returned as a new staticarray.
 
 .. member:: staticarray->+(s::staticarray)::staticarray
-.. member:: staticarray->+(o)::staticarray
+.. member:: staticarray->+(value)::staticarray
 
    The ``+`` operator can be used with staticarrays to create a new staticarray
-   with the additional elements. The fist variant returns a new staticarray with
-   all the elements from the two staticarrays, and the second returns a
+   with the additional elements. The first variant returns a new staticarray
+   with all the elements from the two staticarrays, and the second returns a
    staticarray with all the elements of the first and the additional element on
    the right-hand side of the operator.
 
@@ -309,9 +309,9 @@ Creating List Objects
 Using List Objects
 ^^^^^^^^^^^^^^^^^^
 
-.. member:: list->insertFirst(e)
-.. member:: list->insertLast(e)
-.. member:: list->insert(e)
+.. member:: list->insertFirst(value)
+.. member:: list->insertLast(value)
+.. member:: list->insert(value)
 
    These methods insert new elements into the list. Elements can be inserted at
    the beginning or the ending of the list. The `insert` method with no
@@ -553,9 +553,9 @@ Creating Set Objects
 Using Set Objects
 ^^^^^^^^^^^^^^^^^
 
-.. member:: set->find(k)
-.. member:: set->get(k)
-.. member:: set->contains(k)::boolean
+.. member:: set->find(key)
+.. member:: set->get(key)
+.. member:: set->contains(key)::boolean
 
    These methods find the given key within the set. The `find` method will
    return the key if it is found; it returns "void" if the key is not within the
@@ -563,11 +563,11 @@ Using Set Objects
    contained within the set. The `contains` method returns "true" if the key is
    in the set.
 
-.. member:: set->insert(k)
+.. member:: set->insert(key)
 
    Inserts the key into the set. Any duplicate key value is replaced.
 
-.. member:: set->remove(k)
+.. member:: set->remove(key)
 .. member:: set->removeAll()
 
    The `remove` method removes the indicated key from the set. If the key is not
