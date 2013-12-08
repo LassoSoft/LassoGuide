@@ -5,9 +5,9 @@
 FileMaker Data Sources
 **********************
 
-Lasso 9 allows access to FileMaker Server 7--12 Advanced and FileMaker Server
-9--12 through the Lasso Connector for FileMaker. Lasso provides several methods
-and options that are unique to FileMaker Server connections including
+Lasso Server allows access to FileMaker Server 7--12 Advanced and FileMaker
+Server 9--12 through the Lasso Connector for FileMaker. Lasso provides several
+methods and options that are unique to FileMaker Server connections including
 ``-layoutResponse`` and ``-noValueLists``.
 
 While Lasso is a predominantly data source--independent platform, it does
@@ -221,9 +221,10 @@ FileMaker data source connectors.
    ========================= ===================================================
 
 Note that there is no ``-neq`` operator or other negated operators. It is
-necessary to use a ``-not`` query to omit records from the found set instead.
-For example, to find records where the field "first_name" is not "Joe" the
-following search terms must be used: ``-not, -op='eq', 'first_name'='Joe'``
+necessary to use a ``-not`` query to omit records from the found set instead, as
+explained further below. For example, to find records where the field
+"first_name" is not "Joe" the following search terms must be used: ``-not,
+-op='eq', 'first_name'='Joe'``
 
 The ``-rx`` operator can be used to pass a raw FileMaker search expression as a
 query. This allows the use of any of the FileMaker search symbols. See the
@@ -309,16 +310,16 @@ by combining an omit query with the appropriate affirmative operator. The
 
 .. _filemaker-search-keywords:
 
-.. table:: FileMaker Search Keywords
+.. table:: FileMaker Search Operator Parameters
 
-   ======== ====================================================================
-   Keyword  Description
-   ======== ====================================================================
-   ``-or``  Starts a new query. Records that match the query will be added to
-            the result set.
-   ``-not`` Starts an omit query. Records that match the query will be omitted
-            from the result set.
-   ======== ====================================================================
+   ========= ===================================================================
+   Parameter Description
+   ========= ===================================================================
+   ``-or``   Starts a new query. Records that match the query will be added to
+             the result set.
+   ``-not``  Starts an omit query. Records that match the query will be omitted
+             from the result set.
+   ========= ===================================================================
 
 A search with a single query uses an "And" operator to combine each of the
 search terms. Records where the field "first_name" begins with the letter "J"

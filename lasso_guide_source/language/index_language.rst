@@ -14,10 +14,10 @@
    being burdened with large amounts of foundational code. It is designed to get
    out of the way and let you focus on your work.
 
-   Lasso 9 is also extremely powerful. It allows you to perform complex
-   operations on data and build reliable, dynamic solutions for the web. By
-   reading this section you will gain familiarity with Lasso syntax, and a
-   clearer understanding of the abstractions required for creating optimized web
+   Lasso is also extremely powerful. It allows you to perform complex operations
+   on data and build reliable, dynamic solutions for the web. By reading this
+   section you will gain familiarity with Lasso syntax, and a clearer
+   understanding of the abstractions required for creating optimized web
    applications using Lasso.
 
 .. container:: col eight first

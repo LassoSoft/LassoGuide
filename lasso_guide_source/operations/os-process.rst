@@ -13,7 +13,7 @@ the :type:`os_process` type. This type allows local processes to be launched
 with an array of parameters and shell variables. Some processes will execute and
 return a result immediately. Other processes can be left open for interactive
 read/write operations. The :type:`os_process` type enables Lasso users to do
-things such as execute AppleScripts, print PDF files, and filter data through
+tasks such as execute AppleScripts, print PDF files, and filter data through
 external applications.
 
 The :type:`os_process` type works across all three platforms that Lasso
@@ -22,9 +22,9 @@ systems can run many of the same commands and shell scripts. Windows presents a
 very different environment including DOS commands and batch files.
 
 The :type:`os_process` type is implemented in an LCAPI module that is loaded by
-default for Lasso 9 Server, but not loaded when executing Lasso 9 scripts from
-the command line. To load the LCAPI module for use in Lasso 9 shell scripts,
-place the following line of code in your script::
+default with Lasso Server, but not loaded when executing Lasso scripts from the
+command line. To load the LCAPI module for use with Lasso shell scripts, place
+the following line of code in your script::
 
    // If LASSO9_MASTER_HOME is specified, find module there
    // Otherwise, find it in the LASSO9_HOME path

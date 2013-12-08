@@ -6,18 +6,18 @@
 Lasso Instance Manager
 **********************
 
-:dfn:`Lasso Instance Manager` is a companion tool wrapped into Lasso 9 Server
-that permits the management of one or more Lasso 9 :dfn:`instances`, which are
-isolated :program:`lassoserver` processes each running within their own
-environment. This tool can install and uninstall new Lasso 9 instances and
+:dfn:`Lasso Instance Manager` is a companion tool integrated into Lasso Server
+that permits the management of one or more Lasso Server :dfn:`instances`, which
+are isolated :program:`lassoserver` processes each running within their own
+environment. This tool can install and uninstall new Lasso Server instances and
 allows those instances to be configured in one convenient location.
 
-Lasso Instance Manager stands as an intermediary between the individual Lasso 9
-instances and the web server. Each Lasso 9 instance is configured with a host
-name pattern. By default, Lasso Instance Manager catches all requests with the
-file extension "|dot| lasso" and all requests where the URI path begins with
-"/lasso9/", and it uses the instance's host name patterns to determine which
-running Lasso 9 instance should serve each request.
+Lasso Instance Manager stands as an intermediary between the individual Lasso
+Server instances and the web server. Each Lasso Server instance is configured
+with a host name pattern. By default, Lasso Instance Manager catches all
+requests with the file extension "|dot| lasso" and all requests where the URI
+path begins with "/lasso9/", and it uses the instance's host name patterns to
+determine which running instance should serve each request.
 
 
 Initialization
@@ -29,23 +29,23 @@ OS X this will be a web page; under Linux you will see output in the terminal
 giving the URL :ref:`!http://your-server-domain.name/lasso9/instancemanager`.
 
 When Lasso Instance Manager is run for the first time, it will look for an
-existing Lasso 9.0 installation that was installed through the Lasso 9.0
-installer package and will import that instance. No files will be removed. The
-Admin LassoApp will be updated and any existing Lasso 9.0 Apache 2 configuration
-file will be disabled.
+existing Lasso Server installation that was installed through the Lasso Server
+9.0 installer and will import that instance. No files will be removed. The Admin
+LassoApp will be updated and any existing Lasso Server 9.0 Apache 2
+configuration file will be disabled.
 
-If no existing Lasso 9.0 instance is located, a new Lasso 9 instance will be
-created named "default". This default instance will be configured with the same
-administrative username and password that was selected when first initializing
-Lasso Instance Manager, and is set up to respond to all host names.
+If no existing Lasso Server 9.0 instance is located, a new Lasso Server instance
+will be created named "default". This default instance will be configured with
+the same administrative username and password that was selected when first
+initializing Lasso Instance Manager, and is set up to respond to all host names.
 
 
 User Interface
 ==============
 
 The main interface for Lasso Instance Manager consists of a list of all known
-Lasso 9 instances on that machine. Below this list is a button for creating new
-instances.
+Lasso Server instances on that machine. Below this list is a button for creating
+new instances.
 
 Each instance in the list shows:
 
@@ -118,9 +118,8 @@ Host Patterns
 
 Instance URL
    This URL is used only within the Instance Manager. This URL provides a
-   convenient link from the Instance Manager to a page served by that Lasso
-   instance. By default, this link will point to the Lasso 9 Admin App for that
-   instance.
+   convenient way to link from the Instance Manager to a page served by that
+   Lasso instance.
 
 Description
    An optional description of this Lasso instance.

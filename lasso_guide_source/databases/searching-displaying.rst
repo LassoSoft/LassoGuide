@@ -585,7 +585,7 @@ The result parameters are divided into three categories:
 #. The portion of the **Found Set** being shown is specified using the
    ``-maxRecords`` and ``-skipRecords`` parameters. ``-maxRecords`` sets the
    number of records that will be iterated over in the `records` method, while
-   ``-skipRecords`` sets the offset into the found set that is shown. These two 
+   ``-skipRecords`` sets the offset into the found set that is shown. These two
    parameters define the window of records that are shown and can be used to
    navigate through a found set.
 

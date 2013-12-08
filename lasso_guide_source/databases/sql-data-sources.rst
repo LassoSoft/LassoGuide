@@ -234,8 +234,8 @@ Security Tips
 SQL Data Source Methods
 =======================
 
-Lasso 9 includes methods to identify which type of SQL data source is being
-used. These methods are summarized below.
+Lasso includes methods to identify which type of SQL data source is being used.
+These methods are summarized below.
 
 .. method:: lasso_datasourceIsMySQL(name)
 
@@ -305,7 +305,7 @@ and "example", which are available through MySQL::
 Searching Records with SQL Data Sources
 =======================================
 
-In Lasso 9, there are unique search operations that can be performed using SQL
+In Lasso, there are unique search operations that can be performed using SQL
 data sources. These search operations take advantage of special functions such
 as full-text indexing, regular expressions, record limits, and distinct values
 to allow optimal performance and power when searching. All these search
@@ -607,7 +607,7 @@ documentation for the data source. ::
 Adding and Updating Records
 ===========================
 
-In Lasso 9, there are special add and update operations that can be performed
+In Lasso, there are special add and update operations that can be performed
 using SQL data sources in addition to all add and update operations described in
 the :ref:`adding-updating` chapter.
 

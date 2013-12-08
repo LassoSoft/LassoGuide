@@ -59,7 +59,7 @@ manipulate strings.
 Unicode Characters
 ------------------
 
-Lasso 9 supports the processing of Unicode characters in all :type:`string`
+Lasso supports the processing of Unicode characters in all :type:`string`
 methods. The escape sequence ``\u…`` can be used with 4 hexadecimal digits (or
 ``\U…`` with 8 or ``\x…`` with 2) to embed a Unicode character in a string. For
 example ``\u002F`` represents a "/" character, ``\u0020`` represents a space,

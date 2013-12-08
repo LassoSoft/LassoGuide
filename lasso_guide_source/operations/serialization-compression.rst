@@ -103,10 +103,6 @@ method. This trait should be added when the type is defined.
    Serializes the object and returns the resulting data. That data can then be
    deserialized, re-creating an object with the correct data.
 
-
-serialization_element Objects
------------------------------
-
 :type:`serialization_element` objects are used when both serializing and
 deserializing. This simple object must be created with a key and a value. The
 key and value are made available through methods named accordingly.

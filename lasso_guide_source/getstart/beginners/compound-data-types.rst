@@ -62,7 +62,7 @@ calling a member method on an object. We stored an ``array`` object into the
 "all_greetings" variable and then interacted with it using that object's method
 named "get".
 
-If we wanted to add things to the end of the array, we could do so by passing
+If we wanted to add elements to the end of the array, we could do so by passing
 the value we want to add to the `array->insert` method. For the array object
 stored in the "all_greetings" variable, it would look like this::
 

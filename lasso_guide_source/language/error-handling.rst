@@ -79,7 +79,7 @@ concert to provide comprehensive error handling:
 Error Reporting
 ===============
 
-Lasso 9 delivers an error report in response to an error that prevents
+Lasso Server delivers an error report in response to an error that prevents
 processing of the page. This error report contains an error code, message, and
 stack trace which can be used to identify the cause and location of an error.
 The various parts of the stack can be accessed using the ``error_…`` methods.
@@ -454,8 +454,8 @@ to execute successfully.
 Any `fail` or `fail_if` methods called within `protect` capture blocks will halt
 execution only of the code contained within the `protect` capture block. Any
 `handle` capture blocks contained within the `protect` capture blocks will be
-conditionally executed. However, Lasso 9 requires these `handle` capture blocks
-to be present before the error occurs, so put them at the top of the `protect`
+conditionally executed. However, Lasso requires these `handle` capture blocks to
+be present before the error occurs, so put them at the top of the `protect`
 capture block. The Lasso page will continue executing normally after the closing
 of the `protect` capture block.
 

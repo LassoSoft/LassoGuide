@@ -4,7 +4,7 @@
 Conclusion
 **********
 
-This has been just a taste of Lasso programming. Hopefully this guide has whet
+This has been just a taste of Lasso programming. Hopefully this chapter has whet
 your appetite, and you can now begin to use it for your own projects, which is
 always the best way to learn any language.
 

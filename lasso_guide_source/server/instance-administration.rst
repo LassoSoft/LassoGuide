@@ -6,24 +6,24 @@
 Instance Administration and Configuration
 *****************************************
 
-Lasso 9 Server provides a convenient, web-based interface for configuring a
-Lasso instance's settings, managing and maintaining databases, and much more.
-This interface is referred to as the :dfn:`Lasso Server Admin`.
+Lasso Server provides a convenient, web-based interface for configuring a Lasso
+instance's settings, managing and maintaining databases, and much more. This
+interface is referred to as the :dfn:`Lasso Server Admin`.
 
 
 Accessing Lasso Server Admin
 ============================
 
-Lasso 9 Server can have multiple independent instances defined within
+Lasso Server can have multiple independent instances defined within
 :ref:`instance-manager`. Requests are distributed to each host based on the
 value of each request's :mailheader:`Host` header.
 
 The default instance will catch all incoming web requests. If no additional
 instances have been created, then Lasso Server Admin for the sole instance can
 be accessed using any domain name pointing at the server that's enabled for
-Lasso 9. (Use "localhost" if accessing Lasso Server Admin from a browser on the
-same machine as the Lasso service. Otherwise, replace "www.example.com" with the
-server's actual domain name or IP address.) ::
+Lasso Server. (Use "localhost" if accessing Lasso Server Admin from a browser on
+the same machine Lasso Server is installed on. Otherwise, replace
+"www.example.com" with the server's actual domain name or IP address.) ::
 
    http://localhost/lasso9/admin
    http://www.example.com/lasso9/admin
@@ -42,7 +42,8 @@ or if the authentication information has been stored in a keychain, passport, or
 browser preferences.
 
 If an error is displayed, make sure Lasso Server and the web server are running
-as described in the installation sections of this guide.
+as described in the installation instructions for your operating system
+elsewhere in this guide.
 
 
 User Interface
@@ -162,8 +163,8 @@ See the :ref:`datasource-setup` chapter for detailed information on connecting
 Lasso Server to various data sources.
 
 
-Entering a Lasso 9 Server License
----------------------------------
+Entering a Lasso Server License
+-------------------------------
 
 .. index:: serial number, license
 
@@ -275,7 +276,7 @@ warnings that have been logged by Lasso Server via the ``log_…`` methods. In
 this interface you can also specify the site's logging settings.
 
 .. note::
-   Configuring error logging in Lasso Server Admin is not the same thing as
+   Configuring error logging in Lasso Server Admin is not the same as
    configuring page-level error handling, such as for syntax errors and security
    errors. Page-level error handling is described in the :ref:`error-handling`
    chapter.
@@ -368,25 +369,25 @@ Delete Expired Sessions
 
 Clicking the :guilabel:`Delete Expired Sessions` button beneath the
 :guilabel:`Driver` drop-down list will remove all expired session entries from
-the currently selected session data source's table. By default, Lasso 9 Server
-periodically clears out expired sessions, so it is not usually necessary to
-run it manually.
+the currently selected session data source's table. By default, Lasso Server
+periodically clears out expired sessions, so it is not usually necessary to run
+it manually.
 
 
 Configure Session Storage Location
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, Lasso 9 Server is configured to store session information using the
+By default, Lasso Server is configured to store session information using the
 "SQLite" session driver. You can change this by following these steps:
 
 #. Select the driver you wish to use from the :guilabel:`Driver` drop-down list.
 #. If the driver is not "SQLite" or "In Memory", select a value from the
    :guilabel:`Database` drop-down list and the :guilabel:`Sessions Table`
    drop-down list. (You can click the :guilabel:`Create Sessions Table` button
-   below the :guilabel:`Sessions Table` drop-down list to have Lasso 9 create a
-   table in the selected database with the correct schema for storing sessions.
-   If you click this button, you will be given the chance to name the table
-   whatever you desire, and then that new table will be selected in the
+   below the :guilabel:`Sessions Table` drop-down list to have Lasso Server
+   create a table in the selected database with the correct schema for storing
+   sessions. If you click this button, you will be given the chance to name the
+   table whatever you desire, and then that new table will be selected in the
    :guilabel:`Sessions Table` drop-down list.)
 #. Click the :guilabel:`Select As Default Driver` button to have the
    `session_start` method use your selection for storing session information.

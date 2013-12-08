@@ -16,7 +16,7 @@ A :dfn:`regular expression` is a pattern that describes a sequence of characters
 that you want to search for in a target (or input) string. Regular expressions
 consist of letters or digits that simply match themselves, wildcards that match
 any character in a class such as whitespace or digits, and combining symbols
-that expand wildcards to match several characters rather than just one. Lasso 9
+that expand wildcards to match several characters rather than just one. Lasso
 uses the `ICU Regular Expressions package`_ for its support of regular
 expressions.
 
@@ -510,6 +510,10 @@ follows.
          according to `Unicode Standard Annex #29`_.
    ===== =======================================================================
 
+.. raw:: latex
+
+   \footnotetext[2]{http://www.unicode.org/reports/tr29/}
+
 
 Regexp Type
 ===========
@@ -673,22 +677,22 @@ faster than using the `string_replaceRegExp` method repeatedly. ::
 
    local(my_regexp) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
    #my_regexp->replaceAll(-input='The quick brown fox jumped over the lazy dog.')
-   #my_regexp->replaceAll(-input='Lasso 9 Server')
+   #my_regexp->replaceAll(-input='Lasso Server')
 
    // =>
    // Thx qxxck brxwn fxx jxmpxd xvxr thx lxzy dxg.
-   // Lxssx 9 Sxrvxr
+   // Lxssx Sxrvxr
 
 The replace pattern can also be changed if necessary. The following code changes
 both the input and replace patterns each time the regular expression is used::
 
    local(my_regexp) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
    #my_regexp->replaceAll(-input='The quick brown fox jumped over the lazy dog.', -replace='y')
-   #my_regexp->replaceAll(-input='Lasso 9 Server', -replace='z')
+   #my_regexp->replaceAll(-input='Lasso Server', -replace='z')
 
    // =>
    // Thy qyyck brywn fyx jympyd yvyr thy lyzy dyg.
-   // Lzssz 9 Szrvzr
+   // Lzssz Szrvzr
 
 The replacement pattern can reference groups from the input using ``$1`` through
 ``$9``. The following example uses a regular expression to clean up the

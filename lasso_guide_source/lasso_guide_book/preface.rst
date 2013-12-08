@@ -103,8 +103,8 @@ Here are some additional resources you may find useful:
 `LassoSoft Website <http://www.lassosoft.com/>`_
    The latest information about Lasso.
 
-`Lasso 9 source code repository <http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/>`_
-   An SVN repository containing source code for a number of Lasso 9 components.
+`Lasso source code repository <http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/>`_
+   An SVN repository containing source code for a number of Lasso components.
 
 `LassoGuide PDF <http://lassoguide.com/LassoGuide9.2.pdf>`_
    The current version of LassoGuide in PDF format.

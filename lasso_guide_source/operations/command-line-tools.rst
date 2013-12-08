@@ -228,8 +228,8 @@ following lists the variables and a description of their function:
 
    This variable is set to the path of a directory containing either the
    instance-specific libraries and startup items, or to a path containing all of
-   the Lasso 9 built-in libraries. If set to an instance-specific home
-   directory, be sure to also set the :envvar:`LASSO9_MASTER_HOME` variable.
+   the Lasso built-in libraries. If set to an instance-specific home directory,
+   be sure to also set the :envvar:`LASSO9_MASTER_HOME` variable.
 
    Default is :file:`/var/lasso/home` for OS X and Linux.
 
@@ -613,7 +613,7 @@ Compiling Lasso Code
 ====================
 
 All Lasso code is compiled before it is executed. Whether the code is a Lasso
-page being served by Lasso server or a script being run by the :program:`lasso9`
+page being served by Lasso Server or a script being run by the :program:`lasso9`
 command-line tool, behind the scenes Lasso compiles the code and then executes
 the compiled code. (Lasso does cache the compiled code for re-use, but that is
 beyond the scope of this section.)
@@ -643,7 +643,7 @@ Prerequisites
 
 The following must be installed to compile Lasso code:
 
--  Lasso 9
+-  Lasso Server installed on a supported OS
 -  Your operating systems's developer command-line tools. (Consult the
    documentation for your OS on how to install a compiler, linker, etc.)
 -  For OS X, you will also need the 10.5 SDK libraries in order to create

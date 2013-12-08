@@ -689,7 +689,7 @@ Lasso permits arbitrary code to be run immediately before and immediately after
 a request with full access to the :type:`web_request` and :type:`web_response`
 objects. Code run before a request can manipulate the request data that will be
 used by the request handler code. Code run after a request can manipulate the
-outgoing headers and content body, doing things such as rewriting HTML links or
+outgoing headers and content body, doing tasks such as rewriting HTML links or
 compressing data for efficiency.
 
 Code to be run after a request completes is added during the request itself

@@ -37,17 +37,17 @@ In order to compile LCAPI methods, types, or data source connectors you need the
 following:
 
 :OS X:
-   -  Lasso 9 installed on a supported OS
+   -  Lasso Server installed on a supported OS X version
    -  Xcode
    -  The 10.5 SDK, which does not come with the newest development tools.
       See this link for unsupported help with `installing older SDKs`_.
 
 :Linux:
-   -  Lasso 9 installed on a supported OS
+   -  Lasso Server installed on a supported Linux distribution
    -  The gcc C/C++ development libraries and executables
 
 :Windows:
-   -  Lasso 9 installed on a supported Windows OS
+   -  Lasso Server installed on a supported Windows version
    -  Microsoft Visual C++ .NET
 
 
@@ -245,8 +245,8 @@ How do I return fatal and non-fatal error codes?
 
 How do I write code that will compile easily across multiple operating systems?
    While we cannot provide a complete cross-platform programming tutorial here,
-   we can at least provide some guidance. The simplest way to make sure things
-   compile across platforms is to make sure you use standard library functions
+   we can at least provide some guidance. The simplest way to make sure code
+   compiles across platforms is to make sure you use standard library functions
    (from ``stdio.h`` and ``stdlib.h``) as much as possible: functions like
    ``strcpy()``, ``malloc()``, and ``strcmp()`` are always available on all
    platforms. Also note that \*nix platforms are case-sensitive, so when you

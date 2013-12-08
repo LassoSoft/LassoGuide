@@ -6,11 +6,10 @@ Methods
 *******
 
 Methods are the fundamental process abstraction in many languages, including
-Lasso 9. :dfn:`Methods` provide a means for encapsulating a series of
-expressions so that they can be called repeatedly as a group. Complex,
-multi-step tasks are best expressed as a group of related methods. A method is
-defined under a specific name and is associated with a signature and a code
-block.
+Lasso. :dfn:`Methods` provide a means for encapsulating a series of expressions
+so that they can be called repeatedly as a group. Complex, multi-step tasks are
+best expressed as a group of related methods. A method is defined under a
+specific name and is associated with a signature and a code block.
 
 
 Signatures

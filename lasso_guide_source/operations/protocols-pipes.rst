@@ -113,8 +113,8 @@ Closing TCP Connections
 
    These methods give greater control over closing the connection at the TCP
    level. Respectively, these methods close down communications channels for the
-   read, write, or read and write directions. A `~net_tcp->close` should still be
-   called after a shutdown.
+   read, write, or read and write directions. A `~net_tcp->close` should still
+   be called after a shutdown.
 
 
 Reading TCP Data

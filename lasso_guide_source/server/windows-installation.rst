@@ -5,7 +5,7 @@
 Windows Installation
 ********************
 
-These instructions are for installing Lasso 9 Server on 64-bit Windows Server
+These instructions are for installing Lasso Server on 64-bit Windows Server
 2012, Windows Server 2008 R2, Windows 8, and Windows 7. Supported web servers
 are IIS 8, IIS 7, and Apache 2.2.
 
@@ -16,7 +16,7 @@ are IIS 8, IIS 7, and Apache 2.2.
 Before Installing
 =================
 
-Lasso Server 9.2 requires the following Microsoft updates:
+Lasso Server requires the following Microsoft updates:
 
 -  `Microsoft .NET Framework 3.5`_ (for servers running Windows Server, use
    Server Manager to add the Application Server role, which includes .NET
@@ -38,7 +38,7 @@ Lasso Server 9.2 requires the following Microsoft updates:
 Installation
 ============
 
-Download and expand the correct `Lasso 9 Server for Windows`_ installer for your
+Download and expand the correct `Lasso Server for Windows`_ installer for your
 OS and web server from the LassoSoft website and run the installer package.
 
 When done, open :ref:`!http://your-server-domain.name/lasso9/instancemanager`
@@ -210,7 +210,7 @@ Standard 500 error page is returned instead of Lasso's default error page.
 .. _Microsoft .NET Framework 3.5: http://www.microsoft.com/en-us/download/details.aspx?id=22
 .. _Microsoft .NET Framework 4: http://www.microsoft.com/en-us/download/details.aspx?id=17718
 .. _Microsoft Visual C++ 2012 Redistributable: http://www.microsoft.com/en-us/download/details.aspx?id=30679
-.. _Lasso 9 Server for Windows: http://www.lassosoft.com/Lasso-9-Server-Download#Win
+.. _Lasso Server for Windows: http://www.lassosoft.com/Lasso-9-Server-Download#Win
 .. _Open IIS Manager: http://technet.microsoft.com/en-us/library/cc770472(v=ws.10).aspx
 .. _unofficial 64-bit installers: http://www.anindya.com/apache-http-server-2-4-4-and-2-2-24-x86-32-bit-and-x64-64-bit-windows-installers/
 .. _ImageMagick installers archive: http://ftp.sunet.se/pub/multimedia/graphics/ImageMagick/binaries/

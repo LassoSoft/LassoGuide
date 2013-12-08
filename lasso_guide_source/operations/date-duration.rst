@@ -4,7 +4,7 @@
 Date and Duration
 *****************
 
-This chapter introduces the :type:`date` and :type:`duration` types in Lasso 9.
+This chapter introduces the :type:`date` and :type:`duration` types in Lasso.
 :dfn:`Dates` are objects that represent a calendar date and/or clock time.
 :dfn:`Durations` are objects that represents a length of time in hours, minutes,
 and seconds. Date and duration objects can be manipulated using operators, and
@@ -214,7 +214,8 @@ Date Methods
 .. method:: date_gmtToLocal(value)
 
    Converts the date/time of any object that can be converted to a date object
-   from Greenwich Mean Time to the local time of the machine running Lasso 9.
+   from Greenwich Mean Time to the local time of the machine running Lasso
+   Server.
 
 .. method:: date_localToGMT(value)
 
@@ -223,9 +224,9 @@ Date Methods
 
 .. method:: date_getLocalTimeZone()
 
-   Returns the current time zone of the machine running Lasso 9 as a standard
-   GMT offset string (e.g. "-0700"). Optional ``-long`` parameter shows the name
-   of the time zone (e.g. "America/New_York").
+   Returns the current time zone of the machine running Lasso Server as a
+   standard GMT offset string (e.g. "-0700"). Optional ``-long`` parameter shows
+   the name of the time zone (e.g. "America/New_York").
 
 .. method:: date_minimum()
 
@@ -313,9 +314,9 @@ Formatting Dates
 
 Various methods take a format string for one of their parameters. A :dfn:`format
 string` is a compilation of symbols that define the format of the string to be
-output or parsed. There are two different sets of formatting strings. The
-first is the classic formatting symbols, used in earlier versions of Lasso,
-supported in Lasso 9, and detailed in the following table:
+output or parsed. There are two different sets of formatting strings. Detailed
+in the following table are the classic formatting symbols, first introduced in
+earlier versions of Lasso::
 
 .. tabularcolumns:: |l|L|
 
@@ -368,7 +369,7 @@ number with "0" so all values returned by the method are the same length.
    If the ``%z`` or ``%Z`` symbols are used when parsing a date, the resulting
    date object will represent the equivalent GMT date/time.
 
-Starting in Lasso 9, Lasso also recognizes the ICU formatting strings for both
+As of version 9, Lasso also recognizes the ICU formatting strings for both
 creating and displaying dates. These format strings simply use letters to
 specify the format without any flags (such as the ``%`` character). For example,
 to output a two-digit year, the ICU format string is ``yy`` and to output it as
@@ -379,8 +380,8 @@ characters in an ICU format string, wrap them in single quotes.
 See the ICU website for a detailed list of `ICU format string symbols`_.
 
 .. note::
-   Format strings in Lasso 9 can contain both percent-based formatting as well
-   as ICU formatting in the same string. Because of this, be sure you properly
+   Format strings in Lasso can contain both percent-based formatting as well as
+   ICU formatting in the same string. Because of this, be sure you properly
    escape any characters you don't want treated as format delimiters in your
    format string. For example, if the current date was "2013-03-09 20:15:30",
    the following code: ``date->format("day: %A")`` would produce "9PM2013:
@@ -458,7 +459,7 @@ dates converted to strings will use that format. ::
 Date Formatting Methods
 -----------------------
 
-In addition to `date_format` and `date_setFormat`, Lasso 9 also offers the
+In addition to `date_format` and `date_setFormat`, Lasso also offers the
 `date->format` and `date->setFormat` member methods for performing formatting
 adjustments on date objects.
 
@@ -585,10 +586,9 @@ methods::
 Use Locales to Format Dates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Lasso 9 introduces a new :type:`locale` type that allows for automatically
-formatting things such as dates and currency based on known standards for
-various locations. You can use :type:`locale` objects to output dates in these
-standard formats.
+The :type:`locale` type that allows for automatically formatting data such as
+dates and currency based on known standards for various locations. You can use
+:type:`locale` objects to output dates in these standard formats.
 
 .. type:: locale
 .. method:: locale(language::string, country::string =?, variant::string =?)
@@ -910,9 +910,9 @@ member methods. ::
 Date and Duration Math
 ======================
 
-Date calculations in Lasso 9 can be performed by using special ``date_…``
-methods, :type:`date` member methods, and operators. Date calculations that can
-be performed include adding or subtracting year, month, week, day, and time
+Date calculations can be performed by using special ``date_…`` methods,
+:type:`date` member methods, and operators. Date calculations that can be
+performed include adding or subtracting year, month, week, day, and time
 increments to and from dates, and calculations with durations.
 
 .. important::
@@ -926,8 +926,8 @@ increments to and from dates, and calculations with durations.
 Date Math Methods
 -----------------
 
-Lasso 9 provides a few top-level methods for performing date calculations.
-These methods are summarized below.
+Lasso provides a few top-level methods for performing date calculations. These
+methods are summarized below.
 
 .. method:: date_add(\
       value, \
@@ -1060,10 +1060,10 @@ converted to a date::
 Date Math Member Methods
 ------------------------
 
-Lasso 9 provides member methods that perform date math operations on date
-objects. These methods are used for adding durations to dates, subtracting a
-duration from a date, and determining a duration between two dates. These
-methods are summarized below.
+A number of member methods are used for performing date math operations on date
+objects, such as adding durations to dates, subtracting a duration from a date,
+and determining a duration between two dates. These methods are summarized
+below.
 
 .. member:: date->add(...)
 
@@ -1188,10 +1188,10 @@ the time difference between two dates and display as a duration::
 Date Math Operators
 -------------------
 
-Lasso 9 has the ability to perform date and duration calculations using math
-operators (similar to integer objects). If a date or duration appears to the
-left of a math operator then the appropriate math operation will be performed
-and the result will be a date or duration as appropriate.
+Date and duration math can also be performed using math operators in a manner
+similar to integer objects. If a date or duration appears to the left of a math
+operator then the appropriate math operation will be performed and the result
+will be a date or duration as appropriate.
 
 .. member:: date->+(rhs)
 

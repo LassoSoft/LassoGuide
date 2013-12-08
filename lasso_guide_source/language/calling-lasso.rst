@@ -84,8 +84,8 @@ browser.
 
 If the embedded message is not visible in the web browser or an error occurs,
 then you should make sure that Lasso Server has been properly installed on your
-machine. See the appropriate server installation guide section for your
-operating system for complete instructions.
+machine. See the appropriate installation instructions for your operating system
+elsewhere in this guide.
 
 
 .. _calling-lasso-cli:

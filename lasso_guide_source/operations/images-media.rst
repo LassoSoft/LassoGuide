@@ -6,9 +6,9 @@
 Images and Media
 ****************
 
-Lasso 9 includes features that allow you to manipulate and serve images and
-media files on the fly. The ``image_…`` methods allow you to do the following
-with image files in the supported image formats:
+Lasso includes features that allow you to manipulate and serve images and media
+files on the fly. The ``image_…`` methods allow you to do the following with
+image files in the supported image formats:
 
 -  Scaling and cropping images, facilitating the creation of thumbnail images on
    the fly.
@@ -21,11 +21,11 @@ with image files in the supported image formats:
 -  Executing extended ImageMagick commands.
 
 .. note::
-   The :type:`image` type and features in Lasso 9 are implemented using
+   The :type:`image` type and features in Lasso are implemented using
    ImageMagick 6.6.6-10 (July 7, 2011 build), which is installed as part of
-   Lasso 9 Server on OS X. Windows and Linux require ImageMagick to be installed
-   separately, which is covered in their respective installation guides. For
-   more information on ImageMagick, visit `<http://www.imagemagick.com/>`_.
+   Lasso Server on OS X. Windows and Linux require ImageMagick to be installed
+   separately, which is covered with their respective installation instructions.
+   For more information on ImageMagick, visit `<http://www.imagemagick.com/>`_.
 
 
 Image File Operations
@@ -72,7 +72,7 @@ supports reading and manipulating over 88 major file formats (not including
 subformats). A comprehensive list of `supported image formats`_ can be found at
 the ImageMagick website.
 
-A list of commonly used image formats that are certified to work with Lasso 9
+A list of commonly used image formats that are certified to work with Lasso
 out-of-the-box without requiring installation of additional components are shown
 in the table :ref:`images-media-tested-formats`.
 
@@ -160,8 +160,8 @@ Image Information Methods
 
 Information about an image can be returned using special `image` member methods.
 These methods return specific values representing the attributes of an image
-such as size, resolution, format, and file comments. All image information
-methods in Lasso 9 are defined below.
+such as size, resolution, format, and file comments. All the image information
+methods in Lasso are defined below.
 
 .. member:: image->width()::integer
 
@@ -901,9 +901,9 @@ Lasso can also be used to serve image and media files rather than merely
 referencing them by path. Files are served through Lasso using the
 `web_response->sendFile` method or a combination of the
 `web_response->replaceHeader` method and `web_response->includeBytes` method.
-Lasso 9 also includes an `image->data` method that automatically converts an
-image object to a bytes object, allowing an edited image object to be output
-using `web_response->sendFile` without it first being written to disk.
+Lasso also includes an `image->data` method that automatically converts an image
+object to a bytes object, allowing an edited image object to be output using
+`web_response->sendFile` without it first being written to disk.
 
 In order to serve an image or media file through Lasso the MIME type of the file
 must first be determined. Often, this can be discovered by looking at the

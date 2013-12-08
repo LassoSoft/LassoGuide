@@ -4,25 +4,25 @@
 Logging
 *******
 
-Lasso 9 server has a built-in error logging system that allows warning messages
-to be logged at several different levels. Each log level can be routed to one or
+Lasso Server has a built-in error logging system that allows warning messages to
+be logged at several different levels. Each log level can be routed to one or
 more destinations, allowing for a great deal of flexibility in handling.
 
 The built-in log levels include:
 
 Critical
-   Critical errors that affect the operation of Lasso 9 Server. Critical errors
+   Critical errors that affect the operation of Lasso Server. Critical errors
    are logged to all destinations by default. Typically, the server or site
    administrator will need to fix whatever is causing the critical error.
 
 Warning
    Warnings are informative messages about possible problems with the
-   functioning of Lasso 9 Server. Warnings do not always require action by the
+   functioning of Lasso Server. Warnings do not always require action by the
    server or site administrator. Warnings are logged only to the console by
    default.
 
 Detail
-   Detailed messages about the normal functioning of Lasso Service. Includes
+   Detailed messages about the normal functioning of Lasso Server. Includes
    status messages from the email queue and event scheduler, etc. Detail
    messages are logged only to the console by default.
 

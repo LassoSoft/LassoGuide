@@ -6,14 +6,14 @@
 CentOS 5/6 Installation
 ***********************
 
-These instructions are for installing Lasso 9 Server on 32-bit/64-bit CentOS 5
-or 64-bit CentOS 6.
+These instructions are for installing Lasso Server on 32-bit/64-bit CentOS 5 or
+64-bit CentOS 6.
 
 
 RPM Installation
 ================
 
-To install Lasso 9 Server from an RPM, download the appropriate `CentOS RPM`_
+To install Lasso Server from an RPM, download the appropriate `CentOS RPM`_
 for your system and run::
 
    $> yum install httpd java-1.6.0-openjdk ImageMagick mysql
@@ -29,7 +29,7 @@ From here on, you can read up on using the :ref:`instance-manager` and
 CentOS 5 32-bit/64-bit Installation with yum
 ============================================
 
-To install Lasso 9 Server with :command:`yum`, the LassoSoft yum repository must
+To install Lasso Server with :command:`yum`, the LassoSoft yum repository must
 be configured on the server. If the file does not exist, create
 :file:`/etc/yum.repos.d/CentOS5-Lasso9.repo` and enter the following::
 
@@ -42,11 +42,11 @@ be configured on the server. If the file does not exist, create
    gpgkey=http://centosyum.lassosoft.com/RPM-GPG-KEY-lassosoft
    http_caching=packages
 
-To install Lasso 9 on a **32-bit CentOS 5 system**, as root run::
+To install Lasso Server on a **32-bit CentOS 5 system**, as root run::
 
    $> yum install Lasso-Instance-Manager
 
-To install Lasso 9 on a **64-bit CentOS 5 system**, as root run::
+To install Lasso Server on a **64-bit CentOS 5 system**, as root run::
 
    $> yum install Lasso-Instance-Manager.x86_64
 
@@ -60,7 +60,7 @@ From here on, you can read up on using the :ref:`instance-manager` and
 CentOS 6 64-bit Installation with yum
 =====================================
 
-To install Lasso 9 Server with :command:`yum`, the LassoSoft yum repository must
+To install Lasso Server with :command:`yum`, the LassoSoft yum repository must
 be configured on the server. If the file does not exist, create
 :file:`/etc/yum.repos.d/CentOS6-Lasso9.repo` and enter the following::
 
@@ -73,7 +73,7 @@ be configured on the server. If the file does not exist, create
    gpgkey=http://centos6yum.lassosoft.com/RPM-GPG-KEY-lassosoft
    http_caching=packages
 
-To install Lasso 9 on a **64-bit CentOS 6 system**, as root run::
+To install Lasso Server on a **64-bit CentOS 6 system**, as root run::
 
    $> yum install Lasso-Instance-Manager
 

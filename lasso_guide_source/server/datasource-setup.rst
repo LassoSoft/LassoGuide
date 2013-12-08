@@ -5,22 +5,22 @@
 Datasource Setup
 ****************
 
-Lasso 9 Server communicates with :dfn:`data sources`, which are any type of
+Lasso Server communicates with :dfn:`data sources`, which are any type of
 software mechanism for storing and retrieving data (including databases), using
 Lasso :dfn:`data source connectors`, which are modular components that translate
 Lasso requests into commands specific to each data source. Connections to data
 sources, or :dfn:`datasources`, are configured in the "Datasources" section of
-Lasso Server Admin. Lasso 9 Server provides built-in connectors for all of the
+Lasso Server Admin. Lasso Server provides built-in connectors for all of the
 data sources listed below.
 
 Most connectors can access data sources that are installed on the same machine
-as Lasso 9 or on a remote machine. Some connectors can only access files on the
-local machine. Whether or not an ODBC data source can communicate with Lasso on
-a separate machine depends on whether or not the driver can communicate via
+as Lasso Server or on a remote machine. Some connectors can only access files on
+the local machine. Whether or not an ODBC data source can communicate with Lasso
+on a separate machine depends on whether or not the driver can communicate via
 TCP/IP.
 
 Custom data source connectors for other data sources can also be created for use
-with Lasso 9 using Lasso 9's C API (LCAPI), Java API (LJAPI) or Lasso itself
+with Lasso Server using Lasso's C API (LCAPI), Java API (LJAPI) or Lasso itself
 using the :type:`dsinfo` type. (Information about creating and using LCAPI
 third-party data source connectors can be found in the :ref:`lcapi-sources`
 chapter of the LCAPI documentation.)
@@ -68,7 +68,7 @@ Interacting with data sources via Lasso generally involves these steps:
    Lasso. This is done in the data source itself, outside of Lasso. This chapter
    describes configuring each data source to accept connections from Lasso.
 
-#. Configuring Lasso 9 Server to communicate with a data source host. This
+#. Configuring Lasso Server to communicate with a data source host. This
    involves adding the data source connection information in the "Datasources"
    section of Lasso Server Admin. This chapter details creating connections with
    the data sources described above.
@@ -103,9 +103,10 @@ steps need to be taken:
 FileMaker Server Data Sources
 =============================
 
-Lasso 9 communicates with FileMaker Server 7--12 Advanced and FileMaker Server
-9--12 through the built-in XML interface. Lasso cannot communicate with any
-other products in the FileMaker 7, 8, or 9 product line such as FileMaker Pro.
+Lasso Server communicates with FileMaker Server 7--12 Advanced and FileMaker
+Server 9--12 through their built-in XML interface. Lasso cannot communicate with
+any other products in the FileMaker 7, 8, or 9 product line such as FileMaker
+Pro.
 
 
 Requirements
@@ -140,14 +141,13 @@ earlier versions.
    the "Extended Privileges" section of the "Accounts & Privileges" dialog box.
    The username and password entered into Lasso Server Admin must use a
    Privilege Set that has access to this extended privilege.
--  FileMaker Server database security in Lasso 9 Server is only as secure as the
-   Publishing Engine setup. It is possible for web browsers to communicate
-   directly with the Publishing Engine. It is strongly recommended that the
-   security features of FileMaker Server be used to secure web-accessible
-   databases.
--  It is strongly recommended that only a single IP address be permitted to
-   access the Publishing Engine that represents the machine on which Lasso 9
-   runs.
+-  FileMaker Server database security is only as secure as the Publishing Engine
+   setup. It is possible for web browsers to communicate directly with the
+   Publishing Engine. It is strongly recommended that the security features of
+   FileMaker Server be used to secure web-accessible databases.
+-  It is strongly recommended that only a single IP address corresponding to the
+   machine on which Lasso Server runs be permitted to access the Publishing
+   Engine.
 -  For tips on optimizing performance for FileMaker databases, see the
    :ref:`filemaker-data-sources` chapter.
 
@@ -177,14 +177,14 @@ below.
    the "Extended Privileges" section of the "Accounts & Privileges" dialog box.
    The username and password entered into Lasso Server Admin must use a
    Privilege Set that has access to this extended privilege.
--  FileMaker Server Advanced database security in Lasso 9 Server is only as
-   secure as the Publishing Engine setup. It is possible for web browsers to
-   communicate directly with the Publishing Engine. It is strongly recommended
-   that the security features of FileMaker Server Advanced be used to secure
+-  FileMaker Server Advanced database security is only as secure as the
+   Publishing Engine setup. It is possible for web browsers to communicate
+   directly with the Publishing Engine. It is strongly recommended that the
+   security features of FileMaker Server Advanced be used to secure
    web-accessible databases.
--  It is strongly recommended that only a single IP address be permitted to
-   access the Publishing Engine that represents the machine on which Lasso 9
-   runs.
+-  It is strongly recommended that only a single IP address corresponding to the
+   machine on which Lasso Server runs be permitted to access the Publishing
+   Engine.
 -  For tips on optimizing performance for FileMaker databases, see the
    :ref:`filemaker-data-sources` chapter.
 
@@ -272,8 +272,9 @@ hosted on the same machine as Lasso might appear::
 MySQL Data Sources
 ==================
 
-Lasso 9 can communicate with MySQL servers configured to accept TCP/IP client
-connections. For more information on MySQL, visit `<http://www.mysql.com/>`_.
+Lasso Server can communicate with MySQL servers configured to accept TCP/IP
+client connections. For more information on MySQL, visit
+`<http://www.mysql.com/>`_.
 
 
 Requirements
@@ -283,8 +284,8 @@ Requirements
 -  The MySQL service must be running and accepting TCP/IP connections on a port
    with no conflicts. This is port 3306 by default.
 -  MySQL access privileges must be properly assigned for the machine running
-   Lasso 9 to be allowed to authenticate.
--  The Lasso 9 machine must have the MySQL client libraries installed.
+   Lasso Server to be allowed to authenticate.
+-  The Lasso Server machine must have the MySQL client libraries installed.
 
 
 Configuring MySQL Server
@@ -299,11 +300,11 @@ method you are using.
 
 Security for MySQL data sources can be set at any level (server-level,
 database-level, table-level, etc.). For unrestricted operation, all permissions
-for all levels of security need to be given to the user Lasso 9 uses to connect.
-This involves setting a new user and password for Lasso 9 in MySQL with the
-appropriate permissions, and then entering the username and password in Lasso
-Server Admin. Follow the procedure below for granting all permissions to Lasso 9
-in MySQL using the MySQL command-line utility.
+for all levels of security need to be given to the user Lasso Server uses to
+connect. This involves setting a new user and password for Lasso Server in MySQL
+with the appropriate permissions, and then entering the username and password in
+Lasso Server Admin. Follow the procedure below for granting all permissions to
+Lasso Server in MySQL using the MySQL command-line utility.
 
 #. From the command line, log in to MySQL as your root user by entering the
    following command:
@@ -325,20 +326,20 @@ in MySQL using the MySQL command-line utility.
 
    Replace "Username" and "Password" with the username and password values you
    wish for the user to have, and replace "Hostname" with the IP address or
-   domain name that Lasso 9 will be connecting from.
+   domain name that Lasso Server will be connecting from.
 
 Now there is a user with all permissions that can communicate with MySQL from
-the machine Lasso 9 is running on. This user can now be used when configuring
-the MySQL host in the "Datasources" section of Lasso Server Admin.
+the machine Lasso Server is running on. This user can now be used when
+configuring the MySQL host in the "Datasources" section of Lasso Server Admin.
 
 .. important::
-   You may, of course, wish to tighten security and restrict the user Lasso 9
-   uses. It is possible to assign limited privileges to the user Lasso 9 uses
-   one at a time by replacing "ALL" in the "GRANT" statement with an individual
-   permission (e.g. INSERT, SELECT, DELETE), and replacing "\*.\*" with a
-   specific database or database.table name. This will restrict the
-   functionality of Lasso 9 to the privileges that are assigned to it. For
-   example, giving Lasso 9 only the "SELECT" privilege will allow a MySQL
+   You may, of course, wish to tighten security and restrict the user Lasso
+   Server uses. It is possible to assign limited privileges to the user Lasso
+   Server uses one at a time by replacing "ALL" in the "GRANT" statement with an
+   individual permission (e.g. INSERT, SELECT, DELETE), and replacing "\*.\*"
+   with a specific database or database.table name. This will restrict the
+   functionality of Lasso Server to the privileges that are assigned to it. For
+   example, giving Lasso Server only the "SELECT" privilege will allow a MySQL
    database to be searched using Lasso, but records cannot be added, updated, or
    deleted using Lasso.
 
@@ -420,8 +421,8 @@ same machine as Lasso might appear::
 Oracle Data Sources
 ===================
 
-Lasso 9 can communicate with an Oracle service running on a host machine via a
-TCP/IP connection. For more information on Oracle, visit
+Lasso Server can communicate with an Oracle service running on a host machine
+via a TCP/IP connection. For more information on Oracle, visit
 `<http://www.oracle.com/>`_.
 
 
@@ -429,11 +430,11 @@ Requirements
 ------------
 
 -  Oracle Database 10g
--  The Lasso 9 machine must have the Oracle "Instant Client" installed if Lasso
-   9 and Oracle are running on separate machines. The `Instant Client download`_
-   can be found on the Oracle website. (Make sure to download just the basic
-   Instant Client files rather than the complete Oracle 10g client or database
-   installer.)
+-  The Lasso Server machine must have the Oracle "Instant Client" installed if
+   Lasso Server and Oracle are running on separate machines. The `Instant Client
+   download`_ can be found on the Oracle website. (Make sure to download just
+   the basic Instant Client files rather than the complete Oracle 10g client or
+   database installer.)
 
 
 Installing Oracle Instant Client
@@ -567,7 +568,7 @@ appear::
 PostgreSQL Data Sources
 =======================
 
-Lasso 9 can communicate with PostgreSQL servers configured to accept TCP/IP
+Lasso Server can communicate with PostgreSQL servers configured to accept TCP/IP
 client connections. For more information on PostgreSQL, visit
 `<http://www.postgresql.org/>`_.
 
@@ -576,7 +577,7 @@ Requirements
 ------------
 
 -  PostgreSQL 8.x
--  The Lasso 9 machine must have the PostgreSQL "libpq" library installed.
+-  The Lasso Server machine must have the PostgreSQL "libpq" library installed.
 
 
 Configuring PostgreSQL
@@ -667,10 +668,10 @@ ODBC Data Sources
 =================
 
 :dfn:`ODBC` (Open Database Connectivity) is a generalized API for providing
-access to databases. Lasso 9 can communicate with any ODBC-compliant data source
-as long as the operating system has a compatible ODBC driver properly installed.
-For more information on ODBC, see the :ref:`odbc-data-sources` chapter and the
-documentation included with your operating system.
+access to databases. Lasso Server can communicate with any ODBC-compliant data
+source as long as the operating system has a compatible ODBC driver properly
+installed. For more information on ODBC, see the :ref:`odbc-data-sources`
+chapter and the documentation included with your operating system.
 
 
 Requirements
@@ -788,8 +789,8 @@ same machine as Lasso might appear::
 SQL Server Data Sources
 =======================
 
-Lasso 9 can communicate with Microsoft SQL Server databases configured to accept
-TCP/IP client connections. For more information on SQL Server, visit
+Lasso Server can communicate with Microsoft SQL Server databases configured to
+accept TCP/IP client connections. For more information on SQL Server, visit
 `<http://www.microsoft.com/en-us/sqlserver/>`_.
 
 
@@ -797,7 +798,7 @@ Requirements
 ------------
 
 -  Microsoft SQL Server 2005--2012
--  The Lasso 9 machine must have the SQL Server client libraries installed.
+-  The Lasso Server machine must have the SQL Server client libraries installed.
 
    :OS X and Linux:
       The FreeTDS libraries need to be compiled and installed, for which the

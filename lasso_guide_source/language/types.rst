@@ -5,12 +5,12 @@
 Types
 *****
 
-Types are the fundamental data abstraction concept in Lasso 9. Lasso is an
-object-oriented language, so every piece of data is an object and every object
-is of a particular type. A :dfn:`type` is a particular layout of data combined
-with a particular set of methods. Types provide a means for encapsulating data
-with the collection of methods designed to modify :dfn:`objects` representing
-that data in predetermined ways.
+Types are the fundamental data abstraction concept in Lasso. Since Lasso is an
+object-oriented language, every piece of data is an object and every object is
+of a particular type. A :dfn:`type` is a predefined layout of data combined with
+a particular set of methods. Types provide a means for encapsulating data with
+the collection of methods designed to modify :dfn:`objects` representing that
+data in predetermined ways.
 
 
 Defining Types
@@ -131,8 +131,8 @@ The following expression produces the value of the "age" data member::
    self->'age'
    // => 36
 
-Equivalently, Lasso 9 supports a shortcut to targeting "self" by using a single
-period. The examples above could be rewritten using a period in place of
+Equivalently, Lasso supports a shortcut syntax for targeting "self" by using a
+single period. The examples above could be rewritten using a period in place of
 ``self->``. ::
 
    .'age' = 36
@@ -401,8 +401,8 @@ corresponding method from type ``one``. ::
    two->third
    // => beta
 
-Equivalently, Lasso 9 supports a shortcut syntax of two periods for targeting
-"inherited" which can be used to access the methods of a parent type. The
+Equivalently, Lasso supports a shortcut syntax for targeting "inherited" by
+using two periods, which can be used to access the methods of a parent type. The
 example above can be rewritten using ``..`` in place of ``inherited->``. ::
 
    define two => type {

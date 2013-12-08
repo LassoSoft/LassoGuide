@@ -9,7 +9,7 @@ the :type:`sys_process` type. This type allows local processes to be launched
 with an array of parameters and shell variables. Some processes will execute and
 return a result immediately. Other processes can be left open for interactive
 read/write operations. The :type:`sys_process` type enables Lasso users to do
-things such as execute AppleScripts, print PDF files, and filter data through
+tasks such as execute AppleScripts, print PDF files, and filter data through
 external applications.
 
 The :type:`sys_process` type works across all three platforms that Lasso
@@ -110,7 +110,8 @@ Using sys_process
 .. member:: sys_process->detach()
 
    Detaches the :type:`sys_process` object from the process. This will prevent
-   the process from terminating when the :type:`sys_process` object is destroyed.
+   the process from terminating when the :type:`sys_process` object is
+   destroyed.
 
 .. member:: sys_process->close()
 

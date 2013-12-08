@@ -37,25 +37,25 @@ intact. The following is the text of the license as it applies to this work:
    this License along with the OC. You may at your option charge a fee for the
    media and/or handling involved in creating a unique copy of the OC for use
    offline, you may at your option offer instructional support for the OC in
-   exchange for a fee, or you may at your option offer warranty in exchange for a
-   fee. You may not charge a fee for the OC itself. You may not charge a fee for
-   the sole service of providing access to and/or use of the OC via a network
-   (e.g. the Internet), whether it be via the world wide web, FTP, or any other
-   method.
+   exchange for a fee, or you may at your option offer warranty in exchange for
+   a fee. You may not charge a fee for the OC itself. You may not charge a fee
+   for the sole service of providing access to and/or use of the OC via a
+   network (e.g. the Internet), whether it be via the world wide web, FTP, or
+   any other method.
 
-   2. You may modify your copy or copies of the OpenContent or any portion of it,
-   thus forming works based on the Content, and distribute such modifications or
-   work under the terms of Section 1 above, provided that you also meet all of
-   these conditions:
+   2. You may modify your copy or copies of the OpenContent or any portion of
+   it, thus forming works based on the Content, and distribute such
+   modifications or work under the terms of Section 1 above, provided that you
+   also meet all of these conditions:
 
-   a) You must cause the modified content to carry prominent notices stating that
-   you changed it, the exact nature and content of the changes, and the date of
-   any change.
+   a) You must cause the modified content to carry prominent notices stating
+   that you changed it, the exact nature and content of the changes, and the
+   date of any change.
 
-   b) You must cause any work that you distribute or publish, that in whole or in
-   part contains or is derived from the OC or any part thereof, to be licensed as
-   a whole at no charge to all third parties under the terms of this License,
-   unless otherwise permitted under applicable Fair Use law.
+   b) You must cause any work that you distribute or publish, that in whole or
+   in part contains or is derived from the OC or any part thereof, to be
+   licensed as a whole at no charge to all third parties under the terms of this
+   License, unless otherwise permitted under applicable Fair Use law.
 
    These requirements apply to the modified work as a whole. If identifiable
    sections of that work are not derived from the OC, and can be reasonably
@@ -80,12 +80,12 @@ intact. The following is the text of the license as it applies to this work:
 
    4. BECAUSE THE OPENCONTENT (OC) IS LICENSED FREE OF CHARGE, THERE IS NO
    WARRANTY FOR THE OC, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
-   OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE
-   THE OC "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED,
-   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-   FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK OF USE OF THE OC IS WITH
-   YOU. SHOULD THE OC PROVE FAULTY, INACCURATE, OR OTHERWISE UNACCEPTABLE YOU
-   ASSUME THE COST OF ALL NECESSARY REPAIR OR CORRECTION.
+   OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+   PROVIDE THE OC "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+   IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK OF USE
+   OF THE OC IS WITH YOU. SHOULD THE OC PROVE FAULTY, INACCURATE, OR OTHERWISE
+   UNACCEPTABLE YOU ASSUME THE COST OF ALL NECESSARY REPAIR OR CORRECTION.
 
    5. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL
    ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MIRROR AND/OR REDISTRIBUTE

@@ -99,9 +99,9 @@ interfaces with ODBC data sources.
 
       SELECT * FROM Contacts.People WHERE Company LIKE 'McDonald''s'
 
--  Lasso 9 uses connection pooling when connecting to data sources via ODBC, and
-   the ODBC connections will remain open during the time that Lasso 9 is
-   running.
+-  Lasso Server uses connection pooling when connecting to data sources via
+   ODBC, and the ODBC connections will remain open during the time that Lasso
+   Server is running.
 
 
 Using ODBC Data Sources
@@ -110,6 +110,5 @@ Using ODBC Data Sources
 Data source operations outlined in the :ref:`database-interaction`,
 :ref:`searching-displaying`, and :ref:`adding-updating` chapters are supported
 with ODBC data sources. Because ODBC is a standardized API for connecting to
-tabular data sources, there are no unique methods in Lasso 9 that are specific
-to ODBC data sources or invoke special functions specific to any ODBC data
-source.
+tabular data sources, there are no unique methods in Lasso that are specific to
+ODBC data sources or invoke special functions specific to any ODBC data source.

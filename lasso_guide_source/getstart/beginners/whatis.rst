@@ -23,7 +23,7 @@ In the same way, a web browser on your computer (like Safari or Chrome or
 Internet Explorer) takes a document and displays. When you request a web page,
 your computer goes out to the Internet and requests a document to be read. These
 documents are typically made with a specific set of descriptive wrappers, called
-"HTML", which define what and where things should be placed on the page.
+"HTML", which define what and where elements should be placed on the page.
 
 
 Body Tag

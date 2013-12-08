@@ -106,8 +106,8 @@ of code to the matching closing brace at the end is known as the "type
 definition". This opening line tells Lasso that we are defining a type named
 "time_of_day".
 
-There are two basic things defined in the type definition: data members and
-methods (sometimes called "member methods" as they are members of the type).
+There are two basic components in a type definition: data members and methods
+(sometimes called "member methods" as they are members of the type).
 
 The code above defines two data members: "hour" and "time_info". This is done
 using the ``data`` keyword, an optional access level keyword (``public``,

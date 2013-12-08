@@ -20,7 +20,7 @@ information about `interoperating with Java using JNI`_.
 Requirements
 ============
 
--  Lasso 9 installed on a supported OS
+-  Lasso Server installed on a supported OS
 -  Java installed
 -  Any other OS-specific packages required for Java support in Lasso installed
 

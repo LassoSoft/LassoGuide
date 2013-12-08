@@ -5,7 +5,7 @@
 OS X Installation
 *****************
 
-These instructions are for installing Lasso 9 Server on OS X. An Intel-based Mac
+These instructions are for installing Lasso Server on OS X. An Intel-based Mac
 running OS X 10.5 or later is required.
 
 
@@ -23,11 +23,12 @@ Before Installing
 Installation
 ============
 
-#. Download and expand `Lasso 9 Server for OS X`_ from the LassoSoft website.
+#. Download and expand the `Lasso Server for OS X`_ installer from the LassoSoft
+   website.
 
 #. Run the installer to perform a standard installation, which will install
-   Lasso 9 and start or restart the system's Apache. By default the following
-   files and folders will be installed:
+   Lasso Server and start or restart the system's Apache. By default the
+   following files and folders will be installed:
 
    -  Apache conf file
 
@@ -71,10 +72,10 @@ From here on, you can read up on using the :ref:`instance-manager` and
 
 .. important::
    If you upgrade your OS X installation or install OS X Server after installing
-   Lasso 9 Server, you will need to either manually move the Apache conf file
-   and plugin for Lasso to continue running, or simply reinstall Lasso to place
-   the files in the correct locations.
+   Lasso Server, you will need to either manually move the Apache conf file and
+   plugin for Lasso to continue running, or simply reinstall Lasso to place the
+   files in the correct locations.
 
 .. _Apple support site: http://support.apple.com/downloads
 .. _XQuartz: http://xquartz.macosforge.org/
-.. _Lasso 9 Server for OS X: http://www.lassosoft.com/Lasso-9-Server-Download#Mac
+.. _Lasso Server for OS X: http://www.lassosoft.com/Lasso-9-Server-Download#Mac

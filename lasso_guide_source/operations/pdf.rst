@@ -6,7 +6,7 @@
 Portable Document Format
 ************************
 
-Lasso 9 provides support for creating :abbr:`PDF (Portable Document Format)`
+Lasso provides support for creating :abbr:`PDF (Portable Document Format)`
 files. The PDF file format is a widely accepted standard for electronic
 documentation, and facilitates superb printer-quality documents from simple
 graphs to complex forms such as tax forms, escrow documents, loan applications,
@@ -14,7 +14,7 @@ stock reports, and user manuals. See this page for more `information on PDF
 technology`_.
 
 .. note::
-   The ``pdf_…`` methods in Lasso 9 are implemented in LJAPI, and based on the
+   The ``pdf_…`` methods in Lasso are implemented in LJAPI, and based on the
    iText Java library. For more information on the iText Java library, visit
    `<http://www.itextpdf.com/>`_.
 
@@ -351,11 +351,11 @@ Use the :type:`pdf_doc` type with appropriate header. ::
 Adding Content to PDFs
 ======================
 
-In Lasso 9, there are several different types of data that can be added to a PDF
-file. Many of these types are first defined as objects using methods such as
-`pdf_text`, `pdf_list`, `pdf_image`, `pdf_table`, or `pdf_barcode` and then
-added to a pdf_doc object using the `pdf_doc->add` member method. Each type is
-described separately in subsequent sections of this chapter.
+There are several different types of data that can be added to a PDF file. Many
+of these types are first defined as objects using methods such as `pdf_text`,
+`pdf_list`, `pdf_image`, `pdf_table`, or `pdf_barcode` and then added to a
+pdf_doc object using the `pdf_doc->add` member method. Each type is described
+separately in subsequent sections of this chapter.
 
 .. member:: pdf_doc->add(elm, ...)
 
@@ -1112,7 +1112,7 @@ create form elements within a PDF file, and also how PDF forms can be used to
 submit data to a Lasso-enabled database.
 
 .. note::
-   Due to the iText implementation of PDF support in Lasso 9, PDF files created
+   Due to the iText implementation of PDF support in Lasso, PDF files created
    may contain only one form.
 
 
@@ -1500,8 +1500,8 @@ specifies the displayed name of the button, which is "Reset This Form"::
 Submitting Form Data to Lasso-Enabled Databases
 -----------------------------------------------
 
-Using Lasso 9 Server, one has the ability to submit data from a PDF form to a
-Lasso-enabled site to interact with a database. PDF forms may be used in the
+Using Lasso Server, one has the ability to submit data from a PDF form to a
+Lasso-enabled site for interaction with a database. PDF forms may be used in the
 same way as HTML forms to submit request parameters to a Lasso response page,
 where database actions can occur via an `inline` method.
 
@@ -2061,7 +2061,7 @@ Creating Barcodes
 
 Barcodes are special device-readable images that can be created in PDF files
 using the :type:`pdf_barcode` type, and added to a pdf_doc using member methods,
-which are described in this section. Lasso 9 can be used to create the following
+which are described in this section. Lasso can be used to create the following
 industry-standard barcodes:
 
 -  Code 39 (alphanumeric, ASCII subset)
@@ -2209,7 +2209,7 @@ drawn graphics, and a PDF file with a barcode.
 .. note::
    All examples in this section use the OS X and Linux line break character
    ``"\n"`` in the text sections. If creating PDF files on the Windows version
-   of Lasso 9, change all instances of ``"\n"`` to ``"\r\n"``.
+   of Lasso, change all instances of ``"\n"`` to ``"\r\n"``.
 
 
 PDF Text Example
@@ -2226,18 +2226,16 @@ multiple text styles::
    local(font2) = pdf_font(-face='Helvetica', -size='14', -color='#000000')
    local(font3) = pdf_font(-face='Helvetica', -size='14', -color='#0000CC')
 
-   local(title) = pdf_text('Lasso 9 Server', -type='Chunk', -font=#font1)
+   local(title) = pdf_text('Lasso Server', -type='Chunk', -font=#font1)
    #text_example->add(#title, -number=1)
 
-   local(text1) = pdf_text('\n\nThe Lasso product line consists of
-      authoring and serving tools that allow web designers and web
-      developers to quickly build and serve powerful data-driven web
-      sites with maximum productivity and ease. The product line
-      includes Lasso 9 Server for building, serving, and
-      administering data-driven web sites, and LassoLab for
-      building and testing data-driven web sites within a graphical
-      editor.\n\nLasso 9 Server works with the following data
-      sources:',
+   local(text1) = pdf_text('\n\nThe Lasso product line consists of authoring and
+      serving tools that allow web designers and web developers to quickly build
+      and serve powerful data-driven web sites with maximum productivity and
+      ease. The product line includes Lasso Server for building, serving, and
+      administering data-driven web sites, and LassoLab for building and testing
+      data-driven web sites within a graphical editor.\n\nLasso Server works
+      with the following data sources:',
       -type='Paragraph',
       -leading=15,
       -font=#font2
@@ -2260,12 +2258,11 @@ multiple text styles::
    #list->add('Plus many other ODBC-compliant databases')
    #text_example->add(#list)
 
-   local(text2) = pdf_text('\nLasso\'s innovative architecture provides
-      an industry first multi-platform, database-independent and open
-      standards approach to delivering database-driven web sites
-      firmly positioning Lasso technology within the rapidly evolving
-      server-side web tools market. Lasso technology is used at
-      hundreds of thousands of web sites worldwide.\n\n',
+   local(text2) = pdf_text('\nLasso\'s innovative architecture provides an
+      industry first multi-platform, database-independent and open standards
+      approach to delivering database-driven web sites firmly positioning Lasso
+      technology within the rapidly evolving server-side web tools market. Lasso
+      technology is used at hundreds of thousands of web sites worldwide.\n\n',
       -type='Paragraph',
       -font=#font2
    )
@@ -2290,27 +2287,23 @@ multiple text styles::
 
    #text_example->setPageNumber(2)
 
-   local(text4) = pdf_text('Lasso 9 Server is server-side software
-      that adds a suite of dynamic functionality and administration to
-      your web server. This functionality empowers you to build and
-      serve just about any dynamic web application that can be built
-      with maximum productivity and ease.\n\n',
+   local(text4) = pdf_text('Lasso Server is server-side software that adds a
+      suite of dynamic functionality and administration to your web server. This
+      functionality empowers you to build and serve just about any dynamic web
+      application that can be built with maximum productivity and ease.\n\n',
       -type='Paragraph',
       -leading=15,
       -font=#font2
    )
    #text_example->add(#text4)
 
-   local(text5) = pdf_text("Lasso works by using a simple scripting
-      language, which can be embedded in web
-      pages and scripts residing on your web server. The details of
-      scripting and programming in Lasso 9 are covered in the
-      Lasso 9 Language Guide also included with this product. By
-      default, Lasso 9 Server is designed to run on the most
-      prevalent modern web server platforms with the most popular web
-      serving applications. Additionally, Lasso's extensibility allows
-      web Server Connectors to be authored for any web server for
-      which default connectivity is not provided.\n\n",
+   local(text5) = pdf_text("Lasso works by using a simple scripting language,
+      which can be embedded in web pages and scripts residing on your web
+      server. By default, Lasso Server is designed to run on the most prevalent
+      modern web server platforms with the most popular web serving
+      applications. Additionally, Lasso's extensibility allows web server
+      connectors to be authored for any web server for which default
+      connectivity is not provided.\n\n",
       -type='Paragraph',
       -leading=15,
       -font=#font2
@@ -2490,9 +2483,9 @@ accompanied by a barcode::
 Serving PDF Files
 =================
 
-This section describes how PDF files can be served using Lasso 9 Server. This
-can be done by supplying a download link to the created PDF file, or by using
-the `pdf_serve` method described in this chapter.
+This section describes how PDF files can be served using Lasso Server. This can
+be done by supplying a download link to the created PDF file, or by using the
+`pdf_serve` method described below.
 
 
 Linking to PDF Files

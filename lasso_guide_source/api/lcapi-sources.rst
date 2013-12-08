@@ -87,7 +87,7 @@ sample data source will simulate a data source that has two databases, an
 "Accounting" database and a "Customers" database. Each of those databases, in
 turn, will report that it has a few tables within it. For a more complete
 example of a data source that is useful, look at the `SQLiteDS source code`_ in
-the Lasso 9 source code repository.
+the Lasso source code repository.
 
 
 LCAPI Data Source Connector Code

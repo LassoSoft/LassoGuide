@@ -10,8 +10,8 @@ Glossary
    hashbang
    shebang
       A special first line in a file that tells your shell which interpreter to
-      use for a file. To specify using lasso9 for a standard install of Lasso 9,
-      use ``#!/usr/bin/lasso9``.
+      use for a file. To specify using lasso9 for a standard install of Lasso
+      Server, use ``#!/usr/bin/lasso9``.
 
    Lasso page
       A web page or file that has Lasso embedded in with other text or markup.

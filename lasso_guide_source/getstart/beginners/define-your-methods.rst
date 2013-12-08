@@ -168,12 +168,11 @@ passed to it::
    }
 
 Here I am defining two methods, both with the name "time_of_day". The first
-method has a signature of "time_of_day(datetime::date=date)". The only thing
-that has been added from the previous definition is the type constraint
-"::date". This method can be called without a parameter and "datetime" will
-default to the current date and time, but with the type constraint the method
-can only be called with a date object. The following method calls will call this
-method::
+method has a signature of "time_of_day(datetime::date=date)". All that has been
+added from the previous definition is the type constraint "::date". This method
+can be called without a parameter and "datetime" will default to the current
+date and time, but with the type constraint the method can only be called with a
+date object. The following method calls will call this method::
 
    time_of_day          // Can be called with no parameters
    time_of_day(date)    // Any date object will do

@@ -60,9 +60,9 @@ Integer objects can be formatted for display using the `integer->asString`
 method detailed below.
 
 .. note::
-   In Lasso 9, integers and decimals have no state, so they cannot carry around
-   their formatting information. The `integer->asString` method in Lasso 9 is
-   used to replace the functionality of Lasso 8's ``integer->setFormat`` method.
+   Integers and decimals have no state, so they cannot carry around formatting
+   information. The `integer->asString` method replaces the functionality of the
+   ``integer->setFormat`` method from previous versions of Lasso.
 
 .. member:: integer->asString(p0::string, p1::string, p2::string)
 .. member:: integer->asString(\
@@ -162,9 +162,9 @@ example, ``0xff`` is the integer literal ``255``.
    returns "false".
 
 .. note::
-   In previous versions of Lasso, these bit methods modified the integer
-   in-place. In Lasso 9, integers are by-value objects and are immutable, so it
-   is not possible to change their value in-place.
+   Integers are by-value objects and are immutable, so it is not possible to
+   change their value. This is in contrast to previous versions of Lasso, where
+   these bit methods modified the integer in-place.
 
 
 Perform a Bitwise Or
@@ -286,9 +286,9 @@ Decimal objects can be formatted for display using the `decimal->asString`
 method detailed below.
 
 .. note::
-   In Lasso 9, integers and decimals have no state, so they cannot carry around
-   their formatting information. The `decimal->asString` method in Lasso 9 is
-   used to replace the functionality of Lasso 8's ``decimal->setFormat`` method.
+   Integers and decimals have no state, so they cannot carry around formatting
+   information. The `decimal->asString` method replaces the functionality of the
+   ``decimal->setFormat`` method from previous versions of Lasso.
 
 .. member:: decimal->asString(p0::string, p1::string, p2::string)
 .. member:: decimal->asString(\

@@ -67,12 +67,11 @@ example creates a capture and assigns it to the variable "cap"::
 
    local(cap) = { /* ... the capture's code ... */ }
 
-There are two types of captures supported in Lasso 9: regular captures, like the
+There are two types of captures supported in Lasso: regular captures, like the
 examples above, and auto-collect captures. An auto-collect capture concatenates
-the result of calling the ``asString`` method on every value produced
-inside the capture when the capture is executed, and produces that value. The
-following example creates an auto-collect capture and assigns it to the variable
-"cap"::
+the result of calling the ``asString`` method on every value produced inside the
+capture when the capture is executed, and produces that value. The following
+example creates an auto-collect capture and assigns it to the variable "cap"::
 
    local(cap) = {^ /* ... the capture's code ... */ ^}
 

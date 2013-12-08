@@ -45,7 +45,7 @@ possible DNs are shown below:
 
 .. code-block:: none
 
-   dc=omnipilot, dc=com
+   dc=lassosoft, dc=com
    ou=People, o=LassoSoft
 
 The search query is defined by the filter, which is a series of query terms

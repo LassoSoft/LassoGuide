@@ -6,7 +6,7 @@
 Ubuntu Installation
 *******************
 
-These instructions are for installing Lasso 9 Server on 64-bit Ubuntu 12.04 or
+These instructions are for installing Lasso Server on 64-bit Ubuntu 12.04 or
 later.
 
 
@@ -18,12 +18,12 @@ with the following command::
 
    $> sudo apt-get install python-software-properties
 
-To install Lasso 9 Server via :command:`apt`, the LassoSoft repository must be
+To install Lasso Server via :command:`apt`, the LassoSoft repository must be
 configured on the server. Add the repository by running the following command::
 
    $> sudo add-apt-repository "deb http://debianrepo.lassosoft.com/ stable main"
 
-Then run the following to install Lasso 9 Server::
+Then run the following to install Lasso Server::
 
    $> sudo apt-get update
    $> sudo apt-get install lasso-instance-manager
