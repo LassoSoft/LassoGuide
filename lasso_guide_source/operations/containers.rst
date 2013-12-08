@@ -123,7 +123,7 @@ Using Array Objects
    version of this method which permits the position to be set to a new element
    using assignment.
 
-.. member:: array->sub(position::integer, count::integer=(self->size - #pos) + 1)
+.. member:: array->sub(position::integer, count::integer=(self->size - #position) + 1)
 
    Returns a range of elements from the array. The first parameter indicates the
    starting position and the second parameter indicates how many of the elements
@@ -269,7 +269,7 @@ Using Staticarray Objects
       (: 1, 2, 3)->join((: 4, 5, 6))
       // => staticarray(1, 2, 3, 4, 5, 6)
 
-.. member:: staticarray->sub(position::integer, count::integer=(self->size - #pos) + 1)::staticarray
+.. member:: staticarray->sub(position::integer, count::integer=(self->size - #position) + 1)::staticarray
 
    The `sub` method returns a range of elements. The first parameter indicates
    the starting position and the optional second parameter indicates how many of

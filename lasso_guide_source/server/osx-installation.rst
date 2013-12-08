@@ -63,7 +63,7 @@ Installation
    installation and default instance.
 
 From here on, you can read up on using the :ref:`instance-manager` and
-:ref:`instance-administration`.
+:ref:`instance-administration` interfaces.
 
 .. note::
    On OS X Server, ensure that the Web or Websites service is running in Server

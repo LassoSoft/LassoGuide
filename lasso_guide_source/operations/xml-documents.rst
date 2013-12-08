@@ -455,7 +455,8 @@ removing items from node maps.
 
    Removes the indicated attribute node. Returns the removed node.
 
-.. note:: Some node maps are read-only and cannot be modified.
+.. note::
+   Some node maps are read-only and cannot be modified.
 
 .. member:: xml_nodeMap->setNamedItem(node::xml_node)::xml_node
 

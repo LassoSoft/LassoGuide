@@ -330,8 +330,9 @@ LassoStartup
    placed in files ending in either "|dot| lasso" or "|dot| inc" and will be
    available across the instance.
 
-   .. note:: Lasso only searches for a "LassoStartup" directory in each
-      instance's home folder, and not in the Instance Manager's home directory.
+   .. note::
+      Lasso only searches for "LassoStartup" in each instance's home directory,
+      and not in the Instance Manager's home directory.
 
 
 .. _instance-manager-starting-stopping:
@@ -345,21 +346,23 @@ Starting and Stopping Lasso Instance Manager
 Stopping the Lasso Instance Manager process differs on each platform.
 
 :OS X:
-   Execute the following command from the terminal::
+   The OS X installer creates a launchd service that manages the Instance
+   Manager process. To stop this service, execute the following command from the
+   terminal::
 
       $> sudo launchctl unload /Library/LaunchDaemons/com.lassosoft.lassoinstancemanager.plist
 
 :Linux:
-   The CentOS and Ubuntu installations create a service "lassoimd" for the
-   Instance Manager executable, which loads at startup. To stop this service,
-   execute the following command from the terminal::
+   The CentOS and Ubuntu installers create a service "lassoimd" for the Instance
+   Manager executable, which loads at startup. To stop this service, execute the
+   following command from the terminal::
 
       $> sudo service lassoimd stop
 
 :Windows:
-   The Windows installation installs a service that can be stopped using
-   Windows' built-in Services application by selecting the service and clicking
-   the square "Stop" icon.
+   The Windows installer creates a service that can be stopped using Windows'
+   built-in Services application by selecting the "Lasso Instance Manager"
+   service and clicking the square "Stop Service" button.
 
 Stopping the Instance Manager will also stop all Lasso instances. No Lasso
 instance will be able to serve any requests while the Instance Manager is not
@@ -370,7 +373,9 @@ the computer boots up. If the Instance Manager has been manually stopped, it can
 be manually started again.
 
 :OS X:
-   Execute the following command from the terminal::
+   The OS X installer creates a launchd service that manages the Instance
+   Manager process. To start this service, execute the following command from
+   the terminal::
 
       $> sudo launchctl load /Library/LaunchDaemons/com.lassosoft.lassoinstancemanager.plist
 
@@ -380,9 +385,9 @@ be manually started again.
       62 ?? 7:10.95 /usr/sbin/lassoim
 
 :Linux:
-   The CentOS and Ubuntu installations create a service "lassoimd" for the
-   Instance Manager executable, which loads at startup. To start this service,
-   execute the following command from the terminal::
+   The CentOS and Ubuntu installers create a service "lassoimd" for the Instance
+   Manager executable, which loads at startup. To start this service, execute
+   the following command from the terminal::
 
       $> sudo service lassoimd start
 
@@ -392,11 +397,11 @@ be manually started again.
       lassoimd (pid 4653) is running...
 
 :Windows:
-   The Windows installation installs a service that can be started using
-   Windows' built-in Services application by selecting the service and clicking
-   the triangle "Start" icon. You can then verify that Lasso Instance Manager is
-   running by checking if the "Status" column for the "Lasso Instance Manager"
-   service says "Started".
+   The Windows installer creates a service that can be started using Windows'
+   built-in Services application by the "Lasso Instance Manager" service and
+   clicking the triangle "Start Service" button. You can then verify that Lasso
+   Instance Manager is running by checking if the "Status" column for the "Lasso
+   Instance Manager" service says "Started".
 
 
 Uninstallation

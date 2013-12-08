@@ -58,8 +58,8 @@ used. ::
 
    'This string literal has a backslash \\ in it'
 
-A backslash followed by an end of line (a literal line feed or carriage return
-or carriage return/line feed pair) will cause that end of line and all following
+A backslash followed by an end-of-line (a literal line feed or carriage return
+or carriage return/line feed pair) will cause that end-of-line and all following
 literal whitespace to be removed from the resulting string. The string resumes
 starting with the first encountered non-whitespace character. This sort of
 escape sequence can be useful for preserving the visual formatting of a string
@@ -105,7 +105,7 @@ table shows all of the permissible escape sequences.
    ``\'``             0x27              Single quote
    ``\?``             0x3F              Question mark
    ``\\``             0x5C              Backslash
-   ``\<end of line>`` none              Escaped whitespace
+   ``\<end-of-line>`` none              Escaped whitespace
    ================== ================= ========================================
 
 

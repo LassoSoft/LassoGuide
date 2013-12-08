@@ -153,11 +153,11 @@ Your "people[html].lasso" file might look something like this::
    </html>
 
 This separation of logic and presentation allows for some rather powerful
-features. For example, let's say I wanted to return a JSON representation of the
-array of people when they accessed the URL
-:ref:`!http://example.com/lasso9/AddressBook/people.json`. I already have the
-logic that finds the people and creates the array, so all I need to do is add a
-file named "people[xhr].lasso" to create and display the array of maps::
+features. For example, let's say we wanted our application to return a JSON
+representation of the array of people when accessed via the URL
+:ref:`!http://example.com/lasso9/AddressBook/people.json`. We already have the
+logic that finds the people and creates the array, so all that's required is add
+a file named "people[xhr].lasso" to create and display the array of maps::
 
    <?lasso
       local(people) = #1

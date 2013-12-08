@@ -229,7 +229,8 @@ Clicking on the "Groups" link in the Main Menu will take you to an interface
 that allows you to add, remove, and search for Lasso groups. Lasso groups are
 stored in the instance's internal SQLite databases. Each group has a name and a
 status (enabled or disabled). They can optionally have a comment. These groups
-can be used with Lasso users and the ``auth_…`` methods for HTTP authentication.
+can be used with Lasso users and with the ``auth_…`` methods for HTTP
+authentication.
 
 During the initial installation and setup of the instance, Lasso Server Admin
 creates a group named "ADMINISTRATORS" and any user assigned to that group can

@@ -170,7 +170,8 @@ closed once it is no longer required.
    a map object containing the keys 'id', 'name', 'enabled', 'comment', 'email',
    'real_name' and 'realm'.
 
-   .. note:: The 'email' and 'real_name' fields are not used at this time.
+   .. note::
+      The 'email' and 'real_name' fields are not used at this time.
 
 .. member:: security_registry->addUserToGroup(userid::integer, groupid::integer)
 

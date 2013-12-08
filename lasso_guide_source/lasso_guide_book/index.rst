@@ -31,7 +31,7 @@ A Taste of Lasso
 
 
 ++++++++++++++++++
-Installation Guide
+Lasso Installation
 ++++++++++++++++++
 
 .. toctree::
@@ -43,9 +43,9 @@ Installation Guide
    /server/windows-installation
 
 
-+++++++++++++++++
-Server Management
-+++++++++++++++++
++++++++++++++++++++++++
+Lasso Server Management
++++++++++++++++++++++++
 
 .. toctree::
 

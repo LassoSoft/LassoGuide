@@ -40,4 +40,4 @@ When done, open :ref:`!http://your-server-domain.name/lasso9/instancemanager`
 to load the initialization form and complete your Lasso installation.
 
 From here on, you can read up on using the :ref:`instance-manager` and
-:ref:`instance-administration`.
+:ref:`instance-administration` interfaces.

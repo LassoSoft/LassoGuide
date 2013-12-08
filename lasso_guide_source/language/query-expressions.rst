@@ -536,7 +536,7 @@ with 2 and ending with 10::
    with num in generateSeries(2, 11, 2) sum #num
    // => 30
 
-There is a :type:`generateSeries` literal syntax that can also be used. The
+There is also a :type:`generateSeries` literal syntax that can be used. The
 following is equivalent to the preceding example::
 
    with num in 2 to 11 by 2 sum #num

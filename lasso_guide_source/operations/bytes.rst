@@ -216,7 +216,7 @@ Determine If a Byte Stream Contains a Value
 Use the `bytes->contains` method. The example below returns "true" if the value
 ``'Rhino'`` is contained within the byte stream. Note that in this example it
 returns "false" because the bytes of ``'rhino'`` are a different sequence then
-the bytes of ``'Rhino'``::
+the bytes of ``'Rhino'``. ::
 
    bytes('running rhinos risk rampage')->find('Rhino')
    // => false

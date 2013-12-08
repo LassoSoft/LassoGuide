@@ -11,7 +11,7 @@
 
    .. only:: html
 
-      .. rubric:: Getting Started
+      .. rubric:: Lasso Installation
 
    .. toctree::
       :maxdepth: 2
@@ -26,7 +26,7 @@
 
    .. only:: html
 
-      .. rubric:: Server Management
+      .. rubric:: Lasso Server Management
 
    .. toctree::
       :maxdepth: 2

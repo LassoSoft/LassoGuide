@@ -133,7 +133,7 @@ The following expression produces the value of the "age" data member::
 
 Equivalently, Lasso 9 supports a shortcut to targeting "self" by using a single
 period. The examples above could be rewritten using a period in place of
-``self->``::
+``self->``. ::
 
    .'age' = 36
    .'age'
@@ -403,7 +403,7 @@ corresponding method from type ``one``. ::
 
 Equivalently, Lasso 9 supports a shortcut syntax of two periods for targeting
 "inherited" which can be used to access the methods of a parent type. The
-example above can be rewritten using ``..`` in place of ``inherited->``::
+example above can be rewritten using ``..`` in place of ``inherited->``. ::
 
    define two => type {
       parent one

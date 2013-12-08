@@ -192,14 +192,16 @@ method.
 
 Keyword parameters are specified by preceding the parameter name with a hyphen
 (``-``). Within the method body, the keyword parameter's associated local
-variable will not have the hyphen. Keyword parameters can be either required or
-optional. Optional keyword parameters are indicated in the same manner as
-regular optional parameters, by following the parameter name with an equals
-(``=``) and a default value expression.
+variable will not have the hyphen.
+
+Keyword parameters can be either required or optional. Optional keyword
+parameters are indicated in the same manner as regular optional parameters, by
+following the parameter name with an equals (``=``) and a default value
+expression.
 
 For example, a hypothetical ``find_in_string`` method could have the following
 signature. The required input is followed by two keyword parameters: the
-required ``-find`` and the optional ``-ignoreCase``::
+required ``-find`` and the optional ``-ignoreCase``. ::
 
    find_in_string(input, -find::string, -ignoreCase::boolean=false)
 
@@ -440,8 +442,12 @@ body and to optionally return a value to the caller.
 
 The methods used as examples above may be written using code blocks as follows::
 
-   define pi() => { return math_acos(-1) }
-   define times_twenty(n) => { return #n * 20 }
+   define pi() => {
+      return math_acos(-1)
+   }
+   define times_twenty(n) => {
+      return #n * 20
+   }
    define is_blank(s::string) => {
       return #s->size ? false | true
    }

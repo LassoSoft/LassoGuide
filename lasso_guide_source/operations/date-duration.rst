@@ -13,6 +13,10 @@ Date objects may also be formatted and converted to a number of predefined or
 custom formats, and specific information may be extrapolated from a date object
 (day of week, name of month, etc.).
 
+
+Date Objects
+============
+
 Since dates and durations can take many forms, values that represent a date or a
 duration must be explicitly converted to a date or duration object using the
 `date` and `duration` creator methods. For example, a value of "01/01/2002
@@ -23,10 +27,6 @@ duration must be explicitly converted to a date or duration object using the
 
 Once a value is converted to a date or duration object, special member methods,
 accessors, conversion operations, and math operations may then be used.
-
-
-Internal Date Libraries
-=======================
 
 When performing date operations, Lasso uses its internal date libraries to
 automatically adjust for leap years and daylight saving time for the local time

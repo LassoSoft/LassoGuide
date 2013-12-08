@@ -57,7 +57,7 @@ manipulate strings.
 
 
 Unicode Characters
-==================
+------------------
 
 Lasso 9 supports the processing of Unicode characters in all :type:`string`
 methods. The escape sequence ``\u…`` can be used with 4 hexadecimal digits (or
