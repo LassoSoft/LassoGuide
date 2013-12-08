@@ -91,7 +91,7 @@ perform database actions that are available in Lasso.
 
 .. _database-action-parameters:
 
-.. table:: Inline Database Action Parameters
+.. table:: Database Action Parameters
 
    ============ ================================================================
    Parameter    Description
@@ -968,7 +968,7 @@ Server databases can also be accessed using the ``-show`` parameter. This is
 documented in the :ref:`filemaker-data-sources` chapter.
 
 The ``-show`` action parameter functions like the ``-search`` parameter except
-that no name/value pair parameters, sort parameters, results parameters, or
+that no name/value pair parameters, sort parameters, result parameters, or
 operator parameters are required. The only other parameters required for a
 ``-show`` action are the ``-database`` and ``-table`` parameters. It is also
 recommended that you specify the ``-keyField`` parameter.
@@ -1203,10 +1203,10 @@ up the database as it would using the database method.
                       sources.
    ``-schema``        The schema for the data source connection. Required for
                       some data sources.
-   ``-extra``         Configuration information that may be used by some data
-                      sources. Optional.
    ``-tableEncoding`` The table encoding for the data source connection.
                       Defaults to "UTF-8". Optional.
+   ``-extra``         Configuration information that may be used by some data
+                      sources. Optional.
    ================== ==========================================================
 
 .. note::
@@ -1284,7 +1284,7 @@ to return the results from one of the result sets.
 
 .. _database-sql-parameters:
 
-.. table:: SQL Inline Parameters
+.. table:: SQL Statement Parameters
 
    ================ ============================================================
    Parameter        Description

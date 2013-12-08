@@ -18,7 +18,7 @@ additional keyword and pair parameters required for each database action.
 
 .. _adding-updating-parameters:
 
-.. table:: Add and Update Parameters
+.. table:: Modification Action Parameters
 
    ============== ==============================================================
    Parameter      Description

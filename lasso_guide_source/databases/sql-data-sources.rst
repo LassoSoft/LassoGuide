@@ -302,19 +302,19 @@ and "example", which are available through MySQL::
    // <br />site
 
 
-Searching Records with MySQL
-============================
+Searching Records with SQL Data Sources
+=======================================
 
-In Lasso 9, there are unique search operations that can be performed using MySQL
-data sources. These search operations take advantage of special functions in
-MySQL such as full-text indexing, regular expressions, record limits, and
-distinct values to allow optimal performance and power when searching. These
-search operations can be used on MySQL data sources in addition to all search
+In Lasso 9, there are unique search operations that can be performed using SQL
+data sources. These search operations take advantage of special functions such
+as full-text indexing, regular expressions, record limits, and distinct values
+to allow optimal performance and power when searching. All these search
+operations can be used on MySQL data sources in addition to all search
 operations described in the :ref:`searching-displaying` chapter.
 
 
-Search Field Operators
-----------------------
+Search Field Operators for MySQL
+--------------------------------
 
 Additional field operators are available for the ``-operator`` (or ``-op``)
 parameter when searching MySQL data sources. These operators are summarized in
@@ -325,7 +325,7 @@ the table below. Basic use of the ``-operator`` parameter is described in the
 
 .. _sql-mysql-search-operators:
 
-.. table:: MySQL Search Field Operators
+.. table:: MySQL Additional Search Field Operators
 
    ========================= ===================================================
    Operator                  Description
@@ -431,38 +431,39 @@ inline search above using ``-op='nrx'`` instead. ::
    // Unknown, Thomas<br />
 
 
-Search Keyword Parameters
+Result Keyword Parameters
 -------------------------
 
-Additional search keyword parameters are available when searching the data
+Additional result keyword parameters are available when searching the data
 sources in this chapter using the `inline` method. These parameters are
 summarized in the following table.
 
 .. tabularcolumns:: |l|L|
 
-.. _sql-search-parameters:
+.. _sql-result-parameters:
 
-.. table:: Search Parameters
+.. table:: SQL Additional Result Parameters
 
    =============== =============================================================
    Parameter       Description
    =============== =============================================================
+   ``-distinct``   Causes a ``-search`` action to only output records that
+                   contain unique field values (comparing only returned fields)
+                   or a ``findAll`` action to to return all distinct values.
+                   Does not require a value. May be used with the
+                   ``-returnField`` parameter to limit the fields checked for
+                   distinct values. MySQL only.
+   ``-groupBy``    Specifies a field name that should by used as the "GROUP BY"
+                   statement. Allows data to be summarized based on the values
+                   of the specified field.
+   ``-sortRandom`` Requests that returned records be sorted randomly. Is used in
+                   place  of the ``-sortField`` and ``-sortOrder`` parameters.
+                   Does not require a value. MySQL only.
    ``-useLimit``   Prematurely ends a ``-search`` or ``-findAll`` action once
                    the specified number of records for the ``-maxRecords``
                    parameter have been found and returns the found records.
                    Requires the ``-maxRecords`` parameter. This issues a "LIMIT"
                    or "TOP" statement.
-   ``-sortRandom`` Sorts returned records randomly. Is used in place  of the
-                   ``-sortField`` and ``-sortOrder`` parameters. Does not
-                   require a value.
-   ``-distinct``   Causes a ``-search`` action to only output records that
-                   contain unique field values (comparing only returned fields).
-                   Does not require a value. May be used with the
-                   ``-returnField`` parameter to limit the fields checked for
-                   distinct values.
-   ``-groupBy``    Specifies a field name that should by used as the "GROUP BY"
-                   statement. Allows data to be summarized based on the values
-                   of the specified field.
    =============== =============================================================
 
 
@@ -499,8 +500,9 @@ example searches the "contacts" database with a limit of five records::
 Sort Results Randomly
 ^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``-sortRandom`` parameter in a search inline. The following example
-finds all records and sorts them randomly::
+Use the ``-sortRandom`` parameter in a search inline. In the following example,
+all records from the "people" table of the "contacts" database are returned in
+random order::
 
    inline(
       -findAll,
@@ -524,8 +526,9 @@ finds all records and sorts them randomly::
 Return Only Unique Records in a Search
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use the ``-distinct`` parameter in a search inline. The following example only
-returns records that contain distinct values for the "last_name" field::
+Use the ``-distinct`` parameter in a search inline. In the following example, a
+``-findAll`` action is used on the "people" table of the "contacts" database.
+Only distinct values from the "last_name" field are returned. ::
 
    inline(
       -findAll,

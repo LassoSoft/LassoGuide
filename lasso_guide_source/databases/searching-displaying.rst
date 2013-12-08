@@ -4,12 +4,12 @@
 Searching and Displaying Data
 *****************************
 
-Lasso provides several parameters for the `inline` method for searching records
+Lasso provides several parameters for the `inline` method for retrieving records
 within Lasso-compatible databases. These parameters are used in conjunction with
 name/value pair parameters in order to perform the desired database action in a
 specific database and table or within a specific record.
 
-The inline parameters documented in this chapter are listed in
+The inline parameters documented in this chapter are listed in the table
 :ref:`searching-displaying-parameters`. The sections that follow describe the
 additional keyword parameters and pair parameters required for each database
 action.
@@ -18,7 +18,7 @@ action.
 
 .. _searching-displaying-parameters:
 
-.. table:: Search Parameters
+.. table:: Retrieval Action Parameters
 
    ============= ===============================================================
    Parameter     Description
@@ -126,12 +126,12 @@ Searching Records
 Searches can be performed within any Lasso-compatible database using the
 ``-search`` parameter in an `inline` method. The ``-search`` parameter requires
 that a number of additional parameters be defined in order to perform the
-search. The additional required parameters are detailed in
+search. The additional required parameters are detailed in the table
 :ref:`searching-search-action` along with a description of other recommended or
 optional parameters specific to the ``-search`` action.
 
-Additional optional parameters are described in
-:ref:`searching-operator-parameters` and :ref:`searching-results-parameters` in
+Additional optional parameters are described in the tables
+:ref:`searching-operator-parameters` and :ref:`searching-result-parameters` in
 the sections that follow.
 
 .. tabularcolumns:: |l|L|
@@ -253,14 +253,14 @@ Search Operators
 ================
 
 Lasso inlines include a set of parameters that allow operators to be used to
-create complex database queries. These parameters are summarized in
+create complex database queries. These parameters are summarized in the table
 :ref:`searching-operator-parameters`.
 
 .. tabularcolumns:: |l|L|
 
 .. _searching-operator-parameters:
 
-.. table:: Operator Parameters
+.. table:: Search Operator Parameters
 
    +------------------------+------------------------------------------------------------+
    |Parameter               |Description                                                 |
@@ -288,9 +288,9 @@ Field Operators
    These are specified using the ``-operator`` parameter before a name/value
    pair parameter. The field operator changes the way that the named field is
    searched for the value. If no field operator is specified then the default
-   begins with operator ("bw") is used. See :ref:`searching-field-operators` for
-   a list of the possible values. Field operators can also be abbreviated as
-   ``-bw``, ``-ew``, ``-cn``, etc.
+   begins with operator ("bw") is used. See the table
+   :ref:`searching-field-operators` for a list of the possible values. Field
+   operators can also be abbreviated as ``-bw``, ``-ew``, ``-cn``, etc.
 
 Logical Operators
    These are specified using the ``-operatorLogical``, ``-operatorBegin``, and
@@ -303,7 +303,7 @@ Logical Operators
 Field Operators
 ---------------
 
-The possible values for the ``-operator`` parameter are listed in
+The possible values for the ``-operator`` parameter are listed in the table
 :ref:`searching-field-operators`. The default operator is begins with ("bw").
 Case is not considered when specifying operators.
 
@@ -322,7 +322,7 @@ regular expression operators.
 
 .. _searching-field-operators:
 
-.. table:: Field Operators
+.. table:: Search Field Operators
 
    ========================= ===================================================
    Operator                  Description
@@ -535,35 +535,22 @@ Returning Records
 Lasso inlines include a set of parameters that allow the results of a search to
 be customized. These parameters do not change the found set of records that are
 returned from the search, but they do change the data that is returned for
-formatting and display to the visitor. The results parameters are summarized in
-:ref:`searching-results-parameters`.
+formatting and display to the visitor. The result parameters are summarized in
+the table :ref:`searching-result-parameters`.
+
+.. seealso::
+   SQL-specific result parameters in the table :ref:`sql-result-parameters`.
 
 .. tabularcolumns:: |l|L|
 
-.. _searching-results-parameters:
+.. _searching-result-parameters:
 
-.. table:: Results Parameters
+.. table:: Result Parameters
 
    +---------------------+-----------------------------------------------------+
    |Parameter            |Description                                          |
    +=====================+=====================================================+
-   |``-distinct``        |Specifies that only records with distinct values in  |
-   |                     |all returned fields should be returned. MySQL only.  |
-   +---------------------+-----------------------------------------------------+
-   |``-maxRecords``      |Specifies how many records should be shown from the  |
-   |                     |found set. Optional, defaults to "50".               |
-   +---------------------+-----------------------------------------------------+
-   |``-skipRecords``     |Specifies an offset into the found set at which      |
-   |                     |records should start being shown. Optional, defaults |
-   |                     |to "1".                                              |
-   +---------------------+-----------------------------------------------------+
-   |``-returnField`` and |Specifies a field that should be returned in the     |
-   |``-returnColumn``    |results of the search. Multiple ``-returnField``     |
-   |                     |parameters can be used to return multiple fields.    |
-   |                     |Optional, defaults to returning all fields in the    |
-   |                     |searched table.                                      |
-   +---------------------+-----------------------------------------------------+
-   |``-sortField`` and   |Specifies that the results should be sorted based on |
+   |``-sortField`` or    |Specifies that the results should be sorted based on |
    |``-sortColumn``      |the data in the named field. Multiple ``-sortField`` |
    |                     |parameters can be used for complex sorts. Optional,  |
    |                     |defaults to returning data in the order it appears   |
@@ -574,11 +561,21 @@ formatting and display to the visitor. The results parameters are summarized in
    |                     |"descending" or custom. Optional, defaults to        |
    |                     |"ascending" for each ``-sortField``.                 |
    +---------------------+-----------------------------------------------------+
-   |``-sortRandom``      |Specifies that a MySQL database should randomly sort |
-   |                     |the returned data set.                               |
+   |``-maxRecords``      |Specifies how many records should be shown from the  |
+   |                     |found set. Optional, defaults to "50".               |
+   +---------------------+-----------------------------------------------------+
+   |``-skipRecords``     |Specifies an offset into the found set at which      |
+   |                     |records should start being shown. Optional, defaults |
+   |                     |to "1".                                              |
+   +---------------------+-----------------------------------------------------+
+   |``-returnField`` or  |Specifies a field that should be returned in the     |
+   |``-returnColumn``    |results of the search. Multiple ``-returnField``     |
+   |                     |parameters can be used to return multiple fields.    |
+   |                     |Optional, defaults to returning all fields in the    |
+   |                     |searched table.                                      |
    +---------------------+-----------------------------------------------------+
 
-The results parameters are divided into three categories:
+The result parameters are divided into three categories:
 
 #. **Sorting** is specified using the ``-sortField`` and ``-sortOrder``
    parameters. These parameters change the order of the records that the search
@@ -587,13 +584,13 @@ The results parameters are divided into three categories:
 
 #. The portion of the **Found Set** being shown is specified using the
    ``-maxRecords`` and ``-skipRecords`` parameters. ``-maxRecords`` sets the
-   number of records that will be iterated over in the `records` method. The
-   ``-skipRecords`` parameter sets the offset into the found set that is shown.
-   These two methods define the window of records that are shown and can be used
-   to navigate through a found set.
+   number of records that will be iterated over in the `records` method, while
+   ``-skipRecords`` sets the offset into the found set that is shown. These two 
+   parameters define the window of records that are shown and can be used to
+   navigate through a found set.
 
 #. The **Fields** that are available are specified using the ``-returnField``
-   method. Normally, all fields in the searched table are returned. If any
+   parameter. Normally, all fields in the searched table are returned. If any
    ``-returnField`` parameters are specified then only those fields will be
    available for display using the `field` method. Specifying ``-returnField``
    parameters can improve the performance of Lasso by not sending unnecessary
@@ -602,12 +599,6 @@ The results parameters are divided into three categories:
    .. note::
       In order to use the `keyField_value` method within an inline, the
       ``-keyField`` must be specified as one of the ``-returnField`` values.
-
-#. The ``-distinct`` parameter instructs MySQL data sources to return only
-   records that contain distinct values across all returned fields. This
-   parameter is useful when combined with a single ``-returnField`` parameter
-   and a ``-findAll`` to return all distinct values from a single field in the
-   database.
 
 
 Return Sorted Results
@@ -638,31 +629,6 @@ are equal then those records are sorted in order of "first_name". ::
    // <br />John Doe
    // <br />Jane Person
    // <br />John Person
-
-
-Return Multiple Records Sorted in Random Order
-----------------------------------------------
-
-The ``-sortRandom`` parameter can be used with the ``-search`` or ``-findAll``
-actions to return a number of records from a MySQL database sorted in random
-order. In the following example, all records from the "people" table of the
-"contacts" database are returned in random order::
-
-   [inline(
-      -findAll,
-      -database='contacts',
-      -table='people',
-      -keyField='id',
-      -sortRandom
-   )]
-      [records]<br />[field('first_name')] [field('last_name')][/records]
-   [/inline]
-
-   // =>
-   // <br />John Person
-   // <br />Jane Doe
-   // <br />Jane Person
-   // <br />John Doe
 
 
 Return a Portion of a Found Set
@@ -726,9 +692,10 @@ something like the following::
    // <br />Jane
    // <br />John
 
-If the data source is MySQL, the ``-distinct`` parameter could have been added
-to just return two records instead of four; one with the first name of "John"
-and the other with "Jane".
+If the data source is MySQL, the ``-distinct`` parameter can be added to just
+return two records instead of four; one with the first name of "John" and the
+other with "Jane" See the :ref:`sql-data-sources` chapter for details on the
+``-distinct`` parameter.
 
 
 Finding All Records
@@ -781,35 +748,6 @@ the "contacts" database and displays them. The results are shown below::
    // <br />Jane Doe
    // <br />John Person
    // <br />Jane Person
-
-
-Find Records with Unique Field Values
--------------------------------------
-
-The unique values from a field in a MySQL database can be returned using the
-``-distinct`` parameter. Only records that have distinct values across all
-fields will be returned. In the following example, a ``-findAll`` action is used
-on the "people" table of the "contacts" database. Only distinct values from the
-"last_name" field are returned. ::
-
-   [inline(
-      -findAll,
-      -database='contacts',
-      -table='people',
-      -distinct,
-      -sortField='last_name',
-      -returnField='last_name'
-   )]
-      [records]<br />[field('last_name')][/records]
-   [/inline]
-
-The following results are returned. Even though there are multiple instances of
-"Doe" and "Person" in the database, only one record for each name is returned.
-::
-
-   // =>
-   // <br />Doe
-   // <br />Person
 
 
 Finding Random Records
@@ -909,8 +847,8 @@ The following `inline` method performs a ``-findAll`` action in a database
    // <br />4: Jane Person
 
 
-Display Results for a Single Record
------------------------------------
+Display Result for a Single Record
+----------------------------------
 
 Use `field` methods within the capture block of an `inline` method. The
 `records` methods are unnecessary if only a single record is returned. The

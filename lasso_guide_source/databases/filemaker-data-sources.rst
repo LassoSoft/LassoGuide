@@ -196,7 +196,7 @@ FileMaker data source connectors.
 
 .. _filemaker-search-operators:
 
-.. table:: FileMaker Search Operators
+.. table:: FileMaker Search Field Operators
 
    ========================= ===================================================
    Operator                  Description
@@ -299,7 +299,7 @@ contains, less than, greater than, etc. FileMaker's standard find symbols can be
 used for more complex criteria. It may also be necessary to use multiple queries
 for more complex search criteria.
 
-Search requests in FileMaker Server 9 and later do not support the not equals
+Search requests in FileMaker Server 9 and later do not support the Not Equals
 operator or any of the "Not"-variant operators. Instead, these should be created
 by combining an omit query with the appropriate affirmative operator. The
 ``-opLogical``, ``-opBegin``, and ``-opEnd`` operators are not supported. The
