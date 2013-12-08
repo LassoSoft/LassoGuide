@@ -29,6 +29,7 @@
 % Handle footnotes in tables.
 \RequirePackage{footnote}
 \makesavenoteenv{tabulary}
+\makesavenoteenv{minipage}
 % For floating figures in the text.
 \RequirePackage{wrapfig}
 % Separate paragraphs by space by default.
@@ -36,7 +37,7 @@
 
 \definecolor{BaseColor}{cmyk}{0.0,0.0,0.0,0.9}
 \definecolor{TitleColor}{cmyk}{0.83,0.41,0,0}
-\definecolor{InnerLinkColor}{cmyk}{1,0.9,0.1,0}
+\definecolor{InnerLinkColor}{rgb}{0.153,0.216,0.467}
 \definecolor{OuterLinkColor}{rgb}{0.11,0.43,0.73}
 % Redefine these colors to something not white if you want to have colored
 % background and border for code examples.
@@ -273,12 +274,12 @@
 
 \newcommand{\py@lightbox}{\begin{minipage}{\linewidth}{%
   \setlength\parskip{0pt}\par
-  \noindent\rule[0ex]{\linewidth}{0.5pt}%
+  \noindent\rule[0ex]{\linewidth}{0.2pt}%
   \par\noindent\vspace{0ex}%
   }}
 \newcommand{\py@endlightbox}{{%
   \setlength{\parskip}{0pt}%
-  \par\noindent\rule[1ex]{\linewidth}{0.5pt}%
+  \par\noindent\rule[1ex]{\linewidth}{0.2pt}%
   \par\vspace{-0.5ex}%
   }\end{minipage}}
 

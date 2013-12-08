@@ -562,7 +562,7 @@ using the `date->format` method::
    // => 31.01.02
 
    local(my_date) = date('09/01/2002')
-   #my_date->format('%B, %Y')]
+   #my_date->format('%B, %Y')
    // => September, 2002
 
 

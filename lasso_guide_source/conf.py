@@ -255,6 +255,11 @@ latex_elements = {
 \addtolength{\cftsecnumwidth}{0.5em}
 \newcommand\forewordname{Foreword}
 
+% Adjust table appearance
+\setlength{\arrayrulewidth}{0.2pt}
+%\setlength{\extrarowheight}{1pt}
+\renewcommand{\arraystretch}{1.2}
+
 % For some reason, this works to get the default font color
 % (Using fontspec never allowed for Sphinx's overrides to kick in.)
 \makeatletter
