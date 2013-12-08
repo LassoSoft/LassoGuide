@@ -210,7 +210,7 @@ Send a Plain Text Message
 
 An email can be sent with a hard-coded body by specifying the message directly
 within the `email_send` method. The following example shows an email sent to
-"example@example.com" with a hard-coded message body::
+":ref:`!example@example.com`" with a hard-coded message body::
 
    email_send(
       -to      = 'example@example.com',
@@ -292,7 +292,7 @@ The following example shows an `email_send` method with one recipient in the
 Copy parameter can be used to send email to many recipients without disclosing
 the full list of recipients to everyone who receives the email. Each recipient
 will receive an email that contains only the address in the ``-to`` parameter;
-in this case, "announce@example.com". ::
+in this case, ":ref:`!announce@example.com`". ::
 
    email_send(
       -to      = 'announce@example.com',
@@ -560,9 +560,9 @@ called "body.lasso" could be::
    Dear [email_token('FirstName')] [email_token('LastName')],
 
 The email message is going to be sent to two recipients: "John Doe" at
-"john@example.com" and "Jane Doe" at "jane@example.com". Each element of the
-merge map includes an email address as the key and a map of token values as its
-value, constructed as follows::
+":ref:`!john@example.com`" and "Jane Doe" at ":ref:`!jane@example.com`". Each
+element of the merge map includes an email address as the key and a map of token
+values as its value, constructed as follows::
 
    local(myMergeTokens) = map(
       'john@example.com' = map('FirstName'='John', 'LastName'='Doe'),

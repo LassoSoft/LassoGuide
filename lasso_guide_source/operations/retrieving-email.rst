@@ -829,13 +829,13 @@ independently.
       john@example.com (John Doe)
 
    In all three of these cases the `email_extract` method will return
-   "john@example.com". The angle brackets in the second example identify the
-   email address as the important part of the header. The parentheses in the
+   ":ref:`!john@example.com`". The angle brackets in the second example identify
+   the email address as the important part of the header. The parentheses in the
    third example identify that portion of the header as a comment.
 
    If `email_extract` is called with the optional ``-comment`` parameter then it
-   will return "john@example.com" for the first example and "John Doe" for the
-   two following examples.
+   will return ":ref:`!john@example.com`" for the first example and "John Doe"
+   for the two following examples.
 
 .. method:: email_findEmails()
 

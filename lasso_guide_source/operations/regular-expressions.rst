@@ -17,12 +17,13 @@ that you want to search for in a target (or input) string. Regular expressions
 consist of letters or digits that simply match themselves, wildcards that match
 any character in a class such as whitespace or digits, and combining symbols
 that expand wildcards to match several characters rather than just one. Lasso 9
-uses the ICU library for its support of regular expressions.
+uses the `ICU Regular Expressions package`_ for its support of regular
+expressions.
 
 .. note::
    Full documentation of regular expression methodology is outside the scope of
-   this manual. Consult a standard reference on `ICU regular expressions`_ for
-   more information about how to use this flexible technology.
+   this manual. Consult a standard reference on regular expressions for more
+   information about how to use this flexible technology.
 
 
 Basic Matchers
@@ -1051,7 +1052,7 @@ that links to the same email address. The ``\w`` symbol is used to match any
 alphanumeric characters or underscores. The at sign (``@``) matches itself. The
 period must be escaped (``\.``) in order to match an actual period and not just
 any character. This pattern matches any email address of the format
-"name@example.com"::
+:samp:`{name}@{example.com}`::
 
    string_replaceRegExp(
       'Send email to documentation@lassosoft.com.',
@@ -1061,5 +1062,5 @@ any character. This pattern matches any email address of the format
 
    // => Send email to <a href="mailto:documentation@lassosoft.com">documentation@lassosoft.com</a>.
 
-.. _ICU regular expressions: http://userguide.icu-project.org/strings/regexp
+.. _ICU Regular Expressions package: http://userguide.icu-project.org/strings/regexp
 .. _Unicode Standard Annex #29: http://www.unicode.org/reports/tr29/
