@@ -9,12 +9,15 @@ Text in Lasso is stored and manipulated using the :type:`string` type or the
 ``string_…`` methods. This chapter details the operators and methods that can be
 used to manipulate string values.
 
-.. note::
-   Information about regular expressions and the :type:`regexp` type can be
-   found in the :ref:`regular-expressions` chapter. The :type:`string` type is
-   often used in conjunction with the :type:`bytes` type to convert binary data
-   between different character encodings (e.g. UTF-8, ISO-8859-1). See the
-   :ref:`bytes` chapter for more information about the :type:`bytes` type.
+.. tip::
+   The :type:`string` type is often used in conjunction with the :type:`bytes`
+   type to convert binary data between different character encodings (e.g.
+   UTF-8, ISO-8859-1). See the :ref:`bytes` chapter for more information about
+   the :type:`bytes` type.
+
+
+String Objects
+==============
 
 Text processing is a central function of Lasso. Many Lasso methods are dedicated
 to outputting and manipulating text. Lasso is used to format text-based HTML
@@ -143,7 +146,7 @@ integer or decimal value when it is output using the `~null->toString` method.
 
 The following example shows a math calculation and the integer result ``579``.
 The next line shows the same calculation with string parameters and the result
-of ``123456``::
+of ``123456``. ::
 
    123 + 456
    // => 579
@@ -187,6 +190,10 @@ String Inspection Methods
 
 The :type:`string` type has many member methods that return information about
 the value of the string object. Many of these methods are documented below.
+
+.. note::
+   Information about regular expressions and the :type:`regexp` type can be
+   found in the :ref:`regular-expressions` chapter.
 
 .. type:: string
 

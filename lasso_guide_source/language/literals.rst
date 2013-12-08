@@ -178,8 +178,8 @@ and with precision down to 2x10^-300. A decimal literal begins with an optional
 more additional digits, and ending with an optional exponent. A decimal exponent
 begins with an upper or lowercase "E", followed by an optional "-" or "+"
 character followed by one or more digits. Lasso also supports decimal literals
-for "NaN" (not a number) as well and positive and negative "infinity". (Note
-that case is irrelevant when using the ``NaN`` and ``infinity`` literals.) ::
+for NaN (not a number) as well and positive and negative infinity. (Note that
+case is irrelevant when using the ``NaN`` and ``infinity`` literals.) ::
 
    .1
    -.89
@@ -244,14 +244,17 @@ Series Literals
    single: series literal
    see: range; series literal
 
-Lasso's :type:`generateSeries` type is a quick and efficient way to create a
-:dfn:`series` or :dfn:`range` for use with query expressions. The object created
-has a starting integer and ending integer for the series separated by the word
-"to". An optional integer specifying the step size, which defaults to 1, can
-be added after the word "by". ::
+Lasso's :dfn:`generateSeries` type is a quick and efficient way to create a
+:dfn:`series` or :dfn:`range` of integers for use with query expressions. The
+"shortcut" syntax for creating a series consists of a starting integer and
+ending integer separated by the word "to". An optional integer specifying the
+step size, which defaults to 1, can be added after the word "by". ::
 
    0 to 10 by 2
    // => 0, 2, 4, 6, 8, 10
+
+See the :ref:`query-expressions` chapter for more information on the
+:type:`generateSeries` type.
 
 
 Comments

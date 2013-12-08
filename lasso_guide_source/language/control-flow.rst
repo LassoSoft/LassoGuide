@@ -264,8 +264,8 @@ Loop Methods
    backward depending on how the loop was constructed.
 
 .. note::
-   :ref:`query-expressions` do not support `loop_abort`, `loop_continue`, or
-   `loop_count`.
+   :ref:`Query expressions <query-expressions>` do not support `loop_abort`,
+   `loop_continue`, or `loop_count`.
 
 .. method:: loop_key()
 
@@ -278,43 +278,3 @@ Loop Methods
    When called within an iterate loop, returns the current element from the
    object being iterated. Returns the element's value if the iterated object is
    a map.
-
-
-generateSeries
-^^^^^^^^^^^^^^
-
-.. index:: series literal
-
-The `generateSeries` method is great for use with query expressions. (See the
-:ref:`query-expressions` chapter for more information on their abilities.)
-Together, they allow you to easily loop through a specified series of values.
-
-.. type:: generateSeries
-.. method:: generateSeries(from, to, by=1)
-
-   This method creates an integer series for use with query expressions. The
-   first parameter specifies the first number in the series. The second
-   parameter specifies the maximum value of the last number in the series, and
-   and optional third parameter specifies the step to use for going through the
-   series (defaults to 1). Note that the second parameter will not be included
-   in the series if the step value causes it to be skipped.
-
-The following example uses a query expression to sum the even numbers starting
-with 2 and ending with 10::
-
-   // Note that 11 is not part of the generated series
-   with num in generateSeries(2, 11, 2) sum #num
-   // => 30
-
-There is a :type:`generateSeries` literal syntax that can also be used. The
-following is equivalent to the preceding example::
-
-   // Note that 11 is not part of the generated series
-   with num in 2 to 11 by 2 sum #num
-   // => 30
-
-A :type:`generateSeries` object can be converted to a staticarray for later use.
-::
-
-   generateSeries(2, 11, 2)->asStaticArray
-   // => staticarray(2, 4, 6, 8, 10)

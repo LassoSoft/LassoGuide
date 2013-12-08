@@ -511,6 +511,44 @@ those groups. ::
    // (Skywalker = (Halbjörg = Skywalker))
 
 
+GenerateSeries Type
+===================
+
+.. index:: series literal
+
+The `generateSeries` method generates a series of integer values, and is great
+for use in query expression with clauses.
+
+.. type:: generateSeries
+.. method:: generateSeries(from, to, by=1)
+
+   This method creates an integer series. The first parameter specifies the
+   first number in the series. The second parameter specifies the maximum value
+   of the last number in the series, and an optional third parameter specifies
+   the step to use for going through the series (defaults to 1). Note that the
+   second parameter will not be included in the series if the step value causes
+   it to be skipped.
+
+The following example uses a query expression to sum the even numbers starting
+with 2 and ending with 10::
+
+   // Note that 11 is not part of the generated series
+   with num in generateSeries(2, 11, 2) sum #num
+   // => 30
+
+There is a :type:`generateSeries` literal syntax that can also be used. The
+following is equivalent to the preceding example::
+
+   with num in 2 to 11 by 2 sum #num
+   // => 30
+
+A :type:`generateSeries` object can also be converted to a staticarray for later
+use. ::
+
+   generateSeries(2, 11, 2)->asStaticArray
+   // => staticarray(2, 4, 6, 8, 10)
+
+
 Making an Object Queriable
 ==========================
 
