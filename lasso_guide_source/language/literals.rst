@@ -93,19 +93,19 @@ table shows all of the permissible escape sequences.
    ``\Uhhhhhhhh``     Unicode character 8 hex digits
    ``\ooo``           Unicode character 1--3 octal digits
    ``\:NAME:``        Unicode character Unicode character name
-   ``\a``             0x07              Bell
-   ``\b``             0x08              Backspace
-   ``\e``             0x1B              Escape
-   ``\f``             0x0C              Form feed
-   ``\n``             0x0A              Line feed
-   ``\r``             0x0D              Carriage return
-   ``\t``             0x09              Tab
-   ``\v``             0x0B              Vertical tab
-   ``\"``             0x22              Double quote
-   ``\'``             0x27              Single quote
-   ``\?``             0x3F              Question mark
-   ``\\``             0x5C              Backslash
-   ``\<end-of-line>`` none              Escaped whitespace
+   ``\a``             0x07              bell
+   ``\b``             0x08              backspace
+   ``\e``             0x1B              escape
+   ``\f``             0x0C              form feed
+   ``\n``             0x0A              line feed
+   ``\r``             0x0D              carriage return
+   ``\t``             0x09              tab
+   ``\v``             0x0B              vertical tab
+   ``\"``             0x22              double quote
+   ``\'``             0x27              single quote
+   ``\?``             0x3F              question mark
+   ``\\``             0x5C              backslash
+   ``\<end-of-line>`` none              escaped whitespace
    ================== ================= ========================================
 
 

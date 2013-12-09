@@ -1084,12 +1084,12 @@ summarized in the table below.
    =============== =============================================================
    Escape Sequence Description
    =============== =============================================================
-   ``\n``          Line break (OS X and Linux)
-   ``\r\n``        Line break (Windows)
-   ``\t``          Tab
-   ``\"``          Double quote
-   ``\'``          Single quote
-   ``\\``          Backslash
+   ``\n``          line break (OS X and Linux)
+   ``\r\n``        line break (Windows)
+   ``\t``          tab
+   ``\"``          double quote
+   ``\'``          single quote
+   ``\\``          backslash
    =============== =============================================================
 
 
