@@ -153,6 +153,8 @@ the sections that follow.
                     should be returned. Using ``-keyValue`` overrides all the
                     other search parameters and returns the single record
                     specified. Optional.
+   ``-key``         An array that specifies the search field operators and pair
+                    parameters to find the matching records.
    ``-host``        Optional inline host array. See the section
                     :ref:`database-inline-connection` in the
                     :ref:`database-interaction` chapter for more information.
@@ -360,6 +362,18 @@ affect. The following `inline` method searches for records where the
       -keyField='id',
       -operator='bw', 'first_name'='J',
       -operator='ew', 'last_name'='son'
+   )]
+      [records]<br />[field('first_name')] [field('last_name')][/records]
+   [/inline]
+
+The same could be accomplished by using a ``-key`` parameter::
+
+   [inline(
+      -search,
+      -database='contacts',
+      -table='people',
+      -keyField='id',
+      -key=(: -bw, 'first_name'='J', -ew, 'last_name'='son')
    )]
       [records]<br />[field('first_name')] [field('last_name')][/records]
    [/inline]

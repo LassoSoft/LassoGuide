@@ -198,7 +198,7 @@ database::
    )]
       There were [found_count] record(s) found in the People table.
       [records]
-         <br />[Field('first_name')] [Field('last_name')]
+         <br />[field('first_name')] [field('last_name')]
       [/records]
    [/inline]
 
@@ -1112,11 +1112,11 @@ be preferable to the other and the drawbacks of each. The database method is
 used throughout most of the examples in this documentation.
 
 
-Database Method
----------------
+Database Name Method
+--------------------
 
-If an inline contains a ``-database`` parameter, then it is used to look up what
-host and data source should be used to service the inline. If there is a
+If an inline contains only a ``-database`` parameter, then it is used to look up
+what host and data source should be used to service the inline. If there is a
 ``-table`` parameter, Lasso uses this to look up what encoding should be used
 for the results of the database action. If an inline does not have a specified
 ``-database`` then it inherits the ``-database`` (and ``-table`` and
@@ -1138,10 +1138,10 @@ for the results of the database action. If an inline does not have a specified
    solution contained within the code files of the solution itself.
 
 
-Inline Host Method
-------------------
+Host Array Method
+-----------------
 
-With the inline host method, all of the characteristics of the data source host
+With the host array method, all of the characteristics of the data source host
 that will be used to process the inline database action are specified directly
 within the inline.
 

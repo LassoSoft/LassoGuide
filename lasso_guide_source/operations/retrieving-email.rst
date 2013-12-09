@@ -793,7 +793,7 @@ the messages are going to be used later.
       iterate(#myPOP, local(myID)) => {
          local(myMSG)   = #myPOP->retrieve
          local(myParse) = email_parse(#myMSG)
-         Inline(
+         inline(
             -add,
             -database    = 'example',
             -table       = 'archive',

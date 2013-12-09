@@ -263,9 +263,9 @@ The required parameters are detailed in the following table.
                     specified table. Either a ``-keyField`` and ``-keyValue`` or
                     a ``-key`` is required.
    ``-keyValue``    The value of the primary key of the record being updated.
-   ``-key``         An array that specifies the search parameters to find the
-                    records to be updated. Either a ``-keyField`` and
-                    ``-keyValue`` or a ``-key`` is required.
+   ``-key``         An array that specifies the search field operators and pair
+                    parameters to find the records to be updated. Either a
+                    ``-keyField`` and ``-keyValue`` or a ``-key`` is required.
    ``-host``        Optional inline host array. See the section
                     :ref:`database-inline-connection` in the
                     :ref:`database-interaction` chapter for more information.
@@ -310,7 +310,7 @@ Lasso has two methods for finding which records are to be updated.
    The following inline would update all records in the "people" table that have
    a first name of "John" to have a last name of "Doe"::
 
-      Inline(
+      inline(
          -update,
          -database='contacts',
          -table='people',
@@ -587,9 +587,9 @@ parameters are detailed in the following table.
                    specified table. Either a ``-keyField`` and ``-keyValue``
                    or a ``-key`` is required.
    ``-keyValue``   The value of the primary key of the record being deleted.
-   ``-key``        An array that specifies the search parameters to find the
-                   records to be deleted. Either a ``-keyField`` and
-                   ``-keyValue`` or a ``-key`` is required.
+   ``-key``        An array that specifies the search field operators and pair
+                   parameters to find the records to be deleted. Either a
+                   ``-keyField`` and ``-keyValue`` or a ``-key`` is required.
    ``-host``       Optional inline host array. See the section
                    :ref:`database-inline-connection` in the
                    :ref:`database-interaction` chapter for more information.
