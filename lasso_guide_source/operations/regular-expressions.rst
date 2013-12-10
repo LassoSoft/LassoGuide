@@ -22,7 +22,7 @@ expressions.
 
 .. note::
    Full documentation of regular expression methodology is outside the scope of
-   this manual. Consult a standard reference on regular expressions for more
+   this guide. Consult a standard reference on regular expressions for more
    information about how to use this flexible technology.
 
 

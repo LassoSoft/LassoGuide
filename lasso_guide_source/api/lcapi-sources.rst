@@ -114,7 +114,7 @@ Below is the code for the Sample Data Source Connector::
          case datasourceTerm:
             break;
          case datasourceCloseConnection: // Connections only get closed through here
-            // Here's where you would gracefully close the connection
+            // Here's where to gracefully close the connection
             break;
          case datasourceTickle:
             //
@@ -157,9 +157,9 @@ Below is the code for the Sample Data Source Connector::
                   sizes[1] = 10;
                   sizes[2] =  8;
 
-                  lasso_addColumnInfo(token, "Employee" , true, lpTypeString  , kProtectionNone);
+                  lasso_addColumnInfo(token, "Employee",  true, lpTypeString,   kProtectionNone);
                   lasso_addColumnInfo(token, "StartDate", true, lpTypeDateTime, kProtectionNone);
-                  lasso_addColumnInfo(token, "Wages"    , true, lpTypeDecimal , kProtectionNone);
+                  lasso_addColumnInfo(token, "Wages",     true, lpTypeDecimal,  kProtectionNone);
 
                   lasso_addResultRow(token, values, sizes, 3);
                   lasso_setNumRowsFound(token, 1);
@@ -269,7 +269,7 @@ source connector.
       case datasourceTerm:
          break;
       case datasourceCloseConnection: // Connections only get closed through here
-         // Here's where you would gracefully close the connection
+         // Here's where to gracefully close the connection
          break;
 
 #. The ``datasourceNames`` action is called whenever Lasso needs to get a list
@@ -321,7 +321,7 @@ source connector.
    database was specified. We then use `lasso_getInputColumnCount` to get the
    number of search fields passed to the `inline`. We have a ``for`` loop to
    retrieve the name/value text for each search parameter. For example,
-   ``inline(-database='Accounting', -table='Payroll', 'Employee'='fred',
+   ``inline(-database='Accounting', -table='Payroll', 'Employee'='Fred',
    'Wages'='15000')`` will fill the "columnItem" variable with the values
    "Employee, fred" the first time through the loop, and "Wages, 15000" the
    second time through the loop::
@@ -355,9 +355,9 @@ source connector.
          sizes[1] = 10;
          sizes[2] =  8;
 
-         lasso_addColumnInfo(token, "Employee" , true, lpTypeString  , kProtectionNone);
+         lasso_addColumnInfo(token, "Employee",  true, lpTypeString,   kProtectionNone);
          lasso_addColumnInfo(token, "StartDate", true, lpTypeDateTime, kProtectionNone);
-         lasso_addColumnInfo(token, "Wages"    , true, lpTypeDecimal , kProtectionNone);
+         lasso_addColumnInfo(token, "Wages",     true, lpTypeDecimal,  kProtectionNone);
 
          lasso_addResultRow(token, values, sizes, 3);
          lasso_setNumRowsFound(token, 1);

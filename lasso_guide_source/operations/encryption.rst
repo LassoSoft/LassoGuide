@@ -223,7 +223,7 @@ installation.
 .. note::
    The actual list of supported algorithms may vary between Lasso installations
    depending on the platform and system version. The algorithms listed in this
-   manual should be available on all systems, but other more esoteric algorithms
+   guide should be available on all systems, but other more esoteric algorithms
    may be available on some systems and not on others.
 
 .. method:: cipher_encrypt(data, -cipher::string, -key, -seed= ?)::bytes

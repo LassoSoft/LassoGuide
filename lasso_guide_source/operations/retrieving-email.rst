@@ -571,10 +571,10 @@ There are three ways to inspect the headers of a downloaded message.
    `email_pop->retrieve` method::
 
       local(myParse) = email_parse(#myMSG)
-      '<br />To:      ' + #myParse->to->encodeHTML + '\n'
-      '<br />From:    ' + #myParse->from->encodeHTML + '\n'
-      '<br />Subject: ' + #myParse->subject->encodeHTML + '\n'
-      '<br />Date:    ' + #myParse->date->asString->encodeHTML + '\n'
+      '<br />To:      ' + #myParse->to->encodeHtml + '\n'
+      '<br />From:    ' + #myParse->from->encodeHtml + '\n'
+      '<br />Subject: ' + #myParse->subject->encodeHtml + '\n'
+      '<br />Date:    ' + #myParse->date->asString->encodeHtml + '\n'
 
       // =>
       // <br />To: Example Recipient
@@ -604,9 +604,9 @@ There are three ways to inspect the headers of a downloaded message.
       local(spam_version) = string(#myParse->header('X-Spam-Checker-Version'))
       local(spam_level)   = string(#myParse->header('X-Spam-Level'))
       local(spam_status)  = string(#myParse->header('X-Spam-Status'))
-      '<br />Spam Version: ' + #spam_version->encodeHTML + '\n'
-      '<br />Spam Level:   ' + #spam_level->encodeHTML + '\n'
-      '<br />Spam Status:  ' + #spam_status->encodeHTML + '\n'
+      '<br />Spam Version: ' + #spam_version->encodeHtml + '\n'
+      '<br />Spam Level:   ' + #spam_level->encodeHtml + '\n'
+      '<br />Spam Status:  ' + #spam_status->encodeHtml + '\n'
 
       // =>
       // <br />Spam Version: SpamAssassin 2.61
@@ -628,7 +628,7 @@ There are three ways to inspect the headers of a downloaded message.
 
       local(myParse) = email_parse(#myMSG)
       iterate(#myParse->headers, local(header))
-         '<br />' + #header->first->encodeHTML + ': ' + #header->second->encodeHTML
+         '<br />' + #header->first->encodeHtml + ': ' + #header->second->encodeHtml
       /iterate
 
       // =>
@@ -652,8 +652,8 @@ of a message. The following example shows both the plain text and HTML parts of
 a downloaded message::
 
    local(myParse) = email_parse(#myMSG)
-   '<pre>' + #myParse->body(-type='text/plain')->encodeHTML + '</pre>'
-   '<hr />' + #myParse->body(-type='text/html')->encodeHTML + '<hr />'
+   '<pre>' + #myParse->body(-type='text/plain')->encodeHtml + '</pre>'
+   '<hr />' + #myParse->body(-type='text/html')->encodeHtml + '<hr />'
 
 The `email_parse->size` and `email_parse->get` methods can be used with the
 `iterate` method to inspect every part of an email message in turn. This will
@@ -663,9 +663,9 @@ attachments. The headers and body of each part is shown::
    local(myParse) = email_parse(#myMSG)
    iterate(#myParse, local(myPart))
       iterate(#myPart->header, local(header))
-         '<br />' + #header->first->encodeHTML + ': ' + #header->second->encodeHTML + '\n'
+         '<br />' + #header->first->encodeHtml + ': ' + #header->second->encodeHtml + '\n'
       /iterate
-      '<br />' + #myPart->body->encodeHTML + '\n'
+      '<br />' + #myPart->body->encodeHtml + '\n'
       '<hr />\n'
    /iterate
 

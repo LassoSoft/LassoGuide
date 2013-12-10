@@ -93,7 +93,7 @@ steps need to be taken:
 
    .. important::
       Links to third-party distributions and tools are provided for your
-      convenience and were accurate when this manual was written. LassoSoft
+      convenience and were accurate when this guide was written. LassoSoft
       cannot guarantee the availability or suitability of software downloaded
       from third-party web sites.
 
@@ -503,7 +503,7 @@ To add a new Oracle host:
 #. Click the :guilabel:`Add host` item to reveal the host connection form.
 #. Enter the IP address or domain name where the Oracle data sources are being
    hosted, the port, and the database name using the "host:port/database" format
-   in the "Host" field (e.g. "www.example.com:1521/Mydatabase").
+   in the "Host" field (e.g. "www.example.com:1521/MyDatabase").
 #. Enter the TCP port of the Oracle service in the "Port" field. This is
    commonly "1521" for Oracle.
 #. Select "Yes" from the :guilabel:`Enabled` drop-down to enable the host.
@@ -538,7 +538,7 @@ takes an array that should contain the following elements:
 -  ``-datasource`` should be specified as "oracle".
 -  ``-name`` should be specified as the IP address or domain name of the machine
    hosting Oracle, followed by a colon and the port to connect on, and ending
-   with a slash and the database name (e.g. "www.example.com:1521/Mydatabase").
+   with a slash and the database name (e.g. "www.example.com:1521/MyDatabase").
 -  ``-port`` is optional and defaults to "1521" if no port is specified.
 -  ``-username`` set to the user to authenticate as.
 -  ``-password`` set to the specified user's password to authenticate the
@@ -550,7 +550,7 @@ appear::
    inline(
       -host=(:
          -datasource='oracle',
-         -name='oracle.example.com:1521/mydatabase',
+         -name='oracle.example.com:1521/MyDatabase',
          -port='1521',
          -username='username',
          -password='password'
@@ -833,7 +833,7 @@ To add a new SQL Server database host:
 #. Click the :guilabel:`Add host` item to reveal the host connection form.
 #. Enter the IP address or domain name where the SQL Server data source is being
    hosted followed by a backslash and the name of a database in the "Host"
-   field. (e.g. "www.example.com\\MyDataBase")
+   field. (e.g. "www.example.com\\MyDatabase")
 #. Enter the TCP port the SQL Server service is listening on in the "Port"
    field. This is commonly "1433" for SQL Server.
 #. Select "Yes" from the :guilabel:`Enabled` drop-down to enable the host.

@@ -108,14 +108,14 @@ Configuring ImageMagick
 -  Download and install "ImageMagick-6.7.7-7-Q16-windows-x64-dll.exe" from an
    `ImageMagick installers archive`_.
 -  Restart Lasso Instance Manager by opening the built-in Services application,
-   selecting the "Lasso Instance Manager" service and and clicking the "Restart
+   selecting the "Lasso Instance Manager" service and clicking the "Restart
    Service" icon.
 
 .. only:: html
 
    .. important::
       Links to third-party distributions and tools are provided for your
-      convenience and were accurate when this manual was written. LassoSoft
+      convenience and were accurate when this guide was written. LassoSoft
       cannot guarantee the availability or suitability of software downloaded
       from third-party web sites.
 

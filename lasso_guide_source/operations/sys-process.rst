@@ -160,7 +160,7 @@ to STDOUT, which is then read by Lasso::
 
    local(proc) = sys_process('/bin/echo', array('Hello World!'))
    local(_) = #proc->wait
-   #proc->read->encodeHTML
+   #proc->read->encodeHtml
    #proc->close
 
    // => Hello World!
@@ -174,7 +174,7 @@ directory::
 
    local(proc) = sys_process('/bin/ls', (: '/' + sys_homePath))
    fail_if(#proc->exitCode != 0, 'Unknown error')
-   #proc->readString->encodeHTML(true, false)
+   #proc->readString->encodeHtml(true, false)
    #proc->close
 
    // =>
@@ -231,7 +231,7 @@ current date and time::
    local(proc) = sys_process('/usr/bin/osascript', (: '-'))
    #proc->write('return current date')
    local(_) = #proc->closeWrite&wait
-   #proc->readString->encodeHTML
+   #proc->readString->encodeHtml
    #proc->close
 
    // => Tuesday, March 21, 2006 11:52:34 AM
@@ -249,7 +249,7 @@ be from STDOUT. Only the first part of the output is shown. ::
    local(proc) = sys_process('/usr/bin/curl', (: 'http://www.apple.com/'))
    local(data)
    while(#proc->isOpen or #data := #proc->readString) => {^
-      #data->asString->encodeHTML
+      #data->asString->encodeHtml
    ^}
    #proc->close
 
@@ -277,7 +277,7 @@ to simply echo the input back to Lasso::
 
    local(proc) = sys_process('cmd', array('/C ECHO Hello World!'))
    local(_) = #proc->wait
-   #proc->readString->encodeHTML
+   #proc->readString->encodeHtml
    #proc->close
 
    // => Hello World!
@@ -293,7 +293,7 @@ the contents of the directory without extraneous header and footer information.
 
    local(proc) = sys_process('cmd', (: '/C DIR /B .'))
    local(_) = #proc->wait
-   #proc->readString->encodeHTML
+   #proc->readString->encodeHtml
    #proc->close
 
    // =>
@@ -319,7 +319,7 @@ return a list of all the built-in commands supported by the command processor.
 
    local(proc) = sys_process('cmd', (: '/C HELP cmd'))
    local(_) = #proc->wait
-   #proc->readString->encodeHTML
+   #proc->readString->encodeHtml
    #proc->close
 
    // =>
@@ -346,7 +346,7 @@ header and the directory prefix from each line. ::
    #proc->write('ECHO Line One\r\n')
    #proc->write('ECHO Line Two\r\n')
    local(_) = #proc->wait
-   #proc->read->encodeHTML
+   #proc->read->encodeHtml
    #proc->close
 
    // =>
@@ -377,7 +377,7 @@ is run through Lasso. ::
 
    local(proc) = sys_process('cmd', (: '/C batch.bat'))
    local(_) = #proc->wait
-   #proc->readString->encodeHTML
+   #proc->readString->encodeHtml
    #proc->close
 
    // => This file demonstrates how to use a batch file.

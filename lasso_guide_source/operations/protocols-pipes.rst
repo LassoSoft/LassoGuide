@@ -144,7 +144,6 @@ Writing TCP Data
    automatically handles TCP flow control, but does not accept a timeout value.
 
 
-
 Simple Multi-Threaded Server
 ----------------------------
 

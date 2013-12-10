@@ -140,7 +140,7 @@ This example uses the :command:`/bin/echo` command to simply echo the input back
 to STDOUT, which is then read by Lasso::
 
    local(os) = os_process('/bin/echo', array( 'Hello World!'))
-   #os->read->encodeHTML
+   #os->read->encodeHtml
    #os->close
 
    // => Hello World!
@@ -153,7 +153,7 @@ This example uses the :command:`/bin/ls` command to list the contents of a
 directory::
 
    local(os) = os_process('/bin/ls', (: '/' + sys_homePath))
-   #os->readString->encodeHTML(true, false)
+   #os->readString->encodeHtml(true, false)
    #os->close
 
    // =>
@@ -210,7 +210,7 @@ current date and time::
    local(os) = os_process('/usr/bin/osascript', (: '-'))
    #os->write('return current date')
    #os->closeWrite
-   #os->read->encodeHTML
+   #os->read->encodeHtml
    #os->close
 
    // => Tuesday, March 21, 2006 11:52:34 AM
@@ -224,7 +224,7 @@ return the results. The :type:`curl` type or `include_url` method can be used
 for the same purpose. Only the first part of the output is shown. ::
 
    local(os) = os_process('/usr/bin/curl', (: 'http://www.apple.com/'))
-   #os->read->encodeHTML
+   #os->read->encodeHtml
    #os->close
 
    // =>
@@ -250,7 +250,7 @@ This example uses the :program:`CMD` processor with an :command:`ECHO` command
 to simply echo the input back to Lasso::
 
    local(os) = os_process('cmd', array('/C ECHO Hello World!'))
-   #os->readString->encodeHTML
+   #os->readString->encodeHtml
    #os->close
 
    // => Hello World!
@@ -265,7 +265,7 @@ the contents of the directory without extraneous header and footer information.
 ::
 
    local(os) = os_process('cmd', (: '/C DIR /B .'))
-   #os->readString->encodeHTML
+   #os->readString->encodeHtml
    #os->close
 
    // =>
@@ -290,7 +290,7 @@ return a list of all the built-in commands supported by the command processor.
 ::
 
    local(os) = os_process('cmd', (: '/C HELP cmd'))
-   #os->readString->encodeHTML
+   #os->readString->encodeHtml
    #os->close
 
    // =>
@@ -316,7 +316,7 @@ header and the directory prefix from each line. ::
    local(os) = os_process('cmd', (: '/Q')
    #os->write('ECHO Line One\r\n')
    #os->write('ECHO Line Two\r\n')
-   #os->read->encodeHTML
+   #os->read->encodeHtml
    #os->close
 
    // =>
@@ -346,7 +346,7 @@ commands easy since all the code can be perfected using local testing before it
 is run through Lasso. ::
 
    local(os) = os_process('cmd', (: '/C batch.bat'))
-   #os->readString->encodeHTML
+   #os->readString->encodeHtml
    #os->close
 
    // => This file demonstrates how to use a batch file.
