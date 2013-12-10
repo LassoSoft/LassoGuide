@@ -539,14 +539,12 @@ Creating Regular Expression Objects
       find::string, \
       replace::string= ?, \
       input::string= ?, \
-      -ignoreCase::boolean= ?\
-   )
+      -ignoreCase::boolean= ?)
 .. method:: regexp(\
       -find::string, \
       -replace::string= ?, \
       -input::string= ?, \
-      -ignoreCase::boolean= ?\
-   )
+      -ignoreCase::boolean= ?)
 
    The `regexp` creator method creates a reusable regular expression. A `regexp`
    object must be initialized with a string regular expression pattern as either
@@ -564,7 +562,7 @@ Creating Regular Expression Objects
    output to the page (rather than being stored in a variable) is an easy way to
    perform a quick find/replace operation. ::
 
-      regexp(`[aeiou]`, 'x','The quick brown fox jumped over the lazy dog.')->replaceAll
+      regexp(`[aeiou]`, 'x', 'The quick brown fox jumped over the lazy dog.')->replaceAll
       // => Thx qxxck brxwn fxx jxmpxd xvxr thx lxzy dxg.
 
    However, a regular expression will usually be stored in a variable and then
@@ -604,20 +602,16 @@ For example, the regular expression above can be inspected by the following
 code. The group count is "0" since the find expression does not contain any
 groups (designated by parentheses)::
 
-   <pre>
-   FindPattern: [#my_regexp->findPattern]
-   ReplacePattern: [#my_regexp->replacePattern]
-   IgnoreCase: [#my_regexp->ignoreCase]
-   GroupCount: [#my_regexp->groupCount]
-   </pre>
+   'FindPattern: ' + #my_regexp->findPattern + '\n'
+   'ReplacePattern: ' + #my_regexp->replacePattern + '\n'
+   'IgnoreCase: ' + #my_regexp->ignoreCase + '\n'
+   'GroupCount: ' + #my_regexp->groupCount + '\n'
 
    // =>
-   // <pre>
    // FindPattern: [aeiou]
    // ReplacePattern: x
    // IgnoreCase: true
    // GroupCount: 0
-   // </pre>
 
 
 .. _regular-expressions-simple:
@@ -642,12 +636,7 @@ next section.
    ``-find`` and ``-replace`` patterns can also be specified within this method
    along with the ``-ignoreCase`` flag.
 
-.. member:: regexp->replaceFirst(\
-      -input= ?, \
-      -find= ?, \
-      -replace= ?, \
-      -ignoreCase= ?\
-   )
+.. member:: regexp->replaceFirst(-input= ?, -find= ?, -replace= ?, -ignoreCase= ?)
 
    Replaces the first occurrence of the current find pattern with the current
    replacement pattern. The ``-input`` parameter specifies what string should be
@@ -726,10 +715,10 @@ staticarray with elements containing only consonants or spaces::
    #my_regexp->split(-input='The quick brown fox jumped over the lazy dog.')
    // => staticarray(Th,  q, , ck br, wn f, x j, mp, d , v, r th,  l, zy d, g.)
 
-The ``-find`` pattern can be modified within the `regexp->split` method to split
-the string on a different regular expression. In this example the string is
-split on any one of one or more non-word characters. This splits the string into
-words not including any whitespace or punctuation. ::
+The ``-find`` pattern can be modified in-place within the `regexp->split` method
+to split the string on a different regular expression. In this example the
+string is split on any one of one or more non-word characters. This splits the
+string into words not including any whitespace or punctuation. ::
 
    #my_regexp->split(-find=`\W+`, -input='The quick brown fox jumped over the lazy dog.')
    // => staticarray(The, quick, brown, fox, jumped, over, the, lazy, dog)
@@ -771,7 +760,7 @@ The order of operations of an interactive find/replace operation is as follows:
    the loop is exited::
 
       while(#my_regexp->find) => {
-         // ... your code here ...
+         // ...
       }
 
 #. Within the ``while`` loop the `regexp->matchString` method is used to inspect
@@ -879,9 +868,9 @@ replacement is defined with a replacement word in a map. ::
 
    local(my_string)    = 'The quick $color fox $verb over the lazy $animal.'
    local(replacements) = map(
-      'color'  = 'red',
-      'verb'   = 'soared',
-      'animal' = 'ocelot'
+      'color'  = "red",
+      'verb'   = "soared",
+      'animal' = "ocelot"
    )
 
 A regular expression is initialized with the input string and a pattern that
@@ -927,8 +916,7 @@ perform regular expression find and replace routines on text strings.
       -find::string, \
       -replace::string, \
       -ignoreCase= ?, \
-      -replaceOnlyOne= ?\
-   )
+      -replaceOnlyOne= ?)
 
    Takes three parameters: a string value, a ``-find`` keyword parameter, and a
    ``-replace`` keyword parameter. Returns an array with each instance of the
@@ -950,11 +938,11 @@ In the following example, every email address in a string is returned in an
 array::
 
    string_findRegExp(
-      'Send email to documentation@lassosoft.com.',
+      'Send email to address@example.com.',
       -find=`\w+@\w+\.\w+`
    )
 
-   // => array(documentation@lassosoft.com)
+   // => array(address@example.com)
 
 In the following example, every email address in a string is returned in an
 array and subexpressions are used to divide the username and domain name
@@ -962,11 +950,11 @@ portions of the email address. The result is an array with the entire match
 string, then each of the subexpressions. ::
 
    string_findRegExp(
-      'Send email to documentation@lassosoft.com.',
+      'Send email to address@example.com.',
       -find=`(\w+)@(\w+\.\w+)`
    )
 
-   // => array(documentation@lassosoft.com, documentation, lassosoft.com)
+   // => array(address@example.com, address, example.com)
 
 In the following example, every word in the source is returned in an array. The
 first character of each word is separated as a subexpression. The returned array
@@ -999,13 +987,12 @@ odd elements in the array ``word_array`` and the even elements in the array
          #word_array->insert(#value)
       }
    }
-   #word_array
-   '<br />'
-   #char_array
 
-   // =>
-   // array(The, quick, brown, fox, jumped, over, a, lazy, dog)
-   // array(T, q, b, f, j, o, a, l, d)
+   #word_array
+   // => array(The, quick, brown, fox, jumped, over, a, lazy, dog)
+
+   #char_array
+   // => array(T, q, b, f, j, o, a, l, d)
 
 In the following example, every phone number in a string is returned in an
 array. The ``\d`` symbol is used to match individual digits and the ``{3}``
@@ -1059,12 +1046,12 @@ any character. This pattern matches any email address of the format
 :samp:`{name}@{example.com}`::
 
    string_replaceRegExp(
-      'Send email to documentation@lassosoft.com.',
+      'Send email to address@example.com.',
       -find=`(\w+@\w+\.\w+)`,
       -replace=`<a href="mailto:$1">$1</a>`
    )
 
-   // => Send email to <a href="mailto:documentation@lassosoft.com">documentation@lassosoft.com</a>.
+   // => Send email to <a href="mailto:address@example.com">address@example.com</a>.
 
 .. _ICU Regular Expressions package: http://userguide.icu-project.org/strings/regexp
 .. _Unicode Standard Annex #29: http://www.unicode.org/reports/tr29/

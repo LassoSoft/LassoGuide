@@ -34,17 +34,15 @@ Create a Basic PDF File Using Lasso
 The following shows an example of creating and outputting a PDF file named
 "MyFile.pdf" using the ``pdf_…`` methods::
 
-   <?lasso
-      local(my_file) = pdf_doc(
-         -file   = 'MyFile.pdf',
-         -size   = 'A4',
-         -margin = (: 144.0, 144.0, 72.0, 72.0)
-      )
-      local(font) = pdf_font(-face='Helvetica', -size=36)
-      local(text) = pdf_text('I am a PDF document', -font=#font)
-      #my_file->add(#text)
-      #my_file->close
-   ?>
+   local(my_file) = pdf_doc(
+      -file   = 'MyFile.pdf',
+      -size   = 'A4',
+      -margin = (: 144.0, 144.0, 72.0, 72.0)
+   )
+   local(font) = pdf_font(-face='Helvetica', -size=36)
+   local(text) = pdf_text('I am a PDF document', -font=#font)
+   #my_file->add(#text)
+   #my_file->close
 
 In the example above, a variable named "my_file" is set to a :type:`pdf_doc`
 type with a file name of "MyFile.pdf". A single font type is defined for the
@@ -114,11 +112,7 @@ PDF file.
    Returns the value of a single form element. Requires one parameter which is
    the name of the field element to be inspected.
 
-.. member:: pdf_read->setFieldValue(\
-         field::string, \
-         value::string, \
-         -display::string= ?\
-      )
+.. member:: pdf_read->setFieldValue(field::string, value::string, -display::string= ?)
 
    Sets the value of a single form element. Requires two parameters: the name of
    a form element and a new value for the element. Optional ``-display``
@@ -148,13 +142,11 @@ PDF file.
 
    Adds a JavaScript action to the current PDF file.
 
-.. member:: pdf_read->save(\
-         file::string, \
-         -encryptStrong=false, \
-         -permissions='', \
-         -userPassword='', \
-         -ownerPassword=''\
-      )
+.. member:: pdf_read->save(file::string, \
+      -encryptStrong=false, \
+      -permissions='', \
+      -userPassword='', \
+      -ownerPassword='')
 
    Saves a copy of the current PDF file. Requires one parameter which specifies
    the path to the file where the PDF file should be saved. Also accepts
@@ -656,8 +648,7 @@ type.
       -size= ?, \
       -color= ?, \
       -encoding::string= ?, \
-      -embed= ?\
-   )
+      -embed= ?)
 
    Stores all the specifications for a font style. This includes font family,
    size, style, and color. Parameters are used with the `pdf_font` creator
@@ -764,7 +755,7 @@ and setting information about a pdf_font object that was defined using the
 .. member:: pdf_font->getSupportedEncodings()
 
    Returns an array of all supported encodings for a current TrueType font face,
-   e.g. "array('1252 Latin 1','1253 Greek')".
+   e.g. "array('1252 Latin 1', '1253 Greek')".
 
 .. member:: pdf_font->getFullFontName()
 
@@ -912,10 +903,10 @@ following example adds three sentences of text to the pdf_doc object with a
 predefined font::
 
    local(text) = pdf_text(
-      'The mysterious file cabinet in orbit has been successfully lassoed. The \
+      "The mysterious file cabinet in orbit has been successfully lassoed. The \
          file cabinet had been traveling at a velocity of 300 meters per \
          second. Top scientists suspect that the cabinet had been in orbit for \
-         some time.',
+         some time.",
       -type='Paragraph',
       -font=#my_font,
       -leading=10.0,
@@ -932,7 +923,7 @@ example adds the text "Click here to go somewhere" to the pdf_doc object with a
 predefined font, and links the phrase to :ref:`!http://www.example.com`::
 
    local(text) = pdf_text(
-      'Click here to go somewhere',
+      "Click here to go somewhere",
       -type='Chunk',
       -font=#my_font,
       -anchor='http://www.example.com',
@@ -957,8 +948,7 @@ the page.
       -left::integer= ?, \
       -top::integer= ?, \
       -width::integer= ?, \
-      -height::integer= ?\
-   )
+      -height::integer= ?)
 
    Adds specified text that is positioned on a page using point coordinates. An
    optional ``-leading`` parameter (decimal value) sets the text leading space
@@ -1129,8 +1119,7 @@ methods which are described below.
       -top, \
       -width, \
       -height, \
-      -font= ?\
-   )
+      -font= ?)
 
    Adds a text field to a form. Requires the first parameter to specify the name
    of the text field, and the second parameter to specify the default value
@@ -1144,8 +1133,7 @@ methods which are described below.
       -top, \
       -width, \
       -height, \
-      -font= ?\
-   )
+      -font= ?)
 
    Adds a password field to a form. Requires the first parameter to specify the
    name of the password field, and the second parameter to specify the default
@@ -1159,8 +1147,7 @@ methods which are described below.
       -top, \
       -width, \
       -height, \
-      -font= ?\
-   )
+      -font= ?)
 
    Adds a text area to a form. Requires the first parameter to specify the name
    of the text area, and the second parameter to specify the default value
@@ -1174,8 +1161,7 @@ methods which are described below.
       -top, \
       -width, \
       -height, \
-      -checked::boolean= ?\
-   )
+      -checked::boolean= ?)
 
    Adds a checkbox to a form. Requires the first parameter to specify the name
    of the checkbox, and the second parameter to specify the value for the
@@ -1194,8 +1180,7 @@ methods which are described below.
       -left, \
       -top, \
       -width, \
-      -height\
-   )
+      -height)
 
    Adds a radio button to a form. Requires the first parameter to specify the
    name of the radio button group, and the second parameter to specify the value
@@ -1210,8 +1195,7 @@ methods which are described below.
       -top, \
       -width, \
       -height, \
-      -font= ?\
-   )
+      -font= ?)
 
    Adds a drop-down menu to a form. Requires the first parameter to specify the
    name of the drop-down menu, and the second parameter to specify the array of
@@ -1233,8 +1217,7 @@ methods which are described below.
       -top, \
       -width, \
       -height, \
-      -fone = ?\
-   )
+      -font = ?)
 
    Adds a select list to a form. Requires the first parameter to specify the
    name of the select list, and the second parameter to specify the array of
@@ -1263,8 +1246,7 @@ methods which are described below.
       -top, \
       -width, \
       -height, \
-      -font= ?\
-   )
+      -font= ?)
 
    Adds a submit button to a form. Also specifies the URL to which the form data
    will be submitted. Requires the first parameter to specify the name of the
@@ -1282,8 +1264,7 @@ methods which are described below.
       -top, \
       -width, \
       -height, \
-      -font= ?\
-   )
+      -font= ?)
 
    Adds a reset button to a form. Requires the first parameter to specify the
    name of the button, the second parameter specifies a caption (displayed name)
@@ -1427,10 +1408,10 @@ and "Four" for each value. No value is selected by default::
 
    #my_file->addComboBox(
       'List_Name',
-      (: pair(1='One'),
-         pair(2='Two'),
-         pair(3='Three'),
-         pair(4='Four')
+      (: pair(1 = 'One'),
+         pair(2 = 'Two'),
+         pair(3 = 'Three'),
+         pair(4 = 'Four')
       ),
       -left=72.0, -top=272.0, -width=144.0, -height=36.0
    )
@@ -1516,7 +1497,7 @@ Submit Information to a Database Using a PDF Form
       local(my_file) = pdf_doc(-file='form.pdf', -size='A4')
       local(my_font) = pdf_font(-face='Helvetica', -size=12)
       #my_file->drawText('First Name:', -font=#my_font, -left=80.0, -top=60.0)
-      #my_file->drawText('Last Name:' , -font=#my_font, -left=80.0, -top=60.0)
+      #my_file->drawText('Last Name:',  -font=#my_font, -left=80.0, -top=60.0)
       #my_file->addTextField(
          'First Name',
          'Enter First Name',
@@ -1544,24 +1525,24 @@ Submit Information to a Database Using a PDF Form
    After the pdf_doc object is closed and executed on the server, a "form.pdf"
    file will be created with the form.
 
-#. In the "response.lasso" page, create an `inline` method that uses the
-   action parameters passed from the PDF form to perform a database action.
-   This example performs a search on the "Contacts" database using the
-   ``First_Name`` and ``Last_Name`` parameters passed from the PDF form. ::
+#. In the "response.lasso" page, create an `inline` method that uses the action
+   parameters passed from the PDF form to perform a database action. This
+   example performs a search on the "Contacts" database using the values for
+   "first_name" and "last_name" passed from the PDF form. ::
 
-      [inline(
+      inline(
          -search,
-         -database='Contacts',
-         -table='People',
-         -keyField='ID',
-         'First_Name'=web_request->param('First_Name'),
-         'Last_Name'=web_request->param('Last_Name')
-      ]
-         There were [found_count] record(s) found in the People table.
-         [records]
-            [field('First_Name')] [field('Last_Name')]
-         [/records]
-      [/inline]
+         -database='contacts',
+         -table='people',
+         -keyField='id',
+         'first_name'=web_request->param('first_name'),
+         'last_name'=web_request->param('last_name')
+      ) => {^
+         'There were ' + found_count + ' record(s) found in the People table.\n'
+         records => {^
+            field('first_name') + ' ' + field('last_name') + '\n'
+         ^}
+      ^}
 
    If the user of the PDF form entered "Jane" for the first name and "Doe" for
    the last name, then the following results would be returned::
@@ -2229,13 +2210,13 @@ multiple text styles::
    local(title) = pdf_text('Lasso Server', -type='Chunk', -font=#font1)
    #text_example->add(#title, -number=1)
 
-   local(text1) = pdf_text('\n\nThe Lasso product line consists of authoring and
+   local(text1) = pdf_text("\n\nThe Lasso product line consists of authoring and
       serving tools that allow web designers and web developers to quickly build
       and serve powerful data-driven web sites with maximum productivity and
       ease. The product line includes Lasso Server for building, serving, and
       administering data-driven web sites, and LassoLab for building and testing
       data-driven web sites within a graphical editor.\n\nLasso Server works
-      with the following data sources:',
+      with the following data sources:",
       -type='Paragraph',
       -leading=15,
       -font=#font2
@@ -2258,18 +2239,18 @@ multiple text styles::
    #list->add('Plus many other ODBC-compliant databases')
    #text_example->add(#list)
 
-   local(text2) = pdf_text('\nLasso\'s innovative architecture provides an
+   local(text2) = pdf_text("\nLasso's innovative architecture provides an
       industry first multi-platform, database-independent and open standards
       approach to delivering database-driven web sites firmly positioning Lasso
       technology within the rapidly evolving server-side web tools market. Lasso
-      technology is used at hundreds of thousands of web sites worldwide.\n\n',
+      technology is used at hundreds of thousands of web sites worldwide.\n\n",
       -type='Paragraph',
       -font=#font2
    )
    #text_example->add(#text2)
 
    local(text3) = pdf_text(
-      'Click here to go to the LassoSoft website',
+      "Click here to go to the LassoSoft website",
       -type='Phrase',
       -font=#font3,
       -underline='true',
@@ -2287,10 +2268,10 @@ multiple text styles::
 
    #text_example->setPageNumber(2)
 
-   local(text4) = pdf_text('Lasso Server is server-side software that adds a
+   local(text4) = pdf_text("Lasso Server is server-side software that adds a
       suite of dynamic functionality and administration to your web server. This
       functionality empowers you to build and serve just about any dynamic web
-      application that can be built with maximum productivity and ease.\n\n',
+      application that can be built with maximum productivity and ease.\n\n",
       -type='Paragraph',
       -leading=15,
       -font=#font2
@@ -2401,17 +2382,17 @@ The following example creates a PDF file that contains both text and a table::
 
    local(font1) = pdf_font(-face='Helvetica', -size='24')
    local(text)  = pdf_text(
-      'This PDF file contains a table. See below.\n\n',
+      "This PDF file contains a table. See below.\n\n",
       -leading=15,
       -font=#font1
    )
    #table_example->add(#text)
 
    local(font2)    = pdf_font(-face='Helvetica', -size='12')
-   local(cell1)    = pdf_text('Cell One'  , -font=#font2)
-   local(cell2)    = pdf_text('Cell Two'  , -font=#font2)
+   local(cell1)    = pdf_text('Cell One',   -font=#font2)
+   local(cell2)    = pdf_text('Cell Two',   -font=#font2)
    local(cell3)    = pdf_text('Cell Three', -font=#font2)
-   local(cell4)    = pdf_text('Cell Four' , -font=#font2)
+   local(cell4)    = pdf_text('Cell Four',  -font=#font2)
    local(my_table) = pdf_table(2, 2,
       -spacing=4, -padding=4, -width=75, -borderWidth=7
    )
@@ -2431,7 +2412,7 @@ The following example shows how to create a PDF file that contains drawn graphic
 objects::
 
    local(graphic_example) = pdf_doc(-file='Graphic_Example.pdf', -height=650, -width=550)
-   local(text) = pdf_text('This PDF file contains lines and circles. See below.\n')
+   local(text) = pdf_text("This PDF file contains lines and circles. See below.\n")
    #graphic_example->add(#text)
    #graphic_example->line(200, 400, 400, 400)
    #graphic_example->line(200, 500, 400, 500)

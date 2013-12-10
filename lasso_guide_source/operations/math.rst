@@ -70,8 +70,7 @@ method detailed below.
       -padding::integer= ?, \
       -padChar::string= ?, \
       -padRight::boolean= ?, \
-      -groupChar::string= ?\
-   )
+      -groupChar::string= ?)
 
    Returns a string representation of the integer value formatted as specified
    by the parameters passed to the method. If no parameters are passed to the
@@ -167,7 +166,7 @@ example, ``0xff`` is the integer literal ``255``.
    these bit methods modified the integer in-place.
 
 
-Perform a Bitwise Or
+Perform a Bitwise OR
 --------------------
 
 In the following example the boolean "or" of ``0x02`` and ``0x04`` is calculated
@@ -298,8 +297,7 @@ method detailed below.
       -scientific::boolean= ?, \
       -padding::integer= ?, \
       -padChar::string= ?, \
-      -padRight::boolean= ?\
-   )
+      -padRight::boolean= ?)
 
    Returns a string representation of the decimal value formatted as specified
    by the parameters passed to the method. If no parameters are passed to the
@@ -734,16 +732,13 @@ In the following example a random hexadecimal color code is returned. The random
 number will be different each time the page is loaded. The range is from ``0``
 to ``255`` to return two-digit hexadecimal values between ``00`` and ``FF``. ::
 
-   [local(color) = "#" +
-      math_random(255,0)->asString(-hexadecimal, -padding=2, -padChar="0") +
-      math_random(255,0)->asString(-hexadecimal, -padding=2, -padChar="0") +
-      math_random(255,0)->asString(-hexadecimal, -padding=2, -padChar="0")
-   ]
-   <span style="color: [#color];">Color</span>
+   local(color) = "#" +
+      math_random(255,0)->asString(-hexadecimal, -padding=2, -padChar='0') +
+      math_random(255,0)->asString(-hexadecimal, -padding=2, -padChar='0') +
+      math_random(255,0)->asString(-hexadecimal, -padding=2, -padChar='0')
+   '<span style="color: ' + #color + ';">Color</span>'
 
-   <!--
    // => <span style="color: #e64b32;">Color</span>
-   -->
 
 
 Trigonometry and Advanced Math Methods

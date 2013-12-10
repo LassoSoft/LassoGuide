@@ -56,8 +56,7 @@ methods:
       -get= ?, \
       -host= ?, \
       -ssl= ?, \
-      ...\
-   )
+      ...)
 
    Creates a new POP object. Requires a ``-host`` parameter. Takes optional
    ``-port`` and ``-timeout`` parameters. The ``-APOP`` parameter selects
@@ -114,11 +113,7 @@ methods:
    Sends a ping to the server. Allows the connection to be kept open without
    timing out.
 
-.. member:: email_pop->authorize(\
-      -username::string, \
-      -password::string, \
-      -APOP::boolean=true\
-   )
+.. member:: email_pop->authorize(-username::string, -password::string, -APOP::boolean=true)
 
    Requires a ``-username`` and ``-password`` parameter. Optional ``-APOP``
    parameter specifies whether APOP authentication should be used or not. Opens
@@ -153,7 +148,8 @@ code will download and delete every message from the target server. The variable
 `email_pop->delete` method marks it for deletion. ::
 
    iterate(#myPOP, local(myID)) => {^
-      #myID + '<br />'
+      #myID
+      '<br />'
       #myPOP->retrieve
       #myPOP->delete
       '<hr />'
@@ -219,7 +215,9 @@ message from the server::
 
    iterate(#myPOP, local(myID)) => {
       local(myMSG) = #myPOP->retrieve
+
       // ... process message ...
+
       #myPOP->delete
    }
    #myPOP->close
@@ -244,7 +242,7 @@ If it does not then the message is downloaded and the unique ID is inserted into
 "myUniqueIDs". ::
 
    local(myPOP) = email_pop(
-      -host = 'mail.example.com',
+      -host     = 'mail.example.com',
       -username = 'POPUSER',
       -password = 'MySecretPassword'
    )
@@ -252,7 +250,9 @@ If it does not then the message is downloaded and the unique ID is inserted into
       #myUniqueIDs->contains(#myID) ? loop_continue
 
       #myUniqueIDs->insert(#myID)
+
       // ... process message ...
+
    }
    #myPOP->close
 
@@ -276,7 +276,9 @@ are set to determine whether either action should take place. ::
       local(needDownload) = false
       local(needDelete)   = false
       local(myHeaders)    = #myPOP->headers
+
       // ... process headers and set #needDownload or #needDelete to true ...
+
       #needDownload ? #myPOP->retrieve
       #needDelete ? #myPOP->delete
    }
@@ -541,6 +543,8 @@ as well as the output of `email_parse` in a set of ``<pre>`` tags. ::
       #myPOP->close
    ?>
 
+::
+
    // =>
    // <h3>Message: 000000045280dd26</h3>
    // <pre>Date: Mon 11 Nov 2008 9:0:0 -0500
@@ -566,17 +570,17 @@ There are three ways to inspect the headers of a downloaded message.
    where the variable "myMSG" is assumed to be the output from an
    `email_pop->retrieve` method::
 
-      [local(myParse) = email_parse(#myMSG)]
-      <br />To:      [#myParse->to->encodeHTML]
-      <br />From:    [#myParse->from->encodeHTML]
-      <br />Subject: [#myParse->subject->encodeHTML]
-      <br />Date:    [#myParse->date->asString->encodeHTML]
+      local(myParse) = email_parse(#myMSG)
+      '<br />To:      ' + #myParse->to->encodeHTML + '\n'
+      '<br />From:    ' + #myParse->from->encodeHTML + '\n'
+      '<br />Subject: ' + #myParse->subject->encodeHTML + '\n'
+      '<br />Date:    ' + #myParse->date->asString->encodeHTML + '\n'
 
       // =>
-      // To: Example Recipient
-      // From: Example Sender
-      // Subject: Test Message
-      // Date: Thu 8 Jul 2004 08:07:42 -0700
+      // <br />To: Example Recipient
+      // <br />From: Example Sender
+      // <br />Subject: Test Message
+      // <br />Date: Thu 8 Jul 2004 08:07:42 -0700
 
    These headers can be used in conditionals or other code as well. For example,
    this conditional would perform different tasks based on whether the message
@@ -596,13 +600,13 @@ There are three ways to inspect the headers of a downloaded message.
    `email_parse->header` method. For example, the following code can check
    whether the message has SpamAssassin headers::
 
-      [local(myParse)      = email_parse(#myMSG)]
-      [local(spam_version) = string(#myParse->header('X-Spam-Checker-Version'))]
-      [local(spam_level)   = string(#myParse->header('X-Spam-Level'))]
-      [local(spam_status)  = string(#myParse->header('X-Spam-Status'))]
-      <br />Spam Version: [#spam_version->encodeHTML]
-      <br />Spam Level:   [#spam_level->encodeHTML]
-      <br />Spam Status:  [#spam_status->encodeHTML]
+      local(myParse)      = email_parse(#myMSG)
+      local(spam_version) = string(#myParse->header('X-Spam-Checker-Version'))
+      local(spam_level)   = string(#myParse->header('X-Spam-Level'))
+      local(spam_status)  = string(#myParse->header('X-Spam-Status'))
+      '<br />Spam Version: ' + #spam_version->encodeHTML + '\n'
+      '<br />Spam Level:   ' + #spam_level->encodeHTML + '\n'
+      '<br />Spam Status:  ' + #spam_status->encodeHTML + '\n'
 
       // =>
       // <br />Spam Version: SpamAssassin 2.61
@@ -624,7 +628,7 @@ There are three ways to inspect the headers of a downloaded message.
 
       local(myParse) = email_parse(#myMSG)
       iterate(#myParse->headers, local(header))
-         `<br />` + #header->first->encodeHTML + `: ` + #header->second->encodeHTML
+         '<br />' + #header->first->encodeHTML + ': ' + #header->second->encodeHTML
       /iterate
 
       // =>
@@ -647,23 +651,23 @@ The `email_parse->body` method can be used to find the plain text and HTML parts
 of a message. The following example shows both the plain text and HTML parts of
 a downloaded message::
 
-   [local(myParse) = email_parse(#myMSG)]
-   <pre>[#myParse->body(-type='text/plain')->encodeHTML]</pre>
-   <hr />[#myParse->body(-type='text/html')->encodeHTML]<hr />
+   local(myParse) = email_parse(#myMSG)
+   '<pre>' + #myParse->body(-type='text/plain')->encodeHTML + '</pre>'
+   '<hr />' + #myParse->body(-type='text/html')->encodeHTML + '<hr />'
 
 The `email_parse->size` and `email_parse->get` methods can be used with the
 `iterate` method to inspect every part of an email message in turn. This will
 show information about plain text and HTML parts as well as information about
 attachments. The headers and body of each part is shown::
 
-   [local(myParse) = email_parse(#myMSG)]
-   [iterate(#myParse, local(myPart))]
-      [iterate(#myPart->header, local(header))]
-         <br />[#header->first->encodeHTML]: [#header->second->encodeHTML]
-      [/iterate]
-      <br />[#myPart->body->encodeHTML]
-      <hr />
-   [/iterate]
+   local(myParse) = email_parse(#myMSG)
+   iterate(#myParse, local(myPart))
+      iterate(#myPart->header, local(header))
+         '<br />' + #header->first->encodeHTML + ': ' + #header->second->encodeHTML + '\n'
+      /iterate
+      '<br />' + #myPart->body->encodeHTML + '\n'
+      '<hr />\n'
+   /iterate
 
    // =>
    // <br />Content-Type: text/plain; charset=ISO-8859-1
@@ -728,7 +732,7 @@ the messages are going to be used later.
    `email_parse->asString` directly in an inline::
 
       local(myPOP) = email_pop(
-         -host = 'mail.example.com',
+         -host     = 'mail.example.com',
          -username = 'POPUSER',
          -password = 'MySecretPassword'
       )
@@ -741,9 +745,9 @@ the messages are going to be used later.
 
          inline(
             -add,
-            -database = 'example',
-            -table = 'archive',
-            'email_format' = #myParse->asString
+            -database='example',
+            -table='archive',
+            'email_format'=#myParse->asString
          ) => {}
       }
 
@@ -752,7 +756,7 @@ the messages are going to be used later.
    to do this::
 
       local(myPOP) = email_pop(
-         -host = 'mail.example.com',
+         -host     = 'mail.example.com',
          -username = 'POPUSER',
          -password = 'MySecretPassword'
       )
@@ -822,7 +826,9 @@ independently.
 
    `email_extract` allows the different parts of email headers to be extracted.
    Email headers containing email addresses are often formatted in one of the
-   three formats below::
+   three formats below:
+
+   .. code-block:: none
 
       john@example.com
       "John Doe" <john@example.com>

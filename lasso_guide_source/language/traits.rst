@@ -89,18 +89,18 @@ then we can import this trait to automatically get an implementation of
       data y, m
 
       public onCreate(year::integer, month::integer) => {
-         .'y' = #year;
-         .'m' = #month;
+         .'y' = #year
+         .'m' = #month
       }
 
       public get(x::integer) => {
-         return date(-year=.'y', -month=.'m', -day=#x);
+         return date(-year=.'y', -month=.'m', -day=#x)
       }
 
       public size()::integer => {
-         local(temp = date(-year=.'y', -month=.'m'+1, -day=1));
-         #temp->subtract(-day=1);
-         return #temp->dayofmonth;
+         local(temp = date(-year=.'y', -month=.'m'+1, -day=1))
+         #temp->subtract(-day=1)
+         return #temp->dayofmonth
       }
    }
 
@@ -140,10 +140,10 @@ data member::
 
    define myTrait => trait {
       provide getFirstName() => {
-         return .firstName;
+         return .firstName
       }
       provide setFirstName(value::string) => {
-         .firstName = #value;
+         .firstName = #value
       }
    }
 
@@ -165,10 +165,10 @@ the "firstName" data member::
    define myTrait => trait {
       require firstName, firstName=
       provide getFirstName() => {
-         return .firstName;
+         return .firstName
       }
       provide setFirstName(value::string) => {
-         .firstName = #value;
+         .firstName = #value
       }
    }
 
@@ -255,7 +255,7 @@ provided trait name applied to it.
 In this code the `~null->isA` method returns "2" since the ``month`` type does
 have the ``trait_firstLast`` trait applied to it::
 
-   local(mymonth = month(2008, 12));
+   local(mymonth = month(2008, 12))
    #mymonth->isA(::trait_firstlast)
    // => 2
 
