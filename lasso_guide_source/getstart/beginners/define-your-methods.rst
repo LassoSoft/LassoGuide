@@ -22,9 +22,9 @@ Here's the latest iteration of our ongoing example::
    <?lasso
       local(hour) = date->hour
       local(time_info) = map(
-         `morning`   = map('greeting' = "Good Morning!"  , "bgcolor" = "lightyellow"),
-         `afternoon` = map('greeting' = "Good Afternoon!", "bgcolor" = "lightblue"),
-         `evening`   = map('greeting' = "Good Evening!"  , "bgcolor" = "lightgray")
+         `morning`   = map('greeting'="Good Morning!",   'bgcolor'='lightyellow'),
+         `afternoon` = map('greeting'="Good Afternoon!", 'bgcolor'='lightblue'),
+         `evening`   = map('greeting'="Good Evening!",   'bgcolor'='lightgray')
       )
       local(time_of_day)
 
@@ -85,9 +85,9 @@ Our page can then use the method in the following fashion::
 
    <?lasso
       local(time_info) = map(
-         `morning`   = map('greeting' = "Good Morning!"  , "bgcolor" = "lightyellow"),
-         `afternoon` = map('greeting' = "Good Afternoon!", "bgcolor" = "lightblue"),
-         `evening`   = map('greeting' = "Good Evening!"  , "bgcolor" = "lightgray")
+         `morning`   = map('greeting'="Good Morning!",   'bgcolor'='lightyellow'),
+         `afternoon` = map('greeting'="Good Afternoon!", 'bgcolor'='lightblue'),
+         `evening`   = map('greeting'="Good Evening!",   'bgcolor'='lightgray')
       )
       local(time_of_day) = #time_info->find(time_of_day)
    ?>

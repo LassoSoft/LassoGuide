@@ -84,9 +84,9 @@ greetings::
    <?lasso
       local(hour) = date->hour
       local(all_greetings) = map(
-         `morning`   = "Good Morning!",
-         `afternoon` = "Good Afternoon!",
-         `evening`   = "Good Evening!"
+         'morning'   = "Good Morning!",
+         'afternoon' = "Good Afternoon!",
+         'evening'   = "Good Evening!"
       )
       local(greeting)
 
@@ -127,9 +127,9 @@ map::
    <?lasso
       local(hour) = date->hour
       local(time_info) = map(
-         `morning`   = map('greeting' = "Good Morning!"  , "bgcolor" = "lightyellow"),
-         `afternoon` = map('greeting' = "Good Afternoon!", "bgcolor" = "lightblue"),
-         `evening`   = map('greeting' = "Good Evening!"  , "bgcolor" = "lightgray")
+         `morning`   = map('greeting'="Good Morning!",   'bgcolor'='lightyellow'),
+         `afternoon` = map('greeting'="Good Afternoon!", 'bgcolor'='lightblue'),
+         `evening`   = map('greeting'="Good Evening!",   'bgcolor'='lightgray')
       )
       local(time_of_day)
 

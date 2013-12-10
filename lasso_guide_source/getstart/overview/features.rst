@@ -142,9 +142,9 @@ slightly modified version of the ``trait_positionallyKeyed`` definition::
       require size()::integer, get(key::integer)
 
       provide
-         first()  => (.size > 0? .get(1) | null),
-         second() => (.size > 1? .get(2) | null),
-         last()   => (.size > 0? .get(.size) | null)
+         first()  => (.size > 0 ? .get(1) | null),
+         second() => (.size > 1 ? .get(2) | null),
+         last()   => (.size > 0 ? .get(.size) | null)
    }
 
 The definition starts with the ``define`` keyword followed by the name of the

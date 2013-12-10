@@ -109,7 +109,7 @@ with the special parameter local variables (``#1``, ``#2``, etc.)::
       local(x2) = #3
       local(y2) = #4
    }
-   #dist(8,2,10,5) // Sets #x1, #y1, #x2, #y2 to 8, 2, 10, 5, respectively
+   #dist(8, 2, 10, 5) // Sets #x1, #y1, #x2, #y2 to 8, 2, 10, 5, respectively
 
 When you invoke an auto-collect capture, the auto-collected value will be
 returned and can be accessed using `capture->autoCollectBuffer`::
@@ -122,13 +122,13 @@ returned and can be accessed using `capture->autoCollectBuffer`::
 
       math_sqrt(math_pow(math_abs(#x2-#x1), 2) + math_pow(math_abs(#y2-#y1), 2))
    ^}
-   #distance(8,2,10,5)
-   '\n'
-   #distance->autoCollectBuffer
 
-   // =>
-   // 3.605551
-   // 3.605551
+   #distance(8, 2, 10, 5)
+   // => 3.605551
+
+   #distance->autoCollectBuffer
+   // => 3.605551
+
 
 Stored captures can be executed at any point and the code contained within will
 operate as if it had been executed in the context in which it was created. This
@@ -217,7 +217,7 @@ implements a potential ``contains`` method::
 
    define contains(a::array, val) => {
       #a->forEach => {
-         #val == #1?
+         #val == #1 ?
             return true // This return is non-local
       }
       return false

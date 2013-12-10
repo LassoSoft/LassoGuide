@@ -41,9 +41,9 @@ error about invalid values.
       data public hour::integer
 
       data private time_info = map(
-         `morning`   = map('greeting' = "Good Morning!"  , "bgcolor" = "lightyellow"),
-         `afternoon` = map('greeting' = "Good Afternoon!", "bgcolor" = "lightblue"),
-         `evening`   = map('greeting' = "Good Evening!"  , "bgcolor" = "lightgray")
+         `morning`   = map('greeting'="Good Morning!",   'bgcolor'='lightyellow'),
+         `afternoon` = map('greeting'="Good Afternoon!", 'bgcolor'='lightblue'),
+         `evening`   = map('greeting'="Good Evening!",   'bgcolor'='lightgray')
       )
 
       public onCreate(datetime::date=date) => .onCreate(datetime->hour)

@@ -174,13 +174,13 @@ method and the `error_code` method. If the code on the page is executing
 normally and there is no current error to report then the code will return the
 result shown below::
 
-   "The current error is " + error_code + ": " + error_msg
+   'The current error is ' + error_code + ': ' + error_msg
    // => The current error is 0: No Error
 
 Alternatively, the `error_currentError` method could be used to create the same
 message with the following code::
 
-   "The current error is " + error_currentError(-errorCode) + ": " + error_currentError
+   'The current error is ' + error_currentError(-errorCode) + ': ' + error_currentError
    // => The current error is 0: No Error
 
 
@@ -202,7 +202,7 @@ and the error code is set to "-1"::
 The `error_currentError` method now reports this custom error when it is called
 later in the page, unless any intervening code changed the error message again::
 
-   "The current error is " + error_code + ": " + error_msg
+   'The current error is ' + error_code + ': ' + error_msg
    // => The current error is -1: A custom error occurred
 
 The current error code and message can also be set using the `error_code` and

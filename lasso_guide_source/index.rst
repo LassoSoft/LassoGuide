@@ -74,7 +74,7 @@ the value for that line. For example::
    // => 5
 
    // Multi-line value produced
-   "Line one." + "\n" + "Line two."
+   'Line one.' + '\n' + 'Line two.'
 
    // =>
    // Line one.

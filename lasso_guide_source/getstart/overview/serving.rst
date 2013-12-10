@@ -118,7 +118,7 @@ people objects and then return that array at the end::
 
    local(found_people) = array
 
-   /** Code to Populate that Array **/
+   // Code to populate the array
    // ...
 
    return #found_people
@@ -164,9 +164,9 @@ a file named "people[xhr].lasso" to create and display the array of maps::
       json_serialize(
          with person in #people
          select map(
-            "firstName"=#person->firstName,
-            "middleName"=#person->middleName,
-            "lastName"=#person->lastName
+            'firstName'  = #person->firstName,
+            'middleName' = #person->middleName,
+            'lastName'   = #person->lastName
          )
       )
    ?>

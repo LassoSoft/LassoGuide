@@ -250,7 +250,7 @@ every 2 seconds::
 
    define lazy_ticker => thread {
       public active_tick() => {
-         stdoutnl('Hello, from lazy ticker')
+         stdoutnl("Hello, from lazy ticker")
          return 2
       }
    }

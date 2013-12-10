@@ -464,7 +464,7 @@ the method::
       local(result = string(#value))
       #result->append(#with->asString)
       #result->append(#alsoWith->asString)
-      return #result;
+      return #result
    }
 
 
@@ -546,23 +546,20 @@ different possible type. Each of the four methods is written to handle only
 their input value types. ::
 
    define log_object(a::array) => {
-      return '[log] array with ' + #a->size + ' elements'
+      return '[log] array with ' + #a->size + ' elements\n'
    }
    define log_object(s::string) => {
-      return '[log] string with value "' + #s + '"'
+      return '[log] string with value "' + #s + '"\n'
    }
    define log_object(b::bytes) => {
-      return '[log] bytes with hex value 0x' + #b->encodeHex
+      return '[log] bytes with hex value 0x' + #b->encodeHex + '\n'
    }
    define log_object(any) => {
-      return '[log] unhandled object type: ' + #any->type
+      return '[log] unhandled object type: ' + #any->type + '\n'
    }
    log_object('Hello!')
-   '\n'
    log_object(bytes('ABCD'))
-   '\n'
    log_object(array(1, 2, 3, 4, 5))
-   '\n'
    log_object(pair(1, 2))
 
    // =>
@@ -593,14 +590,11 @@ incorporated automatically into the system and none of the other methods need to
 be modified. ::
 
    define log_object(p::pair) => {
-      return '[log] pair with: ' + #p->first + ', ' + #p->second
+      return '[log] pair with: ' + #p->first + ', ' + #p->second + '\n'
    }
    log_object('Hello!')
-   '\n'
    log_object(bytes('ABCD'))
-   '\n'
    log_object(array(1, 2, 3, 4, 5))
-   '\n'
    log_object(pair(1, 2))
 
    // =>
@@ -622,17 +616,16 @@ second method requires two parameters, such as in the example that follows::
    }
    define log_object(a::array, extra::boolean) => {
       local(result = log_object(#a))
-      #extra?
+      #extra ?
          return #result + '. Elements: ' + #a->join(', ')
       return #result
    }
-   log_object(array(1, 2, 3, 4, 5))
-   '\n'
-   log_object(array(1, 2, 3, 4, 5), true)
 
-   // =>
-   // [log] array with 5 elements
-   // [log] array with 5 elements. Elements: 1, 2, 3, 4, 5
+   log_object(array(1, 2, 3, 4, 5))
+   // => [log] array with 5 elements
+
+   log_object(array(1, 2, 3, 4, 5), true)
+   // => [log] array with 5 elements. Elements: 1, 2, 3, 4, 5
 
 Note how the body of the second method calls the first method to get the initial
 result string before augmenting it and returning that value.

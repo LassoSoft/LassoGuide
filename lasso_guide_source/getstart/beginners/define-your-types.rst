@@ -14,9 +14,9 @@ Let's look at the current version of our ongoing example::
 
    <?lasso
       local(time_info) = map(
-         `morning`   = map('greeting' = "Good Morning!"  , "bgcolor" = "lightyellow"),
-         `afternoon` = map('greeting' = "Good Afternoon!", "bgcolor" = "lightblue"),
-         `evening`   = map('greeting' = "Good Evening!"  , "bgcolor" = "lightgray")
+         `morning`   = map('greeting'="Good Morning!",   'bgcolor'='lightyellow'),
+         `afternoon` = map('greeting'="Good Afternoon!", 'bgcolor'='lightblue'),
+         `evening`   = map('greeting'="Good Evening!",   'bgcolor'='lightgray')
       )
       local(time_of_day) = #time_info->find(time_of_day)
    ?>
@@ -46,16 +46,19 @@ Using a Custom Type
 We want the time of day to have more properties than just whether it is morning,
 afternoon, or evening: we now want it to also have a greeting and a background
 color. Below is an example of creating a custom type to fulfill this requirement
-as well as an updated version of our page to use this custom type::
+as well as an updated version of our page to use this custom type:
 
-   // Custom type in LassoStartup
+.. rubric:: Custom type in LassoStartup
+
+::
+
    define time_of_day => type {
       data public hour::integer
 
       data private time_info = map(
-         `morning`   = map('greeting' = "Good Morning!"  , "bgcolor" = "lightyellow"),
-         `afternoon` = map('greeting' = "Good Afternoon!", "bgcolor" = "lightblue"),
-         `evening`   = map('greeting' = "Good Evening!"  , "bgcolor" = "lightgray")
+         `morning`   = map('greeting'="Good Morning!",   'bgcolor'='lightyellow'),
+         `afternoon` = map('greeting'="Good Afternoon!", 'bgcolor'='lightblue'),
+         `evening`   = map('greeting'="Good Evening!",   'bgcolor'='lightgray')
       )
 
       public onCreate(datetime::date=date) => .onCreate(datetime->hour)
@@ -80,7 +83,10 @@ as well as an updated version of our page to use this custom type::
       }
    }
 
-   // The Code for the Page
+.. rubric:: Web page markup
+
+::
+
    <?lasso
       local(time_of_day) = time_of_day
    ?>

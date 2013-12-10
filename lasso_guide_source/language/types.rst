@@ -585,9 +585,9 @@ gives ``person`` objects the ability to compare themselves with each other::
 
       public onCompare(other::person) => {
          .firstName != #other->firstName ?
-            return .firstName < #other->firstName? -1 | 1
+            return .firstName < #other->firstName ? -1 | 1
          .lastName != #other->lastName ?
-            return .lastName < #other->lastName? -1 | 1
+            return .lastName < #other->lastName ? -1 | 1
          return 0
       }
 

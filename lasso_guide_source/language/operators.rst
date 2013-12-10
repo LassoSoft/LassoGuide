@@ -538,8 +538,10 @@ Formatting Retarget
 
 When stringing several method calls together, formatting over multiple lines can
 help with readability. It is important, however, to keep the ``&`` on the same
-line as the *next* method call. This holds only for cases that have a next
-method and for method call expressions that are not ultimately parenthesized.
+line as the *next* method call, and to follow any trailing retarget operators
+with a semicolon to ensure the expression is ended. This holds only for cases
+that have a next method and for method call expressions that are not ultimately
+parenthesized.
 
 The following example illustrates this formatting principle::
 
