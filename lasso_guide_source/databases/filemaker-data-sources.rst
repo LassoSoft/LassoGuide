@@ -386,30 +386,30 @@ full details about these commands.
    +----------------------------+--------------------------------------------------------+
    |Parameter                   |Description                                             |
    +============================+========================================================+
-   |``-layoutResponse``         |Returns the result set using the layout specified in    |
+   |``-layoutResponse=?``       |Returns the result set using the layout specified in    |
    |                            |this parameter rather than the layout used to specify   |
    |                            |the database action.                                    |
    +----------------------------+--------------------------------------------------------+
    |``-noValueLists``           |Suppresses the fetching of value list data for          |
    |                            |FileMaker Server data sources.                          |
    +----------------------------+--------------------------------------------------------+
-   |``-relatedSets.filter``     |If set to "layout", FileMaker will return only the      |
+   |``-relatedSets.filter=?``   |If set to "layout", FileMaker will return only the      |
    |                            |number of related records shown in portals on the       |
    |                            |current layout. Defaults to returning all records up to |
    |                            |the number set by ``-relatedSets.max``.                 |
    +----------------------------+--------------------------------------------------------+
-   |``-relatedSets.max``        |Sets the number of related records returned. Can be set |
+   |``-relatedSets.max=?``      |Sets the number of related records returned. Can be set |
    |                            |to a number or "All".                                   |
    +----------------------------+--------------------------------------------------------+
-   |``-script`` and             |Runs a script after the find has been processed and     |
-   |``-script.param``           |sorted. The optional parameter can be accessed from     |
+   |``-script=?`` and           |Runs a script after the find has been processed and     |
+   |``-script.param=?``         |sorted. The optional parameter can be accessed from     |
    |                            |within the script.                                      |
    +----------------------------+--------------------------------------------------------+
-   |``-script.preFind`` and     |Runs a script before the find is processed.             |
-   |``-script.preFind.param``   |                                                        |
+   |``-script.preFind=?`` and   |Runs a script before the find is processed.             |
+   |``-script.preFind.param=?`` |                                                        |
    +----------------------------+--------------------------------------------------------+
-   |``-script.preSort`` and     |Runs a script after the find has been processed, but    |
-   |``-script.preSort.param``   |before the results are sorted.                          |
+   |``-script.preSort=?`` and   |Runs a script after the find has been processed, but    |
+   |``-script.preSort.param=?`` |before the results are sorted.                          |
    +----------------------------+--------------------------------------------------------+
 
 
@@ -498,6 +498,7 @@ FileMaker Server, the value for ``-sortOrder`` should name a value list. The
 order of that value list will be used as the custom sorting order for records in
 the result set. Note also that FileMaker Server only supports specifying up to
 nine sort fields in a single database search.
+
 
 Return Results in Custom Sort Order
 -----------------------------------
@@ -736,8 +737,8 @@ appropriate "contact_id" will be shown through the portal to the next site
 visitor.
 
 In the following example a new call is added to the "calls" database for John
-Doe. John Doe has an ID of "123" in the "contacts" database. This is the value
-used for the "contact_id" field in "calls". ::
+Doe. John Doe has an ID of "123" in the "people" table of the "contacts"
+database. This is the value used for the "contact_id" field in "calls". ::
 
    inline(
       -add,
@@ -797,7 +798,7 @@ Display All Values from a Value List
 
 The following example shows how to display all values from a value list using a
 ``-show`` action within an `inline` capture block. The field "title" in the
-"contacts" database contains five values: "Mr.", "Mrs.", "Ms.", and "Dr.". The
+"people" table contains five values: "Mr.", "Mrs.", "Ms.", and "Dr.". The
 ``-show`` action allows the values for value lists to be retrieved without
 performing a database action. ::
 

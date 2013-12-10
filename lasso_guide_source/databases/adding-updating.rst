@@ -50,12 +50,12 @@ parameters are detailed in the following table.
    Parameter        Description
    ================ ============================================================
    ``-add``         The action that is to be performed. Required.
-   ``-database``    The database where the record should be added. Required.
-   ``-table``       The table from the specified database to which the record
+   ``-database=?``  The database where the record should be added. Required.
+   ``-table=?``     The table from the specified database to which the record
                     should be added. Required.
-   ``-keyField``    The name of the field that holds the primary key for the
+   ``-keyField=?``  The name of the field that holds the primary key for the
                     specified table. Recommended.
-   ``-host``        Optional inline host array. See the section
+   ``-host=?``      Optional inline host array. See the section
                     :ref:`database-inline-connection` in the
                     :ref:`database-interaction` chapter for more information.
    name/value pairs A variable number of name/value pair parameters specifying
@@ -205,33 +205,15 @@ Add a Record Using a URL
 
 The following example shows how to perform an ``-add`` action using a URL to
 send values into an `inline` method through `web_request->param`. The name/value
-pair parameters in the URL define the starting values for various fields in the
+pair parameters in the URL define the initial values for various fields in the
 database: "first_name" is set to "John" and "last_name" is set to "Person". ::
 
    <a href="response.lasso?first_name=John&last_name=Person">
       Add John Person
    </a>
 
-The response page for the URL, "response.lasso", contains the following code
-that performs the action using `inline` method and provides feedback that the
-record was successfully added to the database. The field values for the record
-that was just added to the database are automatically available within the
-inline. ::
-
-   inline(
-      -add,
-      -database='contacts',
-      -table='people',
-      -keyField='id',
-      'first_name'=web_request->param('first_name'),
-      'last_name'=web_request->param('last_name')
-   ) => {^
-      '<p>' + error_code + ': ' + error_msg + '</p>\n'
-      'Record ' + field('id') + ' was added for ' + field('first_name') + ' ' + field('last_name') + '.'
-   ^}
-
-If the link for "Add John Person" is selected then the following will be
-returned::
+Using the same response page from the previous example, if the link for "Add
+John Person" is activated then the following will be returned::
 
    // =>
    // <p>0: No Error</p>
@@ -256,17 +238,17 @@ The required parameters are detailed in the following table.
    Parameter        Description
    ================ ============================================================
    ``-update``      The action that is to be performed. Required.
-   ``-database``    The database where the record should be updated. Required.
-   ``-table``       The table from the specified database which contains the
+   ``-database=?``  The database where the record should be updated. Required.
+   ``-table=?``     The table from the specified database which contains the
                     record that should be updated. Required.
-   ``-keyField``    The name of the field that holds the primary key for the
+   ``-keyField=?``  The name of the field that holds the primary key for the
                     specified table. Either a ``-keyField`` and ``-keyValue`` or
                     a ``-key`` is required.
-   ``-keyValue``    The value of the primary key of the record being updated.
-   ``-key``         An array that specifies the search field operators and pair
+   ``-keyValue=?``  The value of the primary key of the record being updated.
+   ``-key=?``       An array that specifies the search field operators and pair
                     parameters to find the records to be updated. Either a
                     ``-keyField`` and ``-keyValue`` or a ``-key`` is required.
-   ``-host``        Optional inline host array. See the section
+   ``-host=?``      Optional inline host array. See the section
                     :ref:`database-inline-connection` in the
                     :ref:`database-interaction` chapter for more information.
    name/value pairs A variable number of name/value pair parameters specifying
@@ -418,7 +400,7 @@ values for the fields "first_name" and "last_name". ::
 The response page for the form, "response.lasso", contains the following code
 that performs the action using an `inline` method and provides feedback that the
 record was successfully updated in the database. The field values from the
-updated record are available automatically within the inline. ::
+updated record are automatically available within the inline. ::
 
    inline(
       -update,
@@ -447,33 +429,16 @@ Update a Record Using a URL
 ---------------------------
 
 The following example shows how to perform an ``-update`` action using a URL to
-send field values to an `inline` method. The pair parameters in the URL define
-the new values for various fields in the database: "first_name" is set to "John"
-and "last_name" is set to "Person". ::
+send values into an `inline` method through `web_request->param`. The name/value
+pair parameters in the URL define the new values for various fields in the
+database: "first_name" is set to "John" and "last_name" is set to "Person". ::
 
    <a href="response.lasso?keyValue=4&first_name=John&last_name=Person">
       Update John Person
    </a>
 
-The response page for the URL, "response.lasso", contains the following code
-that performs the action using an `inline` method and provides feedback that the
-record was successfully updated within the database::
-
-   inline(
-      -update,
-      -database='contacts',
-      -table='people',
-      -keyField='id',
-      -keyValue=web_request->param('keyValue'),
-      'first_name'=web_request->param('first_name'),
-      'last_name'=web_request->param('last_name')
-   ) => {^
-      '<p>' + error_code + ': ' + error_msg + '</p>\n'
-      'Record ' + field('id') + ' was updated to ' + field('first_name') + ' ' + field('last_name') + '.'
-   ^}
-
-If the link for "Update John Person" is submitted then the following will be
-returned::
+Using the same response page from the previous example, if the link for "Update
+John Person" is activated then the following will be returned::
 
    // =>
    // <p>0: No Error</p>
@@ -580,17 +545,17 @@ parameters are detailed in the following table.
    Parameter       Description
    =============== =============================================================
    ``-delete``     The action that is to be performed. Required.
-   ``-database``   The database where the record should be deleted. Required.
-   ``-table``      The table from the specified database from which the record
+   ``-database=?`` The database where the record should be deleted. Required.
+   ``-table=?``    The table from the specified database from which the record
                    should be deleted. Required.
-   ``-keyField``   The name of the field that holds the primary key for the
+   ``-keyField=?`` The name of the field that holds the primary key for the
                    specified table. Either a ``-keyField`` and ``-keyValue``
                    or a ``-key`` is required.
-   ``-keyValue``   The value of the primary key of the record being deleted.
-   ``-key``        An array that specifies the search field operators and pair
+   ``-keyValue=?`` The value of the primary key of the record being deleted.
+   ``-key=?``      An array that specifies the search field operators and pair
                    parameters to find the records to be deleted. Either a
                    ``-keyField`` and ``-keyValue`` or a ``-key`` is required.
-   ``-host``       Optional inline host array. See the section
+   ``-host=?``     Optional inline host array. See the section
                    :ref:`database-inline-connection` in the
                    :ref:`database-interaction` chapter for more information.
    =============== =============================================================

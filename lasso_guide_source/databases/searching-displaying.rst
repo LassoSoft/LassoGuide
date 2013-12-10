@@ -144,18 +144,18 @@ the sections that follow.
    Parameter        Description
    ================ ============================================================
    ``-search``      The action that is to be performed. Required.
-   ``-database``    The database that should be searched. Required.
-   ``-table``       The table from the specified database that should be
+   ``-database=?``  The database that should be searched. Required.
+   ``-table=?``     The table from the specified database that should be
                     searched. Required.
-   ``-keyField``    The name of the field that holds the primary key for the
+   ``-keyField=?``  The name of the field that holds the primary key for the
                     specified table. Recommended.
-   ``-keyValue``    The particular value for the primary key of the record that
+   ``-keyValue=?``  The particular value for the primary key of the record that
                     should be returned. Using ``-keyValue`` overrides all the
                     other search parameters and returns the single record
                     specified. Optional.
-   ``-key``         An array that specifies the search field operators and pair
+   ``-key=?``       An array that specifies the search field operators and pair
                     parameters to find the matching records.
-   ``-host``        Optional inline host array. See the section
+   ``-host=?``      Optional inline host array. See the section
                     :ref:`database-inline-connection` in the
                     :ref:`database-interaction` chapter for more information.
    name/value pairs A variable number of name/value pair parameters specify the
@@ -264,25 +264,25 @@ create complex database queries. These parameters are summarized in the table
 
 .. table:: Search Operator Parameters
 
-   +------------------------+------------------------------------------------------------+
-   |Parameter               |Description                                                 |
-   +========================+============================================================+
-   |``-operatorLogical`` or |Specifies the logical operator for the search. Abbreviation |
-   |``-opLogical``          |is ``-opLogical``. Defaults to AND.                         |
-   +------------------------+------------------------------------------------------------+
-   |``-operator`` or        |When specified before a pair parameter, establishes the     |
-   |``-op``                 |search operator for that pair parameter. Abbreviation is    |
-   |                        |``-op``. Defaults to "bw". See below for a full list of     |
-   |                        |field operators. Operators can also be written as ``-bw``,  |
-   |                        |``-ew``, ``-cn``, etc.                                      |
-   +------------------------+------------------------------------------------------------+
-   |``-operatorBegin`` or   |Specifies the logical operator for all search parameters    |
-   |``-opBegin``            |until ``-operatorEnd`` is reached. Abbreviation is          |
-   |                        |``-opBegin``.                                               |
-   +------------------------+------------------------------------------------------------+
-   |``-operatorEnd`` or     |Specifies the end of a logical operator grouping started    |
-   |``-opEnd``              |with ``-operatorBegin``. Abbreviation is ``-opEnd``.        |
-   +------------------------+------------------------------------------------------------+
+   +--------------------------+----------------------------------------------------------+
+   |Parameter                 |Description                                               |
+   +==========================+==========================================================+
+   |``-operatorLogical=?`` or |Specifies the logical operator for the search.            |
+   |``-opLogical=?``          |Abbreviation is ``-opLogical``. Defaults to AND.          |
+   +--------------------------+----------------------------------------------------------+
+   |``-operator=?`` or        |When specified before a pair parameter, establishes the   |
+   |``-op=?``                 |search operator for that pair parameter. Abbreviation is  |
+   |                          |``-op``. Defaults to "bw". See below for a full list of   |
+   |                          |field operators. Operators can also be written as         |
+   |                          |``-bw``, ``-ew``, ``-cn``, etc.                           |
+   +--------------------------+----------------------------------------------------------+
+   |``-operatorBegin=?`` or   |Specifies the logical operator for all search parameters  |
+   |``-opBegin=?``            |until ``-operatorEnd`` is reached. Abbreviation is        |
+   |                          |``-opBegin``.                                             |
+   +--------------------------+----------------------------------------------------------+
+   |``-operatorEnd=?`` or     |Specifies the end of a logical operator grouping started  |
+   |``-opEnd=?``              |with ``-operatorBegin``. Abbreviation is ``-opEnd``.      |
+   +--------------------------+----------------------------------------------------------+
 
 The operator parameters are divided into two categories:
 
@@ -565,7 +565,10 @@ formatting and display to the visitor. The result parameters are summarized in
 the table :ref:`searching-result-parameters`.
 
 .. seealso::
-   SQL-specific result parameters in the table :ref:`sql-result-parameters`.
+
+   -  SQL-specific methods and parameters in the :ref:`sql-data-sources` chapter
+   -  FileMaker Server--specific methods and parameters in the
+      :ref:`filemaker-data-sources` chapter
 
 .. tabularcolumns:: |l|L|
 
@@ -576,26 +579,26 @@ the table :ref:`searching-result-parameters`.
    +---------------------+-----------------------------------------------------+
    |Parameter            |Description                                          |
    +=====================+=====================================================+
-   |``-sortField`` or    |Specifies that the results should be sorted based on |
-   |``-sortColumn``      |the data in the named field. Multiple ``-sortField`` |
+   |``-sortField=?`` or  |Specifies that the results should be sorted based on |
+   |``-sortColumn=?``    |the data in the named field. Multiple ``-sortField`` |
    |                     |parameters can be used for complex sorts. Optional,  |
    |                     |defaults to returning data in the order it appears   |
    |                     |in the database.                                     |
    +---------------------+-----------------------------------------------------+
-   |``-sortOrder``       |When specified after a ``-sortField`` parameter,     |
+   |``-sortOrder=?``     |When specified after a ``-sortField`` parameter,     |
    |                     |specifies the order of the sort, either "ascending", |
    |                     |"descending" or custom. Optional, defaults to        |
    |                     |"ascending" for each ``-sortField``.                 |
    +---------------------+-----------------------------------------------------+
-   |``-maxRecords``      |Specifies how many records should be shown from the  |
+   |``-maxRecords=?``    |Specifies how many records should be shown from the  |
    |                     |found set. Optional, defaults to "50".               |
    +---------------------+-----------------------------------------------------+
-   |``-skipRecords``     |Specifies an offset into the found set at which      |
+   |``-skipRecords=?``   |Specifies an offset into the found set at which      |
    |                     |records should start being shown. Optional, defaults |
    |                     |to "1".                                              |
    +---------------------+-----------------------------------------------------+
-   |``-returnField`` or  |Specifies a field that should be returned in the     |
-   |``-returnColumn``    |results of the search. Multiple ``-returnField``     |
+   |``-returnField=?`` or|Specifies a field that should be returned in the     |
+   |``-returnColumn=?``  |results of the search. Multiple ``-returnField``     |
    |                     |parameters can be used to return multiple fields.    |
    |                     |Optional, defaults to returning all fields in the    |
    |                     |searched table.                                      |
@@ -745,19 +748,19 @@ Parameters that sort and limit the found set work the same as they do for
 
 .. table:: -FindAll Action Requirements
 
-   ============= ===============================================================
-   Parameter     Description
-   ============= ===============================================================
-   ``-findAll``  The action that is to be performed. Required.
-   ``-database`` The database that should be searched. Required.
-   ``-table``    The table from the specified database that should be searched.
-                 Required.
-   ``-keyField`` The name of the field that holds the primary key for the
-                 specified table. Recommended.
-   ``-host``     Optional inline host array. See the section
-                 :ref:`database-inline-connection` in the
-                 :ref:`database-interaction` chapter for more information.
-   ============= ===============================================================
+   =============== =============================================================
+   Parameter       Description
+   =============== =============================================================
+   ``-findAll``    The action that is to be performed. Required.
+   ``-database=?`` The database that should be searched. Required.
+   ``-table=?``    The table from the specified database that should be
+                   searched. Required.
+   ``-keyField=?`` The name of the field that holds the primary key for the
+                   specified table. Recommended.
+   ``-host=?``     Optional inline host array. See the section
+                   :ref:`database-inline-connection` in the
+                   :ref:`database-interaction` chapter for more information.
+   =============== =============================================================
 
 
 Find All Records Within a Database
@@ -798,19 +801,19 @@ required.
 
 .. table:: -Random Action Requirements
 
-   ============= ===============================================================
-   Parameter     Description
-   ============= ===============================================================
-   ``-random``   The action that is to be performed. Required.
-   ``-database`` The database that should be searched. Required.
-   ``-table``    The table from the specified database that should be searched.
-                 Required.
-   ``-keyField`` The name of the field that holds the primary key for the
-                 specified table. Recommended.
-   ``-host``     Optional inline host array. See the section
-                 :ref:`database-inline-connection` in the
-                 :ref:`database-interaction` chapter for more information.
-   ============= ===============================================================
+   =============== =============================================================
+   Parameter       Description
+   =============== =============================================================
+   ``-random``     The action that is to be performed. Required.
+   ``-database=?`` The database that should be searched. Required.
+   ``-table=?``    The table from the specified database that should be
+                   searched. Required.
+   ``-keyField=?`` The name of the field that holds the primary key for the
+                   specified table. Recommended.
+   ``-host=?``     Optional inline host array. See the section
+                   :ref:`database-inline-connection` in the
+                   :ref:`database-interaction` chapter for more information.
+   =============== =============================================================
 
 
 Find a Single Random Record from a Database
@@ -851,10 +854,12 @@ method is used outside of `records` block but inside an `inline` capture block,
 then it returns the value for the field from the first record in the found set.
 If the found set has only one record then the `records` method is optional.
 
-.. tip::
-   Lasso Connector for FileMaker Server includes a collection of FileMaker
-   Server--specific methods that return database results. See the
-   :ref:`filemaker-data-sources` chapter for more information.
+.. note::
+   For clarity, the example code in these chapters display data exactly as
+   returned from the database, but production code should use
+   `~string->encodeHtml`, `~string->encodeXml`, or an encoding parameter with
+   `field` calls to ensure characters are proplerly formatted for the chosen
+   output format.
 
 
 Display Results from a Search

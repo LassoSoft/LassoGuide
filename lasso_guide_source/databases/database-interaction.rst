@@ -93,27 +93,27 @@ perform database actions that are available in Lasso.
 
 .. table:: Database Action Parameters
 
-   ============ ================================================================
-   Parameter    Description
-   ============ ================================================================
-   ``-search``  Finds records in a database that match specific criteria,
-                returns detail for a particular record in a database, or
-                navigates through a found set of records.
-   ``-findAll`` Returns all records in a specific database table.
-   ``-random``  Returns a single, random record from a database table.
-   ``-add``     Adds a record to a database table.
-   ``-update``  Updates a specific record in a database table.
-   ``-delete``  Removes a specified record from a database table.
-   ``-show``    Returns information about the tables and fields within a
-                database.
-   ``-sql``     Executes a SQL statement in a compatible data source. Only works
-                with SQLite, MySQL, and other SQL databases.
-   ``-prepare`` Creates a prepared SQL statement in a compatible data source.
-                Nested inlines will execute the prepared statement with
-                different values.
-   ``-nothing`` The default action which performs no database actions, but
-                simply passes the parameters of the action.
-   ============ ================================================================
+   ============== ==============================================================
+   Parameter      Description
+   ============== ==============================================================
+   ``-search``    Finds records in a database that match specific criteria,
+                  returns detail for a particular record in a database, or
+                  navigates through a found set of records.
+   ``-findAll``   Returns all records in a specific database table.
+   ``-random``    Returns a single, random record from a database table.
+   ``-add``       Adds a record to a database table.
+   ``-update``    Updates a specific record in a database table.
+   ``-delete``    Removes a specified record from a database table.
+   ``-show``      Returns information about the tables and fields within a
+                  database.
+   ``-sql=?``     Executes a SQL statement in a compatible data source. Only
+                  works with SQLite, MySQL, and other SQL databases.
+   ``-prepare=?`` Creates a prepared SQL statement in a compatible data source.
+                  Nested inlines will execute the prepared statement with
+                  different values.
+   ``-nothing``   The default action which performs no database actions, but
+                  simply passes the parameters of the action.
+   ============== ==============================================================
 
 .. note::
    The table :ref:`database-action-parameters` lists all of the database actions
@@ -133,8 +133,8 @@ initial values for the new record created by an ``-add`` action, or the updated
 values for an ``-update`` action.
 
 Full documentation of which inline parameters are required for each action are
-detailed in the section specific to that action in this chapter, the
-:ref:`searching-displaying` chapter, or the :ref:`adding-updating` chapter.
+detailed in the section specific to that action in this chapter or in subsequent
+chapters.
 
 
 Specifying a -FindAll Action Within an Inline
@@ -150,7 +150,7 @@ within the `inline` method.
 The method `found_count` returns how many records are in the database. The
 `records` method executes the code in the capture block for each record in the
 found set. The `field` methods are repeated for each found record, creating a
-listing of the names of all the people stored in the "contacts" database. ::
+listing of the names of all the people stored in the "people" table. ::
 
    inline(
       -findAll,
@@ -185,8 +185,8 @@ entire database action is hard-coded within the inline.
 The method `found_count` returns how many records for "John Doe" are in the
 database. The `records` method executes the code in the capture block for each
 record in the found set. The `field` methods are repeated for each found record,
-creating a listing of all the records for "John Doe" stored in the "contacts"
-database::
+creating a listing of all the records for "John Doe" stored in the "people"
+table::
 
    inline(
       -search,
@@ -257,7 +257,7 @@ trigger the page containing the `inline` method.
 
 The following HTML form provides two inputs into which the visitor can type
 information. An input is provided for "first_name" and one for "last_name".
-These correspond to the names of fields in the "contacts" database. The action
+These correspond to the names of fields in the "people" table. The action
 of the form is set to "/response.lasso" which will contain the inline that
 performs the actual database action::
 
@@ -298,9 +298,9 @@ As many parameters as needed can be named in the HTML form and then retrieved in
 the response page via the inline.
 
 .. tip::
-   The `web_request->param` method is similar to the `action_param` or
-   ``form_param`` methods used in prior versions of Lasso for fetching GET or
-   POST data.
+   The `web_request->param` member method is a replacement for the
+   `action_param` or ``form_param`` methods used in prior versions of Lasso for
+   fetching GET or POST data.
 
 
 Using an Array of Form Values Within an Inline
@@ -313,24 +313,12 @@ inline functions as if all the parameters and name/value pairs in the HTML form
 were placed into the inline at the location of the `web_request->params`
 parameter.
 
-The following HTML form provides two inputs into which the visitor can type
-information. An input is provided for "first_name" and one for "last_name".
-These correspond to the names of fields in the "people" table. The action of the
-form is set to "/response.lasso" which will contain the `inline` method that
-performs the actual database action. ::
-
-   <form action="response.lasso" method="POST">
-      <br />First Name: <input type="text" name="first_name" value="" />
-      <br />Last Name: <input type="text" name="last_name" value="" />
-      <br /><input type="submit" name="submit" value="Search" />
-   </form>
-
-The `inline` method in "response.lasso" contains the parameter
+The `inline` method in our updated "response.lasso" contains the parameter
 `web_request->params`. This instructs Lasso to take all the parameters from the
 HTML form or URL which results in the current page being loaded and insert them
 in the inline as if they had been typed at the location of
 `web_request->params`. This will cause the name/value pairs for "first_name" and
-"last_name" to be inserted into the inline. ::
+"last_name" entered in the form above to be inserted into the inline. ::
 
    inline(
       web_request->params,
@@ -353,13 +341,12 @@ then the following results would be returned::
    // <br />Jane Doe
 
 As many parameters as needed can be named in the HTML form. They will all be
-incorporated into the `inline` method at the location of the
-`web_request->params` method.
+passed into the inline at the location of the `web_request->params` method.
 
 .. tip::
    The `web_request->params` member method is a replacement for the
-   `action_params` method in prior versions of Lasso for fetching GET or POST
-   parameters.
+   `action_params` method used in prior versions of Lasso for fetching GET or
+   POST data.
 
 
 Setting HTML Form Values
@@ -401,12 +388,12 @@ Variables can pass through into nested inlines.
 
 .. tip::
    SQL nested inlines can also be used to perform reversible SQL transactions in
-   transaction-compliant data sources. See the :ref:`database-sql-transactions`
-   section at the end of this chapter for more information.
+   transaction-compliant data sources. See the :ref:`sql-transactions` section
+   in the :ref:`sql-data-sources` chapter for more information.
 
 
-Using Nested Inlines
-^^^^^^^^^^^^^^^^^^^^
+Updating Specific Records with Nested Inlines
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This example will use nested `inline` methods to change the last name of all
 people whose last name is currently "Doe" in a database to "Person". The outer
@@ -701,8 +688,8 @@ providing information about what database action was performed.
 
    Returns the value for a specified field from the result set. Can optionally
    take one of the following encoding keyword parameters: ``-encodeNone``,
-   ``-encodeHTML``, ``-encodeBreak``, ``-encodeSmart``, ``-encodeURL``,
-   ``-encodeStrictURL``, ``-encodeXML``.
+   ``-encodeHtml``, ``-encodeBreak``, ``-encodeSmart``, ``-encodeUrl``,
+   ``-encodeStrictUrl``, ``-encodeXml``.
 
 .. method:: found_count()::integer
 
@@ -783,7 +770,7 @@ providing information about what database action was performed.
 
 .. note::
    Examples of using most of these methods are provided in the
-   :ref:`searching-displaying` chapter.
+   :ref:`searching-displaying` and :ref:`sql-data-sources` chapters.
 
 The action result methods can be used to display information about the current
 found set. For example, the following code generates a status message that can
@@ -847,10 +834,10 @@ same number of elements as the elements of the `records_array` method. ::
 
    inline(-search, -database='contacts', -table='people') => {^
       '<table>\n'
-      '<tr><td>' + field_names->join('</td><td>')->encodeHTML(false, true) + '</td></tr>\n'
+      '<tr><td>' + field_names->join('</td><td>')->encodeHtml(false, true) + '</td></tr>\n'
       iterate(records_array, local(record)) => {^
          '<tr>\n'
-         '   <td>' + #record->join('</td><td>')->encodeHTML(false, true) + '</td>\n'
+         '   <td>' + #record->join('</td><td>')->encodeHtml(false, true) + '</td>\n'
          '</tr>\n'
       ^}
       '</table>\n'
@@ -887,72 +874,6 @@ for the inner map are the field names for each record in the found set. ::
    ^}
 
    // => map(1 = map(first = John, last = Doe), 2 = map(first = Jane, last = Doe), ...)
-
-
-Using Result Sets
-^^^^^^^^^^^^^^^^^
-
-An inline that uses a ``-sql`` action can return multiple result sets. Each SQL
-statement within the ``-sql`` action is separated by a semicolon and generates
-its own result set. This allows multiple SQL statements to be issued to a data
-source in a single connection and for the results of each statement to be
-reviewed individually.
-
-In the following example the `resultSet_count` method is used to report the
-number of result sets that the inline returned. Since the ``-sql`` parameter
-contains two SQL statements, two result sets are returned. The two result sets
-are then looped through by passing the `resultSet_count` method to the `loop`
-method and passing the `loop_count` as the parameter for the `resultSet` method.
-Finally, the `records` method is used as normal to display the records from each
-result set. ::
-
-   inline(
-      -database='contacts',
-      -sql="SELECT CONCAT(first_name, ' ', last_name) AS name FROM people; SELECT name FROM companies;"
-   ) => {^
-      resultSet_count + ' Result Sets\n'
-      '<hr />\n'
-      loop(resultSet_count) => {^
-         resultSet(loop_count) => {^
-            records => {^
-               '<br />' + field('name') + '\n'
-            ^}
-            '<hr />\n'
-         ^}
-      ^}
-   ^}
-
-   // =>
-   // 2 Result Sets
-   // <hr />
-   // <br />John Doe
-   // <br />Jane Doe
-   // <hr />
-   // <br />LassoSoft
-   // <hr />
-
-The same example can be rewritten using a named inline. An ``-inlineName``
-parameter with the name "MyResults" is added to the `inline` method, the
-`resultSet_count` method, and the `resultSet` method. This way the result sets
-can be output from anywhere after the inline. The results of the following
-example will be the same as those shown above::
-
-   inline(
-      -inlineName='MyResults',
-      -database='contacts',
-      -sql="SELECT CONCAT(first_name, ' ', last_name) AS name FROM people; SELECT name FROM companies;"
-   ) => {}
-
-   resultSet_count(-inlineName='MyResults') + ' Result Sets'
-   '<hr />'
-   loop(resultSet_count(-inlineName='MyResults')) => {^
-      resultSet(loop_count, -inlineName='MyResults') => {^
-         records => {^
-            '<br />' + field('name')
-         ^}
-         '<hr />'
-      ^}
-   ^}
 
 
 Database Schema Inspection Methods
@@ -1080,22 +1001,6 @@ field is returned. The fields within the "contacts" table are shown::
    // <br />4: last_name (Text)
 
 
-Determine the Actual Database Name for a SQL Statement
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Use the `database_realName` method. When using the ``-sql`` parameter to issue
-SQL statements to a host, only true database names may be used (bypassing the
-alias). The `database_realName` method can be used to automatically determine
-the true name of a database, allowing them to be used in a valid SQL statement.
-::
-
-   local(real_db) = database_realName('Contacts_alias')
-   inline(
-      -database='contacts_alias',
-      -sql="SELECT * FROM `" + #real_db + "`.people;"
-   ) => {}
-
-
 .. _database-inline-connection:
 
 Inline Connection Options
@@ -1188,26 +1093,26 @@ up the database as it would using the database method.
 
 .. table:: Host Array Parameters
 
-   ================== ==========================================================
-   Parameter          Description
-   ================== ==========================================================
-   ``-dataSource``    Required data source name. The name for each data source
-                      can be found in the "Datasources" section of Lasso Server
-                      Admin.
-   ``-name``          The IP address, DNS host name, or connection string for
-                      the data source. Required for most data sources.
-   ``-port``          The port for the data source. Optional.
-   ``-username``      The username for the data source connection. Required for
-                      most data sources.
-   ``-password``      The password for the username. Required for most data
-                      sources.
-   ``-schema``        The schema for the data source connection. Required for
-                      some data sources.
-   ``-tableEncoding`` The table encoding for the data source connection.
-                      Defaults to "UTF-8". Optional.
-   ``-extra``         Configuration information that may be used by some data
-                      sources. Optional.
-   ================== ==========================================================
+   ==================== ========================================================
+   Parameter            Description
+   ==================== ========================================================
+   ``-dataSource=?``    Required data source name. The name for each data source
+                        can be found in the "Datasources" section of Lasso
+                        Server Admin.
+   ``-name=?``          The IP address, DNS host name, or connection string for
+                        the data source. Required for most data sources.
+   ``-port=?``          The port for the data source. Optional.
+   ``-username=?``      The username for the data source connection. Required
+                        for most data sources.
+   ``-password=?``      The password for the username. Required for most data
+                        sources.
+   ``-schema=?``        The schema for the data source connection. Required for
+                        some data sources.
+   ``-tableEncoding=?`` The table encoding for the data source connection.
+                        Defaults to "UTF-8". Optional.
+   ``-extra=?``         Configuration information that may be used by some data
+                        sources. Optional.
+   ==================== ========================================================
 
 .. note::
    Consult the documentation for each data source for details about which
@@ -1241,416 +1146,3 @@ source host. The primary differences are explained here:
    ``SELECT * FROM 'people'`` won't work unless the ``-database`` is specified
    in the inline. (A fully qualified SQL statement like ``SELECT * FROM
    'contacts'.'people'`` will also work without a ``-database``.)
-
-
-SQL Statements
-==============
-
-Lasso provides the ability to issue SQL statements directly to SQL-compliant
-data sources, including the MySQL data source. SQL statements are specified
-within the `inline` method using the ``-sql`` parameter. Many third-party
-databases that support SQL statements also support the use of the ``-sql``
-parameter. SQL inlines can be used as the primary method of database interaction
-in Lasso, or they can be used alongside standard inline actions (e.g.
-``-search``, ``-add``, ``-update``, ``-delete``) where a specific SQL function
-is desired that cannot be replicated using standard database commands.
-
-.. note::
-   The ``-sql`` inline parameter is not supported for FileMaker data sources.
-
-.. note::
-   Documentation of SQL itself is outside the realm of this manual. Please
-   consult the documentation included with your data source for information on
-   what SQL statements it supports.
-
-For most data sources multiple SQL statements can be specified within the
-``-sql`` parameter separated by a semicolon. Lasso will issue all of the
-statements to the data source at once and will collect all of the results into
-result sets. The `resultSet_count` method returns the number of result sets that
-Lasso found. The `resultSet` method can then be used with an integer parameter
-to return the results from one of the result sets.
-
-.. caution::
-   Visitor-supplied values must be sanitized when they are concatenated into SQL
-   statements. Sanitizing these values ensures that no invalid characters are
-   passed to the data source and helps to prevent SQL injection attacks.
-   The `string->encodeSql` method should be used to encode values for MySQL
-   strings. The `string->encodeSql92` method should be used to encode values
-   for strings for other SQL-compliant data sources including JDBC data sources
-   and SQLite. The ``-search``, ``-add``, ``-update``, etc. database actions
-   automatically sanitize values passed as pairs into an inline.
-
-.. tabularcolumns:: |l|L|
-
-.. _database-sql-parameters:
-
-.. table:: SQL Statement Parameters
-
-   ================ ============================================================
-   Parameter        Description
-   ================ ============================================================
-   ``-sql``         Issues one or more SQL command to a compatible data source.
-                    Multiple commands are delimited by a semicolon. When
-                    multiple commands are used, all will be executed, however
-                    only the first command issued will return results to the
-                    `inline` method unless the `resultSet` method is used.
-   ``-database``    The database in the data source in which to execute the SQL
-                    statement.
-   ``-table``       A table in the database (used for encoding information).
-   ``-maxRecords``  The maximum number of records to return. Optional, defaults
-                    to 50.
-   ``-skipRecords`` The offset into the found set at which to start returning
-                    records. Optional, defaults to "1".
-   ================ ============================================================
-
-The ``-database`` parameter can be any database within the data source in which
-the SQL statement should be executed. The ``-database`` parameter will be used
-to determine the data source, and table references within the statement can
-include both a database name and a table name (e.g. "contacts.people") in order
-to fetch results from multiple tables. For example, to create a new database in
-MySQL, a ``CREATE DATABASE`` statement can be executed with ``-database`` set to
-a name of a database in the host you want the new database to reside in.
-
-When referencing the name of a database and table in a SQL statement (e.g.
-"contacts.people"), only the true names of a database can be used as MySQL does
-not recognize Lasso database aliases in a SQL command.
-
-.. index:: encodeSql(), encodeSql92()
-
-.. member:: string->encodeSql()
-   :noindex:
-
-   Encodes illegal characters in MySQL string literals by escaping them with a
-   backslash. Helps to prevent SQL injection attacks and ensures that SQL
-   statements only contain valid characters. This method must be used to encode
-   visitor supplied values within SQL statements for MySQL strings.
-
-.. member:: string->encodeSql92()
-   :noindex:
-
-   Encodes illegal characters in SQL string literals by escaping a single quote
-   with two single quotes. Helps to prevent SQL injection attacks and ensures
-   that SQL statements only contain valid characters. This method can be used to
-   encode values for SQLite and most other SQL-compliant data sources.
-
-Results from a SQL statement are returned in a record set within the `inline`
-method. The results can be read and displayed using the `records` or `rows`
-methods and the `field` or `column` method. However, many SQL statements return
-a synthetic record set that does not correspond to the names of the fields of
-the table being operated upon. This is demonstrated in the examples that follow.
-
-
-Issuing SQL Statements
-----------------------
-
-SQL statement are specified within an `inline` method with a ``-sql`` keyword
-parameter.
-
-The following example calculates the results of a mathematical expression "1 +
-2" and returns the value as a field named "result". Note that even though this
-SQL statement does not reference a database, a ``-database`` parameter is still
-required so Lasso knows to which data source to send the statement::
-
-   inline(
-      -database='example',
-      -sql="SELECT 1+2 AS result;"
-   ) => {^
-      'The result is: ' + field('result')
-   ^}
-
-   // => The result is 3
-
-The following example calculates the results of several mathematical expressions
-and returns them as field values "one", "two", and "three"::
-
-   inline(
-      -database='example',
-      -sql="SELECT 1+2 AS one, sin(.5) AS two, 5%2 AS three;"
-   ) => {^
-      'The results are: ' + field('one') + ', ' + field('two') + ', and ' + field('three')
-   ^}
-
-   // => The results are 3, 0.579426, and 1
-
-The following example calculates the results of several mathematical expressions
-using Lasso and returns them as field values "one", "two", and "three". It
-demonstrates how the results of Lasso expressions and methods can be used in a
-SQL statement::
-
-   inline(
-      -database='example',
-      -sql="SELECT " + (1+2) + " AS one, " + math_sin(0.5) + " AS two, " + (5%2) + " AS three;"
-   ) => {^
-      'The results are: ' + field('one') + ', ' + field('two') + ', and ' + field('three')
-   ^}
-
-   // => The results are 3, 0.579426, and 1
-
-The following example returns records from the "phone_book" table where
-"first_name" is equal to "John". This is equivalent to a ``-search`` action::
-
-   inline(
-      -database='contacts',
-      -sql="SELECT * FROM phone_book WHERE first_name = 'John';"
-   ) => {^
-      records => {^
-         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
-      ^}
-   ^}
-
-   // =>
-   // <br />John Doe
-   // <br />John Person
-
-
-Issue a SQL Statement with Multiple Commands
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Specify several SQL statements within an `inline` method in a ``-sql`` keyword
-parameter, with each SQL command separated by a semicolon. The following
-example adds three unique records to the "contacts" database::
-
-   inline(
-      -database='contacts',
-      -sql="INSERT INTO people (first_name, last_name) VALUES ('John',  'Jakob');
-            INSERT INTO people (first_name, last_name) VALUES ('Tom',   'Smith');
-            INSERT INTO people (first_name, last_name) VALUES ('Sally', 'Brown');"
-   ) => {}
-
-
-Sanitizing Visitor-Supplied Values in a SQL Statement
------------------------------------------------------
-
-All visitor supplied values must be sanitized before they are concatenated into
-a SQL statement in order to ensure the validity of the SQL statement and to
-prevent SQL injection. Values from the `web_request->param`, `cookie`, and
-`field` methods should be encoded as well as values from any calculations that
-rely on these methods. The `string->encodeSql` method should be used to encode
-values within SQL statements for MySQL data sources. The `string->encodeSql92`
-method should be used to encode values for other SQL-compliant data sources
-including JDBC data sources and SQLite.
-
-The following example encodes the query or post parameter for "first_name" for a
-MySQL data source::
-
-   inline(
-      -database='contacts',
-      -sql="SELECT * FROM phone_book WHERE first_name = '" +
-         string(web_request->param('first_name'))->encodeSql + "';"
-   ) => {}
-
-The following example encodes the query or post parameter "first_name" for a
-SQLite (or other SQL-compliant) data source::
-
-   inline(
-      -database='contacts',
-      -sql="SELECT * FROM phone_book WHERE first_name = '" +
-         string(web_request->param('first_name'))->encodeSql92 + "';"
-   ) => {}
-
-.. important::
-   The `string->encodeSql` and `string->encodeSql92`  methods can only be used
-   to sanitize data being used as SQL string data in the SQL expression. If you
-   need to sanitize data being used as integer or decimal data, use those
-   creator methods to ensure the object is of those types. To sanitize a date
-   object, use the `date->format` method and make sure the format string doesn't
-   contain invalid characters. If you need to use variables to specify database,
-   table, or column names inside a SQL statement, then you will need to take
-   additional precautions that vary by data source. All of this is to say that
-   you should always sanitize your inputs, and simply using the
-   `~string->encodeSql` methods is not enough.
-
-
-Automatically Formatting SQL Statement Results
-----------------------------------------------
-
-Use the `field_name` method and `loop` method to create an HTML table that
-automatically formats the results of a ``-sql`` command. The ``-maxRecords``
-parameter should be set to "All" so all records are returned rather than the
-default (50).
-
-The following example shows a ``REPAIR TABLE contacts.people`` SQL statement
-being issued to a MySQL database, and the result is automatically formatted. The
-statement returns a synthetic record set that shows the results of the repair.
-
-Notice that the database "contacts" is specified explicitly within the SQL
-statement. Even though the database is identified in the ``-database`` parameter
-within the inline it may still be explicitly specified in each table reference
-within the SQL statement. ::
-
-   inline(
-      -database='contacts',
-      -sql="REPAIR TABLE contacts.people;",
-      -maxRecords='all'
-   ) => {^
-      '<table border="1">\n'
-      '<tr>\n'
-      loop(field_name(-count)) => {^
-         '   <td><b>' + field_name(loop_count) + '</b></td>\n'
-      ^}
-      '</tr>\n'
-      records => {^
-         '<tr>\n'
-         loop(field_name(-count)) => {^
-            '   <td>' + field(field_name(loop_count)) + '</td>\n'
-         ^}
-         '</tr>\n'
-      ^}
-      '</table>\n'
-   ^}
-
-The results are returned in a table with bold column headings. The following
-results show that the table did not require any repairs. If repairs are
-performed then many more records will be returned. ::
-
-   // =>
-   // <table border="1">
-   // <tr>
-   //    <td><b>Table</b></td>
-   //    <td><b>Op</b></td>
-   //    <td><b>Msg_type</b></td>
-   //    <td><b>Msg_text</b></td>
-   // </tr>
-   // <tr>
-   //    <td>people</td>
-   //    <td>Check</td>
-   //    <td>Status</td>
-   //    <td>OK</td>
-   // </tr>
-   // </table>
-
-
-.. _database-sql-transactions:
-
-SQL Transactions
-================
-
-Lasso supports the ability to perform :dfn:`SQL transactions`, which are
-reversible groups of statements, provided that the data source used (e.g. MySQL
-4 and later with certain storage engines) supports this functionality. See your
-data source documentation to see if transactions are supported.
-
-.. note::
-   SQL transactions are not supported for FileMaker Server data sources.
-
-SQL transactions can be achieved within nested `inline` methods. A single
-connection to MySQL or JDBC data sources will be held open around the outer
-inline. Any nested inlines that use the same data source will make use of the
-same connection.
-
-.. note::
-   When using named inlines, the connection is not available in subsequent
-   ``records(-inlineName='Name')`` methods.
-
-
-Open a Transaction and Commit or Rollback in MySQL
---------------------------------------------------
-
-Use nested ``-sql`` inlines, where the outer inline performs a transaction, and
-the inner inline commits or rolls back the transaction depending on the results
-of a conditional statement. ::
-
-   inline(
-      -database='contacts',
-      -sql="START TRANSACTION;
-            INSERT INTO contacts.people (title, company) VALUES ('Mr.', 'LassoSoft');"
-   ) => {
-      if(error_currentError != error_msg_noerror) => {
-         inline(-database='contacts', -sql="ROLLBACK;") => {}
-      else
-         inline(-database='contacts', -sql="COMMIT;") => {}
-      }
-   }
-
-
-Fetch the Last Inserted ID in MySQL
------------------------------------
-
-Use nested ``-sql`` inlines, where the outer inline performs an insert query,
-and the inner inline retrieves the ID of the last inserted record using the
-MySQL ``last_insert_id()`` function. Because the two inlines share the same
-connection, the inner inline will always return the value added by the outer
-inline. ::
-
-   inline(
-      -database='contacts',
-      -sql="INSERT INTO people (title, company) VALUES ('Mr.', 'LassoSoft');"
-   ) => {^
-      inline(-sql="SELECT last_insert_id();") => {^
-         field('last_insert_id()')
-      ^}
-   ^}
-
-   // => 23
-
-
-Prepared Statements
-===================
-
-Lasso supports the ability to use prepared statements to speed up database
-operations provided that the data source used (e.g. MySQL 4 and later) supports
-this functionality. See your data source documentation to see if prepared
-statements are supported.
-
-A :dfn:`prepared statement` is a cached database query that can speed up
-database operations by cutting down on the amount of overhead that the data
-source needs to perform for each statement. For example, processing the
-following "INSERT" statement requires the data source to load the people table,
-determine its primary key, load information about its indexes, and determine
-default values for fields not listed. After the new record is inserted the
-indexes must be updated. If another "INSERT" is performed then all of these
-steps are repeated from the beginning:
-
-.. code-block:: sql
-
-   INSERT INTO people (`first_name`, `last_name`) VALUES ("John", "Doe");
-
-When this statement is changed into a prepared statement then the data source
-knows to expect multiple executions of the statement. The data source can cache
-information about the table in memory and reuse that information for each
-execution. The data source might also be able to defer some operations such as
-finalizing index updates until after several statements have been executed.
-
-The specific details of how prepared statements are treated are dependent on the
-data source. The savings in overhead and increase in speed may vary depending on
-what type of SQL statement is being issued, the size of the table and indexes
-that are being used, and other factors.
-
-The statement above can be rewritten as a prepared statement by replacing the
-values with question marks. The name of the table and field list are defined
-just as they were in the original SQL statement. This statement is a template
-into which particular values will be placed before the data source executes it:
-
-.. code-block:: sql
-
-   INSERT INTO people (`first_name`, `last_name`) VALUES (?, ?)
-
-The particular values are specified as an array. Each element of the array
-corresponds with one question mark from the prepared statement. To insert "John
-Doe" into the "people" table the following array would be used::
-
-   array('John', 'Doe')
-
-One new database action is used to prepare statement and execute them:
-``-prepare`` is similar to ``-sql``, but informs Lasso that you want to create a
-prepared statement. Nested inlines are then issued with an array and the
-``-sql`` parameter. The array should contain values that should be plugged into
-the prepared statement.
-
-The prepared statement and values shown above would be issued by the following
-inlines. The outer inline prepares the statement and the inner inline executes
-it with specific values. Note that the inner inline does not contain any
-``-database`` or ``-table`` parameters. These are inherited from the outer
-inline so they don't need to be specified again. ::
-
-   inline(
-      -database='contacts',
-      -prepare="INSERT INTO people (`first_name`, `last_name`) VALUES (?, ?);"
-   ) => {
-      inline(array('John', 'Doe'), -sql) => {}
-   }
-
-If the executed statement returns any values then those results can be inspected
-within the inner inline. The inline with the ``-prepare`` action will not return
-any results itself, but each inner inline with a ``-sql`` parameter may return a
-result as if the full equivalent SQL statement were issued in that inline.
