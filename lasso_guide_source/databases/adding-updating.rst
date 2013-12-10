@@ -115,14 +115,14 @@ Feedback that the ``-add`` action was successful is provided to the visitor
 inside the inline using the `error_currentError` method. The added record will
 only include default values as defined within the database itself. ::
 
-   [inline(
+   inline(
       -add,
       -database='contacts',
       -table='people',
       -keyField='id'
-   )]
-      <p>[error_code]: [error_msg]</p>
-   [/inline]
+   ) => {^
+      '<p>' + error_code + ': ' + error_msg + '</p>'
+   ^}
 
 If the ``-add`` action is successful then the following will be returned::
 
@@ -146,10 +146,10 @@ values as well as any default values defined in the database itself. ::
       -keyField='id',
       'first_name'='John',
       'last_name'='Doe'
-   )]
-      <p>[error_code]: [error_msg]</p>
-      Record [field('id')] was added for [field('first_name')] [field('last_name')].
-   [/inline]
+   ) => {^
+      '<p>' + error_code + ': ' + error_msg + '</p>\n'
+      'Record ' + field('id') + ' was added for ' + field('first_name') + ' ' + field('last_name') + '.'
+   ^}
 
 The results of the ``-add`` action contain the values for the record that was
 just added to the database::
@@ -171,7 +171,7 @@ visitor can set values for the fields "first_name" and "last_name". ::
    <form action="response.lasso" method="POST">
       <br />First Name: <input type="text" name="first_name" value="" />
       <br />Last Name:  <input type="text" name="last_name" value="" />
-      <br /><input type="submit" name="submit" value="Add Record" />
+      <br /><input type="submit" name="submit" value="Add" />
    </form>
 
 The response page for the form, "response.lasso", contains the following code
@@ -180,17 +180,17 @@ record was successfully added to the database. The field values for the record
 that was just added to the database are automatically available within the
 inline. ::
 
-   [inline(
+   inline(
       -add,
       -database='contacts',
       -table='people',
       -keyField='id',
-      "first_name"=web_request->param("first_name"),
-      "last_name"=web_request->param("last_name")
-   )]
-      <p>[error_code]: [error_msg]</p>
-      Record [field('id')] was added for [field('first_name')] [field('last_name')].
-   [/inline]
+      'first_name'=web_request->param('first_name'),
+      'last_name'=web_request->param('last_name')
+   ) => {^
+      '<p>' + error_code + ': ' + error_msg + '</p>\n'
+      'Record ' + field('id') + ' was added for ' + field('first_name') + ' ' + field('last_name') + '.'
+   ^}
 
 If the form is submitted with "Mary" in the "first_name" input and "Person" in
 the "last_name" input then the following will be returned::
@@ -218,17 +218,17 @@ record was successfully added to the database. The field values for the record
 that was just added to the database are automatically available within the
 inline. ::
 
-   [inline(
+   inline(
       -add,
       -database='contacts',
       -table='people',
       -keyField='id',
-      "first_name"=web_request->param("first_name"),
-      "last_name"=web_request->param("last_name")
-   )]
-      <p>[error_code]: [error_msg]</p>
-      Record [field('id')] was added for [field('first_name')] [field('last_name')].
-   [/inline]
+      'first_name'=web_request->param('first_name'),
+      'last_name'=web_request->param('last_name')
+   ) => {^
+      '<p>' + error_code + ': ' + error_msg + '</p>\n'
+      'Record ' + field('id') + ' was added for ' + field('first_name') + ' ' + field('last_name') + '.'
+   ^}
 
 If the link for "Add John Person" is selected then the following will be
 returned::
@@ -370,7 +370,7 @@ to "Surname". The updated record will include these new values, but any fields
 that were not included in the action will be left with the values they had
 before the update. ::
 
-   [inline(
+   inline(
       -update,
       -database='contacts',
       -table='people',
@@ -378,10 +378,10 @@ before the update. ::
       -keyValue=2,
       'first_name'='Bob',
       'last_name'='Surname'
-   )]
-      <p>[error_code]: [error_msg]</p>
-      Record [field('id')] was updated to [field('first_name')] [field('last_name')].
-   [/inline]
+   ) => {^
+      '<p>' + error_code + ': ' + error_msg + '</p>\n'
+      'Record ' + field('id') + ' was updated to ' + field('first_name') + ' ' + field('last_name') + '.'
+   ^}
 
 The updated field values from the ``-update`` action are automatically available
 within the inline::
@@ -411,7 +411,7 @@ values for the fields "first_name" and "last_name". ::
       <input type="hidden" name="keyValue" value="[keyField_value]" />
       <br />First Name: <input type="text" name="first_name" value="[field('first_name')]" />
       <br />Last Name: <input type="text" name="last_name" value="[field('last_name')]" />
-      <br /><input type="submit" name="submit" value="Update Record" />
+      <br /><input type="submit" name="submit" value="Update" />
    </form>
    [/inline]
 
@@ -420,7 +420,7 @@ that performs the action using an `inline` method and provides feedback that the
 record was successfully updated in the database. The field values from the
 updated record are available automatically within the inline. ::
 
-   [inline(
+   inline(
       -update,
       -database='contacts',
       -table='people',
@@ -428,14 +428,14 @@ updated record are available automatically within the inline. ::
       -keyValue=web_request->param('keyValue'),
       'first_name'=web_request->param('first_name'),
       'last_name'=web_request->param('last_name')
-   )]
-      <p>[error_code]: [error_msg]</p>
-      Record [field('id')] was updated to [field('first_name')] [field('last_name')].
-   [/inline]
+   ) => {^
+      '<p>' + error_code + ': ' + error_msg + '</p>\n'
+      'Record ' + field('id') + ' was updated to ' + field('first_name') + ' ' + field('last_name') + '.'
+   ^}
 
 The form initially shows "Mary" for the "first_name" input and "Person" for the
 "last_name" input. If the form is submitted with the "last_name" changed to
-"Peoples" then the following will be returned. (The "First_Name" field is
+"Peoples" then the following will be returned. (The "first_name" field is
 unchanged since it was left set to "Mary".) ::
 
    // =>
@@ -459,7 +459,7 @@ The response page for the URL, "response.lasso", contains the following code
 that performs the action using an `inline` method and provides feedback that the
 record was successfully updated within the database::
 
-   [inline(
+   inline(
       -update,
       -database='contacts',
       -table='people',
@@ -467,10 +467,10 @@ record was successfully updated within the database::
       -keyValue=web_request->param('keyValue'),
       'first_name'=web_request->param('first_name'),
       'last_name'=web_request->param('last_name')
-   )]
-      <p>[error_code]: [error_msg]</p>
-      Record [field('id')] was updated to [field('first_name')] [field('last_name')].
-   [/inline]
+   ) => {^
+      '<p>' + error_code + ': ' + error_msg + '</p>\n'
+      'Record ' + field('id') + ' was updated to ' + field('first_name') + ' ' + field('last_name') + '.'
+   ^}
 
 If the link for "Update John Person" is submitted then the following will be
 returned::
@@ -531,28 +531,28 @@ Methods are used to retrieve the values for the required ``-database``,
 values match those from the outer inline exactly. The pair parameter
 ``'last_name'='Peoples'`` updates the field to the new value. ::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
       -maxRecords='all',
       'last_name'='Person'
-   )]
-      [records]
-         [inline(
+   ) => {^
+      records => {^
+         inline(
             -update,
             -database=database_name,
             -table=table_name,
             -keyField=keyField_name,
             -keyValue=keyField_value,
             'last_name'='Peoples'
-         )]
-            <p>[error_code]: [error_msg]</p>
-            Record [field('id')] was updated to [field('first_name')] [field('last_name')].
-         [/inline]
-      [/records]
-   [/inline]
+         ) => {^
+            '<p>' + error_code + ': ' + error_msg + '</p>\n'
+            'Record ' + field('id') + ' was updated to ' + field('first_name') + ' ' + field('last_name') + '.'
+         ^}
+      ^}
+   ^}
 
 This particular search only finds one record to update. If the update action is
 successful then the following will be returned for each updated record::
@@ -661,15 +661,15 @@ The following example shows how to perform a delete action by specifying the
 required parameters within an `inline` method. The record with the value "2" in
 field "id" is deleted::
 
-   [inline(
+   inline(
       -delete,
       -database='contacts',
       -table='people',
       -keyField='id',
       -keyValue=2
-   )]
-      <p>[error_code]: [error_msg]</p>
-   [/inline]
+   ) => {^
+      '<p>' + error_code + ': ' + error_msg + '</p>'
+   ^}
 
 If the delete action is successful then the following will be returned::
 
@@ -728,26 +728,26 @@ to retrieve the values for the required ``-database``, ``-table``,
 ``-keyField``, and ``-keyValue`` parameters. This ensures that these values
 match those from the outer inline exactly. ::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
       -maxRecords='all',
       'last_name'='Peoples'
-   )]
-      [Records]
-         [inline(
+   ) => {^
+      records => {^
+         inline(
             -delete,
             -database=database_name,
             -table=table_name,
             -keyField=keyField_name,
             -keyValue=keyField_value
-         )]
-            <p>[error_code]: [error_msg]</p>
-         [/inline]
-      [/records]
-   [/inline]
+         ) => {^
+            '<p>' + error_code + ': ' + error_msg + '</p>'
+         ^}
+      ^}
+   ^}
 
 This particular search only finds one record to delete. If the delete action is
 successful then the following will be returned for each deleted record::

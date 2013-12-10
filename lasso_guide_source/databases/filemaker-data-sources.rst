@@ -289,9 +289,9 @@ Complex Queries with FileMaker 9 and Later
 
 Starting with FileMaker Server 9, a search request is made up of one or more
 queries. By default a single query is generated and all of the search terms
-within it are combined using an "And" operator. Additional queries can be added
-to either extend the found set using an "Or" operator or to omit records from
-the found set using a "Not" operator. These queries correspond precisely to find
+within it are combined using an AND operator. Additional queries can be added to
+either extend the found set using an OR operator or to omit records from the
+found set using a NOT operator. These queries correspond precisely to find
 requests within the FileMaker Server user interface.
 
 Each field can only be listed once per query. The standard Lasso operators can
@@ -300,7 +300,7 @@ contains, less than, greater than, etc. FileMaker's standard find symbols can be
 used for more complex criteria. It may also be necessary to use multiple queries
 for more complex search criteria.
 
-Search requests in FileMaker Server 9 and later do not support the Not Equals
+Search requests in FileMaker Server 9 and later do not support the "Not Equals"
 operator or any of the "Not"-variant operators. Instead, these should be created
 by combining an omit query with the appropriate affirmative operator. The
 ``-opLogical``, ``-opBegin``, and ``-opEnd`` operators are not supported. The
@@ -321,11 +321,11 @@ by combining an omit query with the appropriate affirmative operator. The
              from the result set.
    ========= ===================================================================
 
-A search with a single query uses an "And" operator to combine each of the
-search terms. Records where the field "first_name" begins with the letter "J"
-and the field "last_name" begins with the letter "D" can be found using the
-following search terms in Lasso. Each record in the result set will match every
-search term in the query: ``-bw, 'first_name'='J', -bw, 'last_name='D'``
+A search with a single query uses an AND operator to combine each of the search
+terms. Records where the field "first_name" begins with the letter "J" and the
+field "last_name" begins with the letter "D" can be found using the following
+search terms in Lasso. Each record in the result set will match every search
+term in the query: ``-bw, 'first_name'='J', -bw, 'last_name='D'``
 
 We start an additional query using an ``-or`` parameter. FileMaker runs the
 first and second queries independently and then combines the search results. The
@@ -335,7 +335,7 @@ with either the letter "D" or the letter "S". Each records in the result set
 will match either the first query or the second query. ::
 
    -bw, 'first_name'='J',
-   -bw, 'last_name'='D'
+   -bw, 'last_name'='D',
    -or,
    -bw, 'first_name'='J',
    -bw, 'last_name'='S'
@@ -358,7 +358,7 @@ the letter "D" except for the record for "John Doe". Each records in the result
 set will match the first query and will not match the second query. ::
 
    -bw, 'first_name'='J',
-   -bw, 'last_name'='D'
+   -bw, 'last_name'='D',
    -not,
    -bw, 'first_name'='John',
    -bw, 'last_name'='Doe'
@@ -433,17 +433,20 @@ following example shows an `inline` method that performs a ``-findAll`` action
 and returns the Record ID for each returned record using the `keyField_value`
 method::
 
-   inline(-database='contacts', -table='people', -findAll) => {^
+   inline(
+      -findAll,
+      -database='contacts',
+      -table='people'
+   ) => {^
       records => {^
-         keyField_value + ': ' + field('first_name') + ' ' + field('last_name')
-         '<br />'
-      ^} // Close records
-   ^} // Close inline
+         '<br />' + keyField_value + ': ' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
    // =>
-   // 126: John Doe<br />
-   // 127: Jane Doe<br />
-   // 4096: Jane Person<br />
+   // <br />126: John Doe
+   // <br />127: Jane Doe
+   // <br />4096: Jane Person
 
 
 Reference a Record by Record ID
@@ -473,7 +476,13 @@ The following example shows a record in "contacts" being deleted with
 ``-keyValue=127``. The ``-keyField`` keyword parameter is included, but its
 value is set to the empty string. ::
 
-   inline(-delete, -database='contacts', -table='people', -keyfield='', -keyValue=127) => {}
+   inline(
+      -delete,
+      -database='contacts',
+      -table='people',
+      -keyfield='',
+      -keyValue=127
+   ) => {}
 
 .. tip::
    The Record ID for the current record in FileMaker can be accessed using the
@@ -504,15 +513,14 @@ field in the database. In this case, it will be sorted as "Mr., Mrs., Ms.". ::
       -database='contacts',
       -table='people',
       -keyField='id',
-      -sortField='title'     , -sortOrder='title',
-      -sortField='last_name' , -sortOrder='ascending',
+      -sortField='title',      -sortOrder='title',
+      -sortField='last_name',  -sortOrder='ascending',
       -sortField='first_name', -sortOrder='ascending'
    ) => {^
       records => {^
-         '<br />'
-         field('title') + ' ' + field('first_name') + ' ' + field('last_name')
-      ^} // Close records
-   ^} // Close inline
+         '<br />' + field('title') + ' ' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
 The following results could be returned when this page is loaded. Each of the
 records with a title of "Mr." appear before each of the records with a title of
@@ -599,13 +607,16 @@ The following example shows a ``-findAll`` action being performed in a database
 "contacts". The related field "last_call_time" from the "calls" database is
 returned for each record through a relationship named "calls". ::
 
-   inline(-findAll, -database='contacts', -table='people') => {^
+   inline(
+      -findAll,
+      -database='contacts',
+      -table='people'
+   ) => {^
       records => {^
-         '<br />'
-         keyField_value + ': ' + field('first_name') + ' ' + field('last_name')
-         '(Last call at: ' + field('calls::last_call_time') + ').'
-      ^} // Close records
-   ^} // Close inline
+         '<br />' + keyField_value + ': ' + field('first_name') + ' ' + field('last_name') +
+         '(Last call at: ' + field('calls::last_call_time') + ').\n'
+      ^}
+   ^}
 
    // =>
    // <br />126: John Doe (Last call at 12:00 pm).
@@ -686,24 +697,32 @@ The following example shows a portal "calls" that is contained in the "people"
 layout of the "contacts" database. The "time", "duration", and "number" of each
 call is displayed. ::
 
-   inline(-findAll, -database='contact', -table='people') => {^
+   inline(
+      -findAll,
+      -database='contact',
+      -table='people'
+   ) => {^
       records => {^
-         '<p>Calls for ' + field('first_name') + ' ' + field('last_name') + ':'
+         '<p>Calls for ' + field('first_name') + ' ' + field('last_name') + ':\n'
          portal('calls') => {^
-            '<br />'
-            field('calls::number') + ' at ' + field('calls::time')
-            'for ' + field('calls::duration') + ' minutes.'
-         ^}// Close portal
-         '</p>'
-      ^} // Close records
-   ^} // Close inline
+            '<br />' + field('calls::number') + ' at ' + field('calls::time') +
+            'for ' + field('calls::duration') + ' minutes.\n'
+         ^}
+         '</p>\n'
+      ^}
+   ^}
 
    // =>
-   // <p>Calls for John Doe:<br />555-1212 at 12:00 pm for 15 minutes.</p>
-   // <p>Calls for Jane Doe:<br />555-1212 at 09:25 am for 60 minutes.</p>
+   // <p>Calls for John Doe:
+   // <br />555-1212 at 12:00 pm for 15 minutes.
+   // </p>
+   // <p>Calls for Jane Doe:
+   // <br />555-1212 at 09:25 am for 60 minutes.
+   // </p>
    // <p>Calls for Jane Person:
-   //     <br />555-1212 at 2:23 pm for 55 minutes.
-   //     <br />555-1212 at 4:46 pm for 5 minutes.</p>
+   // <br />555-1212 at 2:23 pm for 55 minutes.
+   // <br />555-1212 at 4:46 pm for 5 minutes.
+   // </p>
 
 
 Add a Record to a Portal
@@ -782,17 +801,21 @@ The following example shows how to display all values from a value list using a
 ``-show`` action allows the values for value lists to be retrieved without
 performing a database action. ::
 
-   inline(-show, -database='contacts', -table='people') => {^
+   inline(
+      -show,
+      -database='contacts',
+      -table='people'
+   ) => {^
       value_list('title') => {^
-         value_listItem + "\n"
+         '<br />' + value_listItem + '\n'
       ^}
    ^}
 
    // =>
-   // Mr.
-   // Mrs.
-   // Ms.
-   // Dr.
+   // <br />Mr.
+   // <br />Mrs.
+   // <br />Ms.
+   // <br />Dr.
 
 
 Display a Drop-Down Menu with All Values from a Value List
@@ -809,26 +832,30 @@ The example shows a single ``<select>`` tag within an `inline` capture block
 with a ``-show`` command. If many value lists from the same database are being
 formatted, they can all be contained within a single inline. ::
 
-   <form action="response_page.lasso" method="post">
-   [inline(-show, -database='contacts', -table='people')]
-      <select name="title">
-         [value_list('title')]
-            <option value="[value_listItem]">[value_listItem]</option>
-         [/value_list]
-      </select>
-   [/inline]
-      <p><input type="submit" value="Add Record">
-   </form>
+   '<form action="response_page.lasso" method="post">\n'
+   inline(
+      -show,
+      -database='contacts',
+      -table='people'
+   ) => {^
+      '<select name="title">\n'
+         value_list('title') => {^
+            '   <option value="' + value_listItem + '">' + value_listItem + '</option>\n'
+         ^}
+      '</select>\n'
+   ^}
+   '<p><input type="submit" name="submit" value="Add Record">\n'
+   '</form>\n'
 
    // =>
    // <form action="response_page.lasso" method="post">
-   //    <select name="title">
-   //       <option value="Mr." selected>Mr.</option>
-   //       <option value="Mrs." >Mrs.</option>
-   //       <option value="Ms." >Ms.</option>
-   //       <option value="Dr." >Dr.</option>
-   //    </select>
-   //    <p><input type="submit" name="submit" value="Add Record"></p>
+   // <select name="title">
+   //    <option value="Mr." selected>Mr.</option>
+   //    <option value="Mrs." >Mrs.</option>
+   //    <option value="Ms." >Ms.</option>
+   //    <option value="Dr." >Dr.</option>
+   // </select>
+   // <p><input type="submit" name="submit" value="Add Record"></p>
    // </form>
 
 
@@ -840,14 +867,18 @@ all the values from a value list as radio buttons. The visitor will be able to
 select one value from the value list. Checkboxes can be created with the same
 code by changing the type from "radio" to "checkbox". ::
 
-   <form action="response_page.lasso" method="post">
-   [inline(-show, -database='contacts', -table='people')]
-      [value_list('title')]
-         <input type="radio" name="title" value="[value_listItem]" /> [value_listItem]
-      [/value_list]
-   [/inline]
-      <p><input type="submit" value="Add Record">
-   </form>
+   '<form action="response_page.lasso" method="post">\n'
+   inline(
+      -show,
+      -database='contacts',
+      -table='people'
+   ) => {^
+      value_list('title') => {^
+         '   <input type="radio" name="title" value="' + value_listItem + '" /> ' + value_listItem + '\n'
+      ^}
+   ^}
+   '<p><input type="submit" name="submit" value="Add Record">\n'
+   '</form>\n'
 
    // =>
    // <form action="response_page.lasso" method="post">
@@ -855,7 +886,7 @@ code by changing the type from "radio" to "checkbox". ::
    //    <input type="radio" name="title" value="Mrs." /> Mrs.
    //    <input type="radio" name="title" value="Ms." /> Ms.
    //    <input type="radio" name="title" value="Dr." /> Dr.
-   //    <p><input type="submit" name="submit" value="Add Record"></p>
+   // <p><input type="submit" name="submit" value="Add Record"></p>
    // </form>
 
 .. _FileMaker documentation: http://www.filemaker.com/support/product/documentation.html

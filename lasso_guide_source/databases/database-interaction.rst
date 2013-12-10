@@ -152,22 +152,22 @@ The method `found_count` returns how many records are in the database. The
 found set. The `field` methods are repeated for each found record, creating a
 listing of the names of all the people stored in the "contacts" database. ::
 
-   [inline(
+   inline(
       -findAll,
       -database='contacts',
       -table='people',
       -keyField='id'
-   )]
-      There are [found_count] record(s) in the People table.
-      [records]
-         <br />[field('first_name')] [field('last_name')]
-      [/records]
-   [/inline]
+   ) => {^
+      'There are ' + found_count + ' record(s) in the People table.\n'
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
    // =>
    // There are 2 record(s) in the People table.
-   //     <br />John Doe
-   //     <br />Jane Doe
+   // <br />John Doe
+   // <br />Jane Doe
 
 
 Specifying a -Search Action Within an Inline
@@ -188,23 +188,23 @@ record in the found set. The `field` methods are repeated for each found record,
 creating a listing of all the records for "John Doe" stored in the "contacts"
 database::
 
-   [inline(
+   inline(
       -search,
-      -database='Contacts',
-      -table='People',
-      -keyField='ID',
+      -database='contacts',
+      -table='people',
+      -keyField='id',
       'first_name'='John',
       'last_name'='Doe'
-   )]
-      There were [found_count] record(s) found in the People table.
-      [records]
-         <br />[field('first_name')] [field('last_name')]
-      [/records]
-   [/inline]
+   ) => {^
+      'There were ' + found_count + ' record(s) found in the People table.\n'
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
    // =>
    // There were 1 record(s) found in the People table.
-   //    <br />John Doe
+   // <br />John Doe
 
 
 Displaying the Generated Action Statement
@@ -216,7 +216,7 @@ the specified database action. For SQL data sources like MySQL and SQLite a SQL
 statement will be returned. Other data sources may return a different style of
 action statement. ::
 
-   inline(-search, -database='example', -table='example', ...) => {^
+   inline(-search, -database='example', -table='example', /* etc. */) => {^
       action_statement
       // ...
    ^}
@@ -227,10 +227,10 @@ specified in the `inline` method. The `action_statement` method will return
 the same value it would for a normal inline database action, but the database
 action will not actually be performed. ::
 
-   inline(-search, -database='example', -table='example', -statementOnly, ...)
+   inline(-search, -database='example', -table='example', -statementOnly, /* etc. */) => {^
       action_statement
       // ...
-   /inline
+   ^}
 
 
 Inlines and HTML Forms
@@ -261,10 +261,10 @@ These correspond to the names of fields in the "contacts" database. The action
 of the form is set to "/response.lasso" which will contain the inline that
 performs the actual database action::
 
-   <form action="/response.lasso" method="POST">
+   <form action="response.lasso" method="POST">
       <br />First Name: <input type="text" name="first_name" value="" />
       <br />Last Name: <input type="text" name="last_name" value="" />
-      <br /><input type="submit" value="Search" />
+      <br /><input type="submit" name="submit" value="Search" />
    </form>
 
 The `inline` method in "response.lasso" contains the :type:`pair` parameter
@@ -273,33 +273,33 @@ method instructs Lasso to fetch the input named "first_name" from the form post
 parameters submitted to the current page being served, namely the form shown
 above. The inline contains a similar pair parameter for "last_name". ::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
       'first_name'=web_request->param('first_name'),
       'last_name'=web_request->param('last_name')
-   )]
-      There were [found_count] record(s) found in the People table.
-      [records]
-         <br />[field('first_name')] [field('last_name')]
-      [/records]
-   [/inline]
+   ) => {^
+      'There were ' + found_count + ' record(s) found in the People table.\n'
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
 If the visitor entered "Jane" for the first name and "Doe" for the last name
 then the following results would be returned::
 
    // =>
    // There were 1 record(s) found in the People table.
-   //    <br />Jane Doe
+   // <br />Jane Doe
 
 As many parameters as needed can be named in the HTML form and then retrieved in
 the response page via the inline.
 
 .. tip::
    The `web_request->param` method is similar to the `action_param` or
-   ``form_param`` methods used in prior versions of Lasso for getting GET or
+   ``form_param`` methods used in prior versions of Lasso for fetching GET or
    POST data.
 
 
@@ -319,10 +319,10 @@ These correspond to the names of fields in the "people" table. The action of the
 form is set to "/response.lasso" which will contain the `inline` method that
 performs the actual database action. ::
 
-   <form action="/response.lasso" method="POST">
-      <br />First Name: <input type="text" name="first_name" value="">
-      <br />Last Name: <input type="text" name="last_name" value="">
-      <br /><input type="submit" value="Search">
+   <form action="response.lasso" method="POST">
+      <br />First Name: <input type="text" name="first_name" value="" />
+      <br />Last Name: <input type="text" name="last_name" value="" />
+      <br /><input type="submit" name="submit" value="Search" />
    </form>
 
 The `inline` method in "response.lasso" contains the parameter
@@ -332,25 +332,25 @@ in the inline as if they had been typed at the location of
 `web_request->params`. This will cause the name/value pairs for "first_name" and
 "last_name" to be inserted into the inline. ::
 
-   [inline(
+   inline(
       web_request->params,
       -search,
-      -database='Contacts',
-      -table='People',
-      -keyField='ID'
-   )]
-      There were [found_count] record(s) found in the People table.
-      [records]
-         <br />[field('first_name')] [field('last_name')]
-      [/records]
-   [/inline]
+      -database='contacts',
+      -table='people',
+      -keyField='id'
+   ) => {^
+      'There were ' + found_count + ' record(s) found in the People table.\n'
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
 If the visitor entered "Jane" for the first name and "Doe" for the last name
 then the following results would be returned::
 
    // =>
    // There were 1 record(s) found in the People table.
-   //    <br />Jane Doe
+   // <br />Jane Doe
 
 As many parameters as needed can be named in the HTML form. They will all be
 incorporated into the `inline` method at the location of the
@@ -358,7 +358,7 @@ incorporated into the `inline` method at the location of the
 
 .. tip::
    The `web_request->params` member method is a replacement for the
-   `action_params` method in prior versions of Lasso for getting GET or POST
+   `action_params` method in prior versions of Lasso for fetching GET or POST
    parameters.
 
 
@@ -376,11 +376,9 @@ form values each time the form is submitted. The following HTML form uses
 specified in the form previously each time the page is reloaded::
 
    <form action="default.lasso" method="POST">
-      <br />First Name:
-         <input type="text" name="first_name" value="[web_request->param('first_name')]">
-      <br />Last Name:
-         <input type="text" name="last_name" value="[web_request->param('last_name')]">
-      <br /><input type="submit" value="Submit">
+      <br />First Name: <input type="text" name="first_name" value="[web_request->param('first_name')]" />
+      <br />Last Name: <input type="text" name="last_name" value="[web_request->param('last_name')]" />
+      <br /><input type="submit" name="submit" value="Submit" />
    </form>
 
 
@@ -417,31 +415,31 @@ inline performs a hard-coded search for all records with "last_name" equal to
 "Person". The output confirms that the conversion went as expected by outputting
 the new values. ::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
       'last_name'='Doe',
       -maxRecords='all'
-   )]
-      [records]
-         [inline(
+   ) => {^
+      records => {^
+         inline(
             -update,
             -database='contacts',
             -table='people',
             -keyField='id',
             -keyValue=keyField_value,
             'last_name'='Person'
-         )]
-            <br />Name is now [field('first_name')] [field('last_name')]
-         [/inline]
-      [/records]
-   [/inline]
+         ) => {^
+            '<br />Name is now ' + field('first_name') + ' ' + field('last_name') + '\n'
+         ^}
+      ^}
+   ^}
 
    // =>
-   //    <br />Name is now John Person
-   //    <br />Name is now Jane Person
+   // <br />Name is now John Person
+   // <br />Name is now Jane Person
 
 
 Array-based Inline Parameters
@@ -473,7 +471,7 @@ inline overrides the value specified within the array parameter since it is
 specified later. Only the number of records found in the database are returned::
 
    local(params) = (:
-      -findAll='',
+      -findAll,
       -database='contacts',
       -table='people',
       -maxRecords=50
@@ -602,9 +600,9 @@ to clearly show the elements of the returned array::
       -database='contacts',
       -table='people',
       -keyField='id'
-   )
+   ) => {^
       action_params
-   /inline
+   ^}
 
    // =>
    // staticarray(
@@ -633,7 +631,7 @@ of the "contacts" database for a person named "John Doe"::
    ) => {^
       with param in action_params
       where not #param->first->beginsWith('-')
-      sum '<br />' + #param->asString->encodeHtml
+      sum '<br />' + #param->asString->encodeHtml + '\n'
    ^}
 
    // =>
@@ -657,31 +655,30 @@ database action. ::
       'first_name'='John',
       'last_name'='Doe'
    ) => {^
-      search_arguments
-         '\n<br />' + search_operatorItem + ' ' + search_fieldItem + ' = ' + search_valueItem
-      /search_arguments
+      search_arguments => {^
+         '<br />' + search_fieldItem + ' ' + search_operatorItem + ' ' + search_valueItem + '\n'
+      ^}
    ^}
 
    // =>
-   // <br />BW first_name = John
-   // <br />BW last_name = Doe
+   // <br />first_name BW John
+   // <br />last_name BW Doe
 
 The `sort_arguments` method can be used in conjunction with the
 `sort_fieldItem` and `sort_orderItem` methods to return a list of all sort
-parameters associated in a database action. ::
+parameters specified in a database action. ::
 
    inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
-      -sortField='first_name',
-      -sortOrder='Descending',
+      -sortField='first_name', -sortOrder='descending',
       -sortField='last_name'
    ) => {^
-      sort_arguments
-         '\n<br />' + sort_fieldItem + ' ' + sort_orderItem
-      /sort_arguments
+      sort_arguments => {^
+         '<br />' + sort_fieldItem + ' ' + sort_orderItem + '\n'
+      ^}
    ^}
 
    // =>
@@ -788,12 +785,12 @@ providing information about what database action was performed.
    Examples of using most of these methods are provided in the
    :ref:`searching-displaying` chapter.
 
-The found set methods can be used to display information about the current found
-set. For example, the following code generates a status message that can be
-displayed under a database listing::
+The action result methods can be used to display information about the current
+found set. For example, the following code generates a status message that can
+be displayed under a database listing::
 
-   Found [found_count] records.
-   <br />Displaying [shown_count] records from [shown_first] to [shown_last].
+   'Found ' + found_count + ' records.\n'
+   '<br />Displaying ' + shown_count + ' records from ' + shown_first + ' to ' + shown_last + '.'
 
    // =>
    // Found 100 records.
@@ -817,24 +814,24 @@ access the data programmatically. (Of course, at that point, you probably just
 want to use the `records` or `rows` methods with the `field` or `column`
 methods.) ::
 
-   inline(-search, -database='contacts', -table='people')
+   inline(-search, -database='contacts', -table='people') => {^
       records_array
-   /inline
+   ^}
 
    // => staticarray(staticarray(1, John, Doe), staticarray(1, Jane, Doe), ...)
 
 The output can be made easier to read on a web page using the `iterate` method
 and the `array->join` method::
 
-   inline(-search, -database='contacts', -table='people')
-      iterate(records_array, local(record))
-         ('"' + #record->join('", "') + '"')->encodeHtml + "<br />\n"
-      /iterate
-   /inline
+   inline(-search, -database='contacts', -table='people') => {^
+      iterate(records_array, local(record)) => {^
+         '<br />' + ('"' + #record->join('", "') + '"')->encodeHtml + '\n'
+      ^}
+   ^}
 
    // =>
-   // &quot;1&quot;, &quot;John&quot;, &quot;Doe&quot;<br />
-   // &quot;2&quot;, &quot;Jane&quot;, &quot;Doe&quot;<br />
+   // <br />&quot;1&quot;, &quot;John&quot;, &quot;Doe&quot;
+   // <br />&quot;2&quot;, &quot;Jane&quot;, &quot;Doe&quot;
    // ...
 
    // Web output
@@ -848,27 +845,27 @@ The output can be listed with the appropriate field names by using the
 from the current found set. The `field_names` method will always contain the
 same number of elements as the elements of the `records_array` method. ::
 
-   <table>
-   [inline(-search, -database='contacts', -table='people')]
-      <tr><td>[field_names->join('</td><td>')->encodeHTML(false, true)]</td></tr>
-      [iterate(records_array, local(record))]
-      <tr>
-         <td>[#record->join('</td><td>')->encodeHTML(false, true)]</td>
-      </tr>
-      [/iterate]
-   [/inline]
-   </table>
+   inline(-search, -database='contacts', -table='people') => {^
+      '<table>\n'
+      '<tr><td>' + field_names->join('</td><td>')->encodeHTML(false, true) + '</td></tr>\n'
+      iterate(records_array, local(record)) => {^
+         '<tr>\n'
+         '   <td>' + #record->join('</td><td>')->encodeHTML(false, true) + '</td>\n'
+         '</tr>\n'
+      ^}
+      '</table>\n'
+   ^}
 
    // =>
    // <table>
-   //    <tr><td>id</td><td>first_name</td><td>last_name</td></tr>
-   //    <tr>
-   //       <td>1</td><td>John</td><td>Doe</td>
-   //    </tr>
-   //    <tr>
-   //       <td>2</td><td>Jane</td><td>Doe</td>
-   //    </tr>
-   //    ...
+   // <tr><td>id</td><td>first_name</td><td>last_name</td></tr>
+   // <tr>
+   //    <td>1</td><td>John</td><td>Doe</td>
+   // </tr>
+   // <tr>
+   //    <td>2</td><td>Jane</td><td>Doe</td>
+   // </tr>
+   // ...
    // </table>
 
 Together the `field_names` and `records_array` methods provide a programmatic
@@ -885,9 +882,9 @@ returns all of the data from an inline operation as a map of maps. The keys for
 the outer map are the key field values for each record from the table. The keys
 for the inner map are the field names for each record in the found set. ::
 
-   inline(-search, -database='contacts', -table='people', -keyField='id')
+   inline(-search, -database='contacts', -table='people', -keyField='id') => {^
       records_map
-   /inline
+   ^}
 
    // => map(1 = map(first = John, last = Doe), 2 = map(first = Jane, last = Doe), ...)
 
@@ -909,29 +906,29 @@ method and passing the `loop_count` as the parameter for the `resultSet` method.
 Finally, the `records` method is used as normal to display the records from each
 result set. ::
 
-   [inline(
+   inline(
       -database='contacts',
       -sql="SELECT CONCAT(first_name, ' ', last_name) AS name FROM people; SELECT name FROM companies;"
-   )]
-      [resultSet_count] Result Sets
-      <hr />
-      [loop(resultSet_count)]
-         [resultSet(loop_count)]
-            [records]
-               [field('name')]<br />
-            [/records]
-            <hr />
-         [/resultSet]
-      [/loop]
-   [/inline]
+   ) => {^
+      resultSet_count + ' Result Sets\n'
+      '<hr />\n'
+      loop(resultSet_count) => {^
+         resultSet(loop_count) => {^
+            records => {^
+               '<br />' + field('name') + '\n'
+            ^}
+            '<hr />\n'
+         ^}
+      ^}
+   ^}
 
    // =>
    // 2 Result Sets
    // <hr />
-   // John Doe<br />
-   // Jane Doe<br />
+   // <br />John Doe
+   // <br />Jane Doe
    // <hr />
-   // LassoSoft<br />
+   // <br />LassoSoft
    // <hr />
 
 The same example can be rewritten using a named inline. An ``-inlineName``
@@ -940,22 +937,22 @@ parameter with the name "MyResults" is added to the `inline` method, the
 can be output from anywhere after the inline. The results of the following
 example will be the same as those shown above::
 
-   [inline(
+   inline(
       -inlineName='MyResults',
       -database='contacts',
       -sql="SELECT CONCAT(first_name, ' ', last_name) AS name FROM people; SELECT name FROM companies;"
-   ) => {}]
+   ) => {}
 
-   [resultSet_count(-inlineName='MyResults')] Result Sets
-   <hr />
-   [loop(resultSet_count(-inlineName='MyResults'))]
-      [resultSet(loop_count, -inlineName='MyResults')]
-         [records]
-            [field('name')]<br />
-         [/records]
-         <hr />
-      [/resultSet]
-   [/loop]
+   resultSet_count(-inlineName='MyResults') + ' Result Sets'
+   '<hr />'
+   loop(resultSet_count(-inlineName='MyResults')) => {^
+      resultSet(loop_count, -inlineName='MyResults') => {^
+         records => {^
+            '<br />' + field('name')
+         ^}
+         '<hr />'
+      ^}
+   ^}
 
 
 Database Schema Inspection Methods
@@ -1031,9 +1028,9 @@ List All Databases Entered in Lasso Admin
 The following example shows how to list the names of all databases set in Lasso
 Admin using the `database_names` and `database_nameItem` methods::
 
-   [database_names]
-      <br />[loop_count]: [database_nameItem]
-   [/database_names]
+   database_names => {^
+      '<br />' + loop_count + ': ' + database_nameItem + '\n'
+   ^}
 
    // =>
    // <br />1: Contacts
@@ -1048,9 +1045,9 @@ The following example shows how to list the names of all the tables within a
 database using the `database_tableNames` and `database_tableNameItem` methods.
 The tables within the "Site" database are listed::
 
-   [database_tableNames('contacts')]
-      <br />[loop_count]: [database_tableNameItem]
-   [/database_tablenames]
+   database_tableNames('contacts') => {^
+      '<br />' + loop_count + ': ' + database_tableNameItem + '\n'
+   ^}
 
    // =>
    // <br />1: companies
@@ -1065,16 +1062,16 @@ a table using the `inline` method to perform a ``-show`` action. A `loop` method
 loops through the number of fields in the table and the name and type of each
 field is returned. The fields within the "contacts" table are shown::
 
-   [inline(
+   inline(
       -show,
       -database='contacts',
       -table='people',
       -keyField='id'
-   )]
-      [loop(field_name(-count))]
-         <br />[loop_count]: [field_name(loop_count)] ([field_name(loop_count, -type)])
-      [/loop]
-   [/inline]
+   ) => {^
+      loop(field_name(-count)) => {^
+         '<br />' + loop_count + ': ' + field_name(loop_count) + ' (' + field_name(loop_count, -type) + ')\n'
+      ^}
+   ^}
 
    // =>
    // <br />1: creation_date (Date)
@@ -1093,7 +1090,10 @@ the true name of a database, allowing them to be used in a valid SQL statement.
 ::
 
    local(real_db) = database_realName('Contacts_alias')
-   inline(-database='contacts_alias', -sql="SELECT * FROM `" + #real_db + "`.people") => {}
+   inline(
+      -database='contacts_alias',
+      -sql="SELECT * FROM `" + #real_db + "`.people;"
+   ) => {}
 
 
 .. _database-inline-connection:
@@ -1165,10 +1165,10 @@ host for the MySQL data source that connects to "localhost" using a username of
 
    inline(
       -host=(: -datasource='mysqlds', -name='localhost', -username='lasso', -password='secret'),
-      -sql='SHOW DATABASES'
-   )
+      -sql="SHOW DATABASES;"
+   ) => {^
       records_array
-   /inline
+   ^}
 
    // => staticarray(staticarray(contacts), staticarray(examples), staticarray(site))
 
@@ -1351,9 +1351,12 @@ The following example calculates the results of a mathematical expression "1 +
 SQL statement does not reference a database, a ``-database`` parameter is still
 required so Lasso knows to which data source to send the statement::
 
-   inline(-database='example', -sql="SELECT 1+2 AS result")
-      `The result is: ` + field('result')
-   /inline
+   inline(
+      -database='example',
+      -sql="SELECT 1+2 AS result;"
+   ) => {^
+      'The result is: ' + field('result')
+   ^}
 
    // => The result is 3
 
@@ -1362,10 +1365,10 @@ and returns them as field values "one", "two", and "three"::
 
    inline(
       -database='example',
-      -sql="SELECT 1+2 AS one, sin(.5) AS two, 5%2 AS three"
-   )
-      `The results are: ` + field('one') + `, ` + field('two') + `, and ` + field('three')
-   /inline
+      -sql="SELECT 1+2 AS one, sin(.5) AS two, 5%2 AS three;"
+   ) => {^
+      'The results are: ' + field('one') + ', ' + field('two') + ', and ' + field('three')
+   ^}
 
    // => The results are 3, 0.579426, and 1
 
@@ -1376,10 +1379,10 @@ SQL statement::
 
    inline(
       -database='example',
-      -sql="SELECT " + (1+2) + " AS one, " + math_sin(0.5) + " AS two, " + (5%2) + " AS three"
-   )
-      `The results are: ` + field('one') + `, ` + field('two') + `, and ` + field('three')
-   /inline
+      -sql="SELECT " + (1+2) + " AS one, " + math_sin(0.5) + " AS two, " + (5%2) + " AS three;"
+   ) => {^
+      'The results are: ' + field('one') + ', ' + field('two') + ', and ' + field('three')
+   ^}
 
    // => The results are 3, 0.579426, and 1
 
@@ -1387,13 +1390,13 @@ The following example returns records from the "phone_book" table where
 "first_name" is equal to "John". This is equivalent to a ``-search`` action::
 
    inline(
-      -database='example',
-      -sql="SELECT * FROM phone_book WHERE first_name = 'John'"
-   )
-      records
-         `<br />` + field('first_name') + ` ` + field('last_name')
-      /records
-   /inline
+      -database='contacts',
+      -sql="SELECT * FROM phone_book WHERE first_name = 'John';"
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
    // =>
    // <br />John Doe
@@ -1409,8 +1412,8 @@ example adds three unique records to the "contacts" database::
 
    inline(
       -database='contacts',
-      -sql="INSERT INTO people (first_name, last_name) VALUES ('John' , 'Jakob');
-            INSERT INTO people (first_name, last_name) VALUES ('Tom'  , 'Smith');
+      -sql="INSERT INTO people (first_name, last_name) VALUES ('John',  'Jakob');
+            INSERT INTO people (first_name, last_name) VALUES ('Tom',   'Smith');
             INSERT INTO people (first_name, last_name) VALUES ('Sally', 'Brown');"
    ) => {}
 
@@ -1431,18 +1434,18 @@ The following example encodes the query or post parameter for "first_name" for a
 MySQL data source::
 
    inline(
-      -database='example',
+      -database='contacts',
       -sql="SELECT * FROM phone_book WHERE first_name = '" +
-         string(web_request->param('first_name'))->encodeSql + "'"
+         string(web_request->param('first_name'))->encodeSql + "';"
    ) => {}
 
 The following example encodes the query or post parameter "first_name" for a
 SQLite (or other SQL-compliant) data source::
 
    inline(
-      -database='example',
+      -database='contacts',
       -sql="SELECT * FROM phone_book WHERE first_name = '" +
-         string(web_request->param('first_name'))->encodeSql92 + "'"
+         string(web_request->param('first_name'))->encodeSql92 + "';"
    ) => {}
 
 .. important::
@@ -1475,26 +1478,26 @@ statement. Even though the database is identified in the ``-database`` parameter
 within the inline it may still be explicitly specified in each table reference
 within the SQL statement. ::
 
-   [inline(
+   inline(
       -database='contacts',
-      -sql="REPAIR TABLE contacts.people",
+      -sql="REPAIR TABLE contacts.people;",
       -maxRecords='all'
-   )]
-      <table border="1">
-         <tr>
-         [loop(field_name(-count))]
-            <td><b>[field_name(loop_count)]</b></td>
-         [/loop]
-         </tr>
-         [records]
-            <tr>
-            [loop(field_name(-count))]
-               <td>[field(field_name(loop_count))]</td>
-            [/loop]
-            </tr>
-         [/records]
-      </table>
-   [/inline]
+   ) => {^
+      '<table border="1">\n'
+      '<tr>\n'
+      loop(field_name(-count)) => {^
+         '   <td><b>' + field_name(loop_count) + '</b></td>\n'
+      ^}
+      '</tr>\n'
+      records => {^
+         '<tr>\n'
+         loop(field_name(-count)) => {^
+            '   <td>' + field(field_name(loop_count)) + '</td>\n'
+         ^}
+         '</tr>\n'
+      ^}
+      '</table>\n'
+   ^}
 
 The results are returned in a table with bold column headings. The following
 results show that the table did not require any repairs. If repairs are
@@ -1502,18 +1505,18 @@ performed then many more records will be returned. ::
 
    // =>
    // <table border="1">
-   //    <tr>
-   //       <td><b>Table</b></td>
-   //       <td><b>Op</b></td>
-   //       <td><b>Msg_type</b></td>
-   //       <td><b>Msg_text</b></td>
-   //    </tr>
-   //    <tr>
-   //       <td>people</td>
-   //       <td>Check</td>
-   //       <td>Status</td>
-   //       <td>OK</td>
-   //    </tr>
+   // <tr>
+   //    <td><b>Table</b></td>
+   //    <td><b>Op</b></td>
+   //    <td><b>Msg_type</b></td>
+   //    <td><b>Msg_text</b></td>
+   // </tr>
+   // <tr>
+   //    <td>people</td>
+   //    <td>Check</td>
+   //    <td>Status</td>
+   //    <td>OK</td>
+   // </tr>
    // </table>
 
 
@@ -1547,10 +1550,12 @@ Use nested ``-sql`` inlines, where the outer inline performs a transaction, and
 the inner inline commits or rolls back the transaction depending on the results
 of a conditional statement. ::
 
-   inline(-database='contacts', -sql="START TRANSACTION;
-      INSERT INTO contacts.people (title, company) VALUES ('Mr.', 'LassoSoft');"
+   inline(
+      -database='contacts',
+      -sql="START TRANSACTION;
+            INSERT INTO contacts.people (title, company) VALUES ('Mr.', 'LassoSoft');"
    ) => {
-      if(error_currentError != error_noError) => {
+      if(error_currentError != error_msg_noerror) => {
          inline(-database='contacts', -sql="ROLLBACK;") => {}
       else
          inline(-database='contacts', -sql="COMMIT;") => {}
@@ -1567,13 +1572,14 @@ MySQL ``last_insert_id()`` function. Because the two inlines share the same
 connection, the inner inline will always return the value added by the outer
 inline. ::
 
-   inline(-database='contacts',
-      -sql="INSERT INTO people (title, company) VALUES ('Mr.', 'LassoSoft')"
-   )
-      inline(-sql="SELECT last_insert_id()")
+   inline(
+      -database='contacts',
+      -sql="INSERT INTO people (title, company) VALUES ('Mr.', 'LassoSoft');"
+   ) => {^
+      inline(-sql="SELECT last_insert_id();") => {^
          field('last_insert_id()')
-      /inline
-   /inline
+      ^}
+   ^}
 
    // => 23
 
@@ -1623,7 +1629,7 @@ The particular values are specified as an array. Each element of the array
 corresponds with one question mark from the prepared statement. To insert "John
 Doe" into the "people" table the following array would be used::
 
-   array("John", "Doe")
+   array('John', 'Doe')
 
 One new database action is used to prepare statement and execute them:
 ``-prepare`` is similar to ``-sql``, but informs Lasso that you want to create a
@@ -1639,13 +1645,12 @@ inline so they don't need to be specified again. ::
 
    inline(
       -database='contacts',
-      -prepare='INSERT INTO people (`first_name`, `last_name`) VALUES (?, ?)'
+      -prepare="INSERT INTO people (`first_name`, `last_name`) VALUES (?, ?);"
    ) => {
-      inline((: "John", "Doe"), -sql) => {}
+      inline(array('John', 'Doe'), -sql) => {}
    }
 
 If the executed statement returns any values then those results can be inspected
-within the inner inline. The inline with the ``-prepare`` action will never
-return any results itself, but each inner inline with a ``-sql`` parameter may
-return a result as if the full equivalent SQL statement were issued in that
-inline.
+within the inner inline. The inline with the ``-prepare`` action will not return
+any results itself, but each inner inline with a ``-sql`` parameter may return a
+result as if the full equivalent SQL statement were issued in that inline.

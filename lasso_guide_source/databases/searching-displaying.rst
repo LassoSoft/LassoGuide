@@ -97,7 +97,7 @@ The following code can be used to display the current error message. This code
 should be placed in a Lasso page that is a response to a database action or
 within the capture block of an `inline` method. ::
 
-   error_code + `: ` + error_msg
+   error_code + ': ' + error_msg
 
 If the database action was performed successfully then the following result will
 be returned::
@@ -181,17 +181,17 @@ The results of the search are displayed to the visitor inside the inline. The
 methods will display the value for the specified field from the current record
 being shown. ::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
       'first_name'='John'
-   )]
-      [records]
-         <br />[field('first_name')] [field('last_name')]
-      [/records]
-   [/inline]
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
 If the search was successful then the following results will be returned::
 
@@ -218,7 +218,7 @@ search. The contents of the "default.lasso" file include the following::
    <form action="response.lasso" method="POST">
       <br />First Name: <input type="text" name="first_name" value="" />
       <br />Last Name: <input type="text" name="last_name" value="" />
-      <br /><input type="submit" name="submit" value="Search Database" />
+      <br /><input type="submit" name="submit" value="Search" />
    </form>
 
 The search is performed and the results of the search are displayed to the
@@ -229,18 +229,18 @@ capture block for each record in the found set. The `field` methods will display
 the value for the specified field from the current record being shown. The
 contents of the "response.lasso" file include the following::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
       'first_name'=web_request->param('first_name'),
-      'last_name' =web_request->param('last_name')
-   )]
-      [records]
-         <br />[field('first_name')] [field('last_name')]
-      [/records]
-   [/inline]
+      'last_name'=web_request->param('last_name')
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
 If the visitor entered "John" for "first_name" and "Person" for "last_name" then
 the following result would be returned::
@@ -268,7 +268,7 @@ create complex database queries. These parameters are summarized in the table
    |Parameter               |Description                                                 |
    +========================+============================================================+
    |``-operatorLogical`` or |Specifies the logical operator for the search. Abbreviation |
-   |``-opLogical``          |is ``-opLogical``. Defaults to "And".                       |
+   |``-opLogical``          |is ``-opLogical``. Defaults to AND.                         |
    +------------------------+------------------------------------------------------------+
    |``-operator`` or        |When specified before a pair parameter, establishes the     |
    |``-op``                 |search operator for that pair parameter. Abbreviation is    |
@@ -355,28 +355,32 @@ Specify the field operator before the name/value pair parameter that it will
 affect. The following `inline` method searches for records where the
 "first_name" begins with "J" and the "last_name" ends with "son"::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
       -operator='bw', 'first_name'='J',
       -operator='ew', 'last_name'='son'
-   )]
-      [records]<br />[field('first_name')] [field('last_name')][/records]
-   [/inline]
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name')
+      ^}
+   ^}
 
 The same could be accomplished by using a ``-key`` parameter::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
       -key=(: -bw, 'first_name'='J', -ew, 'last_name'='son')
-   )]
-      [records]<br />[field('first_name')] [field('last_name')][/records]
-   [/inline]
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
 The results of the search would include the following records::
 
@@ -397,20 +401,20 @@ applies to all search parameters specified with an action while
 same inline.) The case of the value is unimportant when specifying a logical
 operator.
 
--  **And** --
+-  **AND** --
    Specifies that records that are returned should fulfill all of the search
    parameters listed.
--  **Or** --
+-  **OR** --
    Specifies that records that are returned should fulfill one or more of the
    search parameters listed.
--  **Not** --
+-  **NOT** --
    Specifies that records that match the search criteria contained between the
    ``-operatorBegin`` and ``-operatorEnd`` parameters should be omitted from the
-   found set. "Not" cannot be used with the ``-operatorLogical`` keyword
-   parameter.
+   found set. The NOT operator cannot be used with the ``-operatorLogical``
+   keyword parameter.
 
 .. tip::
-   In lieu of a "Not" option for ``-operatorLogical``, many field operators can
+   In lieu of a NOT option for ``-operatorLogical``, many field operators can
    be negated individually by substituting the opposite field operator. The
    following pairs of field operators are the opposites of each other: "eq" and
    "neq", "lt" and "gte", and "gt" and "lte".
@@ -429,7 +433,7 @@ Use the ``-operatorLogical`` command tag with an "And" value. The following
 ``-operatorLogical`` parameter within the inline is unimportant since it applies
 to the entire action. ::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
@@ -437,9 +441,11 @@ to the entire action. ::
       -operatorLogical='And',
       'first_name'='John',
       'last_name'='Doe'
-   )]
-      [records]<br />[field('first_name')] [field('last_name')][/records]
-   [/inline]
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name')
+      ^}
+   ^}
 
    // => <br />John Doe
 
@@ -452,7 +458,7 @@ Use the ``-operatorLogical`` parameter with an "Or" value. The following
 either "John" or "Jane". The position of the ``-operatorLogical`` parameter
 within the inline is unimportant since it applies to the entire action. ::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
@@ -460,9 +466,11 @@ within the inline is unimportant since it applies to the entire action. ::
       -operatorLogical='Or',
       'first_name'='John',
       'first_name'='Jane'
-   )]
-      [records]<br />[field('first_name')] [field('last_name')][/records]
-   [/inline]
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
    // =>
    // <br />John Doe
@@ -478,18 +486,20 @@ The following `inline` method returns records for which the "first_name" field
 begins with "John" and the "last_name" field is not "Doe". The operator
 parameters must surround the parameters of the search that is to be negated. ::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
       'first_name'='John',
-      -operatorBegin='NOT',
-      'last_name'='Doe',
-      -operatorEnd='NOT'
-   )]
-      [records]<br />[field('first_name')] [field('last_name')][/records]
-   [/inline]
+      -operatorBegin='Not',
+         'last_name'='Doe',
+      -operatorEnd='Not'
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name')
+      ^}
+   ^}
 
    // => <br />John Person
 
@@ -509,31 +519,33 @@ The desired query could be written in pseudocode as follows:
    ( (first_name begins with M) AND (last_name begins with M) )
 
 The pseudocode is translated into Lasso code as follows. Each line of the query
-becomes a pair of ``-opBegin='AND'`` and ``-opEnd='AND'`` parameters with a pair
+becomes a pair of ``-opBegin='And'`` and ``-opEnd='And'`` parameters with a pair
 parameter for "first_name" and "last_name" contained inside. The two lines are
-then combined using a pair of ``-opBegin='OR'`` and ``-opEnd='OR'`` parameters.
+then combined using a pair of ``-opBegin='Or'`` and ``-opEnd='Or'`` parameters.
 The nesting of the parameters works like the nesting of parentheses in the
 pseudocode above to clarify how Lasso should combine the results of different
 name/value pair parameters. ::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
-      -opBegin='OR',
-         -opBegin='AND',
+      -opBegin='Or',
+         -opBegin='And',
             'first_name'='J',
             'last_name'='J',
-         -opEnd='AND',
-         -opBegin='AND',
+         -opEnd='And',
+         -opBegin='And',
             'first_name'='M',
             'last_name'='M',
-         -opEnd='AND',
-      -opEnd='OR'
-   )]
-      [records]<br />[field('first_name')] [field('last_name')][/records]
-   [/inline]
+         -opEnd='And',
+      -opEnd='Or'
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
 The returned result might look something like this::
 
@@ -622,17 +634,19 @@ Specify ``-sortField`` and ``-sortOrder`` parameters within an inline search.
 The following inline includes sort parameters. The records are first sorted by
 "last_name" in ascending order, then sorted by "first_name" in ascending order::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
       'first_name'='J',
-      -sortField='last_name', -sortOrder='ascending',
+      -sortField='last_name',  -sortOrder='ascending',
       -sortField='first_name', -sortOrder='ascending'
-   )]
-      [records]<br />[field('first_name')] [field('last_name')][/records]
-   [/inline]
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
 The following results could be returned when this inline is run. The returned
 records are sorted in order of "last_name". If the "last_name" of two records
@@ -655,7 +669,7 @@ returns four records, but only the second two records are shown. ``-maxRecords``
 is set to "2" to show only two records and ``-skipRecords`` is set to "2" to
 skip the first two records. ::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
@@ -663,9 +677,11 @@ skip the first two records. ::
       'first_name'='J',
       -maxRecords=2,
       -skipRecords=2
-   )]
-      [records]<br />[field('first_name')] [field('last_name')][/records]
-   [/inline]
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
 The following results could be returned when this inline is run. Neither of the
 "Doe" records from the previous example are shown since they are skipped over.
@@ -685,16 +701,18 @@ used then only the fields that are specified will be returned. If no
 table will be returned. In the following example, only the "first_name" field is
 shown since it is the only field specified within a ``-returnField`` parameter::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
       'first_name'='J',
       -returnField='first_name'
-   )]
-      [records]<br />[field('first_name')][/records]
-   [/inline]
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + '\n'
+      ^}
+   ^}
 
 The "last_name" field cannot be shown for any of these records since it was not
 specified in a``-returnField`` parameter. The above code would result in
@@ -748,14 +766,16 @@ Find All Records Within a Database
 The following `inline` method finds all records within a table named "people" in
 the "contacts" database and displays them. The results are shown below::
 
-   [inline(
+   inline(
       -findAll,
       -database='contacts',
       -table='people',
       -keyField='id'
-   )]
-      [records]<br />[field('first_name')] [field('last_name')][/records]
-   [/inline]
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
    // =>
    // <br />John Doe
@@ -801,15 +821,17 @@ database "contacts" and displays it. The ``-maxRecords`` is set to "1" to ensure
 that only a single record is shown. One potential result is shown below. Each
 time this inline is run a different record will be returned. ::
 
-   [inline(
+   inline(
       -random,
       -database='contacts',
       -table='people',
       -keyField='id',
       -maxRecords=1
-   )]
-      [records]<br />[field('first_name')] [field('last_name')][/records]
-   [/inline]
+   ) => {^
+      records => {^
+         '<br />' + field('first_name') + ' ' + field('last_name')
+      ^}
+   ^}
 
    // => <br />Jane Person
 
@@ -843,16 +865,16 @@ The following `inline` method performs a ``-findAll`` action in a database
 "contacts". The results are returned each formatted on a line by itself. The
 `loop_count` method is used to indicate the order within the found set. ::
 
-   [inline(
+   inline(
       -findAll,
       -database='contacts',
       -table='people',
       -keyField='id'
-   )]
-      [records]
-         <br />[loop_count]: [field('first_name')] [field('last_name')]
-      [/records]
-   [/inline]
+   ) => {^
+      records => {^
+         '<br />' + loop_count + ': ' + field('first_name') + ' ' + field('last_name') + '\n'
+      ^}
+   ^}
 
    // =>
    // <br />1: John Doe
@@ -870,15 +892,15 @@ following inline performs a ``-search`` for a single record whose primary key
 "id" equals "1". The `keyField_value` is shown along with the `field` values for
 the record. ::
 
-   [inline(
+   inline(
       -search,
       -database='contacts',
       -table='people',
       -keyField='id',
       -keyValue=1
-   )]
-      <br />[keyField_value]: [field('first_name')] [field('last_name')]
-   [/inline]
+   ) => {^
+      '<br />' + keyField_value + ': ' + field('first_name') + ' ' + field('last_name') + '\n'
+   ^}
 
    // =>
    // <br />1: Jane Doe
@@ -893,21 +915,19 @@ the inline that define the database action. The following example shows a
 ``-findAll`` action at the top of a page of code with the results formatted
 later::
 
-   <?lasso
-      inline(
-         -findAll,
-         -database='contacts',
-         -table='people',
-         -keyField='id',
-         -inlineName='FindAll Results'
-      ) => {}
-   ?>
+   inline(
+      -inlineName='FindAll Results',
+      -findAll,
+      -database='contacts',
+      -table='people',
+      -keyField='id'
+   ) => {}
 
-   <!-- ... page contents ... -->
+   // ...
 
-   [records(-inlineName='FindAll Results')]
-      <br />[loop_count]: [field('first_name')] [field('last_name')]
-   [/records]
+   records(-inlineName='FindAll Results') => {^
+      '<br />' + loop_count + ': ' + field('first_name') + ' ' + field('last_name') + '\n'
+   ^}
 
    // =>
    // <br />1: John Doe
