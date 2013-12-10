@@ -123,7 +123,7 @@ complex type and is not intended to be displayed to site visitors. ::
    array('One', 'Two', 'Three')
    // => array(One, Two, Three)
 
-   map('Key1'='Value1', 'Key2'='Value2')
+   map('Key1'="Value1", 'Key2'="Value2")
    // => map(Key1 = Value1, Key2 = Value2)
 
    pair('name'='value')
@@ -395,10 +395,16 @@ the value of the string object. Many of these methods are documented below.
    whitespace property then the method will return "true" otherwise it will
    return "false".
 
-.. member:: string->find(find::string, offset::integer, length::integer)
 .. member:: string->find(find::string, offset::integer, -case::boolean= ?)
-.. member:: string->find(find::string, offset::integer, length::integer, patOffset::integer, patLength::integer, case::boolean)
-.. member:: string->find(find::string, -offset::integer= ?, -length::integer= ?, -patOffset::integer= ?, -patLength::integer= ?, -case::boolean= ?)
+.. member:: string->find(find::string, offset::integer, length::integer)
+.. member:: string->find(find::string, offset::integer, length::integer, \
+      patOffset::integer, patLength::integer, case::boolean)
+.. member:: string->find(find::string, \
+      -offset::integer= ?, \
+      -length::integer= ?, \
+      -patOffset::integer= ?, \
+      -patLength::integer= ?, \
+      -case::boolean= ?)
 
    Searches the value of the string object for the specified string pattern,
    returning the position of where the pattern first begins in the string object
@@ -414,7 +420,12 @@ the value of the string object. Many of these methods are documented below.
    be used for matching; they behave similarly for the pattern string as the
    ``-offset`` and ``-length`` parameters do for the base string.
 
-.. member:: string->findLast(find::string, offset::integer= ?, -length::integer= ?, -patOffset::integer= ?, -patLength::integer= ?, -case::boolean= ?)
+.. member:: string->findLast(find::string, \
+      offset::integer= ?, \
+      -length::integer= ?, \
+      -patOffset::integer= ?, \
+      -patLength::integer= ?, \
+      -case::boolean= ?)
 
    This method is similar to `string->find` except that it returns the starting
    position of the *last* match found in the string object.
@@ -443,7 +454,11 @@ the value of the string object. Many of these methods are documented below.
    be case-sensitive unless passed the ``-case`` parameter.
 
 .. member:: string->compare(find::string, -case::boolean= ?)
-.. member:: string->compare(find::string, offset::integer, length::integer= ?, patOffset::integer= ?, patLength::integer= ?, -case::boolean= ?)
+.. member:: string->compare(find::string, offset::integer, \
+      length::integer= ?, \
+      patOffset::integer= ?, \
+      patLength::integer= ?, \
+      -case::boolean= ?)
 
    Takes a string pattern to compare with the string object and returns "0" if
    they are equal, "1" if the characters in the string are bitwise greater than
@@ -527,8 +542,8 @@ Check the Beginning of a String
 The following example checks to see if a string begins with "https:". If so, it
 displays "secure", otherwise it displays "insecure"::
 
-   local(url) = "https://secure.example.com"
-   #url->beginsWith("https:") ? "secure" | "insecure"
+   local(url) = 'https://secure.example.com'
+   #url->beginsWith('https:') ? 'secure' | 'insecure'
 
    // => secure
 
@@ -560,8 +575,8 @@ Extract a Substring
 
 The following example will pull the substring "red" out of the base string::
 
-   local(my_string) = "Ralph is a red rhinoceros"
-   #my_string->sub(12,3)
+   local(my_string) = 'Ralph is a red rhinoceros'
+   #my_string->sub(12, 3)
 
    // => red
 
@@ -572,7 +587,7 @@ Extract a Specified Character Position
 The following example uses `string->get` to return the last character in a
 string::
 
-   local(my_string) = "Ralph is a red rhinoceros"
+   local(my_string) = 'Ralph is a red rhinoceros'
    #my_string->get(#my_string->size)
 
    // => s
@@ -747,7 +762,7 @@ Remove Whitespace Around a String
 This example uses the `string->trim` method to remove whitespace from the
 beginning and end of the string and then outputs the string::
 
-   local(my_string) = "\n    Ralph the Ringed Rhino   \n\n"
+   local(my_string) = '\n    Ralph the Ringed Rhino   \n\n'
    #my_string->trim
    #my_string
 
@@ -760,7 +775,7 @@ Ensure All Characters are Lowercase
 This example takes a string and converts all the characters to lowercase and
 then outputs the changed string::
 
-   local(my_string) = "Ralph the Ringed Rhino races red radishes in THE RINK."
+   local(my_string) = 'Ralph the Ringed Rhino races red radishes in THE RINK.'
    #my_string->lowercase
    #my_string
 
@@ -772,7 +787,7 @@ Remove a Pattern from the End of a String
 
 This example removes all the trailing commas from the string::
 
-   local(my_string) = "First, Second, Fifth,,,"
+   local(my_string) = 'First, Second, Fifth,,,'
    #my_string->removeTrailing(',')
    #my_string
 
@@ -854,7 +869,7 @@ the string before calling `string->unescape` and then shows the result of
 calling `string->unescape`::
 
    local(my_string) = `Chinese Character: \u4E26`
-   #my_string + "\n"
+   #my_string + '\n'
    #my_string->unescape
 
    // =>
@@ -868,7 +883,7 @@ Encode HTML Entities
 The following example uses `string->encodeHtml` to return a string with the
 special HTML entities encoded::
 
-   local(my_string) = "<>&"
+   local(my_string) = '<>&'
    #my_string->encodeHtml
 
    // => &lt;&gt;&amp;
@@ -975,7 +990,7 @@ expression. If the word starts with the letter "r" then it will transform it to
 uppercase. The query expression selects each word, allowing us to create a
 staticarray of words. ::
 
-   local(my_string) = "Ralph is a red rhinoceros."
+   local(my_string) = 'Ralph is a red rhinoceros.'
    (
       with word in #my_string->eachWordBreak
       select (#word->beginsWith('r') ? #word->uppercase& | #word)
@@ -991,13 +1006,11 @@ The following example uses `string->eachMatch` with a :type:`regexp` object to
 find every vowel in a string, where the local variable "vowels" is used to count
 the number of each vowel in the string. ::
 
-   local(my_string) = "ralph is a red rhinoceros."
-   local(vowels)    = map("a"=0, "e"=0, "i"=0, "o"=0, "u"=0)
+   local(my_string) = 'ralph is a red rhinoceros.'
+   local(vowels)    = map('a'=0, 'e'=0, 'i'=0, 'o'=0, 'u'=0)
 
    with letter in #my_string->eachMatch(regexp(`[aeiouAEIOU]`))
-   do {
-      #vowels->find(#letter)++
-   }
+   do #vowels->find(#letter)++
    #vowels
 
    // => map(a = 2, e = 2, i = 2, o = 2, u = 0)
@@ -1027,7 +1040,7 @@ Split a String Into an Array
 
 The following example creates an array by splitting a string on a comma::
 
-   local(my_string) = "1,3,9,f,g"
+   local(my_string) = '1,3,9,f,g'
    #my_string->split(',')
 
    // => array(1, 3, 9, f, g)

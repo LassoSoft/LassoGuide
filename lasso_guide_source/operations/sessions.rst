@@ -427,29 +427,29 @@ color, and favorite forms of FTL travel in session variables. ::
          Your Favorite Color:
          <select name="favoriteColor">
             <option value="blue"[
-               $favoriteColor == 'blue'? ' selected="yes"'
+               $favoriteColor == 'blue' ? ' selected="yes"'
             ]> Blue </option>
             <option value="red"[
-               $favoriteColor == 'red'? ' selected="yes"'
+               $favoriteColor == 'red' ? ' selected="yes"'
             ]> Red </option>
             <option value="green"[
-               $favoriteColor == 'green'? ' selected="yes"'
+               $favoriteColor == 'green' ? ' selected="yes"'
             ]> Green </option>
          </select>
          <br />
          Your Favorite Forms of Superluminal Travel:<br />
          <input type="checkbox" name="hyperdrive" value="hyperdrive"
-            [$hyperDrive? ' checked="yes"'] /> Hyper Drive<br />
+            [$hyperDrive ? ' checked="yes"'] /> Hyper Drive<br />
          <input type="checkbox" name="warpdrive" value="warpdrive"
-            [$warpDrive? ' checked="yes"'] /> Warp Drive<br />
+            [$warpDrive ? ' checked="yes"'] /> Warp Drive<br />
          <input type="checkbox" name="wormhole" value="wormhole"
-            [$wormHole? ' checked="yes"'] /> Worm Hole<br />
+            [$wormHole ? ' checked="yes"'] /> Worm Hole<br />
          <input type="checkbox" name="improbabilitydrive" value="improbabilitydrive"
-            [$improbabilityDrive? ' checked="yes"'] /> Improbability Drive<br />
+            [$improbabilityDrive ? ' checked="yes"'] /> Improbability Drive<br />
          <input type="checkbox" name="spacefold" value="spacefold"
-            [$spaceFold? ' checked="yes"'] /> Space Fold<br />
+            [$spaceFold ? ' checked="yes"'] /> Space Fold<br />
          <input type="checkbox" name="jumpgate" value="jumpgate"
-            [$jumpGate? ' checked="yes"'] /> Jump Gate<br />
+            [$jumpGate ? ' checked="yes"'] /> Jump Gate<br />
          <br />
          <input type="submit" name="submit" value="Submit" />
          <a href="[include_currentPath]">Reload This Page</a>

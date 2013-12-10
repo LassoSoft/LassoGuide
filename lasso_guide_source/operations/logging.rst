@@ -183,12 +183,10 @@ Log preferences can be viewed or changed in the "Log Book" section of Lasso
 Server Admin. Use of the `log_setDestination` method is only necessary to
 change the log settings programmatically.
 
-.. method:: log_setDestination(\
-      level::integer, \
+.. method:: log_setDestination(level::integer, \
       dest1::integer= ?, \
       dest2::integer= ?, \
-      dest3::integer= ?\
-   )
+      dest3::integer= ?)
 
    The first parameter specifies a log message level. Subsequent parameters
    specify the destination to which that level of messages should be logged.
@@ -267,6 +265,6 @@ deprecation messages are sent only to the console. ::
       log_destination_database,
       log_destination_file
    )
-   log_setDestination(log_level_warning   , log_destination_console)
-   log_setDestination(log_level_detail    , log_destination_console)
+   log_setDestination(log_level_warning,    log_destination_console)
+   log_setDestination(log_level_detail,     log_destination_console)
    log_setDestination(log_level_deprecated, log_destination_console)

@@ -99,15 +99,13 @@ easier to deal with binary data. The most common methods are outlined below.
       position::integer= ?, \
       length::integer= ?, \
       patPosition::integer= ?, \
-      patLength::integer= ?\
-   )
+      patLength::integer= ?)
 .. member:: bytes->find(\
       find::string, \
       position::integer= ?, \
       length::integer= ?, \
       patPosition::integer= ?, \
-      patLength::integer= ?\
-   )
+      patLength::integer= ?)
 
    Requires either a byte stream or string sequence as the first parameter.
    Returns the position of the beginning of the sequence being searched for
@@ -247,8 +245,7 @@ Calling the following methods will modify the bytes object.
       what::bytes, \
       where::integer= ?, \
       whatStart::integer= ?, \
-      whatLen::integer= ?\
-   )
+      whatLen::integer= ?)
 
    Sets a range of characters within a byte stream. Requires one parameter for
    the binary data to be inserted. Optional second, third, and fourth parameters
@@ -329,7 +326,7 @@ Use the `bytes->append` method. The following example adds the string ``'I am'``
 to the end of a byte stream::
 
    local(obj) = bytes
-   #obj->append("I am")
+   #obj->append('I am')
 
 
 Find and Replace Values in a Byte Stream

@@ -505,12 +505,12 @@ include that file using the `sourcefile` method. The following example will have
    // Contents of /path/to/code.lasso
    local(doc) = file('//path/to/doc.lasso')
    sourcefile(#doc)->invoke
-   stdoutnl('This is heavy.')
+   stdoutnl("This is heavy.")
 
 ::
 
    // Contents of /path/to/doc.lasso
-   stdoutnl('Great Scott!')
+   stdoutnl("Great Scott!")
 
 Here's what happens when you run "/path/to/code.lasso":
 
@@ -543,14 +543,14 @@ that::
       #path_here->append('/')
    local(f) = file(#path_here + '../sub2/code.lasso')
 
-   stdoutnl('Loading ../sub2/code.lasso')
+   stdoutnl("Loading ../sub2/code.lasso")
    sourcefile(#f)->invoke
-   stdoutnl('Done')
+   stdoutnl("Done.")
 
 ::
 
    // Contents of /path/to/project/sub2/code.lasso
-   stdoutnl('I am a relative include.')
+   stdoutnl("I am a relative include.")
 
 Here's what happens when you run "/path/to/project/sub1/code.lasso":
 
@@ -571,9 +571,9 @@ is running in. You can use the `dir->setcwd` method to do so::
    #!/usr/bin/lasso9
    // Contents of /path/to/code.lasso
 
-   stdoutnl('We are here: ' + io_file_getcwd)
+   stdoutnl("We are here: " + io_file_getcwd)
    dir('/etc/')->setcwd
-   stdoutnl('Now we are here: ' + io_file_getcwd)
+   stdoutnl("Now we are here: " + io_file_getcwd)
 
 Here's what happens when you run this file:
 

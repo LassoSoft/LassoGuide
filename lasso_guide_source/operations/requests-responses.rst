@@ -227,7 +227,7 @@ The following HTML code could be used to upload a single file to your server::
       <fieldset>
          <legend>Upload a Photo</legend>
          <input type="file" name="photo">
-         <input type="submit" value="Upload">
+         <input type="submit" name="submit" value="Upload">
       </fieldset>
    </form>
 
@@ -296,10 +296,9 @@ and into the "/assets/img/avatars/" directory in the web root, overwriting any
 existing files with the same name::
 
    local(path) = '/assets/img/avatars/'
-   with upload in web_request->fileUploads do {
-      file(#upload->find('tmpfilename')->first->second)
+   with upload in web_request->fileUploads
+   do file(#upload->find('tmpfilename')->first->second)
          ->moveTo(#path + #upload->find('filename')->first->second, true)
-   }
 
 
 Monitoring Uploads
@@ -528,7 +527,11 @@ expiration, path, and SSL secure flag. These values are supplied as parameters
 when setting a cookie. Cookie headers are not created until the request
 processing is completed and the response is to be sent to the client.
 
-.. member:: web_response->setCookie(nv::pair, -domain= ?, -expires= ?, -path= ?, -secure=false)
+.. member:: web_response->setCookie(nv::pair, \
+      -domain= ?, \
+      -expires= ?, \
+      -path= ?, \
+      -secure=false)
 
    Sets the indicated cookie. Any duplicate cookie would be replaced. The first
    parameter must be the cookie :samp:`{name}={value}` pair. If used, the
@@ -600,10 +603,13 @@ which packages together many of the steps required to send binary data to the
 client to be viewed either inline or downloaded as an attachment.
 
 .. member:: web_response->sendFile(data::trait_each_sub, name = null, \
-                     -type = null, -disposition = 'attachment', \
-                     -charset = '', -skipProbe = false, \
-                     -noAbort = false, -chunkSize = fcgi_bodyChunkSize, \
-                     -monitor = null)
+      -type = null, \
+      -disposition = 'attachment', \
+      -charset = '', \
+      -skipProbe = false, \
+      -noAbort = false, \
+      -chunkSize = fcgi_bodyChunkSize, \
+      -monitor = null)
 
    Sets the raw content and headers for the response. It then optionally aborts,
    ending the request and delivering the data to the client. This method

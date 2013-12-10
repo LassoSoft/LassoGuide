@@ -88,12 +88,11 @@ Creating Array Objects
 Using Array Objects
 ^^^^^^^^^^^^^^^^^^^
 
-.. member:: array->insert(value)
-.. member:: array->insert(value, position::integer)
+.. member:: array->insert(value, position::integer=(self->size + 1))
 
-   These methods add new elements to the array. The first method adds the
-   element to the end of the array. The second method permits the position of
-   the insertion to be specified. Position 1 is at the beginning of the array.
+   This method adds a new element to the array. Elements are added to the end of
+   the array by default, but a second parameter permits the position of the
+   insertion to be specified. Position 1 is at the beginning of the array.
    Position zero and negative positions will cause the method to fail. A
    position larger than the size of the array will insert the element at the
    end.
@@ -123,7 +122,7 @@ Using Array Objects
    version of this method which permits the position to be set to a new element
    using assignment.
 
-.. member:: array->sub(position::integer, count::integer=(self->size - #position) + 1)
+.. member:: array->sub(position::integer, count::integer=(self->size - #position + 1))
 
    Returns a range of elements from the array. The first parameter indicates the
    starting position and the second parameter indicates how many of the elements
@@ -180,7 +179,7 @@ Using Array Objects
 
    Example of combining an array, staticarray, and pair into a new array::
 
-      array(1, 2, 3, 4, 5) + (: '6','7','8') + pair('nine', 'ten')
+      array(1, 2, 3, 4, 5) + (: '6', '7', '8') + pair('nine', 'ten')
       // => array(1, 2, 3, 4, 5, 6, 7, 8, nine, ten)
 
 
@@ -269,7 +268,8 @@ Using Staticarray Objects
       (: 1, 2, 3)->join((: 4, 5, 6))
       // => staticarray(1, 2, 3, 4, 5, 6)
 
-.. member:: staticarray->sub(position::integer, count::integer=(self->size - #position) + 1)::staticarray
+.. member:: staticarray->sub(position::integer, \
+      count::integer=(self->size - #position + 1))::staticarray
 
    The `sub` method returns a range of elements. The first parameter indicates
    the starting position and the optional second parameter indicates how many of
@@ -491,7 +491,7 @@ Creating Map Objects
 
       local(myMap = map(
          'C' = 247,
-         'L' = 'Hi!',
+         'L' = "Hi!",
          'G' = 97.401,
          'N' = array(4, 5, 6)
       )

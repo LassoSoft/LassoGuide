@@ -110,11 +110,11 @@ the following elements::
 
    (:
       pair('cn=John Doe, ou=People, o=LassoSoft' = (:
-         pair('cn' = 'John Doe'),
+         pair('cn'='John Doe'),
          pair('mail'='john@example.com')
       )),
       pair('cn=Jane Doe, ou=People, o=LassoSoft' = (:
-         pair('cn' = 'Jane Doe'),
+         pair('cn'='Jane Doe'),
          pair('mail'='jane@example.com')
       ))
    )

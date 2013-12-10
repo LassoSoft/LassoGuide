@@ -190,7 +190,7 @@ methods in Lasso are defined below.
 .. member:: image->pixel(x::integer, y::integer, -hex = ?)
 
    Returns the color of the pixel located at the specified pixel coordinates
-   (X,Y). The returned value is an array of RGB color integers (0--255) by
+   (X, Y). The returned value is an array of RGB color integers (0--255) by
    default. An optional ``-hex`` parameter returns a hex color string
    ("#FFCCDD") instead of an RGB array.
 
@@ -503,11 +503,10 @@ merging. These methods are described below.
    radius should be larger than the sigma.
 
 .. member:: image->sharpen(\
-         -radius::integer, \
-         -sigma::integer, \
-         -amount::decimal= ?, \
-         -threshold::decimal= ?\
-      )
+      -radius::integer, \
+      -sigma::integer, \
+      -amount::decimal= ?, \
+      -threshold::decimal= ?)
 
    Sharpens an image. Requires ``-radius`` and ``-sigma`` parameters that are
    integer values. The ``-radius`` parameter is the radius of the Gaussian sharp
@@ -640,14 +639,13 @@ Lasso allows text to be overlaid on top of images using the `image->annotate`
 method as described below.
 
 .. member:: image->annotate(\
-         annotation::string, \
-         -left::integer, \
-         -top::integer, \
-         -font::string = ?, \
-         -size::integer = ?, \
-         -color::string = ?, \
-         -aliased::boolean = ?\
-      )
+      annotation::string, \
+      -left::integer, \
+      -top::integer, \
+      -font::string = ?, \
+      -size::integer = ?, \
+      -color::string = ?, \
+      -aliased::boolean = ?)
 
    Overlays text onto an image. Requires a string value as a parameter, which
    is the text to be overlaid. Required ``-left`` and ``-top`` parameters
@@ -692,11 +690,10 @@ method supports over 20 different composite methods, which are described in the
 table below.
 
 .. member:: image->composite(\
-         second::image, \
-         -op::string= ?, \
-         -left::integer= ?, \
-         -top::integer= ?\
-      )
+      second::image, \
+      -op::string= ?, \
+      -left::integer= ?, \
+      -top::integer= ?)
 
    Composites a second image onto the current image. Requires two Lasso image
    objects to be composited. An ``-op`` parameter specifies the composite method
@@ -870,6 +867,8 @@ file path "/images/LassoSoft_logo.gif"::
    [local(company_name) = 'LassoSoft']
    <img src="/images/[#company_name]_logo.gif" />
 
+::
+
    // => <img src="/images/LassoSoft_logo.gif" />
 
 Using the same image path described above, the path to the image file is stored
@@ -878,6 +877,8 @@ within the variable "image_path" and then referenced in the HTML ``<img>`` tag::
    [local(company_name) = 'LassoSoft']
    [local(image_path) = '/images/' + #company_name + '_logo.gif']
    <img src="[#image_path]" />
+
+::
 
    // => <img src="/images/LassoSoft_logo.gif" />
 
@@ -890,6 +891,8 @@ variable "sound_path" and then referenced in the HTML ``<a>`` tag::
    [local(band_name)  = 'ArtOfNoise']
    [local(sound_path) = '/images/' + #band_name + '.mp3']
    <a href="[#sound_path]">Download MP3</a>
+
+::
 
    // => <a href="/sounds/ArtOfNoise.mp3">Art of Noise Song</a>
 

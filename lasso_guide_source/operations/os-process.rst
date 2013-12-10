@@ -50,11 +50,9 @@ Using os_process
    be left running. The :type:`os_process` type shares many of the same member
    methods and conventions as the :type:`file` type.
 
-.. member:: os_process->open(\
-         command::string, \
+.. member:: os_process->open(command::string, \
          arguments::trait_array= ?, \
-         env::trait_array= ?\
-      )
+         env::trait_array= ?)
 
    Opens a new process. The command string should consist of any path
    information required to find the executable and the executable's name. An

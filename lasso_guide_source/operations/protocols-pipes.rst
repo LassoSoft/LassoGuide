@@ -163,10 +163,10 @@ simply echos back the request data it received. ::
          handle => { #con->close }
          local(request) = ''
 
-         // Read in the request in chunks until you have it all
+         // Read in the entire request in chunks
          {
             #request->append(#con->readSomeBytes(8096))
-            not #request->contains('\r\n\r\n')? currentCapture->restart
+            not #request->contains('\r\n\r\n') ? currentCapture->restart
          }()
 
          // Write out the HTTP response with the request in the body

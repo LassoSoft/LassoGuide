@@ -338,7 +338,6 @@ users for both HTML and XML display. The list is generated first by the
 
 ::
 
-   <!-- content of users[xml].lasso -->
    <userslist>
    <?lasso
       // The primary value is given to us as the first parameter
@@ -712,17 +711,20 @@ Loading Required Types/Traits/Methods at Initialization
 -------------------------------------------------------
 
 It is a good habit to load all types and methods required by the LassoApp at the
-time Lasso Server loads it. This can be achieved by using "_init.lasso"::
+time Lasso Server loads it. This can be achieved by using "_init.lasso":
 
-   // Contents of _init.lasso
+.. rubric:: _init.lasso
+
+::
 
    // Load traits
    lassoapp_include('core/traits/mytrait.lasso')
    lassoapp_include('core/traits/anothertrait.lasso')
 
    // Load types
-   local(coretypes) = array('my_usertype','my_addresstype','my_companytype')
-   with i in #coretypes do => { lassoapp_include('core/types-methods/'+#i+'.lasso') }
+   local(coretypes) = array('my_usertype', 'my_addresstype', 'my_companytype')
+   with i in #coretypes
+   do lassoapp_include('core/types-methods/' + #i + '.lasso')
 
 This will load the specified traits and types at the time the LassoApp is
 loaded. All documents in the LassoApp can then assume these types exist. Note
@@ -739,9 +741,12 @@ rather than a local config file. One method of storing this is to leverage Lasso
 Server's embedded SQLite data source.
 
 The following code demonstrates automatically creating a SQLite database
-whenever the LassoApp is installed on a new instance::
+whenever the LassoApp is installed on a new instance:
 
-   // Contents of _install.lasso
+.. rubric:: _install.lasso
+
+::
+
    define myLassoApp_sqlite_dbname  => 'myLassoApp_db'
    define myLassoApp_sqlite_db      => sys_databasesPath + myLassoApp_sqlite_dbname
    define myLassoApp_config_table   => 'config'
@@ -750,8 +755,8 @@ whenever the LassoApp is installed on a new instance::
 
    #sql->doWithClose => {
       #sql->executeNow(
-         'CREATE TABLE IF NOT EXISTS ' + myLassoApp_config_table +
-         ' (host PRIMARY KEY,dbname,username,pwd,status INTEGER,registerkey)'
+         "CREATE TABLE IF NOT EXISTS " + myLassoApp_config_table +
+         " (host PRIMARY KEY, dbname, username, pwd, status INTEGER, registerkey);"
       )
    }
 
@@ -787,20 +792,23 @@ Consider the following JavaScript (using jQuery):
          cache:      false,
          dataType:   'json',
          success:    function(xhr) {
-             alert('User name: '+xhr.firstname+' '+xhr.lastname);
+             alert('User name: ' + xhr.firstname + ' ' + xhr.lastname);
          }
    });
 
 The XHR request is for "userdata.xhr", which Lasso Server will interpret as a
 request for "userdata[xhr].lasso" and serve as an XHR file with the correct MIME
-type. ::
+type.
 
-   // Contents of userdata[xhr].lasso
+.. rubric:: userdata[xhr].lasso
+
+::
+
    local(id)     = integer(web_request->param('id')->asString)
    local(mydata) = map
    inline(
-      -database='db',
-      -sql="SELECT firstname,lastname FROM mytable WHERE id = " + #id + " LIMIT 1"
+      -database='example',
+      -sql="SELECT firstname, lastname FROM mytable WHERE id = " + #id + " LIMIT 1;"
    ) => {
       records => {
          #mydata->insert('firstname' = field('firstname')->asString)

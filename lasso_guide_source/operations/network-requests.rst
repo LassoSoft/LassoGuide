@@ -922,7 +922,7 @@ Make an HTTP HEAD Request
 The following example uses the :type:`curl` type to make a HEAD request to an
 HTTP server::
 
-   local(req) = curl("http://www.example.com")
+   local(req) = curl('http://www.example.com')
    handle => { #req->close }
 
    // Not verifying the return status of setting the option
@@ -980,8 +980,7 @@ The `include_url` method is a wrapper around the :type:`curl` type for
 requesting data via HTTP. We strongly recommend using this method for your HTTP
 request needs if possible.
 
-.. method:: include_url(\
-      url::string, \
+.. method:: include_url(url::string, \
       -getParams= ?, \
       -postParams= ?, \
       -sendMimeHeaders= ?, \
@@ -999,8 +998,7 @@ request needs if possible.
       -retrieveMimeHeaders= ?, \
       -options= ?, \
       -string= ?, \
-      -basicAuthOnly= ?\
-   )
+      -basicAuthOnly= ?)
 
    Requires a string representing a URL in the form of
    :ref:`!http://www.example.com` (:ref:`!https://` can also be used). By
@@ -1098,8 +1096,8 @@ body of the HTTP response given by your server. ::
 
    include_url(
       'http://www.example.com/',
-      -postParams = (: 'id'= 5, 'animal'='rhino'),
-      -options    = (: CURLOPT_CUSTOMREQUEST = 'PUT')
+      -postParams=(: 'id'=5, 'animal'='rhino'),
+      -options=(: CURLOPT_CUSTOMREQUEST='PUT')
    )
 
    // => {"status": "Success"}
@@ -1113,7 +1111,7 @@ request::
 
    include_url(
       'http://www.example.com/',
-      -sendMimeHeaders = (: 'User-Agent' = 'LassoBrowse/1.0')
+      -sendMimeHeaders=(: 'User-Agent'='LassoBrowse/1.0')
    )
 
    // =>
@@ -1132,7 +1130,7 @@ variable named "my_headers" and then displays them::
 
    local(my_body) = include_url(
       'http://www.example.com/',
-      -retrieveMimeHeaders = 'my_headers'
+      -retrieveMimeHeaders='my_headers'
    )
    $my_headers
 
@@ -1158,12 +1156,10 @@ The ``ftp_…`` methods are simple wrappers around the :type:`curl` type for
 requesting and sending data via FTP. We strongly recommend using these methods
 for your FTP needs if possible.
 
-.. method:: ftp_getData(\
-      url::string, \
+.. method:: ftp_getData(url::string, \
       -username::string= ?, \
       -password::string= ?, \
-      -options::array= ?\
-   )
+      -options::array= ?)
 
    Returns a bytes object representing the remote file's contents at the
    specified FTP URL. It can also optionally take a username and password to be
@@ -1172,13 +1168,11 @@ for your FTP needs if possible.
    the ``CURLOPT_…`` methods and the second value should be the appropriate
    setting for that `curl` option.
 
-.. method:: ftp_getFile(\
-      url::string, \
+.. method:: ftp_getFile(url::string, \
       -file::string, \
       -username::string= ?, \
       -password::string= ?, \
-      -options::array= ?\
-   )
+      -options::array= ?)
 
    Downloads the remote file specified by the FTP URL in the first parameter to
    the location specified by the ``-file`` parameter. It can also optionally
@@ -1187,13 +1181,11 @@ for your FTP needs if possible.
    value of the pair should be one of the ``CURLOPT_…`` methods and the second
    value should be the appropriate setting for that `curl` option.
 
-.. method:: ftp_getListing(\
-      url::string, \
+.. method:: ftp_getListing(url::string, \
       -username= ?, \
       -password= ?, \
       -listOnly::boolean= ?, \
-      -options::array= ?\
-   )
+      -options::array= ?)
 
    Acquires a directory listing of the remote directory specified by the FTP
    URL. If you only want the names of the files and folders in the specified
@@ -1204,13 +1196,11 @@ for your FTP needs if possible.
    ``CURLOPT_…`` methods and the second value should be the appropriate setting
    for that `curl` option.
 
-.. method:: ftp_putData(\
-      url::string, \
+.. method:: ftp_putData(url::string, \
       -data::bytes, \
       -username= ?, \
       -password= ?, \
-      -options::array= ?\
-   )
+      -options::array= ?)
 
    Takes an FTP URL and a bytes object representing file data. If a file doesn't
    exist at the location specified by the URL, one will be created with the data
@@ -1225,13 +1215,11 @@ for your FTP needs if possible.
    ``CURLOPT_…`` methods and the second value should be the appropriate setting
    for that `curl` option.
 
-.. method:: ftp_putFile(\
-      url::string, \
+.. method:: ftp_putFile(url::string, \
       -file, \
       -username= ?, \
       -password= ?, \
-      -options::array= ?\
-   )
+      -options::array= ?)
 
    Uploads the local file specified by the ``-file`` parameter to the remote
    location specified by the FTP URL passed as the first parameter. If a file
@@ -1245,12 +1233,10 @@ for your FTP needs if possible.
    ``CURLOPT_…`` methods and the second value should be the appropriate setting
    for that `curl` option.
 
-.. method:: ftp_deleteFile(\
-      url::string, \
+.. method:: ftp_deleteFile(url::string, \
       -username= ?, \
       -password= ?, \
-      -options::array= ?\
-   )
+      -options::array= ?)
 
    Deletes the remote file specified by the FTP URL in the first parameter. It
    can optionally take a username and password to be used for authentication to
@@ -1284,8 +1270,8 @@ from the root of the file system::
    ftp_getFile(
       'ftp://example.com/test.txt',
       -file='//tmp/file.txt',
-      -username = `MyUsername`,
-      -password = `Shh...Secret`
+      -username=`MyUsername`,
+      -password=`Shh...Secret`
    )
 
 
@@ -1298,14 +1284,16 @@ root of the "example.com" server and displays its size and then its name
 
    local(listing) = ftp_getListing(
       'ftp://example.com/test.txt',
-      -username = `MyUsername`,
-      -password = `Shh...Secret`
+      -username=`MyUsername`,
+      -password=`Shh...Secret`
    )
    with item in #listing
       let item_type = #item->find('filetype')
       let item_size = #item->find('filesize')
       let item_name = #item->find('filename') + (#item_type == 'directory' ? '/' | '')
-   do {^ #item_size + "B  " + #item_name ^}
+   do {^
+      #item_size + 'B  ' + #item_name + '\n'
+   ^}
 
    // =>
    // 170B  ./
@@ -1323,9 +1311,9 @@ behavior to append the data.) ::
 
    ftp_putData(
       'ftp://example.com/test.txt',
-      -data     = bytes("\nAs You Wish"),
-      -username = `MyUsername`,
-      -password = `Shh...Secret`,
+      -data     = bytes('\nAs You Wish'),
+      -username=`MyUsername`,
+      -password=`Shh...Secret`,
       -options  = array(CURLOPT_FTPAPPEND=1)
    )
 
@@ -1340,9 +1328,9 @@ intermediary directories on the remote server will be created.) ::
 
    ftp_putFile(
       'ftp://example.com/new_dir/test.txt',
-      -file     = "/test.txt",
-      -username = `MyUsername`,
-      -password = `Shh...Secret`,
+      -file     = '/test.txt',
+      -username=`MyUsername`,
+      -password=`Shh...Secret`,
       -options  = array(CURLOPT_FTP_CREATE_MISSING_DIRS=1)
    )
 
@@ -1355,8 +1343,8 @@ remote server::
 
    ftp_deleteFile(
       'ftp://example.com/test.txt',
-      -username = `MyUsername`,
-      -password = `Shh...Secret`
+      -username=`MyUsername`,
+      -password=`Shh...Secret`
    )
 
 .. _curl library: http://curl.haxx.se/

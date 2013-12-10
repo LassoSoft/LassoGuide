@@ -97,34 +97,33 @@ the most common types of email including plain text, HTML, HTML with a plain
 text alternative, embedded HTML images, and attachments.
 
 .. method:: email_send(\
-         -host= ?, \
-         -username= ?, \
-         -password= ?, \
-         -port= ?, \
-         -timeout= ?, \
-         -priority= ?, \
-         -to= ?, \
-         -cc= ?, \
-         -bcc= ?, \
-         -from= ?, \
-         -replyTo= ?, \
-         -sender= ?, \
-         -subject= ?, \
-         -body= ?, \
-         -html= ?, \
-         -htmlImages= ?, \
-         -transferEncoding= ?, \
-         -contentType= ?, \
-         -characterSet= ?, \
-         -attachments= ?, \
-         -extraMIMEHeaders= ?, \
-         -simpleForm= ?, \
-         -tokens= ?, \
-         -merge= ?, \
-         -date= ?, \
-         -immediate= ?, \
-         -ssl= ?\
-      )
+      -host= ?, \
+      -username= ?, \
+      -password= ?, \
+      -port= ?, \
+      -timeout= ?, \
+      -priority= ?, \
+      -to= ?, \
+      -cc= ?, \
+      -bcc= ?, \
+      -from= ?, \
+      -replyTo= ?, \
+      -sender= ?, \
+      -subject= ?, \
+      -body= ?, \
+      -html= ?, \
+      -htmlImages= ?, \
+      -transferEncoding= ?, \
+      -contentType= ?, \
+      -characterSet= ?, \
+      -attachments= ?, \
+      -extraMIMEHeaders= ?, \
+      -simpleForm= ?, \
+      -tokens= ?, \
+      -merge= ?, \
+      -date= ?, \
+      -immediate= ?, \
+      -ssl= ?)
 
    Adds a message to the email queue. The method requires a ``-subject``
    parameter, a ``-from`` parameter, and one of either ``-to``, ``-cc``, or
@@ -452,7 +451,7 @@ written to disk. ::
       -from        = 'example@example.com',
       -subject     = 'An Email with a PDF',
       -body        = 'This is the body of the Email.',
-      -attachments = array('MyPDF.pdf' = string(#my_file))
+      -attachments = array('MyPDF.pdf'=string(#my_file))
    )
 
 
@@ -509,7 +508,7 @@ pairs will be inserted into the email as an additional header. ::
       -from             = 'example@example.com',
       -subject          = 'An Email',
       -body             = include('format.lasso'),
-      -extraMIMEHeaders = array('Header' = 'Value', 'Header' = 'Value')
+      -extraMIMEHeaders = array('Header'='Value', 'Header'='Value')
    )
 
 
@@ -565,15 +564,15 @@ element of the merge map includes an email address as the key and a map of token
 values as its value, constructed as follows::
 
    local(myMergeTokens) = map(
-      'john@example.com' = map('FirstName'='John', 'LastName'='Doe'),
-      'jane@example.com' = map('FirstName'='Jane', 'LastName'='Doe')
+      'john@example.com' = map('FirstName'="John", 'LastName'="Doe"),
+      'jane@example.com' = map('FirstName'="Jane", 'LastName'="Doe"),
    )
 
 A default token map can also be constructed. The values from this map would be
 used if any tokens are missing from the specified email address maps shown
 above. ::
 
-   local(myDefaultTokens) = map('FirstName'='Lasso User','LastName' = '')
+   local(myDefaultTokens) = map('FirstName'="Lasso User", 'LastName'="")
 
 The `email_send` method call would be written as follows. The email message is
 being sent to two recipients. The method references "body.lasso" as the
@@ -713,8 +712,7 @@ system.
       -attachments= ?, \
       -attachment= ?, \
       -htmlImages= ?, \
-      -parts= ?\
-   )
+      -parts= ?)
 
    Creates an :type:`email_compose` object, accepting similar parameters as
    `email_send`. If the ``-to``, ``-from``, and ``-subject`` parameters are not
@@ -770,20 +768,19 @@ system.
    while the code in the specified block is running.
 
 .. method:: email_queue(\
-         -data= ?, \
-         -recipients= ?, \
-         -from= ?, \
-         -host= ?, \
-         -username= ?, \
-         -password= ?, \
-         -port= ?, \
-         -timeout= ?, \
-         -priority= ?, \
-         -tokens= ?, \
-         -merge= ?, \
-         -date= ?, \
-         -ssl= ?\
-      )
+      -data= ?, \
+      -recipients= ?, \
+      -from= ?, \
+      -host= ?, \
+      -username= ?, \
+      -password= ?, \
+      -port= ?, \
+      -timeout= ?, \
+      -priority= ?, \
+      -tokens= ?, \
+      -merge= ?, \
+      -date= ?, \
+      -ssl= ?)
 
    Queues a message for sending. Requires a ``-data`` parameter with the MIME
    text of the email to send, ``-from`` specifying the from address for the
@@ -793,16 +790,15 @@ system.
    parameter can be specified for each queued message to perform an email merge.
 
 .. method:: email_immediate(\
-         -data, \
-         -recipients= ?, \
-         -from= ?, \
-         -host= ?, \
-         -username= ?, \
-         -password= ?, \
-         -port= ?, \
-         -timeout= ?, \
-         -ssl= ?\
-      )
+      -data, \
+      -recipients= ?, \
+      -from= ?, \
+      -host= ?, \
+      -username= ?, \
+      -password= ?, \
+      -port= ?, \
+      -timeout= ?, \
+      -ssl= ?)
 
    The same as `email_queue`, but sends the message immediately without storing
    it in the database.
@@ -897,8 +893,7 @@ SMTP servers, but this is not generally necessary.
       -username= ?, \
       -password= ?, \
       -ssl::boolean= ?, \
-      -clientIp= ?\
-   )
+      -clientIp= ?)
 
    Creates a new SMTP connection object. Can optionally pass in the SMTP server
    parameters.
@@ -910,8 +905,7 @@ SMTP servers, but this is not generally necessary.
       -username= ?, \
       -password= ?, \
       -ssl= ?, \
-      -clientIp= ?\
-   )
+      -clientIp= ?)
 
    Requires a ``-host`` that specifies the SMTP host to connect to. Also accepts
    optional ``-port``, ``-username``, ``-password``, and ``-timeout``
@@ -922,8 +916,7 @@ SMTP servers, but this is not generally necessary.
       -expect= ?, \
       -multi= ?, \
       -read= ?, \
-      -timeout= ?\
-   )
+      -timeout= ?)
 
    Sends a raw command to the SMTP server. The ``-send`` parameter specifies the
    command to send. The ``-expect`` parameter specifies the numeric result code

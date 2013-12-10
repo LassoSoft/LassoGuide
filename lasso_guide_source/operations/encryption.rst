@@ -65,15 +65,12 @@ SHA1
    the data to be hashed. Returns a fixed-size hash value in hexadecimal as a
    string.
 
-.. method:: encrypt_hmac(\
-      -password, \
-      -token, \
+.. method:: encrypt_hmac(-password, -token, \
       -digest= ?, \
       -base64::boolean= ?, \
       -hex::boolean= ?, \
       -cram::boolean= ?, \
-      ...\
-   )
+      ...)
 
    Generates a keyed hash message authentication code for a given input and
    password. The method requires a ``-password`` parameter to specify the key
@@ -192,8 +189,8 @@ via a form::
       -database='contacts',
       -table='people',
       -keyField='id',
-      'username' = #username,
-      'password' = encrypt_md5(#password)
+      'username'=#username,
+      'password'=encrypt_md5(#password)
    ) => {
       local(is_authenticated) = (found_count > 0)
    }

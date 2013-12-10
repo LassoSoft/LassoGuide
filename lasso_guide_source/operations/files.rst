@@ -329,8 +329,7 @@ Creating Directories
 .. member:: dir->create(perms::integer = integer_bitOr(\
                      io_file_s_irwxg, \
                      io_file_s_irwxu, \
-                     io_file_s_irwxo)\
-                  )
+                     io_file_s_irwxo))
 
    Attempts to create the directory at the path indicated when the dir object
    was created. The perms parameter indicates the permissions that the directory
@@ -391,7 +390,7 @@ Use a :type:`dir` object in a query expression to list the contents of the
 current working directory::
 
    with path in dir('.')
-   sum #path + "\n"
+   sum #path + '\n'
 
    // =>
    // A Folder/
@@ -403,7 +402,7 @@ objects::
 
    with f in dir('foo/')->eachFile
    // f is a file object
-   sum #f->size->asString(-padding=10) + " " + #f->name + "\n"
+   sum #f->size->asString(-padding=10) + ' ' + #f->name + '\n'
 
    // =>
    //     12779 An Example File.pdf

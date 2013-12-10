@@ -110,8 +110,7 @@ Querying for DNS Records
 
 DNS queries are performed with the `dns_lookup` method.
 
-.. method:: dns_lookup(\
-      name::string, \
+.. method:: dns_lookup(name::string, \
       -type= ?, \
       -class= ?, \
       -noRecurse::boolean= ?, \
@@ -125,8 +124,7 @@ DNS queries are performed with the `dns_lookup` method.
       -bitFormat::boolean= ?, \
       -hostname= ?, \
       -port::integer= ?, \
-      -timeout::integer= ?\
-   )
+      -timeout::integer= ?)
 
    This method is used to query a DNS server for information about a specified
    domain name. It requires one parameter, the domain name being queried. The
@@ -237,6 +235,7 @@ The following output shows the low-level bit formatting of a DNS response. The
 actual response is fairly long and not shown here::
 
    dns_lookup('www.lassosoft.com', -bitFormat)
+
    // =>
    // ASCII
    // 3  T  X
