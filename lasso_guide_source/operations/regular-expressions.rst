@@ -571,7 +571,7 @@ Creating Regular Expression Objects
    following section :ref:`regular-expressions-simple` will show how this
    regular expression can be applied to strings. ::
 
-      local(my_regexp) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
+      local(my_regexp) = regexp(-find=`[aeiou]`, -replace=`x`, -ignoreCase)
 
 .. member:: regexp->findPattern()
 
@@ -664,7 +664,7 @@ regular expression using one of the `regexp` creator methods and then calling
 regular expression is only created once this technique can be considerably
 faster than using the `string_replaceRegExp` method repeatedly. ::
 
-   local(my_regexp) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
+   local(my_regexp) = regexp(-find=`[aeiou]`, -replace=`x`, -ignoreCase)
    #my_regexp->replaceAll(-input='The quick brown fox jumped over the lazy dog.')
    #my_regexp->replaceAll(-input='Lasso Server')
 
@@ -675,9 +675,9 @@ faster than using the `string_replaceRegExp` method repeatedly. ::
 The replace pattern can also be changed if necessary. The following code changes
 both the input and replace patterns each time the regular expression is used::
 
-   local(my_regexp) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
-   #my_regexp->replaceAll(-input='The quick brown fox jumped over the lazy dog.', -replace='y')
-   #my_regexp->replaceAll(-input='Lasso Server', -replace='z')
+   local(my_regexp) = regexp(-find=`[aeiou]`, -replace=`x`, -ignoreCase)
+   #my_regexp->replaceAll(-input='The quick brown fox jumped over the lazy dog.', -replace=`y`)
+   #my_regexp->replaceAll(-input='Lasso Server', -replace=`z`)
 
    // =>
    // Thy qyyck brywn fyx jympyd yvyr thy lyzy dyg.
@@ -710,7 +710,7 @@ The same regular expression from the example above can be used to split a string
 into substrings. In this case the string will be split on vowels, generating a
 staticarray with elements containing only consonants or spaces::
 
-   local(my_regexp) = regexp(-find=`[aeiou]`, -replace='x', -ignoreCase)
+   local(my_regexp) = regexp(-find=`[aeiou]`, -replace=`x`, -ignoreCase)
 
    #my_regexp->split(-input='The quick brown fox jumped over the lazy dog.')
    // => staticarray(Th,  q, , ck br, wn f, x j, mp, d , v, r th,  l, zy d, g.)

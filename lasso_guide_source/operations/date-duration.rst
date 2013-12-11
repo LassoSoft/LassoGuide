@@ -776,7 +776,7 @@ dates and currency based on known standards for various locations. You can use
 :type:`locale` objects to output dates in these standard formats.
 
 .. type:: locale
-.. method:: locale(language::string, country::string =?, variant::string =?)
+.. method:: locale(language::string, country::string= ?, variant::string= ?)
 
    Creates a :type:`locale` object which may be used to format the output of
    various data in the manner specified by the locale.
@@ -786,9 +786,9 @@ dates and currency based on known standards for various locations. You can use
    code and a variant code which allows further refinement to the locale.
 
 .. member:: locale->format(as::date, \
-      style::integer =?, \
-      andTime::integer =?, \
-      addlFlag::integer =?)
+      style::integer= ?, \
+      andTime::integer= ?, \
+      addlFlag::integer= ?)
 
    Display a date in the format of the given locale. The method requires one
    parameter which is the date value to be formatted. When formatting dates, the

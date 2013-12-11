@@ -35,9 +35,9 @@ The following shows an example of creating and outputting a PDF file named
 "MyFile.pdf" using the ``pdf_…`` methods::
 
    local(my_file) = pdf_doc(
-      -file   = 'MyFile.pdf',
-      -size   = 'A4',
-      -margin = (: 144.0, 144.0, 72.0, 72.0)
+      -file='MyFile.pdf',
+      -size='A4',
+      -margin=(: 144.0, 144.0, 72.0, 72.0)
    )
    local(font) = pdf_font(-face='Helvetica', -size=36)
    local(text) = pdf_text('I am a PDF document', -font=#font)
@@ -143,10 +143,10 @@ PDF file.
    Adds a JavaScript action to the current PDF file.
 
 .. member:: pdf_read->save(file::string, \
-      -encryptStrong=false, \
-      -permissions='', \
-      -userPassword='', \
-      -ownerPassword='')
+      -encryptStrong= false, \
+      -permissions= '', \
+      -userPassword= '', \
+      -ownerPassword= '')
 
    Saves a copy of the current PDF file. Requires one parameter which specifies
    the path to the file where the PDF file should be saved. Also accepts
@@ -1217,7 +1217,7 @@ methods which are described below.
       -top, \
       -width, \
       -height, \
-      -font = ?)
+      -font= ?)
 
    Adds a select list to a form. Requires the first parameter to specify the
    name of the select list, and the second parameter to specify the array of

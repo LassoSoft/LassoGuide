@@ -16,9 +16,9 @@ language, provides a virtually infinite set of shortcuts for achieving
 development goals.
 
 This guide is meant to serve as both an introduction and comprehensive manual to
-Lasso |version|. The material in this guide will evolve and improve along with
-Lasso. The most up-to-date version of this documentation containing all
-improvements can be found at `<http://lassoguide.com/>`_.
+Lasso and Lasso Server |version|. The material in this guide will evolve and
+improve along with Lasso. The most up-to-date version of this documentation
+containing all improvements can be found at `<http://lassoguide.com/>`_.
 
 
 .. rubric:: Organization of This Guide

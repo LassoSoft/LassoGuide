@@ -1069,7 +1069,12 @@ host for the MySQL data source that connects to "localhost" using a username of
 "lasso"::
 
    inline(
-      -host=(: -datasource='mysqlds', -name='localhost', -username='lasso', -password='secret'),
+      -host=(:
+         -datasource='mysqlds',
+         -name='localhost',
+         -username='lasso',
+         -password='secret'
+      ),
       -sql="SHOW DATABASES;"
    ) => {^
       records_array

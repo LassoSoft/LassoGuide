@@ -235,8 +235,8 @@ file's marker will adjust where the next write takes place.
    These methods write bytes or string data to the file and return the number of
    bytes that were written.
 
-.. member:: file->moveTo(path::string, overwrite::boolean = false)
-.. member:: file->copyTo(path::string, overwrite::boolean = false)
+.. member:: file->moveTo(path::string, overwrite::boolean= false)
+.. member:: file->copyTo(path::string, overwrite::boolean= false)
 
    These two methods attempt to move or copy the file to a new location or fail
    trying. The overwrite parameter indicates that if the destination file
@@ -281,7 +281,7 @@ File Manipulation Methods
    These methods return the raw file last access time as an integer and the last
    access time as a date object, respectively.
 
-.. member:: file->linkTo(path::string, hard::boolean = false)
+.. member:: file->linkTo(path::string, hard::boolean= false)
 
    Attempts to create a hard or soft link of the file at the specified location.
    This method may not be available or may not operate consistently across all
@@ -314,7 +314,7 @@ Dir Type
 ========
 
 .. type:: dir
-.. method:: dir(path::string, -resolveLinks = false)
+.. method:: dir(path::string, -resolveLinks= false)
 
    Dir objects are instantiated with a path and an optional ``-resolveLinks``
    keyword parameter. This parameter defaults to "false". If set to "true", then
@@ -326,7 +326,7 @@ Dir Type
 Creating Directories
 --------------------
 
-.. member:: dir->create(perms::integer = integer_bitOr(\
+.. member:: dir->create(perms::integer= integer_bitOr(\
                      io_file_s_irwxg, \
                      io_file_s_irwxu, \
                      io_file_s_irwxo))

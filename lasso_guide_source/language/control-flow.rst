@@ -36,14 +36,14 @@ The if/else conditional can take two forms. The following example shows the
 first form. The "``// ...``" in the example shows where the body expressions for
 that particular condition would occur. ::
 
-   if (expression1)
-      // Code here executed if expression1 evaluates true
+   if(expression1)
+      // Code here executed if expression1 evaluates to "true"
       // ...
-   else (expression2)
-      // Code here executed if expression2 evaluates true
+   else(expression2)
+      // Code here executed if expression2 evaluates to "true"
       // ...
    else
-      // Code here executed if neither expression1 or expression2 evaluates true
+      // Code here executed if neither expression1 or expression2 evaluates to "true"
       // ...
    /if
 
@@ -55,14 +55,14 @@ if/else conditional.
 The second form operates like the first, but permits the if/else to be used with
 the association/code block syntax. ::
 
-   if (expression1) => {
-      // Code here executed if expression1 evaluates true
+   if(expression1) => {
+      // Code here executed if expression1 evaluates to "true"
       // ...
-   else (expression2)
-      // Code here executed if expression2 evaluates true
+   else(expression2)
+      // Code here executed if expression2 evaluates to "true"
       // ...
    else
-      // Code here executed if neither expression1 or expression2 evaluates true
+      // Code here executed if neither expression1 or expression2 evaluates to "true"
       // ...
    }
 
@@ -97,8 +97,8 @@ Like the if/else conditional, a match/case conditional has two forms. The
 following example shows the first form with several case values and a default
 case::
 
-   match (expression)
-   case (c1, c2)
+   match(expression)
+   case(c1, c2)
       // Code here executed if c1 or c2 matches expression
       // ...
    case(c3)
@@ -111,8 +111,8 @@ case::
 
 The second form uses the association/code block syntax::
 
-   match (expression) => {
-   case (c1, c2)
+   match(expression) => {
+   case(c1, c2)
       // Code here executed if c1 or c2 matches expression
       // ...
    case(c3)
@@ -156,13 +156,13 @@ A :dfn:`while loop` executes its body as long as its test expression is "true".
 The test expression is evaluated before the beginning of each loop. ::
 
    // Form 1
-   while (expression)
+   while(expression)
       // Code here executes for as long as "expression" is true
       // ...
    /while
 
    // Form 2
-   while (expression) => {
+   while(expression) => {
       // Code here executes for as long as "expression" is true
       // ...
    }
@@ -228,7 +228,7 @@ the key is also made available through the `loop_key` method.
 
 The following example creates a staticarray and iterates its contents::
 
-   local(lv = staticarray(2, 4, 6, 8, 10))
+   local(lv) = staticarray(2, 4, 6, 8, 10)
 
    // Form 1
    iterate(#lv)

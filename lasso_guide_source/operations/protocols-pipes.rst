@@ -36,7 +36,7 @@ Creating net_tcp Objects
 Opening TCP Connections
 -----------------------
 
-.. member:: net_tcp->connect(to::string, port::integer, timeout::integer = 4)
+.. member:: net_tcp->connect(to::string, port::integer, timeout::integer= 4)
 
    Opens a TCP connection to the indicated server. TCP connections are made
    based on an address string and a port number. A server must be listening at
@@ -65,8 +65,8 @@ are several steps for establishing a server. The series of methods is generally:
 `~net_tcp->bind`, `~net_tcp->listen` and then either `~net_tcp->accept` or
 `~net_tcp->forEachAccept`.
 
-.. member:: net_tcp->bind(port::integer, address::string = '0.0.0.0')
-.. member:: net_tcp->listen(backlog::integer = 128)
+.. member:: net_tcp->bind(port::integer, address::string= '0.0.0.0')
+.. member:: net_tcp->listen(backlog::integer= 128)
 
    When acting as a server, the :type:`net_tcp` object must first be bound to a
    local port and optional address. The address can be ignored in most cases,
@@ -78,7 +78,7 @@ are several steps for establishing a server. The series of methods is generally:
    When creating a server, `~net_tcp->listen` is called after `~net_tcp->bind`.
    This method allows the new object to begin accepting client connections.
 
-.. member:: net_tcp->accept(timeoutSeconds::integer = -1)
+.. member:: net_tcp->accept(timeoutSeconds::integer= -1)
 .. member:: net_tcp->forEachAccept()
 
    After a :type:`net_tcp` object has been bound and is listening, client
@@ -132,7 +132,7 @@ Reading TCP Data
 Writing TCP Data
 ----------------
 
-.. member:: net_tcp->writeBytes(data::bytes, offset::integer = 0, length::integer = -1)
+.. member:: net_tcp->writeBytes(data::bytes, offset::integer= 0, length::integer= -1)
 
    Attempts to send the indicated bytes. An optional zero-based ``offset``
    parameter indicates how far in the bytes to skip before sending. An optional
@@ -235,7 +235,7 @@ Loading SSL Certificates
 Beginning and Ending SSL Sessions
 ---------------------------------
 
-.. member:: net_tcp_ssl->beginTLS(timeoutSecs::integer = 5)
+.. member:: net_tcp_ssl->beginTLS(timeoutSecs::integer= 5)
 
    Begins SSL communications for the connection. Because starting SSL requires a
    series of communications between the two hosts, this method accepts a timeout
@@ -264,7 +264,7 @@ object that has started the SSL session. Because some protocols require
 connections to be established first and then switched to SSL,
 :type:`net_tcp_ssl` also provides an `~net_tcp_ssl->acceptNoSSL` method.
 
-.. member:: net_tcp_ssl->acceptNoSSL(timeoutSeconds::integer = -1)::net_tcp_ssl
+.. member:: net_tcp_ssl->acceptNoSSL(timeoutSeconds::integer= -1)::net_tcp_ssl
 
    Accepts a new connection and returns a :type:`net_tcp_ssl` object for it.
    This connection has not yet started an SSL session and operates just as a
@@ -302,7 +302,7 @@ port and optional address. Once bound, data can be read through the
 :type:`net_udp_packet`. This contains the bytes sent as well as the address of
 the sender and the port from which it was sent.
 
-.. member:: net_udp->readPacket(maxBytes::integer, timeoutSeconds::integer = -1)
+.. member:: net_udp->readPacket(maxBytes::integer, timeoutSeconds::integer= -1)
 
    Waits to receive a new UDP packet. The "maxBytes" parameter indicates the
    maximum size of data to receive. The number of bytes returned may be fewer
@@ -387,7 +387,7 @@ Creating net_named_pipe Objects
 Opening Named Pipe Connections
 ------------------------------
 
-.. member:: net_named_pipe->connect(to::string, timeoutSeconds::integer = 4)
+.. member:: net_named_pipe->connect(to::string, timeoutSeconds::integer= 4)
 
    Attempts to connect to the indicated named pipe. This method returns "true"
    if the connection was made, and "false" otherwise.
@@ -397,8 +397,8 @@ Accepting Named Pipe Connections
 --------------------------------
 
 .. member:: net_named_pipe->bind(to::string)
-.. member:: net_named_pipe->listen(backlog::integer = 128)
-.. member:: net_named_pipe->accept(timeoutSeconds::integer = -1)
+.. member:: net_named_pipe->listen(backlog::integer= 128)
+.. member:: net_named_pipe->accept(timeoutSeconds::integer= -1)
 
    The `~net_named_pipe->bind` method attempts to create a pipe with the given
    name. It accepts one parameter which is the name of the pipe to create. There

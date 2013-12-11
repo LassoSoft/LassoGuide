@@ -140,7 +140,7 @@ Below is the C++ code for the custom method:
       for( int i = 0; i < count; ++i )
       {
          lasso_getTagParam(token, i, &v);
-         if ( v.name == v.data ) {
+         if( v.name == v.data ) {
             retValue.append(" The value of unnamed param is ");
             retValue.append(v.data);
          }
@@ -262,14 +262,14 @@ method module.
    .. code-block:: c++
 
       lasso_getTagParam(token, i, &v);
-      if ( v.name == v.data ) {
+      if( v.name == v.data ) {
 
 #. Again, append a descriptive line of text about the unnamed parameter and its
    value.
 
    .. code-block:: c++
 
-      if ( v.name == v.data ) {
+      if( v.name == v.data ) {
          retValue.append(" The value of unnamed param is ");
          retValue.append(v.data);
       }

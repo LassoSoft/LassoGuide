@@ -257,7 +257,7 @@ hosted on the same machine as Lasso might appear::
          -name='localhost',
          -port='80',
          -username='username',
-         -password='password'
+         -password='secret'
       ),
       -findAll,
       -database='database',
@@ -406,7 +406,7 @@ same machine as Lasso might appear::
          -name='localhost',
          -port='3306',
          -username='username',
-         -password='password'
+         -password='secret'
       ),
       -findAll,
       -database='database',
@@ -553,7 +553,7 @@ appear::
          -name='oracle.example.com:1521/MyDatabase',
          -port='1521',
          -username='username',
-         -password='password'
+         -password='secret'
       ),
       -findAll,
       -database='database',
@@ -652,7 +652,7 @@ the same machine as Lasso might appear::
          -name='localhost',
          -port='5432',
          -username='username',
-         -password='password'
+         -password='secret'
       ),
       -findAll,
       -database='database',
@@ -774,7 +774,7 @@ same machine as Lasso might appear::
          -datasource='odbc',
          -name='System_DSN_Name',
          -username='username',
-         -password='password'
+         -password='secret'
       ),
       -findAll,
       -database='database',
@@ -882,7 +882,7 @@ the same machine as Lasso might appear::
          -datasource='sqlserver',
          -name='(local)\MYDB',
          -username='username',
-         -password='password'
+         -password='secret'
       ),
       -findAll,
       -database='database',

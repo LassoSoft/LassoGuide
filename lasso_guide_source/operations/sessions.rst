@@ -381,8 +381,10 @@ Sessions will be used to track the visitor's name, email address, favorite
 color, and favorite forms of FTL travel in session variables. ::
 
    <?lasso
-      local(wr = web_request,
-            sessionName = 'sessions_example')
+      local(
+         wr = web_request,
+         sessionName = 'sessions_example'
+      )
       // Start the session
       session_start(#sessionName)
       if(session_result(#sessionName) != 'load') => {

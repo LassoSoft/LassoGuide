@@ -181,7 +181,10 @@ Positive and Negative Operators
 Lasso supports the unary operators which are typically intended to change the
 sign of an integer or decimal number. These operators can be applied to any
 object that supports them. When applied, these operators will produce a new
-object, leaving the single operand unchanged. ::
+object, leaving the single operand unchanged.
+
+.. prevent -op1 from being highlighted as a keyword parameter
+.. code-block:: c++
 
    +op1
    // => // Produces a new object whose value is positive op1

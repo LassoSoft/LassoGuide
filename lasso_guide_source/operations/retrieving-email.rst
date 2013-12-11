@@ -430,7 +430,7 @@ turn.
    Returns the mode from the :mailheader:`Content-Type` for the message. Usually
    either text or multipart.
 
-.. member:: email_parse->body(-type = void, -preamble = void, -array = void, ...)
+.. member:: email_parse->body(-type= void, -preamble= void, -array= void, ...)
 
    Returns the body of the message. Optional parameter specifies the preferred
    type of body to return (e.g. :mimetype:`text/plain` or

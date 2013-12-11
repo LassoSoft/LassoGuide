@@ -1311,10 +1311,10 @@ behavior to append the data.) ::
 
    ftp_putData(
       'ftp://example.com/test.txt',
-      -data     = bytes('\nAs You Wish'),
+      -data=bytes('\nAs You Wish'),
       -username=`MyUsername`,
       -password=`Shh...Secret`,
-      -options  = array(CURLOPT_FTPAPPEND=1)
+      -options=array(CURLOPT_FTPAPPEND=1)
    )
 
 
@@ -1328,10 +1328,10 @@ intermediary directories on the remote server will be created.) ::
 
    ftp_putFile(
       'ftp://example.com/new_dir/test.txt',
-      -file     = '/test.txt',
+      -file='/test.txt',
       -username=`MyUsername`,
       -password=`Shh...Secret`,
-      -options  = array(CURLOPT_FTP_CREATE_MISSING_DIRS=1)
+      -options=array(CURLOPT_FTP_CREATE_MISSING_DIRS=1)
    )
 
 

@@ -46,10 +46,10 @@ default. If the security checks succeed, then the methods return nothing. If
 electing not to abort when the check fails, a caller can check
 `web_response->getStatus` to determine the result.
 
-.. method:: auth_admin(-realm::string = 'Lasso Security', \
-      -noAbort = false, \
-      -errorResponse = '', \
-      -noResponse = false)
+.. method:: auth_admin(-realm::string= 'Lasso Security', \
+      -noAbort= false, \
+      -errorResponse= '', \
+      -noResponse= false)
 
    Checks that the current authenticated HTTP client user is in the
    "ADMINISTRATORS" group. An alternate realm can be given and the default abort
@@ -58,19 +58,19 @@ electing not to abort when the check fails, a caller can check
    the body can be left empty by passing ``-noResponse``.
 
 .. method:: auth_user(name::string, \
-      -realm::string = 'Lasso Security', \
-      -noAbort = false, \
-      -errorResponse = '', \
-      -noResponse = false)
+      -realm::string= 'Lasso Security', \
+      -noAbort= false, \
+      -errorResponse= '', \
+      -noResponse= false)
 
    Checks that the current authenticated HTTP client user matches the given
    name.
 
 .. method:: auth_group(group::string, \
-      -realm::string = 'Lasso Security', \
-      -noAbort = false, \
-      -errorResponse = '', \
-      -noResponse = false)
+      -realm::string= 'Lasso Security', \
+      -noAbort= false, \
+      -errorResponse= '', \
+      -noResponse= false)
 
    Checks that the current authenticated HTTP client user is in the specified
    group.
@@ -151,9 +151,9 @@ closed once it is no longer required.
    from the group.
 
 .. member:: security_registry->updateGroup(groupid::integer, \
-      -name = null, \
-      -enabled = null, \
-      -comment = null)
+      -name= null, \
+      -enabled= null, \
+      -comment= null)
 
    Modifies the information for the group. Passing any of the ``-name``,
    ``-enabled`` or ``-comment`` parameters will set the appropriate data.
@@ -161,7 +161,7 @@ closed once it is no longer required.
 .. member:: security_registry->addUser(username::string, password::string, \
       enabled::boolean = true, \
       comment::string = '', \
-      -realm = 'Lasso Security')
+      -realm= 'Lasso Security')
 
    Adds a new user to the system. A username and password must be supplied. An
    optional ``enabled`` and ``comment`` parameter can be provided. The
@@ -179,7 +179,7 @@ closed once it is no longer required.
    integer IDs.
 
 .. member:: security_registry->checkUser(username::string, password::string, \
-      -realm::string = 'Lasso Security')
+      -realm::string= 'Lasso Security')
 
    Authenticates the given username and password and will return user's record
    if it succeeds. The return value will be a map object containing the keys
@@ -192,13 +192,13 @@ closed once it is no longer required.
    Returns the number of users in the indicated group.
 
 .. member:: security_registry->getUser(userid::integer)
-.. member:: security_registry->getUser(name::string, -realm::string = 'Lasso Security')
-.. member:: security_registry->getUserID(name::string, -realm::string = 'Lasso Security')
+.. member:: security_registry->getUser(name::string, -realm::string= 'Lasso Security')
+.. member:: security_registry->getUserID(name::string, -realm::string= 'Lasso Security')
 
    The first two methods return the user record for the indicated user. The
    third method returns the ID of the indicated user.
 
-.. member:: security_registry->listUsers(-name::string = '', -realm = null)
+.. member:: security_registry->listUsers(-name::string= '', -realm= null)
 .. member:: security_registry->listUsersByGroup(name::string)
 
    These methods list users and return their user records. The first method

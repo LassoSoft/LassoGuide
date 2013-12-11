@@ -531,7 +531,7 @@ processing is completed and the response is to be sent to the client.
       -domain= ?, \
       -expires= ?, \
       -path= ?, \
-      -secure=false)
+      -secure= false)
 
    Sets the indicated cookie. Any duplicate cookie would be replaced. The first
    parameter must be the cookie :samp:`{name}={value}` pair. If used, the
@@ -602,14 +602,14 @@ The :type:`web_response` object provides the `~web_response->sendFile` method
 which packages together many of the steps required to send binary data to the
 client to be viewed either inline or downloaded as an attachment.
 
-.. member:: web_response->sendFile(data::trait_each_sub, name = null, \
-      -type = null, \
-      -disposition = 'attachment', \
-      -charset = '', \
-      -skipProbe = false, \
-      -noAbort = false, \
-      -chunkSize = fcgi_bodyChunkSize, \
-      -monitor = null)
+.. member:: web_response->sendFile(data::trait_each_sub, name= null, \
+      -type= null, \
+      -disposition= 'attachment', \
+      -charset= '', \
+      -skipProbe= false, \
+      -noAbort= false, \
+      -chunkSize= fcgi_bodyChunkSize, \
+      -monitor= null)
 
    Sets the raw content and headers for the response. It then optionally aborts,
    ending the request and delivering the data to the client. This method

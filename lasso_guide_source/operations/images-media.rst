@@ -129,8 +129,8 @@ served directly to the client browser, or it can be saved to disk on the server.
 
 .. type:: image
 .. method:: image()
-.. method:: image(filePath::string, -info = ?)
-.. method:: image(bytes::bytes, -info = ?)
+.. method:: image(filePath::string, -info= ?)
+.. method:: image(bytes::bytes, -info= ?)
 
    Creates an image object. Requires either the path to an image file or a bytes
    object with an image's binary data to initialize the object. Once an image
@@ -642,10 +642,10 @@ method as described below.
       annotation::string, \
       -left::integer, \
       -top::integer, \
-      -font::string = ?, \
-      -size::integer = ?, \
-      -color::string = ?, \
-      -aliased::boolean = ?)
+      -font::string= ?, \
+      -size::integer= ?, \
+      -color::string= ?, \
+      -aliased::boolean= ?)
 
    Overlays text onto an image. Requires a string value as a parameter, which
    is the text to be overlaid. Required ``-left`` and ``-top`` parameters

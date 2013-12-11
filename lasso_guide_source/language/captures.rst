@@ -237,7 +237,6 @@ The following example creates a capture and detaches it from its home. Returning
 from within the capture no longer exits the surrounding capture. ::
 
    local(cap) = { return self->type }->detach
-
    #cap()
    // => // Produces result of self->type
 
