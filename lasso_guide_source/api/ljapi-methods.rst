@@ -43,7 +43,8 @@ Version
 .. member:: java_jnienv->GetVersion(...)
 
    Returns the version of the Java Native Interface.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp15951>`_
    for more information.
 
@@ -55,7 +56,8 @@ Class Operations
 
    Returns a reference to a Java class. It takes a string of the fully qualified
    class name or array type signature.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16027>`_
    for more information.
 
@@ -67,7 +69,8 @@ Exceptions
 
    Throws a Java error (java.lang.Throwable). It takes a :type:`jobject` thrown
    error reference and returns a :type:`jint`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16086>`_
    for more information.
 
@@ -76,35 +79,40 @@ Exceptions
    Creates and throws a Java error with the message passed to it. It takes a
    :type:`jobject` class reference to use to create the error, and a string with
    the error message. It returns a :type:`jint`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16104>`_
    for more information.
 
 .. member:: java_jnienv->ExceptionOccurred(...)
 
    Returns whether or not a Java exception was thrown.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16124>`_
    for more information.
 
 .. member:: java_jnienv->ExceptionDescribe(...)
 
    Outputs the error and stack trace for the Java exception.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16146>`_
    for more information.
 
 .. member:: java_jnienv->ExceptionClear(...)
 
    Clears any exceptions that have been thrown.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16166>`_
    for more information.
 
 .. member:: java_jnienv->FatalError(...)
 
    Throws a fatal error to the JVM. It takes a string as the error message.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16186>`_
    for more information.
 
@@ -112,7 +120,8 @@ Exceptions
 
    Returns "true" if a Java exception has been thrown, otherwise returns
    "false".
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16270>`_
    for more information.
 
@@ -125,7 +134,8 @@ Global and Local References
    Creates a global reference from the specified object. It takes a
    :type:`jobject` reference to an object and returns a new :type:`jobject`
    global object reference.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#NewGlobalRef>`_
    for more information.
 
@@ -133,7 +143,8 @@ Global and Local References
 
    Removes the specified global reference. It takes a :type:`jobject` reference
    to a global object.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#DeleteGlobalRef>`_
    for more information.
 
@@ -141,7 +152,8 @@ Global and Local References
 
    Removes the specified local reference. It takes a :type:`jobject` reference
    to an object.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#DeleteLocalRef>`_
    for more information.
 
@@ -154,7 +166,8 @@ Object Operations
    Allocates a Java object without calling any of the constructor methods. It
    takes a :type:`jobject` class reference (like the return value of
    `java_jnienv->FindClass`). It returns a reference to the object.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16337>`_
    for more information.
 
@@ -164,7 +177,8 @@ Object Operations
    reference to the new object's class, a :type:`jmethodid` reference to the
    constructor method to use, and any other parameters as required by the Java
    constructor method. It returns a reference to the object.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4517>`_
    for more information.
 
@@ -172,7 +186,8 @@ Object Operations
 
    Returns a class reference for the specified object. It takes a
    :type:`jobject` object reference.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16454>`_
    for more information.
 
@@ -181,7 +196,8 @@ Object Operations
    Returns "true" if the specified object is an instance of the specified class,
    otherwise returns "false". It takes a :type:`jobject` object reference and a
    :type:`jobject` class reference.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16472>`_
    for more information.
 
@@ -189,7 +205,8 @@ Object Operations
 
    Returns "true" if both specified objects refer to the same Java object,
    otherwise returns "false". It takes two :type:`jobject` object references.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16514>`_
    for more information.
 
@@ -203,7 +220,8 @@ Accessing Fields of Objects
    :type:`jobject` class reference, a string with the value of the field's name,
    and a string of the signature for the field. It returns a :type:`jfieldid`
    reference.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16540>`_
    for more information.
 
@@ -213,7 +231,8 @@ Accessing Fields of Objects
    should be used for field values that are Java objects. It takes in a
    :type:`jobject` object reference and a :type:`jfieldid` reference and returns
    a :type:`jobject` object reference.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
    for more information.
 
@@ -223,7 +242,8 @@ Accessing Fields of Objects
    should be used for field values that are boolean primitives. It takes in a
    :type:`jobject` object reference and a :type:`jfieldid` reference and returns
    a boolean.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
    for more information.
 
@@ -233,7 +253,8 @@ Accessing Fields of Objects
    should be used for field values that are Java byte primitives. It takes in a
    :type:`jobject` object reference and a :type:`jfieldid` reference and returns
    a :type:`jbyte`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
    for more information.
 
@@ -243,7 +264,8 @@ Accessing Fields of Objects
    should be used for field values that are Java char primitives. It takes in a
    :type:`jobject` object reference and a :type:`jfieldid` reference and returns
    a :type:`jchar`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
    for more information.
 
@@ -253,7 +275,8 @@ Accessing Fields of Objects
    should be used for field values that are Java short primitives. It takes in a
    :type:`jobject` object reference and a :type:`jfieldid` reference and returns
    a :type:`jshort`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
    for more information.
 
@@ -263,7 +286,8 @@ Accessing Fields of Objects
    should be used for field values that are Java int primitives. It takes in a
    :type:`jobject` object reference and a :type:`jfieldid` reference and returns
    a :type:`jint`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
    for more information.
 
@@ -273,7 +297,8 @@ Accessing Fields of Objects
    should be used for field values that are Java long primitives. It takes in a
    :type:`jobject` object reference and a :type:`jfieldid` reference and returns
    a Lasso integer.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
    for more information.
 
@@ -283,7 +308,8 @@ Accessing Fields of Objects
    should be used for field values that are Java float primitives. It takes in a
    :type:`jobject` object reference and a :type:`jfieldid` reference and returns
    a Lasso decimal.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
    for more information.
 
@@ -293,7 +319,8 @@ Accessing Fields of Objects
    should be used for field values that are Java double primitives. It takes in
    a :type:`jobject` object reference and a :type:`jfieldid` reference and
    returns a Lasso decimal.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16572>`_
    for more information.
 
@@ -303,7 +330,8 @@ Accessing Fields of Objects
    should be used for fields that contain Java objects. It takes a
    :type:`jobject` object reference, a :type:`jfieldid` reference, and the new
    :type:`jobject` value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
    for more information.
 
@@ -313,7 +341,8 @@ Accessing Fields of Objects
    should be used for fields that contain Java boolean primitives. It takes a
    :type:`jobject` object reference, a :type:`jfieldid` reference, and the new
    boolean value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
    for more information.
 
@@ -323,7 +352,8 @@ Accessing Fields of Objects
    should be used for fields that contain Java byte primitives. It takes a
    :type:`jobject` object reference, a :type:`jfieldid` reference, and the new
    :type:`jbyte` value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
    for more information.
 
@@ -333,7 +363,8 @@ Accessing Fields of Objects
    should be used for fields that contain Java char primitives. It takes a
    :type:`jobject` object reference, a :type:`jfieldid` reference, and the new
    :type:`jchar` value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
    for more information.
 
@@ -343,7 +374,8 @@ Accessing Fields of Objects
    should be used for fields that contain Java short primitives. It takes a
    :type:`jobject` object reference, a :type:`jfieldid` reference, and the new
    :type:`jshort` value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
    for more information.
 
@@ -353,7 +385,8 @@ Accessing Fields of Objects
    should be used for fields that contain Java int primitives. It takes a
    :type:`jobject` object reference, a :type:`jfieldid` reference, and the new
    :type:`jint` value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
    for more information.
 
@@ -363,7 +396,8 @@ Accessing Fields of Objects
    should be used for fields that contain Java long primitives. It takes a
    :type:`jobject` object reference, a :type:`jfieldid` reference, and the new
    integer value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
    for more information.
 
@@ -373,7 +407,8 @@ Accessing Fields of Objects
    should be used for fields that contain Java float primitives. It takes a
    :type:`jobject` object reference, a :type:`jfieldid` reference, and the new
    :type:`jfloat` value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
    for more information.
 
@@ -383,7 +418,8 @@ Accessing Fields of Objects
    should be used for fields that contain Java double primitives. It takes a
    :type:`jobject` object reference, a :type:`jfieldid` reference, and the new
    decimal value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16613>`_
    for more information.
 
@@ -396,7 +432,8 @@ Calling Instance Methods
    Returns a :type:`jmethodid` Lasso object for the Java object's specified
    instance member method. For constructor methods, use "<init>" as the method
    name.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16660>`_
    for more information.
 
@@ -407,7 +444,8 @@ Calling Instance Methods
    when the method doesn't return a value. It takes a :type:`jobject` object
    reference, a :type:`jmethodid`, and any parameters to be passed to the
    instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
    for more information.
 
@@ -419,7 +457,8 @@ Calling Instance Methods
    :type:`jobject` object reference. It takes a :type:`jobject` object
    reference, a :type:`jmethodid`, and any parameters to be passed to the
    instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
    for more information.
 
@@ -430,7 +469,8 @@ Calling Instance Methods
    when the return value will be a boolean value. It takes a :type:`jobject`
    object reference, a :type:`jmethodid`, and any parameters to be passed to the
    instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
    for more information.
 
@@ -441,7 +481,8 @@ Calling Instance Methods
    when the return value will be a Java byte primitive. It takes a
    :type:`jobject` object reference, a :type:`jmethodid`, and any parameters to
    be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
    for more information.
 
@@ -452,7 +493,8 @@ Calling Instance Methods
    when the return value will be a Java char primitive. It takes a
    :type:`jobject` object reference, a :type:`jmethodid`, and any parameters to
    be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
    for more information.
 
@@ -463,7 +505,8 @@ Calling Instance Methods
    when the return value will be a Java short primitive. It takes a
    :type:`jobject` object reference, a :type:`jmethodid`, and any parameters to
    be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
    for more information.
 
@@ -474,7 +517,8 @@ Calling Instance Methods
    when the return value will be a Java int primitive. It takes a
    :type:`jobject` object reference, a :type:`jmethodid`, and any parameters to
    be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
    for more information.
 
@@ -485,7 +529,8 @@ Calling Instance Methods
    when the return value will be a Java long primitive. It takes a
    :type:`jobject` object reference, a :type:`jmethodid`, and any parameters to
    be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
    for more information.
 
@@ -496,7 +541,8 @@ Calling Instance Methods
    when the return value will be a Java float primitive. It takes a
    :type:`jobject` object reference, a :type:`jmethodid`, and any parameters to
    be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
    for more information.
 
@@ -507,7 +553,8 @@ Calling Instance Methods
    when the return value will be a Java double primitive. It takes a
    :type:`jobject` object reference, a :type:`jmethodid`, and any parameters to
    be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_
    for more information.
 
@@ -518,7 +565,8 @@ Calling Instance Methods
    when there will be no return value. It takes a :type:`jobject` object
    reference, a :type:`jobject` class reference, a :type:`jmethodid`, and any
    parameters to be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
    for more information.
 
@@ -529,7 +577,8 @@ Calling Instance Methods
    when the return value will be a Java object. It takes a :type:`jobject`
    object reference, a :type:`jobject` class reference, a :type:`jmethodid`, and
    any parameters to be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
    for more information.
 
@@ -540,7 +589,8 @@ Calling Instance Methods
    when the return value will be a boolean. It takes a :type:`jobject` object
    reference, a :type:`jobject` class reference, a :type:`jmethodid`, and any
    parameters to be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
    for more information.
 
@@ -551,7 +601,8 @@ Calling Instance Methods
    when the return value will be a Java byte primitive. It takes a
    :type:`jobject` object reference, a :type:`jobject` class reference, a
    :type:`jmethodid`, and any parameters to be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
    for more information.
 
@@ -562,7 +613,8 @@ Calling Instance Methods
    when the return value will be a Java char primitive. It takes a
    :type:`jobject` object reference, a :type:`jobject` class reference, a
    :type:`jmethodid`, and any parameters to be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
    for more information.
 
@@ -573,7 +625,8 @@ Calling Instance Methods
    when the return value will be a Java short primitive. It takes a
    :type:`jobject` object reference, a :type:`jobject` class reference, a
    :type:`jmethodid`, and any parameters to be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
    for more information.
 
@@ -584,7 +637,8 @@ Calling Instance Methods
    when the return value will be a Java int primitive. It takes a
    :type:`jobject` object reference, a :type:`jobject` class reference, a
    :type:`jmethodid`, and any parameters to be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
    for more information.
 
@@ -595,7 +649,8 @@ Calling Instance Methods
    when the return value will be a Java long primitive. It takes a
    :type:`jobject` object reference, a :type:`jobject` class reference, a
    :type:`jmethodid`, and any parameters to be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
    for more information.
 
@@ -606,7 +661,8 @@ Calling Instance Methods
    when the return value will be a Java float primitive. It takes a
    :type:`jobject` object reference, a :type:`jobject` class reference, a
    :type:`jmethodid`, and any parameters to be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
    for more information.
 
@@ -617,7 +673,8 @@ Calling Instance Methods
    when the return value will be a Java double primitive. It takes a
    :type:`jobject` object reference, a :type:`jobject` class reference, a
    :type:`jmethodid`, and any parameters to be passed to the instance method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4581>`_
    for more information.
 
@@ -630,7 +687,8 @@ Accessing Static Fields
    Returns a :type:`jfieldid` reference to a Java class's static field. It takes
    a :type:`jobject` class reference, a string with the value of the field's
    name, and a string of the signature for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16823>`_
    for more information.
 
@@ -640,7 +698,8 @@ Accessing Static Fields
    should be used for field values that are Java objects. It takes in a
    :type:`jobject` class reference and a :type:`jfieldid` reference and returns
    a :type:`jobject` object reference.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
    for more information.
 
@@ -650,7 +709,8 @@ Accessing Static Fields
    should be used for field values that are boolean primitives. It takes in a
    :type:`jobject` class reference and a :type:`jfieldid` reference and returns
    a boolean.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
    for more information.
 
@@ -660,7 +720,8 @@ Accessing Static Fields
    should be used for field values that are Java byte primitives. It takes in a
    :type:`jobject` class reference and a :type:`jfieldid` reference and returns
    a :type:`jbyte`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
    for more information.
 
@@ -670,7 +731,8 @@ Accessing Static Fields
    should be used for field values that are Java char primitives. It takes in a
    :type:`jobject` class reference and a :type:`jfieldid` reference and returns
    a :type:`jchar`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
    for more information.
 
@@ -680,7 +742,8 @@ Accessing Static Fields
    should be used for field values that are Java short primitives. It takes in a
    :type:`jobject` class reference and a :type:`jfieldid` reference and returns
    a :type:`jshort`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
    for more information.
 
@@ -690,7 +753,8 @@ Accessing Static Fields
    should be used for field values that are Java int primitives. It takes in a
    :type:`jobject` class reference and a :type:`jfieldid` reference and returns
    a :type:`jint`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
    for more information.
 
@@ -700,7 +764,8 @@ Accessing Static Fields
    should be used for field values that are Java long primitives. It takes in a
    :type:`jobject` class reference and a :type:`jfieldid` reference and returns
    a Lasso integer.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
    for more information.
 
@@ -710,7 +775,8 @@ Accessing Static Fields
    should be used for field values that are Java float primitives. It takes in a
    :type:`jobject` class reference and a :type:`jfieldid` reference and returns
    a Lasso decimal.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
    for more information.
 
@@ -720,7 +786,8 @@ Accessing Static Fields
    should be used for field values that are Java double primitives. It takes in
    a :type:`jobject` class reference and a :type:`jfieldid` reference and
    returns a Lasso decimal.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20752>`_
    for more information.
 
@@ -730,7 +797,8 @@ Accessing Static Fields
    be used for fields that contain Java objects. It takes a :type:`jobject`
    class reference, a :type:`jfieldid` reference, and the new :type:`jobject`
    value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
    for more information.
 
@@ -740,7 +808,8 @@ Accessing Static Fields
    be used for fields that contain Java boolean primitives. It takes a
    :type:`jobject` class reference, a :type:`jfieldid` reference, and the new
    boolean value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
    for more information.
 
@@ -750,7 +819,8 @@ Accessing Static Fields
    be used for fields that contain Java byte primitives. It takes a
    :type:`jobject` class reference, a :type:`jfieldid` reference, and the new
    :type:`jbyte` value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
    for more information.
 
@@ -760,7 +830,8 @@ Accessing Static Fields
    be used for fields that contain Java char primitives. It takes a
    :type:`jobject` class reference, a :type:`jfieldid` reference, and the new
    :type:`jchar` value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
    for more information.
 
@@ -770,7 +841,8 @@ Accessing Static Fields
    be used for fields that contain Java short primitives. It takes a
    :type:`jobject` class reference, a :type:`jfieldid` reference, and the new
    :type:`jshort` value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
    for more information.
 
@@ -780,7 +852,8 @@ Accessing Static Fields
    be used for fields that contain Java int primitives. It takes a
    :type:`jobject` class reference, a :type:`jfieldid` reference, and the new
    :type:`jint` value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
    for more information.
 
@@ -790,7 +863,8 @@ Accessing Static Fields
    be used for fields that contain Java long primitives. It takes a
    :type:`jobject` class reference, a :type:`jfieldid` reference, and the new
    integer value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
    for more information.
 
@@ -800,7 +874,8 @@ Accessing Static Fields
    be used for fields that contain Java float primitives. It takes a
    :type:`jobject` class reference, a :type:`jfieldid` reference, and the new
    :type:`jfloat` value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
    for more information.
 
@@ -810,7 +885,8 @@ Accessing Static Fields
    be used for fields that contain Java double primitives. It takes a
    :type:`jobject` class reference, a :type:`jfieldid` reference, and the new
    decimal value for the field.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20829>`_
    for more information.
 
@@ -823,7 +899,8 @@ Calling Static Methods
    Returns a :type:`jmethodid` Lasso object for the specified static method. It
    takes a :type:`jobject` class reference, a string specifying the name of the
    method, and a string of the method's signature.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20950>`_
    for more information.
 
@@ -832,7 +909,8 @@ Calling Static Methods
    This method is used to call a Java class static method that doesn't return a
    value. It takes a :type:`jobject` class reference, a :type:`jmethodid` for
    the method, and any parameters to be passed to the static method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
    for more information.
 
@@ -841,7 +919,8 @@ Calling Static Methods
    This method is used to call a Java class static method that returns a Java
    object. It takes a :type:`jobject` class reference, a :type:`jmethodid` for
    the method, and any parameters to be passed to the static method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
    for more information.
 
@@ -850,7 +929,8 @@ Calling Static Methods
    This method is used to call a Java class static method that returns a Java
    boolean. It takes a :type:`jobject` class reference, a :type:`jmethodid` for
    the method, and any parameters to be passed to the static method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
    for more information.
 
@@ -860,7 +940,8 @@ Calling Static Methods
    byte primitive. It takes a :type:`jobject` class reference, a
    :type:`jmethodid` for the method, and any parameters to be passed to the
    static method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
    for more information.
 
@@ -870,7 +951,8 @@ Calling Static Methods
    char primitive. It takes a :type:`jobject` class reference, a
    :type:`jmethodid` for the method, and any parameters to be passed to the
    static method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
    for more information.
 
@@ -880,7 +962,8 @@ Calling Static Methods
    short primitive. It takes a :type:`jobject` class reference, a
    :type:`jmethodid` for the method, and any parameters to be passed to the
    static method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
    for more information.
 
@@ -890,7 +973,8 @@ Calling Static Methods
    int primitive. It takes a :type:`jobject` class reference, a
    :type:`jmethodid` for the method, and any parameters to be passed to the
    static method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
    for more information.
 
@@ -900,7 +984,8 @@ Calling Static Methods
    long primitive. It takes a :type:`jobject` class reference, a
    :type:`jmethodid` for the method, and any parameters to be passed to the
    static method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
    for more information.
 
@@ -910,7 +995,8 @@ Calling Static Methods
    float primitive. It takes a :type:`jobject` class reference, a
    :type:`jmethodid` for the method, and any parameters to be passed to the
    static method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
    for more information.
 
@@ -920,7 +1006,8 @@ Calling Static Methods
    double primitive. It takes a :type:`jobject` class reference, a
    :type:`jmethodid` for the method, and any parameters to be passed to the
    static method.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4796>`_
    for more information.
 
@@ -932,14 +1019,16 @@ String Operations
 
    Takes in a Lasso string and returns a Lasso :type:`jobject` that corresponds
    to a Java object of class ``java.lang.String``.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4925>`_
    for more information.
 
 .. member:: java_jnienv->GetStringLength(...)
 
    Returns the number of characters in the specified Java string object.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17132>`_
    for more information.
 
@@ -947,7 +1036,8 @@ String Operations
 
    Takes in a :type:`jobject` of a Java string and returns a Lasso string
    object.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17158>`_
    for more information.
 
@@ -958,7 +1048,8 @@ Array Operations
 .. member:: java_jnienv->GetArrayLength(...)
 
    Returns the number of elements in the specified Java array.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp21732>`_
    for more information.
 
@@ -968,7 +1059,8 @@ Array Operations
    specified class. It takes the length of the array, a :type:`jobject` class
    reference for the type of objects in the array, and the initial value to set
    each item in the array to.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp21619>`_
    for more information.
 
@@ -977,7 +1069,8 @@ Array Operations
    Returns the specified element of a Java object array. It takes the
    :type:`jobject` containing the array and an integer specifying the index into
    the array.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp21671>`_
    for more information.
 
@@ -986,7 +1079,8 @@ Array Operations
    Sets the value at the specified index of the specified Java object array. It
    takes a :type:`jobject` of the array, an integer specifying the index into
    the array, and the new :type:`jobject` object.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp21699>`_
    for more information.
 
@@ -994,7 +1088,8 @@ Array Operations
 
    Returns a :type:`jobject` of a Java array containing Java booleans. It takes
    the length of the array.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
    for more information.
 
@@ -1002,7 +1097,8 @@ Array Operations
 
    Returns a :type:`jobject` of a Java array containing Java byte primitives. It
    takes the length of the array.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
    for more information.
 
@@ -1010,7 +1106,8 @@ Array Operations
 
    Returns a :type:`jobject` of a Java array containing Java char primitives. It
    takes the length of the array.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
    for more information.
 
@@ -1018,7 +1115,8 @@ Array Operations
 
    Returns a :type:`jobject` of a Java array containing Java short primitives.
    It takes the length of the array.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
    for more information.
 
@@ -1026,7 +1124,8 @@ Array Operations
 
    Returns a :type:`jobject` of a Java array containing Java int primitives. It
    takes the length of the array.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
    for more information.
 
@@ -1034,7 +1133,8 @@ Array Operations
 
    Returns a :type:`jobject` of a Java array containing Java long primitives. It
    takes the length of the array.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
    for more information.
 
@@ -1042,7 +1142,8 @@ Array Operations
 
    Returns a :type:`jobject` of a Java array containing Java float primitives.
    It takes the length of the array.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
    for more information.
 
@@ -1050,7 +1151,8 @@ Array Operations
 
    Returns a :type:`jobject` of a Java array containing Java double primitives.
    It takes the length of the array.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17318>`_
    for more information.
 
@@ -1058,7 +1160,8 @@ Array Operations
 
    Takes a :type:`jobject` Java boolean array and returns a Lasso staticarray of
    the elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
    for more information.
 
@@ -1066,7 +1169,8 @@ Array Operations
 
    Takes a :type:`jobject` Java byte array and returns a Lasso staticarray of
    the elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
    for more information.
 
@@ -1074,7 +1178,8 @@ Array Operations
 
    Takes a :type:`jobject` Java char array and returns a Lasso staticarray of
    the elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
    for more information.
 
@@ -1082,7 +1187,8 @@ Array Operations
 
    Takes a :type:`jobject` Java short array and returns a Lasso staticarray of
    the elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
    for more information.
 
@@ -1090,7 +1196,8 @@ Array Operations
 
    Takes a :type:`jobject` Java int array and returns a Lasso staticarray of the
    elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
    for more information.
 
@@ -1098,7 +1205,8 @@ Array Operations
 
    Takes a :type:`jobject` Java long array and returns a Lasso staticarray of
    the elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
    for more information.
 
@@ -1106,7 +1214,8 @@ Array Operations
 
    Takes a :type:`jobject` Java float array and returns a Lasso staticarray of
    the elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
    for more information.
 
@@ -1114,7 +1223,8 @@ Array Operations
 
    Takes a :type:`jobject` Java double array and returns a Lasso staticarray of
    the elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp17382>`_
    for more information.
 
@@ -1124,7 +1234,8 @@ Array Operations
    staticarray. It takes a :type:`jobject` of the array, an integer for the
    start index of the array region, and an integer specifying the number of
    elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
    for more information.
 
@@ -1134,7 +1245,8 @@ Array Operations
    staticarray. It takes a :type:`jobject` of the array, an integer for the
    start index of the array region, and an integer specifying the number of
    elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
    for more information.
 
@@ -1144,7 +1256,8 @@ Array Operations
    staticarray. It takes a :type:`jobject` of the array, an integer for the
    start index of the array region, and an integer specifying the number of
    elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
    for more information.
 
@@ -1154,7 +1267,8 @@ Array Operations
    staticarray. It takes a :type:`jobject` of the array, an integer for the
    start index of the array region, and an integer specifying the number of
    elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
    for more information.
 
@@ -1164,7 +1278,8 @@ Array Operations
    staticarray. It takes a :type:`jobject` of the array, an integer for the
    start index of the array region, and an integer specifying the number of
    elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
    for more information.
 
@@ -1174,7 +1289,8 @@ Array Operations
    staticarray. It takes a :type:`jobject` of the array, an integer for the
    start index of the array region, and an integer specifying the number of
    elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
    for more information.
 
@@ -1184,7 +1300,8 @@ Array Operations
    staticarray. It takes a :type:`jobject` of the array, an integer for the
    start index of the array region, and an integer specifying the number of
    elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
    for more information.
 
@@ -1194,7 +1311,8 @@ Array Operations
    staticarray. It takes a :type:`jobject` of the array, an integer for the
    start index of the array region, and an integer specifying the number of
    elements.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp6212>`_
    for more information.
 
@@ -1205,7 +1323,8 @@ Array Operations
    integer for the start index of the array region, an integer specifying the
    number of elements to replace, and a staticarray containing the values to
    use.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
    for more information.
 
@@ -1215,7 +1334,8 @@ Array Operations
    in a Lasso staticarray. It takes a :type:`jobject` of the array, an integer
    for the start index of the array region, an integer specifying the number of
    elements to replace, and a staticarray containing the values to use.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
    for more information.
 
@@ -1225,7 +1345,8 @@ Array Operations
    in a Lasso staticarray. It takes a :type:`jobject` of the array, an integer
    for the start index of the array region, an integer specifying the number of
    elements to replace, and a staticarray containing the values to use.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
    for more information.
 
@@ -1235,7 +1356,8 @@ Array Operations
    specified in a Lasso staticarray. It takes a :type:`jobject` of the array, an
    integer for the start index of the array region, an integer specifying the
    number of elements to replace, and a staticarray containing the values to use.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
    for more information.
 
@@ -1245,7 +1367,8 @@ Array Operations
    in a Lasso staticarray. It takes a :type:`jobject` of the array, an integer
    for the start index of the array region, an integer specifying the number of
    elements to replace, and a staticarray containing the values to use.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
    for more information.
 
@@ -1256,7 +1379,8 @@ Array Operations
    integer for the start index of the array region, an integer specifying the
    number of elements to replace, and a staticarray containing the values to
    use.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
    for more information.
 
@@ -1267,7 +1391,8 @@ Array Operations
    integer for the start index of the array region, an integer specifying the
    number of elements to replace, and a staticarray containing the values to
    use.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
    for more information.
 
@@ -1278,7 +1403,8 @@ Array Operations
    integer for the start index of the array region, an integer specifying the
    number of elements to replace, and a staticarray containing the values to
    use.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp22933>`_
    for more information.
 
@@ -1290,7 +1416,8 @@ Monitor Operations
 
    Enters into the monitor associated with the specified Java object. Requires a
    non-null :type:`jobject` object.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp23124>`_
    for more information.
 
@@ -1298,7 +1425,8 @@ Monitor Operations
 
    Decrements the monitor counter for the current thread and the specified Java
    object. Requires a non-null :type:`jobject` object.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp5252>`_
    for more information.
 
@@ -1309,7 +1437,8 @@ Reflection Support
 .. member:: java_jnienv->FromReflectedMethod(...)
 
    Converts a specified Java reflection object into a Lasso :type:`jmethodid`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#from_reflected_method>`_
    for more information.
 
@@ -1317,7 +1446,8 @@ Reflection Support
 
    Converts a specified Java reflection field object into a Lasso
    :type:`jfieldid`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#from_reflected_field>`_
    for more information.
 
@@ -1325,7 +1455,8 @@ Reflection Support
 
    Converts a specified Lasso :type:`jmethodid` to a Java reflection object
    returned as a :type:`jobject`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#to_reflected_method>`_
    for more information.
 
@@ -1333,7 +1464,8 @@ Reflection Support
 
    Converts a specified Lasso :type:`jfieldid` to a Java reflection field object
    returned as a :type:`jobject`.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#to_reflected_field>`_
    for more information.
 
@@ -1346,7 +1478,8 @@ Return Types
 
    Stores a reference to either a Java class, instantiated object, or thrown
    error.
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/types.html#wp15954>`_
    for more information.
 
@@ -1355,7 +1488,8 @@ Return Types
 
    Stores the JNI ID for a specific method (both member methods and class
    methods).
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/types.html#wp1064>`_
    for more information.
 
@@ -1364,7 +1498,8 @@ Return Types
 
    Stores the JNI ID for data field members of a class (both an object's and the
    class's).
-   See the documentation at
+
+   See
    `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/types.html#wp1064>`_
    for more information.
 

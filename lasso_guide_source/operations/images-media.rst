@@ -658,9 +658,10 @@ method as described below.
    anti-aliasing.
 
 .. note::
-   When specifying a font, the full hard drive path to the font must be used
-   (e.g. ``-font='//Library/Fonts/Arial.ttf'``). True Type ("\*.ttf"), and Type
-   One ("\*.pfa", "\*.pfb") font types are officially supported.
+   The full hard drive path to the font must be used (e.g.
+   ``-font='//Library/Fonts/Arial.ttf'``) when specifying a font. True Type
+   ("\*.ttf"), and Type One ("\*.pfa", "\*.pfb") font types are officially
+   supported.
 
 
 Add Text to an Image

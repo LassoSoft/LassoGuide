@@ -71,9 +71,7 @@ Java Virtual Machine (JVM).
    a Lasso :type:`jobject`; storing it into the local variable "class". The
    string value that gets passed to `~java_jnienv->FindClass` is the fully
    qualified class name signature (or array type signature). For more
-   information, see
-   `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16027>`_.
-   ::
+   information, see the `FindClass`_ documentation. ::
 
       local(class) = java_jvm_getenv->FindClass('java/lang/Math')
 
@@ -82,9 +80,7 @@ Java Virtual Machine (JVM).
    variable. `~java_jnienv->GetStaticMethodID` takes in the class (jobject)
    object we found in the first line, the name of the method as the second
    parameter, and the signature for that method as the third parameter. For more
-   information, see
-   `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20950>`_.
-   ::
+   information, see the `GetStaticMethodID`_ documentation. ::
 
       local(mID)   = java_jvm_getenv->GetStaticMethodID(#class, 'scalb', '(FI)F')
 
@@ -153,9 +149,8 @@ which wraps the Lasso instance's :type:`java_jnienv` object.
 #. The first line of code gets the specified Java class and stores a Lasso
    :type:`jobject` into the local variable "class". The value that gets passed
    to `~java_jnienv->FindClass` is the fully qualified class name signature (or
-   array type signature). For more information, see
-   `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16027>`_.
-   ::
+   array type signature). For more information, see the `FindClass`_
+   documentation. ::
 
       local(class) = java_jvm_getenv->FindClass('java/util/zip/ZipFile')
 
@@ -191,9 +186,8 @@ which wraps the Lasso instance's :type:`java_jnienv` object.
    of code below stores a Java object into "obj" by calling
    `~java_jnienv->NewObject` with the class information, method ID, and any
    additional parameters required by the constructor (in this case, the path to
-   the zipped file). For more information on `~java_jnienv->NewObject`, see
-   `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4517>`_.
-   ::
+   the zipped file). For more information on `~java_jnienv->NewObject`, see the
+   `NewObject`_ documentation. ::
 
       local(obj)   = java_jvm_getenv->NewObject(#class, #mID, '/path/to/zipfile.zip')
 
@@ -202,9 +196,7 @@ which wraps the Lasso instance's :type:`java_jnienv` object.
    demonstrate how you could deal with wanting to call methods on Java objects
    that were returned by other methods. So, `~java_jnienv->GetObjectClass`
    returns the class information for the specified object. For more information,
-   see
-   `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16454>`_.
-   ::
+   see the `GetObjectClass`_ documentation. ::
 
       local(class) = java_jvm_getenv->GetObjectClass(#obj)
 
@@ -217,10 +209,13 @@ which wraps the Lasso instance's :type:`java_jnienv` object.
    `~java_jnienv->CallIntMethod` with the Java object as the first parameter and
    the method ID for ``size`` as the second parameter. Notice that the return
    type (int) is in the name of the method. There are a number of these methods
-   for various return types, and they can be found here:
-   `<http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256>`_.
-   ::
+   for `various return types`_. ::
 
       java_jvm_getenv->CallIntMethod(#obj, #mID)
 
 .. _interoperating with Java using JNI: http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/jniTOC.html
+.. _FindClass: http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16027
+.. _GetStaticMethodID: http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp20950
+.. _NewObject: http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4517
+.. _GetObjectClass: http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp16454
+.. _various return types: http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp4256

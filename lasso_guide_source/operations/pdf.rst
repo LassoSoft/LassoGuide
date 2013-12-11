@@ -549,7 +549,7 @@ section. All PDF accessor methods are defined below.
 .. member:: pdf_doc->getHeaders()
 
    Returns all document headers as a map object in the form
-   ``map('header1'='content1', 'header2'='content2', ...)``.
+   ``map('header1' = 'content1', 'header2' = 'content2', ...)``.
 
 .. member:: pdf_doc->setFont(font::pdf_font)
 
@@ -657,9 +657,9 @@ type.
 
    :param -face:
       Specifies the font by its family name. Allowed font names are "Courier",
-      "Courier-Bold", "Courier-Oblique", "Courier-BoldOblique", "Helvetica",
-      "Helvetica-Bold", "Helvetica-Oblique", "Helvetica-BoldOblique", "Symbol",
-      "Times-Roman", "Times-Bold", "Times-Italic", "Times-BoldItalic", and
+      "Courier-Bold", "Courier-BoldOblique", "Courier-Oblique", "Helvetica",
+      "Helvetica-Bold", "Helvetica-BoldOblique", "Helvetica-Oblique", "Symbol",
+      "Times-Roman", "Times-Bold", "Times-BoldItalic", "Times-Italic", and
       "ZapfDingbats". Optional.
    :param -file:
       Uses a font from a local font file. The file name and path to the font
@@ -1282,7 +1282,7 @@ methods which are described below.
 
 .. note::
    All :type:`pdf_doc` form member methods, with the exception of
-   `pdf_doc->addHiddenField` and `pdf_doc->addRadioButtonGroup`, require
+   `~pdf_doc->addHiddenField` and `~pdf_doc->addRadioButtonGroup`, require
    placement parameters for specifying the exact positioning of form elements
    within a page. These parameters are summarized in the table
    :ref:`pdf-form-placement`.

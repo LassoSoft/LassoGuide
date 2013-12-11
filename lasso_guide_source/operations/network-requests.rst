@@ -413,7 +413,7 @@ HTTP Options
    the most commonly used :mailheader:`Content-Type` for the POST method). You
    can override this header by setting your own with `CURLOPT_HTTPHEADER()`.
 
-   Use `CURLOPT_POSTFIELDS()` to specify what data to post and
+   Use `CURLOPT_POSTFIELDS()` to specify what data to post in the request and
    `CURLOPT_POSTFIELDSIZE()` or `CURLOPT_POSTFIELDSIZE_LARGE()` to set the data
    size.
 
@@ -845,8 +845,8 @@ SSL and Security Options
 
    .. method:: CURL_SSLVERSION_DEFAULT()
 
-      Can be passed to tell curl to figure out the remote server's protocol,
-      though it won't use `CURL_SSLVERSION_SSLv2()`.
+      Can be passed instead to tell curl to figure out the remote server's
+      protocol, though it won't use `CURL_SSLVERSION_SSLv2()`.
 
 .. method:: CURLOPT_SSL_VERIFYPEER()
 

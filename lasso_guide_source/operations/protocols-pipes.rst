@@ -407,5 +407,5 @@ Accepting Named Pipe Connections
 
    The `~net_named_pipe->listen` and `~net_named_pipe->accept` methods operate
    as described for their :type:`net_tcp` counterparts, except that
-   `net_named_pipe->accept` will return new :type:`net_named_pipe` objects for
+   `~net_named_pipe->accept` will return new :type:`net_named_pipe` objects for
    each new connection.

@@ -161,11 +161,10 @@ future date.
    be performed using the database actions available within Lasso.
 
 -  **Record ID** --
-   Create a calculation field named "id" and assign it to the following
-   calculation: ``Status(CurrentRecordID)``. Always use the ``-keyField='id'``
-   within `inline` database actions. This ensures that when moving to a
-   database that relies on storing the key field value explicitly, a unique key
-   field value is available.
+   Create a calculation field with the calculation ``Status(CurrentRecordID)``
+   and name it "id". Always use the ``-keyField='id'`` within `inline` database
+   actions. This ensures that when moving to a database that relies on storing
+   the key field value explicitly, a unique key field value is available.
 
 
 FileMaker Queries

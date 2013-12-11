@@ -134,7 +134,7 @@ can be packaged up as a trait instead of creating a different implementation for
 each type or forcing a complex inheritance scheme.
 
 Defining traits is similar to defining types. The following example is a
-slightly modified version of the ``trait_positionallyKeyed`` definition::
+slightly modified version of the definition for ``trait_positionallyKeyed``::
 
    define ex_trait_positionallyKeyed => trait {
       import trait_doubleEnded
