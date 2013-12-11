@@ -11,8 +11,8 @@ results of those actions. This chapter introduces the fundamentals of specifying
 database actions in Lasso.
 
 
-Inlines
-=======
+Using Inlines
+=============
 
 The `inline` method is used to specify a database action and to present the
 results of that action within a Lasso page. The database action is specified
@@ -471,7 +471,7 @@ specified later. Only the number of records found in the database are returned::
 
 
 Inline Introspection Methods
-----------------------------
+============================
 
 Lasso has a set of methods that return information about the current inline's
 action. The parameters of the action itself can be returned or information about
@@ -577,7 +577,7 @@ return information about the action specified by the inline.
 
 
 Display Parameters of the Current Database Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------------
 
 The value of the `action_params` method in the following example is formatted
 to clearly show the elements of the returned array::
@@ -601,7 +601,7 @@ to clearly show the elements of the returned array::
 
 
 Display Parameter Pairs of the Current Database Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------------------
 
 Loop through the `action_params` method and display only name/value pairs for
 which the name does not start with a hyphen, i.e., any pair parameters and not
@@ -627,7 +627,7 @@ of the "contacts" database for a person named "John Doe"::
 
 
 Display Action Parameters to a Site Visitor
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------
 
 The `search_arguments` method can be used in conjunction with the
 `search_fieldItem`, `search_valueItem` and `search_operatorItem` methods to
@@ -676,7 +676,7 @@ parameters specified in a database action. ::
 .. _database-action-results:
 
 Inline Action Result Methods
-----------------------------
+============================
 
 The following documentation details the methods that allow information about the
 results of the current action to be returned. These methods provide information
@@ -788,7 +788,7 @@ through a found set.
 
 
 Using a Records Array
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 The `records_array` method can be used to get access to all of the data from an
 inline operation. The method returns a staticarray with one element for each
@@ -862,7 +862,7 @@ some cases when these methods yield better performance than using `records`,
 
 
 Using a Records Map
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 The `records_map` method functions similarly to the `records_array` method, but
 returns all of the data from an inline operation as a map of maps. The keys for
@@ -877,7 +877,7 @@ for the inner map are the field names for each record in the found set. ::
 
 
 Database Schema Inspection Methods
-----------------------------------
+==================================
 
 The schema of a database can be inspected using the ``database_…`` methods or
 the inline ``-show`` action parameter which allows information about a database
@@ -923,11 +923,11 @@ database action that returns results including ``-search``, ``-add``,
    name of the current table.
 
 .. method:: field_name(-count)
-.. method:: field_name(position::integer)
-.. method:: field_name(position::integer, -type)
+.. method: field_name(position::integer)
+.. method:: field_name(position::integer, -type= ?)
 .. method:: column_name(-count)
-.. method:: column_name(position::integer)
-.. method:: column_name(position::integer, -type)
+.. method: column_name(position::integer)
+.. method:: column_name(position::integer, -type= ?)
 
    If passed the parameter ``-count`` then it returns the number of fields in
    the current table. If passed an integer, it returns the name of a field at
@@ -944,7 +944,7 @@ database action that returns results including ``-search``, ``-add``,
 
 
 List All Databases Entered in Lasso Admin
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------
 
 The following example shows how to list the names of all databases set in Lasso
 Admin using the `database_names` and `database_nameItem` methods::
@@ -960,7 +960,7 @@ Admin using the `database_names` and `database_nameItem` methods::
 
 
 List All Tables Within a Database
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------
 
 The following example shows how to list the names of all the tables within a
 database using the `database_tableNames` and `database_tableNameItem` methods.
@@ -976,7 +976,7 @@ The tables within the "Site" database are listed::
 
 
 List All Fields Within a Table
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------
 
 The following example demonstrates how to return information about the fields in
 a table using the `inline` method to perform a ``-show`` action. A `loop` method

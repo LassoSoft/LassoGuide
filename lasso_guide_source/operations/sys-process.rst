@@ -87,8 +87,8 @@ Using sys_process
    This method is identical to `sys_process->read` but returns a string object
    instead of a bytes object.
 
-.. member:: sys_process->write(data::bytes)
 .. member:: sys_process->write(data::string)
+.. member:: sys_process->write(data::bytes)
 
    Writes the specified data to the new process's standard in (STDIN). If the
    data is a string, the current encoding is used to convert the data before

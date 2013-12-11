@@ -36,8 +36,8 @@ Lasso's methods return a byte stream in the following situations:
 .. method:: bytes()
 .. method:: bytes(initial::integer)
 .. method:: bytes(copy::bytes)
-.. method:: bytes(import::string)
-.. method:: bytes(import::string, encoding::string)
+.. method: bytes(import::string)
+.. method:: bytes(import::string, encoding::string= ?)
 .. method:: bytes(doc::pdf_doc)
 
    Allocates a byte stream. Can be used to convert a :type:`string` or
@@ -88,7 +88,7 @@ easier to deal with binary data. The most common methods are outlined below.
    Returns a single byte from the stream. Requires a parameter specifying which
    byte to fetch.
 
-.. member:: bytes->getRange(p0::integer, p1::integer)
+.. member:: bytes->getRange(position::integer, num::integer)
 
    Returns a range of bytes from the byte stream. Requires two parameters: the
    first specifies the byte position to start from, and the second specifies how
@@ -128,8 +128,8 @@ easier to deal with binary data. The most common methods are outlined below.
 
    Returns "true" if the byte stream ends with the specified sequence.
 
-.. member:: bytes->sub(pos::integer)
-.. member:: bytes->sub(p0::integer, p1::integer)
+.. member: bytes->sub(pos::integer)
+.. member:: bytes->sub(position::integer, num::integer= ?)
 
    Returns a specified slice of the byte stream. Requires an integer parameter
    that specifies the index into the byte stream to start taking the slice from.
@@ -237,7 +237,7 @@ Bytes Manipulation Methods
 
 Calling the following methods will modify the bytes object.
 
-.. member:: bytes->setSize(p0::integer)
+.. member:: bytes->setSize(num::integer)
 
    Sets the byte stream size to the specified number of bytes.
 
@@ -259,7 +259,7 @@ Calling the following methods will modify the bytes object.
    second parameter is the value with which to replace the first parameter.
 
 .. member:: bytes->remove()
-.. member:: bytes->remove(p0::integer, p1::integer)
+.. member:: bytes->remove(position::integer, num::integer)
 
    Removes bytes form a byte stream. When passed without a parameter, it removes
    all bytes, setting the object to an empty bytes object. In its second form,
@@ -276,7 +276,7 @@ Calling the following methods will modify the bytes object.
    Removes all occurrences of the parameter sequence from the end of the
    byte stream. Requires one parameter specifying the data to be removed.
 
-.. member:: bytes->append(p0::bytes)
+.. member:: bytes->append(rhs::bytes)
 .. member:: bytes->append(rhs::string)
 
    Appends the specified data to the end of the byte stream. Requires one
@@ -297,19 +297,19 @@ Calling the following methods will modify the bytes object.
    Imports a string parameter. A second parameter can specify the character
    encoding (e.g. "ISO-8859-1", "UTF-8") to use for the import.
 
-.. member:: bytes->import8bits(p0::integer)
+.. member:: bytes->import8bits(i::integer)
 
    Imports the first byte of an integer parameter.
 
-.. member:: bytes->import16bits(p0::integer)
+.. member:: bytes->import16bits(i::integer)
 
    Imports the first 2 bytes of an integer parameter.
 
-.. member:: bytes->import32bits(p0::integer)
+.. member:: bytes->import32bits(i::integer)
 
    Imports the first 4 bytes of an integer parameter.
 
-.. member:: bytes->import64bits(p0::integer)
+.. member:: bytes->import64bits(i::integer)
 
    Imports the first 8 bytes of an integer parameter.
 

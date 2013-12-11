@@ -64,7 +64,7 @@ method detailed below.
    information. The `integer->asString` method replaces the functionality of the
    ``integer->setFormat`` method from previous versions of Lasso.
 
-.. member:: integer->asString(p0::string, p1::string, p2::string)
+.. member: integer->asString(p0::string, p1::string, p2::string)
 .. member:: integer->asString(\
       -hexadecimal::boolean= ?, \
       -padding::integer= ?, \
@@ -114,17 +114,17 @@ Integer literals in Lasso can be specified using hexadecimal notation. This can
 greatly aid in constructing literals for use with the bitwise operation. For
 example, ``0xff`` is the integer literal ``255``.
 
-.. member:: integer->bitAnd(p0::integer)
+.. member:: integer->bitAnd(i::integer)
 
    Performs a bitwise "and" operation between each bit in the base integer and
    the integer parameter, returning the result.
 
-.. member:: integer->bitOr(p0::integer)
+.. member:: integer->bitOr(i::integer)
 
    Performs a bitwise "or" operation between each bit in the base integer and
    the integer parameter, returning the result.
 
-.. member:: integer->bitXOr(p0::integer)
+.. member:: integer->bitXOr(i::integer)
 
    Performs a bitwise "exclusive or" operation between each bit in the base
    integer and the integer parameter, returning the result.
@@ -133,29 +133,29 @@ example, ``0xff`` is the integer literal ``255``.
 
    Returns the result of flipping every bit in the base integer.
 
-.. member:: integer->bitShiftLeft(p0::integer)
+.. member:: integer->bitShiftLeft(i::integer)
 
    Returns the result of shifting the bits in the base integer left by the
    number specified in the integer parameter.
 
-.. member:: integer->bitShiftRight(p0::integer)
+.. member:: integer->bitShiftRight(i::integer)
 
    Returns the result of shifting the bits in the base integer right by the
    number specified in the integer parameter.
 
-.. member:: integer->bitClear(p0::integer)
+.. member:: integer->bitClear(i::integer)
 
    Returns the result of clearing the bit specified in the integer parameter.
 
-.. member:: integer->bitFlip(p0::integer)
+.. member:: integer->bitFlip(i::integer)
 
    Returns the result of flipping the bit specified in the integer parameter.
 
-.. member:: integer->bitSet(p0::integer)
+.. member:: integer->bitSet(i::integer)
 
    Returns the result of setting the bit specified in the integer parameter.
 
-.. member:: integer->bitTest(p0::integer)
+.. member:: integer->bitTest(i::integer)
 
    Returns "true" if the bit specified in the integer parameter is 1, otherwise
    returns "false".
@@ -214,9 +214,9 @@ equivalent to ``1.23`` times ``10^2`` or ``123.0``.
 
 .. type:: decimal
 .. method:: decimal()
-.. method:: decimal(p0::integer)
-.. method:: decimal(p0::decimal)
-.. method:: decimal(p0::string)
+.. method:: decimal(i::integer)
+.. method:: decimal(d::decimal)
+.. method:: decimal(s::string)
 .. method:: decimal(b::bytes)
 .. method:: decimal(n::null)
 .. method:: decimal(n::void)
@@ -289,7 +289,7 @@ method detailed below.
    information. The `decimal->asString` method replaces the functionality of the
    ``decimal->setFormat`` method from previous versions of Lasso.
 
-.. member:: decimal->asString(p0::string, p1::string, p2::string)
+.. member: decimal->asString(p0::string, p1::string, p2::string)
 .. member:: decimal->asString(\
       -decimalChar::string= ?, \
       -groupChar::string= ?, \

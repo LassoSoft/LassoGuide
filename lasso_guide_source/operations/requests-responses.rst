@@ -155,13 +155,13 @@ through the `web_request->fileUploads` method.
 The value for any GET or POST argument is always a bytes object. The name is
 always a string.
 
+.. member: web_request->param(name::string)
+.. member:: web_request->param(name::string, joiner= ?)
+.. member:: web_request->params()
 .. member:: web_request->queryParam(name::string)
 .. member:: web_request->queryParams()
 .. member:: web_request->postParam(name::string)
 .. member:: web_request->postParams()
-.. member:: web_request->param(name::string)
-.. member:: web_request->param(name::string, joiner)
-.. member:: web_request->params()
 
    This set of methods refers to the GET arguments as the "query" params and any
    POST arguments as the "post" params. Both sets together are just the

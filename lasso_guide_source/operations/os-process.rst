@@ -90,8 +90,8 @@ Using os_process
    method without a byte count will read all bytes as they become available
    until the peer process terminates.
 
-.. member:: os_process->write(data::bytes)
 .. member:: os_process->write(data::string)
+.. member:: os_process->write(data::bytes)
 
    Writes the data to the process. If the data is a string, the current encoding
    is used to convert the data before being written. If the data is a bytes

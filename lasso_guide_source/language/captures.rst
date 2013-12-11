@@ -319,7 +319,7 @@ Capture Methods
    If the capture is an auto-collect capture, then this will store the current
    auto-collect value created by invoking the capture.
 
-.. member:: capture->autoCollectBuffer=(p0)
+.. member:: capture->autoCollectBuffer=(value)
 
    If the capture is an auto-collect capture, this method allows for setting the
    auto-collect value.

@@ -38,8 +38,8 @@ serialized object is returned.
    Creates a :type:`serialization_reader` object. Can be instantiated with a
    string of XML or an :type:`xml_element` object.
 
-.. member:: serialization_reader->read()
-.. member:: serialization_reader->read(x::xml_element)
+.. member: serialization_reader->read()
+.. member:: serialization_reader->read(x::xml_element= ?)
 
    Re-creates the serialized element.
 

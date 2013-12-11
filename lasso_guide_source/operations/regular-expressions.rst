@@ -534,7 +534,7 @@ Creating Regular Expression Objects
 -----------------------------------
 
 .. type:: regexp
-.. method:: regexp(p0::string, p1::string, p2::string, p3::boolean)
+.. method:: regexp(find::string, replace::string, input::string, ignorecase::boolean)
 .. method:: regexp(\
       find::string, \
       replace::string= ?, \
@@ -798,8 +798,8 @@ operation. The power of this methodology comes in the fourth step where the
 replacement string can be generated using any code necessary, rather than
 needing to be a simple replacement pattern.
 
-.. member:: regexp->find()
-.. member:: regexp->find(pos::integer)
+.. member: regexp->find()
+.. member:: regexp->find(position::integer= ?)
 
    Advances the regular expression one match in the input string. Returns "true"
    if the regular expression was able to find another match, otherwise returns
@@ -808,21 +808,21 @@ needing to be a simple replacement pattern.
    parameter to set the position in the input string at which to start the
    search.
 
-.. member:: regexp->matchString()
-.. member:: regexp->matchString(group::integer)
+.. member: regexp->matchString()
+.. member:: regexp->matchString(group::integer= ?)
 
    Returns a string containing the last pattern match. Optional integer
    parameter specifies a group from the find pattern to return (defaults to
    returning the entire pattern match).
 
-.. member:: regexp->matchPosition()
-.. member:: regexp->matchPosition(p0::integer)
+.. member: regexp->matchPosition()
+.. member:: regexp->matchPosition(group::integer= ?)
 
    Returns a pair containing the start position and length of the last pattern
    match. Optional integer parameter specifies a group from the find pattern to
    return (defaults to returning information about the entire pattern match).
 
-.. member:: regexp->appendReplacement(p0::string)
+.. member:: regexp->appendReplacement(pattern::string)
 
    Performs a replace operation on the current pattern match and appends the
    result onto the output string. Requires a single parameter specifying the
@@ -840,15 +840,15 @@ needing to be a simple replacement pattern.
    the output string. Accepts optional ``-find``, ``-replace``, ``-input``, and
    ``-ignoreCase`` parameters.
 
-.. member:: regexp->matches()
-.. member:: regexp->matches(p0::integer)
+.. member: regexp->matches()
+.. member:: regexp->matches(position::integer= ?)
 
    Returns "true" if the pattern matches the entire input string. Optional
    integer parameter sets the position in the input string at which to start the
    search.
 
-.. member:: regexp->matchesStart()
-.. member:: regexp->matchesStart(p0::integer)
+.. member: regexp->matchesStart()
+.. member:: regexp->matchesStart(position::integer= ?)
 
    Returns "true" if the pattern matches a substring of the input string.
    Defaults to checking the start of the input string. Optional integer

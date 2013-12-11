@@ -68,34 +68,34 @@ methods:
 
    Returns the number of messages available for download.
 
-.. member:: email_pop->get()
-.. member:: email_pop->get(command::string)
+.. member: email_pop->get()
+.. member:: email_pop->get(command::string= ?)
 
    Performs the command specified when the object was created. "UniqueID" by
    default, or can be set to "Retrieve", "Headers", or "Delete".
 
-.. member:: email_pop->retrieve()
-.. member:: email_pop->retrieve(position::integer)
+.. member: email_pop->retrieve()
+.. member:: email_pop->retrieve(position::integer= ?)
 .. member:: email_pop->retrieve(position::integer, maxLines::integer)
 
    Retrieves the current message from the server. Optionally accepts a position
    to retrieve a specific message. Optional second parameter specifies the
    maximum number of lines to fetch for each email.
 
-.. member:: email_pop->headers()
-.. member:: email_pop->headers(position::integer)
+.. member: email_pop->headers()
+.. member:: email_pop->headers(position::integer= ?)
 
    Retrieves the headers of the current message from the server. Optionally
    accepts a position to get the headers of a specific message.
 
-.. member:: email_pop->uniqueID()
-.. member:: email_pop->uniqueID(position::integer)
+.. member: email_pop->uniqueID()
+.. member:: email_pop->uniqueID(position::integer= ?)
 
    Retrieves the unique ID of the current message from the server. Optionally
    accepts a position to get the unique ID of a specific message.
 
-.. member:: email_pop->delete()
-.. member:: email_pop->delete(position::integer)
+.. member: email_pop->delete()
+.. member:: email_pop->delete(position::integer= ?)
 
    Marks the current message for deletion. Optionally accepts a position to mark
    a specific message.

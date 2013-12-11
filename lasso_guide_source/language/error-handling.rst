@@ -320,8 +320,8 @@ Error Handling Methods
 ----------------------
 
 .. method:: fail(msg::string)
-.. method:: fail(code::integer, msg::string)
-.. method:: fail(code::integer, msg::string, stack::string)
+.. method: fail(code::integer, msg::string)
+.. method:: fail(code::integer, msg::string, stack::string= ?)
 
    Halts execution and generates the specified error. Can be called with just an
    error message, an error code and an error message, or an error code, message,
@@ -335,8 +335,8 @@ Error Handling Methods
    conditional expression, an integer error code, and a string error message or
    just the conditional expression and the error message.
 
-.. method:: handle()
-.. method:: handle(cond)
+.. method: handle()
+.. method:: handle(cond= ?)
 
    Conditionally executes a given capture block after the code in the current
    capture block or Lasso page has completed or a `fail` method is called. May
@@ -345,8 +345,8 @@ Error Handling Methods
    error occurs in the Lasso code before the handle block is defined, then the
    handle's capture block will not be executed.
 
-.. method:: handle_failure()
-.. method:: handle_failure(cond)
+.. method: handle_failure()
+.. method:: handle_failure(cond= ?)
 
    Functions the same as `handle` except that the contents are executed only if
    an error was reported in the surrounding capture block or Lasso page.

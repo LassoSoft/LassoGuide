@@ -287,8 +287,8 @@ File Manipulation Methods
    This method may not be available or may not operate consistently across all
    supported operating systems.
 
-.. member:: file->chown(user::string)
-.. member:: file->chown(user::string, group::string)
+.. member: file->chown(user::string)
+.. member:: file->chown(user::string, group::string= ?)
 .. member:: file->chown(uid::integer, gid::integer)
 .. member:: file->chmod(to::integer)
 .. member:: file->perms()::integer

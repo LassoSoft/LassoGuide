@@ -187,7 +187,7 @@ methods in Lasso are defined below.
 
    Returns the image format (GIF, JPEG, etc).
 
-.. member:: image->pixel(x::integer, y::integer, -hex = ?)
+.. member:: image->pixel(x::integer, y::integer, -hex= ?)
 
    Returns the color of the pixel located at the specified pixel coordinates
    (X, Y). The returned value is an array of RGB color integers (0--255) by
@@ -198,8 +198,8 @@ methods in Lasso are defined below.
 
    Returns any comments included in the image file header.
 
-.. member:: image->describe()
-.. member:: image->describe(-short)
+.. member: image->describe()
+.. member:: image->describe(-short= ?)
 
    Lists various image attributes, mostly for debugging purposes. An optional
    ``-short`` parameter displays abbreviated information.
@@ -277,8 +277,8 @@ This section describes how image files can be converted from one format to
 another and saved to file. This is all accomplished using the `image->save`
 method, which is described below.
 
-.. member:: image->convert(ext::string)
-.. member:: image->convert(ext::string, -quality::integer)
+.. member: image->convert(ext::string)
+.. member:: image->convert(ext::string, -quality::integer= ?)
 
    Converts an image object to a new format. Requires a file extension as a
    string parameter which represents the new format the image is being converted
@@ -286,8 +286,8 @@ method, which is described below.
    compression ratio (integer value of 1--100) used when saving to JPEG or GIF
    format.
 
-.. member:: image->save(path::string)
-.. member:: image->save(path::string, -quality::integer)
+.. member: image->save(path::string)
+.. member:: image->save(path::string, -quality::integer= ?)
 
    Saves the image to a file in a format defined by the file extension.
    Automatically converts images when the extension of the image to save as
@@ -387,8 +387,8 @@ These methods are defined below.
    ``-width`` or ``-height`` is specified then the other value is calculated
    proportionally.
 
-.. member:: image->rotate(deg::integer)
-.. member:: image->rotate(deg::integer, -bgColor=::string)
+.. member: image->rotate(deg::integer)
+.. member:: image->rotate(deg::integer, -bgColor=::string= ?)
 
    Rotates an image counterclockwise by the specified amount in degrees (integer
    value of 0--360). An optional ``-bgColor`` parameter specifies the hex

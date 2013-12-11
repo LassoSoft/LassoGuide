@@ -196,7 +196,7 @@ closed once it is no longer required.
 .. member:: security_registry->getUserID(name::string, -realm::string = 'Lasso Security')
 
    The first two methods return the user record for the indicated user. The
-   second method returns the ID of the indicated user.
+   third method returns the ID of the indicated user.
 
 .. member:: security_registry->listUsers(-name::string = '', -realm = null)
 .. member:: security_registry->listUsersByGroup(name::string)

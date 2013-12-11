@@ -111,16 +111,16 @@ documents and three for creating new blank documents.
    form. If the document parsing is successful, these methods return the
    top-level :type:`xml_document` node object.
 
-.. method:: xml(namespaceUri::string, rootNodeName::string)
-.. method:: xml(namespaceUri::string, rootNodeName::string, dtd::xml_documentType)
+.. method: xml(namespaceUri::string, rootNodeName::string)
+.. method:: xml(namespaceUri::string, rootNodeName::string, dtd::xml_documentType= ?)
 .. method:: xml()
 
    These subsequent three methods create a new document consisting of only the
    root :type:`xml_document` node and no children. These methods return the
-   top-level :type:`xml_document` node object. The first two methods create the
+   top-level :type:`xml_document` node object. The first methods create the
    document given a namespace and a root element name, along with an optional
    document type node (an :type:`xml_documentType`, created through the
-   `xml_DOMImplementation->createDocumentType` method). The third method takes
+   `xml_DOMImplementation->createDocumentType` method). The last method takes
    zero parameters and returns a document with no namespace and the root element
    name set to "none".
 
@@ -160,8 +160,8 @@ This functionality is presented in the following four methods.
 
 .. type:: xml_DOMImplementation
 
-.. member:: xml_DOMImplementation->createDocument(namespaceUri::string, rootNodeName::string)
-.. member:: xml_DOMImplementation->createDocument(namespaceUri::string, rootNodeName::string, dtd::xml_documentType)
+.. member: xml_DOMImplementation->createDocument(namespaceUri::string, rootNodeName::string)
+.. member:: xml_DOMImplementation->createDocument(namespaceUri::string, rootNodeName::string, dtd::xml_documentType= ?)
 .. member:: xml_DOMImplementation->createDocumentType(qname::string, publicid::string, systemid::string)
 .. member:: xml_DOMImplementation->parseDocument(text::bytes)
 

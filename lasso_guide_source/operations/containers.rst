@@ -97,11 +97,11 @@ Using Array Objects
    position larger than the size of the array will insert the element at the
    end.
 
-.. member:: array->remove()
-.. member:: array->remove(position::integer)
+.. member: array->remove()
+.. member:: array->remove(position::integer= ?)
 .. member:: array->remove(position::integer, count::integer)
-.. member:: array->removeAll()
-.. member:: array->removeAll(matching)
+.. member: array->removeAll()
+.. member:: array->removeAll(matching= ?)
 
    These methods remove one or more elements from the array. Calling `remove`
    with no parameters removes the last element from the array, while `remove`
@@ -325,11 +325,11 @@ Using List Objects
    element can be removed. The `remove` method with no parameters removes the
    last element.
 
-.. member:: list->removeAll()
-.. member:: list->removeAll(matching)
+.. member: list->removeAll()
+.. member:: list->removeAll(matching= ?)
 
    The first `removeAll` method with no parameters removes every element from
-   the list. The second accepts a parameter which is compared against the
+   the list. The second form accepts a parameter which is compared against the
    elements. All matching elements are removed from the list.
 
 .. member:: list->first()
@@ -394,7 +394,7 @@ Using Queue Objects
    These methods remove the first element in the queue. (This is the least
    recently inserted element.)
 
-.. member:: queue->unspool(n::integer= ?)
+.. member:: queue->unspool(i::integer= ?)
 
    This method returns a staticarray of the elements in the queue and removes
    them from the queue. The number of elements to return and remove can be
