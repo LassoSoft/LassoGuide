@@ -140,8 +140,8 @@ Associating Files with the lasso9 Tool
 
 Files containing Lasso code can be directly associated with the
 :program:`lasso9` tool by inserting a standard "hashbang" or "shebang" line *at
-the very top of the file*, and by making the file executable (usually
-accomplished by running :command:`chmod +x thefile.lasso`).
+the very top of the file* and making the file executable (usually accomplished
+by running :command:`chmod +x test.lasso`).
 
 The hashbang line for a standard installation looks like this::
 

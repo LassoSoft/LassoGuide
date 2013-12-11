@@ -233,8 +233,7 @@ to compose them into a single trait. ::
 
 Replacing the last line with the trait definition below would produce exactly
 the same result. In general, the latter method is preferred for trait
-definitions, while the composition operator (``+``) is preferred for runtime
-changes. ::
+definitions, while the trait composition is preferred for runtime changes. ::
 
    define trait_firstlast => trait {
       import trait_first

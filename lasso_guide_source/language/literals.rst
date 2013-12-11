@@ -7,7 +7,8 @@ Literals
 
 A :dfn:`literal` is an object with its own special syntax that allows it to be
 inserted directly into code. Lasso supports :type:`string`, :type:`boolean`,
-:type:`integer`, :type:`decimal`, :type:`tag` and :type:`staticarray` literals.
+:type:`integer`, :type:`decimal`, :type:`tag`, :type:`staticarray`, and
+:type:`generateSeries` literals, as well as comments.
 
 The method for expressing these literals is straightforward. For example, an
 integer literal is expressed, as one would expect, by simply using the numeral
@@ -17,12 +18,12 @@ in the source text. ``23`` is an example of an integer literal.
 String Literals
 ===============
 
-All strings in Lasso are Unicode strings. This means that a string can contain
-any of the characters available in Unicode. Lasso supports two kinds of string
-literals: quoted and ticked. Quoted strings can contain escape sequences, while
-ticked strings cannot. Both quoted and ticked string literals can contain line
-breaks, and produce the same type of string objects. The differences between the
-two types of literals are handled entirely during parsing.
+Lasso supports two kinds of string literals: quoted and ticked. Quoted strings
+can contain escape sequences, while ticked strings cannot. Both quoted and
+ticked string literals can contain line breaks, and produce the same type of
+string objects. The differences between the two types of literals are handled
+entirely during parsing. All strings in Lasso are Unicode strings, which means
+that a string can contain any of the characters available in Unicode.
 
 
 Quoted Strings

@@ -41,7 +41,7 @@ sections "trait" and "parent" can occur only once.
 
 The most simple type definition is shown below. It defines a type named "person"
 and contains no sections. Therefore, the ``person`` type contains no methods or
-data members of its own. It is a completely valid, if somewhat boring, type. ::
+data members of its own. It is a completely valid, if somewhat useless, type. ::
 
    define person => type { }
 
@@ -633,10 +633,9 @@ contains
 .. index:: contains callback
 
 The ``contains`` method is called whenever an object is compared using the
-contains (``>>``) or not contains (``!>>``) operators.
-
-A ``contains`` method should accept one parameter and must return a boolean
-value, either "true" or "false". ::
+contains (``>>``) or not contains (``!>>``) operators. A ``contains`` method
+definition should accept one parameter and must return a boolean value, either
+"true" or "false". ::
 
    public contains(rhs)::boolean
 
@@ -833,4 +832,4 @@ type or object. These methods are summarized below.
    not have a trait.
 
    .. seealso::
-      `~null->setTrait` and `~null->addTrait` in the :ref:`traits` chapter.
+      `~null->setTrait` and `~null->addTrait` in the :ref:`traits` chapter

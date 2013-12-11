@@ -396,7 +396,7 @@ the new method. ::
 
    define signature => expression
 
-If a method is defined that has a signature equivalent to an already defined
+If a method is defined that has a signature equivalent to an already-defined
 method, the new definition will replace the old and the old definition will no
 longer be available. Keyword parameters cannot be used to uniquely identify a
 method. A method taking, for example, two required parameters and a certain set

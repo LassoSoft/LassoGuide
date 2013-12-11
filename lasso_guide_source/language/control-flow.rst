@@ -56,13 +56,10 @@ The second form operates like the first, but permits the if/else to be used with
 the association/code block syntax. ::
 
    if(expression1) => {
-      // Code here executed if expression1 evaluates to "true"
       // ...
    else(expression2)
-      // Code here executed if expression2 evaluates to "true"
       // ...
    else
-      // Code here executed if neither expression1 or expression2 evaluates to "true"
       // ...
    }
 
@@ -113,13 +110,10 @@ The second form uses the association/code block syntax::
 
    match(expression) => {
    case(c1, c2)
-      // Code here executed if c1 or c2 matches expression
       // ...
    case(c3)
-      // Code here executed if c3 matches expression
       // ...
    case
-      // Code here executed if neither c1, c2, or c3 matches expression
       // ...
    }
 
@@ -163,7 +157,6 @@ The test expression is evaluated before the beginning of each loop. ::
 
    // Form 2
    while(expression) => {
-      // Code here executes for as long as "expression" is true
       // ...
    }
 
@@ -190,7 +183,6 @@ In the following example, the body will be executed 5 times::
 
    // Form 2
    loop(5) => {
-      // Code here executed 5 times in a row
       // ...
    }
 
@@ -205,7 +197,6 @@ the following two forms of the counting loop::
 
    // Loop to 5 starting from -10 incrementing by 10
    loop(-to=5, -from= -10, -by=10)
-      // Code here executed each pass through the loop
       // ...
    /loop
 

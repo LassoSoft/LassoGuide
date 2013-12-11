@@ -243,8 +243,7 @@ value. ::
       // Push current error onto stack
       error_push
 
-      // Code that may generate an error
-      // ...
+      // ... code that may generate an error ...
 
       // Retrieve error from stack
       error_pop
