@@ -226,7 +226,7 @@ Staticarray Literals
 Lasso's :dfn:`staticarray` type is an efficient, non-resizable container for
 holding any series of object types which is used in many places in Lasso.
 Staticarrays are created in the same way as any object, but Lasso supports a
-"shortcut" syntax to produce staticarrays. This expression begins with an open
+shortcut syntax to produce staticarrays. This expression begins with an open
 parenthesis immediately followed by a colon, then zero or more comma-delimited
 expressions, ending with the closing parenthesis. ::
 
@@ -246,9 +246,9 @@ Series Literals
 
 Lasso's :dfn:`generateSeries` type is a quick and efficient way to create a
 :dfn:`series` or :dfn:`range` of integers for use with query expressions. The
-"shortcut" syntax for creating a series consists of a starting integer and
-ending integer separated by the word "to". An optional integer specifying the
-step size, which defaults to 1, can be added after the word "by". ::
+shortcut syntax for creating a series consists of a starting integer and ending
+integer separated by the word "to". An optional integer specifying the step
+size, which defaults to 1, can be added after the word "by". ::
 
    0 to 10 by 2
    // => 0, 2, 4, 6, 8, 10

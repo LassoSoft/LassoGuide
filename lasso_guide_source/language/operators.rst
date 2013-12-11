@@ -324,6 +324,8 @@ value (either zero, less than zero, or greater than zero), it can handle all
 possible types of equality tests.
 
 
+.. _operators-containment:
+
 Containment Operators
 ---------------------
 
@@ -351,8 +353,12 @@ contain any number of other arbitrary objects, so it makes sense to query them
 for their contents.
 
 
+.. _operators-conditional:
+
 Conditional Operator
 --------------------
+
+.. index:: ternary operator, conditional operator
 
 The :dfn:`conditional operator` allows for concisely implementing if/then/else
 logic in which an expression is tested and depending on its boolean value,
@@ -362,10 +368,10 @@ only one expression. The "else" portion of a conditional operator may be
 omitted. In such a case, if the condition is "false", a "void" object will be
 produced.
 
-The conditional operator uses the two "|query| " and "|" characters. The
-"|query| " follows the test condition and the "|" delimits the "then" and "else"
-expressions. A conditional operator with no "else" will have no delimiting "|"
-character. ::
+The conditional operator is a ternary operator consisting of the two "|query| "
+and "|" characters. The "|query| " follows the test condition and the "|"
+delimits the "then" and "else" expressions. A conditional operator with no
+"else" condition will have no delimiting "|" character. ::
 
    test ? expression1 | expression2
    // => // Produces expression1 if test is "true" else expression2

@@ -71,6 +71,11 @@ first form does auto-collection, as will the second if associated with an
 auto-collect block (``=> {^ ... ^}``). See the :ref:`captures` chapter for more
 information about these different types of code blocks.
 
+There is also a shortcut syntax for the if/else conditional in the form ``test ?
+expression1 | expression2``, where the first expression is run if the test is
+"true" and the second if the test is "false", described further in the
+:ref:`operators-conditional` section of the :ref:`operators` chapter.
+
 
 Match/Case Conditional
 ----------------------
