@@ -200,8 +200,8 @@
 \renewcommand{\thebibliography}[1]{
   \cleardoublepage
   \phantomsection
-  \py@OldThebibliography{1}
   \addcontentsline{toc}{part}{\bibname}
+  \py@OldThebibliography{1}
 }
 
 % Same for the indices.
@@ -212,7 +212,7 @@
   \renewcommand{\theindex}{
     \cleardoublepage
     \phantomsection
-    \py@OldTheindex
     \addcontentsline{toc}{part}{\indexname}
+    \py@OldTheindex
   }
 }

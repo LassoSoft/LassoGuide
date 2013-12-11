@@ -47,6 +47,13 @@ The main interface for Lasso Instance Manager consists of a list of all known
 Lasso Server instances on that machine. Below this list is a button for creating
 new instances.
 
+.. figure:: /_static/server_im_main_screen.png
+   :width: 100 %
+   :align: center
+   :alt: Lasso Instance Manager Main Screen
+
+   Lasso Instance Manager -- Main Screen
+
 Each instance in the list shows:
 
 -  Current licensing mode, based on the instance serial number, if any.
@@ -55,13 +62,6 @@ Each instance in the list shows:
 -  Instance name
 -  Instance version (as of 9.2.5)
 -  Instance uptime
-
-.. figure:: /_static/server_im_main_screen.png
-   :width: 100 %
-   :align: center
-   :alt: Lasso Instance Manager Main Screen
-
-   Lasso Instance Manager -- Main Screen
 
 Additionally, a row of buttons on the right permit access to the following:
 
@@ -125,7 +125,8 @@ Description
    An optional description of this Lasso instance.
 
 Serial Number
-   If you already have a serial number for the new instance, enter it here.
+   If you already have a license serial number for the new instance, enter it
+   here.
 
 OS User
    The new instance will consist of a process that runs as this specific
@@ -170,18 +171,14 @@ computer is hosting many instances for many different users, differing usernames
 may be required.
 
 
-Delete an Instance
-------------------
+Change Instance Configuration
+-----------------------------
 
-When an instance is no longer required, it can be removed. First, click the
-instance's "Configuration" button (the first of the five in the top right) to
-reveal the configuration for the instance. This view contains a
-:guilabel:`Delete Instance` button and a checkbox for indicating that the
-instance's home directory should be deleted as well. If this checkbox is not
-checked when the :guilabel:`Delete Instance` button is clicked, the instance's
-home directory will be left in place. Deleting an instance will terminate that
-instance's process, remove the instance from the list, and optionally delete the
-instance's home directory.
+After an instance has been created, the instance's host patterns and URL can
+still be modified. Click the instance's "Configuration" button (the first of the
+five in the top right) to reveal the configuration for the instance. A button is
+shown next to the editable items. Click the button and follow the directions to
+edit these items.
 
 
 Disable an Instance
@@ -195,36 +192,17 @@ serve requests. To re-enable the instance, click the :guilabel:`Start Instance`
 button near the top right of the instance view.
 
 
-Change Instance Configuration
------------------------------
+Delete an Instance
+------------------
 
-After an instance has been created, the instance's host patterns and URL can
-still be modified. Click the instance's "Configuration" button to reveal the
-configuration for the instance. A button is shown next to the editable items.
-Click the button and follow the directions to edit these items.
-
-An existing instance's serial number can also be updated. Click the button in
-the instance view which shows the instance's licensing status (upper left corner
-button). A dialog will appear, permitting a new serial number to be entered.
-Setting an instance's serial number will restart that instance.
-
-
-Restart an Instance
--------------------
-
-.. index::
-   pair: instance; restart
-
-Clicking the :guilabel:`Restart Instance` button will open an alert, confirming
-your intention to restart the instance. Pressing :guilabel:`Cancel` will clear
-the alert window and nothing further will happen. Pressing :guilabel:`OK` will
-terminate the instance's process and then restart that process. The instance's
-running light will switch to green or yellow once the instance is fully running
-again.
-
-If the instance isn't currently running, the button will say :guilabel:`Start
-Instance`. Pressing the button will not result in a prompt, and will instead
-immediately start the instance.
+When an instance is no longer required, it can be removed. First, click the
+instance's "Configuration" button to reveal the configuration for the instance.
+This view contains a :guilabel:`Delete Instance` button and a checkbox for
+indicating that the instance's home directory should be deleted as well. If this
+checkbox is not checked when the :guilabel:`Delete Instance` button is clicked,
+the instance's home directory will be left in place. Deleting an instance will
+terminate that instance's process, remove the instance from the list, and
+optionally delete the instance's home directory.
 
 
 Add Instance Notes
@@ -277,6 +255,33 @@ modified or removed unless a highly customized instance is required.
    :alt: Adding Instance Environment Variables
 
    Lasso Instance Manager -- Adding Instance Environment Variables
+
+
+Restart an Instance
+-------------------
+
+.. index::
+   pair: instance; restart
+
+Clicking the :guilabel:`Restart Instance` button will open an alert, confirming
+your intention to restart the instance. Pressing :guilabel:`Cancel` will clear
+the alert window and nothing further will happen. Pressing :guilabel:`OK` will
+terminate the instance's process and then restart that process. The instance's
+running light will switch to green or yellow once the instance is fully running
+again.
+
+If the instance isn't currently running, the button will say :guilabel:`Start
+Instance`. Pressing the button will not result in a prompt, and will instead
+immediately start the instance.
+
+
+Update License Serial Number
+----------------------------
+
+Click the button in the instance's main view which shows the instance's
+licensing status (upper left corner button). A dialog will appear, permitting a
+new serial number to be entered. Setting an instance's serial number will
+restart that instance.
 
 
 .. _instance-manager-home-directory:

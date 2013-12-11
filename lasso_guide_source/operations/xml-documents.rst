@@ -22,6 +22,27 @@ conforms to the DOM specification's zero-based indexes, as opposed to Lasso's
 standard one-based positions. This will be noted in all relevant cases within
 this chapter.
 
+
+Creating XML Documents
+======================
+
+XML documents are created either from existing XML character data or as empty
+documents. An empty XML document will initially contain only the root document
+node which can then have children or attributes added to it. A document created
+from existing XML character data will be parsed and validated and the resulting
+document object tree will be created. When attempting to create an XML document
+from existing data, if the data is not valid, then a failure will be generated
+during parsing. The current `error_msg` will indicate the encountered error.
+
+New XML documents can be created in one of two ways: the DOM Level 2-conformant
+:type:`xml_DOMImplementation` type, or the `xml` method. Both have the same
+abilities, but the `xml` method provides a simplified interface and is
+compatible with earlier Lasso versions. It's important to note that `xml` is not
+itself an object, it is merely a method that provides a moderately easier to use
+interface to XML document creation. Internally, the `xml` method uses the
+:type:`xml_DOMImplementation` type and therefore provides equivalent
+functionality to the :type:`xml_DOMImplementation` type.
+
 The following table lists all the possible objects that may be encountered
 within or inserted into an XML document.
 
@@ -75,27 +96,6 @@ within or inserted into an XML document.
    ``xml_namedNodeMap``          NamedNodeMap          Represents a collection of nodes
                                                        that can be accessed by name.
    ============================= ===================== ===================================
-
-
-Creating XML Documents
-======================
-
-XML documents are created either from existing XML character data or as empty
-documents. An empty XML document will initially contain only the root document
-node which can then have children or attributes added to it. A document created
-from existing XML character data will be parsed and validated and the resulting
-document object tree will be created. When attempting to create an XML document
-from existing data, if the data is not valid, then a failure will be generated
-during parsing. The current `error_msg` will indicate the encountered error.
-
-New XML documents can be created in one of two ways: the DOM Level 2-conformant
-:type:`xml_DOMImplementation` type, or the `xml` method. Both have the same
-abilities, but the `xml` method provides a simplified interface and is
-compatible with earlier Lasso versions. It's important to note that `xml` is not
-itself an object, it is merely a method that provides a moderately easier to use
-interface to XML document creation. Internally, the `xml` method uses the
-:type:`xml_DOMImplementation` type and therefore provides equivalent
-functionality to the :type:`xml_DOMImplementation` type.
 
 
 Using xml

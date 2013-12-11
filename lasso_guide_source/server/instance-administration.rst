@@ -56,18 +56,18 @@ System Status
 The :dfn:`System Status` tab, located in the top right portion of the page,
 contains information regarding the Lasso Server instance.
 
+-  **Uptime** -- length of time the instance has been running
+-  **CPU Time** -- how much CPU time has been consumed by the instance
+-  **Threads** -- number of threads in use by the instance
+-  **Memory** -- amount of memory consumed by the instance
+-  **Free** -- memory Lasso has been allocated but is not currently using
+
 .. figure:: /_static/server_admin_landing_status.png
    :width: 100 %
    :align: center
    :alt: Lasso Server Admin Landing Page and System Status
 
    Lasso Server Admin -- Landing Page and System Status
-
--  **Uptime** -- length of time the instance has been running
--  **CPU Time** -- how much CPU time has been consumed by the instance
--  **Threads** -- number of threads in use by the instance
--  **Memory** -- amount of memory consumed by the instance
--  **Free** -- memory Lasso has been allocated but is not currently using
 
 
 .. _instance-administration-quick-code:
@@ -103,16 +103,10 @@ The Lasso Server Admin is primarily navigated by using the pop-up menu on the
 upper left portion of the page. This is the "Main Menu" which contains the
 following divisions and options:
 
-.. figure:: /_static/server_admin_main_menu.png
-   :width: 200 pt
-   :alt: Lasso Server Admin Main Menu
-
-   Lasso Server Admin -- Main Menu
-
 Lasso
    -  Datasources -- Configure database connections.
-   -  License -- Enter license. (This can also be entered in Lasso Instance
-      Manager.)
+   -  License -- Enter license serial number. (This can also be entered in Lasso
+      Instance Manager.)
 
 Auth
    -  Users -- Configure Lasso users.
@@ -126,6 +120,12 @@ Monitors
 
 Utilities
    -  DB Browser -- Manage and browse databases.
+
+.. figure:: /_static/server_admin_main_menu.png
+   :width: 200 pt
+   :alt: Lasso Server Admin Main Menu
+
+   Lasso Server Admin -- Main Menu
 
 
 Administrative Tasks
@@ -163,8 +163,8 @@ See the :ref:`datasource-setup` chapter for detailed information on connecting
 Lasso Server to various data sources.
 
 
-Entering a Lasso Server License
--------------------------------
+Entering a License Serial Number
+--------------------------------
 
 .. index:: serial number, license
 
