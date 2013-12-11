@@ -319,7 +319,7 @@ users for both HTML and XML display. The list is generated first by the
       <tr><th>First Name</th><th>Middle Name</th><th>Last Name</th></tr>
    <?lasso
       // The primary value is given to us as the first parameter
-      local(usersAry = #1)
+      local(usersAry) = #1
 
       // Start outputting HTML for each user
       with user in #usersAry
@@ -341,7 +341,7 @@ users for both HTML and XML display. The list is generated first by the
    <userslist>
    <?lasso
       // The primary value is given to us as the first parameter
-      local(usersAry = #1)
+      local(usersAry) = #1
 
       // Start outputting XML for each user
       with user in #usersAry

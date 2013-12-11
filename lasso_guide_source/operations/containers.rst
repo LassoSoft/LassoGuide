@@ -489,7 +489,7 @@ Creating Map Objects
    Example of creating a map with a series of parameters using string-based
    keys::
 
-      local(myMap = map(
+      local(myMap) = map(
          'C' = 247,
          'L' = "Hi!",
          'G' = 97.401,

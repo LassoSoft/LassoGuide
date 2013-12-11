@@ -80,14 +80,16 @@ and received::
    local(creatorPipes) = split_thread => {
 
       // Save the filedescs sent to this new thread
-      local(writePipe = #1->first,
-         readPipe = #1->second)
+      local(
+         writePipe = #1->first,
+         readPipe = #1->second
+      )
 
       // Loop forever, reading messages and sending replies
       while(true) => {
 
          // Read an object
-         local(o = #readPipe->readObject)
+         local(o) = #readPipe->readObject
 
          // Print a message
          stdoutnl("I read an object: " + #o)

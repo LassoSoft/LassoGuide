@@ -106,10 +106,10 @@ result of which becomes an element in the resulting sequence. ::
    select #n * #n
    // => 1, 4, 9, 16, 25, 36, 49, 64, 81
 
-One query expression can be used within another. In the next example, the query
-expression is assigned to a variable. That variable is used in a subsequent
-query expression. The first query expression is not evaluated until the second
-query expression is evaluated. ::
+One query expression can be nested within another. In the next example, the
+query expression is assigned to a variable. That variable is used in a
+subsequent query expression. The first query expression is not evaluated until
+the second query expression is evaluated. ::
 
    local(qe =
       with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
@@ -135,7 +135,7 @@ The following examples show how the query expression do clause can be used to
 manipulate the elements in the source array. Both query expressions operate
 identically. ::
 
-   local(ary = array('the', 'quick', 'brown', 'fox', 'jumped', 'the', 'shark'))
+   local(ary) = array('the', 'quick', 'brown', 'fox', 'jumped', 'the', 'shark')
 
    with n in #ary
    do #n->upperCase
@@ -451,7 +451,7 @@ with their last and first name, and performs a query expression over them. ::
       order by #key
    select pair(#key, #g)
 
-   // => // Breaking up the return value for readability
+   // => // Line breaks added for readability
    // (Hammershaimb = (Ármarinn = Hammershaimb), (Hjörtur = Hammershaimb)),
    // (Jones = (Krinn = Jones), (Kjarni = Jones)),
    // (Riley = (Björg = Riley)),
@@ -570,7 +570,7 @@ over a fixed list of users, which it provides to the query one by one. ::
       trait { import trait_queriable }
 
       public forEach() => {
-         local(gb = givenBlock)
+         local(gb) = givenBlock
 
          // Provide the 6 users one at a time
          #gb->invoke('Krinn'='Jones')
@@ -584,7 +584,7 @@ over a fixed list of users, which it provides to the query one by one. ::
    }
 
    // Create a user_list object
-   local(ul = user_list)
+   local(ul) = user_list
 
    // Use it in a query
    with user in #ul

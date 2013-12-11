@@ -98,7 +98,7 @@ then we can import this trait to automatically get an implementation of
       }
 
       public size()::integer => {
-         local(temp = date(-year=.'y', -month=.'m'+1, -day=1))
+         local(temp) = date(-year=.'y', -month=.'m'+1, -day=1)
          #temp->subtract(-day=1)
          return #temp->dayofmonth
       }
@@ -255,7 +255,7 @@ provided trait name applied to it.
 In this code the `~null->isA` method returns "2" since the ``month`` type does
 have the ``trait_firstLast`` trait applied to it::
 
-   local(mymonth = month(2008, 12))
+   local(mymonth) = month(2008, 12)
    #mymonth->isA(::trait_firstlast)
    // => 2
 

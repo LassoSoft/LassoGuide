@@ -46,6 +46,7 @@ default values, using the following syntax examples::
 
    // Defines local "name" set to the value of the expression
    local(name = expression)
+   local(name) = expression
 
    // Defines locals "name" without a value and "b" set to 1
    local(name, b = 1)
@@ -106,6 +107,7 @@ declaration. ::
 
    // Defines var "name" set to the value of the expression
    var(name = expression)
+   var(name) = expression
 
    // Defines vars "name" without a value and "b" set to 1
    var(name, b = 1)
@@ -120,14 +122,12 @@ object. That value is used as the variable's name. ::
    // Defines var with name of nameExpr
    var(nameExpr = expression)
 
-.. note::
-   Because a literal variable name can resemble a method call with no
-   parameters, if the variable name is intended to be the result of a method
-   call, then that call should be given empty parentheses ``()`` to
-   disambiguate. ::
+Because a literal variable name can resemble a method call with no parameters,
+if the variable name is intended to be the result of a method call, then that
+call should be given empty parentheses ``()`` to disambiguate. ::
 
-      // Defines var with the name of what nameCall() returns
-      var(nameCall() = expression)
+   // Defines var with the name of what nameCall() returns
+   var(nameCall() = expression)
 
 A var can be accessed using two methods, similar to that of local variables.
 First, the var may simply be referenced using the ``var`` syntax along with the
@@ -170,8 +170,8 @@ two colons (``::``) and then the name of the type or trait to which the variable
 will be constrained, immediately following the variable name. The following
 example applies constraints to a local and a var::
 
-   local(lname::integer = 0)
-   var(vname::trait_forEach = array)
+   local(lname::integer) = 0
+   var(vname::trait_forEach) = array
 
 In the above example, "lname" is constrained to hold only integers, and "vname"
 is constrained to hold only types supporting :trait:`trait_forEach`. The next
@@ -189,7 +189,7 @@ example shows valid and invalid usage of the two variables::
    $vname = 940
    // => // FAILURE: $vname can only hold types that support trait_forEach
 
-   local(lname = 'hello')
+   local(lname) = 'hello'
    // => // FAILURE: #lname can still only hold integers
 
 When applying a type constraint in a variable declaration, a provided default

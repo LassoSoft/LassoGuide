@@ -292,7 +292,7 @@ the outside world. ::
 Given the definition above, the following example illustrates valid and invalid
 use of a ``person`` object::
 
-   local(p = person)
+   local(p) = person
    #p->describe
    // =>  , age
 
@@ -449,13 +449,13 @@ The example type ``person`` would automatically have a creator method ``person``
 that returns a new instance of the type. ::
 
    // Assigns a new person object to #myperson
-   local(myperson = person())
+   local(myperson) = person()
 
 If a type does not define its own creator method(s), then it is provided with a
 default zero-parameter type creator. Attempting to provide parameters to a type
 creator that does not accept any parameters will fail. ::
 
-   local(myperson = person(264))
+   local(myperson) = person(264)
    // => // FAILURE: person() accepts no parameters
 
 
@@ -494,7 +494,7 @@ To create an instance of this type, the creator must be called with the required
 parameters. The following code will create a new instance of the ``person``
 type::
 
-   local(myperson = person('John', 'Doe', date('1/1/1974')))
+   local(myperson) = person('John', 'Doe', date('1/1/1974'))
 
 Note that when a creator has been specified, the default creator, which requires
 no parameters, is not automatically provided. Lasso will not supply a default
@@ -686,7 +686,7 @@ be invoked::
 The following shows how a ``person`` object would be invoked, by either directly
 calling the ``invoke`` method or by applying parentheses::
 
-   local(per = person('Bob', 'Parker'))
+   local(per) = person('Bob', 'Parker')
 
    #per()
    // => Bob Parker was invoked!

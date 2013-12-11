@@ -79,8 +79,8 @@ variables. Local variables are lexically scoped while thread variables are
 available anywhere in the execution of the thread they are defined in. Here is
 an example of creating and using both types of variables::
 
-   var(threadVar  = 12)    // Creates a thread variable
-   local(localVar = 30)    // Creates a local variable
+   local(localVar) = 30    // Creates a local variable
+   var(threadVar)  = 12    // Creates a thread variable
    $threadVar + #localVar
 
    // => 42

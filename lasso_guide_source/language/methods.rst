@@ -461,7 +461,7 @@ series of instructions within the method body to generate the return value for
 the method::
 
    define strings_combine(value::string, with, alsoWith='') => {
-      local(result = string(#value))
+      local(result) = string(#value)
       #result->append(#with->asString)
       #result->append(#alsoWith->asString)
       return #result
@@ -615,7 +615,7 @@ second method requires two parameters, such as in the example that follows::
       return '[log] array with ' + #a->size + ' elements'
    }
    define log_object(a::array, extra::boolean) => {
-      local(result = log_object(#a))
+      local(result) = log_object(#a)
       #extra ?
          return #result + '. Elements: ' + #a->join(', ')
       return #result

@@ -275,7 +275,7 @@ A :dfn:`single line comment` begins with two forward slashes (``//``). The
 comment runs until the end of the line, which is either a carriage return, line
 feed, or a carriage return/line feed pair. ::
 
-   local(n = 123) // This is the first comment
+   local(n) = 123 // This is the first comment
    // This is another comment
    #n += 456
 
@@ -291,7 +291,7 @@ characters, as well as multiple lines, are permitted between the opening
 delimiter (``/*``) and closing delimiter (``*/``). Block comments cannot be
 nested. ::
 
-   local(n = 123)
+   local(n) = 123
    /* this is a block comment
    it has multiple lines */
    #n += 456
