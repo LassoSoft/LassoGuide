@@ -260,6 +260,9 @@ latex_elements = {
 %\setlength{\extrarowheight}{1pt}
 \renewcommand{\arraystretch}{1.2}
 
+% For columnizing a section of the LCAPI reference
+\usepackage{multicol}
+
 % For some reason, this works to get the default font color
 % (Using fontspec never allowed for Sphinx's overrides to kick in.)
 \makeatletter
