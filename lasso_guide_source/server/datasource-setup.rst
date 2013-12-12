@@ -169,7 +169,7 @@ below.
 -  Configure FileMaker Server with a Client Services identifier and passcode.
    Enter this same identifier and passcode in the Web Publishing Administration
    Console.
--  Ensure XML Publishing is turned on in the Web Publishing Administration
+-  Verify XML Publishing is turned on in the Web Publishing Administration
    Console.
 -  The databases to be accessed by Lasso must be in the FileMaker Server
    Data/Databases folder and must be "Open" within FileMaker Server.
@@ -205,7 +205,8 @@ To add a new FileMaker Server host:
    are being hosted.
 #. Enter the TCP port the FileMaker Server communicates on in the "Port" field.
    See the FileMaker Server documentation for information on where to find or
-   set this. It is commonly "80" for FileMaker Server.
+   set this. It is commonly "80" for FileMaker Server, or "443" to connect over
+   https.
 #. Select "Yes" from the :guilabel:`Enabled` drop-down to enable the host.
 #. Enter a username for the host in the "Username" field. Lasso will connect to
    the data source host and all databases therein using this username by
@@ -265,6 +266,17 @@ hosted on the same machine as Lasso might appear::
    ) => {^
       found_count
    ^}
+
+If there are no databases or tables listed, check the following links in a web
+browser to verify that the Web Publishing Engine is working correctly. Replace
+"filemaker host" and "db name" with values for your particular situation.
+
+-  :samp:`http://{filemaker host}/fmi/xml/FMPXMLRESULT.xml?-dbnames`
+-  :samp:`http://{filemaker host}/fmi/xml/FMPXMLRESULT.xml?-db={db name}&-layoutnames`
+
+If either URL returns an error code other than 0 or fails in any way, Lasso will
+be unable to submit requests to FileMaker Server. Verify that XML Publishing is
+enabled or consult the FileMaker Server documentation on how to proceed.
 
 
 .. _datasource-setup-mysql:

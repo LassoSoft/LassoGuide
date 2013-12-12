@@ -461,7 +461,7 @@ is changed to "John Surname". ::
       'first_name'='John',
       'last_name'='Surname'
    ) => {^
-      keyfield_value + ': ' + field('first_name') + ' ' + field('last_name')
+      keyField_value + ': ' + field('first_name') + ' ' + field('last_name')
    ^}
 
    // => 126: John Surname
@@ -474,7 +474,7 @@ value is set to the empty string. ::
       -delete,
       -database='contacts',
       -table='people',
-      -keyfield='',
+      -keyField='',
       -keyValue=127
    ) => {}
 

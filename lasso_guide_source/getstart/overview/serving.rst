@@ -70,7 +70,7 @@ instance's home directory. By default, URLs for the LassoApp will start with
 
 
 Special Files
-------------------
+-------------
 
 _install Files
    The first time an instance loads a LassoApp, it will execute any files with a
@@ -118,8 +118,7 @@ people objects and then return that array at the end::
 
    local(found_people) = array
 
-   // Code to populate the array
-   // ...
+   // ... populate the array ...
 
    return #found_people
 

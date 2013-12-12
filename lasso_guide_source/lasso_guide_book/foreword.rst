@@ -23,11 +23,11 @@ and almost all live their lives unaware of Lasso's importance. Lasso has become
 a foundation block of the world's digital future, steadily inspiring joy and
 value to those who use it regularly.
 
-In this latest version of Lasso, Lasso 9, a monumental leap in its underlying
-theory and architecture was made to ensure that the future of Lasso would be
-preserved. With countless hours of effort, a group of dedicated contributors
-have worked together to ensure that a strong central manual---a canon---would
-exist for this new language. These individuals include:
+This latest version of Lasso, Lasso 9, makes a monumental leap in its underlying
+theory and architecture to secure the future of the platform. With countless
+hours of effort, a group of dedicated contributors have worked together to
+ensure that a strong central manual---a canon---would exist for this new
+language. These individuals include:
 
 | Kyle Jessup
 | Fletcher Sandbeck

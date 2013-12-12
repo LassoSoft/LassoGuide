@@ -460,7 +460,7 @@ with their last and first name, and performs a query expression over them. ::
 The example above example breaks down into six steps:
 
 #. Begin the query expression using "n" as the variable to hold each initial
-   element from the source array. There are 6 elements in the source array, so
+   element from the source array. There are six elements in the source array, so
    "n" will start off pointing to the first element. Once the query expression
    completes its first iteration, "n" will point to the second element and the
    query will perform another iteration, and so on, until the end of the array

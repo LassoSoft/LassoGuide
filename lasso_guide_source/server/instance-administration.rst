@@ -49,6 +49,8 @@ elsewhere in this guide.
 User Interface
 ==============
 
+All settings for a particular instance are configured here.
+
 
 System Status
 -------------

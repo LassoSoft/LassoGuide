@@ -67,7 +67,7 @@ From here on, you can read up on using the :ref:`instance-manager` and
 :ref:`instance-administration` interfaces.
 
 .. note::
-   On OS X Server, ensure that the Web or Websites service is running in Server
+   On OS X Server, verify that the Web or Websites service is running in Server
    Preferences or Server.app.
 
 .. important::

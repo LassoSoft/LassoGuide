@@ -16,7 +16,7 @@ understanding the rest of the topics and examples given in this guide.
 Calling Lasso Web Pages
 =======================
 
-.. index:: delimiters
+.. index:: delimiters, no_square_brackets
 
 Lasso is most often used to serve web applications. Lasso code can be embedded
 in HTML pages and executed before they are served to web visitors. A page that
