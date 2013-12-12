@@ -71,14 +71,15 @@ Basic Data Source Connector
    This section provides a walkthrough of an example data source to show how
    some of the LCAPI features are used. This code can be found in the
    "SampleConnector" example project which can be downloaded with the other
-   LCAPI examples :download:`here <../_downloads/lcapi_examples.zip>`.
+   :download:`LCAPI examples <../_downloads/lcapi_examples.zip>` from this site.
 
 .. only:: latex
 
    This section provides a walkthrough of an example data source to show how
    some of the LCAPI features are used. This code can be found in the
    "SampleConnector" example project which can be downloaded with the other
-   LCAPI examples `here <http://lassoguide.com/_downloads/lcapi_examples.zip>`_.
+   `LCAPI examples <http://lassoguide.com/_downloads/lcapi_examples.zip>`_
+   online.
 
 This example data source simply displays some simple text as each action is
 called from a Lasso `inline`. It is not an effective or useful data source; it's

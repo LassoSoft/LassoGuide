@@ -18,14 +18,16 @@ for Windows, OS X, and Linux.
 .. only:: html
 
    This chapter provides a walkthrough for building and debugging an example
-   LCAPI method. You can download the source code for this and other examples
-   :download:`here <../_downloads/lcapi_examples.zip>`.
+   LCAPI method. You can download the :download:`source code
+   <../_downloads/lcapi_examples.zip>` for this and other examples from this
+   site.
 
 .. only:: latex
 
    This chapter provides a walkthrough for building and debugging an example
-   LCAPI method. You can download the source code for this and other examples
-   `here <http://lassoguide.com/_downloads/lcapi_examples.zip>`_.
+   LCAPI method. You can download the `source code
+   <http://lassoguide.com/_downloads/lcapi_examples.zip>`_ for this and other
+   examples online.
 
 
 .. _lcapi-overview-requirements:

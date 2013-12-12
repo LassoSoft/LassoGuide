@@ -74,17 +74,18 @@ methods: ``example_file->open``, ``example_file->close``,
 
 .. only:: html
 
-   The example project is the "CAPIFile" project in the LCAPI examples found
-   :download:`here <../_downloads/lcapi_examples.zip>`. Due to the length of the
-   code in that file, the entire code is not reproduced here. Instead, this
-   section provides a conceptual overview of the ``example_file`` type and
-   describes the basic LCAPI functions used to implement it.
+   The example project is the "CAPIFile" project in the :download:`LCAPI
+   examples <../_downloads/lcapi_examples.zip>` downloadable from this site. Due
+   to the length of the code in that file, the entire code is not reproduced
+   here. Instead, this section provides a conceptual overview of the
+   ``example_file`` type and describes the basic LCAPI functions used to
+   implement it.
 
 .. only:: latex
 
-   The example project is the "CAPIFile" project in the LCAPI examples found
-   `here <http://lassoguide.com/_downloads/lcapi_examples.zip>`_. Due to the
-   length of the code in that file, the entire code is not reproduced here.
+   The example project is the "CAPIFile" project in the `LCAPI examples
+   <http://lassoguide.com/_downloads/lcapi_examples.zip>`_ found online. Due to
+   the length of the code in that file, the entire code is not reproduced here.
    Instead, this section provides a conceptual overview of the ``example_file``
    type and describes the basic LCAPI functions used to implement it.
 
