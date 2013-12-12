@@ -578,7 +578,7 @@ Lasso has two methods to find which records are to be deleted.
          -table='people',
          -keyField='id',
          -keyValue=1
-      ) =>{}
+      ) => {}
 
    Note that if the specified key value returns multiple records then all of
    those records will be deleted from the target table. If the ``-keyField`` is
@@ -611,7 +611,7 @@ Lasso has two methods to find which records are to be deleted.
 Lasso returns an empty found set in response to a ``-delete`` action. Since the
 record has been deleted from the database the `field` method can no longer be
 used to retrieve any values from it. The `error_currentError` method should be
-checked to ensure that it has a value of "No Error" in order to confirm that the
+checked to verify that it has a value of "No Error" in order to confirm that the
 record has been successfully deleted.
 
 There is no confirmation or undo of a delete action. When a record is removed

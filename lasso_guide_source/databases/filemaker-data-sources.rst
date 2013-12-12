@@ -22,8 +22,8 @@ with FileMaker data sources.
    chapter cannot be easily retargeted to work with a different data source.
 
 
-Terminology
-===========
+Lasso and FileMaker
+===================
 
 Since Lasso works with many different data sources this documentation uses
 data source--agnostic terms to refer to databases, tables, and fields. The
@@ -33,8 +33,8 @@ their Lasso counterparts:
 Database
    Database is used to refer to a single FileMaker database file. FileMaker
    databases differ from other databases in Lasso in that they contain layouts
-   rather than individual data tables. Even in FileMaker 7--12, Lasso sees
-   individual layouts rather than data tables. From a data storage point of
+   rather than individual data tables. Even in FileMaker Server 7--12, Lasso
+   sees individual layouts rather than data tables. From a data storage point of
    view, a FileMaker database is equivalent to a single MySQL table.
 
 Layout
@@ -55,22 +55,16 @@ Field
    including the values for related fields, repeating fields, and fields in
    portals.
 
-.. important::
-   Every database that is referenced by a related field or a portal must have
-   the same permissions defined. If a related database does not have the proper
-   permissions then not only will FileMaker leave the related fields blank, but
-   will deny the entire database request.
-
 
 Performance Tips
-================
+----------------
 
 This section contains a number of tips that will help get the best performance
 from a FileMaker database. Since queries must be performed sequentially within
-FileMaker, even small optimizations can yield significant increases in the speed
-of web serving under heavy load.
+FileMaker Server, even small optimizations can yield significant increases in
+the speed of web serving under heavy load.
 
--  **Dedicated FileMaker Machine** --
+-  **Dedicated FileMaker Server Machine** --
    For best performance, place the FileMaker Server on a different machine from
    Lasso Server and the web server.
 
@@ -89,7 +83,7 @@ of web serving under heavy load.
    Layouts should be created with the minimal number of fields required for
    Lasso. All the data for the fields in the layout will be sent to Lasso with
    the query results. Limiting the number of fields can dramatically cut down
-   the amount of data that needs to be sent from FileMaker to Lasso.
+   the amount of data that needs to be sent from FileMaker Server to Lasso.
 
 -  **Value Lists** --
    For FileMaker Server data sources use the ``-noValueLists`` parameter to
@@ -99,8 +93,9 @@ of web serving under heavy load.
 -  **Layout Response** --
    For FileMaker Server data sources use the ``-layoutResponse`` parameter to
    specify what layout should be used to return results from FileMaker. A
-   different layout can be used to specify the request and for the result of the
-   request.
+   different layout from what was specified in the request can be used for the
+   result. This is a replacement for the ``-returnField`` parameter, which is
+   not supported for FileMaker data sources.
 
 -  **Sorting** --
    Sorting can have a serious impact on performance if large numbers of records
@@ -115,13 +110,13 @@ of web serving under heavy load.
 
 -  **Max Records** --
    Using ``-maxRecords`` to limit the number of records returned in the result
-   set from FileMaker can speed up performance. Use ``-maxRecords`` and
+   set from FileMaker Server can speed up performance. Use ``-maxRecords`` and
    ``-skipRecords`` methods to navigate a visitor through the found set.
 
 -  **Calculation Fields** --
    Calculation fields should be avoided if possible. Searching or sorting on
-   unindexed, unstored calculation fields can have a negative effect on
-   FileMaker performance.
+   unindexed, uncached calculation fields can have a negative effect on
+   FileMaker Server performance.
 
 -  **FileMaker Scripts** --
    The use of FileMaker scripts should be avoided if possible. While FileMaker
@@ -130,14 +125,14 @@ of web serving under heavy load.
    often with greater performance.
 
 In addition to these tips, MySQL or PostgreSQL can be used to shift some of the
-burden off of FileMaker. MySQL and PostgreSQL can usually perform database
-searches much faster than FileMaker. Lasso also includes sessions and compound
-data types that can be used to perform some of the tasks of a database, but with
-higher performance for small amounts of data.
+burden off of FileMaker Server. MySQL and PostgreSQL can usually perform
+database searches much faster than FileMaker. Lasso also includes sessions and
+compound data types that can be used to perform some of the tasks of a database,
+but with higher performance for small amounts of data.
 
 
 Compatibility Tips
-==================
+------------------
 
 Following these tips will help to ensure that it is easy to transfer data from a
 FileMaker database to another data source, such as a PostgreSQL database, at a
@@ -227,7 +222,7 @@ explained further below. For example, to find records where the field
 
 The ``-rx`` operator can be used to pass a raw FileMaker search expression as a
 query. This allows the use of any of the FileMaker search symbols. See the
-`FileMaker documentation` for a full explanation of how these symbols work.
+`FileMaker documentation`_ for a full explanation of how these symbols work.
 
 .. tabularcolumns:: |l|L|
 
@@ -267,9 +262,9 @@ range. For example a date in 2006 can be found by searching for ``-rx,
 Logical Operators
 -----------------
 
-FileMaker data sources default to performing an "and" search. The records that
-are returned from the data source must match all of the specified criteria. It
-is also possible to specify ``-opLogical`` to switch to an "or" search where the
+FileMaker data sources default to performing an AND search. The records that are
+returned from the data source must match all of the specified criteria. It is
+also possible to specify ``-opLogical`` to switch to an OR search where the
 records that are returned from the data source may match any of the specified
 criteria.
 
@@ -283,8 +278,8 @@ or the "last_name" is "Doe". This would return records for "John Doe" as well as
 'last_name'='Doe'``
 
 
-Complex Queries with FileMaker 9 and Later
-------------------------------------------
+Complex Queries with FileMaker Server 9 and Later
+-------------------------------------------------
 
 Starting with FileMaker Server 9, a search request is made up of one or more
 queries. By default a single query is generated and all of the search terms
@@ -300,7 +295,7 @@ used for more complex criteria. It may also be necessary to use multiple queries
 for more complex search criteria.
 
 Search requests in FileMaker Server 9 and later do not support the "Not Equals"
-operator or any of the "Not"-variant operators. Instead, these should be created
+operator or any of the NOT-variant operators. Instead, these should be created
 by combining an omit query with the appropriate affirmative operator. The
 ``-opLogical``, ``-opBegin``, and ``-opEnd`` operators are not supported. The
 ``-or`` and ``-not`` operators must be used instead.
@@ -330,8 +325,8 @@ We start an additional query using an ``-or`` parameter. FileMaker runs the
 first and second queries independently and then combines the search results. The
 result of the following search terms will be to find every record where the
 field "first_name" begins with the letter "J" and the field "last_name" begins
-with either the letter "D" or the letter "S". Each records in the result set
-will match either the first query or the second query. ::
+with either the letter "D" or the letter "S". Each record in the result set will
+match either the first query or the second query. ::
 
    -bw, 'first_name'='J',
    -bw, 'last_name'='D',
@@ -353,7 +348,7 @@ generating a complete result set. Then, the ``-not`` queries will be run and any
 records that match those queries will be omitted from the found set. The result
 of the following search terms will be to find every record where the field
 "first_name" begins with the letter "J" and the field "last_name" begins with
-the letter "D" except for the record for "John Doe". Each records in the result
+the letter "D" except for the record for "John Doe". Each record in the result
 set will match the first query and will not match the second query. ::
 
    -bw, 'first_name'='J',
@@ -367,14 +362,14 @@ or a few ``-or`` queries, but sometimes it is more logical to construct a large
 result set and then use one or more ``-not`` queries to omit records from it.
 
 
-Additional Commands for FileMaker 9 and Later
----------------------------------------------
+Additional Commands for FileMaker Server 9 and Later
+----------------------------------------------------
 
 FileMaker Server 9 supports a number of additional unique commands that are
 summarized in the following table. Most of these commands are passed through to
-FileMaker without modification by Lasso. The :title-reference:`FileMaker Server
-9 Custom Web Publishing with XML and XSLT documentation` should be consulted for
-full details about these commands.
+FileMaker Server without modification by Lasso. The :title-reference:`FileMaker
+Server 9 Custom Web Publishing with XML and XSLT documentation` should be
+consulted for full details about these commands.
 
 .. tabularcolumns:: |l|L|
 
@@ -392,8 +387,8 @@ full details about these commands.
    |``-noValueLists``           |Suppresses the fetching of value list data for          |
    |                            |FileMaker Server data sources.                          |
    +----------------------------+--------------------------------------------------------+
-   |``-relatedSets.filter=?``   |If set to "layout", FileMaker will return only the      |
-   |                            |number of related records shown in portals on the       |
+   |``-relatedSets.filter=?``   |If set to "layout", FileMaker Server will return only   |
+   |                            |the number of related records shown in portals on the   |
    |                            |current layout. Defaults to returning all records up to |
    |                            |the number set by ``-relatedSets.max``.                 |
    +----------------------------+--------------------------------------------------------+
@@ -550,7 +545,8 @@ examples are included in the sections that follow.
    repeating fields. Fields from the current table are named simply (e.g.
    ``field('first_name')``). Fields from a related record are named with the
    related database name, two colons, and the name of the field (e.g.
-   ``field('Calls::Approved')``).
+   ``field('Calls::Approved')``). Repeating fields include the repetition number
+   in parentheses (e.g. ``field('Responses(3)')``).
 
 .. method:: repeating(name::string)
 
@@ -589,8 +585,8 @@ related fields when records are added or updated.
 .. important::
    Every database that is referenced by a related field or a portal must have
    the same permissions defined. If a related database does not have the proper
-   permissions then not only will FileMaker leave the related fields blank, but
-   will deny the entire database request.
+   permissions then not only will FileMaker Server leave the related fields
+   blank, but will deny the entire database request.
 
 
 Return Data from a Related Field
@@ -668,8 +664,8 @@ current FileMaker layout in order for its values to be retrieved using Lasso.
 .. important::
    Every database that is referenced by a related field or a portal must have
    the same permissions defined. If a related database does not have the proper
-   permissions then not only will FileMaker leave the related fields blank, but
-   will deny the entire database request.
+   permissions then not only will FileMaker Server leave the related fields
+   blank, but will deny the entire database request.
 
 Only the number of repetitions formatted to display within FileMaker will be
 displayed using Lasso. A portal must contain a scroll bar in order for all
@@ -762,8 +758,8 @@ about how to create and use value lists within FileMaker.
 In order to display values from a value list, the layout referenced in the
 current database action must contain a field formatted to show the desired value
 list as a drop-down menu, select list, checkboxes, or radio buttons. Lasso
-cannot reference a value list directly; but can only reference a value list
-through a formatted field in the current layout.
+cannot reference a value list directly, but can reference a value list through a
+formatted field in the current layout.
 
 .. index:: value_list(), value_listItem(), selected(), checked()
 
@@ -777,7 +773,8 @@ through a formatted field in the current layout.
 .. method:: value_listItem()
    :noindex:
 
-   Returns the value for the current item in a value list.
+   While in a `value_list` capture block, it returns the value for the current
+   item.
 
 .. method:: selected()
    :noindex:
@@ -832,7 +829,7 @@ The example shows a single ``<select>`` tag within an `inline` capture block
 with a ``-show`` command. If many value lists from the same database are being
 formatted, they can all be contained within a single inline. ::
 
-   '<form action="response_page.lasso" method="post">\n'
+   '<form action="response.lasso" method="post">\n'
    inline(
       -show,
       -database='contacts',
@@ -848,7 +845,7 @@ formatted, they can all be contained within a single inline. ::
    '</form>\n'
 
    // =>
-   // <form action="response_page.lasso" method="post">
+   // <form action="response.lasso" method="post">
    // <select name="title">
    //    <option value="Mr." selected>Mr.</option>
    //    <option value="Mrs." >Mrs.</option>
@@ -867,7 +864,7 @@ all the values from a value list as radio buttons. The visitor will be able to
 select one value from the value list. Checkboxes can be created with the same
 code by changing the type from "radio" to "checkbox". ::
 
-   '<form action="response_page.lasso" method="post">\n'
+   '<form action="response.lasso" method="post">\n'
    inline(
       -show,
       -database='contacts',
@@ -881,7 +878,7 @@ code by changing the type from "radio" to "checkbox". ::
    '</form>\n'
 
    // =>
-   // <form action="response_page.lasso" method="post">
+   // <form action="response.lasso" method="post">
    //    <input type="radio" name="title" value="Mr." /> Mr.
    //    <input type="radio" name="title" value="Mrs." /> Mrs.
    //    <input type="radio" name="title" value="Ms." /> Ms.

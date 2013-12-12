@@ -35,7 +35,7 @@ Supported Features for SQL Data Sources
 
 The following lists detail the features of each data source in this chapter.
 Since some features are only available in certain data sources it is important
-to check these tables when reading the documentation in order to ensure that
+to check these tables when reading the documentation in order to verify that
 each data source supports your solution's required features.
 
 
@@ -185,7 +185,7 @@ SQL Data Source Tips
    PostgreSQL).
 
 -  Some data sources will truncate any data beyond the length they are set up to
-   store. Ensure that all fields have sufficient capacity for the values that
+   store. Verify that all fields have sufficient capacity for the values that
    need to be stored in them.
 
 -  Use ``-returnField`` parameters to reduce the number of fields that are
@@ -211,7 +211,7 @@ Security Tips
    statements. Any SQL strings that have visitor-defined data should be
    sanitized using the `string->encodeSql` method for MySQL data sources and the
    `string->encodeSql92` method for SQL92-compliant data sources such as SQLite,
-   PostgreSQL, or JDBC data sources. Encoding the values in this manner ensures
+   PostgreSQL, or ODBC data sources. Encoding the values in this manner ensures
    that quotes and other reserved characters are properly escaped within the SQL
    statement, thereby helping to prevent SQL injection attacks.
 
@@ -272,7 +272,7 @@ Check Whether a Database is Hosted by MySQL
 -------------------------------------------
 
 The following example shows how to use `lasso_datasourceIsMySQL` to check
-whether the database "Example" is hosted by MySQL or not::
+whether the database "example" is hosted by MySQL or not::
 
    if(lasso_datasourceIsMySQL('example'))
       stdoutnl("Example is hosted by MySQL!")
@@ -288,8 +288,8 @@ List All Databases Hosted by MySQL
 
 Use the `database_names` method to list all databases available to Lasso. The
 `lasso_datasourceIsMySQL` method can be used to check each database and only
-those that MySQL hosts will be returned. The result shows two databases, "site"
-and "example", which are available through MySQL::
+list those which are MySQL hosts. The result shows two databases, "site" and
+"example", which are available through MySQL::
 
    database_names
       if(lasso_datasourceIsMySQL(database_nameItem))
@@ -446,11 +446,11 @@ summarized in the following table.
    Parameter       Description
    =============== =============================================================
    ``-distinct``   Causes a ``-search`` action to only output records that
-                   contain unique field values (comparing only returned fields)
-                   or a ``findAll`` action to return records that are distinct
-                   across all fields. Does not require a value. May be used with
-                   the ``-returnField`` parameter to limit the fields checked
-                   for distinct values. MySQL only.
+                   contain unique field values, comparing only across returned
+                   fields, or a ``findAll`` action to return records that are
+                   distinct across all fields. Does not require a value. May be
+                   used with the ``-returnField`` parameter to limit which
+                   fields are checked for distinct values. MySQL only.
    ``-groupBy=?``  Specifies a field name that should by used as the "GROUP BY"
                    statement for a search action. Allows data to be summarized
                    based on the values of the specified field.
@@ -715,8 +715,8 @@ field::
    ) => {}
 
 
-Value Lists
-===========
+Value Lists for ENUM or SET Fields
+==================================
 
 A :dfn:`value list` in Lasso is a set of possible values that can be used for a
 field. Value lists in MySQL are lists of predefined and stored values for a
@@ -747,7 +747,7 @@ displayed using the methods defined below. None of these methods will work in
    the data of the "ENUM" or "SET" field.
 
 .. note::
-   See the :ref:`searching-displaying` chapter for information about the
+   See the :ref:`database-interaction` chapter for information about the
    ``-show`` parameter which is used throughout this section.
 
 
@@ -997,12 +997,7 @@ in Lasso, or they can be used alongside standard inline actions (e.g.
 is desired that cannot be replicated using standard database commands.
 
 .. note::
-   The ``-sql`` inline parameter is not supported for FileMaker data sources.
-
-.. note::
-   Documentation of SQL itself is outside the realm of this guide. Please
-   consult the documentation included with your data source for information on
-   what SQL statements it supports.
+   SQL statements are not supported for FileMaker data sources.
 
 For most data sources multiple SQL statements can be specified within the
 ``-sql`` parameter separated by a semicolon. Lasso will issue all of the
@@ -1017,7 +1012,7 @@ to return the results from one of the result sets.
    passed to the data source and helps to prevent SQL injection attacks.
    The `string->encodeSql` method should be used to encode values for MySQL
    strings. The `string->encodeSql92` method should be used to encode values
-   for strings for other SQL-compliant data sources including JDBC data sources
+   for strings for other SQL-compliant data sources including ODBC data sources
    and SQLite. The ``-search``, ``-add``, ``-update``, etc. database actions
    automatically sanitize values passed as pairs into an inline.
 
@@ -1057,29 +1052,16 @@ When referencing the name of a database and table in a SQL statement (e.g.
 "contacts.people"), only the true names of a database can be used as MySQL does
 not recognize Lasso database aliases in a SQL command.
 
-.. index:: encodeSql(), encodeSql92()
-
-.. member:: string->encodeSql()
-   :noindex:
-
-   Encodes illegal characters in MySQL string literals by escaping them with a
-   backslash. Helps to prevent SQL injection attacks and ensures that SQL
-   statements only contain valid characters. This method must be used to encode
-   visitor supplied values within SQL statements for MySQL strings.
-
-.. member:: string->encodeSql92()
-   :noindex:
-
-   Encodes illegal characters in SQL string literals by escaping a single quote
-   with two single quotes. Helps to prevent SQL injection attacks and ensures
-   that SQL statements only contain valid characters. This method can be used to
-   encode values for SQLite and most other SQL-compliant data sources.
-
 Results from a SQL statement are returned in a record set within the `inline`
 method. The results can be read and displayed using the `records` or `rows`
 methods and the `field` or `column` method. However, many SQL statements return
 a synthetic record set that does not correspond to the names of the fields of
 the table being operated upon. This is demonstrated in the examples that follow.
+
+.. note::
+   Documentation of SQL itself is beyond the scope of this guide. Please consult
+   the documentation included with your data source for information on which SQL
+   statements it supports.
 
 
 Issuing SQL Statements
@@ -1186,7 +1168,25 @@ prevent SQL injection. Values from the `web_request->param`, `cookie`, and
 rely on these methods. The `string->encodeSql` method should be used to encode
 values within SQL statements for MySQL data sources. The `string->encodeSql92`
 method should be used to encode values for other SQL-compliant data sources
-including JDBC data sources and SQLite.
+including ODBC data sources and SQLite.
+
+.. index:: encodeSql(), encodeSql92()
+
+.. member:: string->encodeSql()
+   :noindex:
+
+   Encodes illegal characters in MySQL string literals by escaping them with a
+   backslash. Helps to prevent SQL injection attacks and ensures that SQL
+   statements only contain valid characters. This method must be used to encode
+   visitor supplied values within SQL statements for MySQL strings.
+
+.. member:: string->encodeSql92()
+   :noindex:
+
+   Encodes illegal characters in SQL string literals by escaping a single quote
+   with two single quotes. Helps to prevent SQL injection attacks and ensures
+   that SQL statements only contain valid characters. This method can be used to
+   encode values for SQLite and most other SQL-compliant data sources.
 
 The following example encodes the query or post parameter for "first_name" for a
 MySQL data source::
@@ -1210,7 +1210,7 @@ SQLite (or other SQL-compliant) data source::
    The `string->encodeSql` and `string->encodeSql92`  methods can only be used
    to sanitize data being used as SQL string data in the SQL expression. If you
    need to sanitize data being used as integer or decimal data, use those
-   creator methods to ensure the object is of those types. To sanitize a date
+   creator methods to verify the object is of those types. To sanitize a date
    object, use the `date->format` method and make sure the format string doesn't
    contain invalid characters. If you need to use variables to specify database,
    table, or column names inside a SQL statement, then you will need to take
@@ -1356,11 +1356,8 @@ reversible groups of statements, provided that the data source used (e.g. MySQL
 4 and later with certain storage engines) supports this functionality. See your
 data source documentation to see if transactions are supported.
 
-.. note::
-   SQL transactions are not supported for FileMaker Server data sources.
-
 SQL transactions can be achieved within nested `inline` methods. A single
-connection to MySQL or JDBC data sources will be held open around the outer
+connection to MySQL or ODBC data sources will be held open around the outer
 inline. Any nested inlines that use the same data source will make use of the
 same connection.
 

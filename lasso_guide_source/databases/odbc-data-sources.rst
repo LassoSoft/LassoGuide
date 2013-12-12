@@ -6,11 +6,11 @@ ODBC Data Sources
 
 This chapter documents methods and behaviors that are specific to the ODBC data
 source in Lasso. Native support for ODBC data sources is included in Lasso. This
-feature allows Lasso to communicate with hundreds of ODBC-compliant data
-sources, including Sybase, DB2, Frontbase, OpenBase, Interbase, and Microsoft
-SQL Server. For more information on ODBC connectivity and availability for a
-particular data source, see the documentation for the data source or contact the
-data source provider.
+feature allows Lasso to communicate with dozens of ODBC-compliant data sources
+including Sybase, DB2, Frontbase, OpenBase, Interbase, and Microsoft SQL Server.
+For more information on ODBC connectivity and availability for a particular data
+source, see the documentation for the data source or contact the data source
+provider.
 
 Lasso accesses ODBC drivers that are set up as System DSNs. The ODBC Data Source
 Administrator utility or control panel should be used to configure the driver as
@@ -28,7 +28,7 @@ The following chart details the features of this data source connector.
 :Internal Name:
    odbc
 :Module Name:
-   SQLConnector.dll, SQLConnector.dylib, or SQLConnector. so
+   SQLConnector.dll, SQLConnector.dylib, or SQLConnector.so
 :Inline Host Attributes:
    The ``-name`` should specify the data source name (System DSN). A
    ``-username`` and ``-password`` may also be required.
@@ -57,7 +57,7 @@ interfaces with ODBC data sources.
    updates or deletes.
 
 -  Some data sources will truncate any data beyond the length they are set up to
-   store. Ensure that all fields have sufficient capacity for the values that
+   store. Verify that all fields have sufficient capacity for the values that
    need to be stored in them.
 
 -  Use ``-returnField`` parameters to reduce the number of fields that are
@@ -79,7 +79,7 @@ interfaces with ODBC data sources.
    statements. For example, any SQL strings that have visitor-defined data
    should be sanitized using the `string->encodeSql` method for MySQL-like data
    sources or the `string->encodeSql92` method for SQL92-compliant data sources
-   or JDBC data sources. Encoding the values in this manner ensures that quotes
+   or ODBC data sources. Encoding the values in this manner ensures that quotes
    and other reserved characters are properly escaped within the SQL statement,
    thereby helping to prevent SQL injection attacks.
 

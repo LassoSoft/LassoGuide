@@ -258,7 +258,7 @@ trigger the page containing the `inline` method.
 The following HTML form provides two inputs into which the visitor can type
 information. An input is provided for "first_name" and one for "last_name".
 These correspond to the names of fields in the "people" table. The action
-of the form is set to "/response.lasso" which will contain the inline that
+of the form is set to "response.lasso" which will contain the inline that
 performs the actual database action::
 
    <form action="response.lasso" method="POST">
@@ -494,9 +494,9 @@ return information about the action specified by the inline.
    specified name, you can specify ``-count`` as the second parameter. This will
    return the number of parameters sharing the same name. To get the value of a
    specific one of these parameters, instead pass an integer specifying which
-   parameter you want. For example, if there are 4 parameters that share the
-   same name passed to an inline, you can retrieve the one that comes third by
-   passing a "3" as the second value to `action_param`.
+   parameter you want. For example, if an inline is passed four parameters that
+   share the same name, you can retrieve the one that comes third by passing a
+   "3" as the second value to `action_param`.
 
 .. method:: action_params()
 

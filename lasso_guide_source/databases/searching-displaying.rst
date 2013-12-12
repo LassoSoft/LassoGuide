@@ -37,11 +37,11 @@ The following describes each step that takes place every time a search is
 performed using Lasso:
 
 #. Lasso checks the database, table, and field name specified in the search to
-   ensure that they are all valid.
+   verify that they are all valid.
 #. The search query is formatted and sent to the database application. FileMaker
    Server search queries are formatted as URLs and submitted to the Web
-   Companion. MySQL search queries are formatted as SQL statements and submitted
-   directly to MySQL.
+   Publishing Engine. MySQL search queries are formatted as SQL statements and
+   submitted directly to MySQL.
 #. The database application performs the desired search and assembles a found
    set. The database application is responsible for interpreting search
    criteria, wild cards in search strings, field operators, and logical
@@ -78,8 +78,9 @@ rules apply for each standard data source:
    By default all communication is in the MacRoman character set when Lasso
    Server is hosted on OS X, or in the Latin-1 (ISO-8859-1) character set when
    Lasso Server is hosted on Windows.
-:JDBC:
-   All communication with JDBC data sources is encoded as UTF-8.
+:ODBC:
+   Encoding of communication with ODBC data sources is dependent on the encoding
+   of the table being accessed.
 
 
 Error Reporting
@@ -87,7 +88,7 @@ Error Reporting
 
 After a database action has been performed, Lasso reports any errors that
 occurred via the `error_currentError` method. The value of this method should be
-checked to ensure that the database action was successfully performed.
+checked to verify that the database action was successfully performed.
 
 
 Display Current Error Code and Message
@@ -113,7 +114,7 @@ conditional ``if`` statement to check if the current error message is equal to
 `error_databaseTimeout`::
 
    if(error_currentError == error_databaseTimeout)
-      `Connection to database lost!`
+      'Connection to database lost!'
    /if
 
 Full documentation about error methods and error codes can be found in the
@@ -318,7 +319,8 @@ came with a third-party data source connector for more information.
 
 Several of the field operators are only supported in MySQL or other SQL
 databases. These include the "ft" full-text operator and the "rx" and "nrx"
-regular expression operators.
+regular expression operators, which are described further in the table
+:ref:`sql-mysql-search-operators`.
 
 .. tabularcolumns:: |l|L|
 
@@ -393,13 +395,12 @@ Logical Operators
 -----------------
 
 The logical operator parameter ``-operatorLogical`` can be used with a value of
-either "And" or "Or". The parameters ``-operatorBegin``, and ``-operatorEnd``
-can be used with values of "And", "Or", or "Not". An ``-operatorLogical``
-applies to all search parameters specified with an action while
-``-operatorBegin`` applies to all search parameters until the matching
-``-operatorEnd`` parameter is reached. (Thus the two cannot be mixed into the
-same inline.) The case of the value is unimportant when specifying a logical
-operator.
+either "And" or "Or". The parameters ``-operatorBegin`` and ``-operatorEnd`` can
+be used with values of "And", "Or", or "Not". An ``-operatorLogical`` applies to
+all search parameters specified with an action while ``-operatorBegin`` applies
+to all search parameters until the matching ``-operatorEnd`` parameter is
+reached. (Thus the two cannot be mixed into the same inline.) The case of the
+value is unimportant when specifying a logical operator.
 
 -  **AND** --
    Specifies that records that are returned should fulfill all of the search
@@ -518,11 +519,11 @@ The desired query could be written in pseudocode as follows:
    OR
    ( (first_name begins with M) AND (last_name begins with M) )
 
-The pseudocode is translated into Lasso code as follows. Each line of the query
-becomes a pair of ``-opBegin='And'`` and ``-opEnd='And'`` parameters with a pair
-parameter for "first_name" and "last_name" contained inside. The two lines are
-then combined using a pair of ``-opBegin='Or'`` and ``-opEnd='Or'`` parameters.
-The nesting of the parameters works like the nesting of parentheses in the
+To translate this into an inline statement, each line of the query becomes a
+pair of ``-opBegin='And'`` and ``-opEnd='And'`` parameters with a pair parameter
+for "first_name" and "last_name" contained inside. The two lines are then
+combined using a pair of ``-opBegin='Or'`` and ``-opEnd='Or'`` parameters. The
+nesting of the parameters works like the nesting of parentheses in the
 pseudocode above to clarify how Lasso should combine the results of different
 name/value pair parameters. ::
 
@@ -763,7 +764,7 @@ Parameters that sort and limit the found set work the same as they do for
    =============== =============================================================
 
 
-Find All Records Within a Database
+Return All Records from a Database
 ----------------------------------
 
 The following `inline` method finds all records within a table named "people" in
@@ -816,8 +817,8 @@ required.
    =============== =============================================================
 
 
-Find a Single Random Record from a Database
--------------------------------------------
+Return a Random Record from a Database
+--------------------------------------
 
 The following inline finds a single random record from a FileMaker Server
 database "contacts" and displays it. The ``-maxRecords`` is set to "1" to ensure
@@ -862,8 +863,8 @@ If the found set has only one record then the `records` method is optional.
    output format.
 
 
-Display Results from a Search
------------------------------
+Display Results of a Search
+---------------------------
 
 Use the `records` method and `field` method to display the results of a search.
 The following `inline` method performs a ``-findAll`` action in a database
