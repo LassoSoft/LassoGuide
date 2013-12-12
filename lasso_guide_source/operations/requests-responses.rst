@@ -445,9 +445,9 @@ Any of the following methods can be used to include file content.
 .. member:: web_response->includeLibraryOnce(path::string)
 
    These methods locate and run the file indicated by the path. The
-   "includeLibrary" and "includeLibraryOnce" member methods run the file but do
-   not insert the result into the response. The "includeOnce" and
-   "includeLibraryOnce" member methods will only include the file if it has not
+   `includeLibrary` and `includeLibraryOnce` member methods run the file but do
+   not insert the result into the response. The `includeOnce` and
+   `includeLibraryOnce` member methods will only include the file if it has not
    already been included during the course of that request.
 
    These methods will fail if the indicated file does not exist.
@@ -713,8 +713,8 @@ used. These methods are described below.
    This is the recommended route for applications wanting to provide virtual
    URLs. Once an at-begin is in place it cannot be removed. Multiple at-begins
    are supported and are run in the order in which they are installed. (The
-   easiest way to install an at-begin is to place it in the "LassoStartup"
-   directory.)
+   easiest way to install an at-begin is to place it in the instance's
+   "LassoStartup" directory.)
 
    The object installed as the at-begin code is copied to each request's thread
    each time. This means that a capture's local variables or any object's data

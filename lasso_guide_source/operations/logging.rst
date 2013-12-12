@@ -38,21 +38,22 @@ The destinations that the log levels can be routed to include:
 Console
    The Lasso Server instance's console, which is viewable from the Instance
    Manager. It is stored in a file named :file:`lasso.out.txt` in the instance's
-   :envvar:`LASSO9_HOME` directory and has a max file size of 10MB by default.
+   :envvar:`LASSO9_HOME` directory and has a max file size of 10 MB by default.
 
 File
    The :file:`lasso_logbook.txt` file, located in the instance's
-   :envvar:`LASSO9_HOME` directory. This file is also capped at 10MB by default.
+   :envvar:`LASSO9_HOME` directory. This file is also capped at 10 MB by default.
 
 Database
    The "logbook" table in the "lasso_logbook" SQLite database, viewable via the
    "Log Book" section of Lasso Server Admin
    (:ref:`!http://example.com/lasso9/admin/logbook`).
 
-The routing of Lasso's internal log levels can be modified in the "Log Book"
-section of Lasso Server Admin (:ref:`!http://example.com/lasso9/admin/logbook`).
-For details on how to change the log level routing programmatically see the
-section :ref:`logging-routing` later in this chapter.
+The routing of Lasso's internal log levels can be modified using the "Log Book"
+section of the Lasso Server Admin interface
+(:ref:`!http://example.com/lasso9/admin/logbook`). For details on how to change
+the log level routing programmatically see the section :ref:`logging-routing`
+later in this chapter.
 
 
 Logging Methods

@@ -104,8 +104,8 @@ without using the ``-format`` parameter:
 
       mm/dd/yyyy hh:mm -> mm/dd/yyyy hh:mm:00
 
--  An optional GMT designator can be used to specify Greenwich Mean Time rather
-   than local time:
+-  An optional "GMT" designator can be used to specify Greenwich Mean Time
+   rather than local time:
 
    .. code-block:: none
 
@@ -302,7 +302,6 @@ to zero so any negative times reported by this code should be disregarded. ::
    // ... the code to time ...
 
    'The code took ' + (date_msec - #start) + ' milliseconds to process.'
-
    // => The code took 5 milliseconds to process.
 
 
@@ -411,13 +410,13 @@ symbols`_.
    +--------+----------------------------------------------------+---------------+----------------------------------+
    |        |                                                    | QQQ           | Q2                               |
    +--------+----------------------------------------------------+---------------+----------------------------------+
-   |        |                                                    | QQQQ          | 2nd quarter                      |
+   |        |                                                    | QQQQ          | 2\ :sup:`nd` quarter             |
    +--------+----------------------------------------------------+---------------+----------------------------------+
    | ``q``  | stand alone quarter                                | q or qq       | 2                                |
    +--------+----------------------------------------------------+---------------+----------------------------------+
    |        |                                                    | qqq           | Q2                               |
    +--------+----------------------------------------------------+---------------+----------------------------------+
-   |        |                                                    | qqqq          | 2nd quarter                      |
+   |        |                                                    | qqqq          | 2\ :sup:`nd` quarter             |
    +--------+----------------------------------------------------+---------------+----------------------------------+
    | ``M``  | month in year                                      | M or MM       | 9                                |
    +--------+----------------------------------------------------+---------------+----------------------------------+
@@ -445,7 +444,7 @@ symbols`_.
    +--------+----------------------------------------------------+---------------+----------------------------------+
    | ``D``  | day of year                                        | D             | 189                              |
    +--------+----------------------------------------------------+---------------+----------------------------------+
-   | ``F``  | day of week in month                               | F             | 2 (2nd Wed in July)              |
+   | ``F``  | day of week in month                               | F             | 2 (2\ :sup:`nd` Wed in July)     |
    +--------+----------------------------------------------------+---------------+----------------------------------+
    | ``g``  | modified Julian day                                | g             | 2451334                          |
    +--------+----------------------------------------------------+---------------+----------------------------------+
@@ -517,7 +516,7 @@ symbols`_.
    +--------+----------------------------------------------------+---------------+----------------------------------+
    |        |                                                    | zzzz          | Pacific Daylight Time            |
    +--------+----------------------------------------------------+---------------+----------------------------------+
-   | ``Z``  | Time Zone: ISO 8601 basic hms? / :rfc:`822`        | Z, ZZ, or ZZZ | -800                             |
+   | ``Z``  | Time Zone: `ISO 8601`_ basic hms? / :rfc:`822`     | Z, ZZ, or ZZZ | -800                             |
    +--------+----------------------------------------------------+---------------+----------------------------------+
    |        | Time Zone: long localized GMT (=OOOO)              | ZZZZ          | GMT-08:00                        |
    +--------+----------------------------------------------------+---------------+----------------------------------+
@@ -781,9 +780,10 @@ dates and currency based on known standards for various locations. You can use
    Creates a :type:`locale` object which may be used to format the output of
    various data in the manner specified by the locale.
 
-   The method requires one parameter which is the 2-letter ISO-639_ code of the
-   language, and accepts optional parameters for the 2-letter ISO-3166_ country
-   code and a variant code which allows further refinement to the locale.
+   The method requires one parameter which is the 2-letter `ISO 639`_ code of
+   the language, and accepts optional parameters for the 2-letter `ISO 3166`_
+   country code and a variant code which allows further refinement to the
+   locale.
 
 .. member:: locale->format(as::date, \
       style::integer= ?, \
@@ -792,7 +792,7 @@ dates and currency based on known standards for various locations. You can use
 
    Display a date in the format of the given locale. The method requires one
    parameter which is the date value to be formatted. When formatting dates, the
-   method accepts up to 3 additional integer flags which specify different
+   method accepts up to three additional integer flags which specify different
    date/time formatting types.
 
 The following example creates two locale objects (one for the U.S. and one for
@@ -1429,5 +1429,6 @@ The following example returns the duration between the current date and
    // => 2079000:56:08
 
 .. _ICU date formatting symbols: http://userguide.icu-project.org/formatparse/datetime#TOC-Date-Time-Format-Syntax
-.. _ISO-639: http://www.loc.gov/standards/iso639-2/
-.. _ISO-3166: http://www.iso.org/iso/prods-services/iso3166ma/02iso-3166-code-lists/country_names_and_code_elements
+.. _ISO 8601: https://en.wikipedia.org/wiki/ISO_8601
+.. _ISO 639: http://www.loc.gov/standards/iso639-2/
+.. _ISO 3166: http://www.iso.org/iso/prods-services/iso3166ma/02iso-3166-code-lists/country_names_and_code_elements

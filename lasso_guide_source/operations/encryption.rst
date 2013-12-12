@@ -119,7 +119,7 @@ In the example below, the data in the variable "plaintext" is encrypted and
 stored in the "ciphertext" variable. This is then used to store the data in the
 "ciphertext" field of the "people" table in the "contacts" database. ::
 
-   local(plaintext) = 'The data to be encrypted.'
+   local(plaintext)  = 'The data to be encrypted.'
    local(ciphertext) = encrypt_blowfish(#plaintext, -seed='My Insecure Seed')
 
    inline(
@@ -195,11 +195,9 @@ via a form::
       local(is_authenticated) = (found_count > 0)
    }
    if(#is_authenticated) => {
-      // Login successful
-      // ...
+      // ... login successful ...
    else
-      // Credentials don't match
-      // ...
+      // ... credentials don't match ...
    }
 
 .. important::

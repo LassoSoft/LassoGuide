@@ -68,7 +68,7 @@ A filter can specify an attribute name, operator, and value. Any of the
 attributes of the entries in the directory tree can be used in the filter. The
 operators include "equals" (``=``), "sounds like" (``~=``), "greater than"
 (``>=``), and "less than" (``<=``). The equals operator supports the asterisk
-``*`` as a wildcard character, allowing for "contains", "begins with", and
+(``*``) as a wildcard character, allowing for "contains", "begins with", and
 "ends with" searches. Operators for "greater than" (``>``) and "less than"
 (``<``) may only be supported on numeric fields. For example, the following
 simple filters would find all entries whose full name starts with "John", ends
@@ -94,9 +94,9 @@ that is not "John" and a last name that is not "Doe":
 
 Note that there are no quotes around the values in the filters. The parentheses
 are used to delimit the values. In order to find a value that contains
-parentheses, an asterisk (``*``), a backslash (``\``), or a null character, the
-following escape sequences can be used: ``\2a`` for ``(``, ``\28`` for ``)``,
-``\29`` for ``*``, ``\5c`` for ``\``, and ``\00`` for null.
+parentheses, an asterisk ("``*``"), a backslash ("``\``"), or a null character,
+the following escape sequences can be used: ``\2a`` for "``(``", ``\28`` for
+"``)``", ``\29`` for "``*``", ``\5c`` for "``\``", and ``\00`` for null.
 
 
 LDAP Results
@@ -121,8 +121,8 @@ the following elements::
 
 LDAP allows the results to be customized in two ways. A list of desired
 attributes can be passed with the search. The results will only include those
-attributes. An asterisk wildcard ("*") specifies that all attributes should be
-returned (the default). A plus sign wildcard ("+") specifies that only
+attributes. An asterisk wildcard (``*``) specifies that all attributes should be
+returned (the default). A plus sign wildcard (``+``) specifies that only
 operational attributes should be returned (these are attributes that are
 generally used internally by the LDAP directory). Finally, a flag allows only
 attribute names to be returned without any values. By default both attribute
@@ -173,11 +173,11 @@ then to send queries to the server.
       An array of strings specifying the attribute types to return in the search
       results. Optional.
 
-      -  ``"*"`` (asterisk) may be specified in the array to indicate that all
+      -  ``*`` (asterisk) may be specified in the array to indicate that all
          attributes are to be returned.
-      -  ``"+"`` (plus sign) may be specified in the array to indicate that all
+      -  ``+`` (plus sign) may be specified in the array to indicate that all
          operational attributes should be returned.
-      -  ``"1.1"`` may be specified in the array to indicate that no attributes
+      -  ``1.1`` may be specified in the array to indicate that no attributes
          should be returned.
 
    :param attribute-only:
@@ -209,7 +209,7 @@ For example, the following code performs an LDAP query against a server
 "ldap.example.com". The base of the query is ``'dc=example,dc=com'``. The scope
 is `ldap_scope_subtree` indicating that the object and all of its descendants
 should be searched. The filter is ``'(objectClass=*)'`` indicating that all
-object classes are to be returned. The filter attribute is ``"*"`` indicating
+object classes are to be returned. The filter attribute is "``*``" indicating
 that all attributes are to be returned. And, the "attribute-only" parameter is
 automatically set to "false" indicating that both attributes and values should
 be returned. After each line is executed the return code is verified to be "0"
@@ -217,18 +217,13 @@ indicating success. If the result code is greater than "0" then an error is
 reported. ::
 
    local(my_ldap) = ldap
-
    #my_ldap->open('ldap.example.com')
    fail_if(#my_ldap->code != 0, #my_ldap->code, 'LDAP Error ' + #my_ldap->code)
-
    #my_ldap->authenticate('myusername', 'mysecretpassword')
    fail_if(#my_ldap->code != 0, #my_ldap->code, 'LDAP Error ' + #my_ldap->code)
-
    #my_ldap->search('dc=example,dc=com', ldap_scope_subtree, '(objectClass=*)')
    fail_if(#my_ldap->code != 0, #my_ldap->code, 'LDAP Error ' + #my_ldap->code)
-
    local(my_result) = #my_ldap->results
-
    #my_ldap->close
 
 The result of this operation will be a staticarray of pairs. The first element

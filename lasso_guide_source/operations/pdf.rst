@@ -349,7 +349,7 @@ of these types are first defined as objects using methods such as `pdf_text`,
 pdf_doc object using the `pdf_doc->add` member method. Each type is described
 separately in subsequent sections of this chapter.
 
-.. member:: pdf_doc->add(elm, ...)
+.. member:: pdf_doc->add(object, ...)
 
    Adds a PDF content object to a file. This can be used to add
    :type:`pdf_text`, :type:`pdf_list`, :type:`pdf_image`, :type:`pdf_table`, or
@@ -687,8 +687,8 @@ Set a Basic Font Style
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Set a variable as a pdf_font object. The following example sets a font style to
-be a standard "Helvetica" font with a size of "14" points. The font color is
-also set to green::
+be a standard "Helvetica" font with a size of 14 points. The font color is also
+set to green::
 
    local(my_font) = pdf_font(-face='Helvetica', -size=14, -color='#005500')
 
@@ -1102,7 +1102,7 @@ create form elements within a PDF file, and also how PDF forms can be used to
 submit data to a Lasso-enabled database.
 
 .. note::
-   Due to the iText implementation of PDF support in Lasso, PDF files created
+   Due to the iText implementation of PDF support in Lasso, created PDF files
    may contain only one form.
 
 
@@ -1313,8 +1313,8 @@ Add a Text Field
 ^^^^^^^^^^^^^^^^
 
 Use the `pdf_doc->addTextField` method. The example below adds a field named
-"Field_Name" that has "Some Text" entered by default. The field size is "144.0"
-points (two inches) wide and "36.0" points high::
+"Field_Name" that has "Some Text" entered by default. The field size is 144.0
+points (two inches) wide and 36.0 points high::
 
    #my_file->addTextField(
       'Field_Name',
@@ -1327,9 +1327,9 @@ points (two inches) wide and "36.0" points high::
 Add a Text Area
 ^^^^^^^^^^^^^^^
 
-Use the `pdf_doc->addTextArea` method. The example below adds a text area
-named "Field_Name" that has the text "Insert default text here" entered by
-default. The field size is "144.0" points wide and "288.0" points high::
+Use the `pdf_doc->addTextArea` method. The example below adds a text area named
+"Field_Name" that has the text "Insert default text here" entered by default.
+The field size is 144.0 points wide and 288.0 points high::
 
    #my_file->addTextArea(
       'Field_Name',
@@ -1344,8 +1344,8 @@ Add a Checkbox
 
 Use the `pdf_doc->addCheckbox` method. The example below adds a field named
 "Field_Name" with a checked value of "Checked_Value" that is checked by default.
-The checkbox is "4.0" points wide and "4.0" points high, and is positioned
-"272.0" points from the bottom and left sides of the page::
+The checkbox is 4.0 points wide and 4.0 points high, and is positioned 272.0
+points from the bottom and left sides of the page::
 
    #my_file->addCheckBox(
       'Field_Name',
@@ -1360,8 +1360,8 @@ Add a Group of Radio Buttons
 
 Use the `pdf_doc->addRadioGroup` and `pdf_doc->addRadioButton` methods. The
 example below adds a radio button group named "Group_Name" and adds two radio
-buttons with the values of "Yes" and "No". The radio buttons are "6.0" points
-wide and "6.0" points high each::
+buttons with the values of "Yes" and "No". The radio buttons are 6.0 points wide
+and 6.0 points high each::
 
    #my_file->addRadioGroup('Group_Name')
    #my_file->addRadioButton(
@@ -1386,8 +1386,8 @@ Add an Editable Drop-Down Menu
 Use the `pdf_doc->addComboBox` method. The example below adds a drop-down menu
 named "Menu_Name" with the values "One", "Two", "Three", and "Four" as menu
 values. The value "One" is selected by default, and an ``-editable`` parameter
-allows the users to edit the values if desired. The drop-down menu size is
-"144.0" points wide and "36.0" points high::
+allows the users to edit the values if desired. The drop-down menu size is 144.0
+points wide and 36.0 points high::
 
    #my_file->addComboBox(
       'List_Name',
@@ -1422,8 +1422,8 @@ Add a Select List
 
 Use the `pdf_doc->addSelectList` methods. The example below adds a select list
 named "List_Name" with the values "One", "Two", "Three", and "Four" as list
-items. The select list is "144.0" points wide and "288.0" points high, and is
-positioned "72.0" points from the bottom and left sides of the page::
+items. The select list is 144.0 points wide and 288.0 points high, and is
+positioned 72.0 points from the bottom and left sides of the page::
 
    #my_file->addSelectList(
       'List_Name',
@@ -1451,14 +1451,14 @@ Use the `pdf_doc->addSubmitButton` method. The example below adds a submit
 button named "Button_Name" with a value of "Submitted_Value". A caption
 parameter specifies the displayed name of the button, which is "Submit This
 Form". The URL parameter specifies that the user will be taken to
-:ref:`!http://www.example.com/responsepage.lasso` when the button is selected in
-the form::
+:ref:`!http://www.example.com/response.lasso` when the button is selected in the
+form::
 
    #my_file->addSubmitButton(
       'Button_Name',
       'Submit This Form',
       'Submitted_Value',
-      'http://www.example.com/responsepage.lasso',
+      'http://www.example.com/response.lasso',
       -left=72.0, -top=72.0, -width=144.0, -height=36.0
    )
 
@@ -1540,7 +1540,7 @@ Submit Information to a Database Using a PDF Form
       ) => {^
          'There were ' + found_count + ' record(s) found in the People table.\n'
          records => {^
-            field('first_name') + ' ' + field('last_name') + '\n'
+            '<br />' + field('first_name') + ' ' + field('last_name') + '\n'
          ^}
       ^}
 
@@ -1549,7 +1549,7 @@ Submit Information to a Database Using a PDF Form
 
       // =>
       // There were 1 record(s) found in the People table.
-      // Jane Doe
+      // <br />Jane Doe
 
    You could also use this method to update data in a database.
 
@@ -1622,8 +1622,7 @@ Create a Basic Table
 
 Use the :type:`pdf_table` type. The example below creates a table with two
 columns and five rows, with table cell spacing of one point and cell padding of
-two points. The width of the table is set at 75 percent of the current page
-width::
+two points. The width of the table is set at 75% of the current page width::
 
    local(my_table) = pdf_table(
       2,
@@ -2084,7 +2083,7 @@ type. Objects of this type can then be added to pdf_doc objects.
    :param -generateChecksum:
       Generates a checksum for the barcode. Optional.
    :param -showCode39StartStop:
-      Displays start and stop characters "``(*)``" in the text for Code 39
+      Displays start and stop characters ("``*``") in the text for Code 39
       barcodes. Optional.
    :param -showEANGuardBars:
       Show the guard bars for "EAN" barcodes. Optional.
@@ -2109,7 +2108,7 @@ Create a Barcode
 
 Use the :type:`pdf_barcode` type. The example below creates a basic Code 39
 barcode with the data "1234567890", and uses the optional Code 39 start and stop
-characters "(*)". The barcode is then added to a pdf_doc object using
+characters ("``*``"). The barcode is then added to a pdf_doc object using
 `pdf_doc->add`::
 
    local(barcode) = pdf_barcode(
@@ -2124,7 +2123,7 @@ Create a Barcode with a Specified Bar Width
 -------------------------------------------
 
 Use the :type:`pdf_barcode` type with the ``-barWidth`` parameter. The following
-example sets a pdf_barcode object with a bar width of "0.2" points::
+example sets a pdf_barcode object with a bar width of 0.2 points::
 
    local(barcode) = pdf_barcode(
       -type='CODE39',
@@ -2213,10 +2212,10 @@ multiple text styles::
    local(text1) = pdf_text("\n\nThe Lasso product line consists of authoring and
       serving tools that allow web designers and web developers to quickly build
       and serve powerful data-driven web sites with maximum productivity and
-      ease. The product line includes Lasso Server for building, serving, and
-      administering data-driven web sites, and LassoLab for building and testing
-      data-driven web sites within a graphical editor.\n\nLasso Server works
-      with the following data sources:",
+      ease. The product line includes Lasso Server for serving and administering
+      data-driven web sites, and LassoLab for building and testing data-driven
+      web sites within a graphical editor.\n\nLasso Server works with the
+      following data sources:",
       -type='Paragraph',
       -leading=15,
       -font=#font2
@@ -2240,10 +2239,10 @@ multiple text styles::
    #text_example->add(#list)
 
    local(text2) = pdf_text("\nLasso's innovative architecture provides an
-      industry first multi-platform, database-independent and open standards
+      industry-first multi-platform, database-independent and open standards
       approach to delivering database-driven web sites firmly positioning Lasso
       technology within the rapidly evolving server-side web tools market. Lasso
-      technology is used at hundreds of thousands of web sites worldwide.\n\n",
+      technology is used on hundreds of thousands of web sites worldwide.\n\n",
       -type='Paragraph',
       -font=#font2
    )
@@ -2271,7 +2270,7 @@ multiple text styles::
    local(text4) = pdf_text("Lasso Server is server-side software that adds a
       suite of dynamic functionality and administration to your web server. This
       functionality empowers you to build and serve just about any dynamic web
-      application that can be built with maximum productivity and ease.\n\n",
+      application and do so with maximum productivity and ease.\n\n",
       -type='Paragraph',
       -leading=15,
       -font=#font2

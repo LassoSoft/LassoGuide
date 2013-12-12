@@ -49,7 +49,7 @@ and low-priority messages.
 
 .. note::
    The maximum size of an email message including all attachments must be less
-   than 8MB when using the `email_send` method. If necessary, larger messages
+   than 8 MB when using the `email_send` method. If necessary, larger messages
    can be sent using the ``-immediate`` parameter or the `email_immediate`
    method described in the section :ref:`sending-email-composing`.
 
@@ -96,34 +96,7 @@ The `email_send` method is used to send email from Lasso. This method supports
 the most common types of email including plain text, HTML, HTML with a plain
 text alternative, embedded HTML images, and attachments.
 
-.. method:: email_send(\
-      -host= ?, \
-      -username= ?, \
-      -password= ?, \
-      -port= ?, \
-      -timeout= ?, \
-      -priority= ?, \
-      -to= ?, \
-      -cc= ?, \
-      -bcc= ?, \
-      -from= ?, \
-      -replyTo= ?, \
-      -sender= ?, \
-      -subject= ?, \
-      -body= ?, \
-      -html= ?, \
-      -htmlImages= ?, \
-      -transferEncoding= ?, \
-      -contentType= ?, \
-      -characterSet= ?, \
-      -attachments= ?, \
-      -extraMIMEHeaders= ?, \
-      -simpleForm= ?, \
-      -tokens= ?, \
-      -merge= ?, \
-      -date= ?, \
-      -immediate= ?, \
-      -ssl= ?)
+.. method:: email_send(-subject, -from, ...)
 
    Adds a message to the email queue. The method requires a ``-subject``
    parameter, a ``-from`` parameter, and one of either ``-to``, ``-cc``, or
@@ -418,7 +391,7 @@ attached files and make them available.
 
 .. note::
    The maximum size of an email message including all attachments must be less
-   than 8MB when using the `email_send` method. If necessary, larger messages
+   than 8 MB when using the `email_send` method. If necessary, larger messages
    can be sent using the ``-immediate`` parameter or the `email_immediate`
    method described in the :ref:`sending-email-composing` section.
 
@@ -588,7 +561,9 @@ being sent to two recipients. The method references "body.lasso" as the
       -merge   = #myMergeTokens,
       -tokens  = #myDefaultTokens
 
-The message to John Doe would contain this text::
+The message to John Doe would contain this text:
+
+.. code-block:: none
 
    Dear John Doe,
 
@@ -624,9 +599,9 @@ methods allow the status of a recently sent message to be examined.
    queued message: "sent", "queued", or "error".
 
 .. important::
-   The email sender may take a few seconds or longer to send an email message.
-   Checking the status immediately after calling `email_send` will always return
-   "queued". So, make sure to always delay a bit before checking the status.
+   The email sender may take a few seconds or longer to send a message. Checking
+   the status immediately after calling `email_send` will always return
+   "queued", so be sure to add delay before checking the status.
 
 The following example shows an `email_send` method call that sends a message.
 The `email_result` method is called immediately after to store the unique ID of
@@ -681,13 +656,13 @@ The `email_queue` method is designed to be fed an :type:`email_compose` object.
 It requires three parameters: the ``-data``, ``-from``, and ``-recipients``
 parameters as attributes of an :type:`email_compose` object. Additionally, SMTP
 server parameters and the sending priority can be specified just like in
-`email_send`. Queued emails must be less than 8MB in size including all encoded
+`email_send`. Queued emails must be less than 8 MB in size including all encoded
 attachments.
 
 The `email_immediate` method takes the same parameters as the `email_queue`
 method, but sends the message immediately rather than adding it to the email
-queue. This method can be used to send messages larger than 8MB if required. Use
-of the `email_immediate` method is not recommended since it bypasses the
+queue. This method can be used to send messages larger than 8 MB if required.
+Use of the `email_immediate` method is not recommended since it bypasses the
 priority, error-handling, and connection-handling features of the email sending
 system.
 
@@ -858,8 +833,8 @@ email queue so that the messages can be queued faster. When the capture block is
 processed the queue is allowed to resume sending the queue messages.
 
 The example below shows how an inline could be used to find a collection of
-email addresses. The `email_batch` method ensure that the messages are queued as
-quickly as possible. ::
+email addresses. The `email_batch` method ensures that the messages are queued
+as quickly as possible. ::
 
    email_batch => {
       inline(-search, ...) => {

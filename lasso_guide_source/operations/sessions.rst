@@ -23,7 +23,7 @@ Sessions can be used for a variety of purposes, including:
 -  **Storing authentication information** --
    After a visitor has authenticated using a username and password, that
    authentication information can be stored in a session and then checked to
-   ensure that the same visitor is accessing data from page request to page
+   verify that the same visitor is accessing data from page request to page
    request.
 
 -  **Storing data without using a database** --
@@ -292,6 +292,8 @@ this chapter for manually propagating the session must then be used.
 Using Sessions
 ==============
 
+Use the ``session_…`` methods to work with sessions in Lasso.
+
 
 Start a Session
 ---------------
@@ -378,7 +380,7 @@ are persistent from request to request. It displays a form which the user can
 manipulate. The user's selections are saved from one request to the next.
 
 Sessions will be used to track the visitor's name, email address, favorite
-color, and favorite forms of FTL travel in session variables. ::
+color, and favorite forms of faster-than-light travel in session variables. ::
 
    <?lasso
       local(

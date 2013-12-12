@@ -151,7 +151,7 @@ served directly to the client browser, or it can be saved to disk on the server.
 
    Example of creating an image object with bytes data::
 
-      local(binary) = file('image.jpg')->readBytes
+      local(binary)   = file('image.jpg')->readBytes
       local(myImage3) = image(#binary)
 
 
@@ -831,8 +831,8 @@ Execute an ImageMagick Command Using Lasso
 ------------------------------------------
 
 Use the `image->execute` method on an image object, with the desired command as
-the parameter. The following example shows the "mogrify" command for adding a
-stunning blue border to an image::
+the parameter. The following example shows the "mogrify" command adding a
+distinctive blue border to an image::
 
    local(myImage) = image('/images/image.gif')
    #myImage->execute('mogrify -bordercolor blue -border=3x3')
@@ -876,7 +876,7 @@ Using the same image path described above, the path to the image file is stored
 within the variable "image_path" and then referenced in the HTML ``<img>`` tag::
 
    [local(company_name) = 'LassoSoft']
-   [local(image_path) = '/images/' + #company_name + '_logo.gif']
+   [local(image_path)   = '/images/' + #company_name + '_logo.gif']
    <img src="[#image_path]" />
 
 ::
@@ -941,7 +941,7 @@ named "picture.gif" being served from an "images" folder::
 
 Alternatively, you can use the `web_response->replaceHeader` method to set the
 MIME type of the image to be served and use the `web_response->includeBytes`
-method to include data from the image file. If using this method, ensure that no
+method to include data from the image file. If using this method, verify that no
 stray data is inadvertently added into the outgoing data buffer as it will
 corrupt the output. This includes whitespace characters. The following example
 shows a GIF named "picture.gif" being served from an "images" folder. It is the
@@ -972,7 +972,8 @@ from a "sounds" folder::
    web_response->sendFile(
       file('/sounds/ArtOfNoise.mp3'),
       'ArtOfNoise.mp3',
-      -type='audio/mp3')
+      -type='audio/mp3'
+   )
 
 If the code above is stored in a file named "ArtOfNoise.lasso" at the root of
 the web serving folder then the sound file could be accessed with the following
@@ -1002,12 +1003,14 @@ system::
       web_response->sendFile(
          file('//secret/picture.gif'),
          'picture.gif',
-         -type='image/gif')
+         -type='image/gif'
+      )
    else
       web_response->sendFile(
          file('/images/error.gif'),
          'picture.gif',
-         -type='image/gif')
+         -type='image/gif'
+      )
    }
 
 This same technique can be used to restrict access to any image or media file.

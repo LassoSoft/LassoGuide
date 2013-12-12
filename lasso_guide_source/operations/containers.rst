@@ -120,7 +120,9 @@ Using Array Objects
    The `get` method returns the element located at the indicated position. The
    method will fail if the position is out of range. There is also a setter
    version of this method which permits the position to be set to a new element
-   using assignment.
+   using assignment, e.g.::
+
+      #array->get(2) = "I am the second element!"
 
 .. member:: array->sub(position::integer, count::integer=(self->size - #position + 1))
 
@@ -204,11 +206,12 @@ Staticarray Type
 Creating Staticarray Objects
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. method:: staticarray(...)
+.. method:: staticarray()
+.. method:: staticarray(value, ...)
 .. method:: staticarray_join(count::integer, value)
 
-   The first method creates a new staticarray given zero or more elements. The
-   second method, `staticarray_join`, creates a new staticarray of the given
+   The first two methods create a new staticarray given zero or more elements.
+   The last method, `staticarray_join`, creates a new staticarray of the given
    size with each element filled by the value given as the second parameter.
 
    Example of creating a few staticarrays::
@@ -230,8 +233,9 @@ Using Staticarray Objects
 .. member:: staticarray->get=(value, position::integer)
 
    The `get` method returns the element at the indicated position. This method
-   will fail if the position is out of range. The `get` method also permits the
-   position to be reassigned with an assignment statement.
+   will fail if the position is out of range. The `get` method also permits a
+   position to be reassigned with an assignment statement in the same manner as
+   `array->get=`.
 
 .. member:: staticarray->first()
 .. member:: staticarray->second()
@@ -300,7 +304,8 @@ List Type
 Creating List Objects
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. method:: list(...)
+.. method:: list()
+.. method:: list(value, ...)
 
    The `list` method creates a new list object using the parameters given as the
    elements for the list.
@@ -359,7 +364,8 @@ Queue Type
 Creating Queue Objects
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. method:: queue(...)
+.. method:: queue()
+.. method:: queue(value, ...)
 
    Creates a queue object using the parameters passed to it as the elements of
    the queue.
@@ -417,7 +423,8 @@ Stack Type
 Creating Stack Objects
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. method:: stack(...)
+.. method:: stack()
+.. method:: stack(value, ...)
 
    Creates a stack object using the parameters passed to it as the elements of
    the stack.
@@ -481,7 +488,8 @@ Map Type
 Creating Map Objects
 ^^^^^^^^^^^^^^^^^^^^
 
-.. method:: map(...)
+.. method:: map()
+.. method:: map(key = value, ...)
 
    A map is created with zero or more key/value pair parameters. Any non-pair
    parameters given are inserted as a key with a "null" value.
@@ -519,11 +527,12 @@ Using Map Objects
 
    These methods get particular elements from the map or test that a key is
    contained within the map. The `get` method finds the element within the map
-   associated with the key and returns the value. If the key is not found the
-   method will fail. The `find` method will search for the key within the map
-   and return the value if it exists. If the key is not found the method will
-   return "void". The `contains` method returns "true" if the matching parameter
-   compares equally to any contained elements.
+   associated with the key and returns the value, or reassigns it if a new value
+   is assigned. If the key is not found the method will fail. The `find` method
+   will search for the key within the map and return the value if it exists. If
+   the key is not found the method will return "void". The `contains` method
+   returns "true" if the matching parameter compares equally to any contained
+   elements.
 
 .. member:: map->size()::integer
 
@@ -544,7 +553,8 @@ Set Type
 Creating Set Objects
 ^^^^^^^^^^^^^^^^^^^^
 
-.. method:: set(...)
+.. method:: set()
+.. method:: set(key, ...)
 
    A set is created with zero or more element parameters. The element values are
    inserted into the set.

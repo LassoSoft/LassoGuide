@@ -65,7 +65,7 @@ the :abbr:`IANA (Internet Assigned Name Authority)`. Two common, general-purpose
 top-level domains are "|dot| com" and "|dot| net", "|dot| edu" is a top-level
 domain reserved for educational institutions, "|dot| gov" is a top-level domain
 reserved for U.S. government institutions, "|dot| org" is a top-level domain
-reserved for non-profit organizations.
+intended for non-profit organizations.
 
 Each country has its own top-level domain defined by its standard two letter
 abbreviation, e.g. "|dot| us" is the top-level domain for the United States,
@@ -77,8 +77,8 @@ created virtual top-level domains like "|dot| com.uk", "|dot| org.uk", "|dot|
 edu.uk", etc.
 
 
-IPv4 Addresses
-==============
+IP Addresses
+============
 
 IPv4 addresses consist of four numbers from 0 to 255 separated by periods. Each
 number represents a single 8-bit integer and the entire IP address represents a
@@ -89,20 +89,18 @@ typical IP address appears as follows:
 
    127.0.0.1
 
-
-IPv6 Addresses
-==============
-
 In order to expand the range of IP addresses that are available, a new Internet
 Protocol has been designed and is in the process of being adopted. This is
 version 6 of the Internet Protocol and is abbreviated IPv6. The most recent
-versions of Windows, OS X, and Linux all support IPv6 addresses. The DNS lookup
-methods in Lasso do not support IPv6 addresses at this time. IPv6 addresses are
-essentially 128-bit integers. A typical IPv6 address may appear as follows:
+versions of Windows, OS X, and Linux all support IPv6 addresses. IPv6 addresses
+are essentially 128-bit integers. A typical IPv6 address may appear as follows:
 
 .. code-block:: none
 
    fe80:0000:0000:0000:0000:0000:0000:0000
+
+.. note::
+   The DNS lookup methods in Lasso do not support IPv6 addresses at this time.
 
 
 Querying for DNS Records
@@ -110,21 +108,7 @@ Querying for DNS Records
 
 DNS queries are performed with the `dns_lookup` method.
 
-.. method:: dns_lookup(name::string, \
-      -type= ?, \
-      -class= ?, \
-      -noRecurse::boolean= ?, \
-      -inverse::boolean= ?, \
-      -status::boolean= ?, \
-      -showQuery::boolean= ?, \
-      -formatQuery::boolean= ?, \
-      -bitQuery::boolean= ?, \
-      -showResponse::boolean= ?, \
-      -format::boolean= ?, \
-      -bitFormat::boolean= ?, \
-      -hostname= ?, \
-      -port::integer= ?, \
-      -timeout::integer= ?)
+.. method:: dns_lookup(name::string, ...)
 
    This method is used to query a DNS server for information about a specified
    domain name. It requires one parameter, the domain name being queried. The
@@ -254,7 +238,7 @@ can also be used to parse raw DNS requests or responses if necessary.
 .. method:: dns_response(message::bytes)
 
    Create a new :type:`dns_response` object. An object of this type can be
-   returned from `dns_lookup` when ``-showResponse`` is specified.
+   returned from the `dns_lookup` method when ``-showResponse`` is specified.
 
 .. member:: dns_response->format()
 

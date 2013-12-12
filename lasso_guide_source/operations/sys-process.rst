@@ -159,7 +159,7 @@ This example uses the :command:`/bin/echo` command to simply echo the input back
 to STDOUT, which is then read by Lasso::
 
    local(proc) = sys_process('/bin/echo', array('Hello World!'))
-   local(_) = #proc->wait
+   local(_)    = #proc->wait
    #proc->read->encodeHtml
    #proc->close
 
@@ -276,7 +276,7 @@ This example uses the :program:`CMD` processor with an :command:`ECHO` command
 to simply echo the input back to Lasso::
 
    local(proc) = sys_process('cmd', array('/C ECHO Hello World!'))
-   local(_) = #proc->wait
+   local(_)    = #proc->wait
    #proc->readString->encodeHtml
    #proc->close
 
@@ -292,7 +292,7 @@ the contents of the directory without extraneous header and footer information.
 ::
 
    local(proc) = sys_process('cmd', (: '/C DIR /B .'))
-   local(_) = #proc->wait
+   local(_)    = #proc->wait
    #proc->readString->encodeHtml
    #proc->close
 
@@ -318,7 +318,7 @@ return a list of all the built-in commands supported by the command processor.
 ::
 
    local(proc) = sys_process('cmd', (: '/C HELP cmd'))
-   local(_) = #proc->wait
+   local(_)    = #proc->wait
    #proc->readString->encodeHtml
    #proc->close
 
@@ -376,7 +376,7 @@ commands easy since all the code can be perfected using local testing before it
 is run through Lasso. ::
 
    local(proc) = sys_process('cmd', (: '/C batch.bat'))
-   local(_) = #proc->wait
+   local(_)    = #proc->wait
    #proc->readString->encodeHtml
    #proc->close
 

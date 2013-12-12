@@ -58,11 +58,12 @@ methods:
       -ssl= ?, \
       ...)
 
-   Creates a new POP object. Requires a ``-host`` parameter. Takes optional
-   ``-port`` and ``-timeout`` parameters. The ``-APOP`` parameter selects
-   authentication method. If ``-username`` and ``-password`` are specified then
-   a connection is opened to the server with authentication. The ``-get``
-   parameter specifies which command to perform when calling `email_pop->get`.
+   Creates a new POP connection object. Requires a ``-host`` parameter. Takes
+   optional ``-port`` and ``-timeout`` parameters. The ``-APOP`` parameter
+   selects authentication method. If ``-username`` and ``-password`` are
+   specified then a connection is opened to the server with authentication. The
+   ``-get`` parameter specifies which command to perform when calling
+   `email_pop->get`.
 
 .. member:: email_pop->size()
 
@@ -139,7 +140,8 @@ what command the `email_pop->get` method will perform. In this case it is set to
       -host     = 'mail.example.com',
       -username = 'POPUSER',
       -password = 'MySecretPassword',
-      -get      = 'UniqueID')
+      -get      = 'UniqueID'
+   )
 
 The `iterate` method can then be used on the "myPOP" variable. For example, this
 code will download and delete every message from the target server. The variable
@@ -211,10 +213,11 @@ message from the server::
    local(myPOP) = email_pop(
       -host     = 'mail.example.com',
       -username = 'POPUSER',
-      -password = 'MySecretPassword')
+      -password = 'MySecretPassword'
+   )
 
    iterate(#myPOP, local(myID)) => {
-      local(myMSG) = #myPOP->retrieve
+      local(myMsg) = #myPOP->retrieve
 
       // ... process message ...
 
@@ -488,8 +491,8 @@ turn.
       ========================================== =========================================
       ``email_parse->to``                        :mailheader:`To`
       ``email_parse->from``                      :mailheader:`From`
-      ``email_parse->cc``                        :mailheader:`CC`
-      ``email_parse->bcc``                       :mailheader:`BCC`
+      ``email_parse->cc``                        :mailheader:`Cc`
+      ``email_parse->bcc``                       :mailheader:`Bcc`
       ``email_parse->subject``                   :mailheader:`Subject`
       ``email_parse->date``                      :mailheader:`Date`
       ``email_parse->content_type``              :mailheader:`Content-Type (MIME Type)`
@@ -533,10 +536,10 @@ as well as the output of `email_parse` in a set of ``<pre>`` tags. ::
          -password = 'MySecretPassword'
       )
       iterate(#myPOP, local(myID))
-         local(myMSG) = #myPOP->retrieve
+         local(myMsg) = #myPOP->retrieve
    ?>
    <h3>Message: [#myID]</h3>
-   <pre>[email_parse(#myMSG)]</pre>
+   <pre>[email_parse(#myMsg)]</pre>
    <hr />
    <?lasso
       /iterate
@@ -567,10 +570,10 @@ There are three ways to inspect the headers of a downloaded message.
 #. The basic headers of a message can be inspected using the shortcut methods
    such as `email_parse->from`, `email_parse->to`, `email_parse->subject`, etc.
    The following example shows how to display the basic headers for a message,
-   where the variable "myMSG" is assumed to be the output from an
+   where the variable "myMsg" is assumed to be the output from an
    `email_pop->retrieve` method::
 
-      local(myParse) = email_parse(#myMSG)
+      local(myParse) = email_parse(#myMsg)
       '<br />To:      ' + #myParse->to->encodeHtml + '\n'
       '<br />From:    ' + #myParse->from->encodeHtml + '\n'
       '<br />Subject: ' + #myParse->subject->encodeHtml + '\n'
@@ -586,7 +589,7 @@ There are three ways to inspect the headers of a downloaded message.
    this conditional would perform different tasks based on whether the message
    is to one address or another::
 
-      local(myParse) = email_parse(#myMSG)
+      local(myParse) = email_parse(#myMsg)
       if(#myParse->to >> 'mailinglist@example.com') => {
          // ... store the message in the mailing list database ...
       else(#myParse->to >> 'help@example.com')
@@ -600,7 +603,7 @@ There are three ways to inspect the headers of a downloaded message.
    `email_parse->header` method. For example, the following code can check
    whether the message has SpamAssassin headers::
 
-      local(myParse)      = email_parse(#myMSG)
+      local(myParse)      = email_parse(#myMsg)
       local(spam_version) = string(#myParse->header('X-Spam-Checker-Version'))
       local(spam_level)   = string(#myParse->header('X-Spam-Level'))
       local(spam_status)  = string(#myParse->header('X-Spam-Status'))
@@ -626,7 +629,7 @@ There are three ways to inspect the headers of a downloaded message.
 #. The value for all the headers in the message can be displayed using the
    `email_parse->headers` method, as the following example shows::
 
-      local(myParse) = email_parse(#myMSG)
+      local(myParse) = email_parse(#myMsg)
       iterate(#myParse->headers, local(header))
          '<br />' + #header->first->encodeHtml + ': ' + #header->second->encodeHtml
       /iterate
@@ -651,7 +654,7 @@ The `email_parse->body` method can be used to find the plain text and HTML parts
 of a message. The following example shows both the plain text and HTML parts of
 a downloaded message::
 
-   local(myParse) = email_parse(#myMSG)
+   local(myParse) = email_parse(#myMsg)
    '<pre>' + #myParse->body(-type='text/plain')->encodeHtml + '</pre>'
    '<hr />' + #myParse->body(-type='text/html')->encodeHtml + '<hr />'
 
@@ -660,7 +663,7 @@ The `email_parse->size` and `email_parse->get` methods can be used with the
 show information about plain text and HTML parts as well as information about
 attachments. The headers and body of each part is shown::
 
-   local(myParse) = email_parse(#myMSG)
+   local(myParse) = email_parse(#myMsg)
    iterate(#myParse, local(myPart))
       iterate(#myPart->header, local(header))
          '<br />' + #header->first->encodeHtml + ': ' + #header->second->encodeHtml + '\n'
@@ -704,7 +707,7 @@ The following example finds all of the attachments for a message using the
 part that includes an attachment is used to write out a file using
 `file->openWrite` and `file->writeBytes` which re-creates the attachment. ::
 
-   local(myParse) = email_parse(#myMSG)
+   local(myParse) = email_parse(#myMsg)
    if(#myParse->mode >> 'multipart') => {
       iterate(#myParse, local(myPart)) => {
          if(#myPart->content_disposition >> 'attachment') => {
@@ -718,8 +721,8 @@ part that includes an attachment is used to write out a file using
    }
 
 .. note::
-   In order for this code to work, the "Attachments" folder should already exist
-   and Lasso Server should have permission to write to it.
+   In order for this code to work, the "Attachments" folder must already exist
+   and have permissions allowing Lasso Server to write to it.
 
 
 Store a Downloaded Message in a Database
@@ -740,8 +743,8 @@ the messages are going to be used later.
          #myPOP->close
       }
       iterate(#myPOP, local(myID)) => {
-         local(myMSG)   = #myPOP->retrieve
-         local(myParse) = email_parse(#myMSG)
+         local(myMsg)   = #myPOP->retrieve
+         local(myParse) = email_parse(#myMsg)
 
          inline(
             -add,
@@ -764,8 +767,8 @@ the messages are going to be used later.
          #myPOP->close
       }
       iterate(#myPOP, local(myID)) => {
-         local(myMSG)   = #myPOP->retrieve
-         local(myParse) = email_parse(#myMSG)
+         local(myMsg)   = #myPOP->retrieve
+         local(myParse) = email_parse(#myMsg)
 
          inline(
             -add,
@@ -790,13 +793,14 @@ the messages are going to be used later.
       local(myPOP) = email_pop(
          -host     = 'mail.example.com',
          -username = 'POPUSER',
-         -password = 'MySecretPassword')
+         -password = 'MySecretPassword'
+      )
       handle => {
          #myPOP->close
       }
       iterate(#myPOP, local(myID)) => {
-         local(myMSG)   = #myPOP->retrieve
-         local(myParse) = email_parse(#myMSG)
+         local(myMsg)   = #myPOP->retrieve
+         local(myParse) = email_parse(#myMsg)
          inline(
             -add,
             -database    = 'example',

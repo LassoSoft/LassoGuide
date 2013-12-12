@@ -46,11 +46,11 @@ serialized object is returned.
 This example code serializes an array of objects, then deserializes it back into
 a new array::
 
-   local(a) = array(1, 2, 'three', pair(4='five'))
+   local(a)    = array(1, 2, 'three', pair(4='five'))
    local(data) = #a->serialize
-   local(a2) = serialization_reader(#data)->read
-   #a == #a2
+   local(a2)   = serialization_reader(#data)->read
 
+   #a == #a2
    // => true
 
 
@@ -135,7 +135,8 @@ The example type has data members that are saved during serialization. ::
       public serializationElements()::trait_forEach => {
          return (:
             serialization_element(1, .dmem1),
-            serialization_element(2, .dmem2) )
+            serialization_element(2, .dmem2)
+         )
       }
 
       public acceptDeserializedElement(d::serialization_element) => {

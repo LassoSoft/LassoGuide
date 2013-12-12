@@ -159,7 +159,7 @@ its behavior. This can be done by using the `curl->set` method, passing it the
 ``CURLOPT_…`` macro methods representing the option you wish to set and the
 value you wish to set it to as the second param. What follows is a list of
 options that can be set on Lasso's curl object. It has been adapted from the
-`curl documentation`_, with the options grouped in a similar manner as you find
+`curl documentation`_, with the options grouped in a similar manner as is found
 there. This should allow you to easily find the option if you need more detail.
 
 
@@ -638,7 +638,7 @@ Protocol Options
 
    Used with `curl->set`. This option takes a string for its value specifying
    the range you want in the form of :samp:`{X}-{Y}` where either "X" or "Y" may
-   be omitted. Ranges work for HTTP, FTP, and FILE. transfers only. HTTP
+   be omitted. Ranges work for HTTP, FTP, and FILE transfers only. HTTP
    transfers also support intervals separated by commas, such as "X-Y,N-M".
 
 .. method:: CURLOPT_RESUME_FROM()
@@ -845,8 +845,8 @@ SSL and Security Options
 
    .. method:: CURL_SSLVERSION_DEFAULT()
 
-      Can be passed instead to tell curl to figure out the remote server's
-      protocol, though it won't use `CURL_SSLVERSION_SSLv2()`.
+      Can be passed instead to tell curl to figure out the protocol used by the
+      remote server, though it won't use `CURL_SSLVERSION_SSLv2()`.
 
 .. method:: CURLOPT_SSL_VERIFYPEER()
 
@@ -980,25 +980,7 @@ The `include_url` method is a wrapper around the :type:`curl` type for
 requesting data via HTTP. We strongly recommend using this method for your HTTP
 request needs if possible.
 
-.. method:: include_url(url::string, \
-      -getParams= ?, \
-      -postParams= ?, \
-      -sendMimeHeaders= ?, \
-      -username= ?, \
-      -password= ?, \
-      -noData= ?, \
-      -verifyPeer= ?, \
-      -sslCert= ?, \
-      -sslCertType= ?, \
-      -sslKey= ?, \
-      -sslKeyType= ?, \
-      -sslKeyPasswd= ?, \
-      -timeout= ?, \
-      -connectTimeout= ?, \
-      -retrieveMimeHeaders= ?, \
-      -options= ?, \
-      -string= ?, \
-      -basicAuthOnly= ?)
+.. method:: include_url(url::string, ...)
 
    Requires a string representing a URL in the form of
    :ref:`!http://www.example.com` (:ref:`!https://` can also be used). By

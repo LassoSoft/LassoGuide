@@ -131,7 +131,7 @@ proper location. This means that an application can be deployed as a regular
 directory of files and also that a developer needn't take any special steps
 transitioning between developing and testing an application.
 
-.. attention::
+.. important::
    While the above is generally true, it is currently required to restart Lasso
    Server when *adding* or *removing* files from an in-development LassoApp. We
    aim to remove this restriction in a future release. (File content can be
@@ -142,7 +142,7 @@ Directory Organization
 ----------------------
 
 By using the concepts of nodes, resources, and content representation, a
-LassoApp can be logically organized and provide clean, hierarchical, natural
+LassoApp can be organized logically and provide clean, hierarchical, natural
 language URLs.
 
 For example a simple "Contacts" LassoApp could have a structure similar to the
@@ -170,10 +170,6 @@ file.
 
 Serving Content
 ===============
-
-
-Serving Simple Content
-----------------------
 
 Serving simple content such as images or raw text and HTML is as simple as
 putting the file into the LassoApp root directory. As long as the file has the
@@ -207,7 +203,7 @@ example, a file in an address book application might be named as follows:
 
 Assuming the standard Lasso Server web server configuration, that file could be
 accessed with the following URLs and the content would be served as
-:mimetype:`text/html`.
+:mimetype:`text/html`:
 
 .. code-block:: none
 
@@ -222,7 +218,7 @@ Explicit Content Types
 The outgoing content type for a source file can be indicated in the file's name
 by placing the content type's file extension between square brackets. These
 files will be executed and the resulting value will be returned to the client
-using the indicated content type. The following shows some valid file names.
+using the indicated content type. The following shows some valid file names:
 
 .. code-block:: none
 
@@ -231,7 +227,7 @@ using the indicated content type. The following shows some valid file names.
    /AddressBook/users[rss].lasso
    /AddressBook/users[xhr].lasso
 
-The files shown above will expose the following URLs.
+The files shown above will expose the following URLs:
 
 .. code-block:: none
 
@@ -247,8 +243,8 @@ Primary and Secondary Processing
 Explicit content types can be used jointly with a similarly named regular
 "\*.lasso" file. In this situation, first the *primary* file is executed and
 then its value is made available to the *secondary* file as it is executed. The
-primary file is always executed. Only then is the secondary file, which
-corresponds to the requested content type, is executed.
+primary file is always executed. Only then would the secondary file, which
+corresponds to the requested content type, be executed.
 
 .. code-block:: none
 
@@ -303,7 +299,7 @@ users for both HTML and XML display. The list is generated first by the
       }
    }
 
-   /* return an array of users */
+   // Return an array of users
    return array(user('Stephen', 'J', 'Gould'),
             user('Francis', 'Crick'),
             user('Massimo', 'Pigliucci'))
@@ -319,10 +315,10 @@ users for both HTML and XML display. The list is generated first by the
       <tr><th>First Name</th><th>Middle Name</th><th>Last Name</th></tr>
    <?lasso
       // The primary value is given to us as the first parameter
-      local(usersAry) = #1
+      local(users) = #1
 
       // Start outputting HTML for each user
-      with user in #usersAry
+      with user in #users
       do {^
          '<tr><td>' + #user->firstName + '</td>
             <td>' + #user->middleName + '</td>
@@ -341,10 +337,10 @@ users for both HTML and XML display. The list is generated first by the
    <userslist>
    <?lasso
       // The primary value is given to us as the first parameter
-      local(usersAry) = #1
+      local(users) = #1
 
       // Start outputting XML for each user
-      with user in #usersAry
+      with user in #users
       do {^
          '<user><firstname>' + #user->firstName + '</firstname>
             <middlename>' + #user->middleName + '</middlename>
@@ -376,11 +372,14 @@ processor, in the order they are specified. The number of local variables being
 set must match the number of elements in the returned staticarray. (See the
 section :ref:`variables-decompositional` in the :ref:`variables` chapter.) ::
 
-   local(txt, usersAry) = #1
+   local(txt, users) = #1
 
 
-Files in LassoApps
-==================
+Special Files
+=============
+
+Using the naming conventions below, a LassoApp can be made to install or load
+files as needed.
 
 
 Customizing Installation
@@ -424,7 +423,7 @@ potentially leading to bottlenecks in your application. However, during
 application development redefining a method is a common occurrence while source
 code is frequently modified. In this case, definitions can be placed in non-init
 files (i.e., a regular file) and included in the \_init files using
-`lassoapp_include`. This allows the definition be loaded at startup while also
+`lassoApp_include`. This allows the definition be loaded at startup while also
 letting the developer execute the file "manually" as it is updated during
 development.
 
@@ -432,19 +431,18 @@ development.
 Ignored Files
 -------------
 
-When serving a LassoApp, Lasso Server will ignore certain files based on their
-names. Although the files can be included in a LassoApp, Lasso will not serve or
-process the files. The following files will be ignored:
-
--  Files or directories whose names begin with a period (``.``)
--  Files or directories whose names begin with a hyphen (``-``)
--  Files or directories whose names begin with two underscores (``__``)
-
-All other file names are permitted without restriction.
+When serving a LassoApp, Lasso Server will ignore certain file paths based on
+their names. Although they can be included in a LassoApp, Lasso will not serve
+or process files or directories whose names begin with a period (``.``), hyphen
+(``-``), or two underscores (``__``). All other file names are permitted without
+restriction.
 
 
 LassoApp Links
 ==============
+
+Use the `lassoApp_link` or `lassoApp_include` methods to link between resources
+in a LassoApp.
 
 
 Internal Links
@@ -453,7 +451,7 @@ Internal Links
 When creating a LassoApp, it is important not to hard-code paths to files within
 the app. Because the files within a LassoApp are not real files, Lasso Server
 will alter paths used in HTML links to be able to access the file data. The
-`lassoapp_link` method must be used for all intra-app file links.
+`lassoApp_link` method must be used for all intra-app file links.
 
 .. method:: lassoApp_link(path::string)
 
@@ -465,12 +463,12 @@ will alter paths used in HTML links to be able to access the file data. The
 
 To illustrate, consider a LassoApp that contains an image file called "icon.png"
 within an "images" subdirectory. In order to display the image, the
-`lassoapp_link` method would be used to alter the path, at runtime, to point to
-the true location of the file data. The following shows how `lassoapp_link`
+`lassoApp_link` method would be used to alter the path, at runtime, to point to
+the true location of the file data. The following shows how `lassoApp_link`
 would be used to display the image. This example assumes that the link is being
 embedded in an HTML ``<img>`` tag::
 
-   <img src="<?= lassoapp_link('/images/icon.png') ?>" />
+   <img src="<?= lassoApp_link('/images/icon.png') ?>" />
 
 The path that gets inserted into the HTML document will vary depending on the
 system's configuration, but the end result would be the same: the image would be
@@ -480,10 +478,10 @@ In the context of our "AddressBook" LassoApp from earlier in the chapter, using
 a default server configuration, the link above would be
 "/lasso9/AddressBook/images/icon.png".
 
-The `lassoapp_link` method must be used whenever a path to a file within the app
+The `lassoApp_link` method must be used whenever a path to a file within the app
 is needed. Behind the scenes, Lasso Server will alter the path so that it points
-to the right location. However, `lassoapp_link` only operates on paths to files
-within the current LassoApp. That is, `lassoapp_link` does not work with paths
+to the right location. However, `lassoApp_link` only operates on paths to files
+within the current LassoApp. That is, `lassoApp_link` does not work with paths
 to files in other LassoApps running on the same system.
 
 
@@ -509,11 +507,11 @@ a result page based on multiple files working together.
    `lassoApp_include_current` has its root set to the current LassoApp.
 
 To include a LassoApp file from a Lasso file external to the LassoApp, the
-`lassoapp_include` method is used. This method accepts one string parameter,
+`lassoApp_include` method is used. This method accepts one string parameter,
 which is the path to the file to include. This path does not need to be altered
-via the `lassoapp_link` method. However, the path should be a full path to the
+via the `lassoApp_link` method. However, the path should be a full path to the
 file starting with the name of the LassoApp that contains the file.
-Additionally, `lassoapp_include` takes content representations into account.
+Additionally, `lassoApp_include` takes content representations into account.
 Therefore, if the HTML representation of a file is desired, the file path should
 include the "|dot| html" extension.
 
@@ -527,26 +525,26 @@ from the hypothetical AddressBook LassoApp could look as follows::
       <head><title>Title</title></head>
       <body>
          Users list:
-         <?= lassoapp_include('/AddressBook/users.html') ?>
+         <?= lassoApp_include('/AddressBook/users.html') ?>
          Groups list:
-         <?= lassoapp_include('/AddressBook/groups.html') ?>
+         <?= lassoApp_include('/AddressBook/groups.html') ?>
       </body>
    </html>
 
-A `lassoapp_include` can be used to pull in any of the content representations
+A `lassoApp_include` can be used to pull in any of the content representations
 for a file, including the primary content. If the raw user list (as shown
-earlier in this chapter) were desired, the `lassoapp_include` method would be
+earlier in this chapter) were desired, the `lassoApp_include` method would be
 used, but the "|dot| lasso" extension would be given in the file path instead of
 the "|dot| html" extension. Because of this, the return type of the
-`lassoapp_include` method may vary. It may be plain string data, bytes data from
+`lassoApp_include` method may vary. It may be plain string data, bytes data from
 such as an image, or any other type of object.
 
 The following example includes the users list and assigns it to a variable. It
 then prints a message pertaining to how many users exist. This illustrates how
-the result of `lassoapp_include` is not just character data, but is whatever
+the result of `lassoApp_include` is not just character data, but is whatever
 type of data the LassoApp file represents. In this case, it is an array. ::
 
-   local(usersList) = lassoapp_include('/AddressBook/users.lasso')
+   local(usersList) = lassoApp_include('/AddressBook/users.lasso')
    'There are: ' + #usersList->size + ' users'
 
 
@@ -582,7 +580,7 @@ manner provide easy downloading and distribution while still making the source
 code for the application accessible. Zipped LassoApps must have a "|dot| zip"
 file extension.
 
-Developers should ensure that a LassoApp directory is zipped properly.
+Developers should verify that a LassoApp directory is zipped properly.
 Specifically, Lasso requires that all of the files and folders inside the
 LassoApp directory be zipped and not the LassoApp directory itself. On
 UNIX-based platforms (OS X or Linux) the :command:`zip` command-line tool can be
@@ -683,7 +681,7 @@ named :envvar:`LASSOSERVER_APP_PREFIX`. Its value should be the path to the root
 of the LassoApp. For example, if a site were dedicated to serving the Lasso
 Server Admin app, the value for the :envvar:`LASSOSERVER_APP_PREFIX` variable
 would be "/lasso9/admin". Having the variable set in this manner would cause
-all `lassoapp_link` paths to be prefixed with "/lasso9/admin".
+all `lassoApp_link` paths to be prefixed with "/lasso9/admin".
 
 The :envvar:`LASSOSERVER_APP_PREFIX` variable is used along with other web
 server configuration directives to provide transparent serving of a LassoApp.
@@ -695,7 +693,6 @@ Server Admin app would be served out of a virtual host named "admin.local".
     <VirtualHost *:80>
         ServerName admin.local
         ScriptAliasMatch ^(.*)$ /lasso9/admin$1
-
         RewriteEngine on
         RewriteRule ^ - [E=LASSOSERVER_APP_PREFIX:/lasso9/admin]
     </VirtualHost>
@@ -718,13 +715,13 @@ time Lasso Server loads it. This can be achieved by using "_init.lasso":
 ::
 
    // Load traits
-   lassoapp_include('core/traits/mytrait.lasso')
-   lassoapp_include('core/traits/anothertrait.lasso')
+   lassoApp_include('core/traits/mytrait.lasso')
+   lassoApp_include('core/traits/anothertrait.lasso')
 
    // Load types
    local(coretypes) = array('my_usertype', 'my_addresstype', 'my_companytype')
    with i in #coretypes
-   do lassoapp_include('core/types-methods/' + #i + '.lasso')
+   do lassoApp_include('core/types-methods/' + #i + '.lasso')
 
 This will load the specified traits and types at the time the LassoApp is
 loaded. All documents in the LassoApp can then assume these types exist. Note

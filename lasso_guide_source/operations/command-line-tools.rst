@@ -1,9 +1,9 @@
 .. highlight:: none
 .. _command-line-tools:
 
-************************
-Lasso Command-Line Tools
-************************
+******************
+Command-Line Tools
+******************
 
 The Lasso platform comes with various command-line tools to assist you. Lasso
 uses some of these tools to create and run the instances of Lasso that talk with
@@ -269,7 +269,7 @@ following lists the variables and a description of their function:
 
    If this variable is set by the web server, lassoserver will assume the
    host is dedicated to serving a single LassoApp, and will prepend this path to
-   all `lassoapp_link` paths. For details and an example, see the section
+   all `lassoApp_link` paths. For details and an example, see the section
    :ref:`lassoapps-server-configuration` in the :ref:`lassoapps` chapter.
 
    Default is not set.
@@ -277,18 +277,17 @@ following lists the variables and a description of their function:
 .. envvar:: LASSOSERVER_DOCUMENT_ROOT
 
    If this variable is set by the web server, lassoserver will use this path
-   instead of the standard :envvar:`DOCUMENT_ROOT` to serve files from. Can be
-   useful when using Apache's ``VirtualDocumentRoot`` or ``UserDir`` features.
-   In the example below, Apache will serve any of the folder names in
+   instead of the standard :envvar:`DOCUMENT_ROOT` to serve files from. This can
+   be useful when using Apache's ``VirtualDocumentRoot`` or ``UserDir``
+   features. In the example below, Apache will serve any of the folder names in
    "/srv/lasso/sites/" as virtual hosts, and Lasso will use the value of
-   :envvar:`LASSOSERVER_DOCUMENT_ROOT` as the host document root.
+   :envvar:`LASSOSERVER_DOCUMENT_ROOT` as each host's document root.
 
    .. code-block:: apacheconf
 
       <VirtualHost *:80>
           ServerName admin.local
           VirtualDocumentRoot "/srv/lasso/sites/%1"
-
           RewriteEngine on
           RewriteRule ^ - [E=LASSOSERVER_DOCUMENT_ROOT:/srv/lasso/sites/%{HTTP_HOST}]
       </VirtualHost>
@@ -629,13 +628,13 @@ used are loaded. They also improve startup time. Lasso can start up by only
 loading the very basic built-in functions and objects and then let the rest of
 the system load in over time.
 
-A special type of library can also be produced: a bitcode file, which has a
-"|dot| bc" file extension. Bitcode is an LLVM-specific format that Lasso knows
-how to load. Bitcode files can be shared across platforms on the same processor.
-For example, the same bitcode file could be used on OS X x86 and CentOS x86.
-Bitcode files don't load as fast, have about 80% larger file size and consume
-more memory than library files compiled into a shared library, but they don't
-require GCC and are cross-platform.
+A special type of library called a :dfn:`bitcode` file can also be produced,
+which has a "|dot| bc" file extension. Bitcode is an LLVM-specific format that
+Lasso knows how to load. Bitcode files can be shared across platforms on the
+same processor. For example, the same bitcode file could be used on OS X x86 and
+CentOS x86. Bitcode files don't load as fast, have about 80% larger file size
+and consume more memory than library files compiled into a shared library, but
+they don't require GCC and are cross-platform.
 
 
 Prerequisites

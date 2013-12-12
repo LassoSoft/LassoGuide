@@ -113,9 +113,9 @@ letter followed by a tab followed by a digit::
 Basic Matching Strings
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Below is a listing of basic matchers and a brief definition. Note that matches
-are case-sensitive by default. Pay careful attention to whether quoted or ticked
-string literals are being used.
+Below is a listing of basic matchers and a brief definition. Matches are
+case-sensitive by default. Be sure to note whether quoted or ticked string
+literals are being used.
 
 ```.```
    Period matches any single character except a line break.
@@ -431,7 +431,7 @@ Advanced Expressions
 The ICU library also supports a number of more advanced symbols for special
 purposes. Some of these symbols are listed in the following table, but a
 reference on regular expressions should be consulted for full documentation of
-these symbols and other advanced concepts. A table of regular expression flags
+these symbols and other advanced concepts. A list of regular expression flags
 follows.
 
 ``(?# )``
@@ -491,28 +491,27 @@ follows.
 ```$```
    Matches the end of the input, or the line if the ``m`` flag is set.
 
-.. tabularcolumns:: |l|L|
 
-.. _regular-expressions-flags:
+Regular Expression Flags
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. table:: Regular Expression Flags
+``i``
+   Sets matching to be case-insensitive.
 
-   ===== =======================================================================
-   Flag  Description
-   ===== =======================================================================
-   ``i`` Sets matching to be case-insensitive.
-   ``x`` Allows whitespace in comments and patterns.
-   ``s`` Allows the ``.`` character to also match line break characters.
-   ``m`` Allows the characters ``^`` and ``$`` to match the start and end of
-         lines, respectively. By default these will only match at the start and
-         end of the input.
-   ``w`` Changes the behavior of ``\b`` so that word boundaries are defined
-         according to `Unicode Standard Annex #29`_.
-   ===== =======================================================================
+``x``
+   Allows whitespace in comments and patterns.
 
-.. raw:: latex
+``s``
+   Allows the ``.`` character to also match line break characters.
 
-   \footnotetext[2]{http://www.unicode.org/reports/tr29/}
+``m``
+   Allows the characters ``^`` and ``$`` to match the start and end of lines,
+   respectively. By default these will only match at the start and end of the
+   input.
+
+``w``
+   Changes the behavior of ``\b`` so that word boundaries are defined according
+   to `Unicode Standard Annex #29`_.
 
 
 Regexp Type

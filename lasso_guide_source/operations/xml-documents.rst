@@ -112,7 +112,7 @@ documents and three for creating new blank documents.
    top-level :type:`xml_document` node object.
 
 .. method: xml(namespaceUri::string, rootNodeName::string)
-.. method:: xml(namespaceUri::string, rootNodeName::string, dtd::xml_documentType= ?)
+.. method:: xml(nsUri::string, rootNodeName::string, dtd::xml_documentType= ?)
 .. method:: xml()
 
    These subsequent three methods create a new document consisting of only the
@@ -161,7 +161,7 @@ This functionality is presented in the following four methods.
 .. type:: xml_DOMImplementation
 
 .. member: xml_DOMImplementation->createDocument(namespaceUri::string, rootNodeName::string)
-.. member:: xml_DOMImplementation->createDocument(namespaceUri::string, rootNodeName::string, dtd::xml_documentType= ?)
+.. member:: xml_DOMImplementation->createDocument(nsUri::string, rootNodeName::string, dtd::xml_documentType= ?)
 .. member:: xml_DOMImplementation->createDocumentType(qname::string, publicid::string, systemid::string)
 .. member:: xml_DOMImplementation->parseDocument(text::bytes)
 
@@ -222,13 +222,13 @@ The following methods are use for creating new nodes:
 .. type:: xml_document
 
 .. member:: xml_document->createElement(tagName::string)::xml_element
-.. member:: xml_document->createElementNS(namespaceURI::string, qualifiedName::string)::xml_element
+.. member:: xml_document->createElementNS(nsUri::string, qualifiedName::string)::xml_element
 
    The first version creates a new element node without a namespace. The second
    version permits a namespace to be specified.
 
 .. member:: xml_document->createAttribute(name::string)::xml_attr
-.. member:: xml_document->createAttributeNS(namespaceURI::string, qualifiedName::string)::xml_attr
+.. member:: xml_document->createAttributeNS(nsUri::string, qualifiedName::string)::xml_attr
 
    The first version creates a new attribute without a namespace. The second
    version permits a namespace to be specified.
@@ -314,7 +314,7 @@ to show the methods most commonly used when working with an XML document.
    Returns the value of the specified attribute. Returns an empty string if the
    attribute does not exist or has no value.
 
-.. member:: xml_element->getAttributeNS(namespaceURI::string, localName::string)
+.. member:: xml_element->getAttributeNS(nsUri::string, localName::string)
 
    Returns the value of the attribute matching the given namespace and local
    name. Returns an empty string if the attribute does not exist or has no
@@ -325,7 +325,7 @@ to show the methods most commonly used when working with an XML document.
    Returns the specified attribute node. Returns "null" if the attribute does
    not exist.
 
-.. member:: xml_element->getAttributeNodeNS(namespaceURI::string, localName::string)
+.. member:: xml_element->getAttributeNodeNS(nsUri::string, localName::string)
 
    Returns the attribute node matching the given namespace and local name.
    Returns "null" if the attribute does not exist.
@@ -334,7 +334,7 @@ to show the methods most commonly used when working with an XML document.
 
    Returns "true" if the specified attribute exists.
 
-.. member:: xml_element->hasAttributeNS(namespaceURI::string, localName::string)::boolean
+.. member:: xml_element->hasAttributeNS(nsUri::string, localName::string)::boolean
 
    Returns "true" if the attribute matching the given namespace and local name
    exists.
@@ -375,7 +375,7 @@ to show the methods most commonly used when working with an XML document.
 
    Returns the node matching the indicated name.
 
-.. member:: xml_nodeMap->getNamedItemNS(namespaceURI::string, localName::string)
+.. member:: xml_nodeMap->getNamedItemNS(nsUri::string, localName::string)
 
    Returns the node matching the indicated namespace URI and local name.
 
@@ -395,8 +395,9 @@ removing items from node maps.
 .. member:: xml_node->nodeValue=(value::string)
 
    Sets the value of the node to the indicated string. Only the following node
-   types can have their values set:  :type:`xml_attr`, :type:`xml_cdataSection`,
-   :type:`xml_comment`, :type:`xml_processingInstruction`, :type:`xml_text`.
+   types are able to have their values set:  :type:`xml_attr`,
+   :type:`xml_cdataSection`, :type:`xml_comment`,
+   :type:`xml_processingInstruction`, :type:`xml_text`.
 
 .. member:: xml_node->insertBefore(new::xml_node, ref::xml_node)::xml_node
 
