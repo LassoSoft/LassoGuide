@@ -100,7 +100,7 @@ epub:
 	@echo "Build finished. The epub file is in $(BUILDDIR)/epub."
 
 latex:
-	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	$(SPHINXBUILD) -b latex -D pygments_style=latexstyle.LatexStyle $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
 	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
 	mv -f  $(BUILDDIR)/latex/Makefile{2,}
@@ -114,7 +114,7 @@ latex:
 
 # PDF for hardcover edition
 latexpdf:
-	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	$(SPHINXBUILD) -b latex -D pygments_style=latexstyle.LatexStyle $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
 	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
 	mv -f  $(BUILDDIR)/latex/Makefile{2,}
@@ -127,7 +127,7 @@ latexpdf:
 
 # PDF for paperback edition
 latexpdfpb:
-	$(SPHINXBUILD) -b latex -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-0-1}' -D pygments_style=bw $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	$(SPHINXBUILD) -b latex -D pygments_style=bw -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-0-1}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
 	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
 	mv -f  $(BUILDDIR)/latex/Makefile{2,}
