@@ -236,14 +236,14 @@ query. This allows the use of any of the FileMaker search symbols. See the
    ``@``          Matches one character.
    ``*``          Matches zero or more characters. A single ``*`` matches
                   non-empty fields.
-   ``..``         Matches values between a range of values such as "1..10" or
-                  "A..Z". Can be written as two or three periods.
+   ``..``         Matches a range of values such as "1..10" or "A..Z". Can be
+                  written as two or three periods.
    ``#``          Matches one number.
    ``" "``        Quotes surround a substring that should be matched literally.
    ``=``          Matches a whole word. "=John" will match "John", but not
                   "Johnny". A single ``=`` matches empty fields.
-   ``==``         Matches a whole field value rather than word by word. Should
-                  be specified at the start of the search term.
+   ``==``         Matches a whole field value rather than per-word. Should be
+                  specified at the start of the search term.
    ``<``          Matches values less than a specified value.
    ``<=``         Matches values less than or equal to a specified value.
    ``>``          Matches values greater than a specified value.

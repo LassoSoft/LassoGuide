@@ -34,10 +34,10 @@ A :dfn:`type expression` consists of the word ``type`` followed by a set of
 curly braces (``{ ... }``). Between those curly braces reside a series of
 sections; each describing a different aspect of the type. These sections
 include: "parent"; "data"; "trait"; and "public", "protected", and "private"
-methods. Each section begins with one of those words and ends at the beginning
-of the next section or the end of the type expression (which would be a close
-curly brace). Each section is optional. Sections can occur in any order. The
-sections "trait" and "parent" can occur only once.
+member methods. Each section begins with one of those words and ends at the
+beginning of the next section or the end of the type expression (which would be
+a close curly brace). Each section is optional. Sections can occur in any order.
+The sections "trait" and "parent" can occur only once.
 
 The most simple type definition is shown below. It defines a type named "person"
 and contains no sections. Therefore, the ``person`` type contains no methods or
@@ -494,7 +494,7 @@ To create an instance of this type, the creator must be called with the required
 parameters. The following code will create a new instance of the ``person``
 type::
 
-   local(myperson) = person('John', 'Doe', date('1/1/1974'))
+   local(myperson) = person('Cathy', 'Cunningham', date('1/1/1974'))
 
 Note that when a creator has been specified, the default creator, which requires
 no parameters, is not automatically provided. Lasso will not supply a default

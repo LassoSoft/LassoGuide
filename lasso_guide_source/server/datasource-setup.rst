@@ -269,10 +269,10 @@ hosted on the same machine as Lasso might appear::
 
 If there are no databases or tables listed, check the following links in a web
 browser to verify that the Web Publishing Engine is working correctly. Replace
-"filemaker host" and "db name" with values for your particular situation.
+"filemaker_host" and "database_name" with values for your particular situation.
 
--  :samp:`http://{filemaker host}/fmi/xml/FMPXMLRESULT.xml?-dbnames`
--  :samp:`http://{filemaker host}/fmi/xml/FMPXMLRESULT.xml?-db={db name}&-layoutnames`
+-  :samp:`http://{filemaker_host}/fmi/xml/FMPXMLRESULT.xml?-dbnames`
+-  :samp:`http://{filemaker_host}/fmi/xml/FMPXMLRESULT.xml?-db={database_name}&-layoutnames`
 
 If either URL returns an error code other than 0 or fails in any way, Lasso will
 be unable to submit requests to FileMaker Server. Verify that XML Publishing is

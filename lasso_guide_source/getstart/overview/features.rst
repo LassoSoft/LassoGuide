@@ -116,10 +116,10 @@ type creator methods that are automatically called when you create instances of
 your type. The following code would use the ``person->onCreate`` method to
 create an object of type "person" and then output their first and last name::
 
-   local(cool_dude) = person('Sean', 'Stephens')  // "middle" is defined as an optional parameter
+   local(cool_dude) = person('Bill', 'Doerrfeld')  // "middle" is defined as an optional parameter
    #cool_dude->nameFirstLast
 
-   // => Sean Stephens
+   // => Bill Doerrfeld
 
 Types in Lasso also have single inheritance and can implement and import traits,
 described next. For more information on types, see the :ref:`types` chapter.

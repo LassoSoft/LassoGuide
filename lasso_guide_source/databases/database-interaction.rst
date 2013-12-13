@@ -267,7 +267,7 @@ performs the actual database action::
       <br /><input type="submit" name="submit" value="Search" />
    </form>
 
-The `inline` method in "response.lasso" contains the :type:`pair` parameter
+The inline in "response.lasso" contains the :type:`pair` parameter
 ``'first_name'=web_request->param('first_name')``. The `web_request->param`
 method instructs Lasso to fetch the input named "first_name" from the form post
 parameters submitted to the current page being served, namely the form shown
