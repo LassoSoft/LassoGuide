@@ -103,23 +103,23 @@ Using Array Objects
 .. member: array->removeAll()
 .. member:: array->removeAll(matching= ?)
 
-   These methods remove one or more elements from the array. Calling `remove`
-   with no parameters removes the last element from the array, while `remove`
-   with a ``position`` parameter will remove the element from that location. All
-   subsequent elements must then be moved up to fill the slot. A second
-   ``count`` parameter can be specified to indicate that more that one element
-   should be removed, starting from the indicated position.
+   These methods remove one or more elements from the array. Calling
+   `~array->remove` with no parameters removes the last element from the array,
+   while `~array->remove` with a ``position`` parameter will remove the element
+   from that location. All subsequent elements must then be moved up to fill the
+   slot. A second ``count`` parameter can be specified to indicate that more
+   that one element should be removed, starting from the indicated position.
 
-   The `removeAll` method with no parameters will remove all elements from the
-   array. The second `removeAll` method takes one parameter. All elements in the
+   The `~array->removeAll` method with no parameters will remove all elements
+   from the array. The second form takes one parameter. All elements in the
    array to which the parameter compares equally will be removed.
 
 .. member:: array->get(position::integer)
 .. member:: array->get=(value, position::integer)
 
-   The `get` method returns the element located at the indicated position. The
-   method will fail if the position is out of range. The setter version of this
-   method permits the position to be assigned a new value, e.g.::
+   The `~array->get` method returns the element located at the indicated
+   position. The method will fail if the position is out of range. The setter
+   version of this method allows the position to be assigned a new value, e.g.::
 
       #array->get(2) = "I am the second element!"
 
@@ -143,12 +143,12 @@ Using Array Objects
 .. member:: array->find(matching)
 
    These methods search the array for elements matching the parameter. The
-   `contains` method returns "true" if the matching parameter compares equally
-   to any contained elements. The `count` method returns the number of matching
-   elements. The `findPosition` method returns the position at which the next
-   matching element can be found with an optional second parameter indicating
-   where the search should begin. The `find` method returns a new array
-   containing all of the matched objects.
+   `~array->contains` method returns "true" if the matching parameter compares
+   equally to any contained elements. The `~array->count` method returns the
+   number of matching elements. The `~array->findPosition` method returns the
+   position at which the next matching element can be found with an optional
+   second parameter indicating where the search should begin. The `~array->find`
+   method returns a new array containing all of the matched objects.
 
 .. member:: array->size()::integer
 
@@ -230,10 +230,10 @@ Using Staticarray Objects
 .. member:: staticarray->get(position::integer)
 .. member:: staticarray->get=(value, position::integer)
 
-   The `get` method returns the element at the indicated position. This method
-   will fail if the position is out of range. The `get` method also permits a
-   position to be reassigned with an assignment statement in the same manner as
-   `array->get=`.
+   The `~staticarray->get` method returns the element at the indicated position.
+   This method will fail if the position is out of range. The
+   `~staticarray->get` method also permits a position to be reassigned with an
+   assignment statement in the same manner as `array->get=`.
 
 .. member:: staticarray->first()
 .. member:: staticarray->second()
@@ -247,11 +247,12 @@ Using Staticarray Objects
 .. member:: staticarray->find(matching)
 
    These methods search the staticarray for elements matching the parameter. The
-   `contains` method returns "true" if the matching parameter compares equally
-   to any contained elements. The `findPosition` method returns the position at
-   which the next matching element can be found with an optional
-   ``startPosition`` parameter indicating where the search should begin. The
-   `find` method returns a new array containing all of the matched objects.
+   `~staticarray->contains` method returns "true" if the matching parameter
+   compares equally to any contained elements. The `~staticarray->findPosition`
+   method returns the position at which the next matching element can be found
+   with an optional ``startPosition`` parameter indicating where the search
+   should begin. The `~staticarray->find` method returns a new array containing
+   all of the matched objects.
 
 .. member:: staticarray->join(count::integer, value)::staticarray
 .. member:: staticarray->join(s::staticarray)::staticarray
@@ -270,12 +271,12 @@ Using Staticarray Objects
       (: 1, 2, 3)->join((: 4, 5, 6))
       // => staticarray(1, 2, 3, 4, 5, 6)
 
-.. member:: staticarray->sub(position::integer, \
-      count::integer=(self->size - #position + 1))::staticarray
+.. member:: staticarray->sub(position::integer, count::integer= ?)::staticarray
 
-   The `sub` method returns a range of elements. The first parameter indicates
-   the starting position and the optional second parameter indicates how many of
-   the elements to return. The elements are returned as a new staticarray.
+   The `~staticarray->sub` method returns a range of elements. The first
+   parameter indicates the starting position and the optional second parameter
+   indicates how many of the elements to return. The elements are returned as a
+   new staticarray.
 
 .. member:: staticarray->+(s::staticarray)::staticarray
 .. member:: staticarray->+(value)::staticarray
@@ -317,7 +318,7 @@ Using List Objects
 .. member:: list->insert(value)
 
    These methods insert new elements into the list. Elements can be inserted at
-   the beginning or the ending of the list. The `insert` method with no
+   the beginning or the ending of the list. The `~list->insert` method with no
    parameters inserts at the end of the list.
 
 .. member:: list->removeFirst()
@@ -325,15 +326,15 @@ Using List Objects
 .. member:: list->remove()
 
    These methods remove an element from the list. Either the first or the last
-   element can be removed. The `remove` method with no parameters removes the
-   last element.
+   element can be removed. The `~list->remove` method with no parameters removes
+   the last element.
 
 .. member: list->removeAll()
 .. member:: list->removeAll(matching= ?)
 
-   The first `removeAll` method with no parameters removes every element from
-   the list. The second form accepts a parameter which is compared against the
-   elements. All matching elements are removed from the list.
+   The first `~list->removeAll` method with no parameters removes every element
+   from the list. The second form accepts a parameter which is compared against
+   the elements. All matching elements are removed from the list.
 
 .. member:: list->first()
 .. member:: list->last()
@@ -377,16 +378,17 @@ Using Queue Objects
 .. member:: queue->insertFrom(value::trait_forEach)
 
    These methods insert new elements into the queue. Elements will always be
-   inserted at the end of the queue. The `insertFrom` method allows for multiple
-   elements to be inserted into the queue by taking an object that implements
+   inserted at the end of the queue. The `~queue->insertFrom` method allows for
+   multiple elements to be inserted into the queue by taking an object that
+   implements
    :trait:`trait_forEach`.
 
 .. member:: queue->first()
 .. member:: queue->get()
 
    These methods return the first element in the queue. (This is the least
-   recently inserted element.) The `get` method additionally removes the element
-   from the queue.
+   recently inserted element.) The `~queue->get` method additionally removes the
+   element from the queue.
 
 .. member:: queue->size()
 
@@ -441,7 +443,7 @@ Using Stack Objects
 .. member:: stack->get()
 
    These methods return the first element in the stack. (This is the most
-   recently inserted element.) The `get` method additionally removes the
+   recently inserted element.) The `~stack->get` method additionally removes the
    element from the stack.
 
 .. member:: stack->size()
@@ -514,9 +516,9 @@ Using Map Objects
 .. member:: map->remove(key)
 .. member:: map->removeAll()
 
-   The first method, `remove`, removes the indicated key/value from the map. If
-   the key does not exist in the map then no action is taken. The second method,
-   `removeAll`, removes all of the keys/values from the map.
+   The first method, `~map->remove`, removes the indicated key/value from the
+   map. If the key does not exist in the map then no action is taken. The second
+   method, `~map->removeAll`, removes all of the keys/values from the map.
 
 .. member:: map->get(key)
 .. member:: map->get=(value, key)
@@ -524,13 +526,13 @@ Using Map Objects
 .. member:: map->contains(key)::boolean
 
    These methods get particular elements from the map or test that a key is
-   contained within the map. The `get` method finds the element within the map
-   associated with the key and returns the value, or reassigns it if a new value
-   is assigned. If the key is not found the method will fail. The `find` method
-   will search for the key within the map and return the value if it exists. If
-   the key is not found the method will return "void". The `contains` method
-   returns "true" if the matching parameter compares equally to any contained
-   elements.
+   contained within the map. The `~map->get` method finds the element within the
+   map associated with the key and returns the value, or reassigns it if a new
+   value is assigned. If the key is not found the method will fail. The
+   `~map->find` method will search for the key within the map and return the
+   value if it exists. If the key is not found the method will return "void".
+   The `~map->contains` method returns "true" if the matching parameter compares
+   equally to any contained elements.
 
 .. member:: map->size()::integer
 
@@ -565,11 +567,11 @@ Using Set Objects
 .. member:: set->get(key)
 .. member:: set->contains(key)::boolean
 
-   These methods find the given key within the set. The `find` method will
+   These methods find the given key within the set. The `~set->find` method will
    return the key if it is found; it returns "void" if the key is not within the
-   set. The `get` method will return the key, but will fail if the key is not
-   contained within the set. The `contains` method returns "true" if the key is
-   in the set.
+   set. The `~set->get` method will return the key, but will fail if the key is
+   not contained within the set. The `~set->contains` method returns "true" if
+   the key is in the set.
 
 .. member:: set->insert(key)
 
@@ -578,6 +580,6 @@ Using Set Objects
 .. member:: set->remove(key)
 .. member:: set->removeAll()
 
-   The `remove` method removes the indicated key from the set. If the key is not
-   contained within the set then no action is taken. The `removeAll` method
-   removes all keys from the set.
+   The `~set->remove` method removes the indicated key from the set. If the key
+   is not contained within the set then no action is taken. The
+   `~set->removeAll` method removes all keys from the set.

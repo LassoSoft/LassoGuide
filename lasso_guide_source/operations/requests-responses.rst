@@ -86,13 +86,14 @@ methods. All header names and values are treated as strings.
 .. member:: web_request->header(name::string)
 .. member:: web_request->rawHeader(name::string)
 
-   The `headers` method returns all of the headers as an object that can be
-   iterated or used in a query expression. Each header element is presented as a
-   pair object containing the header name and value as the pair's first and
-   second elements, respectively. The `header` method returns the first header
-   pair, which matches the name parameter. It returns "void" if the header is
-   not found. The `rawHeader` method works the same, but fetches the raw
-   unnormalized header name/value as sent by the web server.
+   The `~web_request->headers` method returns all of the headers as an object
+   that can be iterated or used in a query expression. Each header element is
+   presented as a pair object containing the header name and value as the pair's
+   first and second elements, respectively. The `~web_request->header` method
+   returns the first header pair, which matches the name parameter. It returns
+   "void" if the header is not found. The `~web_request->rawHeader` method works
+   the same, but fetches the raw unnormalized header name/value as sent by the
+   web server.
 
 The next set of methods is presented in a table matching the method name to its
 corresponding raw web request variable name. For headers that return a string
@@ -169,8 +170,8 @@ always a string.
    matching argument's string value. If no argument matches, then a "void" value
    is returned.
 
-   The `params` method presents both argument sources as a single queriable
-   :type:`tie` object with the POST arguments occurring first. The
+   The `~web_request->params` method presents both argument sources as a single
+   queriable :type:`tie` object with the POST arguments occurring first. The
    `param(name::string, joiner)` method presents an interface for accessing
    arguments that occur more than once. The ``joiner`` parameter is used to
    determine the result of the method. If "void" is passed, then the resulting
@@ -187,10 +188,10 @@ always a string.
 .. member:: web_request->postString()
 
    These methods return the respective arguments in a format similar to how they
-   were received. In the case of `queryString` the GET arguments are returned
-   verbatim. The POST string is created by concatenating each POST argument
-   together with "&" in between each name/value, each of which are separated
-   by "=". This will vary from the exact given POST only in the case of
+   were received. In the case of `~web_request->queryString` the GET arguments
+   are returned verbatim. The POST string is created by concatenating each POST
+   argument together with "&" in between each name/value, each of which are
+   separated by "=". This will vary from the exact given POST only in the case of
    :mimetype:`multipart/form-data` input.
 
 
@@ -445,10 +446,11 @@ Any of the following methods can be used to include file content.
 .. member:: web_response->includeLibraryOnce(path::string)
 
    These methods locate and run the file indicated by the path. The
-   `includeLibrary` and `includeLibraryOnce` member methods run the file but do
-   not insert the result into the response. The `includeOnce` and
-   `includeLibraryOnce` member methods will only include the file if it has not
-   already been included during the course of that request.
+   `~web_response->includeLibrary` and `~web_response->includeLibraryOnce`
+   member methods run the file but do not insert the result into the response.
+   The `~web_response->includeOnce` and `~web_response->includeLibraryOnce`
+   member methods will only include the file if it has not already been included
+   during the course of that request.
 
    These methods will fail if the indicated file does not exist.
 
@@ -642,9 +644,9 @@ client to be viewed either inline or downloaded as an attachment.
    :param boolean -skipProbe:
       Defaults to "false". If set to "true", no content type probe will occur.
    :param boolean -noAbort:
-      Defaults to "false". This means that `sendFile` will abort by default
-      after the data is delivered to the client. Set this parameter to "true"
-      in order to prevent the abort.
+      Defaults to "false". This means that `~web_response->sendFile` will abort
+      by default after the data is delivered to the client. Set this parameter
+      to "true" in order to prevent the abort.
    :param integer -chunkSize:
       Sets the size of the buffer with which the data is read and sent to the
       client. This mainly has a benefit when sending physical file data as it
@@ -656,7 +658,8 @@ client to be viewed either inline or downloaded as an attachment.
       invoke will be passed the bytes object for the current chunk as well as an
       integer indicating the overall size of the bytes being sent.
 
-   If the `sendFile` method succeeds and does not abort, no value is returned.
+   If the `~web_response->sendFile` method succeeds and does not abort, no value
+   is returned.
 
 .. |semi| unicode:: 0x3B
    :trim:

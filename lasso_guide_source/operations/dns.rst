@@ -83,21 +83,22 @@ IP Addresses
 IPv4 addresses consist of four numbers from 0 to 255 separated by periods. Each
 number represents a single 8-bit integer and the entire IP address represents a
 32-bit integer, so there are effectively about 4 billion IPv4 addresses. A
-typical IP address appears as follows:
+typical IPv4 address appears as follows:
 
 .. code-block:: none
 
-   127.0.0.1
+   17.149.160.49
 
 In order to expand the range of IP addresses that are available, a new Internet
 Protocol has been designed and is in the process of being adopted. This is
 version 6 of the Internet Protocol and is abbreviated IPv6. The most recent
 versions of Windows, OS X, and Linux all support IPv6 addresses. IPv6 addresses
-are essentially 128-bit integers. A typical IPv6 address may appear as follows:
+are essentially 128-bit integers. A typical IPv6 address may appear as follows,
+though abbreviated forms also exist:
 
 .. code-block:: none
 
-   fe80:0000:0000:0000:0000:0000:0000:0000
+   2001:0db8:0000:0000:0000:ff00:0042:8329
 
 .. note::
    The DNS lookup methods in Lasso do not support IPv6 addresses at this time.
@@ -171,8 +172,8 @@ domain name. Using a ``-type`` of "A" will always return an array, even if there
 is only one IP address. An empty array will be returned if no information about
 the specified domain name can be found. ::
 
-   dns_lookup('www.lassosoft.com', -type='A')
-   // => array(64.34.221.14)
+   dns_lookup('www.apple.com', -type='A')
+   // => array(17.149.160.49, 17.178.96.59, 17.172.224.47)
 
 
 Reverse Lookup
@@ -183,8 +184,8 @@ Reverse lookups are performed when an IP address is passed to the
 domain names. An empty array will be returned if no domain name could be found
 for the specified IP address. ::
 
-   dns_lookup('64.34.221.14')
-   // => array(www.lassosoft.com)
+   dns_lookup('23.208.45.15')
+   // => array(a23-208-45-15.deploy.static.akamaitechnologies.com)
 
 
 MX Records Lookup
@@ -204,16 +205,16 @@ Return Different Formats
 
 The following output shows the human-readable response to a DNS request::
 
-   dns_lookup('www.lassosoft.com', -format)
+   dns_lookup('www.apple.com', -format)
 
    // =>
-   // Length: 51
-   // ID: 21006
+   // Length: 73
+   // ID: 32569
    // Type: Answer
    // Flags: RD, RA
    // Counts: QD 1, AN 1
-   // QD 1: www.lassosoft.com.. * IN
-   // AN 1: www.lassosoft.com.. A IN 3156 64.34.221.14
+   // QD 1: www.apple.com.. * IN
+   // AN 1: www.apple.com.. CNAME IN 1331 www.isg-apple.com.akadns.net..
 
 The following output shows the low-level bit formatting of a DNS response. The
 actual response is fairly long and not shown here::

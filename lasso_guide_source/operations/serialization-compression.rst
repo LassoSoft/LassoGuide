@@ -182,10 +182,10 @@ The compression algorithm should only be used on large string values. For
 strings of less than one hundred characters the algorithm may actually result in
 a larger string than the source.
 
-These methods can be used in concert with the `serialize` method which creates a
-string representation of a type that implements :trait:`trait_serializable`, and
-the `serialization_reader->read` method which returns the original value based
-on a string representation.
+These methods can be used in concert with the `~trait_serializable->serialize`
+method which creates a string representation of a type that implements
+:trait:`trait_serializable`, and the `serialization_reader->read` method which
+returns the original value based on a string representation.
 
 
 Compress and Decompress a String

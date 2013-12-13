@@ -9,25 +9,19 @@ within Lasso-compatible databases. These parameters are used in conjunction with
 name/value pair parameters in order to perform the desired database action in a
 specific database and table or within a specific record.
 
-The inline parameters documented in this chapter are listed in the table
-:ref:`searching-displaying-parameters`. The sections that follow describe the
-additional keyword parameters and pair parameters required for each database
-action.
+The `inline` action parameters documented in this chapter are listed below. The
+sections that follow describe the additional keyword and pair parameters
+required for each database action.
 
-.. tabularcolumns:: |l|L|
+``-search``
+   Searches for records within a database.
 
-.. _searching-displaying-parameters:
+``-findAll``
+   Finds all records within a database.
 
-.. table:: Retrieval Action Parameters
-
-   ============= ===============================================================
-   Parameter     Description
-   ============= ===============================================================
-   ``-search``   Searches for records within a database.
-   ``-findAll``  Finds all records within a database.
-   ``-random``   Returns a random record from a database. (Only works with
-                 FileMaker Server databases.)
-   ============= ===============================================================
+``-random``
+   Returns a random record from a database. (Only works with FileMaker Server
+   databases.)
 
 
 How Searches are Performed
@@ -271,11 +265,11 @@ create complex database queries. These parameters are summarized in the table
    |``-operatorLogical=?`` or |Specifies the logical operator for the search.            |
    |``-opLogical=?``          |Abbreviation is ``-opLogical``. Defaults to AND.          |
    +--------------------------+----------------------------------------------------------+
-   |``-operator=?`` or        |When specified before a pair parameter, establishes the   |
-   |``-op=?``                 |search operator for that pair parameter. Abbreviation is  |
-   |                          |``-op``. Defaults to "bw". See below for a full list of   |
-   |                          |field operators. Operators can also be written as         |
-   |                          |``-bw``, ``-ew``, ``-cn``, etc.                           |
+   |``-operator=?`` or        |When specified before a pair parameter, sets the search   |
+   |``-op=?``                 |operator for that parameter. Abbreviation is ``-op``.     |
+   |                          |Defaults to "bw". See below for a full list of field      |
+   |                          |operators, which can also be written as ``-bw``, ``-ew``, |
+   |                          |``-cn``, etc.                                             |
    +--------------------------+----------------------------------------------------------+
    |``-operatorBegin=?`` or   |Specifies the logical operator for all search parameters  |
    |``-opBegin=?``            |until ``-operatorEnd`` is reached. Abbreviation is        |
@@ -308,19 +302,10 @@ Field Operators
 
 The possible values for the ``-operator`` parameter are listed in the table
 :ref:`searching-field-operators`. The default operator is begins with ("bw").
-Case is not considered when specifying operators.
-
-Field operators are interpreted differently depending on which data source is
-being accessed. For example, FileMaker Server interprets "bw" to mean that any
-word within a field can begin with the value specified for that field. MySQL
-interprets "bw" to mean that the first word within the field must begin with the
-value specified. See the chapters on each data source or the documentation that
-came with a third-party data source connector for more information.
-
-Several of the field operators are only supported in MySQL or other SQL
-databases. These include the "ft" full-text operator and the "rx" and "nrx"
-regular expression operators, which are described further in the table
-:ref:`sql-mysql-search-operators`.
+Case is not considered when specifying operators. Several of the field operators
+are only supported in MySQL or other SQL databases. These include the "ft"
+full-text operator and the "rx" and "nrx" regular expression operators, which
+are described further in the table :ref:`sql-mysql-search-operators`.
 
 .. tabularcolumns:: |l|L|
 
@@ -348,6 +333,13 @@ regular expression operators, which are described further in the table
    ``-op='nrx'`` or ``-nrx`` Not Regular Expression Search. MySQL databases
                              only.
    ========================= ===================================================
+
+Field operators are interpreted differently depending on which data source is
+being accessed. For example, FileMaker Server interprets "bw" to mean that any
+word within a field can begin with the value specified for that field. MySQL
+interprets "bw" to mean that the first word within the field must begin with the
+value specified. See the chapters on each data source or the documentation that
+came with a third-party data source connector for more information.
 
 
 Specify a Field Operator in an Inline

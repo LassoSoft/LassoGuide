@@ -1159,12 +1159,12 @@ Sanitizing Visitor-Supplied Values in a SQL Statement
 
 All visitor supplied values must be sanitized before they are concatenated into
 a SQL statement in order to ensure the validity of the SQL statement and to
-prevent SQL injection. Values from the `web_request->param`, `cookie`, and
-`field` methods should be encoded as well as values from any calculations that
-rely on these methods. The `string->encodeSql` method should be used to encode
-values within SQL statements for MySQL data sources. The `string->encodeSql92`
-method should be used to encode values for other SQL-compliant data sources
-including ODBC data sources and SQLite.
+prevent SQL injection. Values from the `web_request->param`,
+`web_request->cookie`, and `field` methods should be encoded as well as values
+from any calculations that rely on these methods. The `string->encodeSql` method
+should be used to encode values within SQL statements for MySQL data sources.
+The `string->encodeSql92` method should be used to encode values for other
+SQL-compliant data sources including ODBC data sources and SQLite.
 
 .. index:: encodeSql(), encodeSql92()
 

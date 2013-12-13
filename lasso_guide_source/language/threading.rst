@@ -191,11 +191,11 @@ other threads. ::
    // => 2
 
 Thread objects cannot be copied. Additionally, thread objects will continue to
-run forever, though they can terminate themselves by calling `abort`. Also,
-all parameter values given to a thread object method are copied, as well as any
-return value of a thread object method. This ensures that no two threads are
-ever operating on the same data at the same time, a situation that can have
-catastrophic results.
+run forever, though they can terminate themselves by calling
+`~web_response->abort`. Also, all parameter values given to a thread object
+method are copied, as well as any return value of a thread object method. This
+ensures that no two threads are ever operating on the same data at the same
+time, a situation that can have catastrophic results.
 
 
 Thread Objects and onCreate

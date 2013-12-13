@@ -10,23 +10,18 @@ parameters are used in conjunction with additional keyword and pair parameters
 in order to perform the desired database action in a specific database and table
 or within a specific record.
 
-The `inline` parameters documented in this chapter are listed in the table
-:ref:`adding-updating-parameters`. The sections that follow describe the
-additional keyword and pair parameters required for each database action.
+The `inline` action parameters documented in this chapter are listed below. The
+sections that follow describe the additional keyword and pair parameters
+required for each database action.
 
-.. tabularcolumns:: |l|L|
+``-add``
+   Adds a record to a database.
 
-.. _adding-updating-parameters:
+``-update``
+   Updates a record or records within a database.
 
-.. table:: Modification Action Parameters
-
-   ============== ==============================================================
-   Parameter      Description
-   ============== ==============================================================
-   ``-add``       Adds a record to a database.
-   ``-update``    Updates a record or records within a database.
-   ``-delete``    Removes a record or records from a database.
-   ============== ==============================================================
+``-delete``
+   Removes a record or records from a database.
 
 The same instructions for character encoding and error reporting from the
 :ref:`searching-displaying` chapter apply when writing to databases.

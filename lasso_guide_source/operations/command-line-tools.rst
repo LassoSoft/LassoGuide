@@ -497,13 +497,16 @@ LassoApp directory. ::
 Include Another File with Lasso Code
 ------------------------------------
 
+.. index:: sourcefile()
+
 If you would like to run Lasso code in another file from your script, you can
-include that file using the `sourcefile` method. The following example will have
-"/path/to/code.lasso" running the code from "/path/to/doc.lasso"::
+include that file using the :type:`sourcefile` type. The following example will
+have "/path/to/code.lasso" running the code from "/path/to/doc.lasso"::
 
    // Contents of /path/to/code.lasso
-   local(doc) = file('//path/to/doc.lasso')
-   sourcefile(#doc)->invoke
+   local(doc) = sourcefile(file('//path/to/doc.lasso'))
+   stdoutnl("Calling " + #doc->filename + "...")
+   #doc->invoke
    stdoutnl("This is heavy.")
 
 ::
@@ -516,6 +519,7 @@ Here's what happens when you run "/path/to/code.lasso":
 .. code-block:: none
 
    $> lasso9 /path/to/code.lasso
+   Calling //path/to/doc.lasso...
    Great Scott!
    This is heavy.
 

@@ -502,11 +502,11 @@ turn.
       ``email_parse->content_transfer_encoding`` :mailheader:`Content-Transfer-Encoding`
       ========================================== =========================================
 
-   The methods `email_parse->to`, `email_parse->from`, `email_parse->cc`, and
-   `email_parse->bcc` also accept ``-extract``, ``-comment``, and ``-safeEmail``
-   parameters like the `email_parse->header` method. These methods join multiple
-   parameters by default, but ``-join=null`` can be specified to return an array
-   instead.
+   The methods `~email_parse->to`, `~email_parse->from`, `~email_parse->cc`, and
+   `~email_parse->bcc` also accept ``-extract``, ``-comment``, and
+   ``-safeEmail`` parameters like the `email_parse->header` method. These
+   methods join multiple parameters by default, but ``-join=null`` can be
+   specified to return an array instead.
 
 
 Using Email_Parse
