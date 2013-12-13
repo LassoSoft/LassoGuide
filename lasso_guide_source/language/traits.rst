@@ -255,6 +255,7 @@ In this code the `~null->isA` method returns "2" since the ``month`` type does
 have the ``trait_firstLast`` trait applied to it::
 
    local(mymonth) = month(2008, 12)
+
    #mymonth->isA(::trait_firstlast)
    // => 2
 

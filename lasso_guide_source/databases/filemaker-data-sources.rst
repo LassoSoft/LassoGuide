@@ -479,8 +479,8 @@ value is set to the empty string. ::
    ) => {}
 
 .. tip::
-   The Record ID for the current record in FileMaker can be accessed using the
-   calculation value ``Status(CurrentRecordID)`` within FileMaker.
+   The calculation value ``Status(CurrentRecordID)`` can be used to access the
+   Record ID for the current record.
 
 
 Sorting Records
@@ -582,12 +582,6 @@ included in the layout specified for the current Lasso action can be referenced
 using this syntax. Data can be retrieved from related fields or it can be set in
 related fields when records are added or updated.
 
-.. important::
-   Every database that is referenced by a related field or a portal must have
-   the same permissions defined. If a related database does not have the proper
-   permissions then not only will FileMaker Server leave the related fields
-   blank, but will deny the entire database request.
-
 
 Return Data from a Related Field
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -624,9 +618,8 @@ Set Value for a Related Field
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Specify the name of the related field, along with the related field's Record ID,
-within the action that adds or updates a record within the database. The related
-field must be contained in the current layout either individually or within a
-portal.
+within the action that adds or updates a record. The related field must be
+contained in the current layout either individually or within a portal.
 
 In one-to-one or one-to-many relationships, the fully qualified field name must
 be used along with the Record ID of the related field in the format
@@ -650,6 +643,12 @@ the "calls" database is updated for "Jane Person". The new value is returned. ::
 
    // => 12:14:56
 
+.. important::
+   Every database that is referenced by a related field or a portal must have
+   the same permissions defined. If a related database does not have the proper
+   permissions then not only will FileMaker Server leave the related fields
+   blank, but will deny the entire database request.
+
 
 .. _filemaker-portals:
 
@@ -660,12 +659,6 @@ A :dfn:`portal` allows one-to-many relationships to be displayed within
 FileMaker databases. Portals allow data from many related records to be
 retrieved and displayed in a single Lasso page. A portal must be present in the
 current FileMaker layout in order for its values to be retrieved using Lasso.
-
-.. important::
-   Every database that is referenced by a related field or a portal must have
-   the same permissions defined. If a related database does not have the proper
-   permissions then not only will FileMaker Server leave the related fields
-   blank, but will deny the entire database request.
 
 Only the number of repetitions formatted to display within FileMaker will be
 displayed using Lasso. A portal must contain a scroll bar in order for all
@@ -752,8 +745,8 @@ Value Lists
 Value lists in FileMaker allow a set of possible values to be defined for a
 field. The items in the value list associated with a field on the current layout
 for a Lasso action can be retrieved using the `value_list` methods as shown in
-the examples below. See the documentation for FileMaker for more information
-about how to create and use value lists within FileMaker.
+the examples below. See the documentation for more information about how to
+create and use value lists within FileMaker.
 
 In order to display values from a value list, the layout referenced in the
 current database action must contain a field formatted to show the desired value
@@ -794,7 +787,7 @@ Display All Values from a Value List
 
 The following example shows how to display all values from a value list using a
 ``-show`` action within an `inline` capture block. The field "title" in the
-"people" table contains five values: "Mr.", "Mrs.", "Ms.", and "Dr.". The
+"people" table contains four values: "Mr.", "Mrs.", "Ms.", and "Dr.". The
 ``-show`` action allows the values for value lists to be retrieved without
 performing a database action. ::
 
@@ -804,15 +797,11 @@ performing a database action. ::
       -table='people'
    ) => {^
       value_list('title') => {^
-         '<br />' + value_listItem + '\n'
+         value_listItem + ', '
       ^}
    ^}
 
-   // =>
-   // <br />Mr.
-   // <br />Mrs.
-   // <br />Ms.
-   // <br />Dr.
+   // => Mr., Mrs., Ms., Dr.,
 
 
 Display a Drop-Down Menu with All Values from a Value List
@@ -841,8 +830,7 @@ formatted, they can all be contained within a single inline. ::
          ^}
       '</select>\n'
    ^}
-   '<p><input type="submit" name="submit" value="Add Record">\n'
-   '</form>\n'
+   '<p><input type="submit" name="submit" value="Add Record">\n</form>\n'
 
    // =>
    // <form action="response.lasso" method="post">
@@ -874,8 +862,7 @@ code by changing the type from "radio" to "checkbox". ::
          '   <input type="radio" name="title" value="' + value_listItem + '" /> ' + value_listItem + '\n'
       ^}
    ^}
-   '<p><input type="submit" name="submit" value="Add Record">\n'
-   '</form>\n'
+   '<p><input type="submit" name="submit" value="Add Record">\n</form>\n'
 
    // =>
    // <form action="response.lasso" method="post">

@@ -186,6 +186,7 @@ other threads. ::
    }
 
    map_thread->insert('one'=1) & insert('two'=2)
+
    map_thread->get('two')
    // => 2
 

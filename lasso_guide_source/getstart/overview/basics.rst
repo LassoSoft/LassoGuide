@@ -89,6 +89,7 @@ One handy feature of local variables is decompositional assignment. This makes
 it easy to assign values from array-like types into locals::
 
    local(a, b, c) = array('rhino', 'runs', 'rapidly')
+
    #a
    // => rhino
    #b

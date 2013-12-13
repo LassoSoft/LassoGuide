@@ -104,6 +104,7 @@ result of which becomes an element in the resulting sequence. ::
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    select #n * #n
+
    // => 1, 4, 9, 16, 25, 36, 49, 64, 81
 
 One query expression can be nested within another. In the next example, the
@@ -118,6 +119,7 @@ the second query expression is evaluated. ::
 
    with newN in #qe
    select #newN * #newN
+
    // => 1, 16, 81, 256, 625, 1296, 2401, 4096, 6561
 
 
@@ -170,6 +172,7 @@ initial sequence::
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    sum #n
+
    // => 45
 
 
@@ -183,6 +186,7 @@ of each element and then divide that value by the number of elements. As with
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    average #n
+
    // => 5
 
 
@@ -195,10 +199,12 @@ the sequence, respectively. The standard less than (``<``) and greater than
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    min #n
+
    // => 1
 
    with n in array(1, 2, 3, 4, 5, 6, 7, 8, 9)
    max #n
+
    // => 9
 
 
@@ -231,6 +237,7 @@ turn as the expression is evaluated. ::
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
       where #n % 2 != 0 // Ignore even numbers
    select #n
+
    // => 1, 3, 5, 7, 9
 
 Multiple where operations can be used in a query expression. Using multiple
@@ -242,6 +249,7 @@ equivalent, while the third is not. ::
       where #n % 2 != 0 // Ignore even numbers
       where #n % 3 != 0 // Ignore numbers evenly divisible by 3
    select #n
+
    // => 1, 5, 7
 
 ::
@@ -249,6 +257,7 @@ equivalent, while the third is not. ::
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
       where #n % 2 != 0 && #n % 3 != 0
    select #n
+
    // => 1, 5, 7
 
 ::
@@ -256,6 +265,7 @@ equivalent, while the third is not. ::
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
       where #n % 2 != 0 || #n % 3 != 0
    select #n
+
    // => 1, 2, 3, 4, 5, 7, 8, 9
 
 
@@ -283,6 +293,7 @@ to a new variable using a let operation::
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
       let n2 = #n * #n
    select #n2
+
    // => 0, 1, 4, 9, 16, 25, 36, 49, 64, 81
 
 The next example snippet uses both ``where`` and ``let`` together::
@@ -291,6 +302,7 @@ The next example snippet uses both ``where`` and ``let`` together::
       let n2 = #n * #n    // Square the current value
       where #n2 % 2 != 0  // Discard even values using the new variable
    select #n2
+
    // => 1, 9, 25, 49, 81
 
 
@@ -308,6 +320,7 @@ portion of the query expression. ::
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
       skip 5
    select #n
+
    // => 5, 6, 7, 8, 9
 
 
@@ -326,6 +339,7 @@ source. The remaining elements are ignored. ::
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
       take 5
    select #n
+
    // => 0, 1, 2, 3, 4
 
 The ``skip`` and ``take`` can be used together to limit which elements a query
@@ -341,6 +355,7 @@ the rest of the query expression. ::
       skip 3
       take 4
    select #n
+
    // => 3, 4, 5, 6
 
 The next example snippets show how the ordering of ``skip`` and ``take`` is
@@ -352,6 +367,7 @@ same result, but uses ``skip`` and ``take`` in the reverse order. ::
       take 4
       skip 3
    select #n
+
    // => 3
 
 ::
@@ -360,6 +376,7 @@ same result, but uses ``skip`` and ``take`` in the reverse order. ::
       skip 3
       take 1
    select #n
+
    // => 3
 
 
@@ -381,6 +398,7 @@ ascending order, and the next, in descending order::
    with n in array(9, 2, 1, 3, 5, 4, 6, 7, 0, 8)
       order by #n
    select #n
+
    // => 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 
 ::
@@ -388,6 +406,7 @@ ascending order, and the next, in descending order::
    with n in array(9, 2, 1, 3, 5, 4, 6, 7, 0, 8)
       order by #n descending
    select #n
+
    // => 9, 8, 7, 6, 5, 4, 3, 2, 1, 0
 
 The expression provided to an order by can be any arbitrary expression. This
@@ -399,6 +418,7 @@ this purpose. ::
    with n in array('the', 'quick', 'brown', 'fox', 'jumped', 'the', 'shark')
       order by #n->size
    select #n
+
    // => the, fox, the, quick, brown, shark, jumped
 
 ::
@@ -406,6 +426,7 @@ this purpose. ::
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
       order by integer_random(0, 99)
    select #n
+
    // => 9, 8, 6, 5, 2, 1, 7, 0, 4, 3
 
 In the next example snippet, a series of user objects, represented by their
@@ -416,6 +437,7 @@ first and last names, could be ordered in an alphabetical manner::
          'Björg'='Riley', 'Hjörtur'='Hammershaimb')
       order by #n->second, #n->first
    select #n
+
    // => (Hjörtur = Hammershaimb), (Ármarinn = Hammershaimb), (Kjarni = Jones), \
    //    (Krinn = Jones), (Björg = Riley), (Halbjörg = Skywalker)
 
@@ -532,13 +554,17 @@ The following example uses a query expression to sum the even numbers starting
 with 2 and ending with 10::
 
    // Note that 11 is not part of the generated series
-   with num in generateSeries(2, 11, 2) sum #num
+   with num in generateSeries(2, 11, 2)
+   sum #num
+
    // => 30
 
 There is also a :type:`generateSeries` literal syntax that can be used. The
 following is equivalent to the preceding example::
 
-   with num in 2 to 11 by 2 sum #num
+   with num in 2 to 11 by 2
+   sum #num
+
    // => 30
 
 A :type:`generateSeries` object can also be converted to a staticarray for later
@@ -606,4 +632,5 @@ A string can then run a query expression on each character by using
 
    with i in 'Hammershaimb'->eachCharacter
    select #i
+
    // => H, a, m, m, e, r, s, h, a, i, m, b

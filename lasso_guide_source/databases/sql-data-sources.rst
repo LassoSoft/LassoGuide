@@ -829,8 +829,7 @@ formatted, they can all be contained within a single inline. ::
       ^}
       '</select>\n'
    ^}
-   '<p><input type="submit" name="submit" value="Add Record"></p>\n'
-   '</form>\n'
+   '<p><input type="submit" name="submit" value="Add Record"></p>\n</form>\n'
 
    // =>
    // <form action="response.lasso" method="POST">
@@ -862,8 +861,7 @@ code by changing the type from radio to checkbox. ::
          '   <input type="radio" name="title" value="' + value_listItem + '" /> ' + value_listItem + '\n'
       ^}
    ^}
-   '<p><input type="submit" name="submit" value="Add Record"></p>\n'
-   '</form>\n'
+   '<p><input type="submit" name="submit" value="Add Record"></p>\n</form>\n'
 
    // =>
    // <form action="response.lasso" method="POST">
@@ -932,8 +930,7 @@ in the database or nothing otherwise. ::
       ^}
       '</select>\n'
    ^}
-   '<input type="submit" name="submit" value="Update Record">\n'
-   '</form>\n'
+   '<input type="submit" name="submit" value="Update Record">\n</form>\n'
 
    // =>
    // <form action="response.lasso" method="POST">
@@ -968,8 +965,7 @@ with the same code by changing the type from "checkbox" to "radio". ::
          '   <input type="checkbox" name="title" value="' + value_listItem + '" ' + checked + '>' + value_listItem + '\n'
       ^}
    ^}
-   '<input type="submit" name="submit" value="Update Record">\n'
-   '</form>\n'
+   '<input type="submit" name="submit" value="Update Record">\n</form>\n'
 
    // =>
    // <form action="response.lasso" method="POST">
@@ -1334,8 +1330,7 @@ example will be the same as those shown above::
 
    // ...
 
-   resultSet_count(-inlineName='MyResults') + ' Result Sets'
-   '<hr />'
+   resultSet_count(-inlineName='MyResults') + ' Result Sets\n<hr />'
    loop(resultSet_count(-inlineName='MyResults')) => {^
       resultSet(loop_count, -inlineName='MyResults') => {^
          records => {^

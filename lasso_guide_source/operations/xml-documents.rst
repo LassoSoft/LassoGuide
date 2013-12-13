@@ -43,60 +43,6 @@ interface to XML document creation. Internally, the `xml` method uses the
 :type:`xml_DOMImplementation` type and therefore provides equivalent
 functionality to the :type:`xml_DOMImplementation` type.
 
-The following table lists all the possible objects that may be encountered
-within or inserted into an XML document.
-
-.. tabularcolumns:: |l|l|L|
-
-.. _xml-object-names:
-
-.. table:: XML Object Names
-
-   ============================= ===================== ===================================
-   Lasso XML Object Name         XML DOM Level 2 Name  Description
-   ============================= ===================== ===================================
-   ``xml_DOMImplementation``     DOMImplementation     Creates `xml_document` and
-                                                       `xml_documentType` objects. Can
-                                                       parse existing XML documents or
-                                                       create new empty documents.
-   ``xml_node``                  Node                  Base functionality supported by all
-                                                       objects.
-   ``xml_document``              Document              Represents the entire document and
-                                                       provides access to the document's
-                                                       data.
-   ``xml_element``               Element               Represents an XML element node.
-   ``xml_attr``                  Attr                  Represents an attribute of an XML
-                                                       element node.
-   ``xml_characterData``         CharacterData         Represents character data within
-                                                       the document. This is the base
-                                                       object type for `xml_text` and
-                                                       `xml_cdataSection` objects.
-   ``xml_text``                  Text                  Represents the character data of
-                                                       an `xml_element` or `xml_attr`
-                                                       node.
-   ``xml_cdataSection``          CDATASection          Represents a CDATA node.
-   ``xml_entityReference``       EntityReference       Represents an entity reference.
-   ``xml_entity``                Entity                Represents a parsed or unparsed
-                                                       entity within the document.
-   ``xml_processingInstruction`` ProcessingInstruction Represents a processing instruction
-                                                       located within the document.
-   ``xml_comment``               Comment               Represents the content of an XML
-                                                       comment node.
-   ``xml_documentType``          DocumentType          Represents the doctype attribute of
-                                                       an XML document.
-   ``xml_documentFragment``      DocumentFragment      Represents a minimal document
-                                                       object.
-   ``xml_notation``              Notation              Represents a notation declared in
-                                                       the DTD.
-   ``xml_nodeList``              NodeList              Represents a list of node objects.
-                                                       Provides random access to the list.
-                                                       This list uses zero-based indexes,
-                                                       in contrast to Lasso's standard
-                                                       one-based positions.
-   ``xml_namedNodeMap``          NamedNodeMap          Represents a collection of nodes
-                                                       that can be accessed by name.
-   ============================= ===================== ===================================
-
 
 Using xml
 ---------
@@ -248,6 +194,60 @@ The following methods are use for creating new nodes:
    parameter, then the node's children and attributes are not copied. If
    "true" is given, then all attributes and child nodes are copied into the
    current document.
+
+The following table lists all the possible objects that may be encountered
+within or inserted into an XML document.
+
+.. tabularcolumns:: |l|l|L|
+
+.. _xml-object-names:
+
+.. table:: XML Object Names
+
+   ============================= ===================== ===================================
+   Lasso XML Object Name         XML DOM Level 2 Name  Description
+   ============================= ===================== ===================================
+   ``xml_DOMImplementation``     DOMImplementation     Creates `xml_document` and
+                                                       `xml_documentType` objects. Can
+                                                       parse existing XML documents or
+                                                       create new empty documents.
+   ``xml_node``                  Node                  Base functionality supported by all
+                                                       objects.
+   ``xml_document``              Document              Represents the entire document and
+                                                       provides access to the document's
+                                                       data.
+   ``xml_element``               Element               Represents an XML element node.
+   ``xml_attr``                  Attr                  Represents an attribute of an XML
+                                                       element node.
+   ``xml_characterData``         CharacterData         Represents character data within
+                                                       the document. This is the base
+                                                       object type for `xml_text` and
+                                                       `xml_cdataSection` objects.
+   ``xml_text``                  Text                  Represents the character data of
+                                                       an `xml_element` or `xml_attr`
+                                                       node.
+   ``xml_cdataSection``          CDATASection          Represents a CDATA node.
+   ``xml_entityReference``       EntityReference       Represents an entity reference.
+   ``xml_entity``                Entity                Represents a parsed or unparsed
+                                                       entity within the document.
+   ``xml_processingInstruction`` ProcessingInstruction Represents a processing instruction
+                                                       located within the document.
+   ``xml_comment``               Comment               Represents the content of an XML
+                                                       comment node.
+   ``xml_documentType``          DocumentType          Represents the doctype attribute of
+                                                       an XML document.
+   ``xml_documentFragment``      DocumentFragment      Represents a minimal document
+                                                       object.
+   ``xml_notation``              Notation              Represents a notation declared in
+                                                       the DTD.
+   ``xml_nodeList``              NodeList              Represents a list of node objects.
+                                                       Provides random access to the list.
+                                                       This list uses zero-based indexes,
+                                                       in contrast to Lasso's standard
+                                                       one-based positions.
+   ``xml_namedNodeMap``          NamedNodeMap          Represents a collection of nodes
+                                                       that can be accessed by name.
+   ============================= ===================== ===================================
 
 
 Inspecting XML Objects
@@ -482,10 +482,9 @@ removing items from node maps.
 XPath
 =====
 
-Lasso's XML API supports the XPath 1.0 specification. This support is available
-on any :type:`xml_node` type through the `xml_node->extract` and
-`xml_node->extractOne` methods. Consult the `XPath specification`_ for the
-specifics of XPath syntax.
+Lasso's XML API supports the XPath 1.0 specification for any :type:`xml_node`
+type through the `xml_node->extract` and `xml_node->extractOne` methods. Consult
+the `XPath specification`_ for the specifics of XPath syntax.
 
 
 Using XPath

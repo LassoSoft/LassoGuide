@@ -136,6 +136,7 @@ single period. The examples above could be rewritten using a period in place of
 ``self->``. ::
 
    .'age' = 36
+
    .'age'
    // => 36
 
@@ -293,6 +294,7 @@ Given the definition above, the following example illustrates valid and invalid
 use of a ``person`` object::
 
    local(p) = person
+
    #p->describe
    // =>  , age
 

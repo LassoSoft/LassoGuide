@@ -88,7 +88,7 @@ Creating Array Objects
 Using Array Objects
 ^^^^^^^^^^^^^^^^^^^
 
-.. member:: array->insert(value, position::integer=(self->size + 1))
+.. member:: array->insert(value, position::integer= ?)
 
    This method adds a new element to the array. Elements are added to the end of
    the array by default, but a second parameter permits the position of the
@@ -118,13 +118,12 @@ Using Array Objects
 .. member:: array->get=(value, position::integer)
 
    The `get` method returns the element located at the indicated position. The
-   method will fail if the position is out of range. There is also a setter
-   version of this method which permits the position to be set to a new element
-   using assignment, e.g.::
+   method will fail if the position is out of range. The setter version of this
+   method permits the position to be assigned a new value, e.g.::
 
       #array->get(2) = "I am the second element!"
 
-.. member:: array->sub(position::integer, count::integer=(self->size - #position + 1))
+.. member:: array->sub(position::integer, count::integer= ?)
 
    Returns a range of elements from the array. The first parameter indicates the
    starting position and the second parameter indicates how many of the elements
@@ -198,9 +197,8 @@ Staticarray Type
    staticarray are accessed randomly, like an array, with 1-based positions.
 
    Lasso provides a shortcut for creating staticarray objects through the
-   ``(:)`` syntax. This syntax begins with an open parenthesis immediately
-   followed by a colon. Then follows zero or more elements, finalized by a
-   closing parenthesis.
+   ``(:)`` syntax. This syntax begins with an open parenthesis followed by a
+   colon, then zero or more elements, finalized by a closing parenthesis.
 
 
 Creating Staticarray Objects
@@ -460,10 +458,10 @@ Using Stack Objects
 Unordered Container Types
 =========================
 
-:dfn:`Unordered containers` store their elements in a manner without any
-position-based ordering. Lasso supports two unordered container types:
-:type:`map` and :type:`set`. Maps provide access to the elements via separate
-keys. Sets store only the elements themselves.
+:dfn:`Unordered containers` store their elements without position-based
+ordering. Lasso supports two unordered container types: :type:`map` and
+:type:`set`. Maps provide access to the elements via separate keys. Sets store
+only the elements themselves.
 
 
 .. _containers-map:
