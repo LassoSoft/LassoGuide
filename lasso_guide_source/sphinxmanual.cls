@@ -37,6 +37,7 @@
   \begin{titlepage}%
     \let\footnotesize\small
     \let\footnoterule\relax
+    \sphinxlogo\clearpage%
     \rule{\textwidth}{1pt}%
     \ifsphinxpdfoutput
       \begingroup
@@ -52,7 +53,6 @@
       \endgroup
     \fi
     \begin{flushright}%
-      \sphinxlogo%
       {\rm\Huge\py@HeaderFamily \textbf{Lasso}Guide \par}%
       {\em\LARGE\py@HeaderFamily \py@release\releaseinfo \par}
       \vfill

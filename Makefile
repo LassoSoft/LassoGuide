@@ -112,9 +112,9 @@ latex:
 	@echo "Run \`make' in that directory to run these through XeLaTeX" \
 	      "(use \`make latexpdf' here to do that automatically)."
 
-# PDF for hardcover edition
+# PDF for screen
 latexpdf:
-	$(SPHINXBUILD) -b latex -D pygments_style=latexstyle.LatexStyle $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	$(SPHINXBUILD) -b latex -D pygments_style=latexstyle.LatexStyle -t screen $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
 	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
 	mv -f  $(BUILDDIR)/latex/Makefile{2,}
@@ -125,9 +125,9 @@ latexpdf:
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
 	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."
 
-# PDF for paperback edition
-latexpdfpb:
-	$(SPHINXBUILD) -b latex -D pygments_style=bw -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-0-1}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+# PDF for hardcover edition
+latexpdfhc:
+	$(SPHINXBUILD) -b latex -D pygments_style=latexstyle.LatexStyle -t hardcover -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-1-8}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
 	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
 	mv -f  $(BUILDDIR)/latex/Makefile{2,}
@@ -136,7 +136,21 @@ latexpdfpb:
 	mv -f  $(BUILDDIR)/latex/LassoGuide9.2.{temp,tex}
 	@echo "Running LaTeX files through XeLaTeX..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
-	mv -f  $(BUILDDIR)/latex/LassoGuide{,Paperback}9.2.pdf
+	mv -f  $(BUILDDIR)/latex/LassoGuide{,Hardcover}9.2.pdf
+	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."
+
+# PDF for paperback edition
+latexpdfpb:
+	$(SPHINXBUILD) -b latex -D pygments_style=latexbwstyle.LatexBWStyle -t paperback -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-0-1}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
+	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
+	mv -f  $(BUILDDIR)/latex/Makefile{2,}
+	@echo "Implementing ugly hack to fix spacing of content inside descriptions using style=nextline and add columns to LCAPI ref..."
+	awk '{gsub(/leavevmode\\begin/,"leavevmode\\vspace*{-1.2\\baselineskip}\\begin");gsub(/emph{Enums}\\begin{quote}/,"emph{Enums}\\begin{quote}\\begin{multicols}{2}");gsub(/\\textbf{datasource\\_action\\_t/,"\\end{multicols}\\textbf{datasource\\_action\\_t")}; 1' $(BUILDDIR)/latex/LassoGuide9.2.tex | sed '/leavevmode$$/{N;s/\n\s*$$//;}' > $(BUILDDIR)/latex/LassoGuide9.2.temp
+	mv -f  $(BUILDDIR)/latex/LassoGuide9.2.{temp,tex}
+	@echo "Running LaTeX files through XeLaTeX..."
+	$(MAKE) -C $(BUILDDIR)/latex all-pdf
+	mv -f  $(BUILDDIR)/latex/LassoGuide{9.2,Paperback9.2-pre}.pdf
 	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."
 	@echo "Resave using Quartz Filter --> Gray Tone in Preview to create a grayscale PDF."
 

@@ -18,7 +18,7 @@ import sys, os, time
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('lasso_guide_book'))
-import latexstyle
+import latexstyle, latexbwstyle
 
 # -- General configuration -----------------------------------------------------
 
@@ -188,7 +188,7 @@ htmlhelp_basename = 'LassoGuide-doc'
 
 latex_elements = {
     # Unused by XeLaTeX, so we commandeer it to set the ISBN
-    'cmappkg': '\\newcommand\\isbn{978-0-9936363-1-8}',
+    'cmappkg': '\\newcommand\\isbn{000-0-0000000-0-0}',
 
     # The paper size ('letterpaper' or 'a4paper').
     'papersize': 'letterpaper',
@@ -272,7 +272,9 @@ latex_elements = {
 }
 \makeatother
 \AtBeginDocument{\globalcolor{BaseColor}}
-""",
+"""
++ ('\setmonofont[Scale=0.8]{DejaVu Sans Mono}\n' if tags.has('paperback') else '')
++ ('\hypersetup{urlcolor=OuterLinkColor}\n' if tags.has('screen') else ''),
 }
 # For PdfLaTeX I gave up, but switching to XeLaTeX got it working
 # Gave up and used unicode checkmark instead
@@ -302,7 +304,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-#latex_logo = '_static/Lasso-guide-92-cover.png'
+latex_logo = '_static/guide_cover_92.png' if tags.has('screen') else None
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
