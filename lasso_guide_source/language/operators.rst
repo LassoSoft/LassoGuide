@@ -147,10 +147,10 @@ this is done using integers as counters, though the concept can be applied
 elsewhere. Lasso supports the increment and decrement operators (``++`` and
 ``--``) in both pre and post modes.
 
-Pre-incrementing and pre-decrementing an object will add or subtract 1 from the
-object and then produce that object as a result. Post-incrementing and
+Pre-incrementing and pre-decrementing an object will add or subtract 1 to or
+from the object and then produce that object as a result. Post-incrementing and
 post-decrementing an object first copies that object, then adds or subtracts 1
-from the original operand, then produces the copied object as a result. ::
+to or from the original operand, then produces the copied object as a result. ::
 
    // Pre-increment "op"
    ++op

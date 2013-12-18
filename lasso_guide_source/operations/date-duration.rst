@@ -325,7 +325,7 @@ earlier versions of Lasso:
    ====== ======================================================================
    Symbol Description
    ====== ======================================================================
-   ``%d`` U.S. Date Format (mm/dd/yyyy)
+   ``%D`` U.S. Date Format (mm/dd/yyyy)
    ``%Q`` MySQL date format (yyyy-mm-dd)
    ``%q`` MySQL timestamp format (yyyymmddhhmmss)
    ``%r`` 12-hour time format (hh:mm:ss [AM/PM])
@@ -336,7 +336,7 @@ earlier versions of Lasso:
    ``%B`` full English month name (e.g. "January")
    ``%b`` abbreviated English month name (e.g. "Jan")
    ``%d`` day of month (01--31)
-   ``%w`` day of week (01=Sunday, 07=Saturday)
+   ``%w`` day of week (1=Sunday, 7=Saturday)
    ``%W`` week of year
    ``%A`` full English weekday name (e.g. "Wednesday")
    ``%a`` abbreviated English weekday name (e.g. "Wed")
@@ -345,9 +345,9 @@ earlier versions of Lasso:
    ``%M`` minute (0--59)
    ``%S`` second (0--59)
    ``%p`` AM/PM for 12-hour time
-   ``%G`` GMT time zone indicator
+   ``%G`` GMT time zone indicator (e.g. GMT-05:00)
    ``%z`` time zone offset in relation to GMT (e.g. +0100, -0800)
-   ``%Z`` time zone designator (e.g. PST, GMT-1, GMT+12)
+   ``%Z`` time zone designator (e.g. PST, EDT)
    ``%%`` percent character
    ====== ======================================================================
 
@@ -362,6 +362,14 @@ number with "0" so all values returned by the method are the same length.
    designating the symbol specifies that no padding should be performed (e.g.
    ``%-m`` returns the month number with no padding).
 -  A literal percent sign can be inserted using ``%%``.
+
+.. note::
+   For ``%W``, previous versions of Lasso count weeks of the year starting at 0,
+   starting week 1 on the next Monday, and week 52 on the last Monday of the
+   year. The current version starts week 1 on the last Sunday of the previous
+   year if the first day of the year falls on a Sunday through Wednesday, or the
+   first Sunday of the current year otherwise, for which the days before are
+   part of the last week of the previous year.
 
 .. note::
    If the ``%z`` or ``%Z`` symbols are used when parsing a date, the resulting
