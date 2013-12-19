@@ -1,5 +1,5 @@
 # Makefile for Sphinx documentation
-#
+# modified for LassoGuide
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
@@ -15,7 +15,10 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) las
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) lasso_guide_source
 
-.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
+LATEXRGB = -b latex -D pygments_style=latexstyle.LatexStyle
+LATEXBW  = -b latex -D pygments_style=latexbwstyle.LatexBWStyle
+
+.PHONY: help clean pdfdownload html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex-common latex latexpdf latexpdfhc latexpdfpb latexpdfvol1 latexpdfvol2 latexpdfvol3 latexpdfvols text man changes linkcheck doctest gettext
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -42,11 +45,12 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
-pdfdownload: $(wildcard $(BUILDDIR)/latex/LassoGuide*.pdf)
-	-rsync -aq $(BUILDDIR)/latex/LassoGuide9*.pdf $(BUILDDIR)/html/
+pdfdownload: $(wildcard $(BUILDDIR)/LassoGuide9*.pdf)
+	-rsync -aq $(BUILDDIR)/LassoGuide9*.pdf $(BUILDDIR)/html/
 
 html: pdfdownload
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	-rm -rf $(BUILDDIR)/html/lasso_guide_book
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
@@ -99,14 +103,17 @@ epub:
 	@echo
 	@echo "Build finished. The epub file is in $(BUILDDIR)/epub."
 
-latex:
-	$(SPHINXBUILD) -b latex -D pygments_style=latexstyle.LatexStyle $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+latex-common:
 	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
 	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
-	mv -f  $(BUILDDIR)/latex/Makefile{2,}
+	mv -f $(BUILDDIR)/latex/Makefile{2,}
 	@echo "Implementing ugly hack to fix spacing of content inside descriptions using style=nextline and add columns to LCAPI ref..."
 	awk '{gsub(/leavevmode\\begin/,"leavevmode\\vspace*{-1.2\\baselineskip}\\begin");gsub(/emph{Enums}\\begin{quote}/,"emph{Enums}\\begin{quote}\\begin{multicols}{2}");gsub(/\\textbf{datasource\\_action\\_t/,"\\end{multicols}\\textbf{datasource\\_action\\_t")}; 1' $(BUILDDIR)/latex/LassoGuide9.2.tex | sed '/leavevmode$$/{N;s/\n\s*$$//;}' > $(BUILDDIR)/latex/LassoGuide9.2.temp
-	mv -f  $(BUILDDIR)/latex/LassoGuide9.2.{temp,tex}
+	mv -f $(BUILDDIR)/latex/LassoGuide9.2.{temp,tex}
+
+latex:
+	$(SPHINXBUILD) $(LATEXRGB) $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	make latex-common
 	@echo
 	@echo "Build finished; the LaTeX files are in $(BUILDDIR)/latex."
 	@echo "Run \`make' in that directory to run these through XeLaTeX" \
@@ -114,45 +121,64 @@ latex:
 
 # PDF for screen
 latexpdf:
-	$(SPHINXBUILD) -b latex -D pygments_style=latexstyle.LatexStyle -t screen $(ALLSPHINXOPTS) $(BUILDDIR)/latex
-	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
-	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
-	mv -f  $(BUILDDIR)/latex/Makefile{2,}
-	@echo "Implementing ugly hack to fix spacing of content inside descriptions using style=nextline and add columns to LCAPI ref..."
-	awk '{gsub(/leavevmode\\begin/,"leavevmode\\vspace*{-1.2\\baselineskip}\\begin");gsub(/emph{Enums}\\begin{quote}/,"emph{Enums}\\begin{quote}\\begin{multicols}{2}");gsub(/\\textbf{datasource\\_action\\_t/,"\\end{multicols}\\textbf{datasource\\_action\\_t")}; 1' $(BUILDDIR)/latex/LassoGuide9.2.tex | sed '/leavevmode$$/{N;s/\n\s*$$//;}' > $(BUILDDIR)/latex/LassoGuide9.2.temp
-	mv -f  $(BUILDDIR)/latex/LassoGuide9.2.{temp,tex}
+	$(SPHINXBUILD) $(LATEXRGB) -t screen $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	make latex-common
 	@echo "Running LaTeX files through XeLaTeX..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
+	mv -f $(BUILDDIR)/{latex/,}LassoGuide9.2.pdf
 	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."
 
 # PDF for hardcover edition
 latexpdfhc:
-	$(SPHINXBUILD) -b latex -D pygments_style=latexstyle.LatexStyle -t hardcover -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-1-8}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
-	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
-	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
-	mv -f  $(BUILDDIR)/latex/Makefile{2,}
-	@echo "Implementing ugly hack to fix spacing of content inside descriptions using style=nextline and add columns to LCAPI ref..."
-	awk '{gsub(/leavevmode\\begin/,"leavevmode\\vspace*{-1.2\\baselineskip}\\begin");gsub(/emph{Enums}\\begin{quote}/,"emph{Enums}\\begin{quote}\\begin{multicols}{2}");gsub(/\\textbf{datasource\\_action\\_t/,"\\end{multicols}\\textbf{datasource\\_action\\_t")}; 1' $(BUILDDIR)/latex/LassoGuide9.2.tex | sed '/leavevmode$$/{N;s/\n\s*$$//;}' > $(BUILDDIR)/latex/LassoGuide9.2.temp
-	mv -f  $(BUILDDIR)/latex/LassoGuide9.2.{temp,tex}
+	$(SPHINXBUILD) $(LATEXRGB) -t hardcover -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-1-8}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	make latex-common
 	@echo "Running LaTeX files through XeLaTeX..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
-	mv -f  $(BUILDDIR)/latex/LassoGuide{,Hardcover}9.2.pdf
+	mv -f $(BUILDDIR)/latex/LassoGuide{9.2,,-Hardcover-9.2}.pdf
 	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."
 
 # PDF for paperback edition
 latexpdfpb:
-	$(SPHINXBUILD) -b latex -D pygments_style=latexbwstyle.LatexBWStyle -t paperback -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-0-1}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
-	@echo "Changing PDF Makefile to use XeLaTeX instead of pdfLaTeX"
-	awk '{gsub(/pdflatex/,"xelatex")}; 1' $(BUILDDIR)/latex/Makefile > $(BUILDDIR)/latex/Makefile2
-	mv -f  $(BUILDDIR)/latex/Makefile{2,}
-	@echo "Implementing ugly hack to fix spacing of content inside descriptions using style=nextline and add columns to LCAPI ref..."
-	awk '{gsub(/leavevmode\\begin/,"leavevmode\\vspace*{-1.2\\baselineskip}\\begin");gsub(/emph{Enums}\\begin{quote}/,"emph{Enums}\\begin{quote}\\begin{multicols}{2}");gsub(/\\textbf{datasource\\_action\\_t/,"\\end{multicols}\\textbf{datasource\\_action\\_t")}; 1' $(BUILDDIR)/latex/LassoGuide9.2.tex | sed '/leavevmode$$/{N;s/\n\s*$$//;}' > $(BUILDDIR)/latex/LassoGuide9.2.temp
-	mv -f  $(BUILDDIR)/latex/LassoGuide9.2.{temp,tex}
+	$(SPHINXBUILD) $(LATEXBW) -t paperback -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-0-1}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	make latex-common
 	@echo "Running LaTeX files through XeLaTeX..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
-	mv -f  $(BUILDDIR)/latex/LassoGuide{9.2,Paperback9.2-pre}.pdf
+	mv -f $(BUILDDIR)/latex/LassoGuide{9.2,-Paperback-9.2-pre}.pdf
 	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."
 	@echo "Resave using Quartz Filter --> Gray Tone in Preview to create a grayscale PDF."
+
+# PDF for paperback edition volume 1
+latexpdfvol1:
+	$(SPHINXBUILD) $(LATEXBW) -t paperback -t volume1 -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-?-?}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	make latex-common
+	@echo "Running LaTeX files through XeLaTeX..."
+	$(MAKE) -C $(BUILDDIR)/latex all-pdf
+	mv -f $(BUILDDIR)/latex/LassoGuide{9.2,-Volume1-9.2-pre}.pdf
+	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."
+	@echo "Resave using Quartz Filter --> Gray Tone in Preview to create a grayscale PDF."
+
+# PDF for paperback edition volume 2
+latexpdfvol2:
+	$(SPHINXBUILD) $(LATEXBW) -t paperback -t volume2 -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-?-?}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	make latex-common
+	@echo "Running LaTeX files through XeLaTeX..."
+	$(MAKE) -C $(BUILDDIR)/latex all-pdf
+	mv -f $(BUILDDIR)/latex/LassoGuide{9.2,-Volume2-9.2-pre}.pdf
+	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."
+	@echo "Resave using Quartz Filter --> Gray Tone in Preview to create a grayscale PDF."
+
+# PDF for paperback edition volume 3
+latexpdfvol3:
+	$(SPHINXBUILD) $(LATEXBW) -t paperback -t volume3 -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-?-?}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	make latex-common
+	@echo "Running LaTeX files through XeLaTeX..."
+	$(MAKE) -C $(BUILDDIR)/latex all-pdf
+	mv -f $(BUILDDIR)/latex/LassoGuide{9.2,-Volume3-9.2-pre}.pdf
+	@echo "XeLaTeX finished; the PDF files are in $(BUILDDIR)/latex."
+	@echo "Resave using Quartz Filter --> Gray Tone in Preview to create a grayscale PDF."
+
+# PDFs for 3-volume paperback edition
+latexpdfvols: latexpdfvol1 latexpdfvol2 latexpdfvol3
 
 text:
 	$(SPHINXBUILD) -b text $(ALLSPHINXOPTS) $(BUILDDIR)/text

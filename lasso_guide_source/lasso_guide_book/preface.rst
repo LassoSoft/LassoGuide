@@ -119,5 +119,3 @@ Here are some additional resources you may find useful:
    \clearpage
    \thispagestyle{empty}
    \cleardoublepage
-   \pagenumbering{arabic}
-   \pagestyle{normal}

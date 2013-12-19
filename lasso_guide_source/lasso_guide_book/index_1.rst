@@ -1,10 +1,10 @@
 :orphan:
 
-.. _book-lassoguide:
+.. _book-lassoguide-language:
 
-%%%%%%%%%%%%
- LassoGuide
-%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+ LassoGuide: Language
+%%%%%%%%%%%%%%%%%%%%%%
 
 .. include:: foreword.rst
 .. include:: preface.rst
@@ -24,8 +24,6 @@ Getting Started with Lasso
 ++++++++++++++++
 A Taste of Lasso
 ++++++++++++++++
-
-.. a.k.a. Overview Guide for Programmers
 
 .. toctree::
 
@@ -113,90 +111,3 @@ System Input and Output
    /operations/xml-documents
    /operations/logging
    /operations/sys-process
-
-
-.. _book-development:
-
-#######################
-Application Development
-#######################
-
-.. toctree::
-
-   /operations/requests-responses
-   /operations/authentication
-   /operations/sessions
-   /operations/lassoapps
-   /operations/command-line-tools
-
-
-.. _book-communication:
-
-######################
-External Communication
-######################
-
-.. toctree::
-
-   /operations/network-requests
-   /operations/sending-email
-   /operations/retrieving-email
-   /operations/dns
-   /operations/ldap
-   /operations/protocols-pipes
-
-
-.. _book-databases:
-
-###################
-Database Operations
-###################
-
-.. toctree::
-
-   /databases/database-interaction
-   /databases/searching-displaying
-   /databases/adding-updating
-   /databases/sql-data-sources
-   /databases/odbc-data-sources
-   /databases/filemaker-data-sources
-
-
-.. _book-extending:
-
-###############
-Extending Lasso
-###############
-
-
-+++++++++++
-Lasso C API
-+++++++++++
-
-.. toctree::
-
-   /api/lcapi-overview
-   /api/lcapi-methods
-   /api/lcapi-types
-   /api/lcapi-sources
-   /api/lcapi-reference
-
-
-++++++++++++++
-Lasso Java API
-++++++++++++++
-
-.. toctree::
-
-   /api/ljapi-overview
-   /api/ljapi-methods
-
-
-.. not just yet
-   ########
-   Glossary
-   ########
-
-   .. toctree::
-
-      /glossary

@@ -297,10 +297,26 @@ latex_additional_files = ['sphinx.sty', 'sphinxmanual.cls']
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
-latex_documents = [
-  ('lasso_guide_book/index', 'LassoGuide9.2.tex', u'LassoGuide',
-   u'LassoSoft Inc.', 'manual'),
-]
+if tags.has('volume1'):
+    latex_documents = [
+        ('lasso_guide_book/index_1', 'LassoGuide9.2.tex', '',
+         u'LassoSoft Inc.', 'manual'),
+    ]
+elif tags.has('volume2'):
+    latex_documents = [
+        ('lasso_guide_book/index_2', 'LassoGuide9.2.tex', '',
+         u'LassoSoft Inc.', 'manual'),
+    ]
+elif tags.has('volume3'):
+    latex_documents = [
+        ('lasso_guide_book/index_3', 'LassoGuide9.2.tex', '',
+         u'LassoSoft Inc.', 'manual'),
+    ]
+else:
+    latex_documents = [
+        ('lasso_guide_book/index', 'LassoGuide9.2.tex', '',
+         u'LassoSoft Inc.', 'manual'),
+    ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
