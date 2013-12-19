@@ -79,7 +79,7 @@
   \begin{minipage}[b]{0.9\textwidth}
   \footnotesize\raggedright
   \setlength{\parskip}{0.5\baselineskip}
-  Copyright \copyright 1996--\the\year\ Lassosoft Inc. \\
+  Copyright \copyright 1996--\the\year\ \@author \\
   All rights reserved.
 
   This work may be distributed and/or modified under the conditions of the
@@ -97,8 +97,8 @@
   18 17 16 15 14 13\hspace{2em}8 7 6 5 4 3 2 1
   \end{center}
 
-  Lassosoft Inc. \\
-  \hspace*{2em} LassoGuide : Release 9.2 / LassoSoft Inc. -- 1st ed. \\
+  \@author \\
+  \hspace*{2em} \@title\space : \py@release\space / \@author\space -- 1st ed. \\
   \hspace*{2em} p. \hspace*{2em} cm. \\
   \hspace*{2em} Includes index. \\
   \hspace*{2em} ISBN: \isbn
@@ -110,7 +110,7 @@
 
   Lasso, LassoGuide, LassoTalk, Lasso Professional, Lasso Studio, Lasso Dynamic
   Markup Language, LDML, Lasso Service, Lasso Connector, Lasso Web Data Engine,
-  LassoSoft and the LassoSoft logo are trademarks of LassoSoft Inc.
+  LassoSoft and the LassoSoft logo are trademarks of \@author
 
   Many of the designations used by manufacturers and sellers to distinguish
   their products are claimed as trademarks. All terms mentioned in this book
@@ -118,16 +118,18 @@
   capitalized.
 
   Links to third-party distributions and tools are provided for your convenience
-  and were accurate when this manual was written. LassoSoft cannot guarantee the
-  availability or suitability of software downloaded from third-party web sites.
+  and were accurate when this manual was written. \@author\space cannot
+  guarantee the availability or suitability of software downloaded from
+  third-party web sites.
 
   The software described in this book maybe under some license agreement. The
   software may be used or copied only in accordance with the terms of that
   agreement.
 
   While every precaution has been taken in the preparation of this book, neither
-  LassoSoft nor the publisher assume responsibility for errors or omissions, or
-  for damages resulting from the use of the information contained herein.
+  \@author\space nor the publisher assume responsibility for errors or
+  omissions, or for damages resulting from the use of the information
+  contained herein.
 
   Produced with Sphinx and {\fontfamily{lmr}\selectfont\LaTeX}. \\
   Printed and bound by Lulu.
