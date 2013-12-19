@@ -1,1 +1,7 @@
-.. replace with acknowledgements
+.. _acknowledgements:
+
+****************
+Acknowledgements
+****************
+
+.. include:: lasso_guide_book/foreword.rst

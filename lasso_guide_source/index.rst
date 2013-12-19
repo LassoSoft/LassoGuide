@@ -123,6 +123,7 @@ Appendices
 
 -  :ref:`search`
 -  :ref:`genindex`
+-  :ref:`acknowledgements`
 -  :ref:`copyright-license`
 
 .. -  :ref:`glossary`
@@ -131,6 +132,6 @@ Appendices
    :hidden:
 
    /acknowledgements
-   /license
+   /copyright-license
 
 ..   glossary
