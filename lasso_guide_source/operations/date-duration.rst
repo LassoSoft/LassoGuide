@@ -351,38 +351,41 @@ earlier versions of Lasso:
    ``%%`` percent character
    ====== ======================================================================
 
-Each of the date format symbols that returns a number automatically pads that
-number with "0" so all values returned by the method are the same length.
+Each of the date format symbols that returns a number (except ``%w``)
+automatically pads that number with "0" so all values returned by the method are
+the same length.
 
 -  An optional underscore (``_``) between the percent sign (``%``) and the
    letter designating the symbol specifies that a space should be used instead
-   of "0" for the padding character (e.g. ``%_m`` returns the month number with
-   space padding).
+   of "0" for the padding character (e.g. ``%_m`` returns "|nbsp| 1" for
+   January).
 -  An optional hyphen (``-``) between the percent sign (``%``) and the letter
    designating the symbol specifies that no padding should be performed (e.g.
-   ``%-m`` returns the month number with no padding).
--  A literal percent sign can be inserted using ``%%``.
+   ``%-m`` returns "1" for January).
+
+.. |nbsp| unicode:: 0xA0
+   :trim:
 
 .. note::
-   For ``%W``, previous versions of Lasso count weeks of the year starting at 0,
+   For ``%W``, previous versions of Lasso count weeks of the year starting at 0;
    starting week 1 on the next Monday, and week 52 on the last Monday of the
    year. The current version starts week 1 on the last Sunday of the previous
    year if the first day of the year falls on a Sunday through Wednesday, or the
-   first Sunday of the current year otherwise, for which the days before are
+   first Sunday of the current year otherwise, in which case the days before are
    part of the last week of the previous year.
 
 .. note::
-   If the ``%z`` or ``%Z`` symbols are used when parsing a date, the resulting
-   date object will represent the equivalent GMT date/time.
+   A date value parsed with the ``%z`` or ``%Z`` symbols will result in a date
+   object for the equivalent GMT date/time.
 
 As of version 9, Lasso also recognizes the ICU formatting strings for both
 creating and displaying dates. These format strings simply use letters to
 specify the format without any flags (such as the ``%`` character). For example,
-to output a two-digit year, the ICU format string is ``yy`` and to output it as
-a four-digit year, it's ``yyyy``. Because of this, characters that are not
-symbols need to be escaped if they are in the format string. To escape
-characters in an ICU format string, wrap them in single quotes. Use two
-consecutive single quotes for a literal single quote.
+the ICU format string to output a two-digit year is ``yy``, and to output a
+four-digit year is ``yyyy``. Because of this, characters that are not symbols
+need to be escaped if they are in the format string. To escape characters in an
+ICU format string, wrap them in single quotes. Use two consecutive single quotes
+for a literal single quote.
 
 See the ICU website for a detailed explanation of `ICU date formatting
 symbols`_.
@@ -660,9 +663,8 @@ adjustments on date objects.
 .. member:: date->format(-format::string, -locale::locale= ?)
 
    Outputs the date object in the specified format. If no format is passed, the
-   current format stored with the object will be used. Otherwise, it requires a
-   format string to specify the format. Optionally takes a :type:`locale` object
-   to set its locale.
+   current format stored with the object will be used. Optionally takes a
+   :type:`locale` object to set its locale.
 
 .. member:: date->setFormat(format::string)
 
