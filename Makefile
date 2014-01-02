@@ -149,7 +149,7 @@ latexpdfpb:
 
 # PDF for paperback edition volume 1
 latexpdfvol1:
-	$(SPHINXBUILD) $(LATEXBW) -t paperback -t volume1 -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-?-?}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	$(SPHINXBUILD) $(LATEXBW) -t paperback -t volume1 -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-2-5}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	make latex-common
 	@echo "Running LaTeX files through XeLaTeX..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
@@ -159,7 +159,7 @@ latexpdfvol1:
 
 # PDF for paperback edition volume 2
 latexpdfvol2:
-	$(SPHINXBUILD) $(LATEXBW) -t paperback -t volume2 -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-?-?}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	$(SPHINXBUILD) $(LATEXBW) -t paperback -t volume2 -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-3-2}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	make latex-common
 	@echo "Running LaTeX files through XeLaTeX..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
@@ -169,7 +169,7 @@ latexpdfvol2:
 
 # PDF for paperback edition volume 3
 latexpdfvol3:
-	$(SPHINXBUILD) $(LATEXBW) -t paperback -t volume3 -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-?-?}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	$(SPHINXBUILD) $(LATEXBW) -t paperback -t volume3 -D latex_elements.cmappkg='\newcommand\isbn{978-0-9936363-4-9}' $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	make latex-common
 	@echo "Running LaTeX files through XeLaTeX..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf

@@ -264,6 +264,9 @@ latex_elements = {
 % For columnizing a section of the LCAPI reference
 \usepackage{multicol}
 
+% For making the list of tables show conditionally
+\usepackage[table]{totalcount}
+
 % For some reason, this works to get the default font color
 % (Using fontspec never allowed for Sphinx's overrides to kick in.)
 \makeatletter
@@ -293,29 +296,29 @@ latex_elements = {
 #   \cjktext{enter your chinese text here}
 
 # Override the default styles with our own.
-latex_additional_files = ['sphinx.sty', 'sphinxmanual.cls']
+latex_additional_files = ['sphinx.sty', 'sphinxmanual.cls', 'totalcount.sty']
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 if tags.has('volume1'):
     latex_documents = [
-        ('lasso_guide_book/index_1', 'LassoGuide9.2.tex', '',
-         u'LassoSoft Inc.', 'manual'),
+      ('lasso_guide_book/index_1', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: Language',
+       u'LassoSoft Inc.', 'manual'),
     ]
 elif tags.has('volume2'):
     latex_documents = [
-        ('lasso_guide_book/index_2', 'LassoGuide9.2.tex', '',
-         u'LassoSoft Inc.', 'manual'),
+      ('lasso_guide_book/index_2', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: Applications',
+       u'LassoSoft Inc.', 'manual'),
     ]
 elif tags.has('volume3'):
     latex_documents = [
-        ('lasso_guide_book/index_3', 'LassoGuide9.2.tex', '',
-         u'LassoSoft Inc.', 'manual'),
+      ('lasso_guide_book/index_3', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: API',
+       u'LassoSoft Inc.', 'manual'),
     ]
 else:
     latex_documents = [
-        ('lasso_guide_book/index', 'LassoGuide9.2.tex', '',
-         u'LassoSoft Inc.', 'manual'),
+      ('lasso_guide_book/index', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide',
+       u'LassoSoft Inc.', 'manual'),
     ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -344,8 +347,7 @@ latex_show_urls = 'footnote'
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'lassoguide', u'LassoGuide',
-     [u'LassoSoft Inc.'], 1)
+  ('index', 'lassoguide', u'LassoGuide', [u'LassoSoft Inc.'], 1)
 ]
 
 # If true, show URL addresses after external links.

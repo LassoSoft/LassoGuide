@@ -53,7 +53,7 @@
       \endgroup
     \fi
     \begin{flushright}%
-      {\rm\Huge\py@HeaderFamily \textbf{Lasso}Guide \par}%
+      {\rm\Huge\py@HeaderFamily \@title \par}%
       {\em\LARGE\py@HeaderFamily \py@release\releaseinfo \par}
       \vfill
       {\LARGE\py@HeaderFamily
@@ -172,17 +172,21 @@
     \phantomsection
     \addcontentsline{toc}{part}{\contentsname}
     \py@OldTableofcontents%
-    \cleardoublepage
-    \phantomsection
-    \addcontentsline{toc}{chapter}{\listtablename}
-    \listoftables
+    \iftotaltables
+	    \cleardoublepage
+    	\phantomsection
+    	\addcontentsline{toc}{chapter}{\listtablename}
+    	\listoftables
+    \fi
     \if@openright%
       \ifodd\value{page}%
         \typeout{Adding blank page after the table of contents.}%
         \pagebreak\hspace{0pt}%
       \fi%
     \fi%
+	  \pagestyle{empty}%
     \cleardoublepage%
+	  \pagestyle{plain}%
   }%
   %\pagenumbering{arabic}% delay until after foreword
   \@ifundefined{fancyhf}{}{\pagestyle{normal}}%
