@@ -412,6 +412,9 @@ Stack Type
 
 .. type:: stack
 
+   .. deprecated:: 9.2
+      Use :type:`array` instead.
+
    Stack objects store data in a "last in, first out" (LIFO) manner. Elements
    can efficiently be inserted into the beginning of the stack (called
    "pushing") and removed from the beginning of the stack (called "popping").
