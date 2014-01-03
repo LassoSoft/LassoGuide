@@ -4,4 +4,4 @@
 Acknowledgements
 ****************
 
-.. include:: lasso_guide_book/foreword.rst
+.. include:: /_includes/foreword.rst

@@ -56,66 +56,13 @@ documentation without reading every word.
 Conventions Used in This Guide
 ==============================
 
-There are many code samples used throughout this guide. References to methods,
-types, or traits and small snippets of code inlined with other text are set in a
-monospace typeface, e.g. `sample_method` or ``short code snippet``. References
-to variable names or to values will be in double quotes "like this".
-
-Longer blocks of sample code will be slightly offset from the surrounding text
-and will have syntax highlighting applied to them. The result produced by
-running the code will be displayed using line comments. If the result fits on
-one line, then a line comment in the form of ``// => Value Produced`` will be
-used. If multiple lines are needed, then the first line will just have ``// =>``
-while all subsequent lines will start with a line comment and space, followed by
-the value for that line. For example::
-
-   // Single-line value produced
-   2 + 3
-   // => 5
-
-   // Multi-line value produced
-   'Line one.' + '\n' + 'Line two.'
-
-   // =>
-   // Line one.
-   // Line two.
-
-For examples involving running commands from the command line, a shell prompt
-(``$>``) will be used. Any output to standard out that is generated from the
-command will be shown below the command as you would see it in your terminal.
-For examples of issuing Lasso commands from the interactive interpreter, a Lasso
-prompt (``>:``) will be used, and any values produced from running those
-commands will be shown using the line comment convention as outlined above for
-sample code blocks.
+.. include:: /_includes/conventions.rst
 
 
 Additional Resources
 ====================
 
-Here are some additional resources you may find useful:
-
-`Lasso Reference <http://www.lassosoft.com/lassoDocs/languageReference>`_
-   Reference to the built-in types, methods, and traits.
-
-`LassoTalk <http://www.lassotalk.com/>`_
-   The online Lasso community/email list is a great place to ask questions and
-   get answers.
-
-`TagSwap <http://www.lassosoft.com/tagswap>`_
-   Methods, types, and traits created by members of the Lasso community to solve
-   common problems.
-
-`LassoSoft Website <http://www.lassosoft.com/>`_
-   The latest information about Lasso.
-
-`Lasso source code repository <http://source.lassosoft.com/svn/lasso/lasso9_source/trunk/>`_
-   An SVN repository containing source code for a number of Lasso components.
-
-`LassoGuide PDF <http://lassoguide.com/LassoGuide9.2.pdf>`_
-   The current version of LassoGuide in PDF format.
-
-`LassoGuide source <http://source.lassosoft.com/svn/guide/>`_
-   The SVN repository containing the full LassoGuide source.
+.. include:: /_includes/resources.rst
 
 
 Appendices

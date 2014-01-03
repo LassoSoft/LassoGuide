@@ -8,10 +8,8 @@
 
 .. raw:: latex
 
-   \pagenumbering{arabic}
-   \pagestyle{normal}
-   \setcounter{part}{4}
-   \setcounter{chapter}{29}
+   \pagenumbering{arabic}\pagestyle{normal}
+   \setcounter{part}{4}\setcounter{chapter}{29}
 
 
 .. _book-development:

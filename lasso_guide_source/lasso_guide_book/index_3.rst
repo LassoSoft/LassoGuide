@@ -8,10 +8,8 @@
 
 .. raw:: latex
 
-   \pagenumbering{arabic}
-   \pagestyle{normal}
-   \setcounter{part}{7}
-   \setcounter{chapter}{46}
+   \pagenumbering{arabic}\pagestyle{normal}
+   \setcounter{part}{7}\setcounter{chapter}{46}
 
 
 .. _book-extending:

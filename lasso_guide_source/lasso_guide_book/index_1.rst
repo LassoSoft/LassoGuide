@@ -6,13 +6,12 @@
  LassoGuide: Language
 %%%%%%%%%%%%%%%%%%%%%%
 
-.. include:: foreword.rst
-.. include:: preface.rst
+.. include:: /_includes/foreword.rst
+.. include:: /_includes/preface.rst
 
 .. raw:: latex
 
-   \pagenumbering{arabic}
-   \pagestyle{normal}
+   \pagenumbering{arabic}\pagestyle{normal}
 
 
 .. _book-get-start:

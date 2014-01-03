@@ -1,9 +1,8 @@
 .. raw:: latex
 
-   \cleardoublepage
-   \section*{\Huge\forewordname}
+   \phantomsection
    \addcontentsline{toc}{chapter}{\forewordname}
-   \thispagestyle{plain}
+   \section*{\Huge\forewordname}
    \vfill
 
 Lasso has been around for decades, and will be around for decades to come.
@@ -53,6 +52,4 @@ Long Live Lasso!
 .. raw:: latex
 
    \vfill
-   \clearpage
-   \thispagestyle{plain}
-   \cleardoublepage
+   \newpage{\pagestyle{empty}\cleardoublepage}

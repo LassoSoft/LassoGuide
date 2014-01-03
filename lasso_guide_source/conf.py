@@ -66,7 +66,7 @@ release = '9.2'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['**/.svn', 'glossary.rst', 'lasso_guide_book/foreword.rst', 'lasso_guide_book/preface.rst']
+exclude_patterns = ['**/.svn', 'glossary.rst', '_includes']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 default_role = 'meth'
@@ -253,6 +253,7 @@ latex_elements = {
 
 % Style the ToC titles and add space between chapter numbers/titles
 \usepackage[titles]{tocloft}
+\addtolength{\cftbeforepartskip}{-0.5em}
 \addtolength{\cftsecnumwidth}{0.5em}
 \newcommand\forewordname{Foreword}
 
@@ -296,7 +297,11 @@ latex_elements = {
 #   \cjktext{enter your chinese text here}
 
 # Override the default styles with our own.
-latex_additional_files = ['sphinx.sty', 'sphinxmanual.cls', 'totalcount.sty']
+latex_additional_files = [
+  'lasso_guide_book/sphinx.sty',
+  'lasso_guide_book/sphinxmanual.cls',
+  'lasso_guide_book/totalcount.sty',
+]
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
@@ -323,7 +328,7 @@ else:
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = '_static/guide_cover_92.png' if tags.has('screen') else None
+latex_logo = '_static/guide_cover_92.jpg' if tags.has('screen') else None
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.

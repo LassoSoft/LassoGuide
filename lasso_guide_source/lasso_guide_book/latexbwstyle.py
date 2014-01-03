@@ -21,7 +21,7 @@ class LatexBWStyle(Style):
 
     styles = {
         Comment:                   "italic",
-        Comment.Preproc:           "noitalic",
+        Comment.Preproc:           "italic",
 
         Keyword:                   "bold",
         Keyword.Pseudo:            "nobold",
