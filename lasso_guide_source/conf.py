@@ -251,6 +251,9 @@ latex_elements = {
 }
 {\endlist}
 
+% For including other PDF files
+\usepackage{pdfpages}
+
 % Style the ToC titles and add space between chapter numbers/titles
 \usepackage[titles]{tocloft}
 \addtolength{\cftbeforepartskip}{-0.5em}
@@ -298,6 +301,7 @@ latex_elements = {
 
 # Override the default styles with our own.
 latex_additional_files = [
+  '_static/guide_cover_92.pdf',
   'lasso_guide_book/sphinx.sty',
   'lasso_guide_book/sphinxmanual.cls',
   'lasso_guide_book/totalcount.sty',
@@ -328,7 +332,7 @@ else:
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = '_static/guide_cover_92.jpg' if tags.has('screen') else None
+#latex_logo = '_static/guide_cover_92.jpg' if tags.has('screen') else None
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.

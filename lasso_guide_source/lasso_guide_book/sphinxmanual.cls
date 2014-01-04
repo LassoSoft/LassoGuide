@@ -34,7 +34,7 @@
 % ``Bjarne'' style a bit better.
 %
 \renewcommand{\maketitle}{%
-  \ifthenelse{\equal{\isbn}{000-0-0000000-0-0}}{\sphinxlogo\clearpage}
+  \ifthenelse{\equal{\isbn}{000-0-0000000-0-0}}{\includepdf[pages={1}]{guide_cover_92.pdf}}
   {\begin{titlepage}%
     \let\footnotesize\small
     \let\footnoterule\relax
@@ -67,6 +67,7 @@
        \vfill
        \py@authoraddress \par
       }%
+      %\sphinxlogo%
     \end{flushright}%\par
     \@thanks
   \end{titlepage}}%
