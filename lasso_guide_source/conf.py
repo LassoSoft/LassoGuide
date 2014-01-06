@@ -223,7 +223,6 @@ latex_elements = {
 
 % To make sure figures are placed where we want them
 \usepackage{float}
-
 \let\origfigure=\figure
 \renewenvironment{figure}[6]{
   \origfigure[H]}
@@ -259,6 +258,12 @@ latex_elements = {
 \addtolength{\cftbeforepartskip}{-0.5em}
 \addtolength{\cftsecnumwidth}{0.5em}
 \newcommand\forewordname{Foreword}
+
+% Make blank pages use empty page style
+\let\origdoublepage\cleardoublepage
+\renewcommand{\cleardoublepage}{%
+  \newpage{\pagestyle{empty}\origdoublepage}%
+}
 
 % Adjust table appearance
 \setlength{\arrayrulewidth}{0.2pt}
@@ -310,21 +315,25 @@ latex_additional_files = [
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 if tags.has('volume1'):
+    exclude_patterns.extend(['**/index.rst'])
     latex_documents = [
       ('lasso_guide_book/index_1', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: Language',
        u'LassoSoft Inc.', 'manual'),
     ]
 elif tags.has('volume2'):
+    exclude_patterns.extend(['**/index.rst'])
     latex_documents = [
       ('lasso_guide_book/index_2', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: Applications',
        u'LassoSoft Inc.', 'manual'),
     ]
 elif tags.has('volume3'):
+    exclude_patterns.extend(['**/index.rst'])
     latex_documents = [
       ('lasso_guide_book/index_3', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: API',
        u'LassoSoft Inc.', 'manual'),
     ]
 else:
+    exclude_patterns.extend(['**/index_[123].rst'])
     latex_documents = [
       ('lasso_guide_book/index', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide',
        u'LassoSoft Inc.', 'manual'),

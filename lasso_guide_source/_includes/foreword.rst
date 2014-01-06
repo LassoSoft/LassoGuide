@@ -52,4 +52,4 @@ Long Live Lasso!
 .. raw:: latex
 
    \vfill
-   \newpage{\pagestyle{empty}\cleardoublepage}
+   \cleardoublepage

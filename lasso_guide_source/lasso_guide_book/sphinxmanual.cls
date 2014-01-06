@@ -175,20 +175,20 @@
     \py@OldTableofcontents%
     \iftotaltables
       \if@openright%
-        \newpage{\pagestyle{empty}\cleardoublepage}
+        \cleardoublepage
         \else\clearpage
       \fi%
-    	\phantomsection
-    	\addcontentsline{toc}{chapter}{\listtablename}
-    	\listoftables
+      \phantomsection
+      \addcontentsline{toc}{chapter}{\listtablename}
+      \listoftables
     \fi
     \if@openright%
+      \cleardoublepage
+      \else\clearpage
 %      \ifodd\value{page}%
 %        \typeout{Adding blank page after the table of contents.}%
 %        \pagebreak\hspace{0pt}%
 %      \fi%
-      \newpage{\pagestyle{empty}\cleardoublepage}
-      \else\clearpage
     \fi%
   }% delay these until after foreword & preface
   %\pagenumbering{arabic}%
@@ -207,7 +207,7 @@
 % For a report document class this environment is a chapter.
 \let\py@OldThebibliography=\thebibliography
 \renewcommand{\thebibliography}[1]{
-  \newpage{\pagestyle{empty}\cleardoublepage}
+  \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{part}{\bibname}
   \py@OldThebibliography{1}
@@ -219,7 +219,7 @@
 \@ifclassloaded{memoir}{}{
   \let\py@OldTheindex=\theindex
   \renewcommand{\theindex}{
-    \newpage{\pagestyle{empty}\cleardoublepage}
+    \cleardoublepage
     \phantomsection
     \addcontentsline{toc}{part}{\indexname}
     \py@OldTheindex

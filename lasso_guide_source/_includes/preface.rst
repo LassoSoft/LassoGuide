@@ -61,4 +61,4 @@ find information about a particular language element.
 
    \endgroup
    \vfill
-   \newpage{\pagestyle{empty}\cleardoublepage}
+   \cleardoublepage
