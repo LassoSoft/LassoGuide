@@ -836,7 +836,7 @@ distinctive blue border to an image::
 
    local(myImage) = image('/images/image.gif')
    #myImage->execute('mogrify -bordercolor blue -border=3x3')
-   #myImage->eave('/images/image.gif')
+   #myImage->save('/images/image.gif')
 
 
 Serving Image and Media Files
