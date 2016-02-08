@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="structlasso__value__w__t" kind="struct" language="C++" prot="public">
+    <compoundname>lasso_value_w_t</compoundname>
+    <includes refid="_lasso_c_a_p_i_8h" local="no">LassoCAPI.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structlasso__value__w__t_1a3bc9995914271ebee64a97c0aa73f3fe" prot="public" static="no" mutable="no">
+        <type>const UChar *</type>
+        <definition>const UChar* lasso_value_w_t::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+<para>The <emphasis>name</emphasis> portion. </para>        </briefdescription>
+        <detaileddescription>
+<para>May be NULL. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" line="337" column="1" bodyfile="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" bodystart="337" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlasso__value__w__t_1ab393f4171fcf368253941101b95b8c53" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int lasso_value_w_t::nameSize</definition>
+        <argsstring></argsstring>
+        <name>nameSize</name>
+        <briefdescription>
+<para>The size of the <emphasis>name</emphasis> member, in bytes. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" line="343" column="1" bodyfile="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" bodystart="343" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlasso__value__w__t_1a93b548c4f28e8ce9dd0d2634cd2e7fea" prot="public" static="no" mutable="no">
+        <type>const UChar *</type>
+        <definition>const UChar* lasso_value_w_t::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+<para>The <emphasis>value</emphasis> portion. </para>        </briefdescription>
+        <detaileddescription>
+<para>May be NULL. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" line="349" column="1" bodyfile="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" bodystart="349" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlasso__value__w__t_1a8d992b613330e2e991a154ebf594270c" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int lasso_value_w_t::dataSize</definition>
+        <argsstring></argsstring>
+        <name>dataSize</name>
+        <briefdescription>
+<para>The size of the <emphasis>data</emphasis> member, in bytes. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" line="355" column="1" bodyfile="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" bodystart="355" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlasso__value__w__t_1a5f77c2e5c1c8afa6c0a2c443bdccaa9f" prot="public" static="no" mutable="no">
+        <type><ref refid="_lasso_c_a_p_i_8h_1acd3e65cd69e87de888751e31d451cdd3" kindref="member">LP_TypeDesc</ref></type>
+        <definition>LP_TypeDesc lasso_value_w_t::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+<para>The type code for the <emphasis>data</emphasis> member. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" line="361" column="1" bodyfile="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" bodystart="361" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Used for retrieving Unicode character data from some LCAPI functions. </para>    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="structlasso__value__w__t" kindref="compound">lasso_value_w_t</ref> struct is used for shuffling Unicode character data into and out of LassoCAPI functions.</para><para>Any LCAPI function that constructs one of these will insure that Lasso properly disposes of the data once the user&apos;s LassoCAPI function call is complete.</para><para>Depending on the purpose of the function which is constructing the <ref refid="structlasso__value__t" kindref="compound">lasso_value_t</ref>, any combination of the <emphasis>name</emphasis> or <emphasis>data</emphasis> members may be filled in or may be NULL. Consult the documentation of the specific function for more details.</para><para>Should be initialized using the <ref refid="_lasso_c_a_p_i_8h_1a213f323c69368ef11dcb2d5c87ee0cbc" kindref="member">INITVAL(X)</ref> macro before use. </para>    </detaileddescription>
+    <location file="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" line="331" column="1" bodyfile="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" bodystart="330" bodyend="362"/>
+    <listofallmembers>
+      <member refid="structlasso__value__w__t_1a93b548c4f28e8ce9dd0d2634cd2e7fea" prot="public" virt="non-virtual"><scope>lasso_value_w_t</scope><name>data</name></member>
+      <member refid="structlasso__value__w__t_1a8d992b613330e2e991a154ebf594270c" prot="public" virt="non-virtual"><scope>lasso_value_w_t</scope><name>dataSize</name></member>
+      <member refid="structlasso__value__w__t_1a3bc9995914271ebee64a97c0aa73f3fe" prot="public" virt="non-virtual"><scope>lasso_value_w_t</scope><name>name</name></member>
+      <member refid="structlasso__value__w__t_1ab393f4171fcf368253941101b95b8c53" prot="public" virt="non-virtual"><scope>lasso_value_w_t</scope><name>nameSize</name></member>
+      <member refid="structlasso__value__w__t_1a5f77c2e5c1c8afa6c0a2c443bdccaa9f" prot="public" virt="non-virtual"><scope>lasso_value_w_t</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

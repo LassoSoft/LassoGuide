@@ -99,7 +99,7 @@ rst_epilog = """
 primary_domain = 'ls'
 
 # -- Breathe Options
-breathe_projects = { "LCAPI": os.path.abspath("../doxyxml/") }
+breathe_projects = { "LCAPI": os.path.abspath("../doxygen/xml/") }
 breathe_default_project = "LCAPI"
 breathe_domain_by_extension = { "h" : "c" }
 

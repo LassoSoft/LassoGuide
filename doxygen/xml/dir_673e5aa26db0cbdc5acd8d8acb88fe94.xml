@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="dir_673e5aa26db0cbdc5acd8d8acb88fe94" kind="dir">
+    <compoundname>Lasso9.framework</compoundname>
+    <innerdir refid="dir_6f5fa87005a07aaa914dd628217f660f">Headers</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Library/Frameworks/Lasso9.framework/"/>
+  </compounddef>
+</doxygen>
