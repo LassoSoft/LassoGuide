@@ -80,7 +80,7 @@ name.
 Also supported are a series of commonly used escape sequences. The following
 table shows all of the permissible escape sequences.
 
-.. tabularcolumns:: |l|l|L|
+.. tabularcolumns:: llL
 
 .. _literals-string-escape:
 

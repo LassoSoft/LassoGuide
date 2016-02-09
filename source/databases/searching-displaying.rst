@@ -129,7 +129,7 @@ Additional optional parameters are described in the tables
 :ref:`searching-operator-parameters` and :ref:`searching-result-parameters` in
 the sections that follow.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _searching-search-action:
 
@@ -253,31 +253,33 @@ Lasso inlines include a set of parameters that allow operators to be used to
 create complex database queries. These parameters are summarized in the table
 :ref:`searching-operator-parameters`.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _searching-operator-parameters:
 
 .. table:: Search Operator Parameters
 
-   +--------------------------+----------------------------------------------------------+
-   |Parameter                 |Description                                               |
-   +==========================+==========================================================+
-   |``-operatorLogical=?`` or |Specifies the logical operator for the search.            |
-   |``-opLogical=?``          |Abbreviation is ``-opLogical``. Defaults to AND.          |
-   +--------------------------+----------------------------------------------------------+
-   |``-operator=?`` or        |When specified before a pair parameter, sets the search   |
-   |``-op=?``                 |operator for that parameter. Abbreviation is ``-op``.     |
-   |                          |Defaults to "bw". See below for a full list of field      |
-   |                          |operators, which can also be written as ``-bw``, ``-ew``, |
-   |                          |``-cn``, etc.                                             |
-   +--------------------------+----------------------------------------------------------+
-   |``-operatorBegin=?`` or   |Specifies the logical operator for all search parameters  |
-   |``-opBegin=?``            |until ``-operatorEnd`` is reached. Abbreviation is        |
-   |                          |``-opBegin``.                                             |
-   +--------------------------+----------------------------------------------------------+
-   |``-operatorEnd=?`` or     |Specifies the end of a logical operator grouping started  |
-   |``-opEnd=?``              |with ``-operatorBegin``. Abbreviation is ``-opEnd``.      |
-   +--------------------------+----------------------------------------------------------+
+   +--------------------------+------------------------------------------------+
+   |Parameter                 |Description                                     |
+   +==========================+================================================+
+   |``-operatorLogical=?`` or |Specifies the logical operator for the search.  |
+   |``-opLogical=?``          |Abbreviated as ``-opLogical``. Defaults to AND. |
+   +--------------------------+------------------------------------------------+
+   |``-operator=?`` or        |When specified before a pair parameter, sets    |
+   |``-op=?``                 |the search operator for that parameter.         |
+   |                          |Abbreviated as ``-op``. Defaults to "bw". See   |
+   |                          |below for a full list of field operators, which |
+   |                          |can also be written as ``-bw``, ``-ew``,        |
+   |                          |``-cn``, etc.                                   |
+   +--------------------------+------------------------------------------------+
+   |``-operatorBegin=?`` or   |Specifies the logical operator for all search   |
+   |``-opBegin=?``            |parameters until ``-operatorEnd`` is reached.   |
+   |                          |Abbreviated as ``-opBegin``.                    |
+   +--------------------------+------------------------------------------------+
+   |``-operatorEnd=?`` or     |Specifies the end of a logical operator         |
+   |``-opEnd=?``              |grouping started with ``-operatorBegin``.       |
+   |                          |Abbreviated as ``-opEnd``.                      |
+   +--------------------------+------------------------------------------------+
 
 The operator parameters are divided into two categories:
 
@@ -307,7 +309,7 @@ are only supported in MySQL or other SQL databases. These include the "ft"
 full-text operator and the "rx" and "nrx" regular expression operators, which
 are described further in the table :ref:`sql-mysql-search-operators`.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _searching-field-operators:
 
@@ -563,7 +565,7 @@ the table :ref:`searching-result-parameters`.
    -  FileMaker Server--specific methods and parameters in the
       :ref:`filemaker-data-sources` chapter
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _searching-result-parameters:
 
@@ -735,7 +737,7 @@ except that no name/value pair parameters or operator parameters are required.
 Parameters that sort and limit the found set work the same as they do for
 ``-search`` actions.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _searching-findall-action:
 
@@ -788,7 +790,7 @@ parameter. The ``-random`` parameter functions exactly like the ``-search``
 parameter except that no name/value pair parameters or operator parameters are
 required.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _searching-random-action:
 

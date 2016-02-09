@@ -186,7 +186,7 @@ its search value are specified. Note that this list of operators is somewhat
 different from those supported by other data source connectors including older
 FileMaker data source connectors.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _filemaker-search-operators:
 
@@ -224,7 +224,7 @@ The ``-rx`` operator can be used to pass a raw FileMaker search expression as a
 query. This allows the use of any of the FileMaker search symbols. See the
 `FileMaker documentation`_ for a full explanation of how these symbols work.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _filemaker-search-symbols:
 
@@ -300,7 +300,7 @@ by combining an omit query with the appropriate affirmative operator. The
 ``-opLogical``, ``-opBegin``, and ``-opEnd`` operators are not supported. The
 ``-or`` and ``-not`` operators must be used instead.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _filemaker-search-keywords:
 
@@ -371,40 +371,41 @@ FileMaker Server without modification by Lasso. The :title-reference:`FileMaker
 Server 9 Custom Web Publishing with XML and XSLT documentation` should be
 consulted for full details about these commands.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _filemaker-additional-parameters:
 
 .. table:: FileMaker Additional Parameters
 
-   +----------------------------+--------------------------------------------------------+
-   |Parameter                   |Description                                             |
-   +============================+========================================================+
-   |``-layoutResponse=?``       |Returns the result set using the layout specified in    |
-   |                            |this parameter rather than the layout used to specify   |
-   |                            |the database action.                                    |
-   +----------------------------+--------------------------------------------------------+
-   |``-noValueLists``           |Suppresses the fetching of value list data for          |
-   |                            |FileMaker Server data sources.                          |
-   +----------------------------+--------------------------------------------------------+
-   |``-relatedSets.filter=?``   |If set to "layout", FileMaker Server will return only   |
-   |                            |the number of related records shown in portals on the   |
-   |                            |current layout. Defaults to returning all records up to |
-   |                            |the number set by ``-relatedSets.max``.                 |
-   +----------------------------+--------------------------------------------------------+
-   |``-relatedSets.max=?``      |Sets the number of related records returned. Can be set |
-   |                            |to a number or "All".                                   |
-   +----------------------------+--------------------------------------------------------+
-   |``-script=?`` and           |Runs a script after the find has been processed and     |
-   |``-script.param=?``         |sorted. The optional parameter can be accessed from     |
-   |                            |within the script.                                      |
-   +----------------------------+--------------------------------------------------------+
-   |``-script.preFind=?`` and   |Runs a script before the find is processed.             |
-   |``-script.preFind.param=?`` |                                                        |
-   +----------------------------+--------------------------------------------------------+
-   |``-script.preSort=?`` and   |Runs a script after the find has been processed, but    |
-   |``-script.preSort.param=?`` |before the results are sorted.                          |
-   +----------------------------+--------------------------------------------------------+
+   +----------------------------+----------------------------------------------+
+   |Parameter                   |Description                                   |
+   +============================+==============================================+
+   |``-layoutResponse=?``       |Returns the result set using the layout       |
+   |                            |specified in this parameter rather than the   |
+   |                            |layout used to specify the database action.   |
+   +----------------------------+----------------------------------------------+
+   |``-noValueLists``           |Suppresses the fetching of value list data    |
+   |                            |for FileMaker Server data sources.            |
+   +----------------------------+----------------------------------------------+
+   |``-relatedSets.filter=?``   |If set to "layout", FileMaker Server will     |
+   |                            |return only the number of related records     |
+   |                            |shown in portals on the current layout.       |
+   |                            |Defaults to returning all records up to the   |
+   |                            |number set by ``-relatedSets.max``.           |
+   +----------------------------+----------------------------------------------+
+   |``-relatedSets.max=?``      |Sets the number of related records returned.  |
+   |                            |Can be set to a number or "All".              |
+   +----------------------------+----------------------------------------------+
+   |``-script=?`` and           |Runs a script after the find has been         |
+   |``-script.param=?``         |processed and sorted. The optional parameter  |
+   |                            |can be accessed from within the script.       |
+   +----------------------------+----------------------------------------------+
+   |``-script.preFind=?`` and   |Runs a script before the find is processed.   |
+   |``-script.preFind.param=?`` |                                              |
+   +----------------------------+----------------------------------------------+
+   |``-script.preSort=?`` and   |Runs a script after the find has been         |
+   |``-script.preSort.param=?`` |processed, but before the results are sorted. |
+   +----------------------------+----------------------------------------------+
 
 
 Primary Key Field and Record ID

@@ -316,7 +316,7 @@ output or parsed. There are two different sets of formatting strings. Detailed
 in the following table are the classic formatting symbols, first introduced in
 earlier versions of Lasso:
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _date-duration-classic-symbols:
 
@@ -392,7 +392,7 @@ symbols`_.
 
 .. Sphinx isn't generating proper LaTeX for multi-row cells
 
-.. tabularcolumns:: |l|l|l|l|
+.. tabularcolumns:: llll
 
 .. _date-duration-icu-symbols:
 
@@ -703,7 +703,7 @@ adjustments on date objects.
    See the table :ref:`date-duration-field-elements` for the full list of
    parameters that this method can retrieve.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _date-duration-field-elements:
 

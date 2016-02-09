@@ -321,7 +321,7 @@ parameter when searching MySQL data sources. These operators are summarized in
 the table below. Basic use of the ``-operator`` parameter is described in the
 :ref:`searching-displaying` chapter.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _sql-mysql-search-operators:
 
@@ -436,7 +436,7 @@ Additional result keyword parameters are available when searching the data
 sources in this chapter using the `inline` method. These parameters are
 summarized in the following table.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _sql-result-parameters:
 
@@ -1012,7 +1012,7 @@ to return the results from one of the result sets.
    and SQLite. The ``-search``, ``-add``, ``-update``, etc. database actions
    automatically sanitize values passed as pairs into an inline.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _sql-statement-parameters:
 

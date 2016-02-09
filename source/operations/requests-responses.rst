@@ -100,7 +100,7 @@ corresponding raw web request variable name. For headers that return a string
 value, an empty string is returned if the header has no value or is not present.
 A zero or "false" is returned for other non-existent value types.
 
-.. tabularcolumns:: |l|l|l|
+.. tabularcolumns:: lll
 
 .. _requests-responses-variable-methods:
 

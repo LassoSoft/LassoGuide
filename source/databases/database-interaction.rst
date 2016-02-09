@@ -87,7 +87,7 @@ The database actions in Lasso are defined according to which action parameter is
 used to trigger the action. The following table lists the parameters that
 perform database actions that are available in Lasso.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _database-action-parameters:
 
@@ -1092,7 +1092,7 @@ the ``-host`` from the surrounding inline should be used. This is necessary when
 specifying a ``-database`` within nested inlines to prevent Lasso from looking
 up the database as it would using the database method.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _database-host-parameters:
 

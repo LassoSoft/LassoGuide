@@ -358,7 +358,7 @@ operations. If either of the parameters is a string value then the string
 operation defined by the operator will be performed rather than the arithmetical
 operation.
 
-.. tabularcolumns:: |l|l|L|
+.. tabularcolumns:: llL
 
 .. _math-operators:
 
@@ -420,7 +420,7 @@ string. The second parameter can be an integer, decimal, or string literal. The
 result of the operation is calculated and then stored back in the variable
 specified as the left-hand parameter.
 
-.. tabularcolumns:: |l|l|L|
+.. tabularcolumns:: llL
 
 .. _math-assignment-operators:
 
@@ -480,7 +480,7 @@ Arithmetical Equality Operators
 Each of the arithmetical equality operators takes two parameters, one on its
 left and one on its right.
 
-.. tabularcolumns:: |l|l|L|
+.. tabularcolumns:: llL
 
 .. _math-equality-operators:
 

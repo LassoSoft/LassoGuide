@@ -230,7 +230,7 @@ The result of this operation will be a staticarray of pairs. The first element
 of each pair is the DN of the entry. The second element of each pair is a
 staticarray of pairs containing the names and attributes of the element.
 
-.. tabularcolumns:: |l|l|
+.. tabularcolumns:: ll
 
 .. _ldap-status-codes:
 

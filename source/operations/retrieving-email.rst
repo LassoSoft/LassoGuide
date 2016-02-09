@@ -480,7 +480,7 @@ turn.
    header from the email message. The table below maps the method to the header.
    (The Bcc header will always be empty for received emails.)
 
-   .. tabularcolumns:: |l|L|
+   .. tabularcolumns:: lL
 
    .. _retrieving-email-header-methods:
 

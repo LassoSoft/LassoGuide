@@ -1065,7 +1065,7 @@ When adding text to a pdf_doc object, escape sequences can be used to insert
 special characters such as line breaks, tabs, and more. These characters are
 summarized in the table below.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _pdf-escape-sequences:
 
@@ -1287,7 +1287,7 @@ methods which are described below.
    within a page. These parameters are summarized in the table
    :ref:`pdf-form-placement`.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _pdf-form-placement:
 

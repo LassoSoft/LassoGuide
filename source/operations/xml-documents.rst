@@ -198,7 +198,7 @@ The following methods are use for creating new nodes:
 The following table lists all the possible objects that may be encountered
 within or inserted into an XML document.
 
-.. tabularcolumns:: |l|l|L|
+.. tabularcolumns:: llL
 
 .. _xml-object-names:
 

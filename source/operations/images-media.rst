@@ -76,7 +76,7 @@ A list of commonly used image formats that are certified to work with Lasso
 out-of-the-box without requiring installation of additional components are shown
 in the table :ref:`images-media-tested-formats`.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _images-media-tested-formats:
 
@@ -709,7 +709,7 @@ table below.
    by the ``-op`` parameter. The descriptions for each method are adapted from
    the ImageMagick web site.
 
-   .. tabularcolumns:: |l|L|
+   .. tabularcolumns:: lL
 
    .. _images-media-composite-operators:
 

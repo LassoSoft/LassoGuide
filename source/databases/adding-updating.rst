@@ -35,7 +35,7 @@ parameter. The ``-add`` parameter requires that a number of additional
 parameters be defined in order to perform the ``-add`` action. The required
 parameters are detailed in the following table.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _adding-add-action:
 
@@ -223,7 +223,7 @@ Records can be updated within any Lasso-compatible database using the
 additional parameters to be defined in order to perform the ``-update`` action.
 The required parameters are detailed in the following table.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _adding-update-action:
 
@@ -530,7 +530,7 @@ parameter. The ``-delete`` parameter requires that a number of additional
 parameters be defined in order to perform the ``-delete`` action. The required
 parameters are detailed in the following table.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _adding-delete-action:
 

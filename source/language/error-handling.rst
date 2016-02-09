@@ -275,7 +275,7 @@ Lasso Errors
 
 The table below lists Lasso's standard error codes and values.
 
-.. tabularcolumns:: |l|L|
+.. tabularcolumns:: lL
 
 .. _error-handling-lasso:
 
