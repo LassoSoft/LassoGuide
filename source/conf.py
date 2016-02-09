@@ -17,7 +17,7 @@ import sys, os, time
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.insert(0, os.path.abspath('lasso_guide_book'))
+sys.path.insert(0, os.path.abspath('_latex'))
 import latexstyle, latexbwstyle
 
 # -- General configuration -----------------------------------------------------
@@ -307,9 +307,9 @@ latex_elements = {
 # Override the default styles with our own.
 latex_additional_files = [
   '_static/guide_cover_92.pdf',
-  'lasso_guide_book/sphinx.sty',
-  'lasso_guide_book/sphinxmanual.cls',
-  'lasso_guide_book/totalcount.sty',
+  '_latex/sphinx.sty',
+  '_latex/sphinxmanual.cls',
+  '_latex/totalcount.sty',
 ]
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -317,25 +317,25 @@ latex_additional_files = [
 if tags.has('volume1'):
     exclude_patterns.extend(['**/index.rst'])
     latex_documents = [
-      ('lasso_guide_book/index_1', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: Language',
+      ('_latex/index_1', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: Language',
        u'LassoSoft Inc.', 'manual'),
     ]
 elif tags.has('volume2'):
     exclude_patterns.extend(['**/index.rst'])
     latex_documents = [
-      ('lasso_guide_book/index_2', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: Applications',
+      ('_latex/index_2', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: Applications',
        u'LassoSoft Inc.', 'manual'),
     ]
 elif tags.has('volume3'):
     exclude_patterns.extend(['**/index.rst'])
     latex_documents = [
-      ('lasso_guide_book/index_3', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: API',
+      ('_latex/index_3', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: API',
        u'LassoSoft Inc.', 'manual'),
     ]
 else:
     exclude_patterns.extend(['**/index_[123].rst'])
     latex_documents = [
-      ('lasso_guide_book/index', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide',
+      ('_latex/index', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide',
        u'LassoSoft Inc.', 'manual'),
     ]
 

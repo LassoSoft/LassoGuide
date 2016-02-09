@@ -5,15 +5,15 @@
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
-BUILDDIR      = lasso_guide_build
-TODAY := $(shell touch lasso_guide_source/index.rst)
+BUILDDIR      = build
+TODAY := $(shell touch source/index.rst)
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
 PAPEROPT_letter = -D latex_paper_size=letter
-ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) lasso_guide_source
+ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 # the i18n builder cannot share the environment and doctrees with the others
-I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) lasso_guide_source
+I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
 LATEXRGB = -b latex -D pygments_style=latexstyle.LatexStyle
 LATEXBW  = -b latex -D pygments_style=latexbwstyle.LatexBWStyle
@@ -50,7 +50,7 @@ pdfdownload: $(wildcard $(BUILDDIR)/LassoGuide9*.pdf)
 
 html: pdfdownload
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
-	-rm -rf $(BUILDDIR)/html/lasso_guide_book
+	-rm -rf $(BUILDDIR)/html/_latex
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
