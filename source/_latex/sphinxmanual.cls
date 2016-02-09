@@ -53,6 +53,7 @@
       \endgroup
     \fi
     \begin{flushright}%
+      %\sphinxlogo%
       {\rm\Huge\py@HeaderFamily \@title \par}%
       {\em\LARGE\py@HeaderFamily \py@release\releaseinfo \par}
       \vfill
@@ -67,7 +68,6 @@
        \vfill
        \py@authoraddress \par
       }%
-      %\sphinxlogo%
     \end{flushright}%\par
     \@thanks
   \end{titlepage}}%
