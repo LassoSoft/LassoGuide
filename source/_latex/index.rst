@@ -1,6 +1,6 @@
 :orphan:
 
-.. _book-lassoguide:
+.. _book-index-guide:
 
 %%%%%%%%%%%%
  LassoGuide
@@ -14,24 +14,23 @@
    \pagenumbering{arabic}\pagestyle{normal}
 
 
-.. _book-get-start:
+.. _book-getstart:
 
-##########################
-Getting Started with Lasso
-##########################
+############################
+ Getting Started with Lasso
+############################
+
 
 ++++++++++++++++
 A Taste of Lasso
 ++++++++++++++++
 
-.. a.k.a. Overview Guide for Programmers
-
 .. toctree::
 
-   /getstart/overview/basics
-   /getstart/overview/features
-   /getstart/overview/serving
-   /getstart/overview/conclusion
+   /getstart/overview/lasso-basics
+   /getstart/overview/language-features
+   /getstart/overview/serving-lasso
+   /getstart/overview/next-steps
 
 
 ++++++++++++++++++
@@ -60,9 +59,9 @@ Lasso Server Management
 
 .. _book-language:
 
-#################
-Language Elements
-#################
+###################
+ Language Elements
+###################
 
 .. toctree::
 
@@ -82,9 +81,9 @@ Language Elements
 
 .. _book-data:
 
-#############
-Data Handling
-#############
+###############
+ Data Handling
+###############
 
 .. toctree::
 
@@ -98,11 +97,11 @@ Data Handling
    /operations/serialization-compression
 
 
-.. _book-input-output:
+.. _book-system:
 
-#######################
-System Input and Output
-#######################
+#########################
+ System Input and Output
+#########################
 
 .. toctree::
 
@@ -116,9 +115,9 @@ System Input and Output
 
 .. _book-development:
 
-#######################
-Application Development
-#######################
+#########################
+ Application Development
+#########################
 
 .. toctree::
 
@@ -131,9 +130,9 @@ Application Development
 
 .. _book-communication:
 
-######################
-External Communication
-######################
+########################
+ External Communication
+########################
 
 .. toctree::
 
@@ -147,9 +146,9 @@ External Communication
 
 .. _book-databases:
 
-###################
-Database Operations
-###################
+#####################
+ Database Operations
+#####################
 
 .. toctree::
 
@@ -163,9 +162,9 @@ Database Operations
 
 .. _book-extending:
 
-###############
-Extending Lasso
-###############
+#################
+ Extending Lasso
+#################
 
 
 +++++++++++

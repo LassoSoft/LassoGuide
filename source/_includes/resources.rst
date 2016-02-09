@@ -20,5 +20,5 @@ Here are some additional resources you may find useful:
 `LassoGuide PDF <http://lassoguide.com/LassoGuide9.2.pdf>`_
    The current version of LassoGuide in PDF format.
 
-`LassoGuide source <http://source.lassosoft.com/svn/guide/>`_
-   The SVN repository containing the full LassoGuide source.
+`LassoGuide source <https://github.com/LassoSoft/LassoGuide>`_
+   The Git repository containing the full LassoGuide source.

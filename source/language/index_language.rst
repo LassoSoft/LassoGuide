@@ -1,5 +1,5 @@
 .. http://www.lassosoft.com/Language-Guide-Programming-Fundamentals
-.. _lasso-language-guide-index:
+.. _index_language:
 
 ######################
  Lasso Language Guide

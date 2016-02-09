@@ -1,4 +1,4 @@
-.. _define-your-types:
+.. _defining-types:
 
 ***********************
 Defining Your Own Types
@@ -196,5 +196,3 @@ name of the method.
 The result is that we now have a custom type we can use on any page to get the
 time of day as well as the appropriate greeting and background color for that
 time of day. For in-depth documentation on types, see the :ref:`types` chapter.
-
-Next Tutorial: :ref:`using-errors`

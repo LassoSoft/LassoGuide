@@ -1,5 +1,5 @@
 .. http://www.lassosoft.com/Tutorial-What-is-Lasso
-.. _whatis:
+.. _what-is-lasso:
 
 **************
 What is Lasso?
@@ -114,5 +114,3 @@ special string that tells it how we want it to format itself for display. (More
 on creating and working with objects in future chapters.)
 
 This is a very simple example, so let's move to something a little more complex.
-
-Next Tutorial: :ref:`using-logic`

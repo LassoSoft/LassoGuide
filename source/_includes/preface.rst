@@ -24,14 +24,14 @@ containing all improvements can be found at `<http://lassoguide.com/>`_.
 This guide is divided up into eight parts covering all aspects of the Lasso
 programming language.
 
--  :ref:`book-get-start` introduces the basic features of the Lasso language and
+-  :ref:`book-getstart` introduces the basic features of the Lasso language and
    server, as well as instructions for installing and configuring Lasso.
 
 -  :ref:`book-language` covers the syntax and features of the Lasso language.
    Read this thoroughly for a complete understanding of how Lasso code is
    structured.
 
--  :ref:`book-data`, :ref:`book-input-output`, :ref:`book-development`, and
+-  :ref:`book-data`, :ref:`book-system`, :ref:`book-development`, and
    :ref:`book-communication` detail the capabilities of the libraries that ship
    with Lasso, divided into appropriate categories. Method definitions and
    examples of common use cases are included.

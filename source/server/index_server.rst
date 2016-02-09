@@ -1,5 +1,5 @@
 .. http://www.lassosoft.com/Server-Guide
-.. _lasso-server-guide-index:
+.. _index_server:
 
 ####################
  Lasso Server Guide

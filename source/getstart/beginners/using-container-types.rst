@@ -1,28 +1,28 @@
-.. _using-compound-data-types:
+.. _using-container-types:
 
-*************************
-Using Compound Data Types
-*************************
+*********************
+Using Container Types
+*********************
 
 As our code gets more and more complex, we may decide that it's a good idea to
 store related values together. For example, we may decide we want to bundle
 together the greetings and store them all in one place. We can do this using a
-compound data type.
+container data type.
 
-Compound data types are values that can hold multiple different values. In the
+Container data types are values that can hold multiple different values. In the
 example on the previous page, we store an integer of the current hour into one
 variable and a string of the greeting we are going to use in another. We could,
-however, store them in the same variable by using a compound data type.
+however, store them in the same variable by using a container type.
 
 .. note::
-   For more information on various compound data types available in Lasso, see
-   the :ref:`containers` chapter.
+   For more information on various container types available in Lasso, see the
+   :ref:`containers` chapter.
 
 
 Using an Array
 ==============
 
-One compound data type we could use is an :type:`array`. Arrays allow storing as
+One container type we could use is an :type:`array`. Arrays allow storing as
 many items as you want inside one array. You can even store an array inside
 another array.
 
@@ -76,7 +76,7 @@ Using a Map
 ===========
 
 An array stores items by position, but sometimes it's useful to store items by
-an arbitrary key, and that's where the ``map`` compound data type is useful.
+an arbitrary key, and that's where the ``map`` container type is useful.
 
 Below is our example again, this time modified to use a map to store all the
 greetings::
@@ -119,10 +119,9 @@ to insert new key/values into the map. (See the section on the
 Using a Map of Maps
 ===================
 
-It is a common scenario where using nested compound data types makes sense.
-Let's expand our example to change the background color of our web page
-depending on the time of day. We'll add the color information to our existing
-map::
+It's a common scenario where using nested container types makes sense. Let's
+expand our example to change the background color of our web page depending on
+the time of day. We'll add the color information to our existing map::
 
    <?lasso
       local(hour) = date->hour
@@ -153,5 +152,3 @@ with another map. This means that when we look up the key for the variable
 then use the map stored in "time_of_day" to get the background color and the
 greeting for the current time of day. For extra credit, change this solution to
 use an array of maps instead.
-
-Next Tutorial: :ref:`define-your-methods`

@@ -1,5 +1,5 @@
 .. http://www.lassosoft.com/Language-Guide-Database-Interaction
-.. _lasso-databases-guide-index:
+.. _index_databases:
 
 #######################
  Lasso Databases Guide

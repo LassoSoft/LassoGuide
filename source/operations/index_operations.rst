@@ -1,5 +1,5 @@
 .. http://www.lassosoft.com/Language-Guide-Built-in-Data-Types
-.. _lasso-operations-guide-index:
+.. _index_operations:
 
 ########################
  Lasso Operations Guide

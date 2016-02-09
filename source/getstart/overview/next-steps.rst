@@ -1,7 +1,7 @@
-.. _overview-conclusion:
+.. _next-steps:
 
 **********
-Conclusion
+Next Steps
 **********
 
 This has been just a taste of Lasso programming. Hopefully this chapter has whet
@@ -11,12 +11,11 @@ always the best way to learn any language.
 .. only:: html
 
    As you start to use Lasso, we recommend reading through the entire
-   :ref:`lasso-language-guide-index` as it will go into detail about the
-   grammar, syntax, and features only outlined in this tour. Also, take a look
-   at the chapter titles in the rest of this documentation to familiarize
-   yourself with its contents. When you find yourself needing to know more about
-   those features, capabilities, or types, you'll then know where to find the
-   chapter for it.
+   :ref:`index_language` as it will go into detail about the grammar, syntax,
+   and features only outlined in this tour. Also, take a look at the chapter
+   titles in the rest of this documentation to familiarize yourself with its
+   contents. When you find yourself needing to know more about those features,
+   capabilities, or types, you'll then know where to find the chapter for it.
 
 .. only:: latex
 

@@ -1,9 +1,9 @@
 .. http://www.lassosoft.com/Language-Guide-Overview
-.. _lasso-guide-index:
+.. _index_guide:
 
-*****************************
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  Welcome to **Lasso**\ Guide
-*****************************
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Lasso is a powerful programming language used to drive millions of web pages
 from servers around the world. It has an easy-to-master syntax and allows fast,
@@ -14,8 +14,8 @@ development goals.
 What follows is a living set of documentation for the Lasso programming
 language. As this documentation will be improved over time, please review
 regularly during your development and feel free to ask questions or make
-suggestions for improvement. Send all requests or suggestions to
-docs@lassosoft.com where we will review and answer as soon as possible.
+suggestions for improvement. Contributions and pull requests can be made at the
+project's `Git repository <https://github.com/LassoSoft/LassoGuide>`_.
 
 .. toctree::
    :maxdepth: 1
@@ -42,10 +42,10 @@ documentation without reading every word.
    :ref:`instance-administration` chapters and come back to them when you
    need to.
 
--  After reading through :ref:`lasso-get-start-index`, you are probably ready
-   to start digging into developing with Lasso. As you get up to speed, keep
-   the :ref:`lasso-language-guide-index` handy to familiarize yourself with
-   the basic features and syntax.
+-  After reading through :ref:`index_getstart`, you should be ready to start
+   digging into developing with Lasso. As you get up to speed, keep the
+   :ref:`index_language` handy to familiarize yourself with the basic features
+   and syntax.
 
 -  Read through the chapter titles in all of the other sections to
    familiarize yourself with the contents of this documentation and what's

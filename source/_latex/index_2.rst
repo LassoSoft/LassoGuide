@@ -1,6 +1,6 @@
 :orphan:
 
-.. _book-lassoguide-applications:
+.. _book-index-applications:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
  LassoGuide: Applications
@@ -14,9 +14,9 @@
 
 .. _book-development:
 
-#######################
-Application Development
-#######################
+#########################
+ Application Development
+#########################
 
 .. toctree::
 
@@ -29,9 +29,9 @@ Application Development
 
 .. _book-communication:
 
-######################
-External Communication
-######################
+########################
+ External Communication
+########################
 
 .. toctree::
 
@@ -45,9 +45,9 @@ External Communication
 
 .. _book-databases:
 
-###################
-Database Operations
-###################
+#####################
+ Database Operations
+#####################
 
 .. toctree::
 

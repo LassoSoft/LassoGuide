@@ -1,4 +1,4 @@
-.. _overview-lasso-basics:
+.. _lasso-basics:
 
 ************
 Lasso Basics
@@ -98,7 +98,3 @@ it easy to assign values from array-like types into locals::
    // => rapidly
 
 For more information on variables, see the :ref:`variables` chapter.
-
-.. only:: html
-
-   Next Topic: :ref:`Lasso Programming Features <overview-lasso-features>`

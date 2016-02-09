@@ -1,4 +1,4 @@
-.. _using-errors:
+.. _throwing-handling-errors:
 
 ****************************
 Throwing and Handling Errors
@@ -53,7 +53,10 @@ error about invalid values.
 
       public hour=(rhs::integer) => {
          if(#rhs < 0 or #rhs > 23) => {
-            fail(error_code_invalidParameter, error_msg_invalidParameter + ': hour must be between 0 and 23')
+            fail(
+               error_code_invalidParameter,
+               error_msg_invalidParameter + ': hour must be between 0 and 23'
+            )
          }
 
          .'hour' = #rhs
@@ -146,5 +149,3 @@ be called when a problem occurs.
 
 And that's the basics of creating and handling errors. To learn more, please
 read the :ref:`error-handling` chapter.
-
-Next Tutorial: :ref:`using-web-request`

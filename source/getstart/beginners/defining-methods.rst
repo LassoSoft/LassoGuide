@@ -1,4 +1,4 @@
-.. _define-your-methods:
+.. _defining-methods:
 
 *************************
 Defining Your Own Methods
@@ -190,5 +190,3 @@ Now any changes to the logic can again be made in only one place.
 
 For detailed information on method definitions and multiple dispatch, be sure to
 read the :ref:`methods` chapter.
-
-Next Tutorial: :ref:`define-your-types`

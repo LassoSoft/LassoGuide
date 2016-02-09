@@ -98,5 +98,3 @@ delimiter::
 Now I have added a variable named "greeting" that gets set to a string with the
 proper greeting using our logic from before. I then use the "greeting" variable
 in the view code to have the HTML document display the proper greeting.
-
-Next Tutorial: :ref:`using-compound-data-types`

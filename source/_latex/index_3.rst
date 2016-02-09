@@ -1,6 +1,6 @@
 :orphan:
 
-.. _book-lassoguide-api:
+.. _book-index-api:
 
 %%%%%%%%%%%%%%%%%
  LassoGuide: API
@@ -14,9 +14,9 @@
 
 .. _book-extending:
 
-###############
-Extending Lasso
-###############
+#################
+ Extending Lasso
+#################
 
 
 +++++++++++

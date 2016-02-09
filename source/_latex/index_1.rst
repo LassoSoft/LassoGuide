@@ -1,6 +1,6 @@
 :orphan:
 
-.. _book-lassoguide-language:
+.. _book-index-language:
 
 %%%%%%%%%%%%%%%%%%%%%%
  LassoGuide: Language
@@ -14,11 +14,12 @@
    \pagenumbering{arabic}\pagestyle{normal}
 
 
-.. _book-get-start:
+.. _book-getstart:
 
-##########################
-Getting Started with Lasso
-##########################
+############################
+ Getting Started with Lasso
+############################
+
 
 ++++++++++++++++
 A Taste of Lasso
@@ -26,10 +27,10 @@ A Taste of Lasso
 
 .. toctree::
 
-   /getstart/overview/basics
-   /getstart/overview/features
-   /getstart/overview/serving
-   /getstart/overview/conclusion
+   /getstart/overview/lasso-basics
+   /getstart/overview/language-features
+   /getstart/overview/serving-lasso
+   /getstart/overview/next-steps
 
 
 ++++++++++++++++++
@@ -58,9 +59,9 @@ Lasso Server Management
 
 .. _book-language:
 
-#################
-Language Elements
-#################
+###################
+ Language Elements
+###################
 
 .. toctree::
 
@@ -80,9 +81,9 @@ Language Elements
 
 .. _book-data:
 
-#############
-Data Handling
-#############
+###############
+ Data Handling
+###############
 
 .. toctree::
 
@@ -96,11 +97,11 @@ Data Handling
    /operations/serialization-compression
 
 
-.. _book-input-output:
+.. _book-system:
 
-#######################
-System Input and Output
-#######################
+#########################
+ System Input and Output
+#########################
 
 .. toctree::
 

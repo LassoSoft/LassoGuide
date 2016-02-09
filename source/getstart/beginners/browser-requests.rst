@@ -1,8 +1,8 @@
-.. _using-web-request:
+.. _browser-requests:
 
-*******************************
-Inspecting Browser Request Data
-*******************************
+***************************
+Inspecting Browser Requests
+***************************
 
 So far, we have talked in general terms about a web server using Lasso to put
 together an HTML document for a web browser to view, but we haven't talked about

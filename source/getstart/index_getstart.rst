@@ -1,5 +1,5 @@
 .. http://www.lassosoft.com/Lasso-Tutorials
-.. _lasso-get-start-index:
+.. _index_getstart:
 
 ############################
  Getting Started with Lasso
@@ -11,8 +11,8 @@
    Guide is written for people who have little or no programming experience
    while the Overview Guide is meant for people who already have experince in
    another programming language. Both guides assume some basic knowledge of
-   HTML, and that Lasso has been :ref:`installed and set up
-   <lasso-server-guide-index>` correctly on the machine you are working with.
+   HTML, and that Lasso has been :ref:`installed and set up <index_server>`
+   correctly on the machine you are working with.
 
 .. container:: col eight first
 
@@ -23,14 +23,14 @@
    .. toctree::
       :maxdepth: 2
 
-      beginners/whatis
+      beginners/what-is-lasso
       beginners/using-logic
       beginners/using-variables
-      beginners/compound-data-types
-      beginners/define-your-methods
-      beginners/define-your-types
-      beginners/using-errors
-      beginners/using-web-request
+      beginners/using-container-types
+      beginners/defining-methods
+      beginners/defining-types
+      beginners/throwing-handling-errors
+      beginners/browser-requests
 
 .. container:: col eight first
 
@@ -41,7 +41,7 @@
    .. toctree::
       :maxdepth: 2
 
-      overview/basics
-      overview/features
-      overview/serving
-      overview/conclusion
+      overview/lasso-basics
+      overview/language-features
+      overview/serving-lasso
+      overview/next-steps

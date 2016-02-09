@@ -1,4 +1,4 @@
-.. _overview-serving-lasso:
+.. _serving-lasso:
 
 *************
 Serving Lasso

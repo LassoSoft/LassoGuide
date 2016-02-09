@@ -1,8 +1,8 @@
-.. _overview-lasso-features:
+.. _language-features:
 
-**************************
-Lasso Programming Features
-**************************
+***********************
+Lasso Language Features
+***********************
 
 The Lasso programming language has a number of great features that make coding
 in it enjoyable. This tutorial will scratch the surface of some of the best
@@ -221,7 +221,3 @@ The best part about query expressions is that most of the actions are lazily
 executed. This means you can store a query expression in a variable, and it will
 wait to be executed until the value for the variable is expected. For a more
 thorough description, see the :ref:`query-expressions` chapter.
-
-.. only:: html
-
-   Next Topic: :ref:`Serving Lasso <overview-serving-lasso>`
