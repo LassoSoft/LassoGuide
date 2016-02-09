@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     latexbwstyle.py
-    ~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~
 
     Modified version of the bw style included with pygments.
 
@@ -21,7 +21,7 @@ class LatexBWStyle(Style):
 
     styles = {
         Comment:                   "italic",
-        Comment.Preproc:           "italic",
+        Comment.Preproc:           "bold",
 
         Keyword:                   "bold",
         Keyword.Pseudo:            "nobold",
@@ -29,15 +29,17 @@ class LatexBWStyle(Style):
 
         Operator.Word:             "bold",
 
-        Name.Class:                "bold",
+#        Name.Class:                "bold",
         Name.Namespace:            "bold",
         Name.Exception:            "bold",
         Name.Entity:               "bold",
         Name.Tag:                  "bold",
+        Name.Label:                "bold",
 
-        String:                    "noitalic",
+#        String:                    "italic",
         String.Interpol:           "bold",
-        String.Escape:             "bold",
+#        String.Escape:             "bold",
+        String.Doc:                "italic",
 
         Generic.Heading:           "bold",
         Generic.Subheading:        "bold",

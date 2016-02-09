@@ -18,16 +18,22 @@ import sys, os, time
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('_latex'))
-import latexstyle, latexbwstyle
+import latextracstyle, latexbwstyle
 
 # -- General configuration -----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
-needs_sphinx = '1.0'
+needs_sphinx = '1.3'
 
-# Add any Sphinx extension module names here, as strings. They can be extensions
-# coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinxcontrib.lassodomain', 'breathe']
+# Add any Sphinx extension module names here, as strings. They can be
+# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+# ones.
+extensions = [
+    'sphinx.ext.ifconfig',
+    'sphinxcontrib.lassodomain',
+    'breathe',
+]
+needs_extensions = {'breathe': '4'}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -66,7 +72,7 @@ release = '9.2'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['**/.svn', 'glossary.rst', '_includes']
+exclude_patterns = ['.git*', 'glossary.rst', '_includes']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 default_role = 'meth'
@@ -90,13 +96,16 @@ pygments_style = 'trac'
 
 # The default language for syntax coloring
 highlight_language='html+lasso'
+highlight_options = {'builtinshighlighting' : False}
 
-# workaround for https://bitbucket.org/birkenfeld/sphinx/issue/580
+# The default domain for reference definitions
+primary_domain = 'ls'
+
+# workaround for https://github.com/sphinx-doc/sphinx/issues/580
 rst_epilog = """
 .. |dot| unicode:: 0x2E
    :trim:
 """
-primary_domain = 'ls'
 
 # -- Breathe Options
 breathe_projects = { "LCAPI": os.path.abspath("../doxygen/xml/") }
@@ -132,7 +141,7 @@ html_theme_path = ['_themes']
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = 'favicon.ico'
+html_favicon = '_static/favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -187,39 +196,57 @@ htmlhelp_basename = 'LassoGuide-doc'
 # -- Options for LaTeX output --------------------------------------------------
 
 latex_elements = {
-    # Unused by XeLaTeX, so we commandeer it to set the ISBN
-    'cmappkg': '\\newcommand\\isbn{000-0-0000000-0-0}',
+# Unused by XeLaTeX, so we commandeer it to set the ISBN
+'cmappkg': '\\newcommand\\isbn{000-0-0000000-0-0}',
 
-    # The paper size ('letterpaper' or 'a4paper').
-    'papersize': 'letterpaper',
+# The paper size ('letterpaper' or 'a4paper').
+'papersize': 'letterpaper',
 
-    # The font size ('10pt', '11pt' or '12pt').
-    'pointsize': '10pt',
-    'babel': '\\usepackage[english]{babel}',
-    'inputenc': '',
-    'utf8extra': '',
-    'fontpkg': '',
-    'fncychap': '\\usepackage{fncychap}',
-    'fontenc': '',
+# The font size ('10pt', '11pt' or '12pt').
+'pointsize': '10pt',
+'babel': '\\usepackage[english]{babel}',
+'inputenc': '',
+'utf8extra': '',
+'fontpkg': '',
+'fncychap': '\\usepackage{fncychap}',
+'fontenc': '',
 
-    # Need to add blank page at the end for publisher
-    'printindex': r'\printindex \pagestyle{empty} \clearpage\null\vfill\pagestyle{empty}\par',
+# Need to add blank page at the end for publisher
+'printindex': r'\printindex \pagestyle{empty} \clearpage\null\vfill\pagestyle{empty}\par',
 
-    # Additional stuff for the LaTeX preamble.
-    'preamble': r"""
+# Additional stuff for the LaTeX preamble.
+'preamble': r"""
 % Font setup (Be sure you have them installed on your machine)
 \usepackage[quiet]{fontspec}
 \defaultfontfeatures[Myriad Pro Light]{Ligatures=TeX}
-\setmainfont[BoldFont={Myriad Pro}]{Myriad Pro Light}
-\setromanfont[BoldFont={Myriad Pro}]{Myriad Pro Light}
+\setmainfont[BoldFont={Myriad Pro},SmallCapsFont={Myriad Pro SemiExtended},SmallCapsFeatures={Scale=0.95}]{Myriad Pro Light}
 \setsansfont[BoldFont={Myriad Pro},Color=273777]{Myriad Pro Light}
-\setmonofont[Scale=0.8]{Lucida Console}
+\setmonofont[Scale=0.9]{Consolas}
+\usepackage[verbose=silent]{microtype}
+\UseMicrotypeSet[protrusion]{basictext}
+\SetProtrusion[name=default]
+   { encoding = {EU1} }
+   { % currently seems only to work with hyphens
+      .  = {  ,700},
+     {,} = {  ,500},
+      :  = {  ,500},
+      ;  = {  ,300},
+      !  = {  ,100},
+      ?  = {  ,100},
+      ( = {100,   },
+      ) = {   ,200},
+      / = {100,200},
+      - = {   ,500},
+     \textendash       = {200,200},   \textemdash        = {150,150},
+     \textquoteleft    = {300,400},   \textquoteright    = {300,400},
+     \textquotedblleft = {300,300},   \textquotedblright = {300,300},
+   }
 
-% For the Chinese character (Apple LiSung or Arial Unicode MS also works)
+% For the Chinese character
 \usepackage{xeCJK}
-\setCJKmainfont{Apple LiGothic}
-\setCJKsansfont{Apple LiGothic}
-\setCJKmonofont{Apple LiGothic}
+\setCJKmainfont{Arial Unicode MS}
+\setCJKsansfont{Arial Unicode MS}
+\setCJKmonofont{Arial Unicode MS}
 
 % To make sure figures are placed where we want them
 \usepackage{float}
@@ -276,18 +303,19 @@ latex_elements = {
 % For making the list of tables show conditionally
 \usepackage[table]{totalcount}
 
+\makeatletter
+
 % For some reason, this works to get the default font color
 % (Using fontspec never allowed for Sphinx's overrides to kick in.)
-\makeatletter
 \newcommand{\globalcolor}[1]{
   \color{#1}\global\let\default@color\current@color
 }
+
 \makeatother
 \AtBeginDocument{\globalcolor{BaseColor}}
 """
-+ ('\setmonofont[Scale=0.8]{DejaVu Sans Mono}\n' if tags.has('paperback') else '')
 + ('\hypersetup{urlcolor=OuterLinkColor}\n' if tags.has('screen') else ''),
-}
+
 # For PdfLaTeX I gave up, but switching to XeLaTeX got it working
 # Gave up and used unicode checkmark instead
 # This was my best guess for the Chinese character (u4E26):
@@ -304,12 +332,15 @@ latex_elements = {
 #Now, when you want to type chinese, you just use the command:
 #   \cjktext{enter your chinese text here}
 
+# Latex figure (float) alignment
+#'figure_align': 'htbp',
+}
+
 # Override the default styles with our own.
 latex_additional_files = [
   '_static/guide_cover_92.pdf',
   '_latex/sphinx.sty',
   '_latex/sphinxmanual.cls',
-  '_latex/totalcount.sty',
 ]
 
 # Grouping the document tree into LaTeX files. List of tuples

@@ -1,4 +1,4 @@
-% Based onthe sphinx.sty that comes packaged with Sphinx
+% Based on the sphinx.sty that comes packaged with Sphinx
 % This should override what's there
 % Modified by Brad Lindsay
 %
@@ -18,6 +18,7 @@
 \RequirePackage{titlesec}
 \RequirePackage{tabulary}
 \RequirePackage{amsmath} % for \text
+\RequirePackage{amssymb} % for some symbols
 \RequirePackage{makeidx}
 \RequirePackage{framed}
 \RequirePackage{ifthen}
@@ -34,6 +35,10 @@
 \RequirePackage{wrapfig}
 % Separate paragraphs by space by default.
 \RequirePackage{parskip}
+% For parsed-literal blocks.
+\RequirePackage{alltt}
+% Display "real" single quotes in literal blocks.
+\RequirePackage{upquote}
 
 \definecolor{BaseColor}{cmyk}{0.0,0.0,0.0,0.9}
 \definecolor{TitleColor}{cmyk}{0.83,0.41,0,0}
@@ -41,8 +46,8 @@
 \definecolor{OuterLinkColor}{rgb}{0.11,0.43,0.73}
 % Redefine these colors to something not white if you want to have colored
 % background and border for code examples.
-\definecolor{VerbatimColor}{rgb}{1,1,1}
-\definecolor{VerbatimBorderColor}{rgb}{1,1,1}
+%\definecolor{VerbatimColor}{rgb}{1,1,1}
+%\definecolor{VerbatimBorderColor}{rgb}{0,0,0}
 
 % Uncomment these two lines to ignore the paper size and make the page
 % size more like a typical published manual.
@@ -155,11 +160,11 @@
 \def\mycolorbox#1{%
   \setlength\distancetoright{\linewidth}%
   \advance\distancetoright -\@totalleftmargin %
-  \fcolorbox{VerbatimBorderColor}{VerbatimColor}{%
+%  \fcolorbox{VerbatimBorderColor}{VerbatimColor}{%
   \begin{minipage}{\distancetoright}%
     #1
   \end{minipage}%
-  }%
+%  }%
 }
 \def\FrameCommand{\mycolorbox}
 
@@ -178,7 +183,7 @@
   }%
   \item\MakeFramed {\FrameRestore}%
      \small%
-    \OriginalVerbatim[#1]%
+    \OriginalVerbatim[xleftmargin=4mm,commandchars=\\\{\}]% replace with our own params
 }
 \renewcommand{\endVerbatim}{%
     \endOriginalVerbatim%
@@ -247,9 +252,11 @@
   \def\productioncont##1{\\& &\code{##1}}
   \parindent=2em
   \indent
-  \begin{tabular}{lcl}
+  \setlength{\LTpre}{0pt}
+  \setlength{\LTpost}{0pt}
+  \begin{longtable}[l]{lcl}
 }{%
-  \end{tabular}
+  \end{longtable}
 }
 
 % Notices / Admonitions
@@ -527,3 +534,28 @@
       \gdef\thechapter{\@Alph\c@chapter}
   }
 \fi
+
+% Define literal-block environment
+\RequirePackage{newfloat}
+\DeclareFloatingEnvironment{literal-block}
+\ifx\thechapter\undefined
+  \SetupFloatingEnvironment{literal-block}{within=section,placement=h}
+\else
+  \SetupFloatingEnvironment{literal-block}{within=chapter,placement=h}
+\fi
+\SetupFloatingEnvironment{literal-block}{name=List}
+% control caption around literal-block
+\RequirePackage{capt-of}
+\RequirePackage{needspace}
+% if the left page space is less than \literalblockneedsapce, insert page-break
+\newcommand{\literalblockneedspace}{5\baselineskip}
+% margin before the caption of literal-block
+\newcommand{\literalblockcaptiontopvspace}{0.5\baselineskip}
+
+% ensure tables are centered
+\let\oldtab\threeparttable
+\let\endoldtab\endthreeparttable
+\renewenvironment{threeparttable}{%
+  \begin{center}%
+  \oldtab%
+  }{\endoldtab\end{center}}

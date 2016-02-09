@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-    latexstyle.py
-    ~~~~~~~~~~~~~
+    latextracstyle.py
+    ~~~~~~~~~~~~~~~~~
 
     Modified version of the trac style included with pygments.
 
@@ -14,7 +14,7 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
 
 
-class LatexStyle(Style):
+class LatexTracStyle(Style):
     """
     Port of the default trac highlighter design.
     """
@@ -31,6 +31,7 @@ class LatexStyle(Style):
 
         String:                 '#aa7733',
         String.Regex:           '#808000',
+        String.Doc:             '#888877',
 
         Number:                 '#009999',
 

@@ -63,7 +63,7 @@
         \par}
       \vfill\vfill
       {\large
-       \@date \par
+       \today \par
        \vfill
        \py@authoraddress \par
       }%
@@ -164,6 +164,7 @@
 %
 \let\py@OldTableofcontents=\tableofcontents
 \renewcommand{\tableofcontents}{%
+  \pagenumbering{roman}%
   \ChTitleVar{\raggedright\color{InnerLinkColor}\bfseries\fontsize{36}{40}\selectfont}
   \setcounter{page}{1}%
   \pagebreak%
@@ -194,13 +195,25 @@
   %\pagenumbering{arabic}%
   %\@ifundefined{fancyhf}{}{\pagestyle{normal}}%
 }
-\pagenumbering{roman}
+\pagenumbering{alph}
 
 % This is needed to get the width of the section # area wide enough in the
 % library reference.  Doing it here keeps it the same for all the manuals.
 %
 \renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.6em}}
 \renewcommand*\l@subsection{\@dottedtocline{2}{4.1em}{3.5em}}
+
+% Make index anchor point at title rather than entries list.
+% (idxlayout's totoc option can do this, but only as a chapter, not a part.)
+% http://tex.stackexchange.com/questions/172352/correct-hyperlink-to-the-index
+\usepackage{etoolbox}
+\patchcmd{\theindex}{%
+  \twocolumn[%
+}{%
+  \twocolumn[%
+    \phantomsection
+    \addcontentsline{toc}{part}{\indexname}%
+}{}{\errmessage{Patching \string\begin{theindex} failed}}
 
 % Fix the bibliography environment to add an entry to the Table of
 % Contents.
@@ -209,8 +222,8 @@
 \renewcommand{\thebibliography}[1]{
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{part}{\bibname}
   \py@OldThebibliography{1}
+  \addcontentsline{toc}{part}{\bibname}
 }
 
 % Same for the indices.
@@ -220,8 +233,8 @@
   \let\py@OldTheindex=\theindex
   \renewcommand{\theindex}{
     \cleardoublepage
-    \phantomsection
-    \addcontentsline{toc}{part}{\indexname}
+%    \phantomsection
     \py@OldTheindex
+%    \addcontentsline{toc}{part}{\indexname}
   }
 }
