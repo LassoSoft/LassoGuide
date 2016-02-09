@@ -78,7 +78,7 @@ sup { top: -0.5em; }
 sub { bottom: -0.25em; }
 
 pre { text-wrap: wrap; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; background: #e6f6fb; }
-code { display: block; padding: 0.5em 1em; border: 1px solid #81aed1; font-family: "Courier New", Courier, Monaco, monospace; }
+code { display: inline; padding: 0.5em 1em; border: 1px solid #81aed1; font-family: "Courier New", Courier, Monaco, monospace; }
 
 code,pre,tt.literal{padding:0 3px 2px;font-size:12px;color:#333;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
 code{padding:2px 4px;color:#d14;background-color:#f7f7f9;border:1px solid #e1e1e8}
