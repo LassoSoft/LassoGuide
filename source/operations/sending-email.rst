@@ -529,7 +529,7 @@ For example, an email message can be marked up with email tokens for the first
 name and last name of the recipient. The start of the message, stored in a file
 called "body.lasso" could be::
 
-   Dear [email_token('FirstName')] [email_token('LastName')],
+   <p>Dear [email_token('FirstName')] [email_token('LastName')],</p>
 
 The email message is going to be sent to two recipients: "John Doe" at
 ":ref:`!john@example.com`" and "Jane Doe" at ":ref:`!jane@example.com`". Each

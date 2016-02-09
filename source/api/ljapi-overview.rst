@@ -172,13 +172,13 @@ which wraps the Lasso instance's :type:`java_jnienv` object.
    .. code-block:: none
 
       $> javap -s -p java.util.zip.ZipFile | grep -A 1 "public java.util.zip.ZipFile"
-      public java.util.zip.ZipFile(java.lang.String)   throws java.io.IOException;
+      public java.util.zip.ZipFile(java.lang.String) throws java.io.IOException;
         Signature: (Ljava/lang/String;)V
       --
-      public java.util.zip.ZipFile(java.io.File, int)   throws java.io.IOException;
+      public java.util.zip.ZipFile(java.io.File, int) throws java.io.IOException;
         Signature: (Ljava/io/File;I)V
       --
-      public java.util.zip.ZipFile(java.io.File)   throws java.util.zip.ZipException, java.io.IOException;
+      public java.util.zip.ZipFile(java.io.File) throws java.util.zip.ZipException, java.io.IOException;
         Signature: (Ljava/io/File;)V
 
 #. After finding the constructor method for our class, the code instantiates an

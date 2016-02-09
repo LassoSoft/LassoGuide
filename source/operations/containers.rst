@@ -4,10 +4,10 @@
 Containers
 **********
 
-Lasso provides a variety of compound data types for storing data in an ordered
+Lasso provides a variety of container data types for storing data in an ordered
 and unordered manner. Objects of these types contain zero or more other
-arbitrary objects. Built-in support is provided for common compound data types
-such as arrays, lists, maps, and other containers.
+arbitrary objects. Built-in support is provided for common container types such
+as arrays, lists, maps, and others.
 
 
 Ordered Container Types
@@ -175,8 +175,8 @@ Using Array Objects
 
 .. member:: array->+(rhs::trait_forEach)::array
 
-   Arrays can be combined with other compound types by using the ``+`` operator.
-   A new array containing all the elements is returned.
+   Arrays can be combined with other container types by using the ``+``
+   operator. A new array containing all the elements is returned.
 
    Example of combining an array, staticarray, and pair into a new array::
 

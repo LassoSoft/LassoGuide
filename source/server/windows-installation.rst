@@ -95,8 +95,8 @@ Configuring Apache 2.2
    -  :file:`mod_lasso9.dll` into the Apache :file:`modules\\\ ` folder
    -  :file:`mod_lasso9.conf` into the Apache :file:`conf\\\ ` folder
 
--  Edit the Apache :file:`httpd.conf` file and add the following line:
-   ``Include conf/mod_lasso9.conf``
+-  In the :file:`conf\\\ ` folder, edit the Apache :file:`httpd.conf` file and add the following
+   line: ``Include conf/mod_lasso9.conf``
 -  Restart Apache.
 -  In a browser, open :ref:`!http://localhost/lasso9/instancemanager` to load
    the initialization form and complete your Lasso installation.

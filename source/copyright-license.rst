@@ -7,7 +7,7 @@ Copyright and License
 This copyright notice concerns the contents of:
 
 | LassoGuide
-| Copyright |copy| 1996--2013 Lassosoft Inc.
+| Copyright |copy| 1996--|today| Lassosoft Inc.
 | All rights reserved.
 | http://www.lassosoft.com/
 

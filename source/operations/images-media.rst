@@ -212,7 +212,7 @@ methods in Lasso are defined below.
 Return Height and Width of an Image
 -----------------------------------
 
-Use the `image->height` and `image-width` methods on an image object. This
+Use the `image->height` and `image->width` methods on an image object. This
 returns an integer value representing the height and width of the image in
 pixels::
 

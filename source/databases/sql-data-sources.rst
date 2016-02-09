@@ -228,7 +228,7 @@ Security Tips
 
    .. code-block:: sql
 
-      SELECT * FROM Contacts.People WHERE Company LIKE 'McDonald\'s%';
+      SELECT * FROM Contacts.People WHERE Company LIKE "McDonald's%";
 
 
 SQL Data Source Methods
@@ -962,7 +962,8 @@ with the same code by changing the type from "checkbox" to "radio". ::
       -keyValue=126
    ) => {^
       value_list('title') => {^
-         '   <input type="checkbox" name="title" value="' + value_listItem + '" ' + checked + '>' + value_listItem + '\n'
+         '   <input type="checkbox" name="title" value="' + value_listItem + '" ' + checked + '>'
+               + value_listItem + '\n'
       ^}
    ^}
    '<input type="submit" name="submit" value="Update Record">\n</form>\n'

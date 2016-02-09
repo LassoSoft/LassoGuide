@@ -102,7 +102,8 @@ Below is the code for the Sample Data Source Connector::
       lasso_log(LOG_LEVEL_ALWAYS, "Loading Sample Data Source Connector");
    }
 
-   osError sampleds_func( lasso_request_t token, datasource_action_t action, const auto_lasso_value_t * param )
+   osError sampleds_func
+       ( lasso_request_t token, datasource_action_t action, const auto_lasso_value_t * param )
    {
       osError err = osErrNoErr;
       auto_lasso_value_t v1, v2, notused;
@@ -226,7 +227,8 @@ source connector.
 #. Implement the ``sampleds_func`` function which gets called when any database
    operations for this data source are encountered::
 
-      osError sampleds_func( lasso_request_t token, datasource_action_t action, const auto_lasso_value_t * param )
+      osError sampleds_func
+          ( lasso_request_t token, datasource_action_t action, const auto_lasso_value_t * param )
 
    All data source functions have this prototype. When your data source function
    is called, it's passed an opaque ``token`` data structure, an integer

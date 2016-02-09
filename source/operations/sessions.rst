@@ -355,7 +355,7 @@ example, the ID for a session "Site_Preferences" is returned using `session_id`
 and passed explicitly in an HTML form::
 
    <form action="save.lasso" method="post">
-      <input type="hidden" name="-lassosession:Site_Preferences" value="[session_id('Site_Preferences')]" />
+   <input type="hidden" name="-lassosession:Site_Preferences" value="[session_id('Site_Preferences')]" />
    </form>
 
 

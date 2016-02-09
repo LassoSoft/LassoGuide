@@ -57,8 +57,8 @@ disabled by placing ``[no_square_brackets]``, usually at the top of the page,
 outside the delimiters. Once the Lasso parser encounters
 ``[no_square_brackets]``, square brackets are be turned "off" and any
 subsequently encountered square brackets will be treated as plain text. Turning
-square brackets off works on a per-file basis, and there is no way to turn them
-back on once they are off.
+square brackets off works on a per-file basis, and cannot be turned back on once
+they are off.
 
 To illustrate how Lasso code is embedded within a Lasso page, the following code
 may be stored in a file named "test.lasso" contained within the web server root.

@@ -357,7 +357,8 @@ before the update. ::
       'last_name'='Surname'
    ) => {^
       '<p>' + error_code + ': ' + error_msg + '</p>\n'
-      'Record ' + field('id') + ' was updated to ' + field('first_name') + ' ' + field('last_name') + '.'
+      'Record ' + field('id') + ' was updated to ' +
+            field('first_name') + ' ' + field('last_name') + '.'
    ^}
 
 The updated field values from the ``-update`` action are automatically available
@@ -407,7 +408,8 @@ updated record are automatically available within the inline. ::
       'last_name'=web_request->param('last_name')
    ) => {^
       '<p>' + error_code + ': ' + error_msg + '</p>\n'
-      'Record ' + field('id') + ' was updated to ' + field('first_name') + ' ' + field('last_name') + '.'
+      'Record ' + field('id') + ' was updated to ' +
+            field('first_name') + ' ' + field('last_name') + '.'
    ^}
 
 The form initially shows "Mary" for the "first_name" input and "Person" for the
@@ -509,7 +511,8 @@ values match those from the outer inline exactly. The pair parameter
             'last_name'='Peoples'
          ) => {^
             '<p>' + error_code + ': ' + error_msg + '</p>\n'
-            'Record ' + field('id') + ' was updated to ' + field('first_name') + ' ' + field('last_name') + '.'
+            'Record ' + field('id') + ' was updated to ' +
+                  field('first_name') + ' ' + field('last_name') + '.'
          ^}
       ^}
    ^}

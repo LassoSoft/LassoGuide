@@ -189,11 +189,11 @@ included. When finished, type :kbd:`Control-C` to exit.
    variables processed in one chunk are unavailable to future chunks. You'll
    either need to copy and paste multi-line code, or use thread variables.
 
-::
+.. parsed-literal::
 
    $> lasso9 -i
    >: lasso_version
-   Mac OS X 9.2
+   Mac OS X |version|
    >: loop(3) => { stdoutnl(loop_count) }
    1
    2
@@ -689,8 +689,9 @@ the executable "myscript".
 ::
 
    $> lassoc -O -app -n -obj -o myscript.obj myscript.lasso
-   $> link myscript.obj /LIBPATH:"C:\Program Files\LassoSoft\Lasso Instance Manager\home\LassoExecutables" \
-   lasso9_runtime.lib -defaultlib:libcmt
+   $> link myscript.obj \
+   > /LIBPATH:"C:\Program Files\LassoSoft\Lasso Instance Manager\home\LassoExecutables" \
+   > lasso9_runtime.lib -defaultlib:libcmt
 
 
 Compiling Libraries

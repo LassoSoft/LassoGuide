@@ -299,8 +299,8 @@ the response page via the inline.
 
 .. tip::
    The `web_request->param` member method is a replacement for the
-   `action_param` or ``form_param`` methods used in prior versions of Lasso for
-   fetching GET or POST data.
+   ``action_param`` or ``form_param`` methods used in prior versions of Lasso
+   for fetching GET or POST data.
 
 
 Using an Array of Form Values Within an Inline
@@ -363,9 +363,12 @@ form values each time the form is submitted. The following HTML form uses
 specified in the form previously each time the page is reloaded::
 
    <form action="default.lasso" method="POST">
-      <br />First Name: <input type="text" name="first_name" value="[web_request->param('first_name')]" />
-      <br />Last Name: <input type="text" name="last_name" value="[web_request->param('last_name')]" />
-      <br /><input type="submit" name="submit" value="Submit" />
+      First Name: <br />
+      <input type="text" name="first_name" value="[web_request->param('first_name')]" />
+      Last Name: <br />
+      <input type="text" name="last_name" value="[web_request->param('last_name')]" />
+      <br />
+      <input type="submit" name="submit" value="Submit" />
    </form>
 
 
@@ -990,7 +993,8 @@ field is returned. The fields within the "contacts" table are shown::
       -keyField='id'
    ) => {^
       loop(field_name(-count)) => {^
-         '<br />' + loop_count + ': ' + field_name(loop_count) + ' (' + field_name(loop_count, -type) + ')\n'
+         '<br />' + loop_count + ': ' + field_name(loop_count) +
+               ' (' + field_name(loop_count, -type) + ')\n'
       ^}
    ^}
 

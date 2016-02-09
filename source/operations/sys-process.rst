@@ -254,10 +254,11 @@ be from STDOUT. Only the first part of the output is shown. ::
    #proc->close
 
    // =>
-   // <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-   //    <html>
-   //    <head>
-   //    <title>Apple</title>
+   // <!DOCTYPE html>
+   // <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+   // <head>
+   //    <meta charset="utf-8" />
+   //    <meta name="Author" content="Apple Inc." />
    // ... rest of response ...
 
 

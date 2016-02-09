@@ -298,7 +298,7 @@ Start a PDF File with a Custom Page Size
 Use the :type:`pdf_doc` type with the ``-height`` and ``-width`` parameters to
 define a custom page size in points. One inch is equal to 72 points. ::
 
-   local(file) = pdf_doc(-file='MyFile.pdf', -height='648.0', -width='468.0')
+   local(my_file) = pdf_doc(-file='MyFile.pdf', -height='648.0', -width='468.0')
 
 
 Start a PDF File with Custom Margins

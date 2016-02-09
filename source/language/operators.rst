@@ -593,7 +593,8 @@ When using such a dynamic method name, the expression must be surrounded in
 parentheses to disambiguate. ::
 
    #lv->\(meth + 'name')
-   // => // Produces a reference to the member method defined by concatenating "name" with the value of "meth"
+   // => // Produces a reference to the member method whose name matches the
+   //       result of appending "name" to the value returned by "meth"
 
 Although the escape operators are used to find methods by name, the object
 produced by the operators is a :dfn:`memberstream`. This object manages the
