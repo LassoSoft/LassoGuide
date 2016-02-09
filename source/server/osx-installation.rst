@@ -44,8 +44,6 @@ Installation
 
       -  :file:`/usr/libexec/apache2/mod_lasso9.10.5.so` (OS X 10.5)
       -  :file:`/usr/libexec/apache2/mod_lasso9.so` (OS X 10.6 and later)
-      -  :file:`/Applications/Server.app/Contents/ServerRoot/usr/libexec/apache2/mod_lasso9.so`
-         (OS X Server 10.9 and later)
 
    -  :file:`/Library/Frameworks/Lasso9.framework`
    -  :file:`/Library/LaunchDaemons/com.lassosoft.lassoinstancemanager.plist`
