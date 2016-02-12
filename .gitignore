@@ -2,3 +2,6 @@
 __pycache__/
 /build/
 /extra/
+/dash/*.docset
+/dash/*.tgz
+/dash/*.xml
