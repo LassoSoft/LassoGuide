@@ -1,0 +1,28 @@
+# http://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+
+[*.py]
+indent_style = space
+indent_size = 4
+
+[*.rst]
+indent_style = space
+indent_size = 3
+trim_trailing_whitespace = true
+x-soft-wrap-text = false
+
+[*.{sty,cls}]
+indent_style = space
+indent_size = 2
+
+[Makefile]
+indent_style = tab
+
+[make.bat]
+indent_style = tab
+end_of_line = crlf
