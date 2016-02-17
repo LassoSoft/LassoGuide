@@ -38,11 +38,11 @@ power of the integer.
    If you are running the example code in a shell script or via the command-line
    interpreter instead of in a Lasso Server instance, you'll need to load the
    LJAPI environment. This can be done with the following two lines of code
-   (replace "LJAPI9.bundle" with the name of the library for your OS's
+   (replace "LJAPI9.dylib" with the name of the library for your OS's
    installation). See the section :ref:`command-loading-libraries` in the
    :ref:`command-line-tools` chapter for more information. ::
 
-      lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/LJAPI9.bundle')
+      lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/LJAPI9.dylib')
       ljapi_initialize
 
 

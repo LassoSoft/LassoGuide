@@ -462,7 +462,7 @@ LJAPI9 LCAPI module and then call the `ljapi_initialize` method::
       case('Linux')
          lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/LJAPI.so')
       case('Mac OS X')
-         lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/LJAPI9.bundle')
+         lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/LJAPI9.dylib')
       // Fail if unknown OS
       case
          fail('Unknown platform')
