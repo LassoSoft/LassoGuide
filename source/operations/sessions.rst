@@ -134,9 +134,16 @@ Below is a description of each of the session methods:
       If "true", the session cookie will only be sent back to the web server
       on requests for HTTPS secure web pages. The `session_end` should also be
       specified with ``-secure`` if this option is desired.
+   :param boolean=false -httponly:
+      If "true", modern web browsers will block client-side scripts from
+      accessing the cookie. The `session_end` should also be specified with
+      ``-httponly`` if this option is desired.
    :param boolean=false -rotate:
       If "true", the session will have a new ID generated for it on each
       request.
+
+   .. versionchanged:: 9.3.1
+      Added ``-httponly`` flag.
 
 .. method:: session_id(sessionName::string)
 
@@ -153,13 +160,16 @@ Below is a description of each of the session methods:
    Removes a variable from a specified session. Accepts two parameters: the name
    of the session and the name of the variable.
 
-.. method:: session_end(sessionName::string, -secure=false::boolean)
+.. method:: session_end(\
+      sessionName::string, \
+      -secure=false::boolean, \
+      -httponly=false::boolean)
 
    Deletes the stored information about a named session for the current visitor.
-   Accepts a required parameter: the name of the session to be deleted, and an
-   optional keyword parameter: ``-secure``. The ``-secure`` parameter should be
-   "true" if the ``-secure`` parameter was "true" when `session_start` was
-   called.
+   Accepts a required parameter: the name of the session to be deleted, and two
+   optional keyword parameters: ``-secure`` and ``-httponly``. The ``-secure``
+   parameter should be "true" if the ``-secure`` parameter was "true" when
+   `session_start` was called. The same applies to the ``-httponly`` parameter.
 
 .. method:: session_abort(sessionName::string)
 

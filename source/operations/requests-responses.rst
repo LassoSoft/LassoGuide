@@ -525,27 +525,33 @@ Outgoing cookies are added to the response HTTP headers by the
 method for enumerating all cookies being set.
 
 Setting a cookie requires specifying a name and a value and optionally a domain,
-expiration, path, and SSL secure flag. These values are supplied as parameters
-when setting a cookie. Cookie headers are not created until the request
-processing is completed and the response is to be sent to the client.
+expiration, path, SSL secure flag, and HttpOnly flag. These values are supplied
+as parameters when setting a cookie. Cookie headers are not created until the
+request processing is completed and the response is to be sent to the client.
 
 .. member:: web_response->setCookie(nv::pair, \
       -domain= ?, \
       -expires= ?, \
       -path= ?, \
-      -secure= false)
+      -secure= false, \
+      -httponly= false)
 
    Sets the indicated cookie. Any duplicate cookie would be replaced. The first
    parameter must be the cookie :samp:`{name}={value}` pair. If used, the
-   ``-domain`` and ``-path`` keyword parameters must have string values.
+   ``-domain`` and ``-path`` keyword parameters must have string values. Setting
+   ``-secure`` causes the cookie to only be sent over HTTPS connections, and
+   ``-httponly`` blocks client-side scripts from accessing the cookie.
 
    The ``-expires`` parameter can be either a date object, a duration object, an
    integer, a string, or any object that will produce a suitable value when
    converted into a string. A date indicates the absolute date at which the
    cookie will expire. A duration indicates the time that the cookie should
-   expire based on the time at which the cookie is being set. An integer
-   indicates the number of minutes until the cookie expires. Any other object
-   type is appended directly to the outgoing cookie header string.
+   expire based on the time at which the cookie is being set. An integer or
+   string indicates the number of minutes until the cookie expires. Any other
+   object type is appended directly to the outgoing cookie header string.
+
+   .. versionchanged:: 9.3.1
+      Added ``-httponly`` flag.
 
 .. member:: web_response->cookies()::trait_forEach
 
