@@ -11,7 +11,7 @@ Glossary
    shebang
       A special first line in a file that tells your shell which interpreter to
       use for a file. To specify using lasso9 for a standard install of Lasso
-      Server, use ``#!/usr/bin/lasso9``.
+      Server, use ``#!/usr/bin/env lasso9``.
 
    Lasso page
       A web page or file that has Lasso embedded in with other text or markup.

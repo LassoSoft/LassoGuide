@@ -352,7 +352,7 @@ file. It must be the first line of the file and it starts with the pound sign
 and an exclamation mark followed by the path to the interpreter. For Lasso code,
 it should look like this::
 
-   #!/usr/bin/lasso9
+   #!/usr/bin/env lasso9
 
 If you have a custom installation of Lasso, adjust the path to the lasso9
 executable accordingly.
@@ -388,7 +388,7 @@ Here's what happens when you run the code:
 The following example shows the values of ``$argc`` and ``$argv`` when the
 script is run directly. The contents of the file "/path/to/code.lasso" are::
 
-   #!/usr/bin/lasso9
+   #!/usr/bin/env lasso9
    stdoutnl($argc)
    stdoutnl($argv)
 
@@ -435,7 +435,7 @@ If you want to have access to all database connectors and to all the LCAPI
 modules such as the ImageMagick methods or the :type:`os_process` type, you can
 load them all with the `database_initialize` method::
 
-   #!/usr/bin/lasso9
+   #!/usr/bin/env lasso9
    database_initialize
 
 
@@ -445,7 +445,7 @@ Load Specific LCAPI Modules
 If you want, you can just load individual LCAPI modules. The following example
 loads just the MySQL database connector::
 
-   #!/usr/bin/lasso9
+   #!/usr/bin/env lasso9
    // If LASSO9_MASTER_HOME is specified, find module there
    // Otherwise, find it in the LASSO9_HOME path
    lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/MySQLConnector.' + sys_dll_ext)
@@ -457,7 +457,7 @@ Set Up the LJAPI Environment
 To create the JVM and set up the LJAPI environment, you must first load the
 LJAPI9 LCAPI module and then call the `ljapi_initialize` method::
 
-   #!/usr/bin/lasso9
+   #!/usr/bin/env lasso9
    match(lasso_version(-lassoplatform)) => {
       case('Linux')
          lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/LJAPI.so')
@@ -479,7 +479,7 @@ Lasso shell scripts. The code below contains three examples of loading up
 LassoApps: one for compiled LassoApps, one for zipped LassoApps, and one for a
 LassoApp directory. ::
 
-   #!/usr/bin/lasso9
+   #!/usr/bin/env lasso9
    // Load a compiled LassoApp from LASSO9_MASTER_HOME if specified
    // Otherwise, load it from LASSO9_HOME
    lassoapp_installer->install(
@@ -541,7 +541,7 @@ must have the current script figure out the absolute path to its parent
 directory so you can append the relative path. The following code does just
 that::
 
-   #!/usr/bin/lasso9
+   #!/usr/bin/env lasso9
    // Contents of /path/to/project/sub1/code.lasso
 
    // This should let us run this file anywhere and still properly import relative files
@@ -577,7 +577,7 @@ Change the Working Directory
 Occasionally you may find it helpful to change the directory context your script
 is running in. You can use the `dir->setcwd` method to do so::
 
-   #!/usr/bin/lasso9
+   #!/usr/bin/env lasso9
    // Contents of /path/to/code.lasso
 
    stdoutnl("We are here: " + io_file_getcwd)
@@ -601,7 +601,7 @@ Lasso can read and set shell environment variables using `sys_getEnv` and
 `sys_setEnv` respectively. The following example adds a directory to the "PATH"
 environment variable for the script::
 
-   #!/usr/bin/lasso9
+   #!/usr/bin/env lasso9
    // Contents of /path/to/code.lasso
 
    // Ignore the return value of sys_setEnv

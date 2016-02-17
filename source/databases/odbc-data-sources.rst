@@ -97,7 +97,7 @@ interfaces with ODBC data sources.
 
    .. code-block:: sql
 
-      SELECT * FROM Contacts.People WHERE Company LIKE 'McDonald''s%';
+      SELECT * FROM Contacts.People WHERE Company LIKE "McDonald's%";
 
 -  Lasso Server uses connection pooling when connecting to data sources via
    ODBC, and the ODBC connections will remain open during the time that Lasso

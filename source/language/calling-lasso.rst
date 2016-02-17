@@ -145,12 +145,12 @@ by running :command:`chmod +x test.lasso`).
 
 The hashbang line for a standard installation looks like this::
 
-   #!/usr/bin/lasso9
+   #!/usr/bin/env lasso9
 
 Using the same "test.lasso" file as before, but placing the hashbang line at the
 top, the complete example would look as follows::
 
-   #!/usr/bin/lasso9
+   #!/usr/bin/env lasso9
    'The current date is ' + date
 
 Once it has been made executable, the file can be directly executed on the
