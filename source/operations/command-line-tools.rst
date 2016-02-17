@@ -303,17 +303,17 @@ following lists the variables and a description of their function:
 .. envvar:: LASSOSERVER_FASTCGIPORT
 
    Set the port that the FastCGI server binds on. Same as specifying the
-   :option:`-p` option.
+   :option:`-p <lassoserver -p>` option.
 
 .. envvar:: LASSOSERVER_USER
 
    Specifies the OS user to run lassoserver as. Same as specifying the
-   :option:`-user` option.
+   :option:`-user <lassoserver -user>` option.
 
 .. envvar:: LASSOSERVER_GROUP
 
    Specifies the OS group to run lassoserver as. Same as specifying the
-   :option:`-group` option.
+   :option:`-group <lassoserver -group>` option.
 
 
 Lasso Shell Scripts on OS X and Linux

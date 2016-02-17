@@ -170,10 +170,10 @@ named "test", with no extension, and the results would have been the same.
 Executing Code Directly
 -----------------------
 
-The :program:`lasso9` tool includes a :option:`-s` option which indicates that
-the next argument given to the tool is the Lasso code to be executed. This
-method bypasses the need to first place the code in a file. Instead, the source
-code can be given directly to lasso9 when it is invoked.
+The :program:`lasso9` tool includes the :option:`-s <lasso9 -s>` option for
+passing a string of Lasso code to execute. This method bypasses the need to
+first place the code in a file. Instead, the source code can be given directly
+to lasso9 when it is invoked.
 
 .. code-block:: none
 
@@ -194,8 +194,9 @@ Executing Code from STDIN
 The :program:`lasso9` tool can also accept code to execute from STDIN. This is
 useful when piping results from one command to lasso9 in order for it to execute
 the given code. In order to have lasso9 receive its code from STDIN, the
-:option:`--` argument is used. The following example uses the standard
-:command:`echo` command to pipe code from STDIN for lasso9 to read and execute:
+:option:`-- <lasso9 -->` argument is used. The following example uses the
+standard :command:`echo` command to pipe code from STDIN for lasso9 to read and
+execute:
 
 .. code-block:: none
 
