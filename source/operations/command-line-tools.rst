@@ -167,27 +167,28 @@ lasso9. For example::
 
    $> lasso9 /path/to/code.lasso
 
-To execute Lasso code passed to lasso9 as a string, pass the :option:`-s` flag
-as the first argument::
+.. program:: lasso9
+
+.. option:: -s <code>
+
+   Use :option:`-s` to execute the string passed to lasso9 as Lasso code::
 
    $> lasso9 -s "lasso_version"
 
-To execute Lasso code from STDIN, pass :option:`--` as the first argument to
-lasso9::
+.. option:: --
+
+   Use :option:`--` to execute Lasso code from STDIN::
 
    $> echo 'lasso_version' | lasso9 --
 
-To execute Lasso code interactively, call lasso9 with the :option:`-i` flag as
-the first argument. When you do this a new prompt will appear (``>:``), and what
-you type there will be processed as Lasso code when you hit :kbd:`return`. You
-can also paste small amounts of multi-line code into the prompt; just be sure to
-hit :kbd:`return` right after pasting so that the last line of code will be
-included. When finished, type :kbd:`Control-C` to exit.
+.. option:: -i
 
-.. note::
-   Each chunk of code is processed as if it were a separate file, so local
-   variables processed in one chunk are unavailable to future chunks. You'll
-   either need to copy and paste multi-line code, or use thread variables.
+   Use :option:`-i` to execute Lasso code interactively. When you do this a new
+   prompt will appear (``>:``), and what you type there will be processed as
+   Lasso code when you hit :kbd:`return`. You can also paste small amounts of
+   multi-line code into the prompt; just be sure to hit :kbd:`return` right
+   after pasting so that the last line of code will be included. When finished,
+   type :kbd:`Control-C` to exit.
 
 .. parsed-literal::
 
@@ -198,6 +199,11 @@ included. When finished, type :kbd:`Control-C` to exit.
    1
    2
    3
+
+.. note::
+   Each chunk of code is processed as if it were a separate file, so local
+   variables processed in one chunk are unavailable to future chunks. You'll
+   either need to copy and paste multi-line code, or use thread variables.
 
 For more details, see the section :ref:`calling-lasso-cli` in the
 :ref:`calling-lasso` chapter.

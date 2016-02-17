@@ -195,8 +195,7 @@ The :program:`lasso9` tool can also accept code to execute from STDIN. This is
 useful when piping results from one command to lasso9 in order for it to execute
 the given code. In order to have lasso9 receive its code from STDIN, the
 :option:`--` argument is used. The following example uses the standard
-:command:`echo` command to produce code for lasso9 to read from STDIN and then
-execute:
+:command:`echo` command to pipe code from STDIN for lasso9 to read and execute:
 
 .. code-block:: none
 
