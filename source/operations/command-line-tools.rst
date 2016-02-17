@@ -17,7 +17,8 @@ lassoserver
 .. index:: lassoserver
 
 The :program:`lassoserver` executable is installed at
-:file:`/usr/sbin/lassoserver` on OS X and Linux operating systems and at
+:file:`/usr/sbin/lassoserver` on Linux operating systems, at
+:file:`/usr/local/lasso/lassoserver` on OS X, and at
 :file:`C:\\Program Files\\LassoSoft\\Lasso Instance
 Manager\\home\\LassoExecutables\\lassoserver` on Windows. This program creates a
 FastCGI server that interfaces with web servers to process Lasso files in
@@ -130,8 +131,8 @@ lassoim(d)
 
 .. index:: lassoim(d)
 
-The :program:`lassoim(d)` executable is installed at :file:`/usr/sbin/lassoim`
-on OS X, :file:`/usr/sbin/lassoimd` on Linux operating systems, and
+The :program:`lassoim(d)` executable is installed at :file:`/usr/sbin/lassoimd`
+on Linux operating systems, at :file:`/usr/local/lasso/lassoim` on OS X, and at
 :file:`C:\\Program Files\\LassoSoft\\Lasso Instance
 Manager\\home\\LassoExecutables\\lassoim` on Windows. This program creates the
 FastCGI server that runs Lasso's Instance Manager web application. It also makes
@@ -153,8 +154,9 @@ lasso9
 
 .. index:: lasso9
 
-The :program:`lasso9` executable is installed at :file:`/usr/bin/lasso9` on OS X
-and Linux operating systems and at :file:`C:\\Program Files\\LassoSoft\\Lasso
+The :program:`lasso9` executable is installed at :file:`/usr/bin/lasso9` on
+Linux operating systems, at :file:`/usr/local/lasso/lasso9` on OS X, and at
+:file:`C:\\Program Files\\LassoSoft\\Lasso
 Instance Manager\\home\\LassoExecutables\\lasso9` on Windows. This program can
 execute Lasso code from a file, piped from STDIN, passed in as a string, or
 inside an interactive interpreter. This executable doesn't load and start up
@@ -214,8 +216,9 @@ lassoc
 
 .. index:: lassoc
 
-The :program:`lassoc` executable is installed at :file:`/usr/bin/lassoc` on OS X
-and Linux operating systems and at :file:`C:\\Program Files\\LassoSoft\\Lasso
+The :program:`lassoc` executable is installed at :file:`/usr/bin/lassoc` on
+Linux operating systems, at :file:`/usr/local/lasso/lassoc` on OS X, and at
+:file:`C:\\Program Files\\LassoSoft\\Lasso
 Instance Manager\\home\\LassoExecutables\\lassoc` on Windows. This program is
 used to compile LassoApps, Lasso libraries, and Lasso executables. See the
 section :ref:`command-compiling-lasso` below for more information.
@@ -460,7 +463,7 @@ LJAPI9 LCAPI module and then call the `ljapi_initialize` method::
    #!/usr/bin/env lasso9
    match(lasso_version(-lassoplatform)) => {
       case('Linux')
-         lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/LJAPI.so')
+         lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/LJAPI9.so')
       case('Mac OS X')
          lcapi_loadModule((sys_masterHomePath || sys_homePath) + '/LassoModules/LJAPI9.dylib')
       // Fail if unknown OS

@@ -386,7 +386,7 @@ be manually started again.
    You can then verify that Lasso Instance Manager is running::
 
       $> ps -ax | grep lassoim
-      62 ?? 7:10.95 /usr/sbin/lassoim
+      62 ?? 7:10.95 /usr/local/lasso/lassoim
 
 :Linux:
    The CentOS and Ubuntu installers create a service "lassoimd" for the Instance
