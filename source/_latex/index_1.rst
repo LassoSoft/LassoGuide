@@ -88,7 +88,7 @@ Lasso Server Management
 .. toctree::
 
    /operations/strings
-   /operations/bytes
+   /operations/byte-streams
    /operations/math
    /operations/date-duration
    /operations/regular-expressions

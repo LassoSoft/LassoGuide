@@ -1,8 +1,8 @@
-.. _bytes:
+.. _byte-streams:
 
-*****
-Bytes
-*****
+************
+Byte Streams
+************
 
 .. index:: byte stream, binary data
 

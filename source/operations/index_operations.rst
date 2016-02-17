@@ -17,7 +17,7 @@
       :maxdepth: 2
 
       strings
-      bytes
+      byte-streams
       math
       date-duration
       regular-expressions

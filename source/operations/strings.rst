@@ -12,8 +12,8 @@ used to manipulate string values.
 .. tip::
    The :type:`string` type is often used in conjunction with the :type:`bytes`
    type to convert binary data between different character encodings (e.g.
-   UTF-8, ISO-8859-1). See the :ref:`bytes` chapter for more information about
-   the :type:`bytes` type.
+   UTF-8, ISO-8859-1). See the :ref:`byte-streams` chapter for more information
+   about the :type:`bytes` type.
 
 
 String Objects
@@ -180,7 +180,7 @@ to contain UTF-8 character data. The following example code would translate a
 byte stream contained in a variable named "myByteStream" using the ISO-8859-1
 encoding to interpret the character data. This is analogous to using the
 `bytes->exportString` method which is described in more detail in the
-:ref:`bytes` chapter::
+:ref:`byte-streams` chapter::
 
    string(#myByteStream, 'ISO-8859-1')
 
