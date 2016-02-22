@@ -243,6 +243,8 @@ The required parameters are detailed in the following table.
    ``-key=?``       An array that specifies the search field operators and pair
                     parameters to find the records to be updated. Either a
                     ``-keyField`` and ``-keyValue`` or a ``-key`` is required.
+                    Using ``-key`` overrides any other specified name/value
+                    pairs.
    ``-host=?``      Optional inline host array. See the section
                     :ref:`database-inline-connection` in the
                     :ref:`database-interaction` chapter for more information.

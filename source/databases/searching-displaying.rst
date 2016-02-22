@@ -149,7 +149,8 @@ the sections that follow.
                     other search parameters and returns the single record
                     specified. Optional.
    ``-key=?``       An array that specifies the search field operators and pair
-                    parameters to find the matching records.
+                    parameters to find the matching records. Using ``-key``
+                    overrides any other specified name/value pairs.
    ``-host=?``      Optional inline host array. See the section
                     :ref:`database-inline-connection` in the
                     :ref:`database-interaction` chapter for more information.
