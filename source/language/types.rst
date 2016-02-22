@@ -217,18 +217,39 @@ another for the setter. See the section on :ref:`member methods
       // The firstName setter
       public firstName=(value) => {
          .'firstName' = #value
-         return .'firstName'
       }
    }
 
 The type definition above would operate identically if it instead omitted the
 manual getter and setter methods and made its "firstName" data member public.
 
+Implementing getter and setter methods for a data member allows :ref:`assignment
+operators <operators-arithmetical>` to be used with it. For example, since the
+``+``, ``-``, and ``*`` operators are implemented for the string type (see the
+section on :ref:`types-overloading` below), they can be used to modify the
+"firstName" data member::
+
+   local(someone = person)
+   #someone->firstName = "Bob"
+   #someone->firstName += "by"   // Bobby
+   #someone->firstName -= "y"    // Bobb
+   #someone->firstName *= 2      // BobbBobb
+
 Setters can be defined to accept more than one parameter. When called, the
 additional parameters are given in the method call's parentheses, just as with a
 regular method. When defining such a setter method, the first parameter is
-always the new value for the assignent. All additional parameters follow. (For
-an example, see `security_registry->userComment=`.)
+always the new value for the assignent. All additional parameters follow. For
+example, with a "firstName" setter that includes an optional nickname::
+
+      public firstName=(value, nick) => {
+         .'firstName' = `"` + #nick + `" ` + #value
+      }
+
+it would be called like this::
+
+   #someone->firstName("Big Wheels") = "Bob"    // "Big Wheels" Bob
+
+For another multi-parameter setter example, see `security_registry->userComment=`.
 
 Within a manual getter or setter, it is vital to refer to the data member using
 the single-quoted name syntax. Otherwise, an infinite recursion situation may
@@ -720,6 +741,8 @@ The following example creates a type whose only member method is
    echo_method->rhino
    // => rhino
 
+
+.. _types-overloading:
 
 Operator Overloading
 --------------------

@@ -71,6 +71,8 @@ chapter for more detail on creating :ref:`setter methods
 <types-getters-setters>`.
 
 
+.. _operators-arithmetical:
+
 Arithmetical Operations
 =======================
 
