@@ -36,13 +36,15 @@ Creating Pair Objects
 .. method:: pair()
 .. method:: pair(p::pair)
 .. method:: pair(value, value)
+.. method:: pair(value = value)
 
-   A pair is created in one of three ways. First, a zero parameter call to the
+   A pair is created in one of four ways. First, a zero parameter call to the
    `pair` method will generate a pair with the first and second values set to
    "null". Second, a pair can be created by passing it another pair. This will
    set the first and second values to the first and second values from the
-   passed pair. Third, a pair can be created by specifying the first and second
-   values as parameters when calling the `pair` method.
+   passed pair. Third and fourth, a pair can be created by specifying the first
+   and second values as parameters or a key and value when calling the `pair`
+   method.
 
 
 Using Pair Objects
@@ -492,6 +494,7 @@ Creating Map Objects
 ^^^^^^^^^^^^^^^^^^^^
 
 .. method:: map()
+.. method:: map(p::pair, ...)
 .. method:: map(key = value, ...)
 
    A map is created with zero or more key/value pair parameters. Any non-pair
@@ -511,17 +514,21 @@ Creating Map Objects
 Using Map Objects
 ^^^^^^^^^^^^^^^^^
 
-.. member:: map->insert(p::pair)
+.. member:: map->insert(p::pair, ...)
+.. member:: map->insert(key = value, ...)
 
    Inserts a new key/value pair into the map. If the key specified already
    exists, it is replaced.
 
 .. member:: map->remove(key)
-.. member:: map->removeAll()
+.. member: map->removeAll()
+.. member:: map->removeAll(matching= ?)
 
    The first method, `~map->remove`, removes the indicated key/value from the
    map. If the key does not exist in the map then no action is taken. The second
-   method, `~map->removeAll`, removes all of the keys/values from the map.
+   method, `~map->removeAll` with no parameters, removes all of the keys/values
+   from the map. If called with a parameter, all keys matching that parameter
+   are removed.
 
 .. member:: map->get(key)
 .. member:: map->get=(value, key)
