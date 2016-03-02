@@ -585,12 +585,15 @@ is called::
 onCompare
 ^^^^^^^^^
 
-.. index:: onCompare callback
+.. index:: onCompare onCompareStrict callback
 
 The ``onCompare`` method is called whenever an object is compared against
-another object. This includes when the equality (``==``), and inequality
-(``!=``) operators are used and when objects are compared for ordinality using
-any of the relative equality operators (``<``, ``<=``, ``>``, ``>=``).
+another object. This includes when using the equality (``==``), and inequality
+(``!=``) operators, and when objects are compared for ordinality using any of
+the relative equality operators (``<``, ``<=``, ``>``, ``>=``). It's also called
+via `null->onCompareStrict`, which first verifies that the two objects are the
+same type, when using the strict equality (``===``) and inequality (``!==``)
+operators.
 
 An ``onCompare`` method must accept one parameter and must return an integer
 value. ::
