@@ -834,11 +834,20 @@ type or object. These methods are summarized below.
 
 .. member:: null->isA(name::tag)
 
-   Checks whether an object is of the given type. The method will return "1" if
-   the type specified by the ``name`` parameter matches the type of the
-   instance, or "2" if the trait specified by ``name`` is implemented by the
-   type of the instance. The method call `null->isA(::null)` will only return
-   "1" for the :type:`null` type instance itself.
+   Checks whether an instance of an object is of the given type, returning an
+   integer indicating the result.
+
+   :0:
+      The given type has no relation to the object.
+   :1:
+      The ``name`` parameter matches the type of the instance. (The method call
+      `null->isA(::null)` will only return "1" for the :type:`null` type
+      instance itself.
+   :2:
+      The ``name`` parameter matches a trait implemented by the type of the
+      instance, or one of its parents.
+   :3:
+      The ``name`` parameter matches the parent type of the instance.
 
 .. member:: null->isNotA(name::tag)
 
