@@ -140,14 +140,13 @@ latex-common:
 	@echo "Implementing ugly hacks in the .tex file..."
 #		1. remove extra space inside descriptions using style=nextline
 #		2. add columns to LCAPI ref
-#		3. remove space after \leavevmode
-#		4. remove horizontal lines from tables
+#		3. remove horizontal lines from tables
 	@awk '\
 		/\\leavevmode\\begin/ { gsub(/\\leavevmode\\begin/, "\\leavevmode\\vspace*{-1.2\\baselineskip}\\begin") } \
 		/\\paragraph{Enums}/ { gsub(/\\paragraph{Enums}/, "&\n\\begin{multicols}{2}") } \
 		/\\begin{fulllineitems}/ { if((getline nextline)>0 && nextline~/{api\/lcapi-reference:c.datasource_action_t}/) { gsub(/\\begin{fulllineitems}/, "\\end{multicols}\n&"); } $$0 = $$0"\n"nextline } \
-		1' \$(BUILDDIR)/latex/LassoGuide$(VERSION).tex | sed -E -e '/leavevmode$$/{N;s/\n\s*$$//;}' \
-		-e '/^(\\begin\{tab|\\caption|\\\\$$|\{\{\\textsf)/{N;s/\n\\hline//;}' -e '/\{\{\\textsf\{Continued on next page\}\}\}/{s/\|r\|/r/;s/\\hline$$//;}' \
+		1' \$(BUILDDIR)/latex/LassoGuide$(VERSION).tex | sed -E -e '/^(\\begin\{tab|\\caption|\\\\$$|\{\{\\textsf)/{N;s/\n\\hline//;}' \
+		-e '/\{\{\\textsf\{Continued on next page\}\}\}/{s/\|r\|/r/;s/\\hline$$//;}' \
 		> $(BUILDDIR)/latex/LassoGuide$(VERSION).temp && mv -f $(BUILDDIR)/latex/LassoGuide$(VERSION).{temp,tex}
 
 .PHONY: latex
