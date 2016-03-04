@@ -8477,7 +8477,7 @@
         <briefdescription>
 <para>Register a constant value. </para>        </briefdescription>
         <detaileddescription>
-<para>Constants can be called just like tags, but the resulting value will only have a single instance and will have both it&apos;s type and value frozen. This is usually called at the same time that tags are registered.</para><para><parameterlist kind="param"><parameteritem>
+<para>Constants can be called just like tags, but the resulting value will only have a single instance and will have both its type and value frozen. This is usually called at the same time that tags are registered.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>namespaceName</parametername>
 </parameternamelist>
@@ -8525,7 +8525,7 @@
         <briefdescription>
 <para>Register a constant value. </para>        </briefdescription>
         <detaileddescription>
-<para>Constants can be called just like tags, but the resulting value will only have a single instance and will have both it&apos;s type and value frozen. This is usually called at the same time that tags are registered.</para><para><parameterlist kind="param"><parameteritem>
+<para>Constants can be called just like tags, but the resulting value will only have a single instance and will have both its type and value frozen. This is usually called at the same time that tags are registered.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>namespaceName</parametername>
 </parameternamelist>
@@ -8569,7 +8569,7 @@
         <briefdescription>
 <para>Register a constant value. </para>        </briefdescription>
         <detaileddescription>
-<para>Constants can be called just like tags, but the resulting value will only have a single instance and will have both it&apos;s type and value frozen. This is usually called at the same time that tags are registered.</para><para><parameterlist kind="param"><parameteritem>
+<para>Constants can be called just like tags, but the resulting value will only have a single instance and will have both its type and value frozen. This is usually called at the same time that tags are registered.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>name</parametername>
 </parameternamelist>
@@ -8606,7 +8606,7 @@
         <briefdescription>
 <para>Register a constant value. </para>        </briefdescription>
         <detaileddescription>
-<para>Constants can be called just like tags, but the resulting value will only have a single instance and will have both it&apos;s type and value frozen. This is usually called at the same time that tags are registered.</para><para><parameterlist kind="param"><parameteritem>
+<para>Constants can be called just like tags, but the resulting value will only have a single instance and will have both its type and value frozen. This is usually called at the same time that tags are registered.</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>name</parametername>
 </parameternamelist>
