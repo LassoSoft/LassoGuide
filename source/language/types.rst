@@ -347,8 +347,9 @@ explicitly specified when a type is defined then the parent of the type is
 All of the public or protected member methods belonging to a parent type will be
 made available to the types that inherit from it. Any method defined in a parent
 type that conflicts with those of an inheriting type will be replaced by the
-inheriting type's method. This permits inheriting types to override or replace
-functionality provided by a parent.
+inheriting type's method, unless the parent's method was declared as ``frozen``.
+This permits inheriting types to override or replace functionality provided by a
+parent.
 
 
 Parent Section
@@ -377,23 +378,27 @@ the second type, but the ``first`` method is not. ::
    define one => type {
       public first() => 'alpha'
       public second() => 'beta'
+      public last() => frozen 'omega'
    }
 
    define two => type {
       parent one
       public second() => 'gamma'
+      public last() => 'zeta'
    }
 
 When the ``first`` method of a ``two`` object is called, the value "alpha" is
 returned since it is automatically calling the method from the parent type. The
 ``second`` method returns "gamma" since it is calling the overridden method from
-type ``two``. ::
+type ``two``. The ``last`` method always returns "omega" because the parent type
+defined it with the ``frozen`` keyword. ::
 
    two->first
    // => alpha
-
    two->second
    // => gamma
+   two->last
+   // => omega
 
 
 Accessing Inherited Methods
