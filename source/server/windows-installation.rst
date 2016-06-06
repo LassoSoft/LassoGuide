@@ -7,7 +7,7 @@ Windows Installation
 
 These instructions are for installing Lasso Server on 64-bit Windows Server
 2012, Windows Server 2008 R2, Windows 8, and Windows 7. Supported web servers
-are IIS 8, IIS 7, and Apache 2.2.
+are IIS 7, IIS 8, and Apache 2.2.
 
 .. note::
    Windows Vista is not an officially supported operating system.
@@ -22,8 +22,8 @@ Lasso Server requires the following Microsoft updates:
    Server Manager to add the Application Server role, which includes .NET
    Framework 3.5.1)
 -  `Microsoft .NET Framework 4`_
--  `Microsoft Visual C++ 2012 Redistributable`_ (bundled with installer)
--  Servers running IIS 7 need ISAPI enabled:
+-  `Microsoft Visual C++ 2012 Redistributable`_ (auto-installed if required)
+-  Servers running IIS 7 or 8 need ISAPI enabled:
 
    -  For Windows Server, use the Roles Wizard to add "ISAPI Extensions" and
       "ISAPI Filters" under :menuselection:`Web Server --> Application
@@ -40,44 +40,68 @@ Installation
 
 Download and expand the correct `Lasso Server for Windows`_ installer for your
 OS and web server from the LassoSoft website and run the installer package.
+(Their contents are identical, but only the IIS installer configures IIS
+for you automatically.)
 
 When done, open :ref:`!http://your-server-domain.name/lasso9/instancemanager`
-to load the initialization form and complete your Lasso installation.
+to load the initialization form and complete your Lasso Server installation.
 
 
 Configuring IIS 7 or 8
 ======================
 
-To configure IIS 7 or 8 manually:
+To add Lasso Connector for IIS to the list of allowed ISAPI extensions:
 
--  `Open IIS Manager`_ and expand your computer name from the nodes on the left.
--  Select a web site from the nodes on the left and double-click on
-   :guilabel:`Handler Mappings`.
+-  `Open IIS Manager`_ and select your computer name from the nodes on the left.
+-  In the main panel, double-click on :guilabel:`ISAPI and CGI Restrictions`.
+-  Click :guilabel:`Add...` to add a new entry:
+
+   -  ISAPI or CGI path: :file:`C:\\Windows\\System32\\isapi_lasso9.dll`
+   -  Description: ``Lasso9``
+   -  Check :guilabel:`Allow extension path to execute`
+
+-  Back in the main panel, double-click on :guilabel:`ISAPI Filters`.
+-  Click :guilabel:`Add...` to add a new entry:
+
+   -  Filter name: ``isapi_lasso9.dll``
+   -  Executable: :file:`C:\\Windows\\System32\\isapi_lasso9.dll`
+
+To pass requests for ``*.lasso`` files to Lasso Server:
+
+-  `Open IIS Manager`_ and select your computer name from the nodes on the left,
+   or a site within it.
+-  In the main panel, double-click on :guilabel:`Handler Mappings`.
 -  Click :guilabel:`Add Script Map...` to add a new script map:
 
-   -  Request Path: ``*.lasso``
-   -  Executable: :file:`C:\\Windows\\system32\\isapi_lasso9.dll`
+   -  Request path: ``*.lasso``
+   -  Executable: :file:`C:\\Windows\\System32\\isapi_lasso9.dll`
    -  Name: ``Lasso9Handler``
+   -  Request Restrictions...: uncheck "Invoke handler only if request is
+      mapped" (leave other settings at "All verbs" and "Script")
 
 To configure access to Lasso Instance Manager and Lasso Server Admin:
 
--  In IIS Manager, expand your computer name from the nodes on the left.
--  Select a web site from the nodes on the left, then right-click.
+-  `Open IIS Manager`_ and expand your computer name from the nodes on the left.
+-  Right-click a web site under your computer name, e.g. "Default Web Site".
 -  Select :guilabel:`Add Application...` to add a new application:
 
    -  Alias: ``lasso9``
-   -  Application Pool: select an appropriate pool (generally DefaultAppPool is
+   -  Application pool: select an appropriate pool (generally DefaultAppPool is
       acceptable)
-   -  Physical Path:
+   -  Physical path:
       :file:`C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\www\\\ `
 
 -  Select the newly created application from the nodes on the left and
    double-click on :guilabel:`Handler Mappings`.
 -  Click :guilabel:`Add Script Map...` to add a new script map:
 
-   -  Request Path: ``*``
+   -  Request path: ``*``
    -  Executable: :file:`C:\\Windows\\System32\\isapi_lasso9.dll`
    -  Name: ``LassoAdmin``
+   -  Request Restrictions...: uncheck "Invoke handler only if request is
+      mapped" (leave other settings at "All verbs" and "Script")
+
+Restart IIS when finished to apply the new configuration.
 
 
 Configuring Apache 2.2
@@ -99,7 +123,7 @@ Configuring Apache 2.2
    line: ``Include conf/mod_lasso9.conf``
 -  Restart Apache.
 -  In a browser, open :ref:`!http://localhost/lasso9/instancemanager` to load
-   the initialization form and complete your Lasso installation.
+   the initialization form and complete your Lasso Server installation.
 
 
 Configuring ImageMagick
