@@ -18,7 +18,6 @@ Lasso and Lasso Server |version|. The material in this guide will evolve and
 improve along with Lasso. The most up-to-date version of this documentation
 containing all improvements can be found at `<http://lassoguide.com/>`_.
 
-
 .. rubric:: Organization of This Guide
 
 This guide is divided up into eight parts covering all aspects of the Lasso
@@ -47,11 +46,9 @@ Explanations, method definitions, and code examples are arranged within the text
 to teach you the Lasso platform step-by-step. An index is also available to help
 find information about a particular language element.
 
-
 .. rubric:: Conventions Used in This Guide
 
 .. include:: /_includes/conventions.rst
-
 
 .. rubric:: Additional Resources
 

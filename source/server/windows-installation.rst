@@ -66,7 +66,7 @@ To add Lasso Connector for IIS to the list of allowed ISAPI extensions:
    -  Filter name: ``isapi_lasso9.dll``
    -  Executable: :file:`C:\\Windows\\System32\\isapi_lasso9.dll`
 
-To pass requests for ``*.lasso`` files to Lasso Server:
+To pass requests for "\*.lasso" files to Lasso Server:
 
 -  `Open IIS Manager`_ and select your computer name from the nodes on the left,
    or a site within it.
@@ -76,8 +76,9 @@ To pass requests for ``*.lasso`` files to Lasso Server:
    -  Request path: ``*.lasso``
    -  Executable: :file:`C:\\Windows\\System32\\isapi_lasso9.dll`
    -  Name: ``Lasso9Handler``
-   -  Request Restrictions...: uncheck "Invoke handler only if request is
-      mapped" (leave other settings at "All verbs" and "Script")
+   -  Request Restrictions...: under :guilabel:`Mapping`, uncheck "Invoke
+      handler only if request is mapped" (leave other settings at "All verbs"
+      and "Script")
 
 To configure access to Lasso Instance Manager and Lasso Server Admin:
 
@@ -98,8 +99,9 @@ To configure access to Lasso Instance Manager and Lasso Server Admin:
    -  Request path: ``*``
    -  Executable: :file:`C:\\Windows\\System32\\isapi_lasso9.dll`
    -  Name: ``LassoAdmin``
-   -  Request Restrictions...: uncheck "Invoke handler only if request is
-      mapped" (leave other settings at "All verbs" and "Script")
+   -  Request Restrictions...: under :guilabel:`Mapping`, uncheck "Invoke
+      handler only if request is mapped" (leave other settings at "All verbs"
+      and "Script")
 
 Restart IIS when finished to apply the new configuration.
 
@@ -147,79 +149,102 @@ Configuring ImageMagick
 Troubleshooting
 ===============
 
-Lasso Connector for IIS is not loading a page.
-   -  The Application Pool for the site may be set to run 32-bit applications.
-      To disable:
+.. rubric:: ISAPI and CGI Restrictions or ISAPI Filters options for IIS are
+   missing.
 
-      #. Select the site's "Application Pool"
-      #. Click :guilabel:`Advanced Settings`
-      #. Set "Enable 32-bit Applications" to "False"
+-  If you cannot find either ISAPI option, it is most likely not installed. To
+   install the ISAPI options on IIS 7 or 8:
 
-   -  IIS may be missing required features. To check:
+   :Windows Server:
+      #. Open :file:`Server Manager`
+      #. Navigate to the list of currently installed Web Server roles
+      #. Expand :menuselection:`Web Server --> Application Development`
+      #. Check "ISAPI Extensions" and "ISAPI Filters"
+      #. Continue through installation wizard
 
-      :Windows Server:
-         #. Open :file:`Server Manager`
-         #. Select "Roles" node
-         #. Scroll to "Web Server"
-         #. Click :guilabel:`Add Role Services`
-         #. Expand :menuselection:`Web Server --> Common HTTP Features`
-         #. Check "Default Document" and "Static Content"
-         #. Continue through installation wizard
+   :Windows 7 or 8:
+      #. Open "Control Panel"
+      #. Open :file:`Programs and Features`
+      #. Click :guilabel:`Turn Windows features on or off"`
+      #. Expand :menuselection:`Internet Information Services --> World Wide
+         Web Services --> Application Development Features`
+      #. Check "ISAPI Extensions" and "ISAPI Filters"
+      #. Click :guilabel:`OK`
+      #. Continue through installation wizard
 
-      :Windows 7 or 8:
-         #. Open "Control Panel"
-         #. Open :file:`Programs and Features`
-         #. Click :guilabel:`Turn Windows features on or off"`
-         #. Expand :menuselection:`Internet Information Services --> World Wide
-            Web Services --> Common HTTP Features`
-         #. Check "Default Document" and "Static Content"
-         #. Click :guilabel:`OK`
-         #. Continue through installation wizard
+.. rubric:: IIS gives the error ``Handler "Lasso9Handler" has a bad module
+   "IsapiModule" in its module list`` when loading "\*.lasso" files.
 
-ISAPI Filters option for IIS 7 is missing.
-   -  If you cannot find the ISAPI Filters option, it is most likely not
-      installed. To install ISAPI Filters on IIS 7 or 8:
+-  IIS's ISAPI options are not installed, or were installed after Lasso Server.
+   Follow the steps above to ensure ISAPI is installed and manually add Lasso
+   Connector for IIS to the list of allowed ISAPI extensions.
 
-      :Windows Server:
-         #. Open :file:`Server Manager`
-         #. Select "Roles" node
-         #. Scroll to "Web Server"
-         #. Click :guilabel:`Add Role Services`
-         #. Expand :menuselection:`Web Server --> Application Development`
-         #. Check "ISAPI Extensions" and "ISAPI Filters"
-         #. Continue through installation wizard
+.. rubric:: Lasso pages are not loading.
 
-      :Windows 7 or 8:
-         #. Open "Control Panel"
-         #. Open :file:`Programs and Features`
-         #. Click :guilabel:`Turn Windows features on or off"`
-         #. Expand :menuselection:`Internet Information Services --> World Wide
-            Web Services --> Application Development Features`
-         #. Check "ISAPI Extensions" and "ISAPI Filters"
-         #. Click :guilabel:`OK`
-         #. Continue through installation wizard
+-  The Application Pool for the site may be set to run 32-bit applications. To
+   disable:
 
-Standard 500 error page is returned instead of Lasso's default error page.
-   -  IIS's "HTTP Errors" feature may be enabled. To disable:
+   #. Open file:`IIS Manager`
+   #. Select the site's "Application Pool"
+   #. Click :guilabel:`Advanced Settings`
+   #. Set "Enable 32-bit Applications" to "False"
 
-      :Windows Server:
-         #. Open :file:`Server Manager`
-         #. Select "Roles" node
-         #. Scroll to "Web Server"
-         #. Click :guilabel:`Remove Role Services`
-         #. Expand :menuselection:`Web Server --> Common HTTP Features`
-         #. Uncheck "HTTP Errors"
-         #. Continue through installation wizard
+-  IIS may be missing required features. To check:
 
-      :Windows 7 or 8:
-         #. Open "Control Panel"
-         #. Open :file:`Programs and Features`
-         #. Click :guilabel:`Turn Windows features on or off"`
-         #. Expand :menuselection:`Internet Information Services --> World Wide
-            Web Services --> Common HTTP Features`
-         #. Uncheck "HTTP Errors"
-         #. Click :guilabel:`OK`
-         #. Continue through installation wizard
+   :Windows Server:
+      #. Open :file:`Server Manager`
+      #. Navigate to the list of currently installed Web Server roles
+      #. Expand :menuselection:`Web Server --> Common HTTP Features`
+      #. Check "Default Document" and "Static Content"
+      #. Continue through installation wizard
+
+   :Windows 7 or 8:
+      #. Open "Control Panel"
+      #. Open :file:`Programs and Features`
+      #. Click :guilabel:`Turn Windows features on or off"`
+      #. Expand :menuselection:`Internet Information Services --> World Wide
+         Web Services --> Common HTTP Features`
+      #. Check "Default Document" and "Static Content"
+      #. Click :guilabel:`OK`
+      #. Continue through installation wizard
+
+.. rubric:: Standard 404 error page is returned instead of Lasso's default not
+   found page.
+
+-  IIS's handler for "\*.lasso" files may have a request restriction set. To
+   disable:
+
+   #. Open :file:`IIS Manager`
+   #. Select your computer name from the nodes on the left or a site within
+      it, depending where the handler was first defined
+   #. In the main panel, double-click on :guilabel:`Handler Mappings`
+   #. Edit the script map for "\*.lasso" files
+   #. Click :guilabel:`Request Restrictions...`
+   #. Under :guilabel:`Mapping`, uncheck "Invoke handler only if request is
+      mapped"
+   #. Click :guilabel:`OK` twice, then :guilabel:`Yes` to apply the change
+
+.. rubric:: Standard 500 error page is returned instead of Lasso's default error
+   page.
+
+-  IIS's "HTTP Errors" feature may be enabled. To disable:
+
+   :Windows Server:
+      #. Open :file:`Server Manager`
+      #. Navigate to the list of currently installed Web Server roles
+      #. Expand :menuselection:`Web Server --> Common HTTP Features`
+      #. Uncheck "HTTP Errors"
+      #. Continue through installation wizard
+
+   :Windows 7 or 8:
+      #. Open "Control Panel"
+      #. Open :file:`Programs and Features`
+      #. Click :guilabel:`Turn Windows features on or off"`
+      #. Expand :menuselection:`Internet Information Services --> World Wide
+         Web Services --> Common HTTP Features`
+      #. Uncheck "HTTP Errors"
+      #. Click :guilabel:`OK`
+      #. Continue through installation wizard
 
 .. only:: html
 
