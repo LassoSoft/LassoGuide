@@ -18,9 +18,6 @@ Before Installing
 
 Lasso Server requires the following Microsoft updates:
 
--  `Microsoft .NET Framework 3.5`_ (for servers running Windows Server, use
-   Server Manager to add the Application Server role, which includes .NET
-   Framework 3.5.1)
 -  `Microsoft .NET Framework 4`_
 -  `Microsoft Visual C++ 2012 Redistributable`_ (auto-installed if required)
 -  Servers running IIS 7 or 8 need ISAPI enabled:
@@ -256,7 +253,6 @@ Troubleshooting
    -  `Configure IIS 7 for Lasso
       <http://www.youtube.com/watch?v=oQ-6K3EHY3M&feature=relmfu>`_
 
-.. _Microsoft .NET Framework 3.5: http://www.microsoft.com/en-us/download/details.aspx?id=22
 .. _Microsoft .NET Framework 4: http://www.microsoft.com/en-us/download/details.aspx?id=17718
 .. _Microsoft Visual C++ 2012 Redistributable: http://www.microsoft.com/en-us/download/details.aspx?id=30679
 .. _Lasso Server for Windows: http://www.lassosoft.com/Lasso-9-Server-Download#Win
