@@ -139,7 +139,7 @@ Echo
 This example uses the :command:`/bin/echo` command to simply echo the input back
 to STDOUT, which is then read by Lasso::
 
-   local(os) = os_process('/bin/echo', array( 'Hello World!'))
+   local(os) = os_process('/bin/echo', (: 'Hello World!'))
    #os->read->encodeHtml
    #os->close
 
@@ -250,7 +250,7 @@ Echo
 This example uses the :program:`CMD` processor with an :command:`ECHO` command
 to simply echo the input back to Lasso::
 
-   local(os) = os_process('cmd', array('/C ECHO Hello World!'))
+   local(os) = os_process('cmd', (: '/C ECHO Hello World!'))
    #os->readString->encodeHtml
    #os->close
 
@@ -314,7 +314,7 @@ would be provided if these commands were entered directly into the command line
 shell. In order to process the results, it would be necessary to strip off the
 header and the directory prefix from each line. ::
 
-   local(os) = os_process('cmd', (: '/Q')
+   local(os) = os_process('cmd', (: '/Q'))
    #os->write('ECHO Line One\r\n')
    #os->write('ECHO Line Two\r\n')
    #os->read->encodeHtml

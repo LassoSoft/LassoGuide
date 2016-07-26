@@ -530,7 +530,7 @@ type creator when the author has included their own. Also note that if a type
 overrides its parent's creator, it needs to include a call to the parent's
 creator method, passing on any arguments as required. ::
 
-   public onCreate(...) => ..onCreate(:#rest)
+   public onCreate(...) => ..onCreate(: #rest)
 
 Many type creators can be defined by specifying multiple ``onCreate`` methods.
 The following type defines three type creators. The first permits ``person``

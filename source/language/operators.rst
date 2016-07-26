@@ -105,7 +105,7 @@ use of each operator::
    op1 % op2
    // => // Returns the remainder of dividing op1 by op2 (modulo operation)
 
-   (: 10 + 3, 10 - 3, 10 * 3, 10 / 3, 10 % 3 )
+   (: 10 + 3, 10 - 3, 10 * 3, 10 / 3, 10 % 3)
    // => staticarray(13, 7, 30, 3, 1)
 
 
@@ -288,7 +288,7 @@ value. ::
    op1 !== op2
    // => // Produces "true" if op1 is not equal to or not the same type as op2 else false
 
-   (: 3 == 3.0, 3 != 3.0, 3 === 3.0, 3 !== 3.0 )
+   (: 3 == 3.0, 3 != 3.0, 3 === 3.0, 3 !== 3.0)
    // => staticarray(true, false, false, true)
 
 If an object is to be tested for equality against another, its type must
@@ -441,14 +441,14 @@ invocation statement, the following example results in an equivalent invocation
 as the previous. ::
 
    local(my_params) = array(1, 'two', 3)
-   #lv(: #my_params )
+   #lv(: #my_params)
    // => // Produces the value of invoking the object stored in the local "lv" with those parameters
 
 This form is useful for passing a set of values from an object of any type
 supporting :trait:`trait_forEach` to a method that accepts a rest parameter. ::
 
    define printArgs(...) => with i in #rest do stdoutnl(#i)
-   printArgs(: #my_params )
+   printArgs(: #my_params)
 
    // =>
    // 1

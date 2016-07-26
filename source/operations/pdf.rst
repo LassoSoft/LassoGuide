@@ -855,7 +855,7 @@ constructor method and parameters are described below.
       string (e.g. :ref:`!http://www.example.com`). Optional.
    :param -name:
       Sets the name of an anchor destination within a page. The value of the
-      parameter is the anchor name (e.g. "Name" ). Optional.
+      parameter is the anchor name (e.g. "Name"). Optional.
    :param -goTo:
       Links the specified text to a local anchor destination to go to. The value
       of the parameter is the local anchor name (e.g. "Name"). Optional.
