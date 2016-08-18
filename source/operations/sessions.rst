@@ -140,7 +140,7 @@ Below is a description of each of the session methods:
       ``-httponly`` if this option is desired.
    :param boolean=false -rotate:
       If "true", the session will have a new ID generated for it on each
-      request.
+      request. This is ignored if ``-id`` is specified.
 
    .. versionchanged:: 9.3.1
       Added ``-httponly`` flag.
