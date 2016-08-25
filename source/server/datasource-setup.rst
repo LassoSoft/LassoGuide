@@ -693,23 +693,23 @@ Requirements
    panel.
 
    :OS X:
-      ODBC data sources are configured using "ODBC Administrator" which can be
-      found in the :file:`/Applications/Utilities` folder (OS X 10.5) or
-      downloaded from `<http://support.apple.com/kb/DL895>`_. Lasso can access
-      data sources configured as System DSNs.
+      ODBC data sources are configured using "ODBC Manager" which can be
+      downloaded from `<http://www.odbcmanager.net/>`_ and installed in the
+      :file:`/Applications/Utilities` folder. (Note that the folder
+      :file:`/Library/ODBC` must be created first.)
 
    :Linux:
       Consult the documentation of the ODBC drivers for information about how to
       set up data sources on Linux. Many ODBC drivers ship with a control panel
-      that allows configuration of those drivers. Lasso can access data sources
-      configured as System DSNs.
+      that allows configuration of those drivers.
 
    :Windows:
       ODBC data sources are configured using "ODBC Data Source Administrator"
       which is normally accessed through the Windows Control Panel under
-      :file:`Administrative Tools`. Lasso can access data sources configured as
-      System DSNs.
+      :file:`Administrative Tools`.
 
+
+.. _datasource-setup-odbc-configuring:
 
 Configuring ODBC Hosts
 ----------------------
@@ -718,15 +718,73 @@ Consult the documentation for your data sources and ODBC drivers for details
 about how to secure access to the data made available through the driver. Most
 data sources will require the following steps:
 
-#. Install your ODBC driver using the provided installer or instructions.
-#. Create a System DSN in the ODBC administration application. Note that the
-   System DSN name, username, and password configured here will need to be
-   entered in Lasso.
-#. Locate and configure the :file:`SQL.ini` file for your driver. This file sets
-   the options for your ODBC driver including the location of your data source.
-   Consult your driver's documentation for details about where to find this file
-   and what options can be configured.
+#. Install your ODBC driver using the provided installer or instructions. This
+   may involve creating an :file:`odbcinst.ini` file.
+#. Create a System DSN in the ODBC administration application, or edit the
+   :file:`odbc.ini` file. Note that the System DSN name, username, and password
+   configured here will need to be entered in Lasso.
+#. Locate and configure the :file:`SQL.ini` file for your driver, if applicable.
+   This file sets the options for your ODBC driver including the location of
+   your data source. Consult your driver's documentation for details about where
+   to find this file and what options can be configured.
 #. Follow the steps below to add the data source to Lasso.
+
+As an example, here's how to configure FreeTDS on OS X to allow Lasso to access
+an SQL Server data source via ODBC:
+
+#. Install the Homebrew package manager using the instructions at
+   `<http://brew.sh/>`_.
+#. Use Homebrew to first install a newer version of the iODBC libraries than
+   what OS X ships with, and then the FreeTDS drivers with Unicode support.
+
+   .. code-block:: none
+
+      $> brew install libiodbc
+      $> brew install freetds --with-odbc-wide
+
+#. Use :command:`tsql` and :command:`iodbctestw` to verify that FreeTDS and
+   iODBC are working.
+
+   .. code-block:: none
+
+      $> tsql -H hostname -p 1433 -U username -P password
+      locale is "en_CA.UTF-8"
+      locale charset is "UTF-8"
+      using default charset "UTF-8"
+      1> quit
+      $> iodbctestw "DRIVER=/usr/local/lib/libtdsodbc.so;UID=username;PWD=password;SERVER=hostname;DATABASE=databasename;PORT=1433"
+      iODBC Unicode Demonstration program
+      This program shows an interactive SQL processor
+      Driver Manager: 03.52.1216.0712
+      Driver: 01.00.0009 (libtdsodbc.so)
+      SQL> quit
+
+#. Create a folder for system-level ODBC configuration files.
+
+   .. code-block:: none
+
+      $> sudo mkdir -p /Library/ODBC
+
+#. Use "ODBC Manager" from `<http://www.odbcmanager.net/>`_ to add a new driver:
+
+   :Driver Name: FreeTDS
+   :Driver File: /usr/local/lib/libtdsodbc.so
+   :Setup File: /usr/local/lib/libtdsodbc.so
+   :Define As: System
+
+   Then add a new System DSN:
+
+   :Driver: FreeTDS
+   :DSN: datasourcename
+   :Server: hostname
+   :Database: databasename
+   :Port: 1433
+
+#. Use :command:`iodbctestw` to verify that the DSN is working.
+
+   .. code-block:: none
+
+      $> iodbctestw "DSN=datasourcename;UID=username;PWD=password"
 
 
 Adding an ODBC Data Source Host
@@ -744,10 +802,9 @@ To add a new ODBC host:
 #. Enter the System DSN name of the ODBC connection in the "Host" field.
 #. Enter the TCP port of the ODBC connection in the "Port" field.
 #. Select "Yes" from the :guilabel:`Enabled` drop-down to enable the host.
-#. Enter a username for the host in the "Username" field. Lasso will connect to
-   the data source and all databases therein using this username by default.
-#. Enter a password for the host in the "Password" field. Lasso will connect to
-   the data source and all databases therein using this password by default.
+#. Enter a username for the host in the "Username" field and a password for the
+   host in the "Password" field. Lasso will connect to the data source and all
+   databases therein using this username and password by default.
 #. Click the :guilabel:`Add host` button.
 #. Once the host is added, the new host appears in the "Hosts" listing below.
 
@@ -816,7 +873,9 @@ Requirements
       The FreeTDS libraries need to be compiled and installed, for which the
       source can be found at `<http://www.freetds.org/>`_. (Instead of compiling
       from source, you may first want to look into installing via a package
-      manager such as :program:`apt`, :program:`yum`, :program:`macports`, or :program:`homebrew`.)
+      manager such as :program:`apt`, :program:`yum`, :program:`macports`, or
+      :program:`homebrew`. See :ref:`datasource-setup-odbc-configuring` for an
+      example configuration.)
 
    :Windows:
       The necessary client libraries should already be installed.

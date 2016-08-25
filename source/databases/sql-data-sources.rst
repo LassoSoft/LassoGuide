@@ -157,7 +157,7 @@ SQLite Data Source
 :Internal Name:
    sqliteconnector
 :Module Name:
-   SQLiteConnector.dylib, SQLiteConnector.dll, or SQLiteConnector.so
+   SQLiteConnector.dll, SQLiteConnector.dylib, or SQLiteConnector.so
 :Actions:
    ``-add``, ``-delete``, ``-findAll``, ``-search``, ``-show``, ``-sql``,
    ``-update``

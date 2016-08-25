@@ -12,7 +12,7 @@ For more information on ODBC connectivity and availability for a particular data
 source, see the documentation for the data source or contact the data source
 provider.
 
-Lasso accesses ODBC drivers that are set up as System DSNs. The ODBC Data Source
+Lasso accesses ODBC drivers that are set up as System DSNs. An ODBC Data Source
 Administrator utility or control panel should be used to configure the driver as
 a System DSN, after which the data source name can be entered into Lasso. See
 the :ref:`datasource-setup` chapter for additional details.
