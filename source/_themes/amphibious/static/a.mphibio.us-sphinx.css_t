@@ -318,6 +318,8 @@ a.site:before {background-position:-75px 0;}
 a.page:before {background-position:-135px 0;}
 a.headerlink {padding: 0 5px;}
 
+pre {font-size:13.025px;}
+
 .to_top{display:block;height:33px;background-position:-455px 0; -webkit-transform: translate3d(0,0,0);}
 
 /* Multicolumns - hide from small browsers
@@ -392,10 +394,7 @@ a.headerlink {padding: 0 5px;}
 }
 
 @media
-only screen and (max-width: 767px),
-only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (-o-min-device-pixel-ratio: 3/2),
-only screen and (min-device-pixel-ratio: 1.5)
+only screen and (max-width: 767px)
 {
 	
 	.container
@@ -439,6 +438,8 @@ only screen and (min-device-pixel-ratio: 1.5)
 		margin-left: 0;
 	}
 	
+	#welcome-to-lassoguide {padding-left: 20px !important;}
+	#appendices ul.simple {width: 220px;}
 }
 	
 
