@@ -293,7 +293,8 @@ Requirements
    with no conflicts. This is port 3306 by default.
 -  MySQL access privileges must be properly assigned for the machine running
    Lasso Server to be allowed to authenticate.
--  The Lasso Server machine must have the MySQL client libraries installed.
+-  The MySQL client libraries are included with the connector, or automatically
+   installed by the package manager.
 
 
 Configuring MySQL Server
@@ -445,12 +446,16 @@ Requirements
 
 
 Installing Oracle Instant Client
---------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Lasso must be restarted after installing the Instant Client. You can use the
+command line to verify that Lasso is loading the libraries correctly by checking
+the output of :command:`lasso9 -s "database_initialize"`.
 
 :OS X:
    #. Ensure that the paths :file:`/usr/local/oracle/` and
       :file:`/usr/local/lib/` exist and are writable by the current user.
-   #. Download version 12.1.0.2 of the Instant Client for OS X.
+   #. Download version 12.1.0.2 of the Instant Client Package - Basic for OS X.
    #. Decompress the archive, which will create a folder named
       "instantclient_12_1".
    #. Copy the entire folder into :file:`/usr/local/oracle/`.
@@ -464,23 +469,37 @@ Installing Oracle Instant Client
          $> ln -sf /usr/local/oracle/instantclient_12_1/libocci.dylib.12.1 libocci.dylib
 
 :Linux:
-   #. Download version 11.2.0.2.0 of the Instant Client for Linux.
-   #. Decompress the archive, which will create a folder "instantclient_11_2".
-   #. Copy the contents of the folder into :file:`/usr/local/oracle/lib/`.
-   #. Execute the following command to create symbolic links so that Lasso can
-      find the Oracle libraries. (Using :command:`sudo` will require that you
-      enter your password in order to continue.)
+   #. Ensure that the path :file:`/usr/local/oracle/` exists and is writable by
+      the current user.
+   #. Download the zipfile package of version 12.1.0.2 of the Instant Client
+      Package - Basic for Linux.
+   #. Decompress the archive, which will create a folder named
+      "instantclient_12_1".
+   #. Copy the entire folder into :file:`/usr/local/oracle/`.
+   #. Execute the following commands to create symbolic links and update
+      ldconfig so that Lasso can find the Oracle libraries.
 
       .. code-block:: none
 
-         $> sudo ln -sf /usr/local/oracle/lib/* /usr/local/lib/
+         $> cd /usr/local/oracle/instantclient_12_1/
+         $> ln -sf libclntsh.so.12.1 libclntsh.so
+         $> ln -sf libocci.so.12.1 libocci.so
+         $> cd ..
+         $> ln -sf instantclient_12_1 lib
+         $> echo "/usr/local/oracle/lib" > /etc/ld.so.conf.d/oracle.conf
+         $> ldconfig
 
-   #. Execute the following command to create a symbolic link to the library
-      "libclntsh.so.11.1" so that Lasso can load the library:
-
-      .. code-block:: none
-
-         $> sudo ln -s /usr/local/lib/libclntsh.so.11.1 /usr/local/lib/libclntsh.so
+:Windows:
+   #. Download and install the `Visual C++ 2010 x64 Redistributable`_ package
+      from Microsoft.
+   #. Download version 12.1.0.2 of the Instant Client Package - Basic for
+      Windows.
+   #. Extract the archive contents to an accessible location, such as
+      :file:`C:\\instantclient_12_1`.
+   #. In :menuselection:`Control Panel --> System --> Advanced System Settings
+      --> Advanced --> Environment Variables... --> System Variables`, append
+      the string ``;C:\instantclient_12_1\`` to the :envvar:`Path` environment
+      variable.
 
 
 Configuring Oracle
@@ -969,6 +988,7 @@ folder and Lasso `inline` methods will automatically have access to them using
 the ``-database`` parameter.
 
 .. _Instant Client download: http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html
+.. _Visual C++ 2010 x64 Redistributable: https://www.microsoft.com/en-us/download/details.aspx?id=26999
 .. _basic configuration of an Oracle database server: http://www.oracle.com/pls/db111/portal.portal_db
 .. _PostgreSQL documentation: http://www.postgresql.org/docs/manuals/
 .. _SQL Server documentation: http://www.microsoft.com/en-us/sqlserver/learning-center/resources.aspx
