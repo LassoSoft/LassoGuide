@@ -208,14 +208,10 @@ To add a new FileMaker Server host:
    set this. It is commonly "80" for FileMaker Server, or "443" to connect over
    https.
 #. Select "Yes" from the :guilabel:`Enabled` drop-down to enable the host.
-#. Enter a username for the host in the "Username" field. Lasso will connect to
-   the data source host and all databases therein using this username by
-   default. If the host does not require a username, then leave this field
-   blank.
-#. Enter a password for the host in the "Password" field. Lasso will connect to
-   the data source host and all databases therein using this password by
-   default. If the host does not require a password, then leave this field
-   blank.
+#. Enter a username for the host in the "Username" field and a password for the
+   host in the "Password" field. Lasso will connect to the data source and all
+   databases therein using this username and password by default. If the host
+   does not require a username or password, then leave either field blank.
 #. Click the :guilabel:`Add host` button.
 #. Once the host is added, the new host appears in the "Hosts" listing below.
 
@@ -373,10 +369,9 @@ To add a new MySQL host:
 #. Enter the TCP port the MySQL service communicates on in the "Port" field.
    This is commonly "3306" for MySQL.
 #. Select "Yes" from the :guilabel:`Enabled` drop-down to enable the host.
-#. Enter a username for the host in the "Username" field. Lasso will connect to
-   the data source and all databases therein using this username by default.
-#. Enter a password for the host in the "Password" field. Lasso will connect to
-   the data source and all databases therein using this password by default.
+#. Enter a username for the host in the "Username" field and a password for the
+   host in the "Password" field. Lasso will connect to the data source and all
+   databases therein using this username and password by default.
 #. Click the :guilabel:`Add host` button.
 #. Once the host is added, the new host appears in the "Hosts" listing below.
 
@@ -441,7 +436,7 @@ via a TCP/IP connection. For more information on Oracle, visit
 Requirements
 ------------
 
--  Oracle Database 10g
+-  Oracle Database 10g or later
 -  The Lasso Server machine must have the Oracle "Instant Client" installed if
    Lasso Server and Oracle are running on separate machines. The `Instant Client
    download`_ can be found on the Oracle website. (Make sure to download just
@@ -453,23 +448,20 @@ Installing Oracle Instant Client
 --------------------------------
 
 :OS X:
-   #. Download version 10.0.2.4 of the Instant Client for OS X.
-   #. Decompress the archive, which will create a folder "instantclient_10_2".
-   #. Copy the contents of folder into :file:`/usr/local/oracle/lib/`.
-   #. Execute the following command to create symbolic links so that Lasso can
-      find the Oracle libraries. (Using :command:`sudo` will require that you
-      enter your password in order to continue.)
+   #. Ensure that the paths :file:`/usr/local/oracle/` and
+      :file:`/usr/local/lib/` exist and are writable by the current user.
+   #. Download version 12.1.0.2 of the Instant Client for OS X.
+   #. Decompress the archive, which will create a folder named
+      "instantclient_12_1".
+   #. Copy the entire folder into :file:`/usr/local/oracle/`.
+   #. Execute the following commands to create symbolic links so that Lasso can
+      find the Oracle libraries.
 
       .. code-block:: none
 
-         $> sudo ln -sf /usr/local/oracle/lib/* /usr/local/lib/
-
-   #. Execute the following command to create a symbolic link to the library
-      "libclntsh.dylib.10.1" so that Lasso can load the library:
-
-      .. code-block:: none
-
-         $> sudo ln -s /usr/local/lib/libclntsh.dylib.10.1 /usr/local/lib/libclntsh.dylib
+         $> cd /usr/local/lib
+         $> ln -sf /usr/local/oracle/instantclient_12_1/libclntsh.dylib.12.1 libclntsh.dylib
+         $> ln -sf /usr/local/oracle/instantclient_12_1/libocci.dylib.12.1 libocci.dylib
 
 :Linux:
    #. Download version 11.2.0.2.0 of the Instant Client for Linux.
@@ -511,7 +503,7 @@ the :ref:`instance-administration` chapter.
 To add a new Oracle host:
 
 #. In the "Datasources" section of Lasso Server Admin, click the
-   :guilabel:`Oracle` item.
+   :guilabel:`Oracle` item. (Restart Lasso if necessary to make it appear.)
 #. Click the :guilabel:`Add host` item to reveal the host connection form.
 #. Enter the IP address or domain name where the Oracle data sources are being
    hosted, the port, and the database name using the "host:port/database" format
@@ -519,10 +511,9 @@ To add a new Oracle host:
 #. Enter the TCP port of the Oracle service in the "Port" field. This is
    commonly "1521" for Oracle.
 #. Select "Yes" from the :guilabel:`Enabled` drop-down to enable the host.
-#. Enter a username for the host in the "Username" field. Lasso will connect to
-   the data source and all databases therein using this username by default.
-#. Enter a password for the host in the "Password" field. Lasso will connect to
-   the data source and all databases therein using this password by default.
+#. Enter a username for the host in the "Username" field and a password for the
+   host in the "Password" field. Lasso will connect to the data source and all
+   databases therein using this username and password by default.
 #. Click the :guilabel:`Add host` button.
 #. Once the host is added, the new host appears in the "Hosts" listing below.
 
@@ -618,10 +609,9 @@ To add a new PostgreSQL server host:
 #. Enter the TCP port the PostgreSQL service is listening on in the "Port"
    field. This is commonly "5432" for PostgreSQL.
 #. Select "Yes" from the :guilabel:`Enabled` drop-down to enable the host.
-#. Enter a username for the host in the "Username" field. Lasso will connect to
-   the data source and all databases therein using this username by default.
-#. Enter a password for the host in the "Password" field. Lasso will connect to
-   the data source and all databases therein using this password by default.
+#. Enter a username for the host in the "Username" field and a password for the
+   host in the "Password" field. Lasso will connect to the data source and all
+   databases therein using this username and password by default.
 #. Click the :guilabel:`Add host` button.
 #. Once the host is added, the new host appears in the "Hosts" listing below.
 
@@ -908,10 +898,9 @@ To add a new SQL Server database host:
 #. Enter the TCP port the SQL Server service is listening on in the "Port"
    field. This is commonly "1433" for SQL Server.
 #. Select "Yes" from the :guilabel:`Enabled` drop-down to enable the host.
-#. Enter a username for the host in the "Username" field. Lasso will connect to
-   the data source and all databases therein using this username by default.
-#. Enter a password for the host in the "Password" field. Lasso will connect to
-   the data source and all databases therein using this password by default.
+#. Enter a username for the host in the "Username" field and a password for the
+   host in the "Password" field. Lasso will connect to the data source and all
+   databases therein using this username and password by default.
 #. Click the :guilabel:`Add host` button.
 #. Once the host is added, the new host appears in the "Hosts" listing below.
 
