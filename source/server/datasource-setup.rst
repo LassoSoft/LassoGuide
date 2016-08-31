@@ -26,7 +26,7 @@ third-party data source connectors can be found in the :ref:`lcapi-sources`
 chapter of the LCAPI documentation.)
 
 :ref:`datasource-setup-filemaker`
-   Supports FileMaker Server 7--12 Advanced and FileMaker Server 9--12.
+   Supports FileMaker Server 9--15 and FileMaker Server 7--12 Advanced.
 
 :ref:`datasource-setup-mysql`
    Supports MySQL Server 3.x, 4.x, or 5.x data sources. The MySQL client
@@ -103,10 +103,9 @@ steps need to be taken:
 FileMaker Server Data Sources
 =============================
 
-Lasso Server communicates with FileMaker Server 7--12 Advanced and FileMaker
-Server 9--12 through their built-in XML interface. Lasso cannot communicate with
-any other products in the FileMaker 7, 8, or 9 product line such as FileMaker
-Pro.
+Lasso Server communicates with FileMaker Server 9--15 and FileMaker Server 7--12
+Advanced through their built-in XML interface. Lasso cannot communicate with any
+other products in the FileMaker 7, 8, or 9 product line such as FileMaker Pro.
 
 
 Requirements
@@ -114,7 +113,7 @@ Requirements
 
 One of the following:
 
--  FileMaker Server 9--12 for Windows or OS X
+-  FileMaker Server 9--15 for Windows or OS X
 -  FileMaker Server 9--12 Advanced for Windows or OS X
 -  FileMaker Server Advanced 7 or 8 for Windows or OS X
 
@@ -125,7 +124,7 @@ be configured according to the instructions in the following section.
 Configuring FileMaker Server 9 or Higher
 ----------------------------------------
 
-This section describes setting up FileMaker Server 9--12 or FileMaker Server
+This section describes setting up FileMaker Server 9--15 or FileMaker Server
 9--12 Advanced for use with Lasso. These versions will be referred to
 collectively as FileMaker Server.
 
@@ -171,8 +170,8 @@ below.
    Console.
 -  Verify XML Publishing is turned on in the Web Publishing Administration
    Console.
--  The databases to be accessed by Lasso must be in the FileMaker Server
-   Data/Databases folder and must be "Open" within FileMaker Server.
+-  The databases that are to be accessed by Lasso must be in the FileMaker
+   Server Data/Databases folder and must be "Open" within FileMaker Server.
 -  Each database to be accessed by Lasso must have the "fmxml" keyword added to
    the "Extended Privileges" section of the "Accounts & Privileges" dialog box.
    The username and password entered into Lasso Server Admin must use a
@@ -600,6 +599,11 @@ Requirements
 
 -  PostgreSQL 8.x
 -  The Lasso Server machine must have the PostgreSQL "libpq" library installed.
+   This comes packaged with OS X and is installed automatically with Lasso on
+   Linux. Windows users can find :file:`libpq.dll` included with the
+   `PostgreSQL ODBC driver`_ package; once installed, adding the containing
+   directory to the :envvar:`Path` environment variable will allow Lasso to load
+   the native driver.
 
 
 Configuring PostgreSQL
@@ -1066,5 +1070,6 @@ the ``-database`` parameter.
 .. _Instant Client download: http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html
 .. _Visual C++ 2010 x64 Redistributable: https://www.microsoft.com/en-us/download/details.aspx?id=26999
 .. _basic configuration of an Oracle database server: http://www.oracle.com/pls/db111/portal.portal_db
+.. _PostgreSQL ODBC driver: https://www.postgresql.org/ftp/odbc/versions/
 .. _PostgreSQL documentation: http://www.postgresql.org/docs/manuals/
 .. _SQL Server documentation: http://www.microsoft.com/en-us/sqlserver/learning-center/resources.aspx
