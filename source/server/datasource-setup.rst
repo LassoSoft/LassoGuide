@@ -720,8 +720,8 @@ Requirements
 
 .. _datasource-setup-odbc-configuring:
 
-Configuring ODBC Hosts
-----------------------
+Configuring ODBC Connections
+----------------------------
 
 Consult the documentation for your data sources and ODBC drivers for details
 about how to secure access to the data made available through the driver. Most
@@ -738,8 +738,12 @@ data sources will require the following steps:
    to find this file and what options can be configured.
 #. Follow the steps below to add the data source to Lasso.
 
-As an example, here's how to configure FreeTDS on OS X to allow Lasso to access
-an SQL Server data source via ODBC:
+
+FreeTDS for SQL Server via ODBC Examples
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Here's how to configure FreeTDS on OS X to allow Lasso to access an SQL Server
+data source via ODBC:
 
 #. Install the Homebrew package manager using the instructions at
    `<http://brew.sh/>`_.
@@ -794,6 +798,78 @@ an SQL Server data source via ODBC:
    .. code-block:: none
 
       $> iodbctestw "DSN=datasourcename;UID=username;PWD=password"
+
+These are the configuration steps for CentOS or Ubuntu Linux:
+
+#. Install FreeTDS, which on CentOS requires the EPEL repository. The unixODBC
+   package should have already been installed by the package manager.
+
+   :CentOS:
+
+      .. code-block:: none
+
+         $> yum install epel-release
+         $> yum install freetds unixODBC
+
+   :Ubuntu:
+
+      .. code-block:: none
+
+         $> sudo apt-get install tdsodbc freetds-bin unixodbc
+
+#. Use :command:`tsql` to verify that FreeTDS is working.
+
+   .. code-block:: none
+
+      $> tsql -H hostname -p 1433 -U username -P password
+      locale is "en_CA.UTF-8"
+      locale charset is "UTF-8"
+      using default charset "UTF-8"
+      1> quit
+
+#. Add the FreeTDS driver to :file:`/etc/odbcinst.ini`, adjusting paths if
+   necessary:
+
+   :CentOS:
+
+      .. code-block:: none
+
+         [FreeTDS]
+         Driver      = /usr/lib64/libtdsodbc.so.0
+         Setup       = /usr/lib64/libtdsS.so.2
+
+   :Ubuntu:
+
+      .. code-block:: none
+
+         [FreeTDS]
+         Driver      = /usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so
+         Setup       = /usr/lib/x86_64-linux-gnu/odbc/libtdsS.so
+
+#. Add the DSN to :file:`/etc/odbc.ini`:
+
+   .. code-block:: none
+
+      [datasourcename]
+      Driver      = FreeTDS
+      Server      = hostname
+      Database    = databasename
+      Port        = 1433
+
+#. Use :command:`isql` to verify that the DSN is working.
+
+   .. code-block:: none
+
+      $> isql datasourcename username password
+      +---------------------------------------+
+      | Connected!                            |
+      |                                       |
+      | sql-statement                         |
+      | help [tablename]                      |
+      | quit                                  |
+      |                                       |
+      +---------------------------------------+
+      SQL> quit
 
 
 Adding an ODBC Data Source Host
@@ -883,8 +959,8 @@ Requirements
       source can be found at `<http://www.freetds.org/>`_. (Instead of compiling
       from source, you may first want to look into installing via a package
       manager such as :program:`apt`, :program:`yum`, :program:`macports`, or
-      :program:`homebrew`. See :ref:`datasource-setup-odbc-configuring` for an
-      example configuration.)
+      :program:`homebrew`.) See :ref:`datasource-setup-odbc-configuring` for an
+      example configuration.
 
    :Windows:
       The necessary client libraries should already be installed.
