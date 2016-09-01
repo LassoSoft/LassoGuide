@@ -5,6 +5,80 @@
 * Sphinx stylesheet -- A.mphibio.us LassoSoft theme.
 */
 
+h1{color: #959595;}
+h1 strong {font-weight: bold;color: #1b378c;}
+h1#index {margin-bottom: 20px;}	
+h2 {margin-bottom: 5px;}
+
+code,pre,tt { font-family: Menlo, Consolas, Monaco, "Courier New", Courier, monospace;}
+code,pre,tt.literal{padding:0 3px 2px;font-size:12px;color:#333;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
+code{padding:2px 4px;color:#d14;background-color:#f7f7f9;border:1px solid #e1e1e8}
+
+pre{display:block;padding:1px 8px;margin:0 0 9px;font-size:12.025px;line-height:1.6;word-break:break-all;word-wrap:break-word;white-space:pre;white-space:pre-wrap;background:#f4fbfd url(highlight_bg.png) left top repeat; ;border:1px solid #e6f6fb;border:1px solid rgba(0,204,255,0.625);}
+.pre {white-space: nowrap;}
+
+pre.prettyprint{margin-bottom:18px}
+pre code{padding:0;color:inherit;background-color:transparent;border:0}
+.pre-scrollable{max-height:340px;overflow-y:scroll}
+
+div.genindex-jumpbox {display: block;height: 26px;
+	border-top: 1px solid #ededed;
+	border-right: 1px solid #ededed;
+	border-bottom: 1px solid #ededed;
+	border-left: 1px solid #aaa;
+	-o-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	background-color: #fefefe;
+	padding: 20px 0 0.4em;
+	margin-top: -20px;}
+.genindex-jumpbox a {
+	font-weight: bold;
+	font-size: 0.92em;
+	background-color: #fdfdfd;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#cfcfcf));
+	background-image: -webkit-linear-gradient(top, #fdfdfd, #cfcfcf);
+	background-image:    -moz-linear-gradient(top, #fdfdfd, #cfcfcf);
+	background-image:      -o-linear-gradient(top, #fdfdfd, #cfcfcf);
+	background-image:         linear-gradient(to bottom, #fdfdfd, #cfcfcf);
+	border: 1px solid #aaa;
+	border-top: 1px solid #ededed;
+	border-left: 1px solid #ededed;
+	padding: 8px 8px 3px 8px;
+	-o-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	margin-top: 10px;
+	margin-left: 6px;
+}
+table.genindextable {margin-bottom: 1em;}
+.genindextable dt {padding: .325em 0;border-bottom: 1px solid #cfcfcf;display: block;width: 90%;}
+
+dl dt {
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1.2;
+}
+tt.descname~em { white-space: nowrap; }
+dl dd {
+	margin: 0 0 10px 1em;
+	font-size: 14px;
+	line-height: 1.4;
+	color: #666;
+}	
+
+code.literal .pre { white-space: nowrap }
+
+footer p.small.r .to_top {position: fixed;bottom: 10px;right: 20px;}
+
+/* Fix for conflict with the container:: directive */
+.container {font-size: 1.1em; -webkit-backface-visibility: hidden;}
+.container .container {font-size: 1.0em;-webkit-transform-style: preserve-3d;}
+
 /*	#c-c-reference-for-lcapi fixes  */
 #c-c-reference-for-lcapi blockquote, #c-c-reference-for-lcapi blockquote p {font-size: 1em; font-style: normal;}
 #c-c-reference-for-lcapi blockquote {padding: 0 0 0 0; margin: 0 0 10px 14px;}
