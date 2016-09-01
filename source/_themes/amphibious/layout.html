@@ -19,6 +19,10 @@
               {% include "relations.html" %}
             {% endblock %}
             <li class="divider-vertical"></li>
+            {%- if parents %}
+            <li><a class="tooltip" href="{{ parents[-1].link|e }}"
+              title="{{ parents[-1].title|striptags|e }}">Up</a></li>
+            {%- endif %}
           </ul>
 
           {% block sidebarsourcelink %}
