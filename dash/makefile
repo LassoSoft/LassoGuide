@@ -4,7 +4,9 @@ SITE := lassoguide.com
 FEED := LassoGuide
 
 all: $(FEED).tgz
-	$(info Upload $(FEED).* to $(SITE), access with dash-feed://http%3A%2F%2F$(SITE)%2F$(FEED).xml)
+	@mv -f $(FEED).* ../build/html/
+	$(info Moved $(FEED).* to ../build/html/ for upload, access with dash-feed://http%3A%2F%2F$(SITE)%2F$(FEED).xml)
+	
 
 $(FEED).tgz: $(NAME).docset $(FEED).xml
 	tar --exclude='.DS_Store' -czf $(FEED).tgz $(NAME).docset
