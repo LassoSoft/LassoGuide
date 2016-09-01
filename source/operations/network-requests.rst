@@ -1329,6 +1329,6 @@ remote server::
       -password=`Shh...Secret`
    )
 
-.. _curl library: http://curl.haxx.se/
-.. _curl documentation: http://curl.haxx.se/libcurl/c/curl_easy_setopt.html
-.. _curl documentation for CURLOPT_SSL_CIPHER_LIST: http://curl.haxx.se/libcurl/c/curl_easy_setopt.html#CURLOPTSSLCIPHERLIST
+.. _curl library: https://curl.haxx.se/
+.. _curl documentation: https://curl.haxx.se/libcurl/c/curl_easy_setopt.html
+.. _curl documentation for CURLOPT_SSL_CIPHER_LIST: https://curl.haxx.se/libcurl/c/curl_easy_setopt.html#CURLOPTSSLCIPHERLIST

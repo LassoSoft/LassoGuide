@@ -25,7 +25,7 @@ image files in the supported image formats:
    ImageMagick 6.6.6-10 (July 7, 2011 build), which is installed as part of
    Lasso Server on OS X. Windows and Linux require ImageMagick to be installed
    separately, which is covered with their respective installation instructions.
-   For more information on ImageMagick, visit `<http://www.imagemagick.com/>`_.
+   For more information on ImageMagick, visit `<http://www.imagemagick.org/>`_.
 
 
 Image File Operations
@@ -1015,5 +1015,5 @@ system::
 
 This same technique can be used to restrict access to any image or media file.
 
-.. _supported image formats: http://www.imagemagick.com/script/formats.php#supported
-.. _ImageMagick Command-Line Tools documentation: http://www.imagemagick.com/script/command-line-tools.php
+.. _supported image formats: http://www.imagemagick.org/script/formats.php#supported
+.. _ImageMagick Command-Line Tools documentation: http://www.imagemagick.org/script/command-line-tools.php

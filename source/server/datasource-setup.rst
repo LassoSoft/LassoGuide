@@ -430,7 +430,7 @@ Oracle Data Sources
 
 Lasso Server can communicate with an Oracle service running on a host machine
 via a TCP/IP connection. For more information on Oracle, visit
-`<http://www.oracle.com/>`_.
+`<https://www.oracle.com/>`_.
 
 
 Requirements
@@ -591,7 +591,7 @@ PostgreSQL Data Sources
 
 Lasso Server can communicate with PostgreSQL servers configured to accept TCP/IP
 client connections. For more information on PostgreSQL, visit
-`<http://www.postgresql.org/>`_.
+`<https://www.postgresql.org/>`_.
 
 
 Requirements
@@ -949,7 +949,7 @@ SQL Server Data Sources
 
 Lasso Server can communicate with Microsoft SQL Server databases configured to
 accept TCP/IP client connections. For more information on SQL Server, visit
-`<http://www.microsoft.com/en-us/sqlserver/>`_.
+`<https://www.microsoft.com/en-us/cloud-platform/sql-server/>`_.
 
 
 Requirements
@@ -1069,7 +1069,7 @@ the ``-database`` parameter.
 
 .. _Instant Client download: http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html
 .. _Visual C++ 2010 x64 Redistributable: https://www.microsoft.com/en-us/download/details.aspx?id=26999
-.. _basic configuration of an Oracle database server: http://www.oracle.com/pls/db111/portal.portal_db
+.. _basic configuration of an Oracle database server: http://docs.oracle.com/cd/B28359_01/nav/portal_1.htm
 .. _PostgreSQL ODBC driver: https://www.postgresql.org/ftp/odbc/versions/
-.. _PostgreSQL documentation: http://www.postgresql.org/docs/manuals/
-.. _SQL Server documentation: http://www.microsoft.com/en-us/sqlserver/learning-center/resources.aspx
+.. _PostgreSQL documentation: https://www.postgresql.org/docs/manuals/
+.. _SQL Server documentation: https://msdn.microsoft.com/library/mt590198(v=sql.1).aspx

@@ -100,7 +100,7 @@ output that value in base 16::
    local(my_int) = 255
    #my_int->asString(-hexadecimal)
 
-   // => 0xff
+   // => ff
 
 
 Integer Bitwise Methods
@@ -175,7 +175,7 @@ and returned in hexadecimal notation::
    local(bit_set) = 0x02
    #bit_set->bitOr(0x04)->asString(-hexadecimal)
 
-   // => 0x6
+   // => 6
 
 
 Shift Bits to the Left
@@ -188,7 +188,7 @@ hexadecimal notation::
    #bit_set = #bit_set->bitShiftLeft(3)
    #bit_set->asString(-hexadecimal)
 
-   // => 0x10
+   // => 10
 
 
 Set and Test a Specified Bit

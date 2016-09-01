@@ -1,10 +1,10 @@
 ### reST formatting
 
-For reST markup, we're mostly following the example set by the [Python docs style guide](http://docs.python.org/devguide/documenting.html).
+For reST markup, we're mostly following the example set by the [Python docs style guide](https://docs.python.org/devguide/documenting.html).
 
 * files end with a blank line (this can be enforced by most text editors)
 * paragraphs are wrapped to 80 characters
- 	* max width for monospaced blocks is 107 chars at current font size
+ 	* max width for monospaced blocks is 103 chars at current font size
 * sentences end with a single space
 	* But if you want to use two spaces, [go](http://xkcd.com/1285/) [ahead](http://www.heracliteanriver.com/?p=324).
 * markup for list items:
@@ -21,7 +21,7 @@ For reST markup, we're mostly following the example set by the [Python docs styl
 	* `=`, `-`, `^` underline - chapter sections
 * section titles without labels have two blank lines before and one after
 * section labels have two blank lines above and one below, and occur just before the title, allowing `:ref:` links to that label to auto-inherit the section title
-	* Start each file with a unique label for [cross-referencing](http://sphinx-doc.org/markup/inline.html#cross-referencing-arbitrary-locations); generally this will match the filename. 
+	* Start each file with a unique label for [cross-referencing](http://www.sphinx-doc.org/en/stable/markup/inline.html#cross-referencing-arbitrary-locations); generally this will match the filename. 
 * chapter/section labels are in the form `chapter-section-title-words`
 	* section labels don't need to include the full chapter label, just enough to be unique
 	* ensure that labels don't conflict with any type/trait/method directives, e.g. links to the `xml` method didn't work until the label for the XML chapter was changed to "xml-documents"

@@ -256,6 +256,6 @@ Troubleshooting
 .. _Microsoft .NET Framework 4: http://www.microsoft.com/en-us/download/details.aspx?id=17718
 .. _Microsoft Visual C++ 2012 Redistributable: http://www.microsoft.com/en-us/download/details.aspx?id=30679
 .. _Lasso Server for Windows: http://www.lassosoft.com/Lasso-9-Server-Download#Win
-.. _Open IIS Manager: http://technet.microsoft.com/en-us/library/cc770472(v=ws.10).aspx
+.. _Open IIS Manager: https://technet.microsoft.com/en-us/library/cc770472(v=ws.10).aspx
 .. _unofficial 64-bit installers: http://www.anindya.com/apache-http-server-2-4-4-and-2-2-24-x86-32-bit-and-x64-64-bit-windows-installers/
-.. _ImageMagick installers archive: http://ftp.sunet.se/pub/multimedia/graphics/ImageMagick/binaries/
+.. _ImageMagick installers archive: http://ftp.icm.edu.pl/packages/ImageMagick/binaries/

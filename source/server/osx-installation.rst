@@ -74,6 +74,6 @@ From here on, you can read up on using the :ref:`instance-manager` and
    plugin for Lasso to continue running, or simply reinstall Lasso to place the
    files in the correct locations.
 
-.. _Apple support site: http://support.apple.com/downloads
-.. _XQuartz: http://xquartz.macosforge.org/
+.. _Apple support site: https://support.apple.com/downloads
+.. _XQuartz: https://www.xquartz.org
 .. _Lasso Server for OS X: http://www.lassosoft.com/Lasso-9-Server-Download#Mac

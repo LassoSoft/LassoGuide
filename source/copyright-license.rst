@@ -15,9 +15,9 @@ This copyright notice concerns the contents of:
 
 The latest version of the work may be accessed at `<http://lassoguide.com/>`_.
 
-This work is distributed under the OpenContent License as described at
-`<http://opencontent.org/opl.shtml>`_. In all cases this notice must remain
-intact. The following is the text of the license as it applies to this work:
+This work is distributed under the `OpenContent License`_. In all cases this
+notice must remain intact. The following is the text of the license as it
+applies to this work:
 
 .. container:: col ten
 
@@ -93,3 +93,5 @@ intact. The following is the text of the license as it applies to this work:
    GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE
    OR INABILITY TO USE THE OC, EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN
    ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+.. _OpenContent License: https://en.wikipedia.org/wiki/Open_Content_License

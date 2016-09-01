@@ -123,7 +123,7 @@ pygments_style = 'trac' # or manni, tango, autumn
 todo_include_todos = False
 
 # The default language for syntax coloring
-highlight_language='html+lasso'
+highlight_language = 'html+lasso'
 highlight_options = {'builtinshighlighting' : False}
 
 # The default domain for reference definitions
@@ -145,6 +145,7 @@ breathe_domain_by_extension = { "h" : "c" }
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
+#
 html_theme = 'amphibious'
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -154,12 +155,13 @@ html_theme = 'amphibious'
 # html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
+#
 html_theme_path = ['_themes']
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
-# html_title = 'LassoGuide v9.3'
+# html_title = 'LassoGuide v9.2'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #
@@ -179,6 +181,7 @@ html_favicon = '_static/favicon.ico'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
+#
 html_static_path = ['_static']
 
 # Add any extra paths that contain custom files (such as robots.txt or
@@ -238,6 +241,7 @@ html_last_updated_fmt = '%b %d, %Y'
 html_use_opensearch = 'http://lassoguide.com/'
 
 # This is the file name suffix for HTML files (e.g. ".xhtml").
+#
 # html_file_suffix = None
 
 # Language to be used for generating the HTML full-text search index.
@@ -259,6 +263,7 @@ html_use_opensearch = 'http://lassoguide.com/'
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
+#
 htmlhelp_basename = 'LassoGuide-doc'
 
 

@@ -657,7 +657,7 @@ On OS X, either:
 -  Install and open Xcode, then go to :menuselection:`Preferences --> Downloads
    --> Components --> Command Line Tools`, and click :guilabel:`Install`.
 -  Or, install the Command Line Tools package directly from
-   https://developer.apple.com/downloads/index.action (Apple ID required).
+   https://developer.apple.com/download/more/ (Apple ID required).
 
 On CentOS:
 

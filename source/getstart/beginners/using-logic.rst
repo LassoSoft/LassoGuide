@@ -80,4 +80,4 @@ before an optional final ``else``.
 So the example page above will say "Good Evening!" from 5 PM--4:59 AM, "Good
 Morning!" from 5 AM--11:59 AM, and "Good Afternoon!" from 12 PM--4:59 PM.
 
-.. _"Choose Your Own Adventure": http://en.wikipedia.org/wiki/Choose_Your_Own_Adventure
+.. _"Choose Your Own Adventure": https://en.wikipedia.org/wiki/Choose_Your_Own_Adventure
