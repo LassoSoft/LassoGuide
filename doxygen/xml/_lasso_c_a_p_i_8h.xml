@@ -4518,10 +4518,9 @@
         <briefdescription>
 <para>Initialize a <ref refid="structlasso__value__t" kindref="compound">lasso_value_t</ref> or <ref refid="structlasso__value__w__t" kindref="compound">lasso_value_w_t</ref> to be blank. </para>        </briefdescription>
         <detaileddescription>
-<para>It is recommended that each <ref refid="structlasso__value__t" kindref="compound">lasso_value_t</ref> be initialized using this macro before use.</para><para>Example: <preformatted>
-    <ref refid="structlasso__value__t" kindref="compound">lasso_value_t</ref> myVal;
-    <ref refid="_lasso_c_a_p_i_8h_1a213f323c69368ef11dcb2d5c87ee0cbc" kindref="member">INITVAL(&amp;myVal)</ref>;
-</preformatted> </para>        </detaileddescription>
+<para>It is recommended that each <ref refid="structlasso__value__t" kindref="compound">lasso_value_t</ref> be initialized using this macro before use.</para><para>Example: <programlisting><codeline><highlight class="normal"><ref refid="structlasso__value__t" kindref="compound">lasso_value_t</ref><sp/>myVal;</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="_lasso_c_a_p_i_8h_1a213f323c69368ef11dcb2d5c87ee0cbc" kindref="member">INITVAL</ref>(&amp;myVal);</highlight></codeline>
+</programlisting> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" line="375" column="9" bodyfile="/Library/Frameworks/Lasso9.framework/Headers/LassoCAPI.h" bodystart="375" bodyend="-1"/>

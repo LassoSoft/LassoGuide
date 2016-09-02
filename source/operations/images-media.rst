@@ -227,7 +227,7 @@ Return Resolution of an Image
 
 Use the `image->resolutionH` and `image->resolutionV` methods on an image
 object. This returns a decimal value representing the horizontal and vertical
-:abbr:`DPI (Dots Per inch)` of the image::
+:abbr:`DPI (Dots Per Inch)` of the image::
 
    local(myImage) = image('/images/image.jpg')
    #myImage->resolutionV + ' x ' + #myImage->resolutionH

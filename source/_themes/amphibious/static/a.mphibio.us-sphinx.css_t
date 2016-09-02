@@ -71,9 +71,12 @@ dl dd {
 	color: #666;
 }	
 
-code.literal .pre { white-space: nowrap }
 
 footer p.small.r .to_top {position: fixed;bottom: 10px;right: 20px;}
+
+/* avoid automatic line break inside `->` operator */
+code.literal .pre { white-space: nowrap }
+.highlight .o { white-space: nowrap }
 
 /* Fix for conflict with the container:: directive */
 .container {font-size: 1.1em; -webkit-backface-visibility: hidden;}

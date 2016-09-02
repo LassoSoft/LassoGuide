@@ -1,3 +1,4 @@
+.. highlight:: c++
 .. _lcapi-reference:
 
 *************************
