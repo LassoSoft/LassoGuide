@@ -27,11 +27,11 @@ Sessions can be used for a variety of purposes, including:
    request.
 
 -  **Storing data without using a database** --
-   Complex types such as arrays and maps can be stored in session variables. A
-   website with multiple forms can have the data from each form stored in a
-   session and only placed in the database once the final form is submitted. Or,
-   a shopping cart can be stored in a session and only placed in an orders table
-   upon checkout.
+   Any type that imports the :trait:`trait_serializable` trait can be stored in
+   a session variable. A website with multiple forms can have the data from each
+   form stored in a session and only placed in the database once the final form
+   is submitted. Or, a shopping cart can be stored in a session and only placed
+   in an orders table upon checkout.
 
 
 How Sessions Work
