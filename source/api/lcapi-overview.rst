@@ -261,4 +261,4 @@ How do I write code that will compile easily across multiple operating systems?
    last resort, you can use ``#ifdef`` to show/hide platform-specific portions
    of source code.
 
-.. _installing older SDKs: http://hints.macworld.com/article.php?story=20110318050811544
+.. _installing older SDKs: http://devernay.free.fr/hacks/xcodelegacy/

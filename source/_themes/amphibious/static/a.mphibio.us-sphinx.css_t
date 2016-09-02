@@ -9,6 +9,7 @@ h1{color: #959595;}
 h1 strong {font-weight: bold;color: #1b378c;}
 h1#index {margin-bottom: 20px;}	
 h2 {margin-bottom: 5px;}
+td.field-body ul.simple { margin-left: 1em; }
 
 code,pre,tt { font-family: Menlo, Consolas, Monaco, "Courier New", Courier, monospace;}
 code,pre,tt.literal{padding:0 3px 2px;font-size:12px;color:#333;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}

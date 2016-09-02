@@ -108,7 +108,6 @@ hr { border: solid #ececec; border-width: 1px 0 0; clear: both; margin: 1em 0 2e
 	ul ul li, ul ol li,
 	ol ol li, ol ul li { margin-bottom: .2em; }
 	li { margin-bottom: 1em; }
-	td.field-body ul.simple { list-style: none; margin-left: 0; }
 
 /* Tables
 ================================================== */
