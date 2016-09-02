@@ -193,72 +193,50 @@ literals are being used.
    matching character including the reserved characters ``[ ] ( ) { } . * + ? ^
    $ \ |``.
 
-
-Unicode Properties
-^^^^^^^^^^^^^^^^^^
-
-The following is a listing of the properties that can be used with the ``\p``
+The following table lists the property symbols that can be used with the ``\p``
 and ``\P`` wildcards. The main symbol (e.g. ``\p{L}``) will match all of the
-characters that are matched by each of the variations.
+characters that are matched by each of the variants.
 
-``L``
-   Matches a single letter. Variations include:
+.. tabularcolumns:: llp{0.4\textwidth}
 
-   -  ``Lu`` -- Uppercase Letter
-   -  ``Ll`` -- Lowercase Letter
-   -  ``Lt`` -- Titlecase Letter
-   -  ``Lm`` -- Modifier Letter
-   -  ``Lo`` -- Other Letter
+.. _regular-expressions-unicode:
 
-``N``
-   Matches a single number. Variations include:
+.. table:: Unicode Property Symbols
 
-   -  ``Nd`` -- Decimal Digit Number
-   -  ``Nl`` -- Letter Number
-   -  ``No`` -- Other Number
-
-``P``
-   Matches a single punctuation character. Variations include:
-
-   -  ``Pc`` -- Connector Punctuation
-   -  ``Pd`` -- Dash Punctuation
-   -  ``Ps`` -- Open Punctuation
-   -  ``Pe`` -- Close Punctuation
-   -  ``Pi`` -- Initial Punctuation
-   -  ``Pf`` -- Final Punctuation
-   -  ``Po`` -- Other Punctuation
-
-``S``
-   Matches a single symbol. Variations include:
-
-   -  ``Sm`` -- Math Symbol
-   -  ``Sc`` -- Currency Symbol
-   -  ``Sk`` -- Modifier Symbol
-   -  ``So`` -- Other Symbol
-
-``Z``
-   Matches a single separator (typically a whitespace character). Variations
-   include:
-
-   -  ``Zs`` -- Space Separator
-   -  ``Zl`` -- Line Separator
-   -  ``Zp`` -- Paragraph Separator
-
-``M``
-   Matches a single mark. Variations include:
-
-   -  ``Mn`` -- Non-Spacing Mark
-   -  ``Mc`` -- Spacing Combining Mark
-   -  ``Me`` -- Enclosing Mark
-
-``C``
-   Matches a single "other" character. Variations include:
-
-   -  ``Cc`` -- Control
-   -  ``Cf`` -- Format
-   -  ``Cs`` -- Surrogate
-   -  ``Co`` -- Private Use
-   -  ``Cn`` -- Not Assigned
+   ====== ================================ =====================================
+   Symbol Property                         Variants
+   ====== ================================ =====================================
+   ``L``  letter                           -  ``Lu`` -- Uppercase Letter
+                                           -  ``Ll`` -- Lowercase Letter
+                                           -  ``Lt`` -- Titlecase Letter
+                                           -  ``Lm`` -- Modifier Letter
+                                           -  ``Lo`` -- Other Letter
+   ``N``  number                           -  ``Nd`` -- Decimal Digit Number
+                                           -  ``Nl`` -- Letter Number
+                                           -  ``No`` -- Other Number
+   ``P``  punctuation character            -  ``Pc`` -- Connector Punctuation
+                                           -  ``Pd`` -- Dash Punctuation
+                                           -  ``Ps`` -- Open Punctuation
+                                           -  ``Pe`` -- Close Punctuation
+                                           -  ``Pi`` -- Initial Punctuation
+                                           -  ``Pf`` -- Final Punctuation
+                                           -  ``Po`` -- Other Punctuation
+   ``S``  symbol                           -  ``Sm`` -- Math Symbol
+                                           -  ``Sc`` -- Currency Symbol
+                                           -  ``Sk`` -- Modifier Symbol
+                                           -  ``So`` -- Other Symbol
+   ``Z``  separator (typically whitespace) -  ``Zs`` -- Space Separator
+                                           -  ``Zl`` -- Line Separator
+                                           -  ``Zp`` -- Paragraph Separator
+   ``M``  mark                             -  ``Mn`` -- Non-Spacing Mark
+                                           -  ``Mc`` -- Spacing Combining Mark
+                                           -  ``Me`` -- Enclosing Mark
+   ``C``  "other" character                -  ``Cc`` -- Control
+                                           -  ``Cf`` -- Format
+                                           -  ``Cs`` -- Surrogate
+                                           -  ``Co`` -- Private Use
+                                           -  ``Cn`` -- Not Assigned
+   ====== ================================ =====================================
 
 
 Combining Symbols
