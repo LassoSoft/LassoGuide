@@ -1,9 +1,16 @@
+% Modified by Brad Lindsay & Eric Knibbe
 %
 % sphinxmanual.cls for Sphinx (http://sphinx-doc.org/)
 %
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{sphinxmanual}[2009/06/02 Document class (Sphinx manual)]
+
+\ifx\directlua\undefined\else
+% if compiling with lualatex 0.85 or later load compatibility patch issued by
+% the LaTeX team for older packages relying on \pdf<name> named primitives.
+    \IfFileExists{luatex85.sty}{\RequirePackage{luatex85}}{}
+\fi
 
 % chapters starting at odd pages (overridden by 'openany' document option)
 \PassOptionsToClass{openright}{\sphinxdocclass}
@@ -34,47 +41,49 @@
 % ``Bjarne'' style a bit better.
 %
 \renewcommand{\maketitle}{%
-  \ifthenelse{\equal{\isbn}{000-0-0000000-0-0}}{\includepdf[pages={1}]{guide_cover_92.pdf}}
-  {\begin{titlepage}%
+  %% for screen PDF, replace title page with cover image
+  \ifthenelse{\equal{\isbn}{000-0-0000000-0-0}}{\includepdf[pages={1}]{guide_cover_92.pdf}}{%
+  \begin{titlepage}%
     \let\footnotesize\small
     \let\footnoterule\relax
-    \rule{\textwidth}{1pt}%
+    \noindent\rule{\textwidth}{1pt}\ifsphinxpdfoutput\newline\null\fi\par
     \ifsphinxpdfoutput
       \begingroup
       % These \defs are required to deal with multi-line authors; it
       % changes \\ to ', ' (comma-space), making it pass muster for
       % generating document info in the PDF file.
-      \def\\{, }
-      \def\and{and }
+      \def\\{, }%
+      \def\and{and }%
       \pdfinfo{
         /Author (\@author)
         /Title (\@title)
-      }
+      }%
       \endgroup
     \fi
     \begin{flushright}%
-      %\sphinxlogo%
-      {\rm\Huge\py@HeaderFamily \@title \par}%
-      {\em\LARGE\py@HeaderFamily \py@release\releaseinfo \par}
+      \sphinxlogo
+      \py@HeaderFamily
+      {\Huge \@title \par}
+      {\itshape\LARGE \py@release\releaseinfo \par}
       \vfill
-      {\LARGE\py@HeaderFamily
+      {\LARGE
         \begin{tabular}[t]{c}
           \@author
         \end{tabular}
         \par}
       \vfill\vfill
       {\large
+       %% instead of \@date, which only inserts the year
        \today \par
        \vfill
        \py@authoraddress \par
       }%
     \end{flushright}%\par
     \@thanks
-  \end{titlepage}}%
-  %\cleardoublepage%
+  \end{titlepage}%
   \setcounter{footnote}{0}%
 
-  % Make Copyright Page
+  %% copyright page for print PDF
   \clearpage\null\vfill
   \pagestyle{empty}
   \begin{minipage}[b]{0.9\textwidth}
@@ -84,8 +93,8 @@
   All rights reserved.
 
   This work may be distributed and/or modified under the conditions of the
-  license as described at \url{http://lassoguide.com/license.html}. In all cases
-  this notice must remain intact.
+  license as described at \url{http://lassoguide.com/copyright-license.html}. In
+  all cases this notice must remain intact.
 
   The latest version of the work may be accessed at \url{http://lassoguide.com/}.
 
@@ -143,59 +152,32 @@
   %\gdef\@thanks{}\gdef\@author{}\gdef\@title{}
 }
 
-
-% Catch the end of the {abstract} environment, but here make sure the abstract
-% is followed by a blank page if the 'openright' option is used.
-%
-\let\py@OldEndAbstract=\endabstract
-\renewcommand{\endabstract}{
-  \if@openright
-    \ifodd\value{page}
-      \typeout{Adding blank page after the abstract.}
-      \vfil\pagebreak
-    \fi
-  \fi
-  \py@OldEndAbstract
-}
-
-% This wraps the \tableofcontents macro with all the magic to get the spacing
-% right and have the right number of pages if the 'openright' option has been
-% used.  This eliminates a fair amount of crud in the individual document files.
-%
 \let\py@OldTableofcontents=\tableofcontents
 \renewcommand{\tableofcontents}{%
+  % before resetting page counter, let's do the right thing.
+  \if@openright\cleardoublepage\else\clearpage\fi
   \pagenumbering{roman}%
+  %% style the "Contents" heading to match chapter headings
   \ChTitleVar{\raggedright\color{InnerLinkColor}\bfseries\fontsize{36}{40}\selectfont}
-  \setcounter{page}{1}%
-  \pagebreak%
   \pagestyle{plain}%
-  {%
-    \parskip = 0mm%
-    \phantomsection
-    \addcontentsline{toc}{part}{\contentsname}
-    \py@OldTableofcontents%
+  \begingroup
+    \parskip \z@skip
+    \py@OldTableofcontents
+    %% add list of tables
     \iftotaltables
-      \if@openright%
-        \cleardoublepage
-        \else\clearpage
-      \fi%
+      \if@openright\cleardoublepage\else\clearpage\fi
       \phantomsection
       \addcontentsline{toc}{chapter}{\listtablename}
       \listoftables
     \fi
-    \if@openright%
-      \cleardoublepage
-      \else\clearpage
-%      \ifodd\value{page}%
-%        \typeout{Adding blank page after the table of contents.}%
-%        \pagebreak\hspace{0pt}%
-%      \fi%
-    \fi%
-  }% delay these until after foreword & preface
-  %\pagenumbering{arabic}%
-  %\@ifundefined{fancyhf}{}{\pagestyle{normal}}%
+  \endgroup
+  % before resetting page counter, let's do the right thing.
+  \if@openright\cleardoublepage\else\clearpage\fi
+  }%% end ifthenelse
+  \pagenumbering{arabic}%
+  \ifdefined\fancyhf\pagestyle{normal}\fi
 }
-\pagenumbering{alph}
+\pagenumbering{alph}% avoid hyperref "duplicate destination" warnings
 
 % This is needed to get the width of the section # area wide enough in the
 % library reference.  Doing it here keeps it the same for all the manuals.
@@ -220,10 +202,10 @@
 % For a report document class this environment is a chapter.
 \let\py@OldThebibliography=\thebibliography
 \renewcommand{\thebibliography}[1]{
-  \cleardoublepage
+  \if@openright\cleardoublepage\else\clearpage\fi
   \phantomsection
   \py@OldThebibliography{1}
-  \addcontentsline{toc}{part}{\bibname}
+  \addcontentsline{toc}{chapter}{\bibname}
 }
 
 % Same for the indices.
@@ -232,9 +214,10 @@
 \@ifclassloaded{memoir}{}{
   \let\py@OldTheindex=\theindex
   \renewcommand{\theindex}{
-    \cleardoublepage
+    \if@openright\cleardoublepage\else\clearpage\fi
+%% patch above for \theindex replaces these lines
 %    \phantomsection
     \py@OldTheindex
-%    \addcontentsline{toc}{part}{\indexname}
+%    \addcontentsline{toc}{chapter}{\indexname}
   }
 }

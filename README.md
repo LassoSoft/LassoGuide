@@ -38,7 +38,7 @@ You'll need some extra tools to accomplish this. On OS X, you have two options:
 ```
 sudo tlmgr update --self
 sudo tlmgr update --all
-sudo tlmgr install titlesec framed threeparttable wrapfig multirow everypage enumitem tocloft microtype capt-of needspace
+sudo tlmgr install titlesec framed threeparttable wrapfig multirow everypage enumitem tocloft microtype capt-of environ eqparbox trimspaces
 ```
 
 The following fonts are also required:
