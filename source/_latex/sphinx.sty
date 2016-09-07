@@ -193,10 +193,14 @@
 \let\OriginalVerbatim=\Verbatim
 \let\endOriginalVerbatim=\endVerbatim
 
+%% remove border
+\setlength{\fboxrule}{0pt}%
 \newcommand\spx@colorbox [2]{%
 % #1 will be \fcolorbox or, for first part of frame: \spx@fcolorbox
 % let the framing obey the current indentation (adapted from framed.sty's code).
   \hskip\@totalleftmargin
+%% additional indentation
+  \hskip 1em
   \hskip-\fboxsep\hskip-\fboxrule
   #1{VerbatimBorderColor}{VerbatimColor}{#2}%
   \hskip-\fboxsep\hskip-\fboxrule
