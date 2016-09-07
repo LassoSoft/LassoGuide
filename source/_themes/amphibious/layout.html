@@ -22,6 +22,9 @@
             {%- if parents %}
             <li><a class="tooltip" href="{{ parents[-1].link|e }}"
               title="{{ parents[-1].title|striptags|e }}">Up</a></li>
+            {%- else %}
+            <li><a class="tooltip" href="{{ pathto(master_doc) }}"
+              title="{{ project|e }}">Up</a></li>
             {%- endif %}
           </ul>
 
