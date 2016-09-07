@@ -448,7 +448,7 @@ else:
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
 #
-#latex_logo = '_static/guide_cover_92.jpg' if tags.has('screen') else None
+latex_logo = '_static/logo.pdf'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.

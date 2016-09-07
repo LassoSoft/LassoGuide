@@ -20,8 +20,10 @@ Here are some additional resources you may find useful:
 `LassoGuide PDF <http://lassoguide.com/LassoGuide9.2.pdf>`_
    The current version of LassoGuide in PDF format.
 
-`LassoGuide Dash docset <dash-feed://http%3A%2F%2Flassoguide.com%2FLassoGuide.xml>`_
-   The current version of LassoGuide as a Dash docset.
+.. only:: html
+
+   `LassoGuide Dash docset <dash-feed://http%3A%2F%2Flassoguide.com%2FLassoGuide.xml>`_
+      The current version of LassoGuide as a Dash docset.
 
 `LassoGuide source <https://github.com/LassoSoft/LassoGuide>`_
    The Git repository containing the full LassoGuide source.

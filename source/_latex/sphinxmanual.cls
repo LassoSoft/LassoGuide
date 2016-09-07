@@ -61,16 +61,17 @@
       \endgroup
     \fi
     \begin{flushright}%
-      \sphinxlogo
       \py@HeaderFamily
       {\Huge \@title \par}
       {\itshape\LARGE \py@release\releaseinfo \par}
       \vfill
-      {\LARGE
-        \begin{tabular}[t]{c}
-          \@author
-        \end{tabular}
-        \par}
+%     {\LARGE
+%       \begin{tabular}[t]{c}
+%         \@author
+%       \end{tabular}
+%       \par}
+%% use logo for author instead of text
+      \sphinxlogo
       \vfill\vfill
       {\large
        %% instead of \@date, which only inserts the year
@@ -145,7 +146,7 @@
   Printed and bound by Lulu.
   \end{minipage}
   \vspace*{2\baselineskip}
-  \cleardoublepage
+  \if@openright\cleardoublepage\else\clearpage\fi
   \rfoot{\thepage}
 
   \let\thanks\relax\let\maketitle\relax
