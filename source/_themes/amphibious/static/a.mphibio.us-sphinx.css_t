@@ -339,6 +339,9 @@ button.reset_button:active, button.search_button:active {
 .dropup .caret,.navbar-fixed-bottom .dropdown .caret{border-top:0;border-bottom:4px solid #000;content:"\2191"}
 .dropup .dropdown-menu,.navbar-fixed-bottom .dropdown .dropdown-menu{top:auto;bottom:100%;margin-bottom:1px}
 
+.dropdown-menu ul.unstyled li.toctree-l1 ul.unstyled { display:none; }
+.dropdown-menu ul.unstyled li.toctree-l1.current ul.unstyled { display:block; }
+
 .navbar{*position:relative;*z-index:2;margin-bottom:18px;overflow:visible;}
 
 .navbar-inner{
