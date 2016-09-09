@@ -86,28 +86,28 @@ table shows all of the permissible escape sequences.
 
 .. table:: Supported String Escape Sequences
 
-   ================== ================= ========================================
-   Escape Sequence    Value             Description
-   ================== ================= ========================================
-   ``\xhh``           Unicode character 1--2 hex digits
-   ``\uhhhh``         Unicode character 4 hex digits
-   ``\Uhhhhhhhh``     Unicode character 8 hex digits
-   ``\ooo``           Unicode character 1--3 octal digits
-   ``\:NAME:``        Unicode character Unicode character name
-   ``\a``             0x07              bell
-   ``\b``             0x08              backspace
-   ``\e``             0x1B              escape
-   ``\f``             0x0C              form feed
-   ``\n``             0x0A              line feed
-   ``\r``             0x0D              carriage return
-   ``\t``             0x09              tab
-   ``\v``             0x0B              vertical tab
-   ``\"``             0x22              double quote
-   ``\'``             0x27              single quote
-   ``\?``             0x3F              question mark
-   ``\\``             0x5C              backslash
-   ``\<end-of-line>`` none              escaped whitespace
-   ================== ================= ========================================
+   ======================= ================= ===================================
+   Escape Sequence         Value             Description
+   ======================= ================= ===================================
+   :samp:`\\x{dd}`         Unicode character 1--2 hex digits
+   :samp:`\\u{dddd}`       Unicode character 4 hex digits
+   :samp:`\\U{dddddddd}`   Unicode character 8 hex digits
+   :samp:`\\{ddd}`         Unicode character 1--3 octal digits
+   :samp:`\\:{NAME}:`      Unicode character Unicode character name
+   ``\a``                  0x07              bell
+   ``\b``                  0x08              backspace
+   ``\e``                  0x1B              escape
+   ``\f``                  0x0C              form feed
+   ``\n``                  0x0A              line feed
+   ``\r``                  0x0D              carriage return
+   ``\t``                  0x09              tab
+   ``\v``                  0x0B              vertical tab
+   ``\"``                  0x22              double quote
+   ``\'``                  0x27              single quote
+   ``\?``                  0x3F              question mark
+   ``\\``                  0x5C              backslash
+   ``\<end-of-line>``      none              escaped whitespace
+   ======================= ================= ===================================
 
 
 Ticked Strings
