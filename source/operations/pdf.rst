@@ -15,8 +15,7 @@ technology`_.
 
 .. note::
    The ``pdf_…`` methods in Lasso are implemented in LJAPI, and based on the
-   iText Java library. For more information on the iText Java library, visit
-   `<http://itextpdf.com/>`_.
+   `iText Java library`_.
 
 
 Lasso and PDF Files
@@ -2544,3 +2543,4 @@ be saved by the end user to a location on the end user's hard drive. ::
    pdf_serve(#my_file, -file='MyFile.PDF')
 
 .. _information on PDF technology: https://acrobat.adobe.com/us/en/why-adobe/about-adobe-pdf.html
+.. _iText Java library: http://itextpdf.com/

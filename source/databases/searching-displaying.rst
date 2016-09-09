@@ -890,7 +890,7 @@ Display Result for a Single Record
 Use `field` methods within the capture block of an `inline` method. The
 `records` methods are unnecessary if only a single record is returned. The
 following inline performs a ``-search`` for a single record whose primary key
-"id" equals "1". The `keyField_value` is shown along with the `field` values for
+'id' equals "1". The `keyField_value` is shown along with the `field` values for
 the record. ::
 
    inline(

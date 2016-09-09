@@ -824,13 +824,14 @@ method ``speak`` to the ``person`` type::
    define person->speak() => 'Hello, world!'
 
 
+.. _types-introspection-methods:
+
 Type/Object Introspection Methods
 =================================
 
 Lasso provides a number of methods that can be used to gain information about a
-type or object. These methods are summarized below.
-
-.. type:: null
+type or object. These methods are summarized below, and can be called by any
+type.
 
 .. member:: null->type()
 
@@ -878,4 +879,37 @@ type or object. These methods are summarized below.
    not have a trait.
 
    .. seealso::
-      `~null->setTrait` and `~null->addTrait` in the :ref:`traits` chapter
+      `~null->setTrait` and `~null->addTrait` methods in the :ref:`traits`
+      chapter
+
+.. type:: tag
+
+   An immutable object that represents a unique string of characters. Since
+   Lasso uses tags internally to keep track of names, this type has member
+   methods that can query them.
+
+.. member:: tag->istype::boolean
+
+   Check if a type with the same name as the given tag exists. ::
+
+      ::string->istype
+      // => true
+
+.. member:: tag->gettype
+
+   Create an instance of a type matching the given tag. This is useful for
+   calling `~null->listMethods` on a type that has no literal syntax or simple
+   type creator. ::
+
+      ::regexp->gettype->listmethods
+      // => ... regexp->input(), regexp->replacepattern(), regexp->findpattern(), ...
+
+.. member:: tag->doccomment
+.. member:: tag->doccomment=(value::string)
+
+   Retrieve and set doc comments for a type matching the given tag. Requires
+   that Lasso be run with the :envvar:`LASSO9_RETAIN_COMMENTS` variable enabled.
+
+   .. seealso::
+      :ref:`literals-tag` and :ref:`literals-doc-comments` in the
+      :ref:`literals` chapter

@@ -33,9 +33,7 @@ generated via any contained Lasso code.
 
 The available delimiting elements are described below. The "|dot| .." shown
 between the delimiters illustrates where Lasso code would be inserted by the
-developer.
-
-::
+developer. ::
 
    <?lasso ... ?>
 

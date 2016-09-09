@@ -538,7 +538,7 @@ GenerateSeries Type
 .. index:: series literal
 
 The `generateSeries` method generates a series of integer values, and is great
-for use in query expression with clauses.
+for use in query expression ``with`` clauses.
 
 .. type:: generateSeries
 .. method:: generateSeries(from, to, by=1)

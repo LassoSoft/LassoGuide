@@ -110,8 +110,7 @@ Defining Traits
 
 A trait is defined using a :dfn:`trait expression` consisting of the ``define``
 keyword followed by the trait name, the association operator (``=>``), the
-keyword ``trait``, and a code block containing the definition of the trait.
-::
+keyword ``trait``, and a code block containing the definition of the trait. ::
 
    define myTrait => trait {
       // ...

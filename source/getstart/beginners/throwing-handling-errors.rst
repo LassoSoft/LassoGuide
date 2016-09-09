@@ -33,9 +33,7 @@ would both "work"::
    time_of_day->hour(89)
 
 With the updated code below, both of these examples will now fail, throwing an
-error about invalid values.
-
-::
+error about invalid values. ::
 
    define time_of_day => type {
       data public hour::integer

@@ -1508,45 +1508,45 @@ Helper Types for Java Data Primitives
 =====================================
 
 .. type:: jfloat
-.. method:: jfloat(val::decimal)
-.. method:: jfloat(val::integer)
-.. method:: jfloat(val::jfloat)
+.. method:: jfloat(value::decimal)
+.. method:: jfloat(value::integer)
+.. method:: jfloat(value::jfloat)
 
    Creates an object that can be passed to a Java method as a Java float
    primitive.
 
 .. type:: jint
-.. method:: jint(val::integer)
+.. method:: jint(value::integer)
 
    Creates an object that can be passed to a Java method as a Java integer
    primitive.
 
 .. type:: jshort
-.. method:: jshort(val::integer)
+.. method:: jshort(value::integer)
 
    Creates an object that can be passed to a Java method as a Java short
    primitive.
 
 .. type:: jchar
-.. method:: jchar(val::string)
+.. method:: jchar(value::string)
 
    Creates an object that can be passed to a Java method as a Java char
    primitive.
 
 .. type:: jchararray
-.. method:: jchararray(val::string)
+.. method:: jchararray(value::string)
 
    Creates an object that can be passed to a Java method as a Java array of char
    primitives.
 
 .. type:: jbyte
-.. method:: jbyte(val::bytes)
+.. method:: jbyte(value::bytes)
 
    Creates an object that can be passed to a Java method as a Java byte
    primitive.
 
 .. type:: jbytearray
-.. method:: jbytearray(val::bytes)
+.. method:: jbytearray(value::bytes)
 
    Creates an object that can be passed to a Java method as a Java array of byte
    primitives.

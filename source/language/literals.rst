@@ -8,11 +8,13 @@ Literals
 A :dfn:`literal` is an object with its own special syntax that allows it to be
 inserted directly into code. Lasso supports :type:`string`, :type:`boolean`,
 :type:`integer`, :type:`decimal`, :type:`tag`, :type:`staticarray`, and
-:type:`generateSeries` literals, as well as comments.
+:type:`generateSeries` literals, the words :type:`null` and :type:`void`, and
+comments.
 
-The method for expressing these literals is straightforward. For example, an
-integer literal is expressed, as one would expect, by simply using the numeral
-in the source text. ``23`` is an example of an integer literal.
+The method for expressing these literals is largely similar to other scripting
+languages. For example, an integer literal is expressed, as one would expect, by
+simply using the numeral in the source text. ``23`` is an example of an integer
+literal.
 
 
 String Literals
@@ -138,11 +140,24 @@ in the source code. ::
    true
    false
 
+.. type:: boolean
+.. method:: boolean()
+.. method:: boolean(obj::any)
+
+   Casts a value to a boolean value. Only the following values evaluate to
+   "false"; all others are "true":
+
+   -  integer zero: ``0``
+   -  decimal zero: ``0.0``
+   -  empty string: ``''``, ``""``, ``````
+   -  :type:`null` and :type:`void`
+   -  calling `boolean` with no parameter
+
 
 Integer Literals
 ================
 
-An :dfn:`integer` is a whole number. Integers can be positive or negative and
+An :dfn:`integer` is a whole number. Integers can be positive or negative, and
 Lasso puts no limit on the size of an integer. Integers consist of the digits 0
 through 9 and can be written directly into the source code. ::
 
@@ -208,17 +223,24 @@ letter or underscore, followed by zero or more letters, numbers, underscores, or
 period characters. Tags cannot contain spaces.
 
 Tags are commonly used when applying type constraints to methods, data members,
-and variables; though they have other purposes as well.
+and variables; though they have other purposes as well, such as :ref:`type and
+object introspection <types-introspection-methods>`.
 
 A tag literal consists of two colons followed by the tag's characters. ::
 
    // Creates a tag object representing "name"
    ::name
 
-In Lasso, tags are used in many different locations. For example, when asking an
-object what type it is, it will reply with a tag object representing its name.
-Since there will be only one tag object for every individual name, comparing
-tags for equality is very fast.
+In Lasso, the :type:`tag` type is used in many different locations. For example,
+when asking an object what type it is with `~null->type`, it will reply with a
+tag object representing its name. Since there will be only one tag object for
+every individual name, comparing tags for equality is very fast.
+
+.. method:: tag_exists(value::string)
+
+   Checks if a tag matching the given string value exists without attempting to
+   create a tag. Returns the tag if it exists or "void" if it does not.
+
 
 
 Staticarray Literals
@@ -256,6 +278,23 @@ size, which defaults to 1, can be added after the word "by". ::
 
 See the :ref:`query-expressions` chapter for more information on the
 :type:`generateSeries` type.
+
+
+Null and Void
+=============
+
+.. type:: null
+
+   A :dfn:`null` represents a blank or empty value, indicated in code by the
+   word ``null``. All types inherit from :type:`null` , so its member methods
+   (listed under :ref:`types-introspection-methods` in the :ref:`types` chapter)
+   can be used by any type.
+
+.. type:: void
+
+   A type indicated in code by ``void`` which is similar to `null` in that it is
+   only ever equal to itself, but indicates a non-existent rather than an empty
+   value.
 
 
 Comments
@@ -297,6 +336,8 @@ nested. ::
    it has multiple lines */
    #n += 456
 
+
+.. _literals-doc-comments:
 
 Doc Comments
 ------------

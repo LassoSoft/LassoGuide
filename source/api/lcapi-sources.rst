@@ -323,11 +323,16 @@ source connector.
    data in it, so we have a conditional to check to see if the "Accounting"
    database was specified. We then use `lasso_getInputColumnCount` to get the
    number of search fields passed to the `inline`. We have a ``for`` loop to
-   retrieve the name/value text for each search parameter. For example,
-   ``inline(-database='Accounting', -table='Payroll', 'Employee'='Fred',
-   'Wages'='15000')`` will fill the "columnItem" variable with the values
-   "Employee, fred" the first time through the loop, and "Wages, 15000" the
-   second time through the loop::
+   retrieve the name/value text for each search parameter. For example, calling
+   the following Lasso code:
+
+   .. code-block:: lasso
+
+      inline(-database='Accounting', -table='Payroll', 'Employee'='Fred', 'Wages'='15000')
+
+   will fill the "columnItem" variable with the values "Employee, Fred" the
+   first time through the loop, and "Wages, 15000" the second time through the
+   loop::
 
       if( strcmp(v1.data, "Accounting") == 0 ) {
          int count, i;

@@ -181,7 +181,7 @@ Troubleshooting
 -  The Application Pool for the site may be set to run 32-bit applications. To
    disable:
 
-   #. Open file:`IIS Manager`
+   #. Open :file:`IIS Manager`
    #. Select the site's "Application Pool"
    #. Click :guilabel:`Advanced Settings`
    #. Set "Enable 32-bit Applications" to "False"

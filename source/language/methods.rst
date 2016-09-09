@@ -475,9 +475,7 @@ frozen Methods
 
 To prevent a method's definition from being modified, the ``frozen`` keyword can
 be used. When inserted after the association operator, it prevents the method
-from being added to with multiple dispatch or overridden.
-
-::
+from being added to with multiple dispatch or overridden. ::
 
    define phi => frozen (1 + math_sqrt(5)) / 2
    define phi => 500

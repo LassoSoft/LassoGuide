@@ -149,7 +149,7 @@ the time of day. We'll add the color information to our existing map::
 
 The variable "time_info" holds a map where each key in the map is associated
 with another map. This means that when we look up the key for the variable
-"time_of_day", it is set to a map with a "greeting" key and a "bgcolor" key. We
+"time_of_day", it is set to a map with a 'greeting' key and a 'bgcolor' key. We
 then use the map stored in "time_of_day" to get the background color and the
 greeting for the current time of day. For extra credit, change this solution to
 use an array of maps instead.
