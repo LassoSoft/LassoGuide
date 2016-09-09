@@ -353,9 +353,9 @@ will have its ``contains`` method called.
 Containment testing only logically applies to certain types of objects. For
 example, it makes no sense to ask what an integer object contains, because it is
 scalar, consisting of only one value. Containment testing is primarily done on
-container types such as :type:`array` or :type:`map`. Objects of those types can
-contain any number of other arbitrary objects, so it makes sense to query them
-for their contents.
+collection types such as :type:`array` or :type:`map`. Objects of those types
+can contain any number of other arbitrary objects, so it makes sense to query
+them for their contents.
 
 
 .. _operators-conditional:

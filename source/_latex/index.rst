@@ -92,7 +92,7 @@ Lasso Server Management
    /operations/math
    /operations/date-duration
    /operations/regular-expressions
-   /operations/containers
+   /operations/collections
    /operations/encryption
    /operations/serialization-compression
 

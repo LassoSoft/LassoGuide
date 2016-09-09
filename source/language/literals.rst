@@ -224,7 +224,7 @@ tags for equality is very fast.
 Staticarray Literals
 ====================
 
-Lasso's :dfn:`staticarray` type is an efficient, non-resizable container for
+Lasso's :dfn:`staticarray` type is an efficient, non-resizable collection for
 holding any series of object types which is used in many places in Lasso.
 Staticarrays are created in the same way as any object, but Lasso supports a
 shortcut syntax to produce staticarrays. This expression begins with an open
@@ -234,7 +234,7 @@ expressions, ending with the closing parenthesis. ::
    // Creates a staticarray containing 1, 2, and "hello"
    (: 1, 2, 'hello')
 
-See the :ref:`containers` chapter for more information on the
+See the :ref:`collections` chapter for more information on the
 :type:`staticarray` type.
 
 

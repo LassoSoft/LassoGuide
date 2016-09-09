@@ -21,7 +21,7 @@
       math
       date-duration
       regular-expressions
-      containers
+      collections
       encryption
       serialization-compression
 

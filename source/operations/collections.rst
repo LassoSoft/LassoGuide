@@ -1,20 +1,20 @@
-.. _containers:
+.. _collections:
 
-**********
-Containers
-**********
+***********
+Collections
+***********
 
-Lasso provides a variety of container data types for storing data in an ordered
+Lasso provides a variety of collection data types for storing data in an ordered
 and unordered manner. Objects of these types contain zero or more other
-arbitrary objects. Built-in support is provided for common container types such
+arbitrary objects. Built-in support is provided for common collection types such
 as arrays, lists, maps, and others.
 
 
-Ordered Container Types
-=======================
+Ordered Collection Types
+========================
 
-:dfn:`Ordered containers` store their elements positioned by the order in which
-they are inserted. The element inserted first into an ordered container will
+:dfn:`Ordered collections` store their elements positioned by the order in which
+they are inserted. The element inserted first into an ordered collection will
 always be first unless subsequently repositioned. Lasso provides support for
 :type:`pair`, :type:`array`, :type:`staticarray`, :type:`list`, :type:`queue`,
 and :type:`stack` types.
@@ -25,7 +25,7 @@ Pair Type
 
 .. type:: pair
 
-   Pairs are one of the most basic of containers. A pair always contains two
+   Pairs are one of the most basic of collections. A pair always contains two
    elements. These are referred to as the "first" and "second" elements and are
    accessed through methods of the same name.
 
@@ -61,7 +61,7 @@ Using Pair Objects
    These methods set the first or second element of a pair to the passed value.
 
 
-.. _containers-array:
+.. _collections-array:
 
 Array Type
 ----------
@@ -177,7 +177,7 @@ Using Array Objects
 
 .. member:: array->+(rhs::trait_forEach)::array
 
-   Arrays can be combined with other container types by using the ``+``
+   Arrays can be combined with other collection types by using the ``+``
    operator. A new array containing all the elements is returned.
 
    Example of combining an array, staticarray, and pair into a new array::
@@ -191,7 +191,7 @@ Staticarray Type
 
 .. type:: staticarray
 
-   A staticarray is a container object that is created with a fixed size and is
+   A staticarray is a collection object that is created with a fixed size and is
    not resizable. Positions within the staticarray can be reassigned different
    objects, but new positions cannot be added or removed. Staticarrays are
    designed to be as efficient as possible both in the time used to create a new
@@ -462,16 +462,16 @@ Using Stack Objects
    recently inserted element.)
 
 
-Unordered Container Types
-=========================
+Unordered Collection Types
+==========================
 
-:dfn:`Unordered containers` store their elements without position-based
-ordering. Lasso supports two unordered container types: :type:`map` and
+:dfn:`Unordered collections` store their elements without position-based
+ordering. Lasso supports two unordered collection types: :type:`map` and
 :type:`set`. Maps provide access to the elements via separate keys. Sets store
 only the elements themselves.
 
 
-.. _containers-map:
+.. _collections-map:
 
 Map Type
 --------

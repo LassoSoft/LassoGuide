@@ -127,8 +127,8 @@ the speed of web serving under heavy load.
 In addition to these tips, MySQL or PostgreSQL can be used to shift some of the
 burden off of FileMaker Server. MySQL and PostgreSQL can usually perform
 database searches much faster than FileMaker. Lasso also includes sessions and
-container types that can be used to perform some of the tasks of a database, but
-with higher performance for small amounts of data.
+collection types that can be used to perform some of the tasks of a database,
+but with higher performance for small amounts of data.
 
 
 Compatibility Tips

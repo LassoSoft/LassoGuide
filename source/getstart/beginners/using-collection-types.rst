@@ -1,28 +1,28 @@
-.. _using-container-types:
+.. _using-collection-types:
 
-*********************
-Using Container Types
-*********************
+**********************
+Using Collection Types
+**********************
 
 As our code gets more and more complex, we may decide that it's a good idea to
 store related values together. For example, we may decide we want to bundle
 together the greetings and store them all in one place. We can do this using a
-container data type.
+collection data type.
 
-Container data types are values that can hold multiple different values. In the
+Collection data types are values that can hold multiple different values. In the
 example on the previous page, we store an integer of the current hour into one
 variable and a string of the greeting we are going to use in another. We could,
-however, store them in the same variable by using a container type.
+however, store them in the same variable by using a collection type.
 
 .. note::
-   For more information on various container types available in Lasso, see the
-   :ref:`containers` chapter.
+   For more information on various collection types available in Lasso, see the
+   :ref:`collections` chapter.
 
 
 Using an Array
 ==============
 
-One container type we could use is an :type:`array`. Arrays allow storing as
+One collection type we could use is an :type:`array`. Arrays allow storing as
 many items as you want inside one array. You can even store an array inside
 another array.
 
@@ -68,15 +68,15 @@ stored in the "all_greetings" variable, it would look like this::
 
    #all_greeting->insert("G'day, mate!")
 
-(See the section on the :ref:`array <containers-array>` type for more detail and
-other :type:`array` methods.)
+(See the section on the :ref:`array <collections-array>` type for more detail
+and other :type:`array` methods.)
 
 
 Using a Map
 ===========
 
 An array stores items by position, but sometimes it's useful to store items by
-an arbitrary key, and that's where the ``map`` container type is useful.
+an arbitrary key, and that's where the ``map`` collection type is useful.
 
 Below is our example again, this time modified to use a map to store all the
 greetings::
@@ -107,7 +107,8 @@ list of values, but with a map we specify the index (key) as well. To get an
 item out of a map, use the `map->find` method passing in the key whose value you
 wish to retrieve. As with arrays, there's a `map->insert` method that allows you
 to insert new key/values into the map. (See the section on the
-:ref:`map <containers-map>` type for more detail and other :type:`map` methods.)
+:ref:`map <collections-map>` type for more detail and other :type:`map`
+methods.)
 
 .. note::
    While arrays have a defined order, maps do not. Getting an element out of a
@@ -119,7 +120,7 @@ to insert new key/values into the map. (See the section on the
 Using a Map of Maps
 ===================
 
-It's a common scenario where using nested container types makes sense. Let's
+It's a common scenario where using nested collection types makes sense. Let's
 expand our example to change the background color of our web page depending on
 the time of day. We'll add the color information to our existing map::
 

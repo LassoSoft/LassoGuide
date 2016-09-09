@@ -26,7 +26,7 @@
       beginners/what-is-lasso
       beginners/using-logic
       beginners/using-variables
-      beginners/using-container-types
+      beginners/using-collection-types
       beginners/defining-methods
       beginners/defining-types
       beginners/throwing-handling-errors

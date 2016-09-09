@@ -313,9 +313,9 @@ A :dfn:`skip` operation permits a specified number of values from the source
 sequence to be skipped. A skip operation consists of the word ``skip`` followed
 by either a literal integer, or an expression that will evaluate to an integer.
 
-The following example snippet skips the first 5 elements from the source
-container. Only the 6\ :sup:`th` element and beyond are sent to the remaining
-portion of the query expression. ::
+The following example snippet skips the first 5 elements from the source array.
+Only the 6\ :sup:`th` element and beyond are sent to the remaining portion of
+the query expression. ::
 
    with n in array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
       skip 5
