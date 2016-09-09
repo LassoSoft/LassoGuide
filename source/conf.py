@@ -292,7 +292,7 @@ latex_elements = {
 'preamble': r"""
 % Font setup (Be sure you have them installed on your machine)
 \usepackage[quiet]{fontspec}
-\defaultfontfeatures[Myriad Pro Light]{Ligatures=TeX}
+\defaultfontfeatures[Myriad Pro Light]{Ligatures=TeX,Scale=0.95}
 \setmainfont[BoldFont={Myriad Pro},SmallCapsFont={Myriad Pro SemiExtended},SmallCapsFeatures={Scale=0.95}]{Myriad Pro Light}
 \setsansfont[BoldFont={Myriad Pro},Color=273777]{Myriad Pro Light}
 \setmonofont[Scale=0.9]{Consolas}
@@ -388,7 +388,10 @@ latex_elements = {
 \makeatother
 \AtBeginDocument{\globalcolor{BaseColor}}
 """
-+ ('\hypersetup{urlcolor=OuterLinkColor}\n' if tags.has('screen') else ''),
++ ( r"""
+\hypersetup{urlcolor=OuterLinkColor}
+\renewcommand{\sphinxcrossref}[1]{\textbf{#1}}"""
+    if tags.has('screen') else ''),
 
 # For PdfLaTeX I gave up, but switching to XeLaTeX got it working
 # Gave up and used unicode checkmark instead

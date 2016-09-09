@@ -65,7 +65,7 @@
 \RequirePackage{float}
 
 % Redefine these colors to your liking in the preamble.
-\definecolor{BaseColor}{cmyk}{0.0,0.0,0.0,0.9}
+\definecolor{BaseColor}{cmyk}{0.0,0.0,0.0,0.95}
 \definecolor{TitleColor}{cmyk}{0.83,0.41,0,0}
 \definecolor{InnerLinkColor}{rgb}{0.153,0.216,0.467}
 \definecolor{OuterLinkColor}{rgb}{0.11,0.43,0.73}
@@ -179,7 +179,8 @@
 \newcommand{\sphinxtitleref}[1]{\emph{#1}}
 \newcommand{\sphinxmenuselection}[1]{\emph{#1}}
 \newcommand{\sphinxaccelerator}[1]{\underline{#1}}
-\newcommand{\sphinxcrossref}[1]{\emph{#1}}
+%% remove emphasis for cross references
+\newcommand{\sphinxcrossref}[1]{#1}
 \newcommand{\sphinxtermref}[1]{\emph{#1}}
 
 % miscellaneous related to footnotes
@@ -801,14 +802,15 @@
 % From docutils.writers.latex2e
 % inline markup (custom roles)
 % \DUrole{#1}{#2} tries \DUrole#1{#2}
+%% re-add emphasis for chapter references
 \providecommand*{\DUrole}[2]{%
   \ifcsname DUrole#1\endcsname%
-    \csname DUrole#1\endcsname{#2}%
+    \csname DUrole#1\endcsname\emph{#2}%
   \else% backwards compatibility: try \docutilsrole#1{#2}
     \ifcsname docutilsrole#1\endcsname%
-      \csname docutilsrole#1\endcsname{#2}%
+      \csname docutilsrole#1\endcsname\emph{#2}%
     \else%
-      #2%
+      \emph{#2}%
     \fi%
   \fi%
 }
