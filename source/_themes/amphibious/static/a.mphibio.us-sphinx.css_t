@@ -12,8 +12,10 @@ h2 {margin-bottom: 5px;}
 td.field-body ul.simple { margin-left: 1em; }
 
 code,pre,tt { font-family: Menlo, Consolas, Monaco, "Courier New", Courier, monospace;}
-code,pre,tt.literal{padding:0 3px 2px;font-size:12px;color:#333;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
-code{padding:2px 4px;color:#d14;background-color:#f7f7f9;border:1px solid #e1e1e8}
+code,pre,tt.literal{padding:0 2px 2px;font-size:12px;color:#333}
+code{border:0px}
+code.descname{color:#d14}
+code.literal{padding:2px 4px;color:#d14;background-color:#f7f7f9;border:1px solid #e1e1e8;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
 
 pre{display:block;padding:1px 8px;margin:0 0 9px;font-size:12.025px;line-height:1.6;word-break:break-all;word-wrap:break-word;white-space:pre;white-space:pre-wrap;background:#f4fbfd url(highlight_bg.png) left top repeat; ;border:1px solid #e6f6fb;border:1px solid rgba(0,204,255,0.625);}
 .pre {white-space: nowrap;}
@@ -341,6 +343,7 @@ button.reset_button:active, button.search_button:active {
 
 .dropdown-menu ul.unstyled li.toctree-l1 ul.unstyled { display:none; }
 .dropdown-menu ul.unstyled li.toctree-l1.current ul.unstyled { display:block; }
+.dropdown-menu ul.unstyled li.toctree-l1.current li.toctree-l2.current a.current { font-weight:bold; }
 
 .navbar{*position:relative;*z-index:2;margin-bottom:18px;overflow:visible;}
 
