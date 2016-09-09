@@ -60,10 +60,10 @@ subsequently encountered square brackets will be treated as plain text. Turning
 square brackets off works on a per-file basis, and cannot be turned back on once
 they are off.
 
+.. _calling-lasso-web-ex:
+
 To illustrate how Lasso code is embedded within a Lasso page, the following code
 may be stored in a file named "test.lasso" contained within the web server root.
-
-.. _calling-lasso-web-ex:
 
 ::
 
