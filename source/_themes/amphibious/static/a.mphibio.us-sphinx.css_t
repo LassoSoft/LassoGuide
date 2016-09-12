@@ -74,6 +74,27 @@ dl dd {
 	color: #666;
 }	
 
+div.admonition {
+	border: 1px solid #959595;
+	-o-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+div.admonition.seealso {
+	border: none;
+}
+div.admonition.note, div.admonition.tip {
+	background-color: #d8edf8;
+}
+div.admonition.important, div.admonition.attention {
+	background-color: #fff8da;
+}
+div.admonition.caution, div.admonition.warning {
+	background-color: #ffe4e0;
+}
+div.admonition p.last, div.admonition ul.last, div.admonition ol.last { margin-bottom: 0; } 
 
 footer p.small.r .to_top {position: fixed;bottom: 10px;right: 20px;}
 
