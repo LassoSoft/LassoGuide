@@ -5,7 +5,16 @@
  Lasso Operations Guide
 ########################
 
-.. insert summary for HTML version
+.. only:: html
+
+   These chapters expand on the syntax and language features taught in the
+   :ref:`index_language` by first introducing the basic data types in Lasso and
+   how to use them. Next are guides to the ways Lasso can exchange file-based
+   and raw data with the host operating system, then the standard functions that
+   are useful when writing a web-based app, and finally how to have Lasso
+   communicate with external services via standard network protocols. These
+   should give you a clear understanding of how to start creating web
+   applications using Lasso.
 
 .. container:: col four first
 

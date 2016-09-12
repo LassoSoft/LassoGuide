@@ -5,7 +5,11 @@
  Lasso API Guide
 #################
 
-.. insert summary for HTML version
+.. only:: html
+
+   Lasso's C and Java interfaces make it possible to write your own
+   high-performance types and data source connectors, or link Lasso to external
+   libraries for extra capabilities not offered by its own standard library.
 
 .. container:: col eight first
 

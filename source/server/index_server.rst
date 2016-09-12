@@ -5,7 +5,12 @@
  Lasso Server Guide
 ####################
 
-.. insert summary for HTML version
+.. only:: html
+
+   The first few chapters explain the parts that compose the Lasso product and
+   how to install it on each supported operating system. After those are guides
+   to the interface for managing Lasso's instances, the settings for each
+   instance, and how to set up connections to each supported data source.
 
 .. container:: col eight first
 

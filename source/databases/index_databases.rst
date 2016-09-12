@@ -5,7 +5,12 @@
  Lasso Databases Guide
 #######################
 
-.. insert summary for HTML version
+.. only:: html
+
+   The ability to communicate with a wide variety of data sources is a core
+   feature of Lasso. These chapters show by example how to query and update
+   database records, and explain some of the special considerations for each
+   class of data source.
 
 .. container:: col eight first
 
