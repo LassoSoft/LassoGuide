@@ -390,7 +390,7 @@ for a literal single quote.
 See the ICU website for a detailed explanation of `ICU date formatting
 symbols`_.
 
-.. Sphinx isn't generating proper LaTeX for multi-row cells
+.. line blocks in table cells requires p column type and adds excess vertical space
 
 .. tabularcolumns:: llll
 
