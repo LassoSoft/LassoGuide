@@ -11,10 +11,6 @@ is given. This makes programming sort of like a `"Choose Your Own Adventure"`_
 book that has different endings depending on what actions you choose for the
 character throughout the book.
 
-.. note::
-   For more information on logic expressions, see the :ref:`control-flow`
-   chapter.
-
 
 Basic If/Else Statement
 =======================
@@ -79,5 +75,9 @@ before an optional final ``else``.
 
 So the example page above will say "Good Evening!" from 5 PM--4:59 AM, "Good
 Morning!" from 5 AM--11:59 AM, and "Good Afternoon!" from 12 PM--4:59 PM.
+
+.. seealso::
+   For detailed documentation on logic expressions, see the :ref:`control-flow`
+   chapter.
 
 .. _"Choose Your Own Adventure": https://en.wikipedia.org/wiki/Choose_Your_Own_Adventure

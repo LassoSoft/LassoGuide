@@ -14,8 +14,7 @@ you can reference them after they are created). In general, local variables can
 only be referenced inside the method they were created in or on the same page
 they were created in while thread variables can be referenced anywhere. (This
 description is not strictly accurate, but more of a general guideline for our
-purposes in this tutorial. For more information on variables, see the
-:ref:`variables` chapter.)
+purposes in this tutorial.)
 
 
 Using Variable For date->hour
@@ -98,3 +97,6 @@ delimiter::
 Now I have added a variable named "greeting" that gets set to a string with the
 proper greeting using our logic from before. I then use the "greeting" variable
 in the view code to have the HTML document display the proper greeting.
+
+.. seealso::
+   For detailed documentation on variables, see the :ref:`variables` chapter.

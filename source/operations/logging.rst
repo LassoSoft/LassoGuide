@@ -52,7 +52,7 @@ Database
 The routing of Lasso's internal log levels can be modified using the "Log Book"
 section of the Lasso Server Admin interface
 (:ref:`!http://example.com/lasso9/admin/logbook`). For details on how to change
-the log level routing programmatically see the section :ref:`logging-routing`
+the log level routing programmatically, see the section :ref:`logging-routing`
 later in this chapter.
 
 
@@ -192,9 +192,8 @@ change the log settings programmatically.
    The first parameter specifies a log message level. Subsequent parameters
    specify the destination to which that level of messages should be logged.
    Both the log level and any destinations are specified with integer values. It
-   is preferred that you use the convenience methods to specify those integer
-   values rather than using literal integer values. See the methods described
-   below.
+   is preferred that you use the convenience methods described below as
+   parameters rather than using literal integer values.
 
 .. method:: log_level_critical()
 

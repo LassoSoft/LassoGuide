@@ -429,8 +429,8 @@ The `fail` method can be used in the following ways:
    capture block will be executed. The `handle` block can recover from the error
    and allow execution to continue by using the `error_reset` method.
 
--  To trigger immediate execution of a `protect` capture block's `handle` block.
-   See the next section for details.
+-  To trigger immediate execution of a `protect` capture block's `handle` block,
+   which is described in the next section.
 
 The `fail_if` method allows conditional execution of a `fail` without using a
 full if/else conditional. The first parameter to `fail_if` is a conditional

@@ -291,7 +291,8 @@ to show the methods most commonly used when working with an XML document.
    the node type. For example an attribute node will return the attribute value.
    A text node will return the text content for the node. Many node types, such
    as element nodes, will return "null". This value is read/write for nodes that
-   have values (see the `xml_node->nodeValue=` method).
+   have values, and in such cases can be set with the `xml_node->nodeValue=`
+   method.
 
 .. member:: xml_node->parentNode()
 

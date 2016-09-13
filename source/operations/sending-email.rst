@@ -34,7 +34,7 @@ It is also possible to specify SMTP hosts directly within the `email_send`
 method.
 
 .. note::
-   If a local SMTP server is being used then Lasso must either have valid SMTP
+   If a local SMTP server is being used, then Lasso must either have valid SMTP
    AUTH credentials or otherwise be allowed to send messages through the SMTP
    server unrestricted. Consult the SMTP server documentation for details about
    how to set up SMTP AUTH security or how to allow specific IP addresses to
@@ -51,7 +51,7 @@ and low-priority messages.
    The maximum size of an email message including all attachments must be less
    than 8 MB when using the `email_send` method. If necessary, larger messages
    can be sent using the ``-immediate`` parameter or the `email_immediate`
-   method described in the section :ref:`sending-email-composing`.
+   method described in the section :ref:`sending-email-composing` below.
 
 
 Email Composition
@@ -393,7 +393,7 @@ attached files and make them available.
    The maximum size of an email message including all attachments must be less
    than 8 MB when using the `email_send` method. If necessary, larger messages
    can be sent using the ``-immediate`` parameter or the `email_immediate`
-   method described in the :ref:`sending-email-composing` section.
+   method described in the section :ref:`sending-email-composing` below.
 
 The following example shows a pair of files being sent with an email message.
 The attachments are named "MyAttachment.txt" and "MyAttachment2.txt". They are
@@ -844,7 +844,7 @@ as quickly as possible. ::
       }
    }
 
-.. note::
+.. tip::
    The `email_merge` method discussed earlier in this chapter can also be used
    to send an email message to a collection of recipients quickly.
 

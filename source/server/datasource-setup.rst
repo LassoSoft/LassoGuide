@@ -203,7 +203,7 @@ To add a new FileMaker Server host:
 #. Enter the IP address or domain name where the FileMaker Server data sources
    are being hosted.
 #. Enter the TCP port the FileMaker Server communicates on in the "Port" field.
-   See the FileMaker Server documentation for information on where to find or
+   See the `FileMaker Server documentation`_ for information on where to find or
    set this. It is commonly "80" for FileMaker Server, or "443" to connect over
    https.
 #. Select "Yes" from the :guilabel:`Enabled` drop-down to enable the host.
@@ -228,9 +228,9 @@ Setting up a data source host in Lasso Server Admin is the best way to ensure
 that access to the data source is centrally controlled. However, it can
 sometimes be beneficial to access a data source host without a lot of
 configuration. This section describes how to construct an `inline` method to
-access a FileMaker Server data source host. See the
-:ref:`database-inline-connection` section for full details about specifying
-hosts in inlines.
+access a FileMaker Server data source host. See the section
+:ref:`database-inline-connection` for full details about specifying hosts in
+inlines.
 
 To access a FileMaker Server host directly in an `inline` method, the ``-host``
 parameter can be used to specify all of the connection parameters. The ``-host``
@@ -271,7 +271,7 @@ browser to verify that the Web Publishing Engine is working correctly. Replace
 
 If either URL returns an error code other than 0 or fails in any way, Lasso will
 be unable to submit requests to FileMaker Server. Verify that XML Publishing is
-enabled or consult the FileMaker Server documentation on how to proceed.
+enabled or consult the `FileMaker Server documentation`_ on how to proceed.
 
 
 .. _datasource-setup-mysql:
@@ -389,8 +389,9 @@ Setting up a data source host in Lasso Server Admin is the best way to ensure
 that access to the data source is centrally controlled. However, it can
 sometimes be beneficial to access a data source host without a lot of
 configuration. This section describes how to construct an `inline` method that
-accesses a MySQL data source host. See the :ref:`database-inline-connection`
-section for full details about specifying hosts in inlines.
+accesses a MySQL data source host. See the section
+:ref:`database-inline-connection` for full details about specifying hosts in
+inlines.
 
 To access a MySQL host directly in an `inline` method, the ``-host`` parameter
 can be used to specify all of the connection parameters. The ``-host`` parameter
@@ -549,8 +550,9 @@ Setting up a data source host in Lasso Server Admin is the best way to ensure
 that access to the data source is centrally controlled. However, it can
 sometimes be beneficial to access a data source host without a lot of
 configuration. This section describes how to construct an `inline` method that
-accesses an Oracle data source host. See the :ref:`database-inline-connection`
-section for full details about specifying hosts in inlines.
+accesses an Oracle data source host. See the section
+:ref:`database-inline-connection` for full details about specifying hosts in
+inlines.
 
 To access an Oracle host directly in an `inline` method, the ``-host`` parameter
 can be used to specify all of the connection parameters. The ``-host`` parameter
@@ -652,9 +654,9 @@ Setting up a data source host in Lasso Server Admin is the best way to ensure
 that access to the data source is centrally controlled. However, it can
 sometimes be beneficial to access a data source host without a lot of
 configuration. This section describes how to construct an `inline` method that
-accesses a PostgreSQL data source host. See the
-:ref:`database-inline-connection` section for full details about specifying
-hosts in inlines.
+accesses a PostgreSQL data source host. See the section
+:ref:`database-inline-connection` for full details about specifying hosts in
+inlines.
 
 To access a PostgreSQL host directly in an `inline` method, the ``-host``
 parameter can be used to specify all of the connection parameters. The ``-host``
@@ -911,8 +913,9 @@ Setting up a data source host in Lasso Server Admin is the best way to ensure
 that access to the data source is centrally controlled. However, it can
 sometimes be beneficial to access a data source host without a lot of
 configuration. This section describes how to construct an `inline` method that
-accesses an ODBC data source host. See the :ref:`database-inline-connection`
-section for full details about specifying hosts in inlines.
+accesses an ODBC data source host. See the section
+:ref:`database-inline-connection` for full details about specifying hosts in
+inlines.
 
 To access an ODBC host directly in an `inline` method, the ``-host`` parameter
 can be used to specify all of the connection parameters. The ``-host`` parameter
@@ -967,7 +970,7 @@ Requirements
       example configuration.
 
    :Windows:
-      The necessary client libraries should already be installed.
+      The required client libraries are pre-installed with the operating system.
 
 
 Configuring SQL Server
@@ -1017,9 +1020,9 @@ Setting up a data source host in Lasso Server Admin is the best way to ensure
 that access to the data source is centrally controlled. However, it can
 sometimes be beneficial to access a data source host without a lot of
 configuration. This section describes how to construct an `inline` method that
-accesses a SQL Server data source host. See the
-:ref:`database-inline-connection` section for full details about specifying
-hosts in inlines.
+accesses a SQL Server data source host. See the section
+:ref:`database-inline-connection` for full details about specifying hosts in
+inlines.
 
 To access a SQL Server host directly in an `inline` method, the ``-host``
 parameter can be used to specify all of the connection parameters. The ``-host``
@@ -1067,6 +1070,7 @@ Lasso Server to function. Custom databases may be created and added to this
 folder and Lasso `inline` methods will automatically have access to them using
 the ``-database`` parameter.
 
+.. _FileMaker Server documentation: http://www.filemaker.com/support/product/documentation.html
 .. _Instant Client download: http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html
 .. _Visual C++ 2010 x64 Redistributable: https://www.microsoft.com/en-us/download/details.aspx?id=26999
 .. _basic configuration of an Oracle database server: http://docs.oracle.com/cd/B28359_01/nav/portal_1.htm

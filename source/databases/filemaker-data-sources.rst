@@ -16,7 +16,7 @@ all of the common procedures outlined in the :ref:`database-interaction`,
 :ref:`searching-displaying`, and :ref:`adding-updating` chapters can be used
 with FileMaker data sources.
 
-.. note::
+.. important::
    The methods and options defined in this chapter can only be used with
    FileMaker data sources. Any solution that relies on the methods in this
    chapter cannot be easily retargeted to work with a different data source.
@@ -177,8 +177,8 @@ Search Operators
 
 By default FileMaker performs a "begins with" search for each field in a query.
 In FileMaker Server each field can only be specified one time within each search
-query. See the information about FileMaker search symbols below for strategies
-to perform complex queries in FileMaker Server.
+query. See the information below on FileMaker search symbols for strategies to
+perform complex queries in FileMaker Server.
 
 Lasso also provides the following operators that allow different queries to be
 performed. Each operator should be specified immediately before the field and
@@ -746,8 +746,8 @@ Value Lists
 Value lists in FileMaker allow a set of possible values to be defined for a
 field. The items in the value list associated with a field on the current layout
 for a Lasso action can be retrieved using the `value_list` methods as shown in
-the examples below. See the documentation for more information about how to
-create and use value lists within FileMaker.
+the examples below. See the `FileMaker documentation`_ for more information on
+how to create and use value lists.
 
 In order to display values from a value list, the layout referenced in the
 current database action must contain a field formatted to show the desired value

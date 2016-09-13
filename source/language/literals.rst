@@ -144,14 +144,18 @@ in the source code. ::
 .. method:: boolean()
 .. method:: boolean(obj::any)
 
-   Casts a value to a boolean value. Only the following values evaluate to
-   "false"; all others are "true":
+   Casts a value to a boolean value. Only the following objects and values
+   evaluate to "false"; all others are "true":
 
-   -  integer zero: ``0``
-   -  decimal zero: ``0.0``
-   -  empty string: ``''``, ``""``, ``````
+   -  :type:`integer` zero: ``0``
+   -  :type:`decimal` zero: ``0.0``
    -  :type:`null` and :type:`void`
    -  calling `boolean` with no parameter
+   -  empty :type:`string`: ``''``, ``""``, ``````
+
+   .. note::
+      Although the empty string evaluates to "false", this functionality is
+      deprecated. Instead, call `string->size` to check for empty strings.
 
 
 Integer Literals

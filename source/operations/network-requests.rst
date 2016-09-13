@@ -1188,8 +1188,8 @@ for your FTP needs if possible.
    exist at the location specified by the URL, one will be created with the data
    specified by the ``-data`` parameter. If a file does exist at the path
    specified by the URL then its contents will be overwritten with the new data.
-   (See the example below for how to change the behavior to append the data
-   instead.)
+   (See the example below for how to change the method's behavior to append the
+   data instead.)
 
    This method can optionally take a username and password to be used for
    authentication to the FTP server. Also, the ``-options`` parameter can be

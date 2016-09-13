@@ -120,7 +120,7 @@ perform database actions that are available in Lasso.
    that Lasso supports. Individual data source connectors may only support a
    subset of these parameters. For example, the Lasso Connector for FileMaker
    Server does not support the ``-sql`` action. See the documentation for
-   third-party data source connectors for information about what actions they
+   third-party data source connectors for information about which actions they
    support.
 
 Each database action parameter requires additional parameters in order to
@@ -391,7 +391,7 @@ Variables can pass through into nested inlines.
 
 .. tip::
    SQL nested inlines can also be used to perform reversible SQL transactions in
-   transaction-compliant data sources. See the :ref:`sql-transactions` section
+   transaction-compliant data sources. See the section :ref:`sql-transactions`
    in the :ref:`sql-data-sources` chapter for more information.
 
 
@@ -684,7 +684,9 @@ Inline Action Result Methods
 The following documentation details the methods that allow information about the
 results of the current action to be returned. These methods provide information
 about the current found set rather than providing data about the database or
-providing information about what database action was performed.
+providing information about what database action was performed. Examples of
+using most of these methods are provided in the :ref:`searching-displaying` and
+:ref:`sql-data-sources` chapters.
 
 .. method:: field(name::string, ...)
 .. method:: column(name::string, ...)
@@ -770,10 +772,6 @@ providing information about what database action was performed.
 .. method:: shown_last()
 
    Returns the number of the last record shown from the found set.
-
-.. note::
-   Examples of using most of these methods are provided in the
-   :ref:`searching-displaying` and :ref:`sql-data-sources` chapters.
 
 The action result methods can be used to display information about the current
 found set. For example, the following code generates a status message that can
@@ -878,6 +876,8 @@ for the inner map are the field names for each record in the found set. ::
 
    // => map(1 = map(first = John, last = Doe), 2 = map(first = Jane, last = Doe), ...)
 
+
+.. _database-schema-inspection:
 
 Database Schema Inspection Methods
 ==================================

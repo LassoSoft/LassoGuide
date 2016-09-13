@@ -16,11 +16,6 @@ To build interactive web applications, Lasso gives programmers the ability to
 inspect the request being made using the `web_request` object. In this tutorial,
 we'll explore using and inspecting query parameters.
 
-.. note::
-   For a list and description of all the methods of the `web_request` object
-   that can be used to examine client requests, see the table
-   :ref:`requests-responses-variable-methods`.
-
 
 What Are Query Parameters?
 ==========================
@@ -146,9 +141,14 @@ the hour we wish to view. This will cause the form to submit its request.
 We also changed `web_request->queryParam` to `web_request->postParam` in the top
 part of the code since we are now looking for a POST parameter named "hour".
 
-.. note::
+.. tip::
    If you want to be able to expect a parameter to be passed as either a POST or
    a query param, then you can use `web_request->param`.
+
+.. seealso::
+   For a list and description of all the methods of the `web_request` object
+   that can be used to examine client requests, see the table
+   :ref:`requests-responses-variable-methods`.
 
 
 Conclusion

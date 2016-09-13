@@ -201,8 +201,8 @@ the values in a particular manner.
 
 The following example defines a ``person`` type that manually exposes its
 "firstName" data member by defining two member methods, one for the getter and
-another for the setter. See the section on :ref:`member methods
-<types-member-methods>` for more information on creating member methods. ::
+another for the setter. (See the section on :ref:`member methods
+<types-member-methods>` for more information on creating member methods.) ::
 
    define person => type {
 
@@ -447,8 +447,8 @@ Every type has a single trait which may be composed of other subtraits. A type
 inherits all of the methods that its trait defines, provided that the type
 implements the requirements for the trait. For example, a type must be
 serializable for it to be stored in a session, which means importing the
-:trait:`trait_serializable` trait. See the :ref:`traits` chapter for a
-complete description of how traits are created.
+:trait:`trait_serializable` trait. (See the :ref:`traits` chapter for a
+complete description of how traits are created.)
 
 The trait section of a type expression can import one or more other traits.
 These traits are combined to form the trait for the type. The following code
@@ -834,6 +834,7 @@ type or object. These methods are summarized below, and can be called by any
 type.
 
 .. member:: null->type()
+   :noindex:
 
    Returns the type name for any type instance. The value is the name that was
    used when the type was defined.

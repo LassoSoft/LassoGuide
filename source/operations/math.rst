@@ -702,7 +702,7 @@ power of 10. ::
    in a variable does not need to be rounded, then either the
    `integer->asString` or `decimal->asString` method can be used to alter how
    the number is displayed. See the documentation of these methods earlier in
-   the chapter for more information.
+   this chapter for more information.
 
 
 Return a Random Integer Value

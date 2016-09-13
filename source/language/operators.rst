@@ -209,15 +209,9 @@ Boolean Operations
 
 :dfn:`Boolean` describes the values "true" and "false". Lasso supports several
 operators that either treat their operands as boolean values and/or produce
-boolean values. These operators are broken down into several categories.
-
-.. note::
-   In Lasso, most objects will be treated as "true", but the following objects
-   and values will be treated as "false": the :type:`integer` "0", the
-   :type:`decimal` "0.0", and the types :type:`null` and :type:`void`. An empty
-   :type:`string` also evaluates to "false", but this functionality is
-   deprecated; change your code to call `string->size` to check for empty
-   strings. All other objects and values are assumed to be "true".
+boolean values. These operators are broken down into several categories. (See
+the definition of :type:`boolean` for how other other values are cast to boolean
+types.)
 
 
 .. _operators-logical:
@@ -610,15 +604,15 @@ the case of ``->\``), and the execution of the method when the
    Additional Syntax
    =================
 
-   There are several other operator-like syntax elements that will be described in
-   detail in later sections of this document. Many of them apply in limited
+   There are several other operator-like syntax elements that will be described
+   in detail in later sections of this document. Many of them apply in limited
    situations or special contexts and so are beyond the scope of this chapter.
 
    .. seealso::
 
-      :**Association Operator** ``=>``:
-         See :ref:`methods`, :ref:`types` chapters
-      :**Keywords** ``return``, ``yield``, etc.:
-         See :ref:`captures`, :ref:`methods` chapters
-      :**Code/Capture blocks** ``{ ... }``, ``{^ ... ^}``:
-         See :ref:`control-flow`, :ref:`captures`, :ref:`methods` chapters
+      -  **Association Operator** ``=>``
+         -- See :ref:`methods`, :ref:`types` chapters
+      -  **Keywords** ``return``, ``yield``, etc.
+         -- See :ref:`captures`, :ref:`methods` chapters
+      -  **Code/Capture blocks** ``{ ... }``, ``{^ ... ^}``
+         -- See :ref:`control-flow`, :ref:`captures`, :ref:`methods` chapters

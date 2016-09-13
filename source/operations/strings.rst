@@ -190,10 +190,8 @@ String Inspection Methods
 
 The :type:`string` type has many member methods that return information about
 the value of the string object. Many of these methods are documented below.
-
-.. note::
-   Information about regular expressions and the :type:`regexp` type can be
-   found in the :ref:`regular-expressions` chapter.
+(Information about regular expressions and the :type:`regexp` type is found in
+the :ref:`regular-expressions` chapter.)
 
 .. type:: string
 

@@ -9,10 +9,6 @@ value that can then be referenced later. But wouldn't it be nice to be able to
 store a set of logic code for later re-use? That's where defining your own
 methods come in.
 
-.. note::
-   For detailed information on method definitions and multiple dispatch, be sure
-   to read the :ref:`methods` chapter after reading through this tutorial.
-
 
 Basic Method Definition
 =======================
@@ -188,5 +184,6 @@ Notice that all the first method does is return the value of invoking the second
 method. Once again, it's better not to have the same code in multiple places.
 Now any changes to the logic can again be made in only one place.
 
-For detailed information on method definitions and multiple dispatch, be sure to
-read the :ref:`methods` chapter.
+.. seealso::
+   For detailed documentation on method definitions and multiple dispatch, see
+   the :ref:`methods` chapter.

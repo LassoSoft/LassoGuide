@@ -7,15 +7,10 @@ Portable Document Format
 ************************
 
 Lasso provides support for creating :abbr:`PDF (Portable Document Format)`
-files. The PDF file format is a widely accepted standard for electronic
+files. The `PDF file format`_ is a widely accepted standard for electronic
 documentation, and facilitates superb printer-quality documents from simple
 graphs to complex forms such as tax forms, escrow documents, loan applications,
-stock reports, and user manuals. See this page for more `information on PDF
-technology`_.
-
-.. note::
-   The ``pdf_…`` methods in Lasso are implemented in LJAPI, and based on the
-   `iText Java library`_.
+stock reports, and user manuals.
 
 
 Lasso and PDF Files
@@ -24,7 +19,8 @@ Lasso and PDF Files
 PDF files are created in Lasso by using the :type:`pdf_doc` type, and calling
 various member methods and other ``pdf_…`` methods to add data to the object.
 The PDF is then written to file when the Lasso page containing all code is
-served by the web server.
+served by the web server. The ``pdf_…`` methods in Lasso are implemented in
+LJAPI, and use the `iText Java library`_.
 
 
 Create a Basic PDF File Using Lasso
@@ -54,8 +50,8 @@ folder as the page whose code created it.
 
 This chapter explains in detail how these and other methods are used to create
 and edit PDF files. This chapter also shows how to output a PDF file to a client
-browser within the context of a Lasso page, which is described in the
-:ref:`pdf-serving-files` section.
+browser within the context of a Lasso page, which is described in the section
+:ref:`pdf-serving-files` below.
 
 .. note::
    When creating files, the user running the Lasso Server instance or
@@ -214,7 +210,7 @@ with all methods described in this chapter.
 
    :param -file:
       Defines the file name and path of the PDF file. If omitted, the PDF
-      file is created in RAM (see the :ref:`pdf-serving-files` section for more
+      file is created in RAM (see the section :ref:`pdf-serving-files` for more
       information). If a file name is specified without a folder path, the file
       is created in the same location as the Lasso page containing the ``pdf_…``
       methods.
@@ -1276,15 +1272,14 @@ methods which are described below.
    `pdf_doc->addResetButton` methods, no form input element methods include
    captions or labels with the field elements. Field captions and labels can be
    applied using the `pdf_text` and `pdf_doc->add` methods to position text
-   appropriately. See the :ref:`pdf-creating-text-content` section for more
+   appropriately. See the section :ref:`pdf-creating-text-content` for more
    information.
 
-.. note::
-   All :type:`pdf_doc` form member methods, with the exception of
-   `~pdf_doc->addHiddenField` and `~pdf_doc->addRadioButtonGroup`, require
-   placement parameters for specifying the exact positioning of form elements
-   within a page. These parameters are summarized in the table
-   :ref:`pdf-form-placement`.
+All :type:`pdf_doc` form member methods, with the exception of
+`~pdf_doc->addHiddenField` and `~pdf_doc->addRadioButtonGroup`, require
+placement parameters for specifying the exact positioning of form elements
+within a page. These parameters are summarized in the table
+:ref:`pdf-form-placement`.
 
 .. tabularcolumns:: lL
 
@@ -2542,5 +2537,5 @@ be saved by the end user to a location on the end user's hard drive. ::
    #my_file->close
    pdf_serve(#my_file, -file='MyFile.PDF')
 
-.. _information on PDF technology: https://acrobat.adobe.com/us/en/why-adobe/about-adobe-pdf.html
+.. _PDF file format: https://acrobat.adobe.com/us/en/why-adobe/about-adobe-pdf.html
 .. _iText Java library: http://itextpdf.com/

@@ -35,10 +35,6 @@ greeting and background color for the time of day wherever we are. We could copy
 the "time_info" map everywhere we want it, but then we're making the code hard
 to change in the future. This is where a type would be handy.
 
-.. note::
-   For detailed documentation on creating custom Lasso types be sure to read the
-   :ref:`types` chapter.
-
 
 Using a Custom Type
 ===================
@@ -195,4 +191,8 @@ name of the method.
 
 The result is that we now have a custom type we can use on any page to get the
 time of day as well as the appropriate greeting and background color for that
-time of day. For in-depth documentation on types, see the :ref:`types` chapter.
+time of day.
+
+.. seealso::
+   For detailed documentation on creating custom Lasso types, see the
+   :ref:`types` chapter.

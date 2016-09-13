@@ -14,10 +14,6 @@ value for the hour. It could be -5 or 42. Since a 24-hour clock runs from 0--23,
 we should probably make sure that our ``time_of_day`` type only accepts those
 values.
 
-.. note::
-   For detailed documentation on error handling in Lasso be sure to read the
-   :ref:`error-handling` chapter.
-
 
 Throwing an Invalid Value Error
 ===============================
@@ -145,5 +141,6 @@ block). It's important that any ``handle_error`` or ``handle`` code be written
 above the code that may fail, otherwise those handlers will not be registered to
 be called when a problem occurs.
 
-And that's the basics of creating and handling errors. To learn more, please
-read the :ref:`error-handling` chapter.
+.. seealso::
+   For detailed documentation on creating and handling errors in Lasso, see the
+   :ref:`error-handling` chapter.

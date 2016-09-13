@@ -561,8 +561,8 @@ formatting and display to the visitor. The result parameters are summarized in
 the table :ref:`searching-result-parameters`.
 
 .. seealso::
-
-   -  SQL-specific methods and parameters in the :ref:`sql-data-sources` chapter
+   -  SQL data source--specific methods and parameters in the
+      :ref:`sql-data-sources` chapter
    -  FileMaker Server--specific methods and parameters in the
       :ref:`filemaker-data-sources` chapter
 

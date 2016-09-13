@@ -319,7 +319,9 @@ Search Field Operators for MySQL
 Additional field operators are available for the ``-operator`` (or ``-op``)
 parameter when searching MySQL data sources. These operators are summarized in
 the table below. Basic use of the ``-operator`` parameter is described in the
-:ref:`searching-displaying` chapter.
+:ref:`searching-displaying` chapter. See the `MySQL documentation`_ for more
+information on full-text searches and the regular expressions supported in
+MySQL.
 
 .. tabularcolumns:: lL
 
@@ -348,10 +350,6 @@ the table below. Basic use of the ``-operator`` parameter is described in the
                              search field value. Returns records that do not
                              match the regular expression value for that field.
    ========================= ===================================================
-
-.. note::
-   For more information on full-text searches and the regular expressions
-   supported in MySQL, see the `MySQL documentation`_.
 
 
 Perform a Full-Text Search on a Field
@@ -596,11 +594,11 @@ Searching for Null Values
 
 When searching tables in a SQL data source, "NULL" values may be explicitly
 searched for within fields using the :type:`null` object. A "NULL" value in a
-SQL data source designates that there is no other value stored in that
-particular field. This is similar to searching a field for an empty string (e.g.
+SQL data source designates that there is no value stored in that particular
+field. This is similar to searching a field for an empty string (e.g.
 ``'fieldname'=''``), however "NULL" values and empty strings are not the same in
-SQL data sources. For more information about "NULL" values, see the
-documentation for the data source. ::
+SQL data sources. For more information about how "NULL" values are handled, see
+the documentation for each data source. ::
 
    inline(
       -search,
@@ -623,8 +621,8 @@ Adding and Updating Records
 ===========================
 
 In Lasso, there are special add and update operations that can be performed
-using SQL data sources in addition to all add and update operations described in
-the :ref:`adding-updating` chapter.
+using SQL data sources in addition to all the add and update operations
+described in the :ref:`adding-updating` chapter.
 
 
 Multiple Field Values
@@ -682,10 +680,11 @@ Null Values
 -----------
 
 "NULL" values can be explicitly added to fields using the :type:`null` object. A
-"NULL" value in a SQL data source designates that there is no value for a
-particular field. This is similar to setting a field to an empty string (e.g.
-``'fieldname'=''``), however the two are different in SQL data sources. For more
-information about "NULL" values, see the documentation for the data source.
+"NULL" value in a SQL data source designates that there is no value stored in
+that particular field. This is similar to setting a field to an empty string
+(e.g. ``'fieldname'=''``), however the two are different in SQL data sources.
+For more information about how "NULL" values are handled, see the documentation
+for each data source.
 
 
 Add or Update a Null Field Value
@@ -746,9 +745,9 @@ displayed using the methods defined below. None of these methods will work in
    Displays the word "checked" if the current value list item is contained in
    the data of the "ENUM" or "SET" field.
 
-.. note::
-   See the :ref:`database-interaction` chapter for information about the
-   ``-show`` parameter which is used throughout this section.
+.. tip::
+   See the section :ref:`database-schema-inspection` for information about the
+   ``-show`` parameter which is used throughout these examples.
 
 
 Display Allowed Values for an ENUM or SET Field

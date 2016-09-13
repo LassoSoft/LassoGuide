@@ -202,7 +202,7 @@ Date Methods
    recognizes the same formats as the `date` creator methods). The format can be
    specified as the second parameter or as the value part of a ``-format``
    keyword parameter and defines the format for the return value. See the
-   :ref:`date-duration-formatting-dates` section below for more details on
+   section :ref:`date-duration-formatting-dates` below for more details on
    format strings.
 
 .. method:: date_setFormat(format::string)
@@ -378,7 +378,7 @@ the same length.
    A date value parsed with the ``%z`` or ``%Z`` symbols will result in a date
    object for the equivalent GMT date/time.
 
-As of version 9, Lasso also recognizes the ICU formatting strings for both
+As of version 9, Lasso also recognizes `ICU date formatting symbols`_ for both
 creating and displaying dates. These format strings simply use letters to
 specify the format without any flags (such as the ``%`` character). For example,
 the ICU format string to output a two-digit year is ``yy``, and to output a
@@ -386,9 +386,6 @@ four-digit year is ``yyyy``. Because of this, characters that are not symbols
 need to be escaped if they are in the format string. To escape characters in an
 ICU format string, wrap them in single quotes. Use two consecutive single quotes
 for a literal single quote.
-
-See the ICU website for a detailed explanation of `ICU date formatting
-symbols`_.
 
 .. line blocks in table cells requires p column type and adds excess vertical space
 
@@ -701,13 +698,13 @@ adjustments on date objects.
    common fields can also be retrieved through individual member methods.
 
    See the table :ref:`date-duration-field-elements` for the full list of
-   parameters that this method can retrieve.
+   value types that this method can retrieve.
 
 .. tabularcolumns:: lL
 
 .. _date-duration-field-elements:
 
-.. table:: Date Field Elements for ``get`` and ``set``
+.. table:: Date Field Element Parameters for ``get`` and ``set``
 
    ====================== ======================================================
    Parameter              Description

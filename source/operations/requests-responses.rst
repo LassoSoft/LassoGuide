@@ -431,8 +431,8 @@ file accessed directly would. That is, they begin executing as plain text and
 any Lasso code must be included between delimiters.
 
 The path to an include file can be full or relative. Complete paths from the
-file system root are accepted as well. Consult the :ref:`files` chapter for more
-details on how file paths are treated in Lasso. Components of LassoApps can be
+file system root are accepted as well. (See the :ref:`files` chapter for more
+details on how file paths are treated in Lasso.) Components of LassoApps can be
 included as well by beginning the path with "/lasso9/", then the app name and
 then the path to the component.
 

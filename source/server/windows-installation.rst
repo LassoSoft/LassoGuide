@@ -106,7 +106,7 @@ Restart IIS when finished to apply the new configuration.
 Configuring Apache 2.2
 ======================
 
-.. note::
+.. tip::
    Only 32-bit installers of Apache 2.2 are officially available from
    `<http://httpd.apache.org/>`_, but `unofficial 64-bit installers`_ can be
    found elsewhere online.

@@ -14,10 +14,6 @@ example on the previous page, we store an integer of the current hour into one
 variable and a string of the greeting we are going to use in another. We could,
 however, store them in the same variable by using a collection type.
 
-.. note::
-   For more information on various collection types available in Lasso, see the
-   :ref:`collections` chapter.
-
 
 Using an Array
 ==============
@@ -153,3 +149,7 @@ with another map. This means that when we look up the key for the variable
 then use the map stored in "time_of_day" to get the background color and the
 greeting for the current time of day. For extra credit, change this solution to
 use an array of maps instead.
+
+.. seealso::
+   For detailed documentation on Lasso's collection types, see the
+   :ref:`collections` chapter.

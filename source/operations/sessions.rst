@@ -183,7 +183,7 @@ Below is a description of each of the session methods:
    need to be called directly. It trigers a cleanup routine that deletes expired
    sessions from the current session storage location.
 
-.. note::
+.. tip::
    The ``-useCookie`` is the default for `session_start` unless ``-useLink`` or
    ``-useNone`` are specified. Use ``-useLink`` to track a session using only
    links. Use both ``-useLink`` and ``-useCookie`` to track a session using both

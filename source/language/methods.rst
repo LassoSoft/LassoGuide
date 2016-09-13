@@ -40,7 +40,8 @@ Some valid examples of method names are shown below::
 There are several other characters that are valid in specific circumstances. The
 mathematical operators ``+``, ``-``, ``*``, ``/``, and ``%`` are used in method
 names when supplying implementations for these operations for types. See the
-:ref:`types` chapter for more information.
+section :ref:`types-overloading` in the :ref:`types` chapter for more
+information.
 
 Most signatures consist of a method name followed by parentheses which surround
 a list of parameters for the method, and an optional return type.

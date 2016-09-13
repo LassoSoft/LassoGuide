@@ -428,9 +428,8 @@ would result in "360-555-1212" after a find/replace operation.
    Names a group in the replace string. ``$0`` represents the entire matched
    string. Up to nine groups can be specified using the digits 1 through 9.
 
-.. note::
-   In order to place a literal ``$`` in a replacement string it is necessary to
-   escape it as ``\$``.
+.. tip::
+   To place a literal ``$`` in a replacement string, escape it as ``\$``.
 
 
 Advanced Expressions

@@ -238,7 +238,7 @@ The files shown above will expose the following URLs:
    http://localhost/lasso9/AddressBook/users.rss
    http://localhost/lasso9/AddressBook/users.xhr
 
-.. note::
+.. tip::
    A filename with an explicit content type overrides a file with a plain
    extension. For example, a request for
    :ref:`!http://localhost/lasso9/AddressBook/users` or
@@ -643,10 +643,8 @@ command. The resulting file will have a "|dot| lassoapp" extension and can be
 placed in the "LassoApps" directory. Lasso Server will load the LassoApp once it
 is restarted.
 
-.. note::
-   For information on compiling without using a makefile or on Windows, see the
-   section :ref:`command-compiling-lasso` in the :ref:`command-line-tools`
-   chapter.
+For information on compiling without using a makefile or on Windows, see the
+section :ref:`command-compiling-lasso` in the :ref:`command-line-tools` chapter.
 
 
 Installing the GCC compiler
