@@ -6,30 +6,25 @@
 Ubuntu Installation
 *******************
 
-These instructions are for installing Lasso Server on 32-bit/64-bit Ubuntu 12.
-
-.. only:: html
-
-   .. note::
-      For Ubuntu 14, you'll first need to manually download and install
-      `libicu48 for i386`_ or `libicu48 for amd64`_, and after installing Lasso,
-      download and install a newer module :download:`compiled for Apache 2.4
-      <../_downloads/u14_ap24_mod_lasso9.zip>` to the original's location at
-      :file:`/usr/lib/apache2/modules/mod_lasso9.so`.
+These instructions are for installing Lasso Server on 64-bit Ubuntu 14.
 
 
 Installation with apt
 =====================
 
-To install Lasso Server via :command:`apt`, the LassoSoft repository must be
-configured on the server. Add the repository by appending this to
-:file:`/etc/apt/sources.list`::
+If you don't already have the :command:`add-apt-repository` program, install it
+with the following command::
 
-   deb http://debianrepo.lassosoft.com/ legacy main
+   $> sudo apt-get install python-software-properties
 
 Import the LassoSoft public key::
 
    $> curl http://debianrepo.lassosoft.com/lassosoft-public.gpg.key | sudo apt-key add -
+
+To install Lasso Server via :command:`apt`, the LassoSoft apt repository must be
+configured on the server. Add the repository by running the following command::
+
+   $> sudo add-apt-repository "deb [arch=amd64] http://debianrepo.lassosoft.com/ stable main"
 
 Then run the following to install Lasso Server::
 
@@ -44,9 +39,9 @@ commands::
    $> sudo apt-get install lasso-java-api
    $> sudo apt-get install lasso-imagemagick
 
-When done, open :ref:`!http://your-server-domain.name/lasso9/instancemanager` to
-load the initialization form and complete your Lasso installation. From here on,
-you can read up on using the :ref:`instance-manager` and
+When done, open :ref:`!http://your-server-domain.name:8090/lasso9/lux` to load
+the initialization form and complete your Lasso installation. From here on, you
+can read up on using the :ref:`instance-manager` and
 :ref:`instance-administration` interfaces.
 
 
@@ -59,9 +54,7 @@ running :command:`dpkg`)::
 
    $> sudo apt-get update
    $> sudo apt-get install apache2
-   $> sudo dpkg -i lasso-instance-manager_9.2*.deb lasso-imagemagick_9.2*.deb lasso-java-api_9.2*.deb
+   $> sudo dpkg -i lasso-instance-manager_9.3*.deb lasso-imagemagick_9.3*.deb lasso-java-api_9.3*.deb
    $> sudo apt-get install -f
 
-.. _libicu48 for i386: https://launchpad.net/ubuntu/trusty/i386/libicu48/4.8.1.1-13+nmu1ubuntu1
-.. _libicu48 for amd64: https://launchpad.net/ubuntu/trusty/amd64/libicu48/4.8.1.1-13+nmu1ubuntu1
-.. _repository archive: http://debianrepo.lassosoft.com/9.2/
+.. _repository archive: http://debianrepo.lassosoft.com/9.3/

@@ -69,10 +69,10 @@ Installation
    :IIS plugin:
       :file:`C:\\Windows\\System32\\isapi_lasso9.dll`
 
-#. When the installer has finished and your web server has been configured,
-   open :ref:`!http://your-server-domain.name/lasso9/instancemanager` to load
-   the initialization form and complete your Lasso installation. From here on,
-   you can read up on using the :ref:`instance-manager` and
+#. When the installer has finished and your web server has been configured, open
+   :ref:`!http://your-server-domain.name:8090/lasso9/lux` to load the
+   initialization form and complete your Lasso installation. From here on, you
+   can read up on using the :ref:`instance-manager` and
    :ref:`instance-administration` interfaces.
 
 
@@ -255,16 +255,6 @@ Troubleshooting
       #. Uncheck "HTTP Errors"
       #. Click :guilabel:`OK`
       #. Continue through installation wizard
-
-.. only:: html
-
-   LassoTube How-Tos
-   =================
-
-   -  `Configure Apache 2 and Lasso
-      <http://www.youtube.com/watch?v=f7oCiUw-OxA&list=UUVvBq5EMVi4KoME3rvNOgOA&index=2&feature=plcp>`_
-   -  `Configure IIS 7 for Lasso
-      <http://www.youtube.com/watch?v=oQ-6K3EHY3M&feature=relmfu>`_
 
 .. _Microsoft Visual C++ 2012 Redistributable: http://www.microsoft.com/en-us/download/details.aspx?id=30679
 .. _Java support site: http://www.java.com/
