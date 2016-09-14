@@ -161,7 +161,7 @@ html_theme_path = ['_themes']
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
-# html_title = 'LassoGuide v9.2'
+# html_title = 'LassoGuide v%s' % version
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #
@@ -426,25 +426,25 @@ latex_additional_files = [
 if tags.has('volume1'):
     exclude_patterns.extend(['**/index.rst'])
     latex_documents = [
-      ('_latex/index_1', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: Language',
+      ('_latex/index_1', 'LassoGuide%s.tex' % version, r'\textbf{Lasso}Guide: Language',
        author, 'manual'),
     ]
 elif tags.has('volume2'):
     exclude_patterns.extend(['**/index.rst'])
     latex_documents = [
-      ('_latex/index_2', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: Applications',
+      ('_latex/index_2', 'LassoGuide%s.tex' % version, r'\textbf{Lasso}Guide: Applications',
        author, 'manual'),
     ]
 elif tags.has('volume3'):
     exclude_patterns.extend(['**/index.rst'])
     latex_documents = [
-      ('_latex/index_3', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide: API',
+      ('_latex/index_3', 'LassoGuide%s.tex' % version, r'\textbf{Lasso}Guide: API',
        author, 'manual'),
     ]
 else:
     exclude_patterns.extend(['**/index_[123].rst'])
     latex_documents = [
-      ('_latex/index', 'LassoGuide9.2.tex', r'\textbf{Lasso}Guide',
+      ('_latex/index', 'LassoGuide%s.tex' % version, r'\textbf{Lasso}Guide',
        author, 'manual'),
     ]
 
