@@ -21,7 +21,7 @@ I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
 LATEXRGB = -D pygments_style=latextracstyle.LatexTracStyle
 LATEXBW  = -D pygments_style=latexbwstyle.LatexBWStyle
-VERSION  = 9.2
+VERSION  = 9.3
 TODAY := $(shell touch source/index*.rst)
 
 .PHONY: help
