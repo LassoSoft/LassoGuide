@@ -20,7 +20,7 @@ can add Lasso code between the following delimiters: ``[ ... ]``, ``<?lasso ...
 ?>``, or ``<?= ... ?>``.
 
 For example, you could place the following code in a file named "test.lasso" in
-the root of your web root::
+the server's web root::
 
    <?lasso
       local(now) = date

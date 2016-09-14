@@ -217,12 +217,12 @@ cookie data.
 Uploading Files
 ---------------
 
-Lasso can process and manage files uploaded to your web server by visitors to
-your website. To allow visitors to upload files to your web server, use an HTML
+Lasso can process and manage files uploaded to a web server by visitors to your
+website. To allow visitors to upload files to your web server, use an HTML
 ``<form>`` tag along with an ``<input>`` tag for each file being uploaded. The
 form tag must have an "enctype" attribute of :mimetype:`multipart/form-data`,
 and the "input" tags for file uploads need to have a "type" attribute of "file".
-The following HTML code could be used to upload a single file to your server::
+The following HTML code could be used to upload a single file to the server::
 
    <form action="upload_file.lasso" method="post" enctype="multipart/form-data">
       <fieldset>
@@ -234,7 +234,7 @@ The following HTML code could be used to upload a single file to your server::
 
 The "file" input tells the browser to show controls for selecting a file to be
 uploaded to the web server. Once a user selects the file and then clicks
-"Upload", the form will upload the data to your web server and the files can be
+"Upload", the form will upload the data to the server and the files can be
 processed by "upload_file.lasso", the Lasso file specified as the action of the
 form submission.
 

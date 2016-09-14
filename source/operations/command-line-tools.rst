@@ -6,8 +6,8 @@ Command-Line Tools
 ******************
 
 The Lasso platform comes with various command-line tools to assist you. Lasso
-uses some of these tools to create and run the instances of Lasso that talk with
-your web server. This chapter will contain an overview of those tools and
+uses some of these tools to create and start the instances of Lasso that run on
+the web server. This chapter will contain an overview of those tools and
 describe how you can run them yourself.
 
 
@@ -25,7 +25,7 @@ response to web requests. Each instance of Lasso has its own lassoserver process
 running a FastCGI server. Additionally, the lassoserver executable can start up
 an HTTP server instead of a FastCGI server. As an HTTP server, it can serve both
 static files and Lasso files. This is useful for local development, though you
-should run a production web server (such as Apache) for your production servers.
+should run a production web server (such as Apache) on any production servers.
 
 The following is the list of options for running lassoserver:
 

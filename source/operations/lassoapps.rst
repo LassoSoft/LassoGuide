@@ -708,7 +708,7 @@ Server Admin app would be served out of a virtual host named "admin.local".
         RewriteRule ^ - [E=LASSOSERVER_APP_PREFIX:/lasso9/admin]
     </VirtualHost>
 
-Consult your web server documentation for further information.
+Consult your web server's documentation for further information.
 
 
 LassoApp Tips

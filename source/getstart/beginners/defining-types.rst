@@ -92,10 +92,10 @@ as well as an updated version of our page to use this custom type:
       </body>
    </html>
 
-Once again, the code for the page will be in a page in your web root, but the
-code for the type should be in a file residing in "LassoStartup" of the Lasso
-instance's home directory and having a name ending with "|dot| lasso" or "|dot|
-inc".
+Once again, the code for the page will be in a file in the server's web root,
+but the code for the type should be in a file residing in "LassoStartup" of the
+Lasso instance's home directory and having a name ending with "|dot| lasso" or
+"|dot| inc".
 
 
 Code Walkthrough

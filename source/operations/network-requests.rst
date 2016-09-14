@@ -1074,7 +1074,7 @@ Send Data with an HTTP PUT Request
 
 The following example issues an HTTP PUT request, passing data in the body of
 the request. The example result is a JSON-formatted string, but would be the
-body of the HTTP response given by your server. ::
+body of the HTTP response given by the server. ::
 
    include_url(
       'http://www.example.com/',

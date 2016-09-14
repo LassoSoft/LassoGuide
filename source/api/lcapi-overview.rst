@@ -78,7 +78,7 @@ Build a sample LCAPI module in Windows
    #. New methods ``example_math_abs``, ``example_math_sin``, and
       ``example_math_sqrt`` are now part of your Lasso installation.
 
-   #. Drag the sample Lasso page called :file:`MathFuncsCAPI.lasso` into your
+   #. Drag the sample Lasso page called :file:`MathFuncsCAPI.lasso` into the
       web server root.
 
    #. View the :file:`MathFuncsCAPI.lasso` page in a web browser to see the new
@@ -102,7 +102,7 @@ Build a sample LCAPI module in OS X or Linux
    #. New methods ``example_math_abs``, ``example_math_sin``, and
       ``example_math_sqrt`` are now part of your Lasso installation.
 
-   #. Drag the sample Lasso page called :file:`MathFuncsCAPI.lasso` into your
+   #. Drag the sample Lasso page called :file:`MathFuncsCAPI.lasso` into the
       web server root.
 
    #. View the :file:`MathFuncsCAPI.lasso` page in a web browser to see the new
@@ -128,7 +128,7 @@ Debug in Windows
       ``tagMathAbsFunc`` function.
 
    #. Use a web browser to access the sample :file:`MathFuncsCAPI.lasso` file on
-      your web server. Visual Studio will stop at the location that the
+      the web server. Visual Studio will stop at the location that the
       breakpoint was placed.
 
 Debug in OS X or Linux
@@ -161,7 +161,7 @@ Debug in OS X or Linux
          break tagMathAbsFunc
 
    #. Use a web browser to access the sample :file:`MathFuncsCAPI.lasso` file on
-      your web server. GNU Debugger will break at the first line in
+      the web server. GNU Debugger will break at the first line in
       ``tagMathAbsFunc`` when the ``example_math_abs`` method is called.
 
 .. tip::

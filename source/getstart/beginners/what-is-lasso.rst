@@ -47,7 +47,7 @@ Dealing with Dynamically Changing Content
 =========================================
 
 However, websites these days are much more dynamic and have constantly changing
-information and content. This isn't magic; your server must do the lifting for
+information and content. This isn't magic; the server must do the lifting for
 you. What follows is a simple example.
 
 
