@@ -9,16 +9,12 @@ These instructions are for installing Lasso Server on 64-bit Windows Server
 2012, Windows Server 2008 R2, Windows 8, and Windows 7. Supported web servers
 are IIS 7, IIS 8, and Apache 2.2.
 
-.. note::
-   Windows Vista is not an officially supported operating system.
 
-
-Before Installing
-=================
+Windows Prerequisites
+=====================
 
 Lasso Server requires the following Microsoft updates:
 
--  `Microsoft .NET Framework 4`_
 -  `Microsoft Visual C++ 2012 Redistributable`_ (auto-installed if required)
 -  Servers running IIS 7 or 8 need ISAPI enabled:
 
@@ -31,21 +27,59 @@ Lasso Server requires the following Microsoft updates:
       Wide Web Services --> Application Development Features`, enable
       "ISAPI Extensions" and "ISAPI Filters".
 
+These installs are optional, but recommended:
+
+-  Lasso's :ref:`PDF functions <pdf>` require a Java runtime. The latest version
+   of Oracle's Java Runtime Environment can be downloaded from the `Java support
+   site`_.
+
+-  Lasso's :ref:`image functions <images-media>` require ImageMagick. Download
+   and install "ImageMagick-6.7.7-7-Q16-windows-x64-dll.exe" or later from an
+   `ImageMagick installers archive`_.
+
+-  Running Lasso under Apache requires a 64-bit installation of Apache 2.2. Only
+   32-bit installers of Apache 2.2 are officially available from
+   `<http://httpd.apache.org/>`_, but `unofficial 64-bit installers`_ can be
+   found elsewhere online.
+
+
+If either is installed after Lasso, restart Lasso Instance Manager by opening
+the built-in Services application, selecting the "Lasso Instance Manager"
+service, and clicking the "Restart Service" icon.
+
+.. only:: html
+
+   .. important::
+      Links to third-party distributions and tools are provided for your
+      convenience and were accurate when this guide was written. LassoSoft
+      cannot guarantee the availability or suitability of software downloaded
+      from third-party web sites.
+
 
 Installation
 ============
 
-Download and expand the correct `Lasso Server for Windows`_ installer for your
-OS and web server from the LassoSoft website and run the installer package.
-(Their contents are identical, but only the IIS installer configures IIS
-for you automatically.)
+#. Download the `Lasso Server for Windows`_ installer for your preferred web
+   server from the LassoSoft website and run the installer package. (Their
+   contents are identical, but only the IIS installer configures IIS for you
+   automatically.) By default the following files and folders will be installed:
 
-When done, open :ref:`!http://your-server-domain.name/lasso9/instancemanager`
-to load the initialization form and complete your Lasso Server installation.
+   :Lasso folder:
+      :file:`C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\\ `
+   :IIS plugin:
+      :file:`C:\\Windows\\System32\\isapi_lasso9.dll`
+
+#. When the installer has finished and your web server has been configured,
+   open :ref:`!http://your-server-domain.name/lasso9/instancemanager` to load
+   the initialization form and complete your Lasso installation. From here on,
+   you can read up on using the :ref:`instance-manager` and
+   :ref:`instance-administration` interfaces.
 
 
 Configuring IIS 7 or 8
 ======================
+
+These steps will replicate the configuration commands run by the IIS installer.
 
 To add Lasso Connector for IIS to the list of allowed ISAPI extensions:
 
@@ -106,10 +140,7 @@ Restart IIS when finished to apply the new configuration.
 Configuring Apache 2.2
 ======================
 
-.. tip::
-   Only 32-bit installers of Apache 2.2 are officially available from
-   `<http://httpd.apache.org/>`_, but `unofficial 64-bit installers`_ can be
-   found elsewhere online.
+These steps must be run manually for Apache to serve Lasso pages.
 
 -  Open
    :file:`C:\\Program Files\\LassoSoft\\Lasso Instance Manager\\home\\LassoExecutables\\\ `
@@ -122,25 +153,7 @@ Configuring Apache 2.2
    editing and add the following line: ``Include conf/mod_lasso9.conf``
 -  Restart Apache.
 -  In a browser, open :ref:`!http://localhost/lasso9/instancemanager` to load
-   the initialization form and complete your Lasso Server installation.
-
-
-Configuring ImageMagick
-=======================
-
--  Download and install "ImageMagick-6.7.7-7-Q16-windows-x64-dll.exe" from an
-   `ImageMagick installers archive`_.
--  Restart Lasso Instance Manager by opening the built-in Services application,
-   selecting the "Lasso Instance Manager" service and clicking the "Restart
-   Service" icon.
-
-.. only:: html
-
-   .. important::
-      Links to third-party distributions and tools are provided for your
-      convenience and were accurate when this guide was written. LassoSoft
-      cannot guarantee the availability or suitability of software downloaded
-      from third-party web sites.
+   the initialization form and complete your Lasso installation.
 
 
 Troubleshooting
@@ -253,9 +266,9 @@ Troubleshooting
    -  `Configure IIS 7 for Lasso
       <http://www.youtube.com/watch?v=oQ-6K3EHY3M&feature=relmfu>`_
 
-.. _Microsoft .NET Framework 4: http://www.microsoft.com/en-us/download/details.aspx?id=17718
 .. _Microsoft Visual C++ 2012 Redistributable: http://www.microsoft.com/en-us/download/details.aspx?id=30679
+.. _Java support site: http://www.java.com/
+.. _ImageMagick installers archive: http://ftp.icm.edu.pl/packages/ImageMagick/binaries/
+.. _unofficial 64-bit installers: http://www.anindya.com/apache-http-server-2-4-4-and-2-2-24-x86-32-bit-and-x64-64-bit-windows-installers/
 .. _Lasso Server for Windows: http://www.lassosoft.com/Lasso-9-Server-Download#Win
 .. _Open IIS Manager: https://technet.microsoft.com/en-us/library/cc770472(v=ws.10).aspx
-.. _unofficial 64-bit installers: http://www.anindya.com/apache-http-server-2-4-4-and-2-2-24-x86-32-bit-and-x64-64-bit-windows-installers/
-.. _ImageMagick installers archive: http://ftp.icm.edu.pl/packages/ImageMagick/binaries/
