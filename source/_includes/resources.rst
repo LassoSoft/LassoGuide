@@ -18,7 +18,7 @@ Here are some additional resources you may find useful:
    An SVN repository containing source code for a number of Lasso components.
 
 `LassoGuide PDF <http://lassoguide.com/LassoGuide9.3.pdf>`_
-   The current version of LassoGuide in PDF format.
+   The |version| version of LassoGuide in PDF format.
 
 .. only:: html
 
