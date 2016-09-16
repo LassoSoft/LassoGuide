@@ -130,9 +130,9 @@ code.literal .pre { white-space: nowrap }
 } #appendices ul.simple li{float: left;margin-right: 20px;width:200px; }
 #welcome-to-lassoguide .toctree-wrapper ul li a, #appendices ul.simple li a {display: block;}
 #welcome-to-lassoguide .toctree-wrapper ul ul li {float: none;width: 100%;display: block;background: transparent;}
-#welcome-to-lassoguide .toctree-wrapper ul li:hover, #appendices ul.simple li:hover {-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background-color:#08c;color: #fff !important;}
+#welcome-to-lassoguide .toctree-wrapper ul li:hover, #appendices ul.simple li:hover {-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background-color:#04c;color: #fff !important;}
 #welcome-to-lassoguide .toctree-wrapper ul li:hover a, #appendices ul.simple li:hover a {color: #fff;}
-#welcome-to-lassoguide .toctree-wrapper ul li:hover li a {color: #08c;}
+#welcome-to-lassoguide .toctree-wrapper ul li:hover li a {color: #04c;}
 #welcome-to-lassoguide .toctree-wrapper ul li a {display: block;/* color: #fff; */}
 #welcome-to-lassoguide .toctree-wrapper ul ul li:hover a, #welcome-to-lassoguide .toctree-wrapper ul ul li a:hover {color: #fff !important;}
 
@@ -201,7 +201,7 @@ height: 30px;padding-top: 3px;}
 	margin-bottom: 0;
 	margin-left: 10px;
 	top: 8px;
-	background-color:#3bb3e0;
+	background-color:#3b61dd;
 	font-family: 'Open Sans', sans-serif;
 	font-size:12px;
 	line-height: 12px;
@@ -211,26 +211,26 @@ height: 30px;padding-top: 3px;}
 	padding:6px 10px;
 	padding-right:40px;
 	white-space: nowrap;
-	background-image: linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
-	background-image: -o-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
-	background-image: -moz-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
-	background-image: -webkit-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
-	background-image: -ms-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: linear-gradient(bottom, rgb(44,80,202) 0%, rgb(62,104,229) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(44,80,202) 0%, rgb(62,104,229) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(44,80,202) 0%, rgb(62,104,229) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(44,80,202) 0%, rgb(62,104,229) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(44,80,202) 0%, rgb(62,104,229) 100%);
 	background-image: -webkit-gradient(
 	linear,
 	left bottom,
 	left top,
-	color-stop(0, rgb(44,160,202)),
-	color-stop(1, rgb(62,184,229))
+	color-stop(0, rgb(44,80,202)),
+	color-stop(1, rgb(62,104,229))
 	);
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-o-border-radius: 5px;
 	border-radius: 5px;
-	-webkit-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 3px 0px 0px #003e69;
-	-moz-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 3px 0px 0px #003e69;
-	-o-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 3px 0px 0px #003e69;
-	box-shadow: inset 0px 1px 0px #2ab7ec, 0px 3px 0px 0px #003e69;
+	-webkit-box-shadow: inset 0px 1px 0px #2a57ea, 0px 3px 0px 0px #001b68;
+	-moz-box-shadow: inset 0px 1px 0px #2a57ea, 0px 3px 0px 0px #001b68;
+	-o-box-shadow: inset 0px 1px 0px #2a57ea, 0px 3px 0px 0px #001b68;
+	box-shadow: inset 0px 1px 0px #2a57ea, 0px 3px 0px 0px #001b68;
 	opacity:.8;filter:alpha(opacity=80);
 	-webkit-transition:opacity .2s linear,top .1s ease-out;-moz-transition:opacity .2s linear,top .1s ease-out;-ms-transition:opacity .2s linear,top .1s ease-out;-o-transition:opacity .2s linear,top .1s ease-out;transition:opacity .2s linear,top .1s ease-out;
 }
@@ -240,27 +240,27 @@ height: 30px;padding-top: 3px;}
 .source_button:active {
 	color: #fff;
 	top:9px;
-	background-image: linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
-	background-image: -o-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
-	background-image: -moz-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
-	background-image: -webkit-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
-	background-image: -ms-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: linear-gradient(bottom, rgb(62,104,229) 0%, rgb(44,80,202) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(62,104,229) 0%, rgb(44,80,202) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(62,104,229) 0%, rgb(44,80,202) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(62,104,229) 0%, rgb(44,80,202) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(62,104,229) 0%, rgb(44,80,202) 100%);
 	background-image: -webkit-gradient(
 	linear,
 	left bottom,
 	left top,
-	color-stop(0, rgb(62,184,229)),
-	color-stop(1, rgb(44,160,202))
+	color-stop(0, rgb(62,104,229)),
+	color-stop(1, rgb(44,80,202))
 	);
-	-webkit-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #3bb3e0, 0px -1px 0px 0px #003e69;
-	-moz-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #3bb3e0, 0px -1px 0px 0px #003e69;
-	-o-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #3bb3e0, 0px -1px 0px 0px #003e69;
-	box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #3bb3e0, 0px -1px 0px 0px #003e69;
+	-webkit-box-shadow: inset 0px 1px 0px #2a57ea, 0px 2px 0px 0px #3b61dd, 0px -1px 0px 0px #001b68;
+	-moz-box-shadow: inset 0px 1px 0px #2a57ea, 0px 2px 0px 0px #3b61dd, 0px -1px 0px 0px #001b68;
+	-o-box-shadow: inset 0px 1px 0px #2a57ea, 0px 2px 0px 0px #3b61dd, 0px -1px 0px 0px #001b68;
+	box-shadow: inset 0px 1px 0px #2a57ea, 0px 2px 0px 0px #3b61dd, 0px -1px 0px 0px #001b68;
 }
 
 
 .source_button::before {
-	background-color:#005583;
+	background-color:#00137f;
 	background-image:url(img/source.png);
 	background-repeat:no-repeat;
 	background-position:center center;
@@ -275,10 +275,10 @@ height: 30px;padding-top: 3px;}
 	-moz-border-radius: 50%;
 	-o-border-radius: 50%;
 	border-radius: 50%;
-	-webkit-box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
-	-moz-box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
-	-o-box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
-	box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
+	-webkit-box-shadow: inset 0px 1px 0px #050c54, 0px 1px 0px #5f81ef;
+	-moz-box-shadow: inset 0px 1px 0px #050c54, 0px 1px 0px #5f81ef;
+	-o-box-shadow: inset 0px 1px 0px #050c54, 0px 1px 0px #5f81ef;
+	box-shadow: inset 0px 1px 0px #050c54, 0px 1px 0px #5f81ef;
 }
 .source_button.comment::before {
 	background-image:url(img/comment.png);
@@ -286,10 +286,10 @@ height: 30px;padding-top: 3px;}
 .source_button:active::before {
 	top:50%;
 	margin-top:-13px;
-	-webkit-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 4px 3px #1a80a6, inset 0px 0px 1px rgba(255,255,255,.6);
-	-moz-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 4px 3px #1a80a6, inset 0px 0px 1px rgba(255,255,255,.6);
-	-o-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 4px 3px #1a80a6, inset 0px 0px 1px rgba(255,255,255,.6);
-	box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 4px 3px #1a80a6, inset 0px 0px 1px rgba(255,255,255,.6);
+	-webkit-box-shadow: inset 0px 1px 0px #5f81ef, 0px 3px 0px #0e1870, 0px 4px 3px #1a3ba5, inset 0px 0px 1px rgba(255,255,255,.6);
+	-moz-box-shadow: inset 0px 1px 0px #5f81ef, 0px 3px 0px #0e1870, 0px 4px 3px #1a3ba5, inset 0px 0px 1px rgba(255,255,255,.6);
+	-o-box-shadow: inset 0px 1px 0px #5f81ef, 0px 3px 0px #0e1870, 0px 4px 3px #1a3ba5, inset 0px 0px 1px rgba(255,255,255,.6);
+	box-shadow: inset 0px 1px 0px #5f81ef, 0px 3px 0px #0e1870, 0px 4px 3px #1a3ba5, inset 0px 0px 1px rgba(255,255,255,.6);
 }
 
 
@@ -322,10 +322,10 @@ button.reset_button:hover, button.search_button:hover {opacity:1;filter:alpha(op
  
 button.reset_button:active, button.search_button:active {
 	top:2px;
-	-webkit-box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
-	-moz-box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
-	-o-box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;
-	box-shadow: inset 0px 1px 0px #052756, 0px 1px 0px #60c9f0;}
+	-webkit-box-shadow: inset 0px 1px 0px #050c54, 0px 1px 0px #5f81ef;
+	-moz-box-shadow: inset 0px 1px 0px #050c54, 0px 1px 0px #5f81ef;
+	-o-box-shadow: inset 0px 1px 0px #050c54, 0px 1px 0px #5f81ef;
+	box-shadow: inset 0px 1px 0px #050c54, 0px 1px 0px #5f81ef;}
 	
 .dropup,.dropdown{position:relative;margin-left: 0;}
 .dropdown-toggle{*margin-bottom:-3px}
@@ -334,8 +334,8 @@ button.reset_button:active, button.search_button:active {
 
 .east{display:inline-block;width:0;height:0;vertical-align:top;border-right:6px solid #fff;border-top:3px solid transparent;border-bottom:3px solid transparent;content:"";
 	-webkit-box-shadow:  inset 0px 1px 0px #000;
-	-moz-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
-	-o-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
+	-moz-box-shadow: inset 0px 1px 0px #5f81ef, 0px 3px 0px #0e1870, 0px 6px 3px #1a3ba5;
+	-o-box-shadow: inset 0px 1px 0px #5f81ef, 0px 3px 0px #0e1870, 0px 6px 3px #1a3ba5;
 	box-shadow: inset 0px 1px 0px #000;opacity:.8;filter:alpha(opacity=80);}
 .west{display:inline-block;width:0;height:0;vertical-align:top;border-left:6px solid #fff;border-top:3px solid transparent;border-bottom:3px solid transparent;content:"";opacity:.8;filter:alpha(opacity=80);}
 
@@ -347,7 +347,7 @@ button.reset_button:active, button.search_button:active {
 .dropdown-menu.pull-right{right:0;left:auto} .dropdown-menu ul{margin-left: 0;}
 .dropdown-menu .divider{*width:100%;height:1px;margin:8px 1px;*margin:-5px 0 5px;overflow:hidden;background-color:#e5e5e5;border-bottom:1px solid #fff}
 .dropdown-menu a{display:block;padding:3px 15px;clear:both;font-weight:normal;line-height:1.3;color:#333;white-space:nowrap}
-.dropdown-menu li>a:hover,.dropdown-menu .active>a,.dropdown-menu .active>a:hover{color:#fff;text-decoration:none;background-color:#08c}
+.dropdown-menu li>a:hover,.dropdown-menu .active>a,.dropdown-menu .active>a:hover{color:#fff;text-decoration:none;background-color:#04c}
 .open{*z-index:1000}
 .open .dropdown-menu{
 	display:block;
@@ -372,27 +372,27 @@ button.reset_button:active, button.search_button:active {
 	min-height:42px;
 	padding-right:20px;
 	padding-left:20px;
-	background-color:#0080c6;
-	background-image:-moz-linear-gradient(top,#0080c6,#005583);
-	background-image:-ms-linear-gradient(top,#0080c6,#005583);
-	background-image:-webkit-gradient(linear,0 0,0 100%,from(#0080c6),to(#005583));
-	background-image:-webkit-linear-gradient(top,#0080c6,#005583);
-	background-image:-o-linear-gradient(top,#0080c6,#005583);
-	background-image:linear-gradient(top,#0080c6,#005583);
+	background-color:#001dc1;
+	background-image:-moz-linear-gradient(top,#001dc1,#00137f);
+	background-image:-ms-linear-gradient(top,#001dc1,#00137f);
+	background-image:-webkit-gradient(linear,0 0,0 100%,from(#001dc1),to(#00137f));
+	background-image:-webkit-linear-gradient(top,#001dc1,#00137f);
+	background-image:-o-linear-gradient(top,#001dc1,#00137f);
+	background-image:linear-gradient(top,#001dc1,#00137f);
 	background-repeat:repeat-x;
 	-webkit-border-radius:4px;
 	-moz-border-radius:4px;
 	border-radius:4px;
-	filter:progid:dximagetransform.microsoft.gradient(startColorstr='#0080c6',endColorstr='#005583',GradientType=0);
+	filter:progid:dximagetransform.microsoft.gradient(startColorstr='#001dc1',endColorstr='#00137f',GradientType=0);
 	-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.25),inset 0 0 2px rgba(255,255,255,.4),inset 0 -1px 0 rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,.4);
 	-moz-box-shadow:0 1px 3px rgba(0,0,0,0.25),inset 0 -1px 0 rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,.4);
 	box-shadow:0 1px 3px rgba(0,0,0,0.25),inset 0 0 2px rgba(255,255,255,.4),inset 0 -1px 0 rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,.4);
-	border-top: 1px solid #005583;
-	border-bottom: 1px solid #003e69;
+	border-top: 1px solid #00137f;
+	border-bottom: 1px solid #001b68;
 }
 
 
-.navbar .divider-vertical{width:1px;height:40px;margin:0 .815em;overflow:hidden;background-color:#0080c6;border-right:1px solid #005583}
+.navbar .divider-vertical{width:1px;height:40px;margin:0 .815em;overflow:hidden;background-color:#001dc1;border-right:1px solid #00137f}
 
 .navbar .nav > li > a.source_button {line-height: 12px;padding:8px 40px 8px 10px;}
 .navbar .nav > li .east {margin-top: 7px;margin-right: 3px;}
