@@ -60,14 +60,14 @@ clean:
 
 .PHONY: LassoGuide$(VERSION).pdf
 LassoGuide$(VERSION).pdf:
-	@-rsync -aq $(BUILDDIR)/LassoGuide$(VERSION).pdf $(BUILDDIR)/html/
+	@-rsync -aq $(BUILDDIR)/LassoGuide$(VERSION).pdf $(BUILDDIR)/html/$(VERSION)/
 
 .PHONY: html
 html: LassoGuide$(VERSION).pdf
-	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
-	@rm -rf $(BUILDDIR)/html/_latex  $(BUILDDIR)/html/_sources/_latex
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html/$(VERSION)
+	@rm -rf $(BUILDDIR)/html/$(VERSION)/_latex  $(BUILDDIR)/html/$(VERSION)/_sources/_latex
 	@echo
-	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html/$(VERSION)."
 
 .PHONY: dirhtml
 dirhtml:

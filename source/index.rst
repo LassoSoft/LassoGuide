@@ -17,6 +17,12 @@ regularly during your development and feel free to ask questions or make
 suggestions for improvement. Contributions and pull requests can be made at the
 project's `Git repository <https://github.com/LassoSoft/LassoGuide>`_.
 
+.. only:: html
+
+   .. tip::
+      The current revision of LassoGuide can be found at
+      `http://lassoguide.com/ <../>`_.
+
 .. toctree::
    :maxdepth: 1
 
