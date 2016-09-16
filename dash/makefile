@@ -12,8 +12,10 @@ $(FEED).tgz: $(NAME).docset $(FEED).xml
 
 %.docset:
 	doc2dash -f --enable-js --online-redirect-url "http://$(SITE)/" --name "$*" --icon icon.png ../build/html/
-	rm "$@"/Contents/Resources/Documents/LassoGuide*.pdf
-	rm "$@"/Contents/Resources/Documents/_static/guide_cover_*
+	rm -f "$@"/Contents/Resources/Documents/$(FEED).{xml,tgz}
+	rm -f "$@"/Contents/Resources/Documents/LassoGuide*.pdf
+	rm -f "$@"/Contents/Resources/Documents/_static/guide_cover_*
+	rm -rf "$@"/Contents/Resources/Documents/9.2
 
 %.xml:
 	echo '<entry><version>$(VERSION)</version><url>http://$(SITE)/$*.tgz</url></entry>' > $@
