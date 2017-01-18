@@ -16,8 +16,8 @@ OS X Prerequisites
    version of Oracle's Java Runtime Environment can be downloaded from the
    `Java support site`_.
 
--  OS X 10.11 also requires `Java 6 from Apple`_ due to an outstanding bug in
-   Oracle's Java distribution.
+-  OS X 10.11 and later also requires `Java 6 from Apple`_ due to an outstanding
+   bug in Oracle's Java distribution.
 
 
 Installation
@@ -53,6 +53,9 @@ Installation
    :user data:
       -  :file:`/var/lasso`
 
+   This installer supports installing to other mounted bootable volumes, and can
+   be run on the command line with ``sudo installer -pkg Lasso*.pkg -target /``.
+
 #. When the installer has finished, click on the link on the web page that
    appears to load the initialization form (found on your own machine at
    :ref:`!http://localhost:8090/lasso9/lux`) and complete your Lasso
@@ -62,8 +65,8 @@ From here on, you can read up on using the :ref:`instance-manager` and
 :ref:`instance-administration` interfaces.
 
 .. note::
-   On OS X Server, verify that the Web or Websites service is running in Server
-   Preferences or Server.app.
+   On OS X Server, verify that the Web or Websites service is running in the
+   Server application.
 
 .. important::
    If you upgrade your OS X installation or install OS X Server after installing

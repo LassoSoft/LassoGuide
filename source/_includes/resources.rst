@@ -1,6 +1,6 @@
 Here are some additional resources you may find useful:
 
-`Lasso Reference <http://www.lassosoft.com/lassoDocs/languageReference>`_
+`Lasso Reference <http://www.lassosoft.com/LassoDocs/LanguageReferenceCategories>`_
    Reference to the built-in types, methods, and traits.
 
 `LassoTalk <http://www.lassotalk.com/>`_

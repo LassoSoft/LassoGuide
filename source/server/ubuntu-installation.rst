@@ -19,7 +19,7 @@ with the following command::
 
 Import the LassoSoft public key::
 
-   $> curl http://debianrepo.lassosoft.com/lassosoft-public.gpg.key | sudo apt-key add -
+   $> sudo apt-key adv --fetch-keys http://debianrepo.lassosoft.com/lassosoft-public.gpg.key
 
 To install Lasso Server via :command:`apt`, the LassoSoft apt repository must be
 configured on the server. Add the repository by running the following command::
