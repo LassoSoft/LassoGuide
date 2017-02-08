@@ -28,7 +28,7 @@ import latextracstyle, latexbwstyle
 
 # If your documentation needs a minimal Sphinx version, state it here.
 #
-needs_sphinx = '1.4'
+needs_sphinx = '1.5'
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
@@ -270,51 +270,49 @@ htmlhelp_basename = 'LassoGuide-doc'
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
-# Unused by XeLaTeX, so we commandeer it to set the ISBN
-'cmappkg': '\\newcommand\\isbn{000-0-0000000-0-0}',
-
-# The paper size ('letterpaper' or 'a4paper').
-'papersize': 'letterpaper',
-
-# The font size ('10pt', '11pt' or '12pt').
-'pointsize': '10pt',
-'babel': '\\usepackage[english]{babel}',
-'inputenc': '',
-'utf8extra': '',
-'fontpkg': '',
-'fncychap': '\\usepackage{fncychap}',
-'fontenc': '',
-
-# Need to add blank page at the end for publisher
-'printindex': r'\printindex \pagestyle{empty} \clearpage\null\vfill\pagestyle{empty}\par',
-
-# Additional stuff for the LaTeX preamble.
-'preamble': r"""
+    # The paper size ('letterpaper' or 'a4paper').
+    'papersize': 'letterpaper',
+    # The font size ('10pt', '11pt' or '12pt').
+    'pointsize': '10pt',
+    'babel': '\\usepackage[english]{babel}',
+    'inputenc': '',
+    'utf8extra': '',
+    'fontpkg': '',
+    'fncychap': '\\usepackage{fncychap}',
+    'fontenc': '',
+    # Unused by XeLaTeX, so we commandeer it to set the ISBN
+    'cmappkg': '\\newcommand\\isbn{000-0-0000000-0-0}',
+    # Add a blank page at the end for publisher
+    'printindex': r'\printindex \pagestyle{empty} \clearpage\null\vfill\pagestyle{empty}\par',
+    # Customizations for LaTeX output
+    'sphinxsetup': r'HeaderFamily=\sffamily,TitleColor={rgb}{0.153,0.216,0.467},InnerLinkColor={rgb}{0.15,0.15,0.15},OuterLinkColor={rgb}{0.11,0.43,0.73},VerbatimBorderColor={rgb}{0.22,0.22,0.22},verbatimwithframe=false',
+    # Additional stuff for the LaTeX preamble.
+    'preamble': r"""
 % Font setup (Be sure you have them installed on your machine)
 \usepackage[quiet]{fontspec}
 \defaultfontfeatures[Myriad Pro Light]{Ligatures=TeX,Scale=0.95}
 \setmainfont[BoldFont={Myriad Pro},SmallCapsFont={Myriad Pro SemiExtended},SmallCapsFeatures={Scale=0.95}]{Myriad Pro Light}
-\setsansfont[BoldFont={Myriad Pro},Color=273777]{Myriad Pro Light}
+\setsansfont[BoldFont={Myriad Pro}]{Myriad Pro Light}
 \setmonofont[Scale=0.9]{Consolas}
 \usepackage[verbose=silent]{microtype}
 \UseMicrotypeSet[protrusion]{basictext}
 \SetProtrusion[name=default]
-   { encoding = {EU1} }
-   { % currently seems only to work with hyphens
-      .  = {  ,700},
-     {,} = {  ,500},
-      :  = {  ,500},
-      ;  = {  ,300},
-      !  = {  ,100},
-      ?  = {  ,100},
-      ( = {100,   },
-      ) = {   ,200},
-      / = {100,200},
-      - = {   ,500},
-     \textendash       = {200,200},   \textemdash        = {150,150},
-     \textquoteleft    = {300,400},   \textquoteright    = {300,400},
-     \textquotedblleft = {300,300},   \textquotedblright = {300,300},
-   }
+  { encoding = {EU1} }
+  { % currently seems only to work with hyphens
+     .  = {  ,700},
+    {,} = {  ,500},
+     :  = {  ,500},
+     ;  = {  ,300},
+     !  = {  ,100},
+     ?  = {  ,100},
+     ( = {100,   },
+     ) = {   ,200},
+     / = {100,200},
+     - = {   ,500},
+    \textendash       = {200,200},   \textemdash        = {150,150},
+    \textquoteleft    = {300,400},   \textquoteright    = {300,400},
+    \textquotedblleft = {300,300},   \textquotedblright = {300,300},
+  }
 
 % For the Chinese character
 \usepackage{xeCJK}
@@ -377,16 +375,62 @@ latex_elements = {
 % For making the list of tables show conditionally
 \usepackage[table]{totalcount}
 
+%% Patches for sphinx.sty
 \makeatletter
 
-% For some reason, this works to get the default font color
+% use italics for emphasis
+\long\protected\def\sphinxstrong#1{{\textit{#1}}}
+
+% no emphasis on cross references
+\long\protected\def\sphinxcrossref#1{#1}
+
+% restore emphasis on chapter references
+\renewcommand{\DUrole}[2]{%
+  \emph{#2}%
+}
+
+% set format for Part pages
+\titleformat{\part}[block]{\fontsize{36}{44}\py@HeaderFamily\bfseries}%
+  {\Huge\color{VerbatimBorderColor}\selectfont\partname~\thepart\newline}{0em}{\py@TitleColor}{\py@NormalColor}
+
+% set format for Chapter headings
+\spx@ifundefined{ChTitleVar}{}{
+  \ChNameVar {\raggedleft\normalsize\py@HeaderFamily\color{VerbatimBorderColor}}
+  \ChNumVar  {\raggedleft\Large\py@HeaderFamily\bfseries\color{VerbatimBorderColor}}
+  \ChTitleVar{\raggedright\Huge\py@HeaderFamily\bfseries\color{TitleColor}}
+  % This creates (numbered) chapter heads without the leading \vspace*{}:
+  \def\@makechapterhead#1{%
+    {\parindent \z@ \raggedright \normalfont
+      \ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter
+          \DOCH
+        \fi
+      \fi
+      \interlinepenalty\@M
+      \if@mainmatter
+        \DOTI{#1}%
+      \else%
+        \DOTIS{#1}%
+      \fi
+    }}
+}
+
+% add indent to code blocks
+\patchcmd{\spx@colorbox}{%
+  \hskip\@totalleftmargin
+}{%
+  \hskip\@totalleftmargin
+  \hskip 1em
+}{}{}
+
+% For some reason, this works for setting the default font color
 % (Using fontspec never allowed for Sphinx's overrides to kick in.)
 \newcommand{\globalcolor}[1]{
   \color{#1}\global\let\default@color\current@color
 }
 
 \makeatother
-\AtBeginDocument{\globalcolor{BaseColor}}
+\AtBeginDocument{\globalcolor{InnerLinkColor}}
 """
 + ( r"""
 \hypersetup{urlcolor=OuterLinkColor}
@@ -402,21 +446,21 @@ latex_elements = {
 #
 # Based on the following:
 # http://tex.stackexchange.com/questions/17611/how-does-one-type-chinese-in-latex
+# http://www.tug.org/pipermail/texhax/2004-January/001476.html
 #
-#http://www.tug.org/pipermail/texhax/2004-January/001476.html
-#It may also be a good idea to create a new command :
-#   \newcommand{\cjktext}[1]{\begin{CJK}{UTF8}{cyberbit}#1\end{CJK}}
-#Now, when you want to type chinese, you just use the command:
-#   \cjktext{enter your chinese text here}
+# It may also be a good idea to create a new command:
+# \newcommand{\cjktext}[1]{\begin{CJK}{UTF8}{cyberbit}#1\end{CJK}}
+# Now, when you want to type Chinese, you just use the command:
+# \cjktext{enter your chinese text here}
 
-# Latex figure (float) alignment
-#'figure_align': 'htbp',
+    # Latex figure (float) alignment
+    #
+    # 'figure_align': 'htbp',
 }
 
 # Override the default styles with our own.
 latex_additional_files = [
   '_static/guide_cover_92.pdf',
-  '_latex/sphinx.sty',
   '_latex/sphinxmanual.cls',
 ]
 
@@ -453,10 +497,10 @@ else:
 #
 latex_logo = '_static/logo.pdf'
 
-# For "manual" documents, if this is true, then toplevel headings are parts,
-# not chapters.
+# This value determines the topmost sectioning unit. It should be chosen from
+# part, chapter or section.
 #
-latex_use_parts = True
+latex_toplevel_sectioning = 'part'
 
 # If true, show page references after internal links.
 #
@@ -470,7 +514,7 @@ latex_show_urls = 'footnote'
 #
 # latex_appendices = []
 
-# It false, will not define \strong, \code, 	itleref, \crossref ... but only
+# If false, will not define \strong, \code, \titleref, \crossref ... but only
 # \sphinxstrong, ..., \sphinxtitleref, ... To help avoid clash with user added
 # packages.
 #

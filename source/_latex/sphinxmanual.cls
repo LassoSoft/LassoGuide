@@ -4,13 +4,7 @@
 %
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{sphinxmanual}[2009/06/02 Document class (Sphinx manual)]
-
-\ifx\directlua\undefined\else
-% if compiling with lualatex 0.85 or later load compatibility patch issued by
-% the LaTeX team for older packages relying on \pdf<name> named primitives.
-    \IfFileExists{luatex85.sty}{\RequirePackage{luatex85}}{}
-\fi
+\ProvidesClass{sphinxmanual}[2016/10/12 v1.5 Document class (Sphinx manual)]
 
 % chapters starting at odd pages (overridden by 'openany' document option)
 \PassOptionsToClass{openright}{\sphinxdocclass}
@@ -41,7 +35,10 @@
 % ``Bjarne'' style a bit better.
 %
 \renewcommand{\maketitle}{%
-  %% for screen PDF, replace title page with cover image
+  \let\spx@tempa\relax
+  \ifHy@pageanchor\def\spx@tempa{\Hy@pageanchortrue}\fi
+  \hypersetup{pageanchor=false}% avoid duplicate destination warnings
+%% for screen PDF, replace title page with cover image
   \ifthenelse{\equal{\isbn}{000-0-0000000-0-0}}{\includepdf[pages={1}]{guide_cover_92.pdf}}{%
   \begin{titlepage}%
     \let\footnotesize\small
@@ -62,19 +59,20 @@
     \fi
     \begin{flushright}%
       \py@HeaderFamily
-      {\Huge \@title \par}
-      {\itshape\LARGE \py@release\releaseinfo \par}
+%% colourize title
+      {\Huge\py@TitleColor \@title \par}
+      {\itshape\LARGE\py@TitleColor \py@release\releaseinfo \par}
       \vfill
+%% use logo for author instead of text
+      \sphinxlogo
 %     {\LARGE
 %       \begin{tabular}[t]{c}
 %         \@author
 %       \end{tabular}
 %       \par}
-%% use logo for author instead of text
-      \sphinxlogo
       \vfill\vfill
       {\large
-       %% instead of \@date, which only inserts the year
+%% instead of \@date, which only inserts the year
        \today \par
        \vfill
        \py@authoraddress \par
@@ -84,7 +82,7 @@
   \end{titlepage}%
   \setcounter{footnote}{0}%
 
-  %% copyright page for print PDF
+%% copyright page for print PDF
   \clearpage\null\vfill
   \pagestyle{empty}
   \begin{minipage}[b]{0.9\textwidth}
@@ -151,20 +149,17 @@
 
   \let\thanks\relax\let\maketitle\relax
   %\gdef\@thanks{}\gdef\@author{}\gdef\@title{}
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \spx@tempa
 }
 
-\let\py@OldTableofcontents=\tableofcontents
-\renewcommand{\tableofcontents}{%
-  % before resetting page counter, let's do the right thing.
-  \if@openright\cleardoublepage\else\clearpage\fi
+\renewcommand{\sphinxtableofcontents}{%
   \pagenumbering{roman}%
-  %% style the "Contents" heading to match chapter headings
-  \ChTitleVar{\raggedright\color{InnerLinkColor}\bfseries\fontsize{36}{40}\selectfont}
   \pagestyle{plain}%
   \begingroup
     \parskip \z@skip
-    \py@OldTableofcontents
-    %% add list of tables
+    \tableofcontents
+%% add list of tables
     \iftotaltables
       \if@openright\cleardoublepage\else\clearpage\fi
       \phantomsection
@@ -174,11 +169,11 @@
   \endgroup
   % before resetting page counter, let's do the right thing.
   \if@openright\cleardoublepage\else\clearpage\fi
-  }%% end ifthenelse
+%% end ifthenelse
+  }
   \pagenumbering{arabic}%
   \ifdefined\fancyhf\pagestyle{normal}\fi
 }
-\pagenumbering{alph}% avoid hyperref "duplicate destination" warnings
 
 % This is needed to get the width of the section # area wide enough in the
 % library reference.  Doing it here keeps it the same for all the manuals.
@@ -186,6 +181,32 @@
 \renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.6em}}
 \renewcommand*\l@subsection{\@dottedtocline{2}{4.1em}{3.5em}}
 
+% Fix the bibliography environment to add an entry to the Table of
+% Contents.
+% For a report document class this environment is a chapter.
+%
+% Note: \phantomsection is required for TeXLive 2009
+% http://tex.stackexchange.com/questions/44088/when-do-i-need-to-invoke-phantomsection#comment166081_44091
+\newenvironment{sphinxthebibliography}[1]{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \phantomsection
+  \begin{thebibliography}{1}%
+  \addcontentsline{toc}{chapter}{\bibname}}{\end{thebibliography}}
+
+% Same for the indices.
+% The memoir class already does this, so we don't duplicate it in that case.
+%
+\@ifclassloaded{memoir}
+ {\newenvironment{sphinxtheindex}{\begin{theindex}}{\end{theindex}}}
+ {\newenvironment{sphinxtheindex}{%
+    \if@openright\cleardoublepage\else\clearpage\fi
+%% patch below for \theindex obviates these lines
+%    \phantomsection
+    \begin{theindex}%
+%    \addcontentsline{toc}{chapter}{\indexname}
+}{\end{theindex}}}
+
+%%
 % Make index anchor point at title rather than entries list.
 % (idxlayout's totoc option can do this, but only as a chapter, not a part.)
 % http://tex.stackexchange.com/questions/172352/correct-hyperlink-to-the-index
@@ -197,28 +218,3 @@
     \phantomsection
     \addcontentsline{toc}{part}{\indexname}%
 }{}{\errmessage{Patching \string\begin{theindex} failed}}
-
-% Fix the bibliography environment to add an entry to the Table of
-% Contents.
-% For a report document class this environment is a chapter.
-\let\py@OldThebibliography=\thebibliography
-\renewcommand{\thebibliography}[1]{
-  \if@openright\cleardoublepage\else\clearpage\fi
-  \phantomsection
-  \py@OldThebibliography{1}
-  \addcontentsline{toc}{chapter}{\bibname}
-}
-
-% Same for the indices.
-% The memoir class already does this, so we don't duplicate it in that case.
-%
-\@ifclassloaded{memoir}{}{
-  \let\py@OldTheindex=\theindex
-  \renewcommand{\theindex}{
-    \if@openright\cleardoublepage\else\clearpage\fi
-%% patch above for \theindex replaces these lines
-%    \phantomsection
-    \py@OldTheindex
-%    \addcontentsline{toc}{chapter}{\indexname}
-  }
-}

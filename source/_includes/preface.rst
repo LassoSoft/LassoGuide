@@ -5,7 +5,7 @@
    \section*{\Huge Welcome to \textbf{Lasso}Guide}
    \bigskip
    \begingroup
-   \titleformat{\paragraph}{\color{InnerLinkColor}\Large}{}{}{}
+   \titleformat{\paragraph}{\Large\color{TitleColor}}{}{}{}
 
 Lasso is a powerful programming language used to drive millions of web pages
 from servers around the world. It has an easy-to-master syntax and allows fast,
