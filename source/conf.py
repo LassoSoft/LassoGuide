@@ -320,13 +320,6 @@ latex_elements = {
 \setCJKsansfont{Arial Unicode MS}
 \setCJKmonofont{Arial Unicode MS}
 
-% To make sure figures are placed where we want them
-\usepackage{float}
-\let\origfigure=\figure
-\renewenvironment{figure}[6]{
-  \origfigure[H]}
-{\endlist}
-
 % Ensure keyword parameters in method signatures don't break after hyphen
 \exhyphenpenalty=10000
 
@@ -454,8 +447,7 @@ latex_elements = {
 # \cjktext{enter your chinese text here}
 
     # Latex figure (float) alignment
-    #
-    # 'figure_align': 'htbp',
+    'figure_align': 'H',
 }
 
 # Override the default styles with our own.
