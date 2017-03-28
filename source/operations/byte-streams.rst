@@ -7,28 +7,27 @@ Byte Streams
 .. index:: byte stream, binary data
 
 Binary data in Lasso is stored and manipulated using the :type:`bytes` type.
-This chapter details the operators and methods that can be used to manipulate
-binary data.
+This chapter details the operators and methods that can manipulate binary data.
 
 .. tip::
    The :type:`bytes` type is often used in conjunction with the :type:`string`
-   type to convert binary data between different character encodings (e.g.
-   UTF-8, ISO-8859-1). See the :ref:`strings` chapter for more information about
-   the :type:`string` type.
+   type to convert binary data between different character encodings, such as
+   UTF-8 and ISO-8859-1. See the :ref:`strings` chapter for more information
+   about the :type:`string` type.
 
 
 Creating Bytes Objects
 ======================
 
 While string data in Lasso is processed as one- to four-byte Unicode characters,
-the :type:`bytes` type can be used to represent raw strings of single bytes,
-which is often referred to as a :dfn:`byte stream` or :dfn:`binary data`.
+the :type:`bytes` type can represent raw strings of single bytes, which is often
+referred to as a :dfn:`byte stream` or :dfn:`binary data`.
 
-Lasso's methods return a byte stream in the following situations:
+Lasso's methods return a bytes object in the following situations:
 
--  The `field` method returns a byte stream from MySQL "BLOB" fields.
--  The `bytes` creator method can be used to allocate a new byte stream.
--  The `web_request->param` methods return a byte stream.
+-  The `bytes` creator method allocates a new bytes object.
+-  The `web_request->param` methods return a bytes object.
+-  The `field` method returns a bytes object from MySQL "BLOB" fields.
 -  Other methods that return or require binary data as outlined in their
    documentation.
 
@@ -40,13 +39,19 @@ Lasso's methods return a byte stream in the following situations:
 .. method:: bytes(import::string, encoding::string= ?)
 .. method:: bytes(doc::pdf_doc)
 
-   Allocates a byte stream. Can be used to convert a :type:`string` or
-   :type:`pdf_doc` type to a :type:`bytes` type, or to instantiate a new
-   :type:`bytes` object. Accepts one optional parameter that can specify the
-   initial size in bytes for the stream; or specify the :type:`string`,
-   :type:`pdf_doc`, or :type:`bytes` object to convert to a new :type:`bytes`
-   object. If converting a :type:`string` object, it can accept an optional
-   second parameter to specify the encoding of the string.
+   Allocates a bytes object. Can convert a :type:`string` or :type:`pdf_doc`
+   type to a :type:`bytes` type, or instantiate a new :type:`bytes` object.
+   Accepts one optional parameter that can specify the initial size in bytes for
+   the stream; or specify the :type:`string`, :type:`pdf_doc`, or :type:`bytes`
+   object to convert to a new :type:`bytes` object. If converting a
+   :type:`string` object, it can accept an optional second parameter to specify
+   the encoding of the string.
+
+.. member:: bytes->reserve(size::integer)
+
+   Attempts to preallocate enough memory for the specified number of bytes.
+   Useful for optimization by avoiding memory reallocation if the expected byte
+   stream size is known in advance.
 
 
 Instantiate a New Bytes Object
@@ -74,21 +79,21 @@ Byte streams are similar to strings and support many of the same member methods.
 Additionally, byte streams support a number of member methods that make it
 easier to deal with binary data. The most common methods are outlined below.
 
+.. member:: bytes->size()
+
+   Returns the number of bytes contained in the bytes object.
+
 .. member:: bytes->length()
 
    .. deprecated:: 9.0
       Use `bytes->size` instead.
 
-.. member:: bytes->size()
-
-   Returns the number of bytes contained in the bytes object.
-
-.. member:: bytes->get(position::integer)
+.. member:: bytes->get(position::integer)::integer
 
    Returns a single byte from the stream. Requires a parameter specifying which
    byte to fetch.
 
-.. member:: bytes->getRange(position::integer, num::integer)
+.. member:: bytes->getRange(position::integer, num::integer)::bytes
 
    Returns a range of bytes from the byte stream. Requires two parameters: the
    first specifies the byte position to start from, and the second specifies how
@@ -107,14 +112,18 @@ easier to deal with binary data. The most common methods are outlined below.
       patPosition::integer= ?, \
       patLength::integer= ?)
 
-   Requires either a byte stream or string sequence as the first parameter.
-   Returns the position of the beginning of the sequence being searched for
-   within the bytes object, or "0" if the sequence is not contained within the
-   object. Four optional integer parameters (position, length, parameter
-   position, parameter length) indicate position and length limits that can be
-   applied to the instance and the parameter sequence.
+   Searches the bytes object for the byte sequence or string pattern specified
+   in the first parameter, returning the position where the sequence first
+   begins in the bytes object or "0" if the pattern cannot be found.
 
-.. member:: bytes->contains(find)
+   The second and third parameters can specify a portion of the bytes object
+   within which to look for the match, with the former specifying the position
+   to begin the search and the latter specifying the number of bytes to search.
+   Similarly, the fourth and fifth parameters can specify a portion of the
+   sequence that should be used for matching.
+
+.. member:: bytes->contains(find::string)
+.. member:: bytes->contains(find::bytes)
 
    Returns "true" if the byte stream contains the specified sequence.
 
@@ -128,19 +137,95 @@ easier to deal with binary data. The most common methods are outlined below.
 
    Returns "true" if the byte stream ends with the specified sequence.
 
-.. member: bytes->sub(pos::integer)
-.. member:: bytes->sub(position::integer, num::integer= ?)
+.. member:: bytes->bestCharset(charset::string)
 
-   Returns a specified slice of the byte stream. Requires an integer parameter
-   that specifies the index into the byte stream to start taking the slice from.
-   An optional second integer parameter can specify the number of bytes to slice
-   out of the byte stream. If the second parameter is not specified, then all of
-   the rest of the byte stream is taken.
+   Checks if the byte stream can be encoded using the specified character set.
+   Returns the either the specified character set name if it can, or an
+   appropriate character set name if not.
+
+.. member:: bytes->detectCharset()
+
+   Checks which character sets could be used to decode the byte stream and
+   returns a staticarray of guesses where each is a staticarray of the character
+   set name, the language covered by the character set (if any), and a
+   confidence value.
+
+
+Find a Character Set for a Byte Stream
+--------------------------------------
+
+Use the `bytes->bestCharset` method. The examples below show the result of
+passing a byte stream containing a character that can't be encoded with the
+suggested character set::
+
+   bytes('This is a plain ASCII string')->bestCharset('ISO-8859-1')
+   // => ISO-8859-1
+
+   bytes('This isn’t a plain ASCII string')->bestCharset('ISO-8859-1')
+   // => UTF-8
+
+
+Bytes Export Methods
+====================
+
+Bytes objects keep track of a "marker", indicating where in the stream export
+operations will begin from. Newly created bytes objects have their marker set to
+"0", and are incremented by the number of exported bytes when any of the export
+member methods that return bytes objects are called. The marker can also be set
+manually.
+
+.. member:: bytes->asString(encoding::string= ?)
+
+   Returns the entire byte stream as a string using the specified encoding,
+   defaulting to "UTF-8".
 
 .. member:: bytes->marker()
-.. member:: bytes->position()
 
-   Returns the current position at which imports will occur in the byte stream.
+   Returns the current position at which exports will occur in the byte stream.
+
+.. member:: bytes->marker=(value::integer)
+
+   Sets the byte stream's marker to the passed value.
+
+.. member:: bytes->position()
+.. member:: bytes->position=(value::integer)
+.. member:: bytes->setPosition(i::integer)
+
+   .. deprecated:: 9.0
+      Use `bytes->marker` and `bytes->marker=` instead.
+
+.. member: bytes->exportAs(encoding::string= ?)
+.. member:: bytes->exportString(encoding::string)
+
+   Returns a string representing the byte stream. Requires a single parameter
+   specifying the character encoding (e.g. "ISO-8859-1" or "UTF-8") for the
+   export. If the byte stream has a marker set, only the bytes following the
+   marker will be returned. The marker is not modified.
+
+.. member: bytes->exportBytes()
+.. member:: bytes->exportBytes(num::integer= ?)
+
+   Returns the byte stream as a bytes object. Accepts one optional parameter
+   that can specify the number of bytes to return. If the byte stream has a
+   marker set, only the bytes following the marker will be returned. Sets the
+   marker to the end of the stream.
+
+.. member:: bytes->export8bits()
+.. member:: bytes->export16bits()
+.. member:: bytes->export32bits()
+.. member:: bytes->export64bits()
+
+   Returns 1, 2, 4, or 8 bytes of the byte stream starting from the marker as an
+   integer and increments the marker by the same amount.
+
+.. member:: bytes->exportSigned8bits()
+.. member:: bytes->exportSigned16bits()
+.. member:: bytes->exportSigned32bits()
+.. member:: bytes->exportSigned64bits()
+
+   Returns 1, 2, 4, or 8 bytes of the byte stream starting from the marker as a
+   signed (two's-complement) integer and increments the marker by the same
+   amount.
 
 .. member:: bytes->split(find::string)
 .. member:: bytes->split(find::bytes)
@@ -150,27 +235,14 @@ easier to deal with binary data. The most common methods are outlined below.
    byte stream or string, the byte stream is split on each byte, so the returned
    array will have each byte as one of its elements.
 
-.. member:: bytes->exportString(encoding::string)
+.. member: bytes->sub(pos::integer)
+.. member:: bytes->sub(position::integer, num::integer= ?)
 
-   Returns a string representing the byte stream. Accepts a single parameter
-   specifying the character encoding (e.g. "ISO-8859-1", "UTF-8") for the
-   export.
-
-.. member:: bytes->export8bits()
-
-   Returns the first byte as an integer.
-
-.. member:: bytes->export16bits()
-
-   Returns the first 2 bytes as an integer.
-
-.. member:: bytes->export32bits()
-
-   Returns the first 4 bytes as an integer.
-
-.. member:: bytes->export64bits()
-
-   Returns the first 8 bytes as an integer.
+   Returns a specified slice of the byte stream. Requires an integer parameter
+   specifying the index into the byte stream to start taking the slice from. An
+   optional second integer parameter can specify the number of bytes to slice
+   out of the bytes object. If the second parameter is not specified, all of the
+   bytes following the index are returned.
 
 
 Return the Size of a Byte Stream
@@ -211,10 +283,10 @@ of the value ``'rhino'``, which is contained within the byte stream::
 Determine If a Byte Stream Contains a Value
 -------------------------------------------
 
-Use the `bytes->contains` method. The example below returns "true" if the value
-``'Rhino'`` is contained within the byte stream. Note that in this example it
-returns "false" because the bytes of ``'rhino'`` are a different sequence then
-the bytes of ``'Rhino'``. ::
+Use the `bytes->contains` method. The example below will return "true" if the
+value ``'Rhino'`` is contained within the byte stream. Note that in this example
+it will return "false" because the bytes of ``'rhino'`` are a different sequence
+than the bytes of ``'Rhino'``. ::
 
    bytes('running rhinos risk rampage')->find('Rhino')
    // => false
@@ -232,10 +304,100 @@ using UTF-8 encoding::
    // => This is a string
 
 
+Bytes Decoding/Encoding Methods
+===============================
+
+.. member:: bytes->crc()
+
+   Returns the cyclic redundancy check integer value for the byte stream.
+
+.. member:: bytes->encodeBase64()
+
+   Returns a base64-encoded representation of the byte stream as a bytes object.
+
+.. member:: bytes->decodeBase64()
+
+   Returns the binary data of a base64-encoded byte stream as a bytes object.
+   This is the opposite of the `bytes->encodeBase64` method.
+
+.. member:: bytes->encodeHex()
+
+   Returns the byte stream in hexadecimal format.
+
+.. member:: bytes->decodeHex()
+
+   Returns the binary data of a byte stream containing hexadecimal ASCII
+   characters by converting each pair of characters to a single byte. This is
+   the opposite of the `bytes->encodeHex` method.
+
+.. member:: bytes->encodeMd5()
+
+   Returns the MD5 hash value for the byte stream as a bytes object.
+
+.. member: bytes->encodeQP(isHeader::boolean=false)
+.. member:: bytes->encodeQP()
+
+   Returns the byte stream in quoted-printable format.
+
+.. member: bytes->decodeQP(isHeader::boolean=false)
+.. member:: bytes->decodeQP()
+
+   Returns the binary data of a quoted-printable--encoded byte stream as a bytes
+   object. This is the opposite of the `bytes->encodeQP` method.
+
+.. member:: bytes->encodeSql()
+
+   Returns the byte stream with any illegal characters for MySQL data sources
+   properly escaped.
+
+.. member:: bytes->encodeSql92()
+
+   Returns the byte stream with any illegal characters for SQL-92--compliant
+   data sources properly escaped. Not for use with MySQL.
+
+.. member: bytes->encodeUrl(strict::boolean=false)
+.. member:: bytes->encodeUrl()
+
+   Returns the byte stream with any illegal characters for URLs properly
+   escaped.
+
+.. member:: bytes->decodeUrl()
+
+   Returns the binary data of a URL-encoded byte stream as a bytes object, with
+   any escaped characters replaced with their ASCII equivalents. This is the
+   opposite of the `bytes->encodeUrl` method.
+
+
+Encode a File as Base64
+-----------------------
+
+Use the `bytes->encodeBase64` method. The example below reads a file into a byte
+stream and prints its Base64-encoded value::
+
+   file('red-dot.png')->readBytes->encodeBase64
+   // => iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==
+
+
+Bytes Iteration Methods
+=======================
+
+.. member:: bytes->forEachByte()
+
+   Executes a given capture block once for every bytes in the byte stream. The
+   byte can be accessed in the capture block through the special local variable
+   ``#1``.
+
+.. member:: bytes->eachByte()
+
+   Returns an ``eacher`` that can be used in conjunction with query expressions
+   to inspect and perform complex operations on every byte in the byte stream.
+
+
 Bytes Manipulation Methods
 ==========================
 
-Calling the following methods will modify the bytes object.
+Calling the following methods will modify the bytes object without returning a
+value.
 
 .. member:: bytes->setSize(num::integer)
 
@@ -248,9 +410,27 @@ Calling the following methods will modify the bytes object.
       whatLen::integer= ?)
 
    Sets a range of characters within a byte stream. Requires one parameter for
-   the binary data to be inserted. Optional second, third, and fourth parameters
-   specify the integer offset into the byte stream to insert the new data, and
-   the offset and length of the new data to be inserted, respectively.
+   the binary data to be inserted. The optional second, third, and fourth
+   parameters specify the integer offset into the byte stream to insert the new
+   data, and the offset and length of the new data to be inserted, respectively.
+
+.. member:: bytes->padLeading(tosize::integer, with::bytes= ?)
+.. member:: bytes->padLeading(tosize::integer, with::string= ?)
+
+   If the byte stream is smaller in size than the first parameter specifying the
+   target number of bytes, it changes the byte stream by prepending a character
+   to its beginning until it reaches the specified size. The character used for
+   prepending defaults to a space, but can be set with an optional second
+   parameter.
+
+.. member:: bytes->padTrailing(tosize::integer, with::bytes= ?)
+.. member:: bytes->padTrailing(tosize::integer, with::string= ?)
+
+   If the byte stream is smaller in size than the first parameter specifying the
+   target number of bytes, it changes the byte stream by appending a character
+   to its end until it reaches the specified size. The character used for
+   appending defaults to a space, but can be set with an optional second
+   parameter.
 
 .. member:: bytes->replace(find::bytes, replace::bytes)
 
@@ -261,7 +441,7 @@ Calling the following methods will modify the bytes object.
 .. member:: bytes->remove()
 .. member:: bytes->remove(position::integer, num::integer)
 
-   Removes bytes form a byte stream. When passed without a parameter, it removes
+   Removes bytes from a byte stream. When passed without a parameter, it removes
    all bytes, setting the object to an empty bytes object. In its second form,
    it requires an offset into the byte stream and the number of bytes to remove
    starting from there.
@@ -287,36 +467,28 @@ Calling the following methods will modify the bytes object.
    Removes all whitespace ASCII characters from the beginning and the end of the
    byte stream.
 
-.. member:: bytes->setPosition(i::integer)
-
-   Sets the current position within the byte stream. Requires a single integer
-   parameter.
-
+.. member: bytes->importAs(p0::string, p1::string)
 .. member:: bytes->importString(s::string, enc::string= ?)
 
-   Imports a string parameter. A second parameter can specify the character
-   encoding (e.g. "ISO-8859-1", "UTF-8") to use for the import.
+   Imports a string parameter into the byte stream. A second parameter can
+   specify the character encoding (e.g. "ISO-8859-1" or "UTF-8") to use for the
+   import.
+
+.. member:: bytes->importBytes(b::bytes)
+
+   Imports a bytes object parameter into the byte stream.
 
 .. member:: bytes->import8bits(i::integer)
-
-   Imports the first byte of an integer parameter.
-
 .. member:: bytes->import16bits(i::integer)
-
-   Imports the first 2 bytes of an integer parameter.
-
 .. member:: bytes->import32bits(i::integer)
-
-   Imports the first 4 bytes of an integer parameter.
-
 .. member:: bytes->import64bits(i::integer)
 
-   Imports the first 8 bytes of an integer parameter.
+   Imports the first 1, 2, 4, or 8 bytes of an integer parameter.
 
 .. member:: bytes->swapBytes()
 
-   Swaps the position of every pair of bytes (e.g. a byte stream of ``'father'``
-   becomes ``'afhtre'``).
+   Swaps the position of every pair of bytes, e.g. a byte stream of ``'father'``
+   becomes ``'afhtre'``.
 
 
 Add a String to a Byte Stream
